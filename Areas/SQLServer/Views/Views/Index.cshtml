@@ -1,0 +1,337 @@
+﻿@{
+    ViewData["Title"] = "SQL Views Introduction";
+}
+
+<div class="container-fluid">
+
+    <!-- =========================
+         PAGE HEADER
+    ========================== -->
+
+    <div class="mb-4">
+
+        <h1 class="fw-bold">
+            SQL Views Introduction
+        </h1>
+
+        <p class="text-muted">
+            Learn what SQL Views are, why they are used,
+            and how they help simplify and secure database queries.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         WHAT IS A VIEW?
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                What is a SQL View?
+            </h2>
+
+            <p>
+                A <strong>View</strong> is a virtual table based on the
+                result of a SQL query. A View does not normally store
+                the actual data separately. Instead, it stores the
+                SQL query that is used to retrieve the data.
+            </p>
+
+            <p>
+                A View can be created using one or more tables and can
+                be used just like a table when retrieving data.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         WHY USE VIEWS?
+    ========================== -->
+
+    <div class="alert alert-info shadow-sm mb-4">
+
+        <h3 class="fw-bold mb-3">
+            Why Use SQL Views?
+        </h3>
+
+        <ul class="mb-0">
+
+            <li class="mb-2">
+                To simplify complex SQL queries.
+            </li>
+
+            <li class="mb-2">
+                To provide an additional layer of data security.
+            </li>
+
+            <li class="mb-2">
+                To show only required columns and rows.
+            </li>
+
+            <li class="mb-2">
+                To reuse frequently used SQL queries.
+            </li>
+
+            <li>
+                To provide users with a simplified view of database data.
+            </li>
+
+        </ul>
+
+    </div>
+
+
+    <!-- =========================
+         BASIC SYNTAX
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                SQL View Syntax
+            </h2>
+
+            <p>
+                The basic syntax for creating a View in SQL Server is:
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>CREATE VIEW ViewName
+AS
+SELECT column1, column2
+FROM TableName
+WHERE condition;</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         SIMPLE EXAMPLE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Simple Example
+            </h2>
+
+            <p>
+                Suppose we have an <strong>Employees</strong> table
+                containing employee information.
+            </p>
+
+            <p>
+                We can create a View that displays only the required
+                employee information:
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>CREATE VIEW EmployeeView
+AS
+SELECT EmployeeId, EmployeeName, Department
+FROM Employees;</code></pre>
+
+            <h5 class="fw-bold mt-4">
+                Retrieving Data from the View
+            </h5>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>SELECT *
+FROM EmployeeView;</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         ADVANTAGES
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Advantages of SQL Views
+            </h2>
+
+            <div class="row">
+
+                <div class="col-md-6 mb-3">
+
+                    <div class="border rounded p-3 h-100">
+
+                        <h5 class="fw-bold">
+                            1. Simplicity
+                        </h5>
+
+                        <p class="mb-0">
+                            Views can hide complex SQL queries and make
+                            data retrieval easier.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+
+                    <div class="border rounded p-3 h-100">
+
+                        <h5 class="fw-bold">
+                            2. Security
+                        </h5>
+
+                        <p class="mb-0">
+                            Views can restrict access to specific columns
+                            and rows of a table.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+
+                    <div class="border rounded p-3 h-100">
+
+                        <h5 class="fw-bold">
+                            3. Reusability
+                        </h5>
+
+                        <p class="mb-0">
+                            A View can be reused whenever the same query
+                            result is required.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+
+                    <div class="border rounded p-3 h-100">
+
+                        <h5 class="fw-bold">
+                            4. Data Abstraction
+                        </h5>
+
+                        <p class="mb-0">
+                            Views hide the complexity of the underlying
+                            database tables.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         IMPORTANT POINTS
+    ========================== -->
+
+    <div class="alert alert-warning shadow-sm mb-4">
+
+        <h3 class="fw-bold mb-3">
+            Important Points
+        </h3>
+
+        <ul class="mb-0">
+
+            <li class="mb-2">
+                A View is a virtual table.
+            </li>
+
+            <li class="mb-2">
+                A View is created using the <strong>CREATE VIEW</strong>
+                statement.
+            </li>
+
+            <li class="mb-2">
+                A View can be based on one or more tables.
+            </li>
+
+            <li class="mb-2">
+                A View can be queried using the <strong>SELECT</strong>
+                statement.
+            </li>
+
+            <li>
+                The data displayed by a View comes from its underlying
+                tables.
+            </li>
+
+        </ul>
+
+    </div>
+
+
+    <!-- =========================
+         SUMMARY
+    ========================== -->
+
+    <div class="alert alert-primary shadow-sm mb-4">
+
+        <h2 class="fw-bold">
+            Summary
+        </h2>
+
+        <p class="mb-0">
+            A SQL View is a virtual table created from a SQL query.
+            Views are useful for simplifying complex queries,
+            improving data security, reusing queries, and presenting
+            selected database information in a simple format.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         PREVIOUS / NEXT
+    ========================== -->
+
+    <div class="d-flex justify-content-between align-items-center
+        mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/Subqueries/SubqueryWithDML"
+           class="btn btn-outline-primary">
+
+            ← Previous: Subquery with DML
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/Views/CreatingView"
+           class="btn btn-primary">
+
+            Next: Creating a View →
+
+        </a>
+
+    </div>
+
+</div>

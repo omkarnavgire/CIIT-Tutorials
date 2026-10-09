@@ -1,0 +1,1129 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Python Tuples";
+}
+
+<style>
+
+    /* =========================================================
+           PAGE-SPECIFIC CODE / OUTPUT BLOCKS
+           ========================================================= */
+
+    #python-tuples-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 0.5rem;
+        padding: 1rem !important;
+        overflow-x: auto;
+    }
+
+        #python-tuples-page pre code {
+            background-color: transparent !important;
+            color: #ffffff !important;
+        }
+
+</style>
+
+
+<main id="python-tuples-page" class="container py-5">
+
+    <div class="row g-4">
+
+
+        <!-- =====================================================
+             LEFT SIDE - COURSE SYLLABUS
+             ===================================================== -->
+
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+
+        </aside>
+
+
+        <!-- =====================================================
+             RIGHT SIDE - TUTORIAL CONTENT
+             ===================================================== -->
+
+        <section class="col-lg-9">
+
+
+            <!-- =================================================
+                 PAGE TITLE
+                 ================================================= -->
+
+            <div class="mb-4">
+
+                <h1 class="display-6 fw-bold">
+                    Tuples
+                </h1>
+
+                <p class="lead text-muted mb-0">
+                    Learn how to store ordered and immutable
+                    collections of values using Python Tuples.
+                </p>
+
+            </div>
+
+
+            <!-- =================================================
+                 INTRODUCTION
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        What is a Tuple?
+                    </h2>
+
+                    <p>
+                        A Tuple is an ordered collection of values
+                        in Python. Tuples are similar to Lists,
+                        but the important difference is that
+                        Tuples are <strong>immutable</strong>.
+                    </p>
+
+                    <p>
+                        Immutable means that once a Tuple is created,
+                        its elements cannot be changed.
+                    </p>
+
+                    <p>
+                        Tuples are useful when we want to keep a group
+                        of values unchanged.
+                    </p>
+
+                    <ul>
+
+                        <li>Ordered</li>
+
+                        <li>Immutable</li>
+
+                        <li>Allow duplicate values</li>
+
+                        <li>Support different data types</li>
+
+                        <li>Support indexing and slicing</li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 CREATING A TUPLE
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Creating a Tuple
+                    </h2>
+
+                    <p>
+                        Tuples are normally created using
+                        parentheses <code>()</code>.
+                    </p>
+
+                    <pre><code>courses = ("Python", "Java", ".NET")
+
+print(courses)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>('Python', 'Java', '.NET')</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 TUPLE WITHOUT PARENTHESES
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Tuple Packing
+                    </h2>
+
+                    <p>
+                        Python also allows us to create a Tuple
+                        without explicitly writing parentheses.
+                    </p>
+
+                    <pre><code>student = "Rahul", 22, "Python"
+
+print(student)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>('Rahul', 22, 'Python')</code></pre>
+
+                    <p class="mb-0">
+                        This is called <strong>Tuple Packing</strong>.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 SINGLE ELEMENT TUPLE
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Single Element Tuple
+                    </h2>
+
+                    <p>
+                        A single-element Tuple must contain a comma.
+                    </p>
+
+                    <pre><code>course = ("Python",)
+
+print(course)
+
+print(type(course))</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>('Python',)
+&lt;class 'tuple'&gt;</code></pre>
+
+
+                    <h3 class="h5 fw-bold mt-4">
+                        Without Comma
+                    </h3>
+
+                    <pre><code>course = ("Python")
+
+print(type(course))</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>&lt;class 'str'&gt;</code></pre>
+
+                    <p class="mb-0">
+                        The comma is what makes it a Tuple.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 DIFFERENT DATA TYPES
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Tuple with Different Data Types
+                    </h2>
+
+                    <pre><code>student = (
+    "Rahul",
+    22,
+    85.5,
+    True
+)
+
+print(student)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>('Rahul', 22, 85.5, True)</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 INDEXING
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Tuple Indexing
+                    </h2>
+
+                    <p>
+                        Tuple indexing starts from <code>0</code>.
+                    </p>
+
+                    <pre><code>courses = ("Python", "Java", ".NET", "MERN")
+
+print(courses[0])
+print(courses[1])
+print(courses[2])
+print(courses[3])</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>Python
+Java
+.NET
+MERN</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 NEGATIVE INDEXING
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Negative Indexing
+                    </h2>
+
+                    <p>
+                        Negative indexes allow us to access elements
+                        from the end of the Tuple.
+                    </p>
+
+                    <pre><code>courses = ("Python", "Java", ".NET", "MERN")
+
+print(courses[-1])
+print(courses[-2])</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>MERN
+.NET</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 SLICING
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Tuple Slicing
+                    </h2>
+
+                    <p>
+                        Slicing extracts a portion of a Tuple.
+                    </p>
+
+                    <pre><code>courses = (
+    "Python",
+    "Java",
+    ".NET",
+    "MERN",
+    "Data Science"
+)
+
+print(courses[1:4])</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>('Java', '.NET', 'MERN')</code></pre>
+
+                    <p class="mb-0">
+                        The ending index is not included.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 IMMUTABILITY
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Tuples are Immutable
+                    </h2>
+
+                    <p>
+                        Once a Tuple is created, its individual
+                        elements cannot be changed.
+                    </p>
+
+                    <pre><code>student = ("Rahul", 22, "Python")
+
+student[1] = 23</code></pre>
+
+                    <p>
+                        The above code produces a
+                        <strong>TypeError</strong>.
+                    </p>
+
+                    <p class="mb-0">
+                        This is the major difference between a
+                        List and a Tuple.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 TUPLE LENGTH
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Finding Tuple Length
+                    </h2>
+
+                    <p>
+                        The <code>len()</code> function returns the
+                        number of elements.
+                    </p>
+
+                    <pre><code>courses = ("Python", "Java", ".NET", "MERN")
+
+print(len(courses))</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>4</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 SEARCHING
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Searching in a Tuple
+                    </h2>
+
+                    <p>
+                        The <code>in</code> operator checks whether
+                        an item exists in the Tuple.
+                    </p>
+
+                    <pre><code>courses = ("Python", "Java", ".NET")
+
+print("Python" in courses)
+print("PHP" in courses)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>True
+False</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 COUNT
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        count()
+                    </h2>
+
+                    <p>
+                        The <code>count()</code> method returns the
+                        number of times a value appears.
+                    </p>
+
+                    <pre><code>courses = (
+    "Python",
+    "Java",
+    "Python",
+    ".NET",
+    "Python"
+)
+
+print(courses.count("Python"))</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>3</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 INDEX METHOD
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        index()
+                    </h2>
+
+                    <p>
+                        The <code>index()</code> method returns the
+                        position of the first matching element.
+                    </p>
+
+                    <pre><code>courses = ("Python", "Java", ".NET")
+
+print(courses.index("Java"))</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>1</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 LOOPING
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Looping Through a Tuple
+                    </h2>
+
+                    <p>
+                        A <code>for</code> loop can be used to process
+                        every element of a Tuple.
+                    </p>
+
+                    <pre><code>courses = ("Python", "Java", ".NET", "MERN")
+
+for course in courses:
+    print(course)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>Python
+Java
+.NET
+MERN</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 TUPLE UNPACKING
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Tuple Unpacking
+                    </h2>
+
+                    <p>
+                        Tuple unpacking allows us to assign Tuple
+                        elements to separate variables.
+                    </p>
+
+                    <pre><code>student = ("Rahul", 22, "Python")
+
+name, age, course = student
+
+print(name)
+print(age)
+print(course)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>Rahul
+22
+Python</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 STAR UNPACKING
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Extended Tuple Unpacking
+                    </h2>
+
+                    <p>
+                        The <code>*</code> operator can collect
+                        multiple remaining values.
+                    </p>
+
+                    <pre><code>courses = (
+    "Python",
+    "Java",
+    ".NET",
+    "MERN"
+)
+
+first, *remaining = courses
+
+print(first)
+print(remaining)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>Python
+['Java', '.NET', 'MERN']</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 CONCATENATION
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Joining Tuples
+                    </h2>
+
+                    <p>
+                        Two Tuples can be combined using the
+                        <code>+</code> operator.
+                    </p>
+
+                    <pre><code>basic_courses = ("Python", "Java")
+
+advanced_courses = (".NET", "MERN")
+
+all_courses = basic_courses + advanced_courses
+
+print(all_courses)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>('Python', 'Java', '.NET', 'MERN')</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 REPETITION
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Repeating a Tuple
+                    </h2>
+
+                    <p>
+                        The <code>*</code> operator can repeat the
+                        elements of a Tuple.
+                    </p>
+
+                    <pre><code>numbers = (1, 2)
+
+result = numbers * 3
+
+print(result)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>(1, 2, 1, 2, 1, 2)</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 CONVERT LIST TO TUPLE
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Converting List to Tuple
+                    </h2>
+
+                    <p>
+                        The <code>tuple()</code> function can convert
+                        another iterable into a Tuple.
+                    </p>
+
+                    <pre><code>courses = ["Python", "Java", ".NET"]
+
+course_tuple = tuple(courses)
+
+print(course_tuple)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>('Python', 'Java', '.NET')</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 CONVERT TUPLE TO LIST
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Converting Tuple to List
+                    </h2>
+
+                    <p>
+                        A Tuple can be converted to a List using
+                        <code>list()</code>.
+                    </p>
+
+                    <pre><code>courses = ("Python", "Java", ".NET")
+
+course_list = list(courses)
+
+course_list.append("MERN")
+
+print(course_list)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>['Python', 'Java', '.NET', 'MERN']</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 PRACTICAL CIIT EXAMPLE
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        CIIT Example 📩👀
+                    </h2>
+
+                    <p>
+                        Suppose CIIT wants to store fixed information
+                        about a training batch.
+                    </p>
+
+                    <pre><code>batch = (
+    "Python Full Stack",
+    "Morning",
+    "6 Months",
+    "Pune"
+)
+
+print("Course:", batch[0])
+print("Timing:", batch[1])
+print("Duration:", batch[2])
+print("Location:", batch[3])</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>Course: Python Full Stack
+Timing: Morning
+Duration: 6 Months
+Location: Pune</code></pre>
+
+                    <p class="mb-0">
+                        Since these batch details may be treated as
+                        fixed information, a Tuple is a suitable
+                        choice.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 LIST VS TUPLE
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        List vs Tuple
+                    </h2>
+
+                    <div class="table-responsive">
+
+                        <table class="table table-bordered align-middle">
+
+                            <thead class="table-dark">
+
+                                <tr>
+                                    <th>Feature</th>
+                                    <th>List</th>
+                                    <th>Tuple</th>
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                                <tr>
+                                    <td>Syntax</td>
+                                    <td><code>[]</code></td>
+                                    <td><code>()</code></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Ordered</td>
+                                    <td>Yes</td>
+                                    <td>Yes</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Mutable</td>
+                                    <td>Yes</td>
+                                    <td>No</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Duplicates</td>
+                                    <td>Allowed</td>
+                                    <td>Allowed</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Indexing</td>
+                                    <td>Supported</td>
+                                    <td>Supported</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Slicing</td>
+                                    <td>Supported</td>
+                                    <td>Supported</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Typical use</td>
+                                    <td>Changing collections</td>
+                                    <td>Fixed collections</td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 COMMON MISTAKES
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Common Mistakes
+                    </h2>
+
+                    <ol>
+
+                        <li class="mb-2">
+                            Forgetting the comma when creating a
+                            single-element Tuple.
+                        </li>
+
+                        <li class="mb-2">
+                            Trying to update a Tuple element.
+                        </li>
+
+                        <li class="mb-2">
+                            Assuming Tuple methods are the same as
+                            all List methods.
+                        </li>
+
+                        <li class="mb-2">
+                            Using a Tuple when the data needs frequent
+                            modifications.
+                        </li>
+
+                        <li>
+                            Forgetting that Tuple indexes start from
+                            <code>0</code>.
+                        </li>
+
+                    </ol>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 INTERVIEW POINTS
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Interview Points
+                    </h2>
+
+                    <ul>
+
+                        <li class="mb-2">
+                            What is a Tuple in Python?
+                        </li>
+
+                        <li class="mb-2">
+                            What is the difference between List and Tuple?
+                        </li>
+
+                        <li class="mb-2">
+                            Why are Tuples immutable?
+                        </li>
+
+                        <li class="mb-2">
+                            How do you create a single-element Tuple?
+                        </li>
+
+                        <li class="mb-2">
+                            Can a Tuple contain different data types?
+                        </li>
+
+                        <li class="mb-2">
+                            What is Tuple unpacking?
+                        </li>
+
+                        <li>
+                            How can you convert a Tuple into a List?
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 CIIT LEARNING POINT
+                 ================================================= -->
+
+            <div class="alert alert-success mt-4">
+
+                <h2 class="h4 fw-bold">
+                    CIIT Learning Point
+                </h2>
+
+                <p class="mb-0">
+                    Tuples are useful when data should remain
+                    unchanged. Understanding indexing, slicing,
+                    unpacking, Tuple methods and the difference
+                    between mutable Lists and immutable Tuples is
+                    important for writing reliable Python programs.
+                </p>
+
+            </div>
+
+
+            <!-- =================================================
+                 PRACTICE TASKS
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        CIIT Practice Tasks
+                    </h2>
+
+                    <ol>
+
+                        <li class="mb-2">
+                            Create a Tuple containing five course names
+                            and print each course.
+                        </li>
+
+                        <li class="mb-2">
+                            Access the first and last elements using
+                            positive and negative indexing.
+                        </li>
+
+                        <li class="mb-2">
+                            Create a Tuple of student details and
+                            unpack it into separate variables.
+                        </li>
+
+                        <li class="mb-2">
+                            Count how many times "Python" appears in
+                            a Tuple.
+                        </li>
+
+                        <li class="mb-2">
+                            Convert a List into a Tuple.
+                        </li>
+
+                        <li class="mb-2">
+                            Convert a Tuple into a List and add a
+                            new element.
+                        </li>
+
+                        <li>
+                            Create a Tuple containing fixed CIIT batch
+                            information and display each value.
+                        </li>
+
+                    </ol>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 SUMMARY
+                 ================================================= -->
+
+            <div class="alert alert-info mt-4 mb-0"
+                 style="background-color:#cfe2ff; border:0; color:#123c73;">
+
+                <h2 class="h3 fw-bold mt-0 mb-3"
+                    style="color:#123c73;">
+
+                    Summary :
+
+                </h2>
+
+                <p class="mb-0"
+                   style="color:#123c73;">
+
+                    Python Tuples are ordered and immutable
+                    collections used to store values that should
+                    remain unchanged. Tuples support indexing,
+                    negative indexing, slicing, searching, counting,
+                    unpacking and iteration. Important methods include
+                    count() and index(). Tuples can also be converted
+                    to Lists when modification is required.
+
+                </p>
+
+            </div>
+
+
+            <!-- =================================================
+                 PREVIOUS / NEXT NAVIGATION
+                 ================================================= -->
+
+            <div class="d-flex justify-content-between align-items-center mt-5 pt-3 border-top">
+
+                <a href="@Url.Action("Lists", "DataStructures", new { area = "Python" })"
+                   class="btn btn-outline-secondary">
+
+                    ← Previous: Topic
+
+                </a>
+
+
+                <a href="@Url.Action("Sets", "DataStructures", new { area = "Python" })"
+                   class="btn btn-primary">
+
+                    Next: Topic →
+
+                </a>
+
+            </div>
+
+
+        </section>
+
+    </div>
+
+</main>

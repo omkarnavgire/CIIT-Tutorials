@@ -1,0 +1,512 @@
+﻿﻿@{
+ViewData["Title"] = "Full Stack Java";
+}
+
+<style>
+    .fullstack-java-page {
+        background: #ffffff;
+        padding: 55px 20px 70px;
+        min-height: 600px;
+    }
+
+    .fullstack-java-container {
+        max-width: 1450px;
+        margin: 0 auto;
+        display: flex;
+        gap: 40px;
+        align-items: flex-start;
+    }
+
+    /* =========================
+                   COURSES SIDEBAR
+                   ========================= */
+
+    .courses-sidebar {
+        width: 285px;
+        flex-shrink: 0;
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        border-radius: 16px;
+        box-shadow: 0 5px 18px rgba(0, 0, 0, 0.07);
+        overflow: hidden;
+        position: sticky;
+        top: 20px;
+    }
+
+    .courses-sidebar-title {
+        background: #f8fafc;
+        padding: 20px 24px;
+        font-size: 22px;
+        color: #111827;
+        border-bottom: 1px solid #e5e7eb;
+        margin: 0;
+    }
+
+    .courses-list {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .course-link {
+        display: block;
+        padding: 17px 24px;
+        text-decoration: none;
+        color: #374151;
+        font-size: 16px;
+        border-bottom: 1px solid #f1f5f9;
+        transition: all 0.2s ease;
+    }
+
+        .course-link:hover {
+            background: #f0f7ff;
+            color: #1677ff;
+        }
+
+        .course-link.active {
+            background: #eef6ff;
+            color: #1677ff;
+            border-left: 5px solid #1677ff;
+            padding-left: 19px;
+        }
+
+    /* =========================
+                   MAIN CONTENT
+                   ========================= */
+
+    .fullstack-java-main {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .fullstack-java-header {
+        text-align: center;
+        margin-bottom: 45px;
+    }
+
+    .fullstack-java-title {
+        font-size: 42px;
+        color: #111827;
+        margin-bottom: 12px;
+    }
+
+    .fullstack-java-subtitle {
+        font-size: 18px;
+        color: #6b7280;
+        margin: 0;
+    }
+
+    /* =========================
+                   JAVA TOPIC CARDS
+                   ========================= */
+
+    .java-topic-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 25px;
+    }
+
+    .java-topic-card {
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        border-radius: 16px;
+        padding: 30px 22px;
+        min-height: 190px;
+        text-align: center;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+        transition: all 0.25s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .java-topic-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.10);
+        }
+
+    .java-topic-icon {
+        font-size: 42px;
+        margin-bottom: 15px;
+        line-height: 1;
+    }
+
+    .java-topic-title {
+        font-size: 21px;
+        color: #111827;
+        margin: 0;
+    }
+
+    .java-topic-text {
+        font-size: 14px;
+        color: #6b7280;
+        margin-top: 8px;
+        margin-bottom: 0;
+    }
+
+    /* =========================
+                   RESPONSIVE
+                   ========================= */
+
+    @@media (max-width: 1150px) {
+        .java-topic-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @@media (max-width: 800px) {
+        .fullstack-java-container {
+            flex-direction: column;
+        }
+
+        .courses-sidebar {
+            width: 100%;
+            position: static;
+        }
+
+        .courses-list {
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        .course-link {
+            flex: 1;
+            min-width: 180px;
+            text-align: center;
+        }
+
+        .java-topic-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @@media (max-width: 576px) {
+        .java-topic-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .fullstack-java-title {
+            font-size: 32px;
+        }
+
+        .course-link {
+            width: 100%;
+            flex: 100%;
+        }
+    }
+</style>
+
+
+<div class="fullstack-java-page">
+
+    <div class="fullstack-java-container">
+
+        <!-- =========================
+             COURSES SIDEBAR
+             ========================= -->
+
+        <aside class="courses-sidebar">
+
+            <h2 class="courses-sidebar-title">
+                COURSES
+            </h2>
+
+            <div class="courses-list">
+
+                <!-- Java Full Stack -->
+                <a href="/Course/JavaFullStackDevelopment" , new { area="FullStackJava" })"
+                   class="course-link active">
+                    Java Full Stack
+                </a>
+
+                <!-- Python Full Stack -->
+                <a href="/Course/PythonFullStackDevelopment" class="course-link">
+                    Python Full Stack
+                </a>
+
+                <!-- Dot Net Full Stack -->
+                <a href="/Course/DotNetFullStackDevelopment" class="course-link">
+                    Dot Net Full Stack
+                </a>
+                <!-- MEAN Stack Development -->
+                <a href="/Course/MEANStackDevelopment" class="course-link">
+                    MERN Stack Development
+                </a>
+                <!--MERN Stack Development-->
+                <a href="/Course/MERNStackDevelopment" class="course-link">
+                    MERN Stack Development
+                </a>
+                <!-- DataAnalytics -->
+                <a href="/Course/DataAnalytics" class="course-link">
+                    Data Analytics
+                </a>
+                <!--  Data Science -->
+                <a href="/Course/DataScience" class="course-link">
+                    Data Science
+                </a>
+                <!-- SoftwareTesting -->
+                <a href="/Course/SoftwareTesting" class="course-link">
+                    Software Testing
+                </a>
+                <!--DevOps -->
+                <a href="/Course/DevOps" class="course-link">
+                    DevOps
+                </a>
+
+                <!-- DevOps With gen AI -->
+                <a href="/Course/DevOpsWithGenAI" class="course-link">
+                    DevOps With Gen AI
+                </a>
+
+                <!--  Full Stack With DevOps -->
+                <a href="/Course/FullStackWithDevOps" class="course-link">
+                    Full Stack With DevOps
+                </a>
+
+            </div>
+
+        </aside>
+
+
+        <!-- =========================
+             MAIN JAVA CONTENT
+             ========================= -->
+
+        <main class="fullstack-java-main">
+
+            <!-- Page Header -->
+            <div class="fullstack-java-header">
+
+                <h2 class="fullstack-java-title">
+                    Java Full Stack 
+                </h2>
+
+                <p class="fullstack-java-subtitle">
+                    Learn Java Full Stack Development, Azure DevOps and Gen AI...
+                </p>
+
+            </div>
+
+
+ 
+            <div class="java-topic-grid">
+
+     
+                <div class="java-topic-card">
+                    <a href="/CoreJava/Introduction" class="nav-link">
+                        <div class="java-topic-icon">
+                            ☕
+                        </div>
+
+                        <h2 class="java-topic-title">
+                            Core Java
+                        </h2>
+
+                        <p class="java-topic-text">
+                            Learn core java concepts and programming fundamentals.
+                        </p>
+                    </a>
+                </div>
+                <div class="java-topic-card">
+                    <a href="/JDBC/Introduction" class="nav-link">
+                        <div class="java-topic-icon">
+                            🔗
+                        </div>
+
+                        <h2 class="java-topic-title">
+                           JDBC
+                        </h2>
+
+                        <p class="java-topic-text">
+                            Learn  jdbc for database operations.
+                        </p>
+                    </a>
+                </div>
+
+
+              
+                <div class="java-topic-card">
+                    <a href="/Hibernate/Introduction" class="nav-link">
+                        <div class="java-topic-icon">
+                            🗄️
+                        </div>
+
+                        <h2 class="java-topic-title">
+                            Hibernate
+                        </h2>
+
+                        <p class="java-topic-text">
+                            Learn ORM concepts and hibernate queries.
+                        </p>
+                    </a>
+                </div>
+
+
+                
+                <div class="java-topic-card">
+                    <a href="/JSP/Introduction" class="nav-link">
+                        <div class="java-topic-icon">
+                            🚀
+                        </div>
+
+                        <h2 class="java-topic-title">
+                            JSP & Servlet
+                        </h2>
+
+                        <p class="java-topic-text">
+                            Learn jsp , servlet and many more concepts
+                        </p>
+                    </a>
+                </div>
+
+ 
+                <div class="java-topic-card">
+                    <a href="/SpringBoot/Introduction" class="nav-link">
+                        <div class="java-topic-icon">
+                            🌱
+                        </div>
+
+                        <h2 class="java-topic-title">
+                           Spring Boot  
+                        </h2>
+
+                        <p class="java-topic-text">
+                            Learn Spring Boot mvc app, web apis, microservices web application development.
+                        </p>
+                    </a>
+                </div>
+
+
+               
+                <div class="java-topic-card">
+                    <a href="/SpringBootMicroServices/Introduction" class="nav-link">
+                        <div class="java-topic-icon">
+                            ⚙️
+                        </div>
+
+                        <h2 class="java-topic-title">
+                            MicroServices
+                        </h2>
+
+                        <p class="java-topic-text">
+                            Learn microservice architecture and distributed applications.
+                        </p>
+                    </a>
+                </div>
+
+
+              
+               
+                <div class="java-topic-card">
+                    <a href="/GitHub/Introduction" class="nav-link">
+                        <div class="java-topic-icon">
+                            🌐
+                        </div>
+
+                        <h2 class="java-topic-title">
+                            GitHub
+                        </h2>
+
+                        <p class="java-topic-text">
+                            Learn  Git and Github, Version control system.
+                        </p>
+                    </a>
+                </div>
+                <div class="java-topic-card">
+                    <a href="/Jenkins/Introduction" class="nav-link">
+                        <div class="java-topic-icon">
+                            🌐
+                        </div>
+                        <h2 class="java-topic-title">
+                            Jenkins
+                        </h2>
+                        <p class="java-topic-text">
+                            Learn  Jenkins, CI,CD Pipeline.
+                        </p>
+                    </a>
+                </div>
+                <div class="java-topic-card">
+                    <a href="/Azure/Introduction" class="nav-link">
+                        <div class="java-topic-icon">
+                            🌐
+                        </div>
+                        <h2 class="java-topic-title">
+                            AWS
+                        </h2>
+                        <p class="java-topic-text">
+                            Learn  AWS Cloud, AWS DevOps.
+                        </p>
+                    </a>
+                </div>
+                <div class="java-topic-card">
+                    <a href="/Docker/Introduction" class="nav-link">
+                        <div class="java-topic-icon">
+                            🌐
+                        </div>
+                        <h2 class="java-topic-title">
+                            Docker
+                        </h2>
+                        <p class="java-topic-text">
+                            Learn  Docker, Container.
+                        </p>
+                    </a>
+                </div>
+                <div class="java-topic-card">
+                    <a href="/Kubernetes/Introduction" class="nav-link">
+                        <div class="java-topic-icon">
+                            🌐
+                        </div>
+                        <h2 class="java-topic-title">
+                            Kubernetes
+                        </h2>
+                        <p class="java-topic-text">
+                            Learn  Kubernetes, Container Orchastation.
+                        </p>
+                    </a>
+                </div>
+                <div class="java-topic-card">
+                    <a href="/Ansible/Introduction" class="nav-link">
+                        <div class="java-topic-icon">
+                            🌐
+                        </div>
+                        <h2 class="java-topic-title">
+                            Ansible
+                        </h2>
+                        <p class="java-topic-text">
+                            Learn Ansible.
+                        </p>
+                    </a>
+                </div>
+                <div class="java-topic-card">
+                    <a href="/Terraform/Introduction" class="nav-link">
+                        <div class="java-topic-icon">
+                            🌐
+                        </div>
+                        <h2 class="java-topic-title">
+                            Terraform
+                        </h2>
+                        <p class="java-topic-text">
+                            Learn Terraform.
+                        </p>
+                    </a>
+                </div>
+                <div class="java-topic-card">
+                    <a href="/GenAI/Introduction" class="nav-link">
+                        <div class="java-topic-icon">
+                            🌐
+                        </div>
+                        <h2 class="java-topic-title">
+                            AI Integration
+                        </h2>
+                        <p class="java-topic-text">
+                            Learn AI Integration in .Net Core And DevOps.
+                        </p>
+                    </a>
+                </div>
+            </div>
+
+        </main>
+
+    </div>
+
+</div>

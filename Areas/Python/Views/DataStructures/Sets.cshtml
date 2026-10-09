@@ -1,0 +1,1361 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Python Sets";
+}
+
+<style>
+
+    /* =========================================================
+           PAGE-SPECIFIC CODE / OUTPUT BLOCKS
+           ========================================================= */
+
+    #python-sets-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 0.5rem;
+        padding: 1rem !important;
+        overflow-x: auto;
+    }
+
+        #python-sets-page pre code {
+            background-color: transparent !important;
+            color: #ffffff !important;
+        }
+
+</style>
+
+
+<main id="python-sets-page" class="container py-5">
+
+    <div class="row g-4">
+
+
+        <!-- =====================================================
+             LEFT SIDE - COURSE SYLLABUS
+             ===================================================== -->
+
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+
+        </aside>
+
+
+        <!-- =====================================================
+             RIGHT SIDE - TUTORIAL CONTENT
+             ===================================================== -->
+
+        <section class="col-lg-9">
+
+
+            <!-- =================================================
+                 PAGE TITLE
+                 ================================================= -->
+
+            <div class="mb-4">
+
+                <h1 class="display-6 fw-bold">
+                     Sets
+                </h1>
+
+                <p class="lead text-muted mb-0">
+                    Learn how Python Sets store unique values and
+                    perform powerful operations such as Union,
+                    Intersection and Difference.
+                </p>
+
+            </div>
+
+
+            <!-- =================================================
+                 INTRODUCTION
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        What is a Set?
+                    </h2>
+
+                    <p>
+                        A Set is a built-in Python data structure
+                        used to store a collection of unique values.
+                    </p>
+
+                    <p>
+                        Sets are especially useful when duplicate
+                        values need to be removed or when we need
+                        to compare collections of data.
+                    </p>
+
+                    <ul>
+
+                        <li>Stores unique values</li>
+
+                        <li>Mutable</li>
+
+                        <li>Does not support indexing</li>
+
+                        <li>Does not guarantee a fixed display order</li>
+
+                        <li>Supports mathematical set operations</li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 CREATING A SET
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Creating a Set
+                    </h2>
+
+                    <p>
+                        Sets are commonly created using curly braces
+                        <code>{}</code>.
+                    </p>
+
+                    <pre><code>courses = {"Python", "Java", ".NET"}
+
+print(courses)</code></pre>
+
+                    <p>
+                        The order in which elements are displayed
+                        should not be relied upon.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 DUPLICATES
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Duplicate Values
+                    </h2>
+
+                    <p>
+                        A Set automatically removes duplicate values.
+                    </p>
+
+                    <pre><code>courses = {
+    "Python",
+    "Java",
+    "Python",
+    ".NET",
+    "Java"
+}
+
+print(courses)</code></pre>
+
+                    <p>
+                        The resulting Set contains only unique values.
+                    </p>
+
+                    <pre><code>{'Python', 'Java', '.NET'}</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 EMPTY SET
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Creating an Empty Set
+                    </h2>
+
+                    <p>
+                        An empty pair of curly braces creates an
+                        empty Dictionary, not an empty Set.
+                    </p>
+
+                    <pre><code>data = {}
+
+print(type(data))</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>&lt;class 'dict'&gt;</code></pre>
+
+
+                    <h3 class="h5 fw-bold mt-4">
+                        Correct Way
+                    </h3>
+
+                    <pre><code>data = set()
+
+print(type(data))</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>&lt;class 'set'&gt;</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 ADD
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Adding Elements using add()
+                    </h2>
+
+                    <p>
+                        The <code>add()</code> method adds one element
+                        to a Set.
+                    </p>
+
+                    <pre><code>courses = {"Python", "Java"}
+
+courses.add(".NET")
+
+print(courses)</code></pre>
+
+<h5 class="fw-bold">
+    Output
+</h5>
+
+<pre><code>{'Python', 'Java', '.NET'}</code></pre>
+                    <p>
+                        The new value is added to the Set if it is not
+                        already present.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 UPDATE
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Adding Multiple Elements using update()
+                    </h2>
+
+                    <p>
+                        The <code>update()</code> method can add
+                        multiple values from another iterable.
+                    </p>
+
+                    <pre><code>courses = {"Python", "Java"}
+
+more_courses = {".NET", "MERN"}
+
+courses.update(more_courses)
+
+print(courses)</code></pre>
+            <h5 class="fw-bold">
+    Output
+</h5>
+
+<pre><code>{'Python', 'Java', '.NET', 'MERN'}</code></pre>
+                    <p>
+                        All unique values from the second collection
+                        are added to the Set.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 REMOVE
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Removing Elements
+                    </h2>
+
+
+                    <h3 class="h5 fw-bold mt-3">
+                        remove()
+                    </h3>
+
+                    <p>
+                        The <code>remove()</code> method removes a
+                        specified element.
+                    </p>
+
+                    <pre><code>courses = {"Python", "Java", ".NET"}
+
+courses.remove("Java")
+
+print(courses)</code></pre>
+<h5 class="fw-bold">
+    Output
+</h5>
+
+<pre><code>{'Python', '.NET'}</code></pre>
+                    <p>
+                        If the specified element does not exist,
+                        <code>remove()</code> raises a
+                        <code>KeyError</code>.
+                    </p>
+
+
+                    <h3 class="h5 fw-bold mt-4">
+                        discard()
+                    </h3>
+
+                    <p>
+                        The <code>discard()</code> method also removes
+                        an element, but does not raise an error if
+                        the element is missing.
+                    </p>
+
+                    <pre><code>courses = {"Python", "Java", ".NET"}
+
+courses.discard("PHP")
+
+print(courses)</code></pre>
+
+<h5 class="fw-bold">
+    Output
+</h5>
+
+<pre><code>{'Python', 'Java', '.NET'}</code></pre>
+                    <h3 class="h5 fw-bold mt-4">
+                        pop()
+                    </h3>
+
+                    <p>
+                        The <code>pop()</code> method removes and
+                        returns an arbitrary Set element.
+                    </p>
+
+                    <pre><code>courses = {"Python", "Java", ".NET"}
+
+removed_course = courses.pop()
+
+print("Removed:", removed_course)
+print("Remaining:", courses)</code></pre>
+<h5 class="fw-bold">
+    Output
+</h5>
+
+<pre><code>Removed: Python
+Remaining: {'Java', '.NET'}</code></pre>
+
+                    <h3 class="h5 fw-bold mt-4">
+                        clear()
+                    </h3>
+
+                    <p>
+                        The <code>clear()</code> method removes all
+                        elements from the Set.
+                    </p>
+
+                    <pre><code>courses = {"Python", "Java", ".NET"}
+
+courses.clear()
+
+print(courses)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>set()</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 SET LENGTH
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Finding Set Length
+                    </h2>
+
+                    <p>
+                        The <code>len()</code> function returns the
+                        number of unique elements.
+                    </p>
+
+                    <pre><code>courses = {"Python", "Java", ".NET"}
+
+print(len(courses))</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>3</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 MEMBERSHIP
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Checking Membership
+                    </h2>
+
+                    <p>
+                        The <code>in</code> operator checks whether
+                        an element exists in a Set.
+                    </p>
+
+                    <pre><code>courses = {"Python", "Java", ".NET"}
+
+print("Python" in courses)
+print("PHP" in courses)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>True
+False</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 LOOPING
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Looping Through a Set
+                    </h2>
+
+                    <p>
+                        A <code>for</code> loop can be used to process
+                        each element of a Set.
+                    </p>
+
+                    <pre><code>courses = {"Python", "Java", ".NET"}
+
+for course in courses:
+    print(course)</code></pre>
+
+                    <p>
+                        Since Sets are unordered collections,
+                        the display order should not be assumed.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 UNION
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Set Union
+                    </h2>
+
+                    <p>
+                        Union combines the unique elements from
+                        two Sets.
+                    </p>
+
+                    <pre><code>python_students = {
+    "Rahul",
+    "Sneha",
+    "Amit"
+}
+
+java_students = {
+    "Amit",
+    "Priya",
+    "Sneha"
+}
+
+all_students = python_students | java_students
+
+print(all_students)</code></pre>
+
+                    <p>
+                        The <code>|</code> operator performs Union.
+                    </p>
+
+                    <h3 class="h5 fw-bold mt-4">
+                        union() Method
+                    </h3>
+
+                    <pre><code>result = python_students.union(java_students)
+
+print(result)</code></pre>
+<h5 class="fw-bold">
+    Output
+</h5>
+
+<pre><code>{'Rahul', 'Sneha', 'Amit', 'Priya'}</code></pre>
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 INTERSECTION
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Set Intersection
+                    </h2>
+
+                    <p>
+                        Intersection returns values that are common
+                        to both Sets.
+                    </p>
+
+                    <pre><code>python_students = {
+    "Rahul",
+    "Sneha",
+    "Amit"
+}
+
+java_students = {
+    "Amit",
+    "Priya",
+    "Sneha"
+}
+
+common_students = python_students &amp; java_students
+
+print(common_students)</code></pre>
+
+                    <p>
+                        The <code>&amp;</code> operator performs
+                        Intersection.
+                    </p>
+
+                    <h3 class="h5 fw-bold mt-4">
+                        intersection() Method
+                    </h3>
+
+                    <pre><code>result = python_students.intersection(java_students)
+
+print(result)</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 DIFFERENCE
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Set Difference
+                    </h2>
+
+                    <p>
+                        Difference returns elements that exist in
+                        the first Set but not in the second Set.
+                    </p>
+
+                    <pre><code>python_students = {
+    "Rahul",
+    "Sneha",
+    "Amit"
+}
+
+java_students = {
+    "Amit",
+    "Priya",
+    "Sneha"
+}
+
+only_python = python_students - java_students
+
+print(only_python)</code></pre>
+
+                    <p>
+                        The <code>-</code> operator performs
+                        Difference.
+                    </p>
+
+                    <h3 class="h5 fw-bold mt-4">
+                        difference() Method
+                    </h3>
+
+                    <pre><code>result = python_students.difference(java_students)
+
+print(result)</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 SYMMETRIC DIFFERENCE
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Symmetric Difference
+                    </h2>
+
+                    <p>
+                        Symmetric Difference returns values that
+                        exist in either Set, but not in both.
+                    </p>
+
+                    <pre><code>python_students = {
+    "Rahul",
+    "Sneha",
+    "Amit"
+}
+
+java_students = {
+    "Amit",
+    "Priya",
+    "Sneha"
+}
+
+result = python_students ^ java_students
+
+print(result)</code></pre>
+
+                    <p>
+                        The <code>^</code> operator performs
+                        Symmetric Difference.
+                    </p>
+
+                    <h3 class="h5 fw-bold mt-4">
+                        symmetric_difference()
+                    </h3>
+
+                    <pre><code>result = python_students.symmetric_difference(
+    java_students
+)
+
+print(result)</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 SUBSET
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Checking Subset
+                    </h2>
+
+                    <p>
+                        A Set is a subset if every element of the
+                        first Set is present in the second Set.
+                    </p>
+
+                    <pre><code>python_students = {
+    "Rahul",
+    "Sneha"
+}
+
+all_students = {
+    "Rahul",
+    "Sneha",
+    "Amit",
+    "Priya"
+}
+
+print(python_students.issubset(all_students))</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>True</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 SUPERSET
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Checking Superset
+                    </h2>
+
+                    <p>
+                        A Set is a superset if it contains every
+                        element of another Set.
+                    </p>
+
+                    <pre><code>all_students = {
+    "Rahul",
+    "Sneha",
+    "Amit",
+    "Priya"
+}
+
+python_students = {
+    "Rahul",
+    "Sneha"
+}
+
+print(all_students.issuperset(python_students))</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>True</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 DISJOINT
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Checking Disjoint Sets
+                    </h2>
+
+                    <p>
+                        Two Sets are disjoint when they have no
+                        common elements.
+                    </p>
+
+                    <pre><code>python_students = {
+    "Rahul",
+    "Sneha"
+}
+
+java_students = {
+    "Amit",
+    "Priya"
+}
+
+print(python_students.isdisjoint(java_students))</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>True</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 SET OPERATIONS TABLE
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Important Set Operations
+                    </h2>
+
+                    <div class="table-responsive">
+
+                        <table class="table table-bordered align-middle">
+
+                            <thead class="table-dark">
+
+                                <tr>
+                                    <th>Operation</th>
+                                    <th>Operator</th>
+                                    <th>Method</th>
+                                    <th>Purpose</th>
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                                <tr>
+                                    <td>Union</td>
+                                    <td><code>|</code></td>
+                                    <td><code>union()</code></td>
+                                    <td>Combines unique values</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Intersection</td>
+                                    <td><code>&amp;</code></td>
+                                    <td><code>intersection()</code></td>
+                                    <td>Returns common values</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Difference</td>
+                                    <td><code>-</code></td>
+                                    <td><code>difference()</code></td>
+                                    <td>Returns values only in first Set</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Symmetric Difference</td>
+                                    <td><code>^</code></td>
+                                    <td><code>symmetric_difference()</code></td>
+                                    <td>Returns non-common values</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Subset</td>
+                                    <td>—</td>
+                                    <td><code>issubset()</code></td>
+                                    <td>Checks subset relationship</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Superset</td>
+                                    <td>—</td>
+                                    <td><code>issuperset()</code></td>
+                                    <td>Checks superset relationship</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Disjoint</td>
+                                    <td>—</td>
+                                    <td><code>isdisjoint()</code></td>
+                                    <td>Checks for no common values</td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 CONVERT LIST TO SET
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Removing Duplicates from a List
+                    </h2>
+
+                    <p>
+                        One of the most practical uses of a Set is
+                        removing duplicate values from a List.
+                    </p>
+
+                    <pre><code>courses = [
+    "Python",
+    "Java",
+    "Python",
+    ".NET",
+    "Java"
+]
+
+unique_courses = set(courses)
+
+print(unique_courses)</code></pre>
+
+                    <p>
+                        The Set contains only unique course names.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 CONVERT SET TO LIST
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Converting Set to List
+                    </h2>
+
+                    <p>
+                        A Set can be converted into a List using
+                        <code>list()</code>.
+                    </p>
+
+                    <pre><code>courses = {"Python", "Java", ".NET"}
+
+course_list = list(courses)
+
+print(course_list)</code></pre>
+
+                    <p class="mb-0">
+                        Remember that the order of the resulting
+                        List should not be assumed unless you
+                        explicitly sort it.
+                    </p>
+
+                </div>
+                
+            </div>
+
+
+            <!-- =================================================
+                 PRACTICAL CIIT EXAMPLE
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        CIIT Example 🤓📩
+                    </h2>
+
+                    <p>
+                        Suppose CIIT has students enrolled in
+                        Python and .NET courses and wants to find
+                        students who are common to both courses.
+                    </p>
+
+                    <pre><code>python_students = {
+    "Rahul",
+    "Sneha",
+    "Amit",
+    "Neha"
+}
+
+dotnet_students = {
+    "Amit",
+    "Neha",
+    "Priya"
+}
+
+common_students = python_students &amp; dotnet_students
+
+print("Students in both courses:")
+print(common_students)</code></pre>
+
+                    <p>
+                        Intersection helps identify students
+                        enrolled in both course groups.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 SET VS LIST VS TUPLE
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Set vs List vs Tuple
+                    </h2>
+
+                    <div class="table-responsive">
+
+                        <table class="table table-bordered align-middle">
+
+                            <thead class="table-dark">
+
+                                <tr>
+                                    <th>Feature</th>
+                                    <th>List</th>
+                                    <th>Tuple</th>
+                                    <th>Set</th>
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                                <tr>
+                                    <td>Syntax</td>
+                                    <td><code>[]</code></td>
+                                    <td><code>()</code></td>
+                                    <td><code>{}</code></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Ordered</td>
+                                    <td>Yes</td>
+                                    <td>Yes</td>
+                                    <td>No guaranteed order</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Mutable</td>
+                                    <td>Yes</td>
+                                    <td>No</td>
+                                    <td>Yes</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Duplicates</td>
+                                    <td>Allowed</td>
+                                    <td>Allowed</td>
+                                    <td>Not allowed</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Indexing</td>
+                                    <td>Supported</td>
+                                    <td>Supported</td>
+                                    <td>Not supported</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Main Use</td>
+                                    <td>Changing collections</td>
+                                    <td>Fixed collections</td>
+                                    <td>Unique values and set operations</td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 COMMON MISTAKES
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Common Mistakes
+                    </h2>
+
+                    <ol>
+
+                        <li class="mb-2">
+                            Trying to access Set elements using an
+                            index such as <code>courses[0]</code>.
+                        </li>
+
+                        <li class="mb-2">
+                            Assuming that Set elements will always
+                            appear in a particular order.
+                        </li>
+
+                        <li class="mb-2">
+                            Using <code>{}</code> when an empty Set
+                            is required.
+                        </li>
+
+                        <li class="mb-2">
+                            Forgetting that duplicate values are
+                            automatically removed.
+                        </li>
+
+                        <li>
+                            Using <code>remove()</code> when the
+                            requested element may not exist and
+                            then unexpectedly getting a
+                            <code>KeyError</code>.
+                        </li>
+
+                    </ol>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 INTERVIEW POINTS
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Interview Points
+                    </h2>
+
+                    <ul>
+
+                        <li class="mb-2">
+                            What is a Set in Python?
+                        </li>
+
+                        <li class="mb-2">
+                            Why does a Set remove duplicate values?
+                        </li>
+
+                        <li class="mb-2">
+                            What is the difference between
+                            <code>remove()</code> and
+                            <code>discard()</code>?
+                        </li>
+
+                        <li class="mb-2">
+                            What is Set Union?
+                        </li>
+
+                        <li class="mb-2">
+                            What is Set Intersection?
+                        </li>
+
+                        <li class="mb-2">
+                            What is the difference between
+                            Difference and Symmetric Difference?
+                        </li>
+
+                        <li class="mb-2">
+                            Can we access Set elements using indexes?
+                        </li>
+
+                        <li>
+                            How can you remove duplicate values from
+                            a List using a Set?
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 CIIT LEARNING POINT
+                 ================================================= -->
+
+            <div class="alert alert-success mt-4">
+
+                <h2 class="h4 fw-bold">
+                    CIIT Learning Point
+                </h2>
+
+                <p class="mb-0">
+                    Sets are extremely useful when uniqueness,
+                    membership checking and comparison between
+                    collections are important. Union, Intersection,
+                    Difference and Symmetric Difference are commonly
+                    used when processing real-world data.
+                </p>
+
+            </div>
+
+
+            <!-- =================================================
+                 PRACTICE TASKS
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        CIIT Practice Tasks
+                    </h2>
+
+                    <ol>
+
+                        <li class="mb-2">
+                            Create a Set containing five programming
+                            languages.
+                        </li>
+
+                        <li class="mb-2">
+                            Add two new languages using
+                            <code>add()</code>.
+                        </li>
+
+                        <li class="mb-2">
+                            Remove one language using
+                            <code>remove()</code>.
+                        </li>
+
+                        <li class="mb-2">
+                            Create two Sets containing Python and
+                            .NET students and find common students.
+                        </li>
+
+                        <li class="mb-2">
+                            Find students who are enrolled only in
+                            Python.
+                        </li>
+
+                        <li class="mb-2">
+                            Find all unique students from both
+                            courses.
+                        </li>
+
+                        <li>
+                            Take a List containing duplicate values
+                            and remove duplicates using a Set.
+                        </li>
+
+                    </ol>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 SUMMARY
+                 ================================================= -->
+
+            <div class="alert alert-info mt-4 mb-0"
+                 style="background-color:#cfe2ff; border:0; color:#123c73;">
+
+                <h2 class="h3 fw-bold mt-0 mb-3"
+                    style="color:#123c73;">
+
+                    Summary :
+
+                </h2>
+
+                <p class="mb-0"
+                   style="color:#123c73;">
+
+                    Python Sets are mutable collections that store
+                    unique values and do not support indexing.
+                    They are useful for removing duplicates,
+                    membership checking and comparing collections.
+                    Important operations include Union,
+                    Intersection, Difference and Symmetric Difference.
+                    Methods such as add(), update(), remove(),
+                    discard(), pop(), clear(), issubset(),
+                    issuperset() and isdisjoint() are commonly used
+                    while working with Sets.
+
+                </p>
+
+            </div>
+
+
+            <!-- =================================================
+                 PREVIOUS / NEXT NAVIGATION
+                 ================================================= -->
+
+            <div class="d-flex justify-content-between align-items-center mt-5 pt-3 border-top">
+
+                <a href="@Url.Action("Tuples", "DataStructures", new { area = "Python" })"
+                   class="btn btn-outline-secondary">
+
+                    ← Previous: Topic
+
+                </a>
+
+
+                <a href="@Url.Action("Dictionaries", "DataStructures", new { area = "Python" })"
+                   class="btn btn-primary">
+
+                    Next: Topic →
+
+                </a>
+
+            </div>
+
+
+        </section>
+
+    </div>
+
+</main>

@@ -1,0 +1,63 @@
+@{
+    ViewData["Title"] = "Create a Build Pipeline";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+                <div class="azure-notes-content">
+                    <pre class="azure-notes-text">Create a Build Pipeline
+
+
+
+
+I have created a sample .net core app and it is running on my machine. Now I want to set up a CI-CD
+pipeline for this application using Azure DevOps. Please select the build option from the pipeline
+menu to set up the build pipeline.
+Now, choose a build template provided by Azure DevOps, as shown below.
+
+
+
+
+I can also select the TFVC version control system or GitHub if I want to as source code. Now give a
+name to build definition. Please select an appropriate solution file to build &amp; location to save build
+artifacts. These artifacts will be used as input to the release pipeline. You can see which artifacts.
+Azure DevOps provides multiple predefined templates to build applications developed
+in Java, node.js, PHP, etc.</pre>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_10_-_Azure_Pipelines_A_Complete_Guide_to_CICD_Automation/p03-000.jpg" class="img-fluid rounded shadow-sm" alt="Create a Build Pipeline - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_10_-_Azure_Pipelines_A_Complete_Guide_to_CICD_Automation/p03-001.jpg" class="img-fluid rounded shadow-sm" alt="Create a Build Pipeline - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_10_-_Azure_Pipelines_A_Complete_Guide_to_CICD_Automation/p04-000.jpg" class="img-fluid rounded shadow-sm" alt="Create a Build Pipeline - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_10_-_Azure_Pipelines_A_Complete_Guide_to_CICD_Automation/p04-001.jpg" class="img-fluid rounded shadow-sm" alt="Create a Build Pipeline - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_10_-_Azure_Pipelines_A_Complete_Guide_to_CICD_Automation/p05-000.jpg" class="img-fluid rounded shadow-sm" alt="Create a Build Pipeline - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_10_-_Azure_Pipelines_A_Complete_Guide_to_CICD_Automation/p05-001.jpg" class="img-fluid rounded shadow-sm" alt="Create a Build Pipeline - source image" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+            @await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureLessonNavigation.cshtml")
+</section>
+</div>
+<style>
+.azure-notes-text{white-space:pre-wrap;word-break:normal;font-family:inherit;font-size:1rem;line-height:1.7;background:#fff;border:0;padding:0;margin:0;color:#212529;}
+.azure-notes-content img{max-height:720px;}
+</style>

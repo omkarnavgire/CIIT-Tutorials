@@ -1,0 +1,985 @@
+﻿@{
+    ViewData["Title"] = "Reusable Components";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- Header -->
+    <section class="mb-4">
+        <h1 class="fw-bold text-dark">Reusable Components</h1>
+
+        <p class="lead text-muted">
+            Reusable Components are Angular components designed to be used
+            multiple times in different parts of an application. They help
+            reduce duplicate code and make applications easier to maintain.
+        </p>
+    </section>
+
+    <!-- What is Reusable Component -->
+    <section class="mb-4">
+        <h2 class="fw-bold">What is a Reusable Component?</h2>
+
+        <p>
+            A reusable component is a component created for a common UI or
+            functionality that can be used in multiple places.
+        </p>
+
+        <p>
+            Instead of writing the same HTML and logic repeatedly, we create
+            one component and reuse it whenever required.
+        </p>
+
+        <div class="info-card">
+            <h5>Simple Example</h5>
+            <p>
+                A <strong>Student Card</strong> can be created once and reused
+                for Sam, Pradnya and other students by passing different data.
+            </p>
+        </div>
+    </section>
+
+    <!-- Reusability Flow -->
+    <section class="mb-4">
+        <h2 class="fw-bold mb-3">Reusable Component Flow</h2>
+
+        <div class="reuse-flow">
+
+            <div class="reuse-box">
+                <i class="bi bi-code-square"></i>
+                <strong>Create Once</strong>
+                <span>StudentCardComponent</span>
+            </div>
+
+            <div class="reuse-arrow">→</div>
+
+            <div class="reuse-box">
+                <i class="bi bi-person-fill"></i>
+                <strong>Use for Sam</strong>
+                <span>Student Data</span>
+            </div>
+
+            <div class="reuse-arrow">→</div>
+
+            <div class="reuse-box">
+                <i class="bi bi-person-fill"></i>
+                <strong>Use for Pradnya</strong>
+                <span>Student Data</span>
+            </div>
+
+            <div class="reuse-arrow">→</div>
+
+            <div class="reuse-box">
+                <i class="bi bi-boxes"></i>
+                <strong>Reuse Anywhere</strong>
+                <span>Multiple Pages</span>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Why Reusable -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Why Use Reusable Components?</h2>
+
+        <div class="benefit-grid">
+
+            <div class="benefit-card">
+                <i class="bi bi-arrow-repeat"></i>
+                <h5>Reuse</h5>
+                <p>
+                    The same component can be used multiple times.
+                </p>
+            </div>
+
+            <div class="benefit-card">
+                <i class="bi bi-file-earmark-code"></i>
+                <h5>Less Code</h5>
+                <p>
+                    Avoid writing the same UI code repeatedly.
+                </p>
+            </div>
+
+            <div class="benefit-card">
+                <i class="bi bi-wrench-adjustable"></i>
+                <h5>Easy Maintenance</h5>
+                <p>
+                    Changes can be made in one component.
+                </p>
+            </div>
+
+            <div class="benefit-card">
+                <i class="bi bi-speedometer2"></i>
+                <h5>Consistency</h5>
+                <p>
+                    Reused components provide consistent UI.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Example -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Creating a Reusable Student Card</h2>
+
+        <p>
+            Suppose we want to display student information in the same card
+            design throughout our Angular application.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                student-card.component.ts
+            </div>
+
+            <pre><code>import &#123; Component, Input &#125; from '@@angular/core';
+
+@@Component(&#123;
+    selector: 'app-student-card',
+    standalone: true,
+    template: `
+        &lt;div class="student-card"&gt;
+            &lt;h3&gt;&#123;&#123; name &#125;&#125;&lt;/h3&gt;
+            &lt;p&gt;Course: &#123;&#123; course &#125;&#125;&lt;/p&gt;
+        &lt;/div&gt;
+    `
+&#125;)
+export class StudentCardComponent &#123;
+
+    @@Input() name = '';
+    @@Input() course = '';
+
+&#125;</code></pre>
+
+        </div>
+    </section>
+
+    <!-- Using Reusable Component -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Using the Reusable Component</h2>
+
+        <p>
+            The same component can now be used multiple times with different
+            input values.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                app.component.html
+            </div>
+
+            <pre><code>&lt;app-student-card
+    name="Sam"
+    course="Angular Full Stack"&gt;
+&lt;/app-student-card&gt;
+
+&lt;app-student-card
+    name="Pradnya"
+    course="Java Full Stack"&gt;
+&lt;/app-student-card&gt;</code></pre>
+
+        </div>
+
+        <div class="output-box">
+
+            <strong>Expected Output:</strong>
+
+            <div class="student-card-preview">
+
+                <div class="preview-card">
+                    <h4>Sam</h4>
+                    <p>Course: Angular Full Stack</p>
+                </div>
+
+                <div class="preview-card">
+                    <h4>Pradnya</h4>
+                    <p>Course: Java Full Stack</p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Property Binding -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Reusable Component with Property Binding</h2>
+
+        <p>
+            Input values can also come from properties of the parent component.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Parent Component
+            </div>
+
+            <pre><code>export class AppComponent &#123;
+
+    studentName = 'Sam';
+    studentCourse = 'Angular Full Stack';
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Parent Template
+            </div>
+
+            <pre><code>&lt;app-student-card
+    [name]="studentName"
+    [course]="studentCourse"&gt;
+&lt;/app-student-card&gt;</code></pre>
+
+        </div>
+
+        <div class="output-box">
+
+            <strong>Expected Output:</strong>
+
+            <div class="preview-card">
+                <h4>Sam</h4>
+                <p>Course: Angular Full Stack</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Multiple Usage -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Using One Component Multiple Times</h2>
+
+        <p>
+            A reusable component can appear many times on the same page.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Multiple Component Instances
+            </div>
+
+            <pre><code>&lt;app-student-card
+    name="Sam"
+    course="Angular"&gt;
+&lt;/app-student-card&gt;
+
+&lt;app-student-card
+    name="Pradnya"
+    course="React"&gt;
+&lt;/app-student-card&gt;
+
+&lt;app-student-card
+    name="Samiksha"
+    course=".NET Full Stack"&gt;
+&lt;/app-student-card&gt;</code></pre>
+
+        </div>
+
+        <div class="output-box">
+
+            <strong>Expected Output:</strong>
+
+            <div class="student-card-preview">
+
+                <div class="preview-card">
+                    <h4>Sam</h4>
+                    <p>Course: Angular</p>
+                </div>
+
+                <div class="preview-card">
+                    <h4>Pradnya</h4>
+                    <p>Course: React</p>
+                </div>
+
+                <div class="preview-card">
+                    <h4>Samiksha</h4>
+                    <p>Course: .NET Full Stack</p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Reusable Button -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Example: Reusable Button Component</h2>
+
+        <p>
+            Reusability is not limited to student cards. Buttons, navigation
+            items, alerts and other UI elements can also be created as reusable
+            components.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                reusable-button.component.ts
+            </div>
+
+            <pre><code>import &#123; Component, Input, Output, EventEmitter &#125;
+from '@@angular/core';
+
+@@Component(&#123;
+    selector: 'app-button',
+    standalone: true,
+    template: `
+        &lt;button (click)="clicked.emit()"&gt;
+            &#123;&#123; label &#125;&#125;
+        &lt;/button&gt;
+    `
+&#125;)
+export class ButtonComponent &#123;
+
+    @@Input() label = 'Click';
+    @@Output() clicked = new EventEmitter&lt;void&gt;();
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Using the Button
+            </div>
+
+            <pre><code>&lt;app-button
+    label="Save Student"
+    (clicked)="saveStudent()"&gt;
+&lt;/app-button&gt;</code></pre>
+
+        </div>
+    </section>
+
+    <!-- Reusable Architecture -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Reusable Component Architecture</h2>
+
+        <div class="architecture-box">
+
+            <div class="architecture-item">
+                <i class="bi bi-box"></i>
+                <strong>Reusable Component</strong>
+                <span>Student Card</span>
+            </div>
+
+            <div class="architecture-arrow">↓</div>
+
+            <div class="architecture-row">
+
+                <div class="architecture-item small">
+                    <strong>Page 1</strong>
+                    <span>Student List</span>
+                </div>
+
+                <div class="architecture-item small">
+                    <strong>Page 2</strong>
+                    <span>Dashboard</span>
+                </div>
+
+                <div class="architecture-item small">
+                    <strong>Page 3</strong>
+                    <span>Profile</span>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Common Reusable Components -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Common Reusable Components</h2>
+
+        <div class="component-grid">
+
+            <div class="component-card">
+                <i class="bi bi-person-vcard"></i>
+                <h5>Student Card</h5>
+                <p>Displays student information.</p>
+            </div>
+
+            <div class="component-card">
+                <i class="bi bi-ui-checks"></i>
+                <h5>Form Control</h5>
+                <p>Reusable input or form elements.</p>
+            </div>
+
+            <div class="component-card">
+                <i class="bi bi-bell"></i>
+                <h5>Notification</h5>
+                <p>Displays application messages.</p>
+            </div>
+
+            <div class="component-card">
+                <i class="bi bi-menu-button-wide"></i>
+                <h5>Button</h5>
+                <p>Reusable action button.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Component Design -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Reusable Component Design</h2>
+
+        <div class="design-flow">
+
+            <div class="design-step">
+                <span>1</span>
+                <strong>Identify Repeated UI</strong>
+                <small>Find duplicate code</small>
+            </div>
+
+            <div class="design-arrow">→</div>
+
+            <div class="design-step">
+                <span>2</span>
+                <strong>Create Component</strong>
+                <small>Move common logic</small>
+            </div>
+
+            <div class="design-arrow">→</div>
+
+            <div class="design-step">
+                <span>3</span>
+                <strong>Add Inputs</strong>
+                <small>Accept dynamic data</small>
+            </div>
+
+            <div class="design-arrow">→</div>
+
+            <div class="design-step">
+                <span>4</span>
+                <strong>Reuse</strong>
+                <small>Use across pages</small>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Benefits Detail -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Advantages of Reusable Components</h2>
+
+        <ul class="best-practice-list">
+
+            <li>
+                <strong>Code Reusability:</strong>
+                Write common functionality once and reuse it.
+            </li>
+
+            <li>
+                <strong>Consistency:</strong>
+                The same component provides a consistent design.
+            </li>
+
+            <li>
+                <strong>Maintainability:</strong>
+                Changes can be made in a single component.
+            </li>
+
+            <li>
+                <strong>Scalability:</strong>
+                Large applications can be built using smaller components.
+            </li>
+
+            <li>
+                <strong>Testing:</strong>
+                Small components are easier to test independently.
+            </li>
+
+        </ul>
+    </section>
+
+    <!-- Best Practices -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Best Practices</h2>
+
+        <ul class="best-practice-list">
+
+            <li>Keep reusable components focused on one responsibility.</li>
+
+            <li>
+                Use <code>@@Input</code> for dynamic data instead of hard-coding
+                values.
+            </li>
+
+            <li>
+                Use <code>@@Output</code> when the reusable component needs to
+                notify its parent.
+            </li>
+
+            <li>Give reusable components clear and meaningful names.</li>
+
+            <li>Avoid putting unrelated business logic inside UI components.</li>
+
+            <li>Keep reusable components independent whenever practical.</li>
+
+        </ul>
+    </section>
+
+    <!-- Summary -->
+    <section class="summary-box">
+
+        <h3>Summary</h3>
+
+        <p>
+            Reusable Components allow developers to create a component once and
+            use it multiple times throughout an Angular application.
+        </p>
+
+        <p>
+            Inputs such as <strong>@@Input</strong> can be used to provide
+            different data to each component instance, while
+            <strong>@@Output</strong> can be used to communicate events back
+            to the parent.
+        </p>
+
+        <p>
+            Reusable components reduce duplicate code, improve consistency,
+            simplify maintenance and make Angular applications easier to scale.
+        </p>
+
+    </section>
+
+    <!-- Navigation -->
+    <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+
+        <a class="btn btn-outline-secondary"
+           href="@Url.Action("ParentChildComponents", "Components", new { area = "Angular" })">
+            ← Parent-Child Components
+        </a>
+
+        <a class="btn btn-primary"
+           href="@Url.Action("Index", "Templates", new { area = "Angular" })">
+            Templates →
+        </a>
+
+    </div>
+
+</div>
+
+<style>
+
+    .info-card {
+        background: #f8fafc;
+        border-left: 5px solid #4c1d95;
+        padding: 18px 20px;
+        border-radius: 7px;
+        margin-top: 15px;
+    }
+
+        .info-card h5 {
+            color: #4c1d95;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .info-card p {
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+
+    .reuse-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        padding: 25px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+    }
+
+    .reuse-box {
+        width: 170px;
+        min-height: 125px;
+        padding: 18px;
+        text-align: center;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 9px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+        .reuse-box i {
+            display: block;
+            font-size: 28px;
+            color: #4c1d95;
+            margin-bottom: 8px;
+        }
+
+        .reuse-box strong {
+            display: block;
+            color: #2e1065;
+            font-weight: 700;
+        }
+
+        .reuse-box span {
+            display: block;
+            color: #64748b;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+    .reuse-arrow {
+        font-size: 25px;
+        color: #4c1d95;
+        font-weight: 700;
+    }
+
+    .benefit-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+    }
+
+    .benefit-card {
+        padding: 20px;
+        text-align: center;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 9px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    }
+
+        .benefit-card i {
+            display: block;
+            font-size: 28px;
+            color: #4c1d95;
+            margin-bottom: 10px;
+        }
+
+        .benefit-card h5 {
+            color: #2e1065;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .benefit-card p {
+            color: #64748b;
+            font-size: 14px;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+    .code-card {
+        margin-top: 15px;
+        margin-bottom: 18px;
+        border-radius: 8px;
+        overflow: hidden;
+        background: #0f172a;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .code-title {
+        background: #1e293b;
+        color: #d8c9f5;
+        padding: 10px 15px;
+        font-weight: 600;
+        border-bottom: 1px solid #334155;
+    }
+
+    .code-card pre {
+        margin: 0;
+        padding: 18px;
+        overflow-x: auto;
+    }
+
+    .code-card code {
+        color: #e2e8f0;
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    .output-box {
+        margin-top: 15px;
+        padding: 18px;
+        background: #f1f5f9;
+        border-left: 5px solid #4c1d95;
+        border-radius: 6px;
+    }
+
+    .student-card-preview {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+        margin-top: 12px;
+    }
+
+    .preview-card {
+        padding: 18px;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 8px;
+    }
+
+        .preview-card h4 {
+            color: #4c1d95;
+            font-weight: 700;
+            margin-bottom: 7px;
+        }
+
+        .preview-card p {
+            margin-bottom: 0;
+            color: #64748b;
+        }
+
+    .architecture-box {
+        max-width: 850px;
+        margin: 20px auto;
+        padding: 25px;
+        text-align: center;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+    }
+
+    .architecture-item {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        min-width: 220px;
+        padding: 18px;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 8px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    }
+
+        .architecture-item i {
+            font-size: 28px;
+            color: #4c1d95;
+            margin-bottom: 8px;
+        }
+
+        .architecture-item strong {
+            color: #2e1065;
+            font-weight: 700;
+        }
+
+        .architecture-item span {
+            color: #64748b;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .architecture-item.small {
+            min-width: 180px;
+        }
+
+    .architecture-arrow {
+        margin: 12px 0;
+        color: #4c1d95;
+        font-size: 25px;
+        font-weight: 700;
+    }
+
+    .architecture-row {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .component-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+    }
+
+    .component-card {
+        padding: 20px;
+        text-align: center;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 8px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    }
+
+        .component-card i {
+            display: block;
+            font-size: 28px;
+            color: #4c1d95;
+            margin-bottom: 10px;
+        }
+
+        .component-card h5 {
+            color: #2e1065;
+            font-weight: 700;
+            margin-bottom: 7px;
+        }
+
+        .component-card p {
+            color: #64748b;
+            font-size: 14px;
+            margin: 0;
+        }
+
+    .design-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        padding: 25px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+    }
+
+    .design-step {
+        width: 190px;
+        min-height: 125px;
+        padding: 15px;
+        text-align: center;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 8px;
+    }
+
+        .design-step span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            margin: 0 auto 8px;
+            background: #4c1d95;
+            color: #ffffff;
+            border-radius: 50%;
+            font-weight: 700;
+        }
+
+        .design-step strong {
+            display: block;
+            color: #2e1065;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .design-step small {
+            display: block;
+            color: #64748b;
+            margin-top: 5px;
+        }
+
+    .design-arrow {
+        color: #4c1d95;
+        font-size: 24px;
+        font-weight: 700;
+    }
+
+    .best-practice-list {
+        padding: 20px 20px 20px 40px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+    }
+
+        .best-practice-list li {
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+
+            .best-practice-list li:last-child {
+                margin-bottom: 0;
+            }
+
+    .summary-box {
+        background: #cfe2ff;
+        border-radius: 6px;
+        padding: 18px 22px;
+        margin-top: 20px;
+    }
+
+        .summary-box h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #084298;
+            margin-bottom: 10px;
+        }
+
+        .summary-box p {
+            font-size: 16px !important;
+            line-height: 1.6 !important;
+            color: #084298 !important;
+            margin-bottom: 8px;
+        }
+
+            .summary-box p:last-child {
+                margin-bottom: 0;
+            }
+
+    @@media (max-width: 991px) {
+
+        .benefit-grid,
+        .component-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .student-card-preview {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @@media (max-width: 576px) {
+
+        .benefit-grid,
+        .component-grid,
+        .student-card-preview {
+            grid-template-columns: 1fr;
+        }
+
+        .reuse-flow,
+        .design-flow {
+            flex-direction: column;
+        }
+
+        .reuse-arrow,
+        .design-arrow {
+            transform: rotate(90deg);
+        }
+
+        .reuse-box,
+        .design-step {
+            width: 100%;
+            max-width: 280px;
+        }
+
+        .architecture-row {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .architecture-item,
+        .architecture-item.small {
+            width: 100%;
+            max-width: 280px;
+        }
+
+        .code-card code {
+            font-size: 13px;
+        }
+
+        .d-flex.justify-content-between Using One Component Multiple Times       gap: 10px;
+        }
+
+            .d-flex.justify-content-between .btn {
+                font-size: 13px;
+                padding: 8px 12px;
+            }
+    }
+
+</style>

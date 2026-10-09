@@ -1,0 +1,1565 @@
+﻿@{
+    ViewData["Title"] = "Angular RxJS";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- Header -->
+    <section class="mb-4">
+
+        <h1 class="fw-bold text-dark">
+            Angular RxJS
+        </h1>
+
+        <p class="lead text-muted">
+            Learn the fundamentals of RxJS and understand how RxJS works
+            with Observables, streams and operators in Angular applications.
+        </p>
+
+    </section>
+
+
+    <!-- Introduction -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            What is RxJS?
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                <strong>RxJS</strong> stands for
+                <strong>Reactive Extensions for JavaScript</strong>.
+                It is a library for reactive programming using
+                <strong>Observables</strong> and other stream-processing
+                features.
+            </p>
+
+            <p>
+                RxJS helps developers work with values that arrive over time
+                and provides functions for creating, transforming, filtering,
+                combining and controlling those streams.
+            </p>
+
+            <p class="mb-0">
+                Angular applications commonly use RxJS when working with
+                asynchronous data and Observable-based APIs.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- RxJS Flow -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            How RxJS Works
+        </h2>
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+
+                <strong>Data Source</strong>
+
+                <span>
+                    Produces Values
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>Observable</strong>
+
+                <span>
+                    Represents Stream
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>RxJS Operators</strong>
+
+                <span>
+                    Process Data
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>Subscriber</strong>
+
+                <span>
+                    Receives Result
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- RxJS Core Concepts -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Core RxJS Concepts
+        </h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    O
+                </div>
+
+                <h5>
+                    Observable
+                </h5>
+
+                <p>
+                    Represents a stream of values over time.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    S
+                </div>
+
+                <h5>
+                    Subscriber
+                </h5>
+
+                <p>
+                    Consumes values emitted by an Observable.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    P
+                </div>
+
+                <h5>
+                    pipe()
+                </h5>
+
+                <p>
+                    Connects RxJS operators into a processing pipeline.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    O
+                </div>
+
+                <h5>
+                    Operators
+                </h5>
+
+                <p>
+                    Transform, filter and control Observable streams.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- RxJS Import -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Importing RxJS
+        </h2>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                TypeScript
+            </div>
+
+            <pre><code>import {
+    Observable,
+    of,
+    map,
+    filter
+} from '@@rxjs';</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Observable Example -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            RxJS Observable Example
+        </h2>
+
+        <p>
+            RxJS can be used to create an Observable that emits values
+            to a subscriber.
+        </p>
+
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>const numbers$ =
+    of(10, 20, 30);
+
+numbers$.subscribe({
+
+    next: value =&gt; {
+
+        console.log(value);
+
+    },
+
+    complete: () =&gt; {
+
+        console.log(
+            'Completed'
+        );
+
+    }
+
+});</code></pre>
+
+        </div>
+
+
+        <div class="output-box mt-3">
+
+            <div class="student-preview">
+
+                <h4>
+                    Output
+                </h4>
+
+                <p>
+                    10
+                </p>
+
+                <p>
+                    20
+                </p>
+
+                <p>
+                    30
+                </p>
+
+                <p class="mb-0">
+                    <strong>Completed</strong>
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- pipe -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Using pipe() in RxJS
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                The <strong>pipe()</strong> method allows multiple RxJS
+                operators to be applied to an Observable in sequence.
+            </p>
+
+            <p class="mb-0">
+                Each operator processes the stream and passes its result
+                to the next stage.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>const numbers$ =
+    of(1, 2, 3, 4, 5);
+
+const result$ = numbers$.pipe(
+
+    map(value =&gt; value * 10),
+
+    filter(value =&gt; value &gt; 20)
+
+);</code></pre>
+
+        </div>
+
+
+        <div class="output-box mt-3">
+
+            <div class="student-preview">
+
+                <h4>
+                    Result
+                </h4>
+
+                <p>
+                    30
+                </p>
+
+                <p>
+                    40
+                </p>
+
+                <p class="mb-0">
+                    50
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- RxJS Pipeline -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            RxJS Processing Pipeline
+        </h2>
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+
+                <strong>1, 2, 3, 4, 5</strong>
+
+                <span>
+                    Source
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>map()</strong>
+
+                <span>
+                    × 10
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>filter()</strong>
+
+                <span>
+                    &gt; 20
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>30, 40, 50</strong>
+
+                <span>
+                    Final Result
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- RxJS vs Observable -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            RxJS vs Observable
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table syntax-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Concept
+                        </th>
+
+                        <th>
+                            Meaning
+                        </th>
+
+                        <th>
+                            Example
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            RxJS
+                        </td>
+
+                        <td>
+                            Reactive programming library
+                        </td>
+
+                        <td>
+                            RxJS APIs
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Observable
+                        </td>
+
+                        <td>
+                            Represents a stream of values
+                        </td>
+
+                        <td>
+                            Observable&lt;number&gt;
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Operator
+                        </td>
+
+                        <td>
+                            Processes an Observable stream
+                        </td>
+
+                        <td>
+                            map(), filter()
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Subscription
+                        </td>
+
+                        <td>
+                            Represents active Observable execution
+                        </td>
+
+                        <td>
+                            subscribe()
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- Creation Functions -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            RxJS Creation Functions
+        </h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    O
+                </div>
+
+                <h5>
+                    of()
+                </h5>
+
+                <p>
+                    Creates an Observable from supplied values.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    F
+                </div>
+
+                <h5>
+                    from()
+                </h5>
+
+                <p>
+                    Creates a stream from supported input sources.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    I
+                </div>
+
+                <h5>
+                    interval()
+                </h5>
+
+                <p>
+                    Emits sequential values at regular intervals.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    T
+                </div>
+
+                <h5>
+                    timer()
+                </h5>
+
+                <p>
+                    Creates time-based Observable sequences.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Transformation -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Transforming RxJS Data
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                RxJS operators can transform data before it reaches the
+                subscriber.
+            </p>
+
+            <p class="mb-0">
+                For example, <strong>map()</strong> can convert each emitted
+                value into another form.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>const courses$ = of(
+    'Java',
+    '.NET',
+    'Python'
+);
+
+const courseNames$ =
+    courses$.pipe(
+
+        map(course =&gt;
+            course + ' Full Stack'
+        )
+
+    );
+
+courseNames$.subscribe({
+
+    next: course =&gt; {
+
+        console.log(course);
+
+    }
+
+});</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Filtering -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Filtering RxJS Data
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                The <strong>filter()</strong> operator allows only values
+                that satisfy a condition to continue through the stream.
+            </p>
+
+            <p class="mb-0">
+                This is useful when the application needs only a subset
+                of the incoming values.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>const fees$ = of(
+    15000,
+    25000,
+    35000,
+    45000
+);
+
+const selectedFees$ =
+    fees$.pipe(
+
+        filter(fee =&gt;
+            fee &gt;= 30000
+        )
+
+    );</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Async Programming -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            RxJS and Asynchronous Programming
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                RxJS is useful when an application needs to handle values
+                that become available asynchronously.
+            </p>
+
+            <p class="mb-0">
+                HTTP requests, timers, events and other ongoing streams can
+                be represented and processed using Observable-based patterns.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Angular HTTP -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            RxJS with Angular HttpClient
+        </h2>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Service Example
+            </div>
+
+            <pre><code>getCourses() {
+
+    return this.http.get&lt;Course[]&gt;(
+        '/api/courses'
+    );
+
+}</code></pre>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Component Example
+            </div>
+
+            <pre><code>this.courseService
+    .getCourses()
+    .pipe(
+
+        map(courses =&gt;
+            courses.filter(
+                course =&gt; course.active
+            )
+        )
+
+    )
+    .subscribe({
+
+        next: courses =&gt; {
+
+            this.courses = courses;
+
+        },
+
+        error: error =&gt; {
+
+            console.error(error);
+
+        }
+
+    });</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- CIIT Example -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            CIIT Training Institute Example
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                Suppose the CIIT Training Institute dashboard receives
+                different course enquiries.
+            </p>
+
+            <p class="mb-0">
+                RxJS can be used to process the enquiry stream before the
+                final data is displayed in the dashboard.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Enquiry Stream
+            </div>
+
+            <pre><code>const enquiries$ = of(
+    'Java',
+    '.NET',
+    'Python',
+    'Data Analytics'
+);</code></pre>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Process Stream
+            </div>
+
+            <pre><code>const result$ =
+    enquiries$.pipe(
+
+        map(course =&gt;
+            course + ' enquiry'
+        ),
+
+        filter(message =&gt;
+            message.includes(
+                'Java'
+            ) ||
+            message.includes(
+                '.NET'
+            )
+        )
+
+    );
+
+result$.subscribe({
+
+    next: enquiry =&gt; {
+
+        console.log(enquiry);
+
+    }
+
+});</code></pre>
+
+        </div>
+
+
+        <div class="output-box mt-3">
+
+            <div class="student-preview">
+
+                <h4>
+                    CIIT Training Institute
+                </h4>
+
+                <p>
+                    Java enquiry
+                </p>
+
+                <p class="mb-0">
+                    .NET enquiry
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- RxJS Benefits -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Benefits of RxJS
+        </h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    R
+                </div>
+
+                <h5>
+                    Reactive
+                </h5>
+
+                <p>
+                    Works naturally with values arriving over time.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    C
+                </div>
+
+                <h5>
+                    Composable
+                </h5>
+
+                <p>
+                    Operators can be combined into processing pipelines.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    A
+                </div>
+
+                <h5>
+                    Asynchronous
+                </h5>
+
+                <p>
+                    Useful for asynchronous application operations.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    S
+                </div>
+
+                <h5>
+                    Stream Based
+                </h5>
+
+                <p>
+                    Represents and processes sequences of values.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- RxJS Concepts Table -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Important RxJS APIs
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table syntax-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            API / Concept
+                        </th>
+
+                        <th>
+                            Purpose
+                        </th>
+
+                        <th>
+                            Example
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            Observable
+                        </td>
+
+                        <td>
+                            Represents a stream
+                        </td>
+
+                        <td>
+                            new Observable()
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            subscribe()
+                        </td>
+
+                        <td>
+                            Consumes emitted values
+                        </td>
+
+                        <td>
+                            observable.subscribe()
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            pipe()
+                        </td>
+
+                        <td>
+                            Connects operators
+                        </td>
+
+                        <td>
+                            observable.pipe(...)
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            map()
+                        </td>
+
+                        <td>
+                            Transforms values
+                        </td>
+
+                        <td>
+                            map(value =&gt; value * 2)
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            filter()
+                        </td>
+
+                        <td>
+                            Filters values
+                        </td>
+
+                        <td>
+                            filter(value =&gt; value &gt; 10)
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- Important Points -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Important Points
+        </h2>
+
+        <div class="best-practice-list">
+
+            <div class="info-card mb-3">
+
+                <strong>
+                    1. RxJS Works with Streams
+                </strong>
+
+                <p class="mb-0">
+                    RxJS provides tools for working with values that arrive
+                    over time.
+                </p>
+
+            </div>
+
+
+            <div class="info-card mb-3">
+
+                <strong>
+                    2. Observable is a Core Concept
+                </strong>
+
+                <p class="mb-0">
+                    Observables represent streams that can be consumed by
+                    subscribers.
+                </p>
+
+            </div>
+
+
+            <div class="info-card mb-3">
+
+                <strong>
+                    3. Operators Process Data
+                </strong>
+
+                <p class="mb-0">
+                    Operators allow streams to be transformed, filtered,
+                    combined and controlled.
+                </p>
+
+            </div>
+
+
+            <div class="info-card">
+
+                <strong>
+                    4. pipe() Builds the Pipeline
+                </strong>
+
+                <p class="mb-0">
+                    Multiple operators can be connected using pipe().
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Best Practices -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            RxJS Best Practices
+        </h2>
+
+        <ul class="best-practice-list">
+
+            <li>
+                Give Observable variables meaningful names, commonly using
+                a naming convention such as a trailing <code>$</code>.
+            </li>
+
+            <li>
+                Keep RxJS pipelines readable and avoid unnecessary complexity.
+            </li>
+
+            <li>
+                Use suitable operators instead of manually processing every
+                emitted value.
+            </li>
+
+            <li>
+                Handle important asynchronous errors properly.
+            </li>
+
+            <li>
+                Manage long-lived subscriptions carefully.
+            </li>
+
+            <li>
+                Keep stream-processing logic separated from presentation
+                logic where practical.
+            </li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- Summary -->
+    <section class="mb-4">
+
+        <div class="summary-box">
+
+            <h4 class="fw-bold">
+                Summary
+            </h4>
+
+            <p>
+                RxJS is a reactive programming library that provides
+                Observables and operators for working with asynchronous
+                and time-based data streams.
+            </p>
+
+            <p>
+                Important concepts include
+                <strong>Observable</strong>,
+                <strong>subscribe()</strong>,
+                <strong>pipe()</strong> and
+                <strong>operators</strong>.
+            </p>
+
+            <p class="mb-0">
+                In the next topic, we will study
+                <strong>RxJS Operators</strong> in detail.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Navigation -->
+    <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+
+        <a class="btn btn-outline-secondary"
+           href="@Url.Action("Unsubscribe", "Observables", new { area = "Angular" })">
+
+            ← Unsubscribe
+
+        </a>
+
+
+        <a class="btn btn-primary"
+           href="@Url.Action("Operators", "RxJS", new { area = "Angular" })">
+
+            Operators →
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<style>
+
+    .info-card {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-left: 5px solid #4c1d95;
+        border-radius: 10px;
+        padding: 20px;
+        line-height: 1.7;
+        color: #334155;
+    }
+
+
+    .syntax-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        flex-wrap: wrap;
+        margin: 25px 0;
+    }
+
+
+    .syntax-box {
+        background: linear-gradient( 135deg, #2e1065, #4c1d95 );
+        color: white;
+        padding: 18px 25px;
+        border-radius: 12px;
+        text-align: center;
+        min-width: 180px;
+        box-shadow: 0 5px 15px rgba(76, 29, 149, 0.15);
+    }
+
+
+        .syntax-box strong {
+            display: block;
+            font-size: 16px;
+        }
+
+
+        .syntax-box span {
+            display: block;
+            margin-top: 5px;
+            color: #d8c9f5;
+            font-size: 14px;
+        }
+
+
+    .syntax-arrow {
+        font-size: 28px;
+        font-weight: bold;
+        color: #4c1d95;
+    }
+
+
+    .syntax-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+
+
+    .syntax-card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 22px;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+    }
+
+
+        .syntax-card h5 {
+            margin-top: 15px;
+            font-weight: 700;
+            color: #2e1065;
+        }
+
+
+        .syntax-card p {
+            color: #64748b;
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+
+
+    .syntax-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: #ede9fe;
+        color: #4c1d95;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 18px;
+        margin: 0 auto;
+    }
+
+
+    .code-card {
+        background: #0f172a;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(15, 23, 42, 0.10);
+    }
+
+
+    .code-title {
+        background: #1e293b;
+        color: #ffffff;
+        padding: 12px 18px;
+        font-weight: 700;
+        font-size: 14px;
+    }
+
+
+    .code-card pre {
+        margin: 0;
+        padding: 20px;
+        overflow-x: auto;
+    }
+
+
+    .code-card code {
+        color: #f8fafc;
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+
+    .output-box {
+        background: #f8fafc;
+        border: 1px solid #ddd6fe;
+        border-radius: 12px;
+        padding: 20px;
+    }
+
+
+    .student-preview {
+        background: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        padding: 20px;
+    }
+
+
+        .student-preview h4 {
+            color: #2e1065;
+            font-weight: 700;
+        }
+
+
+        .student-preview p {
+            color: #64748b;
+        }
+
+
+    .syntax-table {
+        width: 100%;
+        margin-bottom: 0;
+        border: 1px solid #e2e8f0;
+    }
+
+
+        .syntax-table thead th {
+            background: #2e1065;
+            color: white;
+            padding: 14px;
+            border-color: #4c1d95;
+        }
+
+
+        .syntax-table tbody td {
+            padding: 14px;
+            vertical-align: middle;
+            color: #334155;
+            border-color: #e2e8f0;
+        }
+
+
+        .syntax-table tbody tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+
+        .syntax-table code {
+            color: #4c1d95;
+            font-weight: 600;
+        }
+
+
+    .best-practice-list {
+        margin: 0;
+        padding-left: 20px;
+    }
+
+
+        .best-practice-list li {
+            margin-bottom: 10px;
+            color: #334155;
+            line-height: 1.6;
+        }
+
+
+    .summary-box {
+        background: #cfe2ff;
+        color: #084298;
+        border-radius: 10px;
+        padding: 22px;
+        border: 1px solid #b6d4fe;
+    }
+
+
+        .summary-box h4 {
+            margin-bottom: 12px;
+        }
+
+
+    @@media (max-width: 991px) {
+
+        .syntax-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .syntax-flow {
+            gap: 12px;
+        }
+
+        .syntax-box {
+            min-width: 160px;
+        }
+    }
+
+
+    @@media (max-width: 576px) {
+
+        .syntax-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .syntax-flow {
+            flex-direction: column;
+        }
+
+        .syntax-arrow {
+            transform: rotate(90deg);
+        }
+
+        .syntax-box {
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .code-card pre {
+            padding: 15px;
+        }
+
+        .code-card code {
+            font-size: 13px;
+        }
+    }
+
+</style>

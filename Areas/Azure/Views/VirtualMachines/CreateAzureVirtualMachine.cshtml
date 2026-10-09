@@ -1,0 +1,69 @@
+@{
+    ViewData["Title"] = "Creating Azure Virtual machine in Azure Portal";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+                <div class="azure-notes-content">
+                    <pre class="azure-notes-text">Creating Azure Virtual machine in Azure Portal
+
+Step 1: Login into the Microsoft Azure Portal.
+
+
+
+
+Step 2: Click on Create Virtual Machine as shown in the figure below.
+
+
+
+
+Step 3: Know and configure the requirements according to the needs like subscription type,
+in which region you want to create your virtual machine, and the availability zone and type
+of image(OS flavor) and key-pait to connect ot the virtual machine with the git bash or putty.
+Step 4: In this step, you need to configure the type od os disk you want like the type and the
+size of the disk etc.
+
+
+
+
+Step 5: Select the network in which you want to configure your virtual machine and you can
+control the inbound and outbound of the virtual machine with the help of the network.
+After configuring all the requirements know click on Review+Create.</pre>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_5_-_Azure_Virtual_Machines/p05-000.jpg" class="img-fluid rounded shadow-sm" alt="Creating Azure Virtual machine in Azure Portal - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_5_-_Azure_Virtual_Machines/p05-001.jpg" class="img-fluid rounded shadow-sm" alt="Creating Azure Virtual machine in Azure Portal - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_5_-_Azure_Virtual_Machines/p06-000.jpg" class="img-fluid rounded shadow-sm" alt="Creating Azure Virtual machine in Azure Portal - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_5_-_Azure_Virtual_Machines/p06-001.jpg" class="img-fluid rounded shadow-sm" alt="Creating Azure Virtual machine in Azure Portal - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_5_-_Azure_Virtual_Machines/p07-000.jpg" class="img-fluid rounded shadow-sm" alt="Creating Azure Virtual machine in Azure Portal - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_5_-_Azure_Virtual_Machines/p08-000.jpg" class="img-fluid rounded shadow-sm" alt="Creating Azure Virtual machine in Azure Portal - source image" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+            @await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureLessonNavigation.cshtml")
+</section>
+</div>
+<style>
+.azure-notes-text{white-space:pre-wrap;word-break:normal;font-family:inherit;font-size:1rem;line-height:1.7;background:#fff;border:0;padding:0;margin:0;color:#212529;}
+.azure-notes-content img{max-height:720px;}
+</style>

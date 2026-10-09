@@ -1,0 +1,1728 @@
+﻿@{
+    ViewData["Title"] = "Angular API Response Handling";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- Header -->
+    <section class="mb-4">
+
+        <h1 class="fw-bold text-dark">
+            Angular API Response Handling
+        </h1>
+
+        <p class="lead text-muted">
+            Learn how Angular handles successful API responses, errors,
+            completion events, loading states and typed HTTP responses
+            when working with REST APIs.
+        </p>
+
+    </section>
+
+
+    <!-- Introduction -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            What is API Response Handling?
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                When Angular sends an HTTP request, the backend returns a
+                response. The application must handle that response correctly
+                before updating the user interface.
+            </p>
+
+            <p>
+                Response handling allows the application to manage
+                <strong>success responses</strong>,
+                <strong>errors</strong> and
+                <strong>completion</strong>.
+            </p>
+
+            <p class="mb-0">
+                Angular <strong>HttpClient</strong> returns an Observable,
+                so the response can be processed inside the subscription.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Response Flow -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            API Response Flow
+        </h2>
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+
+                <strong>Angular</strong>
+
+                <span>
+                    Sends Request
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>REST API</strong>
+
+                <span>
+                    Processes Request
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>Response</strong>
+
+                <span>
+                    Success / Error
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>Component</strong>
+
+                <span>
+                    Updates UI
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Response Types -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Types of API Responses
+        </h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    S
+                </div>
+
+                <h5>
+                    Success
+                </h5>
+
+                <p>
+                    The API request completed successfully and returned data.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    E
+                </div>
+
+                <h5>
+                    Error
+                </h5>
+
+                <p>
+                    The API request failed and an error response was returned.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    C
+                </div>
+
+                <h5>
+                    Complete
+                </h5>
+
+                <p>
+                    The Observable completed after processing the response.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    L
+                </div>
+
+                <h5>
+                    Loading
+                </h5>
+
+                <p>
+                    The UI can display a loading state while the request is running.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Subscribe -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Handling API Response with subscribe()
+        </h2>
+
+        <p>
+            The <strong>subscribe()</strong> method can be used to handle
+            the emitted API response.
+        </p>
+
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Basic Response Handling
+            </div>
+
+            <pre><code>this.courseService
+    .getCourses()
+    .subscribe({
+
+        next: courses =&gt; {
+
+            console.log(
+                'Courses:',
+                courses
+            );
+
+        },
+
+        error: error =&gt; {
+
+            console.error(error);
+
+        },
+
+        complete: () =&gt; {
+
+            console.log(
+                'Request completed'
+            );
+
+        }
+
+    });</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Next -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            1. next Callback
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                The <strong>next</strong> callback receives the successful
+                response emitted by the Observable.
+            </p>
+
+            <p class="mb-0">
+                It is commonly used to store returned data and update the UI.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Handling Successful Response
+            </div>
+
+            <pre><code>this.courseService
+    .getCourses()
+    .subscribe({
+
+        next: courses =&gt; {
+
+            this.courses = courses;
+
+        }
+
+    });</code></pre>
+
+        </div>
+
+
+        <div class="output-box mt-3">
+
+            <div class="student-preview">
+
+                <h4>
+                    API Response
+                </h4>
+
+                <p>
+                    Courses received successfully.
+                </p>
+
+                <p class="mb-0">
+                    The returned data can now be displayed in the Angular template.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Error -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            2. error Callback
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                The <strong>error</strong> callback is executed when the
+                HTTP request fails.
+            </p>
+
+            <p class="mb-0">
+                Angular applications should handle errors and provide a
+                meaningful message instead of leaving the user without feedback.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Handling API Error
+            </div>
+
+            <pre><code>this.courseService
+    .getCourses()
+    .subscribe({
+
+        next: courses =&gt; {
+
+            this.courses = courses;
+
+        },
+
+        error: error =&gt; {
+
+            this.errorMessage =
+                'Unable to load courses.';
+
+            console.error(error);
+
+        }
+
+    });</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Complete -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            3. complete Callback
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                The <strong>complete</strong> callback runs when the Observable
+                finishes successfully without an error.
+            </p>
+
+            <p class="mb-0">
+                It can be useful for logging or completing UI-related processing.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Handling Completion
+            </div>
+
+            <pre><code>this.courseService
+    .getCourses()
+    .subscribe({
+
+        next: courses =&gt; {
+
+            this.courses = courses;
+
+        },
+
+        error: error =&gt; {
+
+            console.error(error);
+
+        },
+
+        complete: () =&gt; {
+
+            console.log(
+                'API operation completed'
+            );
+
+        }
+
+    });</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Loading -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Handling Loading State
+        </h2>
+
+        <p>
+            A loading flag can be used to inform the user that the API
+            request is currently in progress.
+        </p>
+
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Loading Example
+            </div>
+
+            <pre><code>loading = false;
+
+courses: Course[] = [];
+
+errorMessage = '';
+
+
+loadCourses() {
+
+    this.loading = true;
+
+    this.errorMessage = '';
+
+
+    this.courseService
+        .getCourses()
+        .subscribe({
+
+            next: courses =&gt; {
+
+                this.courses = courses;
+
+            },
+
+            error: error =&gt; {
+
+                console.error(error);
+
+                this.errorMessage =
+                    'Unable to load courses.';
+
+                this.loading = false;
+
+            },
+
+            complete: () =&gt; {
+
+                this.loading = false;
+
+            }
+
+        });
+
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- HttpErrorResponse -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Working with HttpErrorResponse
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                Angular provides information about a failed HTTP request
+                through <strong>HttpErrorResponse</strong>.
+            </p>
+
+            <p class="mb-0">
+                Properties such as the HTTP status code and error information
+                can help the application decide how to respond.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Import
+            </div>
+
+            <pre><code>import {
+    HttpErrorResponse
+} from '@@angular/common/http';</code></pre>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Error Handling
+            </div>
+
+            <pre><code>this.courseService
+    .getCourses()
+    .subscribe({
+
+        next: courses =&gt; {
+
+            this.courses = courses;
+
+        },
+
+        error: (
+            error: HttpErrorResponse
+        ) =&gt; {
+
+            console.error(
+                'Status:',
+                error.status
+            );
+
+            console.error(
+                'Message:',
+                error.message
+            );
+
+        }
+
+    });</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Status Codes -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Common HTTP Status Codes
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table syntax-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Status
+                        </th>
+
+                        <th>
+                            Meaning
+                        </th>
+
+                        <th>
+                            Example
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            200
+                        </td>
+
+                        <td>
+                            Request completed successfully.
+                        </td>
+
+                        <td>
+                            GET request returns courses.
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            201
+                        </td>
+
+                        <td>
+                            Resource created successfully.
+                        </td>
+
+                        <td>
+                            POST creates a course.
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            400
+                        </td>
+
+                        <td>
+                            Invalid request data.
+                        </td>
+
+                        <td>
+                            Validation problem.
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            401
+                        </td>
+
+                        <td>
+                            Authentication is required or failed.
+                        </td>
+
+                        <td>
+                            User is not authenticated.
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            403
+                        </td>
+
+                        <td>
+                            Access is not permitted.
+                        </td>
+
+                        <td>
+                            User does not have required permission.
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            404
+                        </td>
+
+                        <td>
+                            Requested resource was not found.
+                        </td>
+
+                        <td>
+                            Invalid course ID.
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            500
+                        </td>
+
+                        <td>
+                            Server-side error.
+                        </td>
+
+                        <td>
+                            Backend processing failure.
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- Error Message -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Displaying Error Messages
+        </h2>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Component
+            </div>
+
+            <pre><code>errorMessage = '';
+
+
+loadCourses() {
+
+    this.errorMessage = '';
+
+
+    this.courseService
+        .getCourses()
+        .subscribe({
+
+            next: courses =&gt; {
+
+                this.courses = courses;
+
+            },
+
+            error: error =&gt; {
+
+                if (error.status === 404) {
+
+                    this.errorMessage =
+                        'Courses were not found.';
+
+                }
+                else if (error.status === 500) {
+
+                    this.errorMessage =
+                        'Server error occurred.';
+
+                }
+                else {
+
+                    this.errorMessage =
+                        'Unable to load courses.';
+
+                }
+
+            }
+
+        });
+
+}</code></pre>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Template
+            </div>
+
+            <pre><code>@@if (errorMessage) {
+
+    &lt;div class="alert alert-danger"&gt;
+
+        &#123;&#123; errorMessage &#125;&#125;
+
+    &lt;/div&gt;
+
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Response Body -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Reading Response Data
+        </h2>
+
+        <p>
+            The response body contains the data returned by the backend.
+            A TypeScript type can be used to describe the expected response.
+        </p>
+
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Typed Response
+            </div>
+
+            <pre><code>interface Course {
+
+    id: number;
+
+    name: string;
+
+    duration: string;
+
+    fees: number;
+
+}
+
+
+getCourses() {
+
+    return this.http.get&lt;Course[]&gt;(
+        this.apiUrl
+    );
+
+}</code></pre>
+
+        </div>
+
+
+        <div class="output-box mt-3">
+
+            <div class="student-preview">
+
+                <h4>
+                    Response Example
+                </h4>
+
+                <p>
+                    <strong>ID:</strong> 101
+                </p>
+
+                <p>
+                    <strong>Course:</strong> .NET Full Stack
+                </p>
+
+                <p>
+                    <strong>Duration:</strong> 6 Months
+                </p>
+
+                <p class="mb-0">
+                    <strong>Fees:</strong> ₹35000
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Full Response Handling -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Complete Response Handling Example
+        </h2>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                courses.component.ts
+            </div>
+
+            <pre><code>courses: Course[] = [];
+
+loading = false;
+
+errorMessage = '';
+
+
+loadCourses() {
+
+    this.loading = true;
+
+    this.errorMessage = '';
+
+
+    this.courseService
+        .getCourses()
+        .subscribe({
+
+            next: courses =&gt; {
+
+                this.courses = courses;
+
+            },
+
+
+            error: error =&gt; {
+
+                console.error(error);
+
+                this.errorMessage =
+                    'Failed to load courses.';
+
+                this.loading = false;
+
+            },
+
+
+            complete: () =&gt; {
+
+                this.loading = false;
+
+                console.log(
+                    'Request completed'
+                );
+
+            }
+
+        });
+
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Create Response -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Handling Create Response
+        </h2>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                POST Response
+            </div>
+
+            <pre><code>addCourse(course: Course) {
+
+    this.courseService
+        .addCourse(course)
+        .subscribe({
+
+            next: createdCourse =&gt; {
+
+                console.log(
+                    'Course created:',
+                    createdCourse
+                );
+
+                this.courses = [
+                    ...this.courses,
+                    createdCourse
+                ];
+
+            },
+
+            error: error =&gt; {
+
+                console.error(
+                    'Create failed:',
+                    error
+                );
+
+            }
+
+        });
+
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Update Response -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Handling Update Response
+        </h2>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                PUT Response
+            </div>
+
+            <pre><code>updateCourse(course: Course) {
+
+    this.courseService
+        .updateCourse(
+            course.id,
+            course
+        )
+        .subscribe({
+
+            next: updatedCourse =&gt; {
+
+                this.courses =
+                    this.courses.map(
+                        item =&gt;
+                            item.id ===
+                            updatedCourse.id
+                                ? updatedCourse
+                                : item
+                    );
+
+            },
+
+            error: error =&gt; {
+
+                console.error(
+                    'Update failed:',
+                    error
+                );
+
+            }
+
+        });
+
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Delete Response -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Handling Delete Response
+        </h2>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                DELETE Response
+            </div>
+
+            <pre><code>deleteCourse(id: number) {
+
+    this.courseService
+        .deleteCourse(id)
+        .subscribe({
+
+            next: () =&gt; {
+
+                this.courses =
+                    this.courses.filter(
+                        course =&gt;
+                            course.id !== id
+                    );
+
+            },
+
+            error: error =&gt; {
+
+                console.error(
+                    'Delete failed:',
+                    error
+                );
+
+            }
+
+        });
+
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- CIIT Example -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            CIIT Training Institute Example
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                Consider an Angular admin dashboard used by
+                <strong>CIIT Training Institute</strong>.
+            </p>
+
+            <p>
+                When the admin loads available courses, Angular sends a GET
+                request. If the API succeeds, course data is displayed.
+                If the request fails, an appropriate error message can be shown.
+            </p>
+
+            <p class="mb-0">
+                The same response-handling pattern can be applied to
+                create, update and delete operations.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                CIIT Course Response Handling
+            </div>
+
+            <pre><code>loadCourses() {
+
+    this.loading = true;
+
+
+    this.courseService
+        .getCourses()
+        .subscribe({
+
+            next: courses =&gt; {
+
+                this.courses = courses;
+
+                console.log(
+                    'CIIT courses loaded'
+                );
+
+            },
+
+            error: error =&gt; {
+
+                this.errorMessage =
+                    'Unable to load CIIT course data.';
+
+                console.error(error);
+
+            },
+
+            complete: () =&gt; {
+
+                this.loading = false;
+
+            }
+
+        });
+
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Response Handling Flow -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Recommended Response Handling Flow
+        </h2>
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+
+                <strong>Request</strong>
+
+                <span>
+                    HttpClient
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>Loading</strong>
+
+                <span>
+                    Show Progress
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>Success</strong>
+
+                <span>
+                    next
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>Error</strong>
+
+                <span>
+                    error
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>UI</strong>
+
+                <span>
+                    Update
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Best Practices -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            API Response Handling Best Practices
+        </h2>
+
+        <ul class="best-practice-list">
+
+            <li>
+                Always handle possible API errors.
+            </li>
+
+            <li>
+                Show an appropriate loading state for long-running requests.
+            </li>
+
+            <li>
+                Use TypeScript types for predictable response structures.
+            </li>
+
+            <li>
+                Display meaningful error messages to users.
+            </li>
+
+            <li>
+                Keep API communication inside dedicated services.
+            </li>
+
+            <li>
+                Avoid exposing technical error details directly to end users.
+            </li>
+
+            <li>
+                Update the application state after a successful API operation.
+            </li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- Quick Reference -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Response Handling Quick Reference
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table syntax-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Callback
+                        </th>
+
+                        <th>
+                            Purpose
+                        </th>
+
+                        <th>
+                            Typical Use
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            <code>next</code>
+                        </td>
+
+                        <td>
+                            Handles successful emitted data.
+                        </td>
+
+                        <td>
+                            Store response and update UI.
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            <code>error</code>
+                        </td>
+
+                        <td>
+                            Handles failed request.
+                        </td>
+
+                        <td>
+                            Show error message.
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            <code>complete</code>
+                        </td>
+
+                        <td>
+                            Handles Observable completion.
+                        </td>
+
+                        <td>
+                            Finish related processing.
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- Summary -->
+    <section class="mb-4">
+
+        <div class="summary-box">
+
+            <h4 class="fw-bold">
+                Summary
+            </h4>
+
+            <p>
+                Angular API response handling is used to process the result
+                of HTTP requests in a controlled way.
+            </p>
+
+            <p>
+                The <strong>next</strong> callback handles successful data,
+                <strong>error</strong> handles failed requests and
+                <strong>complete</strong> handles Observable completion.
+            </p>
+
+            <p class="mb-0">
+                Proper response handling makes Angular applications more
+                reliable, user-friendly and easier to maintain.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+
+        <a class="btn btn-outline-secondary"
+           href="@Url.Action("CRUDIntegration", "APIIntegration", new { area = "Angular" })">
+
+            ← CRUD Integration
+
+        </a>
+
+
+        <span class="btn btn-success disabled">
+            Course Completed ✓
+        </span>
+
+    </div>
+
+<style>
+
+    .info-card {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-left: 5px solid #4c1d95;
+        border-radius: 10px;
+        padding: 20px;
+        line-height: 1.7;
+        color: #334155;
+    }
+
+
+    .syntax-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        flex-wrap: wrap;
+        margin: 25px 0;
+    }
+
+
+    .syntax-box {
+        background: linear-gradient( 135deg, #2e1065, #4c1d95 );
+        color: white;
+        padding: 18px 25px;
+        border-radius: 12px;
+        text-align: center;
+        min-width: 180px;
+        box-shadow: 0 5px 15px rgba(76, 29, 149, 0.15);
+    }
+
+
+        .syntax-box strong {
+            display: block;
+            font-size: 16px;
+        }
+
+
+        .syntax-box span {
+            display: block;
+            margin-top: 5px;
+            color: #d8c9f5;
+            font-size: 14px;
+        }
+
+
+    .syntax-arrow {
+        font-size: 28px;
+        font-weight: bold;
+        color: #4c1d95;
+    }
+
+
+    .syntax-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+
+
+    .syntax-card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 22px;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+    }
+
+
+        .syntax-card h5 {
+            margin-top: 15px;
+            font-weight: 700;
+            color: #2e1065;
+        }
+
+
+        .syntax-card p {
+            color: #64748b;
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+
+
+    .syntax-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: #ede9fe;
+        color: #4c1d95;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 18px;
+        margin: 0 auto;
+    }
+
+
+    .code-card {
+        background: #0f172a;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(15, 23, 42, 0.10);
+    }
+
+
+    .code-title {
+        background: #1e293b;
+        color: #ffffff;
+        padding: 12px 18px;
+        font-weight: 700;
+        font-size: 14px;
+    }
+
+
+    .code-card pre {
+        margin: 0;
+        padding: 20px;
+        overflow-x: auto;
+    }
+
+
+    .code-card code {
+        color: #f8fafc;
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+
+    .output-box {
+        background: #f8fafc;
+        border: 1px solid #ddd6fe;
+        border-radius: 12px;
+        padding: 20px;
+    }
+
+
+    .student-preview {
+        background: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        padding: 20px;
+    }
+
+
+        .student-preview h4 {
+            color: #2e1065;
+            font-weight: 700;
+        }
+
+
+        .student-preview p {
+            color: #64748b;
+        }
+
+
+    .syntax-table {
+        width: 100%;
+        margin-bottom: 0;
+        border: 1px solid #e2e8f0;
+    }
+
+
+        .syntax-table thead th {
+            background: #2e1065;
+            color: white;
+            padding: 14px;
+            border-color: #4c1d95;
+        }
+
+
+        .syntax-table tbody td {
+            padding: 14px;
+            vertical-align: middle;
+            color: #334155;
+            border-color: #e2e8f0;
+        }
+
+
+        .syntax-table tbody tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+
+        .syntax-table code {
+            color: #4c1d95;
+            font-weight: 600;
+        }
+
+
+    .best-practice-list {
+        margin: 0;
+        padding-left: 20px;
+    }
+
+
+        .best-practice-list li {
+            margin-bottom: 10px;
+            color: #334155;
+            line-height: 1.6;
+        }
+
+
+    .summary-box {
+        background: #cfe2ff;
+        color: #084298;
+        border-radius: 10px;
+        padding: 22px;
+        border: 1px solid #b6d4fe;
+    }
+
+
+        .summary-box h4 {
+            margin-bottom: 12px;
+        }
+
+
+    @@media (max-width: 991px) {
+
+        .syntax-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .syntax-flow {
+            gap: 12px;
+        }
+
+        .syntax-box {
+            min-width: 160px;
+        }
+    }
+
+
+    @@media (max-width: 576px) {
+
+        .syntax-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .syntax-flow {
+            flex-direction: column;
+        }
+
+        .syntax-arrow {
+            transform: rotate(90deg);
+        }
+
+        .syntax-box {
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .code-card pre {
+            padding: 15px;
+        }
+
+        .code-card code {
+            font-size: 13px;
+        }
+    }
+
+</style>

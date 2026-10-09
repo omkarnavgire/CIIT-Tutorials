@@ -1,0 +1,1353 @@
+﻿@{
+    ViewData["Title"] = "Angular Architecture";
+}
+
+<div class="container-fluid">
+
+    <!-- ===================================================== -->
+    <!-- PAGE HEADER -->
+    <!-- ===================================================== -->
+
+    <div class="mb-4">
+
+        <h1 class="fw-bold">
+            Angular Architecture
+        </h1>
+
+        <p class="text-muted">
+            Understand the major building blocks of an Angular
+            application and how they work together.
+        </p>
+
+    </div>
+
+
+    <!-- ===================================================== -->
+    <!-- INTRODUCTION -->
+    <!-- ===================================================== -->
+
+    <section class="mb-5">
+
+        <h2>
+            What is Angular Architecture?
+        </h2>
+
+        <p>
+            Angular architecture describes how different parts of an
+            Angular application are organized and how they communicate
+            with each other.
+        </p>
+
+        <p>
+            An Angular application is mainly built around components.
+            Components work together with templates, data binding,
+            services, dependency injection, routing, and HTTP
+            communication to create a complete application.
+        </p>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- MAIN ARCHITECTURE DIAGRAM -->
+    <!-- ===================================================== -->
+
+    <section class="mb-5">
+
+        <h2>
+            Angular Application Architecture
+        </h2>
+
+        <p>
+            The following diagram shows a simplified flow of an
+            Angular application.
+        </p>
+
+
+        <div class="architecture-diagram">
+
+            <!-- USER -->
+
+            <div class="architecture-box">
+
+                <div class="architecture-icon">
+                    U
+                </div>
+
+                <h5>
+                    User
+                </h5>
+
+                <p>
+                    Interacts with the application
+                </p>
+
+            </div>
+
+
+            <div class="architecture-arrow">
+                ↓
+            </div>
+
+
+            <!-- COMPONENT -->
+
+            <div class="architecture-box">
+
+                <div class="architecture-icon">
+                    C
+                </div>
+
+                <h5>
+                    Component
+                </h5>
+
+                <p>
+                    Controls application logic
+                </p>
+
+            </div>
+
+
+            <div class="architecture-arrow">
+                ↓
+            </div>
+
+
+            <!-- TEMPLATE -->
+
+            <div class="architecture-box">
+
+                <div class="architecture-icon">
+                    T
+                </div>
+
+                <h5>
+                    Template
+                </h5>
+
+                <p>
+                    Displays the user interface
+                </p>
+
+            </div>
+
+
+            <div class="architecture-arrow">
+                ↓
+            </div>
+
+
+            <!-- SERVICE -->
+
+            <div class="architecture-box">
+
+                <div class="architecture-icon">
+                    S
+                </div>
+
+                <h5>
+                    Service
+                </h5>
+
+                <p>
+                    Handles reusable application logic
+                </p>
+
+            </div>
+
+
+            <div class="architecture-arrow">
+                ↓
+            </div>
+
+
+            <!-- API -->
+
+            <div class="architecture-box">
+
+                <div class="architecture-icon">
+                    A
+                </div>
+
+                <h5>
+                    REST API
+                </h5>
+
+                <p>
+                    Provides backend data
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- ARCHITECTURE FLOW -->
+    <!-- ===================================================== -->
+
+    <section class="mb-5">
+
+        <h2>
+            Basic Architecture Flow
+        </h2>
+
+        <div class="architecture-flow">
+
+            <div class="flow-step">
+                User
+            </div>
+
+            <div class="flow-arrow">
+                →
+            </div>
+
+            <div class="flow-step">
+                Component
+            </div>
+
+            <div class="flow-arrow">
+                →
+            </div>
+
+            <div class="flow-step">
+                Service
+            </div>
+
+            <div class="flow-arrow">
+                →
+            </div>
+
+            <div class="flow-step">
+                REST API
+            </div>
+
+        </div>
+
+
+        <div class="architecture-flow mt-3">
+
+            <div class="flow-step">
+                REST API
+            </div>
+
+            <div class="flow-arrow">
+                →
+            </div>
+
+            <div class="flow-step">
+                Service
+            </div>
+
+            <div class="flow-arrow">
+                →
+            </div>
+
+            <div class="flow-step">
+                Component
+            </div>
+
+            <div class="flow-arrow">
+                →
+            </div>
+
+            <div class="flow-step">
+                Template / UI
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- COMPONENT -->
+    <!-- ===================================================== -->
+
+    <section class="mb-5">
+
+        <h2>
+            1. Component
+        </h2>
+
+        <p>
+            A component is one of the main building blocks of an
+            Angular application. It controls a specific part of the
+            user interface.
+        </p>
+
+        <p>
+            A component can contain properties, methods, and metadata
+            that define how the component behaves.
+        </p>
+
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                TypeScript
+            </div>
+
+<pre><code>import { Component } from '@@angular/core';
+
+@@Component({
+    selector: 'app-student',
+    templateUrl: './student.component.html'
+})
+export class StudentComponent {
+
+    studentName = 'Sam';
+
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- TEMPLATE -->
+    <!-- ===================================================== -->
+
+    <section class="mb-5">
+
+        <h2>
+            2. Template
+        </h2>
+
+        <p>
+            A template defines the visual structure of a component.
+            It normally contains HTML together with Angular template
+            syntax.
+        </p>
+
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                HTML
+            </div>
+
+<pre><code>&lt;h2&gt;Student Details&lt;/h2&gt;
+
+&lt;p&gt;
+    Student Name: {{ studentName }}
+&lt;/p&gt;</code></pre>
+
+        </div>
+
+
+        <!-- OUTPUT -->
+
+        <div class="output-box mt-4">
+
+            <div class="output-title">
+                Expected Output
+            </div>
+
+            <div class="output-content">
+
+                <h4>
+                    Student Details
+                </h4>
+
+                <p class="mb-0">
+                    Student Name: Sam
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- DATA BINDING -->
+    <!-- ===================================================== -->
+
+    <section class="mb-5">
+
+        <h2>
+            3. Data Binding
+        </h2>
+
+        <p>
+            Data binding connects component data with the template.
+            It allows Angular to display and update information
+            dynamically.
+        </p>
+
+
+        <div class="binding-architecture">
+
+            <div class="binding-box">
+                Component Data
+            </div>
+
+            <div class="binding-arrow">
+                ⇄
+            </div>
+
+            <div class="binding-box">
+                Data Binding
+            </div>
+
+            <div class="binding-arrow">
+                ⇄
+            </div>
+
+            <div class="binding-box">
+                Template / UI
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- SERVICES -->
+    <!-- ===================================================== -->
+
+    <section class="mb-5">
+
+        <h2>
+            4. Services
+        </h2>
+
+        <p>
+            Services contain reusable application logic and can be
+            shared by multiple components.
+        </p>
+
+        <p>
+            For example, a StudentService can be used to retrieve
+            student information from an API.
+        </p>
+
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                TypeScript
+            </div>
+
+<pre><code>export class StudentService {
+
+    getStudentName() {
+
+        return 'Sam';
+
+    }
+
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- DEPENDENCY INJECTION -->
+    <!-- ===================================================== -->
+
+    <section class="mb-5">
+
+        <h2>
+            5. Dependency Injection
+        </h2>
+
+        <p>
+            Angular uses Dependency Injection to provide services
+            and other dependencies to components.
+        </p>
+
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                TypeScript
+            </div>
+
+<pre><code>constructor(
+    private studentService: StudentService
+) {
+}</code></pre>
+
+        </div>
+
+        <p class="mt-3">
+            Here Angular provides the required
+            <strong>StudentService</strong> to the component.
+        </p>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- ROUTING -->
+    <!-- ===================================================== -->
+
+    <section class="mb-5">
+
+        <h2>
+            6. Routing
+        </h2>
+
+        <p>
+            Angular routing controls navigation between different
+            components or views within an application.
+        </p>
+
+
+        <div class="routing-diagram">
+
+            <div class="routing-box">
+                Home
+            </div>
+
+            <div class="routing-arrow">
+                →
+            </div>
+
+            <div class="routing-box">
+                Students
+            </div>
+
+            <div class="routing-arrow">
+                →
+            </div>
+
+            <div class="routing-box">
+                Student Details
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- HTTP COMMUNICATION -->
+    <!-- ===================================================== -->
+
+    <section class="mb-5">
+
+        <h2>
+            7. HTTP Communication
+        </h2>
+
+        <p>
+            Angular applications can communicate with backend REST APIs
+            using HttpClient.
+        </p>
+
+
+        <div class="http-flow">
+
+            <div class="http-box">
+                Angular Component
+            </div>
+
+            <div class="http-arrow">
+                ↓
+            </div>
+
+            <div class="http-box">
+                Angular Service
+            </div>
+
+            <div class="http-arrow">
+                ↓
+            </div>
+
+            <div class="http-box">
+                HttpClient
+            </div>
+
+            <div class="http-arrow">
+                ↓
+            </div>
+
+            <div class="http-box">
+                REST API
+            </div>
+
+            <div class="http-arrow">
+                ↓
+            </div>
+
+            <div class="http-box">
+                Database
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- COMPLETE ARCHITECTURE -->
+    <!-- ===================================================== -->
+
+    <section class="mb-5">
+
+        <h2>
+            Complete Angular Architecture
+        </h2>
+
+
+        <div class="complete-architecture">
+
+            <div class="complete-row">
+
+                <div class="complete-box">
+                    User
+                </div>
+
+                <div class="complete-arrow">
+                    →
+                </div>
+
+                <div class="complete-box">
+                    Component
+                </div>
+
+                <div class="complete-arrow">
+                    →
+                </div>
+
+                <div class="complete-box">
+                    Template
+                </div>
+
+            </div>
+
+
+            <div class="complete-down">
+                ↓
+            </div>
+
+
+            <div class="complete-row">
+
+                <div class="complete-box">
+                    Service
+                </div>
+
+                <div class="complete-arrow">
+                    →
+                </div>
+
+                <div class="complete-box">
+                    HttpClient
+                </div>
+
+                <div class="complete-arrow">
+                    →
+                </div>
+
+                <div class="complete-box">
+                    REST API
+                </div>
+
+            </div>
+
+
+            <div class="complete-down">
+                ↓
+            </div>
+
+
+            <div class="complete-row">
+
+                <div class="complete-box">
+                    Database
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- SUMMARY -->
+    <!-- ===================================================== -->
+
+    <section class="mb-5">
+
+        <div class="summary-box">
+
+            <h3>
+                Summary
+            </h3>
+
+            <p>
+                Angular architecture organizes an application using
+                components, templates, data binding, services,
+                dependency injection, routing, and HTTP communication.
+            </p>
+
+            <p class="mb-0">
+                These building blocks work together to create
+                structured and scalable applications. In the next topic,
+                we will learn about
+                <strong>Component-Based Angular</strong>.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- PREVIOUS / NEXT -->
+    <!-- ===================================================== -->
+
+    <div class="d-flex justify-content-between align-items-center
+                border-top pt-4 mt-5">
+
+        <!-- PREVIOUS -->
+
+        <a href="@Url.Action("Fundamentals", "Introduction", new { area = "Angular" })"
+           class="btn btn-outline-secondary px-4">
+
+            ← Previous: Fundamentals
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="@Url.Action("ComponentBasedAngular", "Introduction", new { area = "Angular" })"
+           class="btn btn-primary px-4">
+
+            Next: Component-Based Angular →
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- ========================================================= -->
+<!-- PAGE SPECIFIC CSS -->
+<!-- ========================================================= -->
+
+<style>
+
+    /* ===================================================== */
+    /* MAIN ARCHITECTURE DIAGRAM */
+    /* ===================================================== */
+
+    .architecture-diagram {
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        padding: 30px 20px;
+
+        margin-top: 25px;
+
+        background: #f8f9fa;
+
+        border: 1px solid #e9ecef;
+
+        border-radius: 12px;
+
+    }
+
+
+    .architecture-box {
+
+        width: 280px;
+
+        padding: 18px;
+
+        text-align: center;
+
+        background: #ffffff;
+
+        border: 1px solid #dee2e6;
+
+        border-radius: 10px;
+
+        box-shadow:
+            0 3px 12px rgba(0, 0, 0, 0.05);
+
+    }
+
+
+    .architecture-icon {
+
+        width: 42px;
+
+        height: 42px;
+
+        margin: 0 auto 10px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        border-radius: 50%;
+
+        background: #f1f3f5;
+
+        font-weight: 700;
+
+        font-size: 18px;
+
+    }
+
+
+    .architecture-box h5 {
+
+        font-weight: 700;
+
+        margin-bottom: 7px;
+
+    }
+
+
+    .architecture-box p {
+
+        font-size: 14px !important;
+
+        line-height: 1.5 !important;
+
+        margin-bottom: 0;
+
+    }
+
+
+    .architecture-arrow {
+
+        font-size: 28px;
+
+        font-weight: 600;
+
+        padding: 5px;
+
+    }
+
+
+    /* ===================================================== */
+    /* FLOW */
+    /* ===================================================== */
+
+    .architecture-flow {
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        flex-wrap: wrap;
+
+        gap: 12px;
+
+        padding: 22px;
+
+        background: #f8f9fa;
+
+        border: 1px solid #e9ecef;
+
+        border-radius: 10px;
+
+    }
+
+
+    .flow-step {
+
+        padding: 12px 20px;
+
+        background: #ffffff;
+
+        border: 1px solid #dee2e6;
+
+        border-radius: 8px;
+
+        font-weight: 600;
+
+    }
+
+
+    .flow-arrow {
+
+        font-size: 24px;
+
+        font-weight: 600;
+
+    }
+
+
+    /* ===================================================== */
+    /* BINDING */
+    /* ===================================================== */
+
+    .binding-architecture {
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        flex-wrap: wrap;
+
+        gap: 15px;
+
+        margin-top: 20px;
+
+        padding: 25px;
+
+        background: #f8f9fa;
+
+        border: 1px solid #e9ecef;
+
+        border-radius: 10px;
+
+    }
+
+
+    .binding-box {
+
+        padding: 14px 20px;
+
+        background: #ffffff;
+
+        border: 1px solid #dee2e6;
+
+        border-radius: 8px;
+
+        font-weight: 600;
+
+    }
+
+
+    .binding-arrow {
+
+        font-size: 28px;
+
+        font-weight: 600;
+
+    }
+
+
+    /* ===================================================== */
+    /* OUTPUT */
+    /* ===================================================== */
+
+    .output-box {
+
+        border: 1px solid #dee2e6;
+
+        border-radius: 8px;
+
+        overflow: hidden;
+
+    }
+
+
+    .output-title {
+
+        padding: 10px 15px;
+
+        background: #f1f3f5;
+
+        font-weight: 700;
+
+        border-bottom: 1px solid #dee2e6;
+
+    }
+
+
+    .output-content {
+
+        padding: 20px;
+
+        background: #ffffff;
+
+    }
+
+
+    .output-content h4 {
+
+        font-weight: 700;
+
+        margin-bottom: 10px;
+
+    }
+
+
+    /* ===================================================== */
+    /* ROUTING */
+    /* ===================================================== */
+
+    .routing-diagram {
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        flex-wrap: wrap;
+
+        gap: 15px;
+
+        margin-top: 20px;
+
+        padding: 25px;
+
+        background: #f8f9fa;
+
+        border: 1px solid #e9ecef;
+
+        border-radius: 10px;
+
+    }
+
+
+    .routing-box {
+
+        padding: 13px 24px;
+
+        background: #ffffff;
+
+        border: 1px solid #dee2e6;
+
+        border-radius: 8px;
+
+        font-weight: 600;
+
+    }
+
+
+    .routing-arrow {
+
+        font-size: 25px;
+
+        font-weight: 600;
+
+    }
+
+
+    /* ===================================================== */
+    /* HTTP FLOW */
+    /* ===================================================== */
+
+    .http-flow {
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        flex-wrap: wrap;
+
+        gap: 10px;
+
+        padding: 25px;
+
+        margin-top: 20px;
+
+        background: #f8f9fa;
+
+        border: 1px solid #e9ecef;
+
+        border-radius: 10px;
+
+    }
+
+
+    .http-box {
+
+        padding: 12px 16px;
+
+        background: #ffffff;
+
+        border: 1px solid #dee2e6;
+
+        border-radius: 8px;
+
+        font-weight: 600;
+
+        text-align: center;
+
+    }
+
+
+    .http-arrow {
+
+        font-size: 22px;
+
+        font-weight: 600;
+
+    }
+
+
+    /* ===================================================== */
+    /* COMPLETE ARCHITECTURE */
+    /* ===================================================== */
+
+    .complete-architecture {
+
+        padding: 30px 20px;
+
+        margin-top: 20px;
+
+        background: #f8f9fa;
+
+        border: 1px solid #e9ecef;
+
+        border-radius: 12px;
+
+        text-align: center;
+
+    }
+
+
+    .complete-row {
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        flex-wrap: wrap;
+
+        gap: 12px;
+
+    }
+
+
+    .complete-box {
+
+        padding: 13px 20px;
+
+        min-width: 120px;
+
+        background: #ffffff;
+
+        border: 1px solid #dee2e6;
+
+        border-radius: 8px;
+
+        font-weight: 600;
+
+    }
+
+
+    .complete-arrow {
+
+        font-size: 23px;
+
+        font-weight: 600;
+
+    }
+
+
+    .complete-down {
+
+        padding: 12px;
+
+        font-size: 25px;
+
+        font-weight: 600;
+
+    }
+
+
+    /* ===================================================== */
+    /* CODE BLOCK */
+    /* ===================================================== */
+
+    .code-block {
+
+        margin-top: 18px;
+
+        background: #0f172a;
+
+        color: #f1f5f9;
+
+        padding: 22px;
+
+        border-radius: 8px;
+
+        position: relative;
+
+        overflow-x: auto;
+
+    }
+
+
+    .code-block pre {
+
+        margin: 0;
+
+    }
+
+
+    .code-block code {
+
+        color: #f1f5f9;
+
+        font-family:
+            SFMono-Regular,
+            Menlo,
+            Monaco,
+            Consolas,
+            monospace;
+
+        font-size: 14px;
+
+        line-height: 1.7;
+
+    }
+
+
+    .code-lang-tag {
+
+        position: absolute;
+
+        top: 8px;
+
+        right: 15px;
+
+        font-size: 12px;
+
+        color: #94a3b8;
+
+    }
+
+
+    /* ===================================================== */
+    /* SUMMARY */
+    /* ===================================================== */
+
+    .summary-box {
+
+        background: #cfe2ff;
+
+        border-radius: 6px;
+
+        padding: 18px 22px;
+
+        margin-top: 20px;
+
+    }
+
+
+    .summary-box h3 {
+
+        font-size: 20px;
+
+        font-weight: 700;
+
+        color: #084298;
+
+        margin-bottom: 10px;
+
+    }
+
+
+    .summary-box p {
+
+        font-size: 16px !important;
+
+        line-height: 1.6 !important;
+
+        color: #084298 !important;
+
+        margin-bottom: 8px;
+
+    }
+
+
+    /* ===================================================== */
+    /* MOBILE */
+    /* ===================================================== */
+
+    @@media (max-width: 768px) {
+
+        .architecture-box {
+
+            width: 100%;
+
+            max-width: 320px;
+
+        }
+
+
+        .architecture-flow,
+        .binding-architecture,
+        .routing-diagram,
+        .http-flow,
+        .complete-row {
+
+            flex-direction: column;
+
+        }
+
+
+        .flow-arrow,
+        .binding-arrow,
+        .routing-arrow,
+        .http-arrow,
+        .complete-arrow {
+
+            transform: rotate(90deg);
+
+        }
+
+
+        .complete-down {
+
+            transform: none;
+
+        }
+
+    }
+
+
+    @@media (max-width: 576px) {
+
+        .architecture-diagram {
+
+            padding: 20px 12px;
+
+        }
+
+
+        .flow-step,
+        .binding-box,
+        .routing-box,
+        .http-box,
+        .complete-box {
+
+            width: 100%;
+
+            text-align: center;
+
+        }
+
+    }
+
+</style>

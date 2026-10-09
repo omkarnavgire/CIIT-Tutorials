@@ -1,0 +1,486 @@
+﻿@{
+    ViewData["Title"] = "CTE with JOIN";
+}
+
+<div class="container-fluid px-4 py-4">
+
+    <!-- =========================
+         PAGE HEADER
+    ========================== -->
+
+    <div class="mb-4">
+
+        <h1 class="fw-bold">
+            CTE with JOIN
+        </h1>
+
+        <p class="text-muted">
+            Learn how to use Common Table Expressions with JOIN operations
+            in SQL Server.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         INTRODUCTION
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                What is CTE with JOIN?
+            </h2>
+
+            <p>
+                A CTE can be used together with SQL JOIN operations to
+                combine data from multiple tables.
+            </p>
+
+            <p class="mb-0">
+                This approach is useful when we first want to prepare a
+                temporary result set and then join that result with another
+                table.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         TABLES
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Example Tables
+            </h2>
+
+            <h4 class="fw-bold mt-3">
+                Employees Table
+            </h4>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>EmployeeId | EmployeeName | DepartmentId | Salary
+-----------------------------------------------------
+101        | Amit          | 1            | 60000
+102        | Rahul         | 2            | 45000
+103        | Priya         | 1            | 70000
+104        | Sneha         | 3            | 55000</code></pre>
+
+
+            <h4 class="fw-bold mt-4">
+                Departments Table
+            </h4>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>DepartmentId | DepartmentName
+-----------------------------
+1             | IT
+2             | HR
+3             | Finance</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         BASIC JOIN
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                CTE with INNER JOIN
+            </h2>
+
+            <p>
+                We can create a CTE containing employee information and
+                then use an <strong>INNER JOIN</strong> with the
+                Departments table.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>WITH EmployeeData AS
+(
+    SELECT EmployeeId,
+           EmployeeName,
+           DepartmentId,
+           Salary
+    FROM Employees
+)
+SELECT
+    EmployeeData.EmployeeId,
+    EmployeeData.EmployeeName,
+    Departments.DepartmentName,
+    EmployeeData.Salary
+FROM EmployeeData
+INNER JOIN Departments
+    ON EmployeeData.DepartmentId = Departments.DepartmentId;</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         RESULT
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Result
+            </h2>
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-striped">
+
+                    <thead class="table-dark">
+
+                        <tr>
+                            <th>EmployeeId</th>
+                            <th>EmployeeName</th>
+                            <th>DepartmentName</th>
+                            <th>Salary</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>101</td>
+                            <td>Amit</td>
+                            <td>IT</td>
+                            <td>60000</td>
+                        </tr>
+
+                        <tr>
+                            <td>102</td>
+                            <td>Rahul</td>
+                            <td>HR</td>
+                            <td>45000</td>
+                        </tr>
+
+                        <tr>
+                            <td>103</td>
+                            <td>Priya</td>
+                            <td>IT</td>
+                            <td>70000</td>
+                        </tr>
+
+                        <tr>
+                            <td>104</td>
+                            <td>Sneha</td>
+                            <td>Finance</td>
+                            <td>55000</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         CTE WITH WHERE AND JOIN
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                CTE with WHERE and JOIN
+            </h2>
+
+            <p>
+                We can filter records inside the CTE and then join the
+                filtered result with another table.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>WITH HighSalaryEmployees AS
+(
+    SELECT EmployeeId,
+           EmployeeName,
+           DepartmentId,
+           Salary
+    FROM Employees
+    WHERE Salary &gt; 50000
+)
+SELECT
+    HighSalaryEmployees.EmployeeName,
+    Departments.DepartmentName,
+    HighSalaryEmployees.Salary
+FROM HighSalaryEmployees
+INNER JOIN Departments
+    ON HighSalaryEmployees.DepartmentId =
+       Departments.DepartmentId;</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         CTE WITH LEFT JOIN
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                CTE with LEFT JOIN
+            </h2>
+
+            <p>
+                A CTE can also be used with a
+                <strong>LEFT JOIN</strong>.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>WITH EmployeeData AS
+(
+    SELECT EmployeeId,
+           EmployeeName,
+           DepartmentId
+    FROM Employees
+)
+SELECT
+    EmployeeData.EmployeeName,
+    Departments.DepartmentName
+FROM EmployeeData
+LEFT JOIN Departments
+    ON EmployeeData.DepartmentId =
+       Departments.DepartmentId;</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         CTE WITH MULTIPLE TABLES
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                CTE with Multiple Tables
+            </h2>
+
+            <p>
+                A CTE can also be combined with multiple tables when
+                more complex information is required.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>WITH EmployeeData AS
+(
+    SELECT EmployeeId,
+           EmployeeName,
+           DepartmentId,
+           Salary
+    FROM Employees
+)
+SELECT
+    EmployeeData.EmployeeName,
+    Departments.DepartmentName,
+    EmployeeData.Salary
+FROM EmployeeData
+INNER JOIN Departments
+    ON EmployeeData.DepartmentId =
+       Departments.DepartmentId
+WHERE EmployeeData.Salary &gt; 50000
+ORDER BY EmployeeData.Salary DESC;</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         HOW IT WORKS
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                How CTE with JOIN Works
+            </h2>
+
+            <ol>
+
+                <li class="mb-3">
+                    First, the CTE creates a temporary result set.
+                </li>
+
+                <li class="mb-3">
+                    The CTE result is given a meaningful name.
+                </li>
+
+                <li class="mb-3">
+                    The main query joins the CTE with another table.
+                </li>
+
+                <li class="mb-3">
+                    The JOIN condition connects related records.
+                </li>
+
+                <li>
+                    The final result is returned by the main query.
+                </li>
+
+            </ol>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         ADVANTAGES
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Advantages
+            </h2>
+
+            <ul>
+
+                <li class="mb-2">
+                    Makes complex JOIN queries easier to understand.
+                </li>
+
+                <li class="mb-2">
+                    Separates data preparation from the main query.
+                </li>
+
+                <li class="mb-2">
+                    Improves query readability.
+                </li>
+
+                <li class="mb-2">
+                    Allows filtering before performing the JOIN.
+                </li>
+
+                <li>
+                    Makes complex query logic easier to maintain.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         IMPORTANT POINTS
+    ========================== -->
+
+    <div class="alert alert-warning shadow-sm mb-4">
+
+        <h4 class="fw-bold">
+            Important Points
+        </h4>
+
+        <ul class="mb-0">
+
+            <li class="mb-2">
+                A CTE can be joined with one or more tables.
+            </li>
+
+            <li class="mb-2">
+                INNER JOIN, LEFT JOIN and other JOIN types can be used.
+            </li>
+
+            <li class="mb-2">
+                JOIN conditions should use related columns.
+            </li>
+
+            <li>
+                Filtering can be performed inside the CTE or in the
+                main query depending on the requirement.
+            </li>
+
+        </ul>
+
+    </div>
+
+
+    <!-- =========================
+         SUMMARY
+    ========================== -->
+
+    <div class="card shadow-sm mb-5">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Summary
+            </h2>
+
+            <p class="mb-0">
+                A CTE can be combined with JOIN operations to create
+                readable and organized SQL queries. The CTE can prepare
+                the required data first, and the main query can then
+                join that result with other tables.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         PREVIOUS / NEXT
+    ========================== -->
+
+    <div class="d-flex justify-content-between align-items-center
+        mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/CTE/SimpleCTE"
+           class="btn btn-outline-primary">
+
+            ← Previous: Simple CTE
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/CTE/CTEWithAggregate"
+           class="btn btn-primary">
+
+            Next: CTE with Aggregate Functions →
+
+        </a>
+
+    </div>
+
+</div>

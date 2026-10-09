@@ -1,0 +1,789 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Python Type Conversion";
+}
+
+<main id="tutorials" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- ================================================= -->
+        <!-- LEFT SIDEBAR -->
+        <!-- ================================================= -->
+
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+
+        </aside>
+
+
+        <!-- ================================================= -->
+        <!-- MAIN CONTENT -->
+        <!-- ================================================= -->
+
+        <section class="col-lg-9">
+
+            <div class="card shadow-sm border-0 p-4 p-md-5 mb-4">
+
+                <!-- ================================================= -->
+                <!-- PAGE TITLE -->
+                <!-- ================================================= -->
+
+                <h1 class="h1 fw-bold text-dark mt-1 mb-4">
+                    Type Conversion
+                </h1>
+
+                <p class="text-muted mb-4">
+                    Type conversion means changing a value from one data
+                    type to another. Python provides built-in functions
+                    that make it easy to convert values between different
+                    data types.
+                </p>
+
+
+                <!-- ================================================= -->
+                <!-- CIIT INTRO -->
+                <!-- ================================================= -->
+
+                <div class="alert alert-info mb-4"
+                     style="background-color:#cfe2ff; border:0; color:#123c73;">
+
+                    <strong style="color:#123c73;">
+                        CIIT Training Institute :
+                    </strong>
+
+                    <span style="color:#123c73;">
+                        Type conversion is commonly required when working
+                        with user input, databases, APIs, calculations,
+                        and real-world application data.
+                    </span>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- WHAT IS TYPE CONVERSION -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    What is Type Conversion?
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Python variables can contain values of different data
+                    types. Sometimes a program needs a value in a different
+                    type to perform a particular operation.
+                </p>
+
+                <p class="text-muted mb-4">
+                    For example, input received using
+                    <strong>input()</strong> is stored as a string.
+                    If we want to perform mathematical calculations,
+                    we can convert that string into an integer or float.
+                </p>
+
+
+                <!-- ================================================= -->
+                <!-- TYPE CONVERSION FLOW -->
+                <!-- ================================================= -->
+
+                <div class="border rounded p-4 mb-4 bg-light">
+
+                    <h3 class="h5 fw-bold text-dark text-center mb-4">
+                        Type Conversion Flow
+                    </h3>
+
+                    <div class="d-flex flex-column align-items-center gap-2">
+
+                        <div class="px-4 py-3 border rounded bg-white shadow-sm text-center"
+                             style="max-width:420px; width:100%;">
+
+                            <strong>Original Value</strong>
+
+                            <br />
+
+                            <small class="text-muted">
+                                "25" → String
+                            </small>
+
+                        </div>
+
+                        <div class="fw-bold text-primary fs-4">
+                            ↓
+                        </div>
+
+                        <div class="px-4 py-3 border rounded bg-white shadow-sm text-center"
+                             style="max-width:420px; width:100%;">
+
+                            <strong>Conversion Function</strong>
+
+                            <br />
+
+                            <small class="text-muted">
+                                int()
+                            </small>
+
+                        </div>
+
+                        <div class="fw-bold text-primary fs-4">
+                            ↓
+                        </div>
+
+                        <div class="px-4 py-3 border rounded bg-white shadow-sm text-center"
+                             style="max-width:420px; width:100%;">
+
+                            <strong>Converted Value</strong>
+
+                            <br />
+
+                            <small class="text-muted">
+                                25 → Integer
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- COMMON FUNCTIONS -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Common Type Conversion Functions
+                </h2>
+
+                <div class="table-responsive mb-4">
+
+                    <table class="table table-bordered align-middle">
+
+                        <thead class="table-light">
+
+                            <tr>
+                                <th>Function</th>
+                                <th>Purpose</th>
+                                <th>Example</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td><strong>int()</strong></td>
+                                <td>Converts a value to integer</td>
+                                <td>int("25")</td>
+                            </tr>
+
+                            <tr>
+                                <td><strong>float()</strong></td>
+                                <td>Converts a value to float</td>
+                                <td>float("25.5")</td>
+                            </tr>
+
+                            <tr>
+                                <td><strong>str()</strong></td>
+                                <td>Converts a value to string</td>
+                                <td>str(25)</td>
+                            </tr>
+
+                            <tr>
+                                <td><strong>bool()</strong></td>
+                                <td>Converts a value to boolean</td>
+                                <td>bool(1)</td>
+                            </tr>
+
+                            <tr>
+                                <td><strong>list()</strong></td>
+                                <td>Converts an iterable to a list</td>
+                                <td>list("ABC")</td>
+                            </tr>
+
+                            <tr>
+                                <td><strong>tuple()</strong></td>
+                                <td>Converts an iterable to a tuple</td>
+                                <td>tuple([1, 2, 3])</td>
+                            </tr>
+
+                            <tr>
+                                <td><strong>set()</strong></td>
+                                <td>Creates a set from an iterable</td>
+                                <td>set([1, 2, 2])</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- INT -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    1. Convert to Integer using int()
+                </h2>
+
+                <p class="text-muted mb-3">
+                    The <strong>int()</strong> function converts a compatible
+                    value into an integer.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>age = "25"
+
+age = int(age)
+
+print(age)
+print(type(age))</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>25
+&lt;class 'int'&gt;</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- FLOAT -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    2. Convert to Float using float()
+                </h2>
+
+                <p class="text-muted mb-3">
+                    The <strong>float()</strong> function converts a
+                    compatible value into a floating-point number.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>price = "499.50"
+
+price = float(price)
+
+print(price)
+print(type(price))</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>499.5
+&lt;class 'float'&gt;</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- STRING -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    3. Convert to String using str()
+                </h2>
+
+                <p class="text-muted mb-3">
+                    The <strong>str()</strong> function converts a value
+                    into a string.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>age = 25
+
+age_text = str(age)
+
+print(age_text)
+print(type(age_text))</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>25
+&lt;class 'str'&gt;</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- BOOLEAN -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    4. Convert to Boolean using bool()
+                </h2>
+
+                <p class="text-muted mb-3">
+                    The <strong>bool()</strong> function converts a value
+                    to either <strong>True</strong> or <strong>False</strong>.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>value = 1
+
+result = bool(value)
+
+print(result)
+print(type(result))</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>True
+&lt;class 'bool'&gt;</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- INPUT CONVERSION -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Type Conversion with input()
+                </h2>
+
+                <p class="text-muted mb-3">
+                    The <strong>input()</strong> function returns user
+                    input as a string. Therefore, numerical input usually
+                    needs to be converted before performing calculations.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>age = input("Enter your age: ")
+
+age = int(age)
+
+print("Your age is:", age)</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Example Input
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>Enter your age: 25</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>Your age is: 25</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- CALCULATION EXAMPLE -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Type Conversion for Calculations
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Consider a simple student marks example. The marks
+                    are received from the user as strings, so we convert
+                    them into integers before calculating the total.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>math = int(input("Enter Math marks: "))
+python = int(input("Enter Python marks: "))
+
+total = math + python
+
+print("Total Marks:", total)</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Example
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>Enter Math marks: 80
+Enter Python marks: 90
+
+Total Marks: 170</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- LIST CONVERSION -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Convert String to List
+                </h2>
+
+                <p class="text-muted mb-3">
+                    The <strong>list()</strong> function can convert an
+                    iterable such as a string into a list of individual
+                    elements.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>text = "SAM"
+
+letters = list(text)
+
+print(letters)</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>['S', 'A', 'M']</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- TUPLE CONVERSION -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Convert List to Tuple
+                </h2>
+
+                <p class="text-muted mb-3">
+                    The <strong>tuple()</strong> function can convert a
+                    list into a tuple.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>courses = ["Python", "C#", "Java"]
+
+course_tuple = tuple(courses)
+
+print(course_tuple)
+print(type(course_tuple))</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>('Python', 'C#', 'Java')
+&lt;class 'tuple'&gt;</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- SET CONVERSION -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Convert List to Set
+                </h2>
+
+                <p class="text-muted mb-3">
+                    The <strong>set()</strong> function can be used to
+                    create a set and remove duplicate values.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>numbers = [10, 20, 20, 30, 30]
+
+unique_numbers = set(numbers)
+
+print(unique_numbers)</code></pre>
+
+                </div>
+                <h3 class="h5 fw-bold text-dark mb-3">
+    Output:
+</h3>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="code-lang-tag">
+        Output
+    </div>
+
+    <pre class="mb-0"><code>{10, 20, 30}</code></pre>
+</div>
+
+                <!-- ================================================= -->
+                <!-- IMPLICIT CONVERSION -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Implicit Type Conversion
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Sometimes Python automatically converts one compatible
+                    numeric type into another during an operation.
+                </p>
+
+                <p class="text-muted mb-3">
+                    For example, when an integer and a float are added,
+                    Python produces a float result.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>number1 = 10
+number2 = 5.5
+
+result = number1 + number2
+
+print(result)
+print(type(result))</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>15.5
+&lt;class 'float'&gt;</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- EXPLICIT CONVERSION -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Explicit Type Conversion
+                </h2>
+
+                <p class="text-muted mb-3">
+                    When the programmer manually converts a value using
+                    functions such as <strong>int()</strong>,
+                    <strong>float()</strong>, or <strong>str()</strong>,
+                    it is called explicit type conversion.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>number = "100"
+
+number = int(number)
+
+print(number + 50)</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>150</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- INVALID CONVERSION -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Invalid Type Conversion
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Not every value can be converted into every data type.
+                    For example, normal text cannot be directly converted
+                    into an integer.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>value = "Python"
+
+number = int(value)</code></pre>
+
+                </div>
+
+                <p class="text-muted mb-4">
+                    This causes a <strong>ValueError</strong> because
+                    <strong>"Python"</strong> is not a valid integer.
+                </p>
+
+
+                <!-- ================================================= -->
+                <!-- CIIT LEARNING POINT -->
+                <!-- ================================================= -->
+
+                <div class="alert alert-success mt-4">
+
+                    <h5 class="fw-bold">
+                        CIIT Learning Point
+                    </h5>
+
+                    <p class="mb-0">
+                        Always check the data type before performing an
+                        operation. Type conversion is especially important
+                        when accepting input from users or receiving data
+                        from APIs, files, and databases.
+                    </p>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- SAM PRACTICE -->
+                <!-- ================================================= -->
+
+                <div class="border rounded p-4 mt-4 mb-4">
+
+                    <h3 class="h5 fw-bold text-dark mb-3">
+                        CIIT Practice Task
+                    </h3>
+
+                    <p class="text-muted mb-3">
+                        Write a Python program that accepts two numbers
+                        from the user, converts them into integers, and
+                        displays their sum.
+                    </p>
+
+                    <div class="bg-dark text-light rounded p-3 mb-3">
+
+                        <pre class="mb-0"><code>number1 = int(input("Enter first number: "))
+number2 = int(input("Enter second number: "))
+
+sum = number1 + number2
+
+print("Sum:", sum)</code></pre>
+                    </div>
+
+                    <h3 class="h5 fw-bold text-dark mb-3">
+    Output:
+</h3>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="code-lang-tag">
+        Output
+    </div>
+
+    <pre class="mb-0"><code>Enter first number: 10
+Enter second number: 20
+Sum: 30</code></pre>
+</div>
+                    <p class="text-muted mb-0">
+                        Try different numbers and observe the result.
+                    </p>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- SUMMARY -->
+                <!-- ================================================= -->
+
+                <div class="alert alert-info mt-4 mb-0"
+                     style="background-color:#cfe2ff; border:0; color:#123c73;">
+
+                    <h2 class="h3 fw-bold mt-0 mb-3"
+                        style="color:#123c73;">
+
+                        Summary :
+
+                    </h2>
+
+                    <p class="mb-0"
+                       style="color:#123c73;">
+
+                        Type conversion allows Python values to be changed
+                        from one data type to another. You learned common
+                        functions such as int(), float(), str(), bool(),
+                        list(), tuple(), and set(), along with implicit and
+                        explicit conversion. Type conversion is especially
+                        useful when working with user input and application
+                        data.
+
+                    </p>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- NAVIGATION -->
+                <!-- ================================================= -->
+
+                <div class="d-flex justify-content-between align-items-center mt-5 pt-4 border-top">
+
+                    <a href="@Url.Action("DataTypes", "PythonBasics", new { area = "Python" })"
+                       class="btn btn-outline-secondary">
+
+                        ← Previous: Topic
+
+                    </a>
+
+                    <a href="@Url.Action("Operators", "PythonBasics", new { area = "Python" })"
+                       class="btn btn-primary">
+
+                        Next: Topic →
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

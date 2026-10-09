@@ -1,0 +1,281 @@
+@{
+    Layout = "~/Areas/GitHub/Views/Shared/GithubLayout.cshtml";
+    ViewData["Title"] = "GitHub Actions";
+}
+
+<main id="tutorials" class="container py-1">
+    <div class="row g-4">
+
+        <!-- Sidebar Navigation -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/GitHub/Views/Shared/GithubTopics.cshtml")
+        </aside>
+
+        <!-- Reading Content Area -->
+        <section class="col-lg-9">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4 p-lg-5">
+
+                    <h1 class="fw-bold mb-3">GitHub Actions</h1>
+
+                    <p>
+                        <strong>GitHub Actions</strong> is a built-in
+                        Continuous Integration and Continuous Deployment
+                        (CI/CD) platform that automates build, test, and
+                        deployment workflows directly within your GitHub
+                        repository.
+                    </p>
+
+                    <p>
+                        Workflows can run automatically when events occur,
+                        such as pushing code, opening a Pull Request,
+                        creating a branch, or manually starting a workflow.
+                    </p>
+
+                    <hr class="my-4" />
+
+                    <!-- Core Components -->
+                    <h3 class="fw-bold mb-3">1. How GitHub Actions Works</h3>
+
+                    <p>
+                        GitHub Actions uses YAML files to define automation.
+                        Workflow files are normally stored in:
+                    </p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>.github/workflows/</code></pre>
+
+                    <h5 class="fw-semibold mt-4">Events (Triggers)</h5>
+
+                    <p>
+                        Events determine when a workflow starts. Common
+                        examples include <code>push</code>,
+                        <code>pull_request</code>, and
+                        <code>workflow_dispatch</code> for manual execution.
+                    </p>
+
+                    <h5 class="fw-semibold mt-4">Jobs</h5>
+
+                    <p>
+                        A job is a group of steps executed on a runner.
+                        Jobs run in parallel by default, but you can use
+                        <code>needs</code> to make one job wait for another.
+                    </p>
+
+                    <h5 class="fw-semibold mt-4">Runners</h5>
+
+                    <p>
+                        Runners are the environments that execute workflow
+                        jobs. GitHub-hosted runners offer environments such
+                        as Ubuntu Linux, Windows, and macOS. You can also
+                        configure self-hosted runners.
+                    </p>
+
+                    <h5 class="fw-semibold mt-4">Steps and Actions</h5>
+
+                    <p>
+                        Steps run shell commands or reusable actions.
+                        Actions can perform tasks such as checking out code,
+                        setting up a programming language, or publishing
+                        build artifacts.
+                    </p>
+
+                    <hr class="my-4" />
+
+                    <!-- Basic Workflow -->
+                    <h3 class="fw-bold mb-3">2. A Basic Example Workflow</h3>
+
+                    <p>
+                        Create a file named
+                        <code>test.yml</code> inside
+                        <code>.github/workflows/</code>. This example
+                        runs a Node.js test command whenever code is
+                        pushed to the <code>main</code> branch.
+                    </p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>name: Run Automated Tests
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  test-project:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Execute test commands
+        run: npm test</code></pre>
+
+                                    <div class="alert alert-info">
+                                <strong>Important:</strong>
+                                This example assumes your repository contains a
+                                    Node.js project with a valid <code>package.json</code>
+                                    and a configured <code>test</code> script.
+                                </div>
+
+                                    <hr class="my-4" />
+
+                                <!-- Workflow Explanation -->
+                                <h3 class="fw-bold mb-3">3. Understand the YAML File</h3>
+
+                                    <div class="table-responsive">
+                                <table class="table table-bordered table-striped align-middle">
+                                <thead class="table-dark">
+                                    <tr>
+                                    <th>Configuration</th>
+                                <th>Purpose</th>
+                                </tr>
+                                    </thead>
+                                    <tbody>
+                                <tr>
+                                <td><code>name</code></td>
+                                    <td>Sets the workflow's display name.</td>
+                                    </tr>
+                                <tr>
+                                <td><code>on</code></td>
+                                    <td>Defines the events that trigger the workflow.</td>
+                                    </tr>
+                                <tr>
+                            <td><code>jobs</code></td>
+                        <td>Defines the jobs to execute.</td>
+                    </tr>
+                                <tr>
+                    <td><code>runs-on</code></td>
+                                    <td>Specifies the runner environment.</td>
+                    </tr>
+                    <tr>
+                                    <td><code>steps</code></td>
+                    <td>Lists the tasks executed by the job.</td>
+                                </tr>
+                    <tr>
+                        <td><code>uses</code></td>
+                        <td>Runs a reusable action.</td>
+                        </tr>
+                    <tr>
+                                    <td><code>run</code></td>
+                    <td>Executes a shell command.</td>
+                                </tr>
+                    <tr>
+                        <td><code>with</code></td>
+                        <td>Provides configuration inputs to an action.</td>
+                        </tr>
+                    </tbody>
+                        </table>
+                    </div>
+
+                    <hr class="my-4" />
+
+                        <!-- Benefits -->
+                        <h3 class="fw-bold mb-3">4. Why Use GitHub Actions?</h3>
+
+                    <h5 class="fw-semibold mt-4">Automated Testing</h5>
+
+                    <p>
+                    Run tests whenever code is pushed or a Pull Request
+                        is opened. This helps catch problems before changes
+                        are merged.
+                        </p>
+
+                        <h5 class="fw-semibold mt-4">Automated Guardrails</h5>
+
+                    <p>
+                    Repository rules and required status checks can
+                        prevent Pull Requests from being merged until
+                    required workflow checks pass.
+                    </p>
+
+                    <h5 class="fw-semibold mt-4">Continuous Deployment</h5>
+
+                        <p>
+                        Workflows can build and deploy applications to
+                        platforms such as AWS, Azure, Google Cloud, or Vercel
+                        after the required checks succeed.
+                        </p>
+
+                    <h5 class="fw-semibold mt-4">GitHub Marketplace</h5>
+
+                    <p>
+                        The Marketplace provides reusable actions for
+                        common tasks, including notifications, security
+                        scanning, cloud authentication, and deployment.
+                        Review an action's source and permissions before
+                        using it in a workflow.
+                    </p>
+
+                    <hr class="my-4" />
+
+                    <!-- Workflow Steps -->
+                        <h3 class="fw-bold mb-3">5. Create and Run Your First Workflow</h3>
+
+                            <ol>
+                        <li>Open your GitHub repository.</li>
+                        <li>Create the <code>.github/workflows</code> directory if it does not exist.</li>
+                        <li>Create a workflow file such as <code>test.yml</code>.</li>
+                            <li>Paste the YAML workflow and adjust it for your project.</li>
+                            <li>Commit and push the file to GitHub.</li>
+                        <li>Open the repository's <strong>Actions</strong> tab.</li>
+                        <li>Select the workflow run to inspect its jobs, steps, and logs.</li>
+                    </ol>
+
+                <div class="alert alert-success mt-4">
+            <strong>Key Takeaway:</strong>
+        GitHub Actions automates your development workflow
+    using events, jobs, runners, and steps. Start with
+automated testing, then extend the workflow to build
+                        and deploy your application.
+                    </div>
+
+<!-- Previous / Next Navigation -->
+<div class="d-flex justify-content-between align-items-center gap-3 flex-wrap mt-5 pt-4 border-top">
+
+<a class="btn btn-outline-primary"
+href="@Url.Action("BlamingAuditing", "AdvancedGitAndHistory", new { area = "GitHub" })">
+&larr; Previous: Git Blame &amp; Auditing
+</a>
+
+<a class="btn btn-primary"
+href="@Url.Action("GitHubIssues", "GitHubEcosystemAndWorkflow", new { area = "GitHub" })">
+Next: GitHub Issues &rarr;
+                        </a>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+</main>

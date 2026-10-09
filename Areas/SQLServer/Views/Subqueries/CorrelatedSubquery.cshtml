@@ -1,0 +1,455 @@
+﻿@{
+    ViewData["Title"] = "Correlated Subquery";
+}
+
+<div class="container-fluid">
+
+    <!-- =========================
+         PAGE HEADER
+    ========================== -->
+
+    <div class="mb-4">
+
+        <h1 class="fw-bold">
+            Correlated Subquery
+        </h1>
+
+        <p class="text-muted">
+            Learn how a correlated subquery works with the outer query
+            and is evaluated for each row.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         WHAT IS CORRELATED SUBQUERY?
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                What is a Correlated Subquery?
+            </h2>
+
+            <p>
+                A <strong>Correlated Subquery</strong> is a subquery
+                that depends on a value from the outer query.
+            </p>
+
+            <p>
+                Unlike a normal subquery, a correlated subquery cannot
+                work independently because it references a column from
+                the outer query.
+            </p>
+
+            <p>
+                The subquery is evaluated for each row processed by the
+                outer query.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         BASIC STRUCTURE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Basic Structure
+            </h2>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>
+SELECT column_name
+FROM table_name AS outer_table
+WHERE condition
+(
+    SELECT column_name
+    FROM table_name AS inner_table
+    WHERE inner_table.column = outer_table.column
+);
+            </code></pre>
+
+            <p class="mt-3 mb-0">
+                Notice that the inner query refers to a column from
+                the outer query. This dependency makes the subquery
+                correlated.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         EXAMPLE TABLE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Example Table
+            </h2>
+
+            <p>
+                Consider the following <strong>Employees</strong> table:
+            </p>
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-striped">
+
+                    <thead class="table-primary">
+
+                        <tr>
+                            <th>EmployeeId</th>
+                            <th>EmployeeName</th>
+                            <th>DepartmentId</th>
+                            <th>Salary</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>1</td>
+                            <td>Rahul</td>
+                            <td>101</td>
+                            <td>30000</td>
+                        </tr>
+
+                        <tr>
+                            <td>2</td>
+                            <td>Priya</td>
+                            <td>101</td>
+                            <td>45000</td>
+                        </tr>
+
+                        <tr>
+                            <td>3</td>
+                            <td>Amit</td>
+                            <td>101</td>
+                            <td>50000</td>
+                        </tr>
+
+                        <tr>
+                            <td>4</td>
+                            <td>Sneha</td>
+                            <td>102</td>
+                            <td>40000</td>
+                        </tr>
+
+                        <tr>
+                            <td>5</td>
+                            <td>Neha</td>
+                            <td>102</td>
+                            <td>55000</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         MAIN EXAMPLE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Example: Employees Above Department Average
+            </h2>
+
+            <p>
+                Suppose we want to find employees whose salary is greater
+                than the average salary of their own department.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>
+SELECT
+    e.EmployeeName,
+    e.DepartmentId,
+    e.Salary
+FROM Employees e
+WHERE e.Salary &gt;
+(
+    SELECT AVG(e2.Salary)
+    FROM Employees e2
+    WHERE e2.DepartmentId = e.DepartmentId
+);
+            </code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         HOW IT WORKS
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                How Does a Correlated Subquery Work?
+            </h2>
+
+            <ol>
+
+                <li class="mb-2">
+                    The outer query selects an employee.
+                </li>
+
+                <li class="mb-2">
+                    The inner query finds the average salary for that
+                    employee's department.
+                </li>
+
+                <li class="mb-2">
+                    The inner query uses
+                    <code>e.DepartmentId</code> from the outer query.
+                </li>
+
+                <li class="mb-2">
+                    The employee's salary is compared with the calculated
+                    department average.
+                </li>
+
+                <li class="mb-2">
+                    The process is repeated for the other employees.
+                </li>
+
+            </ol>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         CORRELATED vs NORMAL
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Normal Subquery vs Correlated Subquery
+            </h2>
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-striped">
+
+                    <thead class="table-primary">
+
+                        <tr>
+                            <th>Normal Subquery</th>
+                            <th>Correlated Subquery</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>
+                                Can generally execute independently.
+                            </td>
+
+                            <td>
+                                Depends on the outer query.
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                Does not normally reference the outer
+                                query.
+                            </td>
+
+                            <td>
+                                References a column from the outer query.
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                Generally evaluated independently of
+                                individual outer rows.
+                            </td>
+
+                            <td>
+                                Evaluated in relation to rows of the
+                                outer query.
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         ANOTHER EXAMPLE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Example: Highest Paid Employee in Each Department
+            </h2>
+
+            <p>
+                The following correlated subquery finds employees whose
+                salary is equal to the maximum salary in their department.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>
+SELECT
+    e.EmployeeName,
+    e.DepartmentId,
+    e.Salary
+FROM Employees e
+WHERE e.Salary =
+(
+    SELECT MAX(e2.Salary)
+    FROM Employees e2
+    WHERE e2.DepartmentId = e.DepartmentId
+);
+            </code></pre>
+
+            <p class="mt-3">
+                The inner query calculates the maximum salary for the
+                department of the current employee.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         IMPORTANT POINTS
+    ========================== -->
+
+    <div class="alert alert-warning mb-4">
+
+        <h4 class="fw-bold">
+            Important Points
+        </h4>
+
+        <ul class="mb-0">
+
+            <li>
+                A correlated subquery depends on the outer query.
+            </li>
+
+            <li>
+                The inner query references a column from the outer query.
+            </li>
+
+            <li>
+                Table aliases make correlated subqueries easier to read.
+            </li>
+
+            <li>
+                Correlated subqueries are useful for row-by-row comparisons.
+            </li>
+
+            <li>
+                They can be used with aggregate functions such as
+                AVG(), MAX() and MIN().
+            </li>
+
+            <li>
+                For large datasets, query performance should be considered
+                when using correlated subqueries.
+            </li>
+
+        </ul>
+
+    </div>
+
+
+    <!-- =========================
+         SUMMARY
+    ========================== -->
+
+    <div class="alert alert-info p-4 mb-4">
+
+        <h2 class="fw-bold">
+            Summary
+        </h2>
+
+        <p class="mb-0">
+            A correlated subquery is a subquery that depends on the
+            outer query. It references a column from the outer query
+            and is evaluated in relation to the rows being processed.
+            It is especially useful for comparing each row with
+            aggregated or related data from the same group.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         PREVIOUS / NEXT
+    ========================== -->
+
+    <div class="d-flex justify-content-between align-items-center
+        mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/Subqueries/MultipleRowSubquery"
+           class="btn btn-outline-primary">
+
+            ← Previous: Multiple-Row Subquery
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/Subqueries/SubqueryWithDML"
+           class="btn btn-primary">
+
+            Next: Subquery with SELECT, INSERT, UPDATE &amp; DELETE →
+
+        </a>
+
+    </div>
+
+</div>

@@ -1,0 +1,955 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Creating Packages in Python";
+}
+
+<style>
+
+    #python-creating-packages-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #python-creating-packages-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #python-creating-packages-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #python-creating-packages-page .diagram-box {
+        background: #ffffff;
+        border: 2px solid #6f42c1;
+        border-radius: 10px;
+        padding: 18px;
+        text-align: center;
+        height: 100%;
+    }
+
+        #python-creating-packages-page .diagram-box h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        #python-creating-packages-page .diagram-box p {
+            margin-bottom: 0;
+            font-size: 14px;
+            color: #495057;
+        }
+
+    #python-creating-packages-page .diagram-arrow {
+        text-align: center;
+        font-size: 28px;
+        font-weight: 700;
+        color: #6f42c1;
+        padding: 8px 0;
+    }
+
+    #python-creating-packages-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #python-creating-packages-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+        }
+
+</style>
+
+
+<main id="python-creating-packages-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+
+                <h1 class="fw-bold">
+                    Creating Packages in Python
+                </h1>
+
+                <p class="lead">
+                    Learn how to create your own Python package, organize
+                    modules and import them into another Python program.
+                </p>
+
+            </div>
+
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    What is a Python Package?
+                </h2>
+
+                <p>
+                    A package is a directory that organizes related Python
+                    modules together.
+                </p>
+
+                <p>
+                    Packages are useful when a project contains many
+                    modules and we want to keep related code together.
+                </p>
+
+                <div class="alert alert-info">
+
+                    <strong>Simple Definition:</strong>
+
+                    A package is a folder that organizes related
+                    Python modules into one logical unit.
+
+                </div>
+
+            </div>
+
+
+            <!-- WHY CREATE PACKAGE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Why Do We Create Packages?
+                </h2>
+
+                <ul>
+
+                    <li>
+                        Organize large projects.
+                    </li>
+
+                    <li>
+                        Group related modules.
+                    </li>
+
+                    <li>
+                        Reuse code easily.
+                    </li>
+
+                    <li>
+                        Make applications easier to maintain.
+                    </li>
+
+                    <li>
+                        Separate different parts of an application.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- DIAGRAM -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Package Creation Diagram
+                </h2>
+
+                <p>
+                    A package can contain multiple Python modules.
+                </p>
+
+                <div class="concept-box">
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            Python Project
+                        </h5>
+
+                        <p>
+                            Main application
+                        </p>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            Package
+                        </h5>
+
+                        <p>
+                            <code>student_package</code>
+                        </p>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="row g-3">
+
+                        <div class="col-md-4">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    __init__.py
+                                </h5>
+
+                                <p>
+                                    Package initialization file
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-4">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    student.py
+                                </h5>
+
+                                <p>
+                                    Student-related code
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-4">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    marks.py
+                                </h5>
+
+                                <p>
+                                    Marks-related code
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            main.py
+                        </h5>
+
+                        <p>
+                            Imports and uses the package modules.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- STEP 1 -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Step 1: Create a Package Folder
+                </h2>
+
+                <p>
+                    First, create a folder for the package.
+                </p>
+
+                <p>
+                    Example package name:
+                    <code>student_package</code>
+                </p>
+
+                <pre><code>student_package/</code></pre>
+
+                <p>
+                    This folder will contain the related Python modules.
+                </p>
+
+            </div>
+
+
+            <!-- STEP 2 -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Step 2: Create <code>__init__.py</code>
+                </h2>
+
+                <p>
+                    Inside the package folder, we can create a file named
+                    <code>__init__.py</code>.
+                </p>
+
+                <pre><code>student_package/
+|
+|-- __init__.py</code></pre>
+
+                <p class="mt-3">
+                    The file can be empty for a basic package.
+                </p>
+
+                <p>
+                    It can also contain package initialization code when
+                    needed.
+                </p>
+
+            </div>
+
+
+            <!-- STEP 3 -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Step 3: Create a Module
+                </h2>
+
+                <p>
+                    Now create a module called
+                    <code>student.py</code>.
+                </p>
+
+                <pre><code>student_package/
+|
+|-- __init__.py
+|
+|-- student.py</code></pre>
+
+                <p class="mt-3">
+                    Add the following code inside
+                    <code>student.py</code>:
+                </p>
+
+                <pre><code>class Student:
+
+    def __init__(self, name, course):
+        self.name = name
+        self.course = course
+
+    def display(self):
+        print("Name:", self.name)
+        print("Course:", self.course)</code></pre>
+
+            </div>
+
+
+            <!-- STEP 4 -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Step 4: Add Another Module
+                </h2>
+
+                <p>
+                    Let's create another module called
+                    <code>marks.py</code>.
+                </p>
+
+                <pre><code>student_package/
+|
+|-- __init__.py
+|
+|-- student.py
+|
+|-- marks.py</code></pre>
+
+                <p class="mt-3">
+                    Add this code to <code>marks.py</code>:
+                </p>
+
+                <pre><code>def calculate_total(marks):
+
+    return sum(marks)
+
+
+def calculate_average(marks):
+
+    return sum(marks) / len(marks)</code></pre>
+
+            </div>
+
+
+            <!-- FINAL STRUCTURE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Final Package Structure
+                </h2>
+
+                <pre><code>myproject/
+|
+|-- main.py
+|
+|-- student_package/
+    |
+    |-- __init__.py
+    |
+    |-- student.py
+    |
+    |-- marks.py</code></pre>
+
+                <p class="mt-3">
+                    Here:
+                </p>
+
+                <ul>
+
+                    <li>
+                        <code>myproject</code> is the project folder.
+                    </li>
+
+                    <li>
+                        <code>student_package</code> is the package.
+                    </li>
+
+                    <li>
+                        <code>student.py</code> is one module.
+                    </li>
+
+                    <li>
+                        <code>marks.py</code> is another module.
+                    </li>
+
+                    <li>
+                        <code>main.py</code> is the main program.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- IMPORT MODULE FROM PACKAGE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Importing a Module from a Package
+                </h2>
+
+                <p>
+                    Now we can import the <code>student</code> module
+                    from the package.
+                </p>
+
+                <p>
+                    In <code>main.py</code>:
+                </p>
+
+                <pre><code>from student_package import student
+
+student1 = student.Student(
+    "Rahul",
+    "Python"
+)
+
+student1.display()</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Name: Rahul
+Course: Python</code></pre>
+
+            </div>
+
+
+            <!-- IMPORT CLASS DIRECTLY -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Importing a Class Directly
+                </h2>
+
+                <p>
+                    We can also import the class directly from the module.
+                </p>
+
+                <pre><code>from student_package.student import Student
+
+student1 = Student(
+    "Priya",
+    "Python Full Stack"
+)
+
+student1.display()</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Name: Priya
+Course: Python Full Stack</code></pre>
+
+            </div>
+
+
+            <!-- IMPORT FUNCTION -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Importing a Function from a Package
+                </h2>
+
+                <p>
+                    We can import functions from a package module.
+                </p>
+
+                <pre><code>from student_package.marks import calculate_total
+
+marks = [80, 75, 90, 85]
+
+total = calculate_total(marks)
+
+print("Total:", total)</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Total: 330</code></pre>
+
+            </div>
+
+
+            <!-- MULTIPLE IMPORTS -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Importing Multiple Items
+                </h2>
+
+                <p>
+                    We can import multiple functions from the same module.
+                </p>
+
+                <pre><code>from student_package.marks import (
+    calculate_total,
+    calculate_average
+)
+
+marks = [80, 75, 90, 85]
+
+print("Total:", calculate_total(marks))
+print("Average:", calculate_average(marks))</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Total: 330
+Average: 82.5</code></pre>
+
+            </div>
+
+
+            <!-- PACKAGE INIT -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Using <code>__init__.py</code>
+                </h2>
+
+                <p>
+                    The <code>__init__.py</code> file can contain package
+                    initialization code.
+                </p>
+
+                <p>
+                    For example:
+                </p>
+
+                <pre><code>print("student_package loaded")</code></pre>
+
+                <p>
+                    When the package is imported, this initialization code
+                    can run according to how the package is imported.
+                </p>
+
+                <div class="alert alert-warning">
+
+                    <strong>Note:</strong>
+
+                    In modern Python, a directory can also function as
+                    a namespace package without an <code>__init__.py</code>
+                    file. However, <code>__init__.py</code> is still useful
+                    when you want explicit package initialization or when
+                    teaching the traditional package structure.
+
+                </div>
+
+            </div>
+
+
+            <!-- PACKAGE WITH MULTIPLE MODULES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Package with Multiple Modules
+                </h2>
+
+                <p>
+                    A larger package can contain many related modules.
+                </p>
+
+                <pre><code>training/
+|
+|-- __init__.py
+|
+|-- students.py
+|
+|-- courses.py
+|
+|-- trainers.py
+|
+|-- fees.py
+|
+|-- reports.py</code></pre>
+
+                <p class="mt-3">
+                    Each module has its own responsibility.
+                </p>
+
+                <p>
+                    This makes the project easier to understand and maintain.
+                </p>
+
+            </div>
+
+
+            <!-- PRACTICAL EXAMPLE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Practical Example
+                </h2>
+
+                <p>
+                    Suppose we create a package called
+                    <code>calculator_package</code>.
+                </p>
+
+                <p>
+                    Folder structure:
+                </p>
+
+                <pre><code>calculator_project/
+|
+|-- main.py
+|
+|-- calculator_package/
+    |
+    |-- __init__.py
+    |
+    |-- addition.py
+    |
+    |-- multiplication.py</code></pre>
+
+                <p class="mt-3">
+                    <strong>addition.py</strong>
+                </p>
+
+                <pre><code>def add(a, b):
+
+    return a + b</code></pre>
+
+                <p class="mt-3">
+                    <strong>multiplication.py</strong>
+                </p>
+
+                <pre><code>def multiply(a, b):
+
+    return a * b</code></pre>
+
+                <p class="mt-3">
+                    <strong>main.py</strong>
+                </p>
+
+                <pre><code>from calculator_package.addition import add
+from calculator_package.multiplication import multiply
+
+print(add(10, 20))
+print(multiply(5, 4))</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>30
+20</code></pre>
+
+            </div>
+
+
+            <!-- PACKAGE VS MODULE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Module vs Package
+                </h2>
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered align-middle">
+
+                        <thead>
+
+                            <tr>
+                                <th>Module</th>
+                                <th>Package</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>
+                                    Usually one Python file.
+                                </td>
+
+                                <td>
+                                    Usually a directory that organizes
+                                    related modules.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    Contains reusable Python code.
+                                </td>
+
+                                <td>
+                                    Groups related reusable modules.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    Example:
+                                    <code>student.py</code>
+                                </td>
+
+                                <td>
+                                    Example:
+                                    <code>student_package/</code>
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <!-- BENEFITS -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Benefits of Creating Packages
+                </h2>
+
+                <ul>
+
+                    <li>
+                        Better project organization.
+                    </li>
+
+                    <li>
+                        Easy code reuse.
+                    </li>
+
+                    <li>
+                        Related modules stay together.
+                    </li>
+
+                    <li>
+                        Easier maintenance.
+                    </li>
+
+                    <li>
+                        Better separation of responsibilities.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- COMMON MISTAKES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Common Mistakes
+                </h2>
+
+                <ul>
+
+                    <li>
+                        Using the wrong package or module name.
+                    </li>
+
+                    <li>
+                        Writing the wrong import path.
+                    </li>
+
+                    <li>
+                        Creating modules outside the expected package
+                        directory.
+                    </li>
+
+                    <li>
+                        Confusing a package name with a module name.
+                    </li>
+
+                    <li>
+                        Running the program from an unexpected project
+                        location and getting import errors.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Practice Programs
+                </h2>
+
+                <ol>
+
+                    <li>
+                        Create a package named <code>student_package</code>.
+                    </li>
+
+                    <li>
+                        Add <code>student.py</code> to the package.
+                    </li>
+
+                    <li>
+                        Add <code>marks.py</code> to the package.
+                    </li>
+
+                    <li>
+                        Create a <code>main.py</code> file outside the package.
+                    </li>
+
+                    <li>
+                        Import a class from <code>student.py</code>.
+                    </li>
+
+                    <li>
+                        Import a function from <code>marks.py</code>.
+                    </li>
+
+                    <li>
+                        Create a second package for calculator operations.
+                    </li>
+
+                </ol>
+
+            </div>
+
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+
+                <h2 class="h4 fw-bold">
+                    Summary
+                </h2>
+
+                <p class="mb-0">
+
+                    A Python package is used to organize related modules
+                    into a directory. We can create a package, add an
+                    <code>__init__.py</code> file and create multiple
+                    Python modules inside it. Modules, classes and
+                    functions can then be imported and reused in another
+                    Python program. Packages are especially useful for
+                    keeping large projects organized.
+
+                </p>
+
+            </div>
+
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+
+                <a class="btn btn-outline-secondary"
+                   href="@Url.Action("PipPackages", "ModulesPackages", new { area = "Python" })">
+
+                    ← Previous: Topic
+
+                </a>
+
+
+                <a class="btn btn-primary"
+                   href="@Url.Action("VirtualEnvironments", "ModulesPackages", new { area = "Python" })">
+
+                    Next: Topic →
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

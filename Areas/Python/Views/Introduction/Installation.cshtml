@@ -1,0 +1,429 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Python Installation";
+}
+
+<main id="tutorials" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- ================================================= -->
+        <!-- LEFT SIDEBAR -->
+        <!-- ================================================= -->
+
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+
+        </aside>
+
+
+        <!-- ================================================= -->
+        <!-- MAIN CONTENT -->
+        <!-- ================================================= -->
+
+        <section class="col-lg-9">
+
+            <div class="card shadow-sm border-0 p-4 p-md-5 mb-4">
+
+
+                <!-- ================================================= -->
+                <!-- PAGE TITLE -->
+                <!-- ================================================= -->
+
+                <h1 class="fw-bold text-dark mb-3">
+                    Python Installation
+                </h1>
+
+                <p class="text-muted mb-4">
+                    Before writing Python programs, we need to install Python
+                    on our computer. In this section, we will learn how to
+                    download Python, install it on Windows, and verify that
+                    the installation is working correctly.
+                </p>
+
+
+                <!-- ================================================= -->
+                <!-- WHAT WE WILL LEARN -->
+                <!-- ================================================= -->
+
+                <div class="alert alert-info mb-4">
+
+                    <h5 class="fw-bold mb-2">
+                        What You Will Learn
+                    </h5>
+
+                    <ul class="mb-0">
+
+                        <li>How to download Python</li>
+
+                        <li>How to install Python on Windows</li>
+
+                        <li>How to configure Python during installation</li>
+
+                        <li>How to verify Python installation</li>
+
+                        <li>How to check the installed Python version</li>
+
+                    </ul>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- STEP 1 -->
+                <!-- ================================================= -->
+
+                <h2 class="h4 fw-bold text-dark mt-4 mb-3">
+                    Step 1: Download Python
+                </h2>
+
+                <p class="text-muted">
+                    Python can be downloaded from the official Python
+                    website. Always prefer the official Python website
+                    when installing Python.
+                </p>
+
+                <div class="alert alert-secondary">
+
+                    <strong>Official Website:</strong>
+
+                    <br />
+
+                    https://www.python.org/
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- STEP 2 -->
+                <!-- ================================================= -->
+
+                <h2 class="h4 fw-bold text-dark mt-4 mb-3">
+                    Step 2: Choose the Python Version
+                </h2>
+
+                <p class="text-muted">
+                    On the Python website, download the latest stable
+                    Python 3 release available for your operating system.
+                </p>
+
+                <p class="text-muted">
+                    For this tutorial, we will use <strong>Python 3</strong>.
+                    Python 2 is an older version and is no longer used for
+                    modern application development.
+                </p>
+
+
+                <!-- ================================================= -->
+                <!-- STEP 3 -->
+                <!-- ================================================= -->
+
+                <h2 class="h4 fw-bold text-dark mt-4 mb-3">
+                    Step 3: Start the Installation
+                </h2>
+
+                <p class="text-muted">
+                    After downloading the Python installer, open the
+                    installer file to start the installation process.
+                </p>
+
+                <div class="alert alert-warning">
+
+                    <strong>Important:</strong>
+
+                    <br />
+
+                    On Windows, make sure you select the option
+                    <strong>"Add Python to PATH"</strong>
+                    before clicking Install.
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- INSTALLATION FLOW -->
+                <!-- ================================================= -->
+
+                <h3 class="h5 fw-bold text-dark mt-4 mb-3">
+                    Installation Flow
+                </h3>
+
+                <ol class="text-muted">
+
+                    <li class="mb-2">
+                        Download the Python installer.
+                    </li>
+
+                    <li class="mb-2">
+                        Open the installer.
+                    </li>
+
+                    <li class="mb-2">
+                        Select <strong>Add Python to PATH</strong>.
+                    </li>
+
+                    <li class="mb-2">
+                        Click <strong>Install Now</strong>.
+                    </li>
+
+                    <li class="mb-2">
+                        Wait for the installation to complete.
+                    </li>
+
+                    <li class="mb-2">
+                        Close the installer after successful installation.
+                    </li>
+
+                </ol>
+
+
+                <!-- ================================================= -->
+                <!-- STEP 4 -->
+                <!-- ================================================= -->
+
+                <h2 class="h4 fw-bold text-dark mt-4 mb-3">
+                    Step 4: Verify Python Installation
+                </h2>
+
+                <p class="text-muted">
+                    After installation, we can verify Python using
+                    Command Prompt.
+                </p>
+
+                <p class="text-muted">
+                    Open <strong>Command Prompt</strong> and run:
+                </p>
+
+
+                <!-- CODE BLOCK -->
+                <div class="bg-dark text-light rounded p-3 mb-3">
+
+                    <pre class="mb-0"><code>python --version</code></pre>
+
+                </div>
+
+
+                <!-- OUTPUT -->
+                <h3 class="h5 fw-bold text-dark mt-4 mb-3">
+                    Example Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>Python 3.x.x</code></pre>
+
+                </div>
+
+                <p class="text-muted">
+                    The exact version number may be different depending
+                    on the Python version installed on your computer.
+                </p>
+
+
+                <!-- ================================================= -->
+                <!-- PYTHON COMMAND -->
+                <!-- ================================================= -->
+
+                <h2 class="h4 fw-bold text-dark mt-4 mb-3">
+                    Using the Python Command
+                </h2>
+
+                <p class="text-muted">
+                    We can also start the Python interactive interpreter
+                    by typing:
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-3">
+
+                    <pre class="mb-0"><code>python</code></pre>
+
+                </div>
+
+                <p class="text-muted">
+                    If Python is installed correctly, you should see
+                    the Python prompt:
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>&gt;&gt;&gt;</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- TEST PYTHON -->
+                <!-- ================================================= -->
+
+                <h2 class="h4 fw-bold text-dark mt-4 mb-3">
+                    Test Your Python Installation
+                </h2>
+
+                <p class="text-muted">
+                    Now let's execute a simple Python statement.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-3">
+
+                    <pre class="mb-0"><code>print("Python is working!")</code></pre>
+
+                </div>
+
+
+                <h3 class="h5 fw-bold text-dark mt-4 mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>Python is working!</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- PYTHON PATH -->
+                <!-- ================================================= -->
+
+                <h2 class="h4 fw-bold text-dark mt-4 mb-3">
+                    What is PATH?
+                </h2>
+
+                <p class="text-muted">
+                    PATH is an environment variable used by the operating
+                    system to locate executable programs.
+                </p>
+
+                <p class="text-muted">
+                    When Python is added to PATH, we can run the
+                    <strong>python</strong> command directly from
+                    Command Prompt or PowerShell.
+                </p>
+
+
+                <!-- ================================================= -->
+                <!-- COMMON ISSUE -->
+                <!-- ================================================= -->
+
+                <div class="alert alert-danger mt-4">
+
+                    <h5 class="fw-bold">
+                        Common Problem
+                    </h5>
+
+                    <p class="mb-0">
+                        If the command
+                        <strong>python --version</strong>
+                        does not work, Python may not have been added
+                        to PATH correctly.
+                    </p>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- ALTERNATIVE COMMAND -->
+                <!-- ================================================= -->
+
+                <h2 class="h4 fw-bold text-dark mt-4 mb-3">
+                    Python Launcher on Windows
+                </h2>
+
+                <p class="text-muted">
+                    On Windows, you can also try the Python launcher:
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-3">
+
+                    <pre class="mb-0"><code>py --version</code></pre>
+
+                </div>
+
+                <p class="text-muted">
+                    If Python is installed and the Python launcher is
+                    available, this command displays the installed
+                    Python version.
+                </p>
+
+
+                <!-- ================================================= -->
+                <!-- CIIT LEARNING POINT -->
+                <!-- ================================================= -->
+
+                <div class="alert alert-success mt-4">
+
+                    <h5 class="fw-bold">
+                        CIIT Learning Point
+                    </h5>
+
+                    <p class="mb-0">
+                        Always verify your Python installation before
+                        starting development. Knowing how to check the
+                        Python version and run a basic command will help
+                        you troubleshoot environment-related problems.
+                    </p>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- SUMMARY -->
+                <!-- ================================================= -->
+
+               
+                <div class="alert alert-info mt-4 mb-0"
+                     style="background-color:#cfe2ff; border:0; color:#123c73;">
+
+                    <h2 class="h5 fw-bold mb-2"
+                        style="color:#123c73;">
+
+                        Summary :
+
+                    </h2>
+
+                    <p class="mb-0"
+                       style="color:#123c73;">
+
+                        Python is a powerful, high-level and versatile programming language.
+                        Installing Python correctly, configuring the PATH environment variable,
+                        and verifying the installation provides the foundation for starting
+                        Python development.
+
+                    </p>
+
+                </div>
+
+                <!-- ================================================= -->
+                <!-- NAVIGATION -->
+                <!-- ================================================= -->
+
+                <div class="d-flex justify-content-between align-items-center mt-5 pt-4 border-top">
+
+                    <a href="@Url.Action("Index", "Introduction", new { area = "Python" })"
+                       class="btn btn-outline-secondary">
+
+                        ← Previous: Topic
+
+                    </a>
+
+
+                    <a href="@Url.Action("DevelopmentTools", "Introduction", new { area = "Python" })"
+                       class="btn btn-primary">
+
+                        Next: Topic →
+
+                    </a>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

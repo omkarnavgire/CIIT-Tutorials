@@ -1,0 +1,464 @@
+﻿@{
+    ViewData["Title"] = "SQL Commands";
+}
+
+<section>
+
+    <!-- PAGE INTRODUCTION -->
+    <div class="mb-5">
+
+        <h1 class="fw-bold mb-3">
+            SQL Commands
+        </h1>
+
+        <p class="lead text-muted">
+            SQL commands are instructions used to communicate with a
+            database. They allow us to create database objects, retrieve
+            data, insert new records, modify existing records and remove
+            records.
+        </p>
+
+    </div>
+
+
+    <!-- WHAT ARE SQL COMMANDS -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            What are SQL Commands?
+        </h2>
+
+        <p>
+            SQL commands are statements written using SQL syntax. These
+            statements are executed by SQL Server to perform a specific
+            operation on a database or its data.
+        </p>
+
+        <div class="alert alert-primary border-0">
+
+            <h5 class="fw-bold">
+                Simple Definition
+            </h5>
+
+            <p class="mb-0">
+                SQL commands are instructions used to perform operations
+                on databases and database objects.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- COMMON COMMANDS -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Common SQL Commands
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>Command</th>
+                        <th>Purpose</th>
+                        <th>Example</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td><strong>CREATE</strong></td>
+                        <td>Creates database objects.</td>
+                        <td>CREATE TABLE</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>SELECT</strong></td>
+                        <td>Retrieves data.</td>
+                        <td>SELECT * FROM Students</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>INSERT</strong></td>
+                        <td>Adds new records.</td>
+                        <td>INSERT INTO Students</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>UPDATE</strong></td>
+                        <td>Modifies existing records.</td>
+                        <td>UPDATE Students</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>DELETE</strong></td>
+                        <td>Removes records.</td>
+                        <td>DELETE FROM Students</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>ALTER</strong></td>
+                        <td>Changes the structure of an object.</td>
+                        <td>ALTER TABLE</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>DROP</strong></td>
+                        <td>Removes a database object.</td>
+                        <td>DROP TABLE</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- CREATE -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            CREATE Command
+        </h2>
+
+        <p>
+            The CREATE command is used to create database objects such
+            as databases and tables.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>CREATE TABLE Students
+(
+    StudentId INT,
+    StudentName VARCHAR(100),
+    Age INT
+);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- SELECT -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            SELECT Command
+        </h2>
+
+        <p>
+            The SELECT command is used to retrieve data from one or
+            more tables.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT *
+FROM Students;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- INSERT -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            INSERT Command
+        </h2>
+
+        <p>
+            The INSERT command is used to add new records to a table.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>INSERT INTO Students
+(
+    StudentId,
+    StudentName,
+    Age
+)
+VALUES
+(
+    101,
+    'Rahul',
+    22
+);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- UPDATE -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            UPDATE Command
+        </h2>
+
+        <p>
+            The UPDATE command is used to modify existing records
+            in a table.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>UPDATE Students
+SET Age = 23
+WHERE StudentId = 101;</code></pre>
+
+        </div>
+
+        <div class="alert alert-warning border-0 mt-3">
+
+            <strong>Important:</strong>
+            Always use a WHERE condition carefully with UPDATE to
+            avoid modifying unintended records.
+
+        </div>
+
+    </section>
+
+
+    <!-- DELETE -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            DELETE Command
+        </h2>
+
+        <p>
+            The DELETE command is used to remove records from a table.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>DELETE FROM Students
+WHERE StudentId = 101;</code></pre>
+
+        </div>
+
+        <div class="alert alert-danger border-0 mt-3">
+
+            <strong>Important:</strong>
+            Always check the WHERE condition before executing DELETE.
+
+        </div>
+
+    </section>
+
+
+    <!-- ALTER -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            ALTER Command
+        </h2>
+
+        <p>
+            The ALTER command is used to change the structure of an
+            existing database object.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>ALTER TABLE Students
+ADD Email VARCHAR(100);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- DROP -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            DROP Command
+        </h2>
+
+        <p>
+            The DROP command is used to remove a database object.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>DROP TABLE Students;</code></pre>
+
+        </div>
+
+        <div class="alert alert-danger border-0 mt-3">
+
+            <strong>Important:</strong>
+            DROP TABLE removes the table and its stored data.
+
+        </div>
+
+    </section>
+
+
+    <!-- COMMAND FLOW -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            SQL Command Flow
+        </h2>
+
+        <p>
+            SQL commands are sent to SQL Server, processed by the
+            database engine and then the required result or operation
+            is returned.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL Server
+            </div>
+
+                <pre class="mb-0"><code>
+                                                             User
+                                                              ↓
+                                                          SQL Command
+                                                              ↓
+                                                          SQL Server
+                                                              ↓
+                                                          Database Engine
+                                                              ↓
+                                                          Database / Table
+                                                              ↓
+                                                           Result</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- COMMAND EXAMPLE -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            SQL Commands Example
+        </h2>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>CREATE TABLE Students
+(
+    StudentId INT,
+    StudentName VARCHAR(100),
+    Age INT
+);
+
+INSERT INTO Students
+VALUES (101, 'Rahul', 22);
+
+SELECT *
+FROM Students;
+
+UPDATE Students
+SET Age = 23
+WHERE StudentId = 101;
+
+DELETE FROM Students
+WHERE StudentId = 101;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- SUMMARY -->
+    <section class="mb-4">
+
+        <div class="alert alert-primary border-0">
+
+            <h2 class="fw-bold mb-3">
+                Summary
+            </h2>
+
+            <p class="mb-0">
+                In this section, we learned about common SQL commands
+                including CREATE, SELECT, INSERT, UPDATE, DELETE, ALTER
+                and DROP. These commands are used to create, retrieve,
+                modify and manage data and database objects in SQL Server.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- PREVIOUS / NEXT -->
+
+    <div class="d-flex justify-content-between align-items-center
+                mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/SQLBasics/Index"
+           class="btn btn-outline-primary">
+
+            ← Previous: SQL Basics Introduction
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/SQLBasics/SQLCommandCategories"
+           class="btn btn-primary">
+
+            Next: SQL Command Categories →
+
+        </a>
+
+    </div>
+
+</section>

@@ -1,0 +1,515 @@
+﻿@{
+    ViewData["Title"] = "SQL Server Data Types";
+}
+
+<section>
+
+    <!-- PAGE INTRODUCTION -->
+    <div class="mb-5">
+
+        <h1 class="fw-bold mb-3">
+            SQL Server Data Types
+        </h1>
+
+        <p class="lead text-muted">
+            SQL Server data types define the kind of data that can be stored
+            in a column, variable or expression. Choosing the correct data
+            type helps SQL Server store data efficiently and maintain data
+            accuracy.
+        </p>
+
+    </div>
+
+
+    <!-- WHAT ARE DATA TYPES -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            What are Data Types?
+        </h2>
+
+        <p>
+            A data type specifies what kind of value can be stored in a
+            database column or variable. For example, a student's name can
+            be stored using a character data type, while a student's age
+            can be stored using a numeric data type.
+        </p>
+
+        <p>
+            Every column in a SQL Server table has a data type. The data
+            type determines the type of values that the column can contain.
+        </p>
+
+    </section>
+
+
+    <!-- WHY DATA TYPES ARE IMPORTANT -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Why are Data Types Important?
+        </h2>
+
+        <p>
+            Selecting the appropriate data type is important because it
+            affects storage, performance and the type of values that can
+            be stored in a column.
+        </p>
+
+        <ul>
+
+            <li class="mb-2">
+                Helps maintain data accuracy.
+            </li>
+
+            <li class="mb-2">
+                Controls the type of values stored in a column.
+            </li>
+
+            <li class="mb-2">
+                Helps use database storage efficiently.
+            </li>
+
+            <li class="mb-2">
+                Makes database design more organized.
+            </li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- DATA TYPE FLOW -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            How Data Types Work
+        </h2>
+
+        <p>
+            When creating a table, we define a data type for every column.
+            SQL Server then uses that definition when storing and processing
+            the data.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL Server
+            </div>
+
+            <pre class="mb-0"><code>
+                                                                Column
+                                                                   ↓
+                                                                Data Type
+                                                                   ↓
+                                                                Allowed Values
+                                                                   ↓
+                                                                Stored Data
+            </code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- DATA TYPE CATEGORIES -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            SQL Server Data Type Categories
+        </h2>
+
+        <p>
+            SQL Server provides different categories of data types for
+            storing different kinds of information.
+        </p>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>Category</th>
+                        <th>Used For</th>
+                        <th>Examples</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>
+                            <strong>Numeric</strong>
+                        </td>
+
+                        <td>
+                            Numbers and mathematical values
+                        </td>
+
+                        <td>
+                            int, bigint, decimal, float
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <strong>Character & String</strong>
+                        </td>
+
+                        <td>
+                            Text and character data
+                        </td>
+
+                        <td>
+                            char, varchar, nchar, nvarchar
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <strong>Date & Time</strong>
+                        </td>
+
+                        <td>
+                            Date and time values
+                        </td>
+
+                        <td>
+                            date, datetime, time
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <strong>Binary</strong>
+                        </td>
+
+                        <td>
+                            Binary data
+                        </td>
+
+                        <td>
+                            binary, varbinary
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <strong>Other</strong>
+                        </td>
+
+                        <td>
+                            Special types of data
+                        </td>
+
+                        <td>
+                            bit, uniqueidentifier, xml
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- COMMON DATA TYPES -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Common SQL Server Data Types
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>Data Type</th>
+                        <th>Purpose</th>
+                        <th>Example</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>
+                            <strong>int</strong>
+                        </td>
+
+                        <td>
+                            Stores integer numbers.
+                        </td>
+
+                        <td>
+                            100
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <strong>varchar</strong>
+                        </td>
+
+                        <td>
+                            Stores variable-length character data.
+                        </td>
+
+                        <td>
+                            'Rahul'
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <strong>nvarchar</strong>
+                        </td>
+
+                        <td>
+                            Stores variable-length Unicode character data.
+                        </td>
+
+                        <td>
+                            N'Rahul'
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <strong>decimal</strong>
+                        </td>
+
+                        <td>
+                            Stores exact numeric values.
+                        </td>
+
+                        <td>
+                            12500.50
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <strong>date</strong>
+                        </td>
+
+                        <td>
+                            Stores date values.
+                        </td>
+
+                        <td>
+                            '2026-10-02'
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <strong>bit</strong>
+                        </td>
+
+                        <td>
+                            Stores Boolean-like values.
+                        </td>
+
+                        <td>
+                            0 / 1
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- EXAMPLE -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Example: Using Data Types
+        </h2>
+
+        <p>
+            The following example creates a Students table using different
+            SQL Server data types.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>CREATE TABLE Students
+(
+    StudentId INT,
+    StudentName VARCHAR(100),
+    Age INT,
+    Fees DECIMAL(10,2),
+    BirthDate DATE,
+    IsActive BIT
+);</code></pre>
+
+        </div>
+
+        <p>
+            Here, each column uses a data type suitable for the kind of
+            information that it stores.
+        </p>
+
+    </section>
+
+
+    <!-- DATA TYPE SELECTION -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Choosing the Correct Data Type
+        </h2>
+
+        <p>
+            The data type should be selected according to the kind of data
+            that the column needs to store.
+        </p>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>Requirement</th>
+                        <th>Suitable Data Type</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>Student ID</td>
+                        <td><strong>INT</strong></td>
+                    </tr>
+
+                    <tr>
+                        <td>Student Name</td>
+                        <td><strong>VARCHAR / NVARCHAR</strong></td>
+                    </tr>
+
+                    <tr>
+                        <td>Course Fees</td>
+                        <td><strong>DECIMAL</strong></td>
+                    </tr>
+
+                    <tr>
+                        <td>Date of Birth</td>
+                        <td><strong>DATE</strong></td>
+                    </tr>
+
+                    <tr>
+                        <td>Active / Inactive Status</td>
+                        <td><strong>BIT</strong></td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- IMPORTANT NOTE -->
+    <section class="mb-5">
+
+        <div class="alert alert-warning border-0">
+
+            <h5 class="fw-bold">
+                Important
+            </h5>
+
+            <p class="mb-0">
+                Always choose a data type based on the actual data that
+                needs to be stored. Using an inappropriate data type can
+                lead to unnecessary storage usage or unexpected results.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- SUMMARY -->
+    <section class="mb-4">
+
+        <div class="alert alert-primary border-0">
+
+            <h5 class="fw-bold">
+                Summary
+            </h5>
+
+            <p class="mb-0">
+                In this section, we learned what SQL Server data types are,
+                why they are important and the major categories of data
+                types. We also looked at common data types and how to choose
+                an appropriate data type when designing a table.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+<!-- =========================================
+     PREVIOUS / NEXT NAVIGATION
+     ========================================= -->
+
+<div class="d-flex justify-content-between align-items-center
+            mt-5 pt-4 border-top">
+
+    <!-- PREVIOUS -->
+
+    <a href="@Url.Action(
+                "Fundamentals",
+                "Introduction",
+                new { area = "SQLServer" })"
+       class="btn btn-outline-primary">
+
+        ← Previous: SQL Server Fundamentals
+
+    </a>
+
+
+    <!-- NEXT -->
+
+    <a href="@Url.Action(
+                "NumericDataTypes",
+                "DataTypes",
+                new { area = "SQLServer" })"
+       class="btn btn-primary">
+
+        Next: Numeric Data Types →
+
+    </a>
+
+</div>
+
+
+</section>

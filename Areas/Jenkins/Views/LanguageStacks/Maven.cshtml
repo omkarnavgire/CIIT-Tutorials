@@ -1,0 +1,213 @@
+@{
+    Layout = "~/Areas/Jenkins/Views/Shared/JenkinsLayout.cshtml";
+    ViewData["Title"] = "Java and Maven Builds";
+}
+
+<style>
+    #java-and-maven-builds-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #java-and-maven-builds-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #java-and-maven-builds-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #java-and-maven-builds-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #java-and-maven-builds-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+    #java-and-maven-builds-page .example-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+    }
+</style>
+
+<main id="java-and-maven-builds-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/Jenkins/Views/Shared/JenkinsTopics.cshtml")
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+                <h1 class="fw-bold">Java and Maven Builds</h1>
+                <p class="lead">
+                    Learn how to configure Jenkins to compile, test, package, and automate Java applications using Apache Maven and the Jenkins Global Tool Configuration.
+                </p>
+            </div>
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">What is Java and Maven Integration in Jenkins?</h2>
+                <p>
+                    Java applications require a Java Development Kit (JDK) to compile code and a build automation tool like Apache Maven to manage dependencies, coordinate lifecycles, and package final outputs into JAR or WAR files.
+                </p>
+                <p>
+                    Integrating Maven with Jenkins ensures that your application lifecycle—from standard compilations down to artifact deployments—runs deterministically inside an isolated CI/CD environment. This prevents local compilation quirks from slipping through to production environments.
+                </p>
+                <div class="alert alert-info">
+                    <strong>Simple Definition:</strong> A production pattern that injects explicit versions of the JDK and Maven into automated pipeline environments to cleanly build, test, and package Java source code.
+                </div>
+            </div>
+
+            <!-- KEY CONCEPTS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Key Concepts</h2>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>POM Object Model (pom.xml)</h5>
+                            <p class="mb-0">The core project configuration file read by Maven that controls app dependencies, plug-in extensions, and target packaging parameters.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Maven Lifecycle Phases</h5>
+                            <p class="mb-0">Standard target actions mapped to your pipeline steps such as <code>mvn clean</code>, <code>mvn test</code>, and <code>mvn package</code>.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Global Tool Configuration</h5>
+                            <p class="mb-0">Defining JDK and Maven installations within the Jenkins controller settings so individual nodes can download and isolate runtimes on-demand.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Dependency Caching</h5>
+                            <p class="mb-0">Configuring agents to retain local <code>.m2/repository</code> caches to accelerate consecutive pipeline build iterations.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXAMPLE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Practical Jenkins Example</h2>
+                <p>This declarative pipeline demonstrates how to declare explicitly managed versions of JDK and Maven to run linting, unit tests, and code packaging steps:</p>
+                <pre><code>pipeline {
+    agent any
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    tools {
+        // Automatically configures predefined versions from Jenkins Global Tool Configurations
+        jdk 'OpenJDK-17'
+        maven 'Maven-3.9'
+    }
+    
+    stages {
+        stage('Initialize & Validate') {
+            steps {
+                echo 'Checking Runtime Environment...'
+                sh 'java -version'
+                sh 'mvn -version'
+            }
+        }
+        
+        stage('Execute Tests') {
+            steps {
+                echo 'Running unit test suite...'
+                // Cleans old targets and runs tests defined in pom.xml
+                sh 'mvn clean test'
+            }
+        }
+        
+        stage('Package Application') {
+            steps {
+                echo 'Compiling binaries into distribution formats...'
+                // Skips unit tests to save execution overhead during packaging
+                sh 'mvn package -DskipTests'
+            }
+        }
+        
+
+        stage('Archive Target Artifacts') {
+            steps {
+                echo 'Saving compiled JAR files to Jenkins Controller...'
+                archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
+            }
+        }
+    }
+}</code></pre>
+</div>
+
+<!-- PRACTICE -->
+<div class="mb-4">
+                <h2 class="h3 fw-bold">Practice Exercise</h2>
+                <ol>
+                    <li class="mb-2">Navigate to <strong>Manage Jenkins</strong> &rarr; <strong>Tools</strong> and verify your configured names under <strong>JDK</strong> and <strong>Maven</strong> match your script labels.</li>
+                    <li class="mb-2">Create a new <strong>Pipeline</strong> job in Jenkins named <code>java-maven-build-pipeline</code>.</li>
+                    <li class="mb-2">Paste the declarative pipeline script above, substituting your specific Java and Maven environment identifiers if necessary.</li>
+                    <li class="mb-2">Run the build, open the <strong>Console Output</strong>, and review the standard Maven outputs downloading dependencies and creating target build artifacts.</li>
+                </ol>
+            </div>
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+                <h2 class="h4 fw-bold">Summary</h2>
+                <p class="mb-0">You have completed the <strong>Java and Maven Builds</strong> lesson. Knowing how to run standard Maven targets inside structured steps enables you to seamlessly manage advanced enterprise patterns like microservice frameworks.</p>
+            </div>
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+                <a class="btn btn-outline-primary" href="@Url.Action("Index", "LanguageStacks", new { area = "Jenkins" })">← Previous: Language Stack Pipelines</a>
+                <a class="btn btn-primary" href="@Url.Action("SpringBoot", "LanguageStacks", new { area = "Jenkins" })">Next: Spring Boot CI Pipeline →</a>
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

@@ -1,0 +1,1075 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Python Writing Files";
+}
+
+<style>
+
+    #python-writing-files-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #python-writing-files-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #python-writing-files-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #python-writing-files-page .diagram-box {
+        background: #ffffff;
+        border: 2px solid #6f42c1;
+        border-radius: 10px;
+        padding: 18px;
+        text-align: center;
+        height: 100%;
+    }
+
+        #python-writing-files-page .diagram-box h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        #python-writing-files-page .diagram-box p {
+            margin-bottom: 0;
+            font-size: 14px;
+            color: #495057;
+        }
+
+    #python-writing-files-page .diagram-arrow {
+        text-align: center;
+        font-size: 28px;
+        font-weight: 700;
+        color: #6f42c1;
+        padding: 8px 0;
+    }
+
+    #python-writing-files-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #python-writing-files-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+        }
+
+</style>
+
+
+<main id="python-writing-files-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+
+                <h1 class="fw-bold">
+                    Writing Files in Python
+                </h1>
+
+                <p class="lead">
+                    Learn how to create files, write data, append new
+                    content and save information using Python.
+                </p>
+
+            </div>
+
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    What is Writing to a File?
+                </h2>
+
+                <p>
+                    Writing to a file means storing data inside a file
+                    using a Python program.
+                </p>
+
+                <p>
+                    Python provides different file modes such as
+                    <code>w</code>, <code>a</code> and <code>x</code>
+                    for writing and creating files.
+                </p>
+
+                <div class="alert alert-info">
+
+                    <strong>Simple Definition:</strong>
+
+                    File writing means saving program data into a file.
+
+                </div>
+
+            </div>
+
+
+            <!-- WHY WRITE FILES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Why Do We Write Data to Files?
+                </h2>
+
+                <div class="row g-3 mt-2">
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Save Data
+                            </h5>
+
+                            <p class="mb-0">
+                                Store information for future use.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Create Reports
+                            </h5>
+
+                            <p class="mb-0">
+                                Generate text-based reports and results.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Store Logs
+                            </h5>
+
+                            <p class="mb-0">
+                                Save application or activity information.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- DIAGRAM -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Writing Files Diagram
+                </h2>
+
+                <p>
+                    The basic process of writing data to a file is:
+                </p>
+
+                <div class="concept-box">
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            Python Program
+                        </h5>
+
+                        <p>
+                            Creates or prepares data.
+                        </p>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="row g-3">
+
+                        <div class="col-md-4">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    Open
+                                </h5>
+
+                                <p>
+                                    Open file in writing mode.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-4">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    Write
+                                </h5>
+
+                                <p>
+                                    Use
+                                    <code>write()</code>
+                                    or
+                                    <code>writelines()</code>.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-4">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    Save
+                                </h5>
+
+                                <p>
+                                    Data is stored in the file.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            File
+                        </h5>
+
+                        <p>
+                            Written data is available for later use.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- W MODE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    1. Write Mode - <code>w</code>
+                </h2>
+
+                <p>
+                    The <code>w</code> mode is used to write data into
+                    a file.
+                </p>
+
+                <p>
+                    If the file does not exist, Python creates it.
+                </p>
+
+                <p>
+                    If the file already contains data, writing with
+                    <code>w</code> can replace the existing content.
+                </p>
+
+                <pre><code>file = open("example.txt", "w")
+
+file.write("Hello Python")
+
+file.close()</code></pre>
+
+                <p class="mt-3">
+                    After running the program, the file can contain:
+                </p>
+
+                <pre><code>Hello Python</code></pre>
+
+                <div class="alert alert-warning">
+
+                    <strong>Important:</strong>
+
+                    Be careful with <code>w</code> mode because existing
+                    content can be replaced.
+
+                </div>
+
+            </div>
+
+
+            <!-- WITH W -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Writing with the <code>with</code> Statement
+                </h2>
+
+                <p>
+                    A common and convenient approach is to use
+                    <code>with</code>.
+                </p>
+
+                <pre><code>with open("example.txt", "w") as file:
+
+    file.write("Hello Python")
+
+    file.write("\nWelcome to CIIT")</code></pre>
+
+                <p>
+                    After the block finishes, Python handles the file
+                    resource automatically.
+                </p>
+
+            </div>
+
+
+            <!-- MULTIPLE LINES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Writing Multiple Lines
+                </h2>
+
+                <p>
+                    We can use newline characters such as
+                    <code>\n</code> to write multiple lines.
+                </p>
+
+                <pre><code>with open("students.txt", "w") as file:
+
+    file.write("Rahul\n")
+    file.write("Priya\n")
+    file.write("Amit\n")
+    file.write("Sneha\n")</code></pre>
+
+                <p class="mt-3">
+                    The file content becomes:
+                </p>
+
+                <pre><code>Rahul
+Priya
+Amit
+Sneha</code></pre>
+
+            </div>
+
+
+            <!-- APPEND -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    2. Append Mode - <code>a</code>
+                </h2>
+
+                <p>
+                    The <code>a</code> mode is used to add new content
+                    at the end of an existing file.
+                </p>
+
+                <p>
+                    Existing content remains unchanged.
+                </p>
+
+                <pre><code>with open("students.txt", "a") as file:
+
+    file.write("Neha\n")</code></pre>
+
+                <p class="mt-3">
+                    If the file already contains:
+                </p>
+
+                <pre><code>Rahul
+Priya
+Amit
+Sneha</code></pre>
+
+                <p>
+                    After appending, it can contain:
+                </p>
+
+                <pre><code>Rahul
+Priya
+Amit
+Sneha
+Neha</code></pre>
+
+            </div>
+
+
+            <!-- WRITE VS APPEND -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Write vs Append
+                </h2>
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered align-middle">
+
+                        <thead>
+
+                            <tr>
+                                <th>
+                                    <code>w</code> Mode
+                                </th>
+
+                                <th>
+                                    <code>a</code> Mode
+                                </th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+
+                                <td>
+                                    Writes new content.
+                                </td>
+
+                                <td>
+                                    Adds content to existing content.
+                                </td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>
+                                    Existing file content can be replaced.
+                                </td>
+
+                                <td>
+                                    Existing content is preserved.
+                                </td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>
+                                    Useful when creating or replacing
+                                    file content.
+                                </td>
+
+                                <td>
+                                    Useful when adding new information.
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <!-- X MODE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    3. Create Mode - <code>x</code>
+                </h2>
+
+                <p>
+                    The <code>x</code> mode is used to create a new file.
+                </p>
+
+                <p>
+                    If a file with the same name already exists, Python
+                    raises an error instead of replacing it.
+                </p>
+
+                <pre><code>file = open("newfile.txt", "x")
+
+file.write("New file created")
+
+file.close()</code></pre>
+
+                <p>
+                    This mode is useful when you want to create a file
+                    only if it does not already exist.
+                </p>
+
+            </div>
+
+
+            <!-- WRITELINES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Writing Multiple Lines with <code>writelines()</code>
+                </h2>
+
+                <p>
+                    The <code>writelines()</code> method can write a
+                    sequence of strings to a file.
+                </p>
+
+                <pre><code>students = [
+    "Rahul\n",
+    "Priya\n",
+    "Amit\n"
+]
+
+with open("students.txt", "w") as file:
+
+    file.writelines(students)</code></pre>
+
+                <p>
+                    The strings are written in the same order.
+                </p>
+
+            </div>
+
+
+            <!-- LIST DATA -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Writing List Data to a File
+                </h2>
+
+                <p>
+                    We can take data from a Python list and write
+                    each item into the file.
+                </p>
+
+                <pre><code>students = [
+    "Rahul",
+    "Priya",
+    "Amit"
+]
+
+with open("students.txt", "w") as file:
+
+    for student in students:
+
+        file.write(student + "\n")</code></pre>
+
+                <p>
+                    The list data is stored one item per line.
+                </p>
+
+            </div>
+
+
+            <!-- USER INPUT -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Writing User Input to a File
+                </h2>
+
+                <p>
+                    We can get data from the user and store it in a file.
+                </p>
+
+                <pre><code>name = input("Enter your name: ")
+
+with open("user.txt", "w") as file:
+
+    file.write(name)
+
+print("Data saved successfully")</code></pre>
+
+                <p>
+                    The entered name is stored inside
+                    <code>user.txt</code>.
+                </p>
+
+            </div>
+
+
+            <!-- APPEND USER INPUT -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Append User Input
+                </h2>
+
+                <p>
+                    We can keep adding user entries without deleting
+                    previous data.
+                </p>
+
+                <pre><code>name = input("Enter your name: ")
+
+with open("students.txt", "a") as file:
+
+    file.write(name + "\n")
+
+print("Student added")</code></pre>
+
+                <p>
+                    Every new name is added at the end of the file.
+                </p>
+
+            </div>
+            <div class="px-2">
+    <h5 class="fw-bold mb-2">
+        Output
+    </h5>
+
+    <pre class="mb-4"><code>Enter your name: Samadhan
+Student added</code></pre>
+</div>
+
+            <!-- ENCODING -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Writing with Encoding
+                </h2>
+
+                <p>
+                    We can specify an encoding while opening a file.
+                </p>
+
+                <pre><code>with open(
+    "message.txt",
+    "w",
+    encoding="utf-8"
+) as file:
+
+    file.write("Hello Python")
+    file.write("\nWelcome to Python")</code></pre>
+
+                <p>
+                    UTF-8 is commonly used when working with Unicode text.
+                </p>
+
+            </div>
+
+
+            <!-- NEWLINE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Using New Line Characters
+                </h2>
+
+                <p>
+                    The <code>\n</code> character is used to move
+                    to the next line.
+                </p>
+
+                <pre><code>with open("example.txt", "w") as file:
+
+    file.write("Line 1\n")
+    file.write("Line 2\n")
+    file.write("Line 3\n")</code></pre>
+
+                <p>
+                    File content:
+                </p>
+
+                <pre><code>Line 1
+Line 2
+Line 3</code></pre>
+
+            </div>
+
+
+            <!-- PRACTICAL EXAMPLE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Example: Student Data 👨‍🏫📩
+                </h2>
+
+                <p>
+                    Let's store student information in a text file.
+                </p>
+
+                <pre><code>students = [
+    "Rahul - Python",
+    "Priya - Java",
+    "Amit - .NET",
+    "Sneha - MERN"
+]
+
+with open("students.txt", "w") as file:
+
+    for student in students:
+
+        file.write(student + "\n")
+
+print("Student data saved")</code></pre>
+
+                <p class="mt-3">
+                    The file can contain:
+                </p>
+
+                <pre><code>Rahul - Python
+Priya - Java
+Amit - .NET
+Sneha - MERN</code></pre>
+
+            </div>
+
+
+            <!-- ERROR HANDLING -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Handling File Writing Errors
+                </h2>
+
+                <p>
+                    File operations can sometimes fail because of
+                    permission issues, invalid paths or other problems.
+                </p>
+
+                <p>
+                    We can use <code>try</code> and <code>except</code>
+                    to handle errors.
+                </p>
+
+                <pre><code>try:
+
+    with open("example.txt", "w") as file:
+
+        file.write("Hello Python")
+
+except OSError:
+
+    print("Unable to write to the file")</code></pre>
+
+            </div>
+
+
+            <!-- FILE MODES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Important Writing Modes
+                </h2>
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered align-middle">
+
+                        <thead>
+
+                            <tr>
+                                <th>
+                                    Mode
+                                </th>
+
+                                <th>
+                                    Use
+                                </th>
+
+                                <th>
+                                    Existing Content
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+
+                                <td>
+                                    <code>w</code>
+                                </td>
+
+                                <td>
+                                    Write
+                                </td>
+
+                                <td>
+                                    Can be replaced
+                                </td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>
+                                    <code>a</code>
+                                </td>
+
+                                <td>
+                                    Append
+                                </td>
+
+                                <td>
+                                    Preserved
+                                </td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>
+                                    <code>x</code>
+                                </td>
+
+                                <td>
+                                    Create new file
+                                </td>
+
+                                <td>
+                                    Error if file exists
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <!-- BEST PRACTICES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Best Practices
+                </h2>
+
+                <div class="concept-box">
+
+                    <p>
+                        <strong>Step 1:</strong>
+                        Choose the correct file mode.
+                    </p>
+
+                    <p>
+                        ↓
+                    </p>
+
+                    <p>
+                        <strong>Step 2:</strong>
+                        Use the <code>with</code> statement.
+                    </p>
+
+                    <p>
+                        ↓
+                    </p>
+
+                    <p>
+                        <strong>Step 3:</strong>
+                        Write data carefully.
+                    </p>
+
+                    <p>
+                        ↓
+                    </p>
+
+                    <p>
+                        <strong>Step 4:</strong>
+                        Use encoding when appropriate.
+                    </p>
+
+                    <p>
+                        ↓
+                    </p>
+
+                    <p class="mb-0">
+                        <strong>Step 5:</strong>
+                        Handle possible file errors.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- COMMON MISTAKES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Common Mistakes
+                </h2>
+
+                <ul>
+
+                    <li>
+                        Using <code>w</code> mode when existing content
+                        should be preserved.
+                    </li>
+
+                    <li>
+                        Forgetting newline characters when writing
+                        multiple lines.
+                    </li>
+
+                    <li>
+                        Using an incorrect file path.
+                    </li>
+
+                    <li>
+                        Not handling possible file errors.
+                    </li>
+
+                    <li>
+                        Writing text using an inappropriate encoding.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Practice Programs
+                </h2>
+
+                <ol>
+
+                    <li>
+                        Create a file named <code>students.txt</code>
+                        using <code>w</code> mode.
+                    </li>
+
+                    <li>
+                        Write five student names into the file.
+                    </li>
+
+                    <li>
+                        Add another student using <code>a</code> mode.
+                    </li>
+
+                    <li>
+                        Create a file using <code>x</code> mode.
+                    </li>
+
+                    <li>
+                        Write a list of courses into a file.
+                    </li>
+
+                    <li>
+                        Get a student's name using <code>input()</code>
+                        and save it to a file.
+                    </li>
+
+                    <li>
+                        Create a simple student report in a text file.
+                    </li>
+
+                </ol>
+
+            </div>
+
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+
+                <h2 class="h4 fw-bold">
+                    Summary
+                </h2>
+
+                <p class="mb-0">
+
+                    Python provides different modes for writing and
+                    creating files. The <code>w</code> mode writes data
+                    and can replace existing content, <code>a</code>
+                    appends data to the end of a file, and <code>x</code>
+                    creates a new file only if it does not already exist.
+                    Methods such as <code>write()</code> and
+                    <code>writelines()</code> are used to store data.
+                    The <code>with</code> statement is a convenient way
+                    to work with files safely.
+
+                </p>
+
+            </div>
+
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+
+                <a class="btn btn-outline-secondary"
+                   href="@Url.Action("ReadingFiles", "FileHandling", new { area = "Python" })">
+
+                    ← Previous: Topic
+
+                </a>
+
+
+                <a class="btn btn-primary"
+                   href="@Url.Action("FileDirectories", "FileHandling", new { area = "Python" })">
+
+                    Next: Topic →
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

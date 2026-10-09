@@ -1,0 +1,551 @@
+﻿@{
+    ViewData["Title"] = "Directives Introduction";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- Header -->
+    <section class="mb-4">
+        <h1 class="fw-bold text-dark">Directives Introduction</h1>
+        <p class="lead text-muted">
+            Learn how Angular directives extend HTML and control the
+            behavior, appearance, and structure of elements.
+        </p>
+    </section>
+
+    <!-- What are Directives -->
+    <section class="mb-4">
+        <h2 class="fw-bold">What are Directives?</h2>
+
+        <div class="info-card">
+            <p>
+                Directives are special Angular features that allow you to
+                add behavior to HTML elements or change the structure of
+                the DOM.
+            </p>
+
+            <p class="mb-0">
+                Angular provides built-in directives and also allows
+                developers to create custom directives.
+            </p>
+        </div>
+    </section>
+
+    <!-- Directive Flow -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Directive Flow</h2>
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+                <div class="syntax-icon">1</div>
+                <h5>HTML Element</h5>
+                <p>Start with an HTML element in the template.</p>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+                <div class="syntax-icon">2</div>
+                <h5>Directive</h5>
+                <p>Apply an Angular directive to the element.</p>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+                <div class="syntax-icon">3</div>
+                <h5>Angular</h5>
+                <p>Angular processes the directive.</p>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+                <div class="syntax-icon">4</div>
+                <h5>UI Behavior</h5>
+                <p>The element behavior or structure changes.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Types -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Types of Directives</h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+                <div class="syntax-icon">A</div>
+
+                <h5>Attribute Directives</h5>
+
+                <p>
+                    Change the appearance or behavior of an existing
+                    HTML element.
+                </p>
+
+                <code>ngClass</code>
+                <br />
+                <code>ngStyle</code>
+            </div>
+
+            <div class="syntax-card">
+                <div class="syntax-icon">S</div>
+
+                <h5>Structural Directives</h5>
+
+                <p>
+                    Change the structure of the DOM by adding or removing
+                    elements.
+                </p>
+
+                <code>*ngIf</code>
+                <br />
+                <code>*ngFor</code>
+            </div>
+
+            <div class="syntax-card">
+                <div class="syntax-icon">C</div>
+
+                <h5>Custom Directives</h5>
+
+                <p>
+                    Developer-created directives used to implement
+                    application-specific behavior.
+                </p>
+
+                <code>ng generate directive</code>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Attribute Example -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Attribute Directive Example</h2>
+
+        <p>
+            Attribute directives modify the behavior or appearance of
+            an existing element.
+        </p>
+
+        <div class="code-card">
+            <div class="code-title">HTML</div>
+
+            <pre><code>&lt;div [ngClass]="{ active: isActive }"&gt;
+    Student Profile
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <div class="output-box">
+            <strong>Result:</strong>
+
+            <div class="output-preview">
+                The <code>active</code> class is applied when
+                <code>isActive</code> is true.
+            </div>
+        </div>
+    </section>
+
+    <!-- Structural Example -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Structural Directive Example</h2>
+
+        <p>
+            Structural directives control whether elements are created
+            or displayed in the DOM.
+        </p>
+
+        <div class="code-card">
+            <div class="code-title">HTML</div>
+
+            <pre><code>&lt;div *ngIf="isLoggedIn"&gt;
+    Welcome to CIIT Training Institute
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <div class="output-box">
+            <strong>Result:</strong>
+
+            <div class="output-preview">
+                The element is displayed only when
+                <code>isLoggedIn</code> is true.
+            </div>
+        </div>
+    </section>
+
+    <!-- Custom Directive -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Custom Directive</h2>
+
+        <p>
+            Angular allows developers to create their own directives
+            for reusable behavior.
+        </p>
+
+        <div class="code-card">
+            <div class="code-title">CLI Command</div>
+
+            <pre><code>ng generate directive highlight</code></pre>
+        </div>
+
+        <div class="code-card">
+            <div class="code-title">HTML</div>
+
+            <pre><code>&lt;p appHighlight&gt;
+    Angular Training
+&lt;/p&gt;</code></pre>
+        </div>
+
+        <div class="output-box">
+            <strong>Result:</strong>
+
+            <div class="output-preview">
+                The custom <code>appHighlight</code> directive can add
+                reusable behavior to the paragraph.
+            </div>
+        </div>
+    </section>
+
+    <!-- Directive Comparison -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Directive Comparison</h2>
+
+        <div class="table-responsive">
+            <table class="table syntax-table">
+
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Purpose</th>
+                        <th>Example</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Attribute</td>
+                        <td>Changes appearance or behavior</td>
+                        <td><code>ngClass</code></td>
+                    </tr>
+
+                    <tr>
+                        <td>Structural</td>
+                        <td>Changes DOM structure</td>
+                        <td><code>*ngIf</code></td>
+                    </tr>
+
+                    <tr>
+                        <td>Custom</td>
+                        <td>Provides application-specific behavior</td>
+                        <td><code>appHighlight</code></td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </section>
+
+    <!-- Complete Example -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Complete Example</h2>
+
+        <div class="code-card">
+            <div class="code-title">Component</div>
+
+            <pre><code>export class StudentComponent {
+
+    isActive = true;
+
+    isLoggedIn = true;
+
+}</code></pre>
+        </div>
+
+        <div class="code-card">
+            <div class="code-title">Template</div>
+
+            <pre><code>&lt;div [ngClass]="{ active: isActive }"&gt;
+
+    &lt;h3&gt;Student Profile&lt;/h3&gt;
+
+    &lt;div *ngIf="isLoggedIn"&gt;
+        Welcome to Angular Training
+    &lt;/div&gt;
+
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <div class="student-preview">
+            <h4>Student Profile</h4>
+
+            <p class="mb-0">
+                Welcome to Angular Training
+            </p>
+        </div>
+    </section>
+
+    <!-- Benefits -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Why Use Directives?</h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+                <div class="syntax-icon">R</div>
+                <h5>Reusable</h5>
+                <p>
+                    Directive behavior can be reused across components.
+                </p>
+            </div>
+
+            <div class="syntax-card">
+                <div class="syntax-icon">U</div>
+                <h5>UI Control</h5>
+                <p>
+                    Directives help control element behavior and appearance.
+                </p>
+            </div>
+
+            <div class="syntax-card">
+                <div class="syntax-icon">D</div>
+                <h5>DOM Control</h5>
+                <p>
+                    Structural directives can control DOM elements.
+                </p>
+            </div>
+
+            <div class="syntax-card">
+                <div class="syntax-icon">C</div>
+                <h5>Custom Behavior</h5>
+                <p>
+                    Developers can create directives for specific needs.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Best Practices -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Best Practices</h2>
+
+        <ul class="best-practice-list">
+            <li>Use directives when behavior needs to be reused.</li>
+            <li>Keep custom directive logic simple and focused.</li>
+            <li>Use meaningful directive names.</li>
+            <li>Prefer built-in Angular directives when they solve the requirement.</li>
+            <li>Avoid putting unnecessary business logic inside directives.</li>
+            <li>Keep DOM-related behavior encapsulated inside directives.</li>
+        </ul>
+    </section>
+
+    <!-- Summary -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Summary</h2>
+
+        <div class="summary-box">
+            <ul class="mb-0">
+                <li>Directives extend HTML with Angular behavior.</li>
+                <li>Attribute directives change appearance or behavior.</li>
+                <li>Structural directives change the DOM structure.</li>
+                <li>Custom directives provide reusable application-specific behavior.</li>
+                <li>Directives make Angular templates more powerful and reusable.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Navigation -->
+    <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+
+        <a class="btn btn-outline-secondary"
+           href="@Url.Action("ClassAndStyleBinding", "DataBinding", new { area = "Angular" })">
+            ← Previous
+        </a>
+
+        <a class="btn btn-primary"
+           href="@Url.Action("AttributeDirectives", "Directives", new { area = "Angular" })">
+            Attribute Directives →
+        </a>
+
+    </div>
+
+</div>
+
+<style>
+
+    .info-card {
+        background: #f8fafc;
+        border-left: 5px solid #4c1d95;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    .syntax-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .syntax-box {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 20px;
+        text-align: center;
+        width: 190px;
+        min-height: 160px;
+    }
+
+    .syntax-icon {
+        width: 45px;
+        height: 45px;
+        background: #4c1d95;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 12px;
+        font-weight: bold;
+    }
+
+    .syntax-arrow {
+        font-size: 28px;
+        font-weight: bold;
+        color: #4c1d95;
+    }
+
+    .syntax-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+
+    .syntax-card {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .code-card {
+        background: #0f172a;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-bottom: 20px;
+    }
+
+    .code-title {
+        background: #1e293b;
+        color: #ddd6fe;
+        padding: 10px 15px;
+        font-weight: 600;
+    }
+
+    .code-card pre {
+        margin: 0;
+        padding: 20px;
+        overflow-x: auto;
+    }
+
+    .code-card code {
+        color: #f8fafc;
+        font-family: Consolas, monospace;
+        line-height: 1.7;
+    }
+
+    .output-box {
+        background: #ede9fe;
+        border-left: 5px solid #4c1d95;
+        padding: 18px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+
+    .output-preview {
+        background: white;
+        border-radius: 8px;
+        padding: 15px;
+        margin-top: 10px;
+    }
+
+    .syntax-table {
+        border: 1px solid #e2e8f0;
+    }
+
+        .syntax-table th {
+            background: #4c1d95;
+            color: white;
+        }
+
+        .syntax-table td {
+            vertical-align: middle;
+        }
+
+    .student-preview {
+        background: #ede9fe;
+        border: 2px solid #4c1d95;
+        border-radius: 12px;
+        padding: 25px;
+        text-align: center;
+    }
+
+    .best-practice-list {
+        background: #f8fafc;
+        border-radius: 10px;
+        padding: 25px 40px;
+        border-left: 5px solid #4c1d95;
+    }
+
+        .best-practice-list li {
+            margin-bottom: 10px;
+        }
+
+    .summary-box {
+        background: #cfe2ff;
+        color: #084298;
+        border-radius: 10px;
+        padding: 20px;
+    }
+
+    @@media (max-width: 991px) {
+
+        .syntax-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .syntax-flow {
+            flex-direction: column;
+        }
+
+        .syntax-arrow {
+            transform: rotate(90deg);
+        }
+    }
+
+    @@media (max-width: 576px) {
+
+        .syntax-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .syntax-box {
+            width: 100%;
+        }
+
+        .best-practice-list {
+            padding: 20px 30px;
+        }
+
+        .code-card pre {
+            font-size: 13px;
+        }
+    }
+
+</style>

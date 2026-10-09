@@ -1,0 +1,109 @@
+@{
+    ViewData["Title"] = "Microsoft Azure SQL Database Hands-on";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+                <div class="azure-notes-content">
+                    <pre class="azure-notes-text">Microsoft Azure SQL Database Hands-on
+
+After you have signed in to your account follow the simple steps to create your Azure SQL database.
+
+Step 1: Navigate to Azure Portal.
+
+
+
+
+Step 2: Once, in the Azure Portal click on + &#x27;Create a resource&#x27; option from the upper left corner and
+search for Azure SQL.
+Step 3: Select create in the resulting Azure SQL page.
+
+Step 4: Review all the Azure SQL options that are available, and then in the SQL databases title,
+ensure a single database is selected and select create.
+
+
+
+
+Step 5: A created SQL database page will be popped up. Fill in the necessary information as follows:
+•   Subscription: Select your Azure subscription in which you wish to create the resource.
+
+•   Resource group: Choose the resource group where you wish to create the resource or create
+    a new one by clicking on create new option and entering the name of your choice.
+
+
+
+
+•   Database name: Enter the name you wish to give to the database.
+
+•   Server: Select create new option and create a new server with a unique name in any
+    location. Use SQL authentication and specify your name as the server admin login and a
+    suitably complex password (for security)
+•   Want to use SQL elastic pool? : Choose whether you wish to use SQL elastic pool or not.
+
+•   Compute + Storage: Choose or leave unchanged.
+
+•   Backup storage redundancy: Choose locally-redundant backup storage.
+Step 6: Next click on &#x27;Next&#x27;: Networking and on the Networking page you can configure the
+networking settings. For now, in the Network connectivity section select Public endpoint. Then select
+Yes for both options in the Firewall rules section to allow access to the database server from Azure
+services and our current client IP address.
+Step 7: Next select &#x27;Next&#x27;: Security option to configure the security for the database. For now, set the
+Enable Microsoft Defender for SQL option to Not now.
+Step 8: Next select NextCreate: Additional Settings option to configure some additional settings for
+the database. For now, set the use existing data option to Sample.
+
+Step 9: Finally, select Review + Create and review the different configurations of the database.
+
+
+
+
+Step 10: If everything is fine select Create to create an Azure SQL database.
+
+Step 11: Wait for deployment to complete and go to the resource that was deployed.</pre>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_8_-_Microsoft_Azure_-_Database_Availability_and_Consistency_For_Azure_SQL/p08-000.jpg" class="img-fluid rounded shadow-sm" alt="Microsoft Azure SQL Database Hands-on - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_8_-_Microsoft_Azure_-_Database_Availability_and_Consistency_For_Azure_SQL/p09-000.jpg" class="img-fluid rounded shadow-sm" alt="Microsoft Azure SQL Database Hands-on - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_8_-_Microsoft_Azure_-_Database_Availability_and_Consistency_For_Azure_SQL/p09-001.jpg" class="img-fluid rounded shadow-sm" alt="Microsoft Azure SQL Database Hands-on - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_8_-_Microsoft_Azure_-_Database_Availability_and_Consistency_For_Azure_SQL/p10-000.jpg" class="img-fluid rounded shadow-sm" alt="Microsoft Azure SQL Database Hands-on - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_8_-_Microsoft_Azure_-_Database_Availability_and_Consistency_For_Azure_SQL/p11-000.jpg" class="img-fluid rounded shadow-sm" alt="Microsoft Azure SQL Database Hands-on - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_8_-_Microsoft_Azure_-_Database_Availability_and_Consistency_For_Azure_SQL/p12-000.jpg" class="img-fluid rounded shadow-sm" alt="Microsoft Azure SQL Database Hands-on - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_8_-_Microsoft_Azure_-_Database_Availability_and_Consistency_For_Azure_SQL/p13-000.jpg" class="img-fluid rounded shadow-sm" alt="Microsoft Azure SQL Database Hands-on - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_8_-_Microsoft_Azure_-_Database_Availability_and_Consistency_For_Azure_SQL/p14-000.jpg" class="img-fluid rounded shadow-sm" alt="Microsoft Azure SQL Database Hands-on - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_8_-_Microsoft_Azure_-_Database_Availability_and_Consistency_For_Azure_SQL/p14-001.jpg" class="img-fluid rounded shadow-sm" alt="Microsoft Azure SQL Database Hands-on - source image" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+            @await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureLessonNavigation.cshtml")
+</section>
+</div>
+<style>
+.azure-notes-text{white-space:pre-wrap;word-break:normal;font-family:inherit;font-size:1rem;line-height:1.7;background:#fff;border:0;padding:0;margin:0;color:#212529;}
+.azure-notes-content img{max-height:720px;}
+</style>

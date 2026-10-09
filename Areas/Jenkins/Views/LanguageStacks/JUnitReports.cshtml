@@ -1,0 +1,209 @@
+@{
+    Layout = "~/Areas/Jenkins/Views/Shared/JenkinsLayout.cshtml";
+    ViewData["Title"] = "JUnit Test Reports";
+}
+
+<style>
+    #junit-test-reports-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #junit-test-reports-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #junit-test-reports-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #junit-test-reports-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #junit-test-reports-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+    #junit-test-reports-page .example-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+    }
+</style>
+
+<main id="junit-test-reports-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/Jenkins/Views/Shared/JenkinsTopics.cshtml")
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+                <h1 class="fw-bold">JUnit Test Reports</h1>
+                <p class="lead">
+                    Learn how to parse, visualize, and track test suites trends inside Jenkins by publishing standardized XML test result files.
+                </p>
+            </div>
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">What are JUnit Test Reports in Jenkins?</h2>
+                <p>
+                    When test suites execute inside automated CI pipelines, raw log file prints are hard to audit for bulk pass/fail validation. Build systems and testing engines generate standardized <strong>JUnit XML</strong> files detailing metadata like total assertions run, failure details, execution duration, and stack traces.
+                </p>
+                <p>
+                    The Jenkins <strong>JUnit Plugin</strong> parses these output folders dynamically. It transforms raw structured text data into graphical trend diagrams, test history records, flaky test monitors, and detailed dashboards on the job execution UI.
+                </p>
+
+                <!-- JUNIT DIAGRAM ADDITION -->
+                <div class="my-4 text-center class-box rounded shadow-sm border p-3">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRfZ21sbYZZigoOM5Tj_iKKVZJ4jo14WameH4Yk0ZJzg&s=10"
+                         alt="JUnit 5 Architecture Platform Diagram"
+                         class="img-fluid rounded"
+                         style="max-width: 100%; height: auto;" />
+                    <div class="form-text mt-2 text-muted small">
+                        Visualizing the modern JUnit platform architecture running test suites that generate report outputs.
+                    </div>
+                </div>
+
+                <div class="alert alert-info">
+                    <strong>Simple Definition:</strong> An automation step that captures standardized test results files, translating backend test summaries into readable dashboards and history reports on your Jenkins web interface.
+                </div>
+            </div>
+
+            <!-- KEY CONCEPTS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Key Concepts</h2>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>JUnit XML Schema</h5>
+                            <p class="mb-0">The industry-standard XML document format produced automatically by runtime execution engines (like JUnit, PyTest, or Mocha) to describe build test suite health.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>The Test Step Engine</h5>
+                            <p class="mb-0">Using the declarative pipeline step <code>junit 'target/surefire-reports/*.xml'</code> to load, consume, and structure verification metrics.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Build Health & Flakiness Tracking</h5>
+                            <p class="mb-0">Analyzing history sequences over multiple runs to identify flaky test targets and calculating regression curves across recent commits.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Unstable Build Thresholds</h5>
+                            <p class="mb-0">Configuring the engine to downgrade build outputs from 'Success' to 'Unstable' when test failures are registered, preserving subsequent deployment steps.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXAMPLE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Practical Jenkins Example</h2>
+                <p>The following declarative pipeline executes a Maven test sequence and guarantees that test reports are compiled using a <code>post</code> execution layer, even if individual test targets fail:</p>
+                <pre><code>pipeline {
+    agent any
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    tools {
+        jdk 'OpenJDK-17'
+        maven 'Maven-3.9'
+    }
+
+    stages {
+        stage('Run Test Suite') {
+            steps {
+                echo 'Executing test definitions...'
+                // If tests fail, the shell command errors out, but post step intercepts results
+                sh 'mvn clean test'
+            }
+        }
+    }
+
+    post {
+        always {
+            echo 'Processing test report outputs...'
+            // Captures XML reports produced by Maven Surefire plugin to build UI dashboards
+            junit allowEmptyResults: true, testResults: '**/target/surefire-reports/*.xml'
+        }
+    }
+}</code></pre>
+            </div>
+
+        <!-- PRACTICE -->
+            <div class="mb-4">
+    <h2 class="h3 fw-bold">Practice Exercise</h2>
+                <ol>
+<li class="mb-2">Verify that the <strong>JUnit Plugin</strong> is installed via your <strong>Manage Jenkins &rarr; Plugins</strong> panel.</li>
+                    <li class="mb-2">Create a new <strong>Pipeline</strong> job in your directory labeled <code>junit-report-pipeline</code>.</li>
+                    <li class="mb-2">Paste the declarative script listed above into your pipeline code space.</li>
+<li class="mb-2">Trigger consecutive builds. Navigate to your job landing display to investigate the newly populated <strong>Test Result Trend</strong> charts and individual failure dashboards.</li>
+</ol>
+</div>
+
+<!-- SUMMARY -->
+<div class="alert alert-info mt-4">
+<h2 class="h4 fw-bold">Summary</h2>
+<p class="mb-0">You have completed the <strong>JUnit Test Reports</strong> lesson. Visualizing test health enables teams to confidently secure downstream deployment steps, such as archiving deployment-ready binaries.</p>
+</div>
+
+<!-- NAVIGATION -->
+<div class="d-flex justify-content-between mt-4">
+                <a class="btn btn-outline-primary" href="@Url.Action("SpringBoot", "LanguageStacks", new { area = "Jenkins" })">← Previous: Spring Boot CI Pipeline</a>
+                <a class="btn btn-primary" href="@Url.Action("JarWarArtifacts", "LanguageStacks", new { area = "Jenkins" })">Next: JAR and WAR Artifacts →</a>
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

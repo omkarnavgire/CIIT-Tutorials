@@ -1,0 +1,548 @@
+﻿@{
+    ViewData["Title"] = "Multiple-Row Subquery";
+}
+
+<div class="container-fluid">
+
+    <!-- =========================
+         PAGE HEADER
+    ========================== -->
+
+    <div class="mb-4">
+
+        <h1 class="fw-bold">
+            Multiple-Row Subquery
+        </h1>
+
+        <p class="text-muted">
+            Learn how to use a subquery that returns multiple rows
+            or multiple values.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         WHAT IS MULTIPLE-ROW SUBQUERY?
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                What is a Multiple-Row Subquery?
+            </h2>
+
+            <p>
+                A <strong>Multiple-Row Subquery</strong> is a subquery
+                that returns more than one row or value.
+            </p>
+
+            <p>
+                Since the subquery can return multiple values, operators
+                such as <strong>IN</strong>, <strong>ANY</strong> and
+                <strong>ALL</strong> are commonly used with it.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         BASIC SYNTAX
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Basic Syntax
+            </h2>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>
+SELECT column_name
+FROM table_name
+WHERE column_name IN
+(
+    SELECT column_name
+    FROM another_table
+    WHERE condition
+);
+            </code></pre>
+
+            <p class="mt-3 mb-0">
+                The inner query returns multiple values and the outer
+                query uses those values to filter records.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         EXAMPLE TABLES
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Example Tables
+            </h2>
+
+            <p>
+                Consider the following <strong>Employees</strong> table:
+            </p>
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-striped">
+
+                    <thead class="table-primary">
+
+                        <tr>
+                            <th>EmployeeId</th>
+                            <th>EmployeeName</th>
+                            <th>DepartmentId</th>
+                            <th>Salary</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>1</td>
+                            <td>Rahul</td>
+                            <td>101</td>
+                            <td>30000</td>
+                        </tr>
+
+                        <tr>
+                            <td>2</td>
+                            <td>Priya</td>
+                            <td>102</td>
+                            <td>45000</td>
+                        </tr>
+
+                        <tr>
+                            <td>3</td>
+                            <td>Amit</td>
+                            <td>101</td>
+                            <td>50000</td>
+                        </tr>
+
+                        <tr>
+                            <td>4</td>
+                            <td>Sneha</td>
+                            <td>103</td>
+                            <td>40000</td>
+                        </tr>
+
+                        <tr>
+                            <td>5</td>
+                            <td>Neha</td>
+                            <td>102</td>
+                            <td>55000</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <p class="mt-4">
+                And consider the following <strong>Departments</strong>
+                table:
+            </p>
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-striped">
+
+                    <thead class="table-primary">
+
+                        <tr>
+                            <th>DepartmentId</th>
+                            <th>DepartmentName</th>
+                            <th>Location</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>101</td>
+                            <td>IT</td>
+                            <td>Pune</td>
+                        </tr>
+
+                        <tr>
+                            <td>102</td>
+                            <td>HR</td>
+                            <td>Pune</td>
+                        </tr>
+
+                        <tr>
+                            <td>103</td>
+                            <td>Finance</td>
+                            <td>Mumbai</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         EXAMPLE 1 - IN
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Example 1: Multiple-Row Subquery with IN
+            </h2>
+
+            <p>
+                Suppose we want to find employees who work in departments
+                located in Pune.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>
+SELECT EmployeeName, DepartmentId
+FROM Employees
+WHERE DepartmentId IN
+(
+    SELECT DepartmentId
+    FROM Departments
+    WHERE Location = 'Pune'
+);
+            </code></pre>
+
+            <h5 class="fw-bold mt-4">
+                How it works
+            </h5>
+
+            <ol>
+
+                <li>
+                    The inner query finds department IDs where the
+                    location is Pune.
+                </li>
+
+                <li>
+                    The inner query can return multiple department IDs.
+                </li>
+
+                <li>
+                    The outer query checks whether Employee DepartmentId
+                    exists in those returned values.
+                </li>
+
+            </ol>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         EXAMPLE 2 - NOT IN
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Example 2: Multiple-Row Subquery with NOT IN
+            </h2>
+
+            <p>
+                The <strong>NOT IN</strong> operator can be used when
+                we want records that do not match any value returned
+                by the subquery.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>
+SELECT EmployeeName, DepartmentId
+FROM Employees
+WHERE DepartmentId NOT IN
+(
+    SELECT DepartmentId
+    FROM Departments
+    WHERE Location = 'Pune'
+);
+            </code></pre>
+
+            <p class="mt-3">
+                This query returns employees who do not belong to
+                departments located in Pune.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         EXAMPLE 3 - ANY
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Example 3: Using ANY
+            </h2>
+
+            <p>
+                The <strong>ANY</strong> operator compares a value with
+                the values returned by a subquery.
+            </p>
+
+            <p>
+                For example, find employees whose salary is greater than
+                the salary of <strong>ANY</strong> employee in department
+                101.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>
+SELECT EmployeeName, Salary
+FROM Employees
+WHERE Salary &gt; ANY
+(
+    SELECT Salary
+    FROM Employees
+    WHERE DepartmentId = 101
+);
+            </code></pre>
+
+            <p class="mt-3">
+                The condition is true when the comparison is true for
+                at least one value returned by the subquery.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         EXAMPLE 4 - ALL
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Example 4: Using ALL
+            </h2>
+
+            <p>
+                The <strong>ALL</strong> operator compares a value with
+                every value returned by the subquery.
+            </p>
+
+            <p>
+                Find employees whose salary is greater than the salary
+                of <strong>ALL</strong> employees in department 101.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>
+SELECT EmployeeName, Salary
+FROM Employees
+WHERE Salary &gt; ALL
+(
+    SELECT Salary
+    FROM Employees
+    WHERE DepartmentId = 101
+);
+            </code></pre>
+
+            <p class="mt-3">
+                The condition must be true for every value returned by
+                the subquery.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         IN vs ANY vs ALL
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                IN vs ANY vs ALL
+            </h2>
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-striped">
+
+                    <thead class="table-primary">
+
+                        <tr>
+                            <th>Operator</th>
+                            <th>Purpose</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td><strong>IN</strong></td>
+                            <td>
+                                Checks whether a value matches any value
+                                returned by the subquery.
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>ANY</strong></td>
+                            <td>
+                                The comparison must be true for at least
+                                one value returned by the subquery.
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>ALL</strong></td>
+                            <td>
+                                The comparison must be true for every
+                                value returned by the subquery.
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         IMPORTANT POINTS
+    ========================== -->
+
+    <div class="alert alert-warning mb-4">
+
+        <h4 class="fw-bold">
+            Important Points
+        </h4>
+
+        <ul class="mb-0">
+
+            <li>
+                A multiple-row subquery can return more than one row.
+            </li>
+
+            <li>
+                The IN operator is commonly used with multiple-row
+                subqueries.
+            </li>
+
+            <li>
+                NOT IN can be used to exclude matching values.
+            </li>
+
+            <li>
+                ANY checks whether the comparison is true for at least
+                one returned value.
+            </li>
+
+            <li>
+                ALL checks whether the comparison is true for every
+                returned value.
+            </li>
+
+            <li>
+                Using = with a subquery that returns multiple rows can
+                cause an error.
+            </li>
+
+        </ul>
+
+    </div>
+
+
+    <!-- =========================
+         SUMMARY
+    ========================== -->
+
+    <div class="alert alert-info p-4 mb-4">
+
+        <h2 class="fw-bold">
+            Summary
+        </h2>
+
+        <p class="mb-0">
+            A Multiple-Row Subquery returns multiple values or rows.
+            Operators such as IN, NOT IN, ANY and ALL can be used to
+            work with the returned values. Multiple-row subqueries are
+            useful when the result of one query needs to be compared
+            with a set of values.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         PREVIOUS / NEXT
+    ========================== -->
+
+    <div class="d-flex justify-content-between align-items-center
+        mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/Subqueries/SingleRowSubquery"
+           class="btn btn-outline-primary">
+
+            ← Previous: Single-Row Subquery
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/Subqueries/CorrelatedSubquery"
+           class="btn btn-primary">
+
+            Next: Correlated Subquery →
+
+        </a>
+
+    </div>
+
+</div>

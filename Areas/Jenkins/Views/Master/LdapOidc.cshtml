@@ -1,0 +1,184 @@
+@{
+    Layout = "~/Areas/Jenkins/Views/Shared/JenkinsLayout.cshtml";
+    ViewData["Title"] = "LDAP and OIDC Identity Integration";
+}
+
+<style>
+    #ldap-and-oidc-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #ldap-and-oidc-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #ldap-and-oidc-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #ldap-and-oidc-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #ldap-and-oidc-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+    #ldap-and-oidc-page .example-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+    }
+</style>
+
+<main id="ldap-and-oidc-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/Jenkins/Views/Shared/JenkinsTopics.cshtml")
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+                <h1 class="fw-bold">LDAP and OIDC Identity Integration</h1>
+                <p class="lead">
+                    Centralize authentication across your enterprise by integrating Jenkins with directory systems and modern Single Sign-On (SSO) protocols.
+                </p>
+            </div>
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">What is Identity Integration in Jenkins?</h2>
+                <p>
+                    Managing local user accounts directly inside Jenkins is completely unmanageable at scale. <strong>LDAP (Lightweight Directory Access Protocol)</strong>and<strong> OIDC (OpenID Connect)</strong> move user administration out of Jenkins entirely by delegating authentication to external corporate identity providers (IdPs).
+                </p>
+                <p>
+                    While <strong>LDAP</strong> interacts with legacy directory systems (such as Microsoft Active Directory) via direct client queries, <strong>OIDC</strong> provides a cloud-native authentication layer built on top of OAuth 2.0. This allows users to authenticate seamlessly using modern providers like Okta, Azure AD (Entra ID), Keycloak, or GitHub Enterprise using cryptographically signed JSON Web Tokens (JWTs).
+                </p>
+                <div class="alert alert-info">
+                    <strong>Simple Definition:</strong> LDAP and OIDC integration connects Jenkins to enterprise directory services or Single Sign-On platforms, enabling users to log in safely using their global corporate credentials while mapping their existing security groups directly to Jenkins roles.
+                </div>
+            </div>
+
+            <!-- KEY CONCEPTS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Key Authentication Concepts</h2>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Security Realms</h5>
+                            <p class="mb-0">The Security Realm configuration defines <strong>how</strong> Jenkins authenticates users. Switching the realm from "Jenkins' own user database" to LDAP or OIDC ensures that Jenkins delegates verification requests to your central IdP server.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Group-to-Role Mapping</h5>
+                            <p class="mb-0">Authentication confirms <strong>who</strong> you are, but Authorization decides <strong>what</strong> you can do. Both LDAP and OIDC pass group memberships (such as DN attributes or JWT claims) down to Jenkins to map into RBAC roles automagically.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>OIDC Tokens & Flow</h5>
+                            <p class="mb-0">OIDC leverages the standard authorization code grant flow. When logging in, the browser is redirected to the IdP, returns a signed code string, and swaps it behind the scenes for an ID token containing user profile information.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>JCasC Configuration Strategy</h5>
+                            <p class="mb-0">Instead of configuring connection servers, Client IDs, and base DN queries manually through the web UI, production servers declare identity integration settings as immutable code using YAML parameters.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXAMPLE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Configuration and Pipeline Blueprint</h2>
+                <p>
+                    Below is an enterprise example showing how an OIDC security realm is initialized inside a declarative <strong>Jenkins Configuration as Code (JCasC)</strong> manifest, followed by a pipeline that acts on the authenticated user claims:
+                </p>
+
+                <h6 class="fw-bold mt-3 text-secondary">1. JCasC Manifest Segment (`jenkins.yaml`)</h6>
+                <pre><code>jenkins:
+  securityRealm:
+    oic:
+      clientId: "jenkins-prod-client-id"
+      clientSecret: "\${OIDC_SECRET_VAR}"
+      wellKnownOpenIDConfigurationUrl: "https://enterprise.com"
+      tokenServerUrl: "https://enterprise.com"
+      authorizationServerUrl: "https://enterprise.com"
+      userInfoServerUrl: "https://enterprise.com"
+      userNameField: "preferred_username"
+      groupsField: "roles"</code></pre>
+
+                <h6 class="fw-bold mt-4 text-secondary">2. Declarative Pipeline Audit Wrapper</h6>
+                <pre><code>pipeline {
+    agent any
+    stages {
+        stage('Identity & Context Audit') {
+            steps {
+                script {
+                    // Extracting details about the user that manually kicked off the build execution
+                    def buildCause = currentBuild.rawBuild.getCauses()[0]
+                    if (buildCause != null && buildCause.getClass().getName().contains('UserIdCause')) {
+                        def runningUser = buildCause.getUserId()
+                        echo "Execution triggered by IdP-authenticated user identifier: \${runningUser}"
+                    } else {
+                        echo "Execution triggered by automated upstream hook or system event."
+                    }
+                }
+            }
+        }
+    }
+}</code></pre>
+            </div>
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Identity Integration Exercise</h2>
+                <ol>
+                    <li class="mb-2"><strong>Examine Active Configuration Realms:</strong> Navigate to <em>Manage Jenkins &rarr; Security</em> and look at the options listed under the <strong>Security Realm</strong> radio selection box.</li>
+                    <li class="mb-2"><strong>Trace LDAP Attribute Paths:</strong> If test directory servers are available, look up the distinction between a <strong>User Search Base</strong> (`ou=users,dc=company,dc=com`) and a <strong>Group Search Base</strong> mapping parameter.</li>
+                    <li class="mb-2"><strong>Simulate OAuth Callback URLs:</strong> Identify your controller's absolute root URL path and formulate the standard callback address required by OIDC configuration registration portals: `https://&lt;your-jenkins-url&gt;/securityRealm/finishLogin`.</li>
+                    <li><strong>Review the Security Escape Hatch:</strong> Locate your backing `config.xml` files inside `JENKINS_HOME` and find the xml section where you can manually restore the fallback security realm definition in the event of an identity network outage.</li>
+                </ol>
+            </div>
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+                <h2 class="h4 fw-bold">Summary</h2>
+                <p class="mb-0">You have completed the <strong>LDAP and OIDC</strong> identity integration lesson. You are now prepared to scale access administration across broad corporate ecosystems safely using modern directory lookups and tokenized SSO standards. Proceed to the next module to secure agent nodes.</p>
+            </div>
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+                <a class="btn btn-outline-primary" href="@Url.Action("RBAC", "Master", new { area = "Jenkins" })">← Previous: Roles and Access Control</a>
+                <a class="btn btn-primary" href="@Url.Action("AgentSecurity", "Master", new { area = "Jenkins" })">Next: Agent and Controller Security →</a>
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

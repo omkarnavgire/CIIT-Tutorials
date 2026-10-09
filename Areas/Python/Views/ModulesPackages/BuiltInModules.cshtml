@@ -1,0 +1,1066 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Python Built-in Modules";
+}
+
+<style>
+
+    #python-builtin-modules-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #python-builtin-modules-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #python-builtin-modules-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #python-builtin-modules-page .diagram-box {
+        background: #ffffff;
+        border: 2px solid #6f42c1;
+        border-radius: 10px;
+        padding: 18px;
+        text-align: center;
+        height: 100%;
+    }
+
+        #python-builtin-modules-page .diagram-box h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        #python-builtin-modules-page .diagram-box p {
+            margin-bottom: 0;
+            font-size: 14px;
+            color: #495057;
+        }
+
+    #python-builtin-modules-page .diagram-arrow {
+        text-align: center;
+        font-size: 28px;
+        font-weight: 700;
+        color: #6f42c1;
+        padding: 8px 0;
+    }
+
+    #python-builtin-modules-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #python-builtin-modules-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+        }
+
+</style>
+
+
+<main id="python-builtin-modules-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+
+                <h1 class="fw-bold">
+                    Built-in Modules in Python
+                </h1>
+
+                <p class="lead">
+                    Learn about useful modules that are already available
+                    with Python and can be imported directly into your program.
+                </p>
+
+            </div>
+
+
+            <!-- WHAT ARE BUILT-IN MODULES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    What are Built-in Modules?
+                </h2>
+
+                <p>
+                    Python comes with many useful modules that are available
+                    as part of the standard library.
+                </p>
+
+                <p>
+                    These modules provide ready-to-use functionality for
+                    common programming tasks such as mathematics, dates,
+                    random numbers, file paths and JSON data.
+                </p>
+
+                <div class="alert alert-info">
+
+                    <strong>Simple Definition:</strong>
+
+                    Built-in or standard-library modules are modules
+                    provided with Python that we can import and use
+                    without writing the functionality ourselves.
+
+                </div>
+
+            </div>
+
+
+            <!-- WHY BUILT-IN MODULES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Why Do We Use Built-in Modules?
+                </h2>
+
+                <ul>
+
+                    <li>
+                        Save development time.
+                    </li>
+
+                    <li>
+                        Reuse ready-made functionality.
+                    </li>
+
+                    <li>
+                        Avoid writing common logic from scratch.
+                    </li>
+
+                    <li>
+                        Make programs shorter and easier to maintain.
+                    </li>
+
+                    <li>
+                        Solve common programming problems quickly.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- DIAGRAM -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Built-in Modules Diagram
+                </h2>
+
+                <p>
+                    Different built-in modules help us perform different
+                    types of tasks.
+                </p>
+
+                <div class="concept-box">
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            Python Standard Library
+                        </h5>
+
+                        <p>
+                            Ready-to-use modules
+                        </p>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="row g-3">
+
+                        <div class="col-md-4">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    math
+                                </h5>
+
+                                <p>
+                                    Mathematical operations
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-4">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    random
+                                </h5>
+
+                                <p>
+                                    Random values
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-4">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    datetime
+                                </h5>
+
+                                <p>
+                                    Date and time
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-4">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    os
+                                </h5>
+
+                                <p>
+                                    Operating-system features
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-4">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    json
+                                </h5>
+
+                                <p>
+                                    JSON data
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-4">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    re
+                                </h5>
+
+                                <p>
+                                    Regular expressions
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            Python Application
+                        </h5>
+
+                        <p>
+                            Use the required module for the required task.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- MATH -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    1. math Module
+                </h2>
+
+                <p>
+                    The <code>math</code> module provides mathematical
+                    functions and constants.
+                </p>
+
+                <h4 class="fw-bold mt-4">
+                    Example
+                </h4>
+
+                <pre><code>import math
+
+print(math.sqrt(25))
+print(math.pow(2, 3))
+print(math.pi)</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>5.0
+8.0
+3.141592653589793</code></pre>
+
+                <h4 class="fw-bold mt-4">
+                    Common math Functions
+                </h4>
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered">
+
+                        <thead>
+
+                            <tr>
+                                <th>Function</th>
+                                <th>Purpose</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td><code>sqrt()</code></td>
+                                <td>Returns square root.</td>
+                            </tr>
+
+                            <tr>
+                                <td><code>pow()</code></td>
+                                <td>Returns a number raised to a power.</td>
+                            </tr>
+
+                            <tr>
+                                <td><code>ceil()</code></td>
+                                <td>Rounds a number upward.</td>
+                            </tr>
+
+                            <tr>
+                                <td><code>floor()</code></td>
+                                <td>Rounds a number downward.</td>
+                            </tr>
+
+                            <tr>
+                                <td><code>pi</code></td>
+                                <td>Provides the value of pi.</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+                <pre><code>import math
+
+print(math.ceil(4.2))
+print(math.floor(4.8))</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>5
+4</code></pre>
+
+            </div>
+
+
+            <!-- RANDOM -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    2. random Module
+                </h2>
+
+                <p>
+                    The <code>random</code> module is used to generate
+                    pseudo-random values and make random selections.
+                </p>
+
+                <h4 class="fw-bold mt-4">
+                    Random Number
+                </h4>
+
+                <pre><code>import random
+
+number = random.randint(1, 10)
+
+print(number)</code></pre>
+
+                <p>
+                    The program generates an integer between
+                    <code>1</code> and <code>10</code>.
+                </p>
+
+                <h4 class="fw-bold mt-4">
+                    Random Choice
+                </h4>
+
+                <pre><code>import random
+
+courses = ["Python", "Java", ".NET", "MERN"]
+
+course = random.choice(courses)
+
+print(course)</code></pre>
+
+                <p>
+                    One item is selected randomly from the list.
+                </p>
+
+                <h4 class="fw-bold mt-4">
+                    Common random Functions
+                </h4>
+
+                <ul>
+
+                    <li>
+                        <code>randint()</code> - returns a random integer
+                        within the given range.
+                    </li>
+
+                    <li>
+                        <code>choice()</code> - selects one item from
+                        a sequence.
+                    </li>
+
+                    <li>
+                        <code>random()</code> - returns a floating-point
+                        value between 0 and 1.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- DATETIME -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    3. datetime Module
+                </h2>
+
+                <p>
+                    The <code>datetime</code> module is used to work with
+                    dates and times.
+                </p>
+
+                <h4 class="fw-bold mt-4">
+                    Current Date and Time
+                </h4>
+
+                <pre><code>from datetime import datetime
+
+current_time = datetime.now()
+
+print(current_time)</code></pre>
+
+                <p>
+                    This returns the current date and time.
+                </p>
+
+                <h4 class="fw-bold mt-4">
+                    Current Date
+                </h4>
+
+                <pre><code>from datetime import date
+
+today = date.today()
+
+print(today)</code></pre>
+
+                <p>
+                    Output will contain the current date.
+                </p>
+
+            </div>
+
+
+            <!-- OS -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    4. os Module
+                </h2>
+
+                <p>
+                    The <code>os</code> module provides functions for
+                    interacting with the operating system.
+                </p>
+
+                <h4 class="fw-bold mt-4">
+                    Current Directory
+                </h4>
+
+                <pre><code>import os
+
+print(os.getcwd())</code></pre>
+
+                <p>
+                    <code>os.getcwd()</code> returns the current
+                    working directory.
+                </p>
+
+                <h4 class="fw-bold mt-4">
+                    List Files and Folders
+                </h4>
+
+                <pre><code>import os
+
+files = os.listdir()
+
+print(files)</code></pre>
+
+                <p>
+                    <code>os.listdir()</code> returns names of files
+                    and folders in the specified directory.
+                </p>
+
+                <h4 class="fw-bold mt-4">
+                    Check Path
+                </h4>
+
+                <pre><code>import os
+
+print(os.path.exists("example.txt"))</code></pre>
+
+                <p>
+                    This checks whether the given path exists.
+                </p>
+
+            </div>
+
+
+            <!-- JSON -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    5. json Module
+                </h2>
+
+                <p>
+                    The <code>json</code> module is used to work with
+                    JSON data.
+                </p>
+
+                <h4 class="fw-bold mt-4">
+                    Python Dictionary to JSON
+                </h4>
+
+                <pre><code>import json
+
+student = {
+    "name": "Rahul",
+    "age": 22
+}
+
+json_data = json.dumps(student)
+
+print(json_data)</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>{"name": "Rahul", "age": 22}</code></pre>
+
+                <h4 class="fw-bold mt-4">
+                    JSON to Python Object
+                </h4>
+
+                <pre><code>import json
+
+json_data = '{"name": "Rahul", "age": 22}'
+
+student = json.loads(json_data)
+
+print(student["name"])
+print(student["age"])</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Rahul
+22</code></pre>
+
+            </div>
+
+
+            <!-- RE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    6. re Module
+                </h2>
+
+                <p>
+                    The <code>re</code> module is used for working with
+                    regular expressions and searching for text patterns.
+                </p>
+
+                <pre><code>import re
+
+text = "My phone number is 9876543210"
+
+result = re.search(r"\d{10}", text)
+
+if result:
+    print(result.group())</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>9876543210</code></pre>
+
+                <p>
+                    The regular expression
+                    <code>\d{10}</code> searches for a sequence
+                    of 10 digits.
+                </p>
+
+            </div>
+
+
+            <!-- OTHER USEFUL MODULES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Some Other Useful Standard Modules
+                </h2>
+
+                <div class="row g-3">
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                sys
+                            </h5>
+
+                            <p class="mb-0">
+                                Provides access to Python runtime
+                                and system-related information.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                collections
+                            </h5>
+
+                            <p class="mb-0">
+                                Provides specialized container
+                                data types.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                statistics
+                            </h5>
+
+                            <p class="mb-0">
+                                Provides common statistical functions.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                pathlib
+                            </h5>
+
+                            <p class="mb-0">
+                                Provides an object-oriented way to
+                                work with file system paths.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                time
+                            </h5>
+
+                            <p class="mb-0">
+                                Provides functions for working with
+                                time-related operations.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                calendar
+                            </h5>
+
+                            <p class="mb-0">
+                                Provides functions related to calendars
+                                and dates.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- IMPORT STYLES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Different Ways to Import Built-in Modules
+                </h2>
+
+                <h4 class="fw-bold mt-4">
+                    Import Complete Module
+                </h4>
+
+                <pre><code>import math
+
+print(math.sqrt(49))</code></pre>
+
+
+                <h4 class="fw-bold mt-4">
+                    Import Specific Function
+                </h4>
+
+                <pre><code>from math import sqrt
+
+print(sqrt(49))</code></pre>
+
+
+                <h4 class="fw-bold mt-4">
+                    Import with Alias
+                </h4>
+
+                <pre><code>import datetime as dt
+
+print(dt.date.today())</code></pre>
+
+            </div>
+
+
+            <!-- MODULE COMPARISON -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Common Built-in Modules Comparison
+                </h2>
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered align-middle">
+
+                        <thead>
+
+                            <tr>
+                                <th>Module</th>
+                                <th>Main Use</th>
+                                <th>Example</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td><code>math</code></td>
+                                <td>Mathematical calculations</td>
+                                <td><code>math.sqrt()</code></td>
+                            </tr>
+
+                            <tr>
+                                <td><code>random</code></td>
+                                <td>Random values</td>
+                                <td><code>random.randint()</code></td>
+                            </tr>
+
+                            <tr>
+                                <td><code>datetime</code></td>
+                                <td>Date and time</td>
+                                <td><code>datetime.now()</code></td>
+                            </tr>
+
+                            <tr>
+                                <td><code>os</code></td>
+                                <td>Operating-system tasks</td>
+                                <td><code>os.getcwd()</code></td>
+                            </tr>
+
+                            <tr>
+                                <td><code>json</code></td>
+                                <td>JSON data</td>
+                                <td><code>json.dumps()</code></td>
+                            </tr>
+
+                            <tr>
+                                <td><code>re</code></td>
+                                <td>Pattern matching</td>
+                                <td><code>re.search()</code></td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRACTICAL EXAMPLE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Example 🔓🤓
+                </h2>
+
+                <p>
+                    The following program uses multiple built-in modules
+                    together.
+                </p>
+
+                <pre><code>import math
+import random
+from datetime import date
+
+number = random.randint(1, 100)
+
+print("Random Number:", number)
+
+print("Square Root:", math.sqrt(number))
+
+print("Today:", date.today())</code></pre>
+
+                <p>
+                    This example shows how different standard-library
+                    modules can solve different tasks in the same program.
+                </p>
+
+            </div>
+
+
+            <!-- COMMON MISTAKES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Common Mistakes
+                </h2>
+
+                <ul>
+
+                    <li>
+                        Writing the wrong module name.
+                    </li>
+
+                    <li>
+                        Forgetting to import the module.
+                    </li>
+
+                    <li>
+                        Using a function without the correct module prefix.
+                    </li>
+
+                    <li>
+                        Importing a specific function and then trying to
+                        use it with the module prefix.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Practice Programs
+                </h2>
+
+                <ol>
+
+                    <li>
+                        Use the <code>math</code> module to calculate
+                        square root and power.
+                    </li>
+
+                    <li>
+                        Use <code>random</code> to generate a random
+                        number between 1 and 100.
+                    </li>
+
+                    <li>
+                        Display the current date using
+                        <code>datetime</code>.
+                    </li>
+
+                    <li>
+                        Use <code>os</code> to display the current
+                        working directory.
+                    </li>
+
+                    <li>
+                        Convert a Python dictionary into JSON using
+                        <code>json</code>.
+                    </li>
+
+                    <li>
+                        Use <code>re</code> to search for a phone
+                        number in a string.
+                    </li>
+
+                </ol>
+
+            </div>
+
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+
+                <h2 class="h4 fw-bold">
+                    Summary
+                </h2>
+
+                <p class="mb-0">
+
+                    Python provides many useful standard-library modules
+                    for common programming tasks. The <code>math</code>
+                    module is used for mathematical operations,
+                    <code>random</code> for random values,
+                    <code>datetime</code> for dates and times,
+                    <code>os</code> for operating-system operations,
+                    <code>json</code> for JSON data and <code>re</code>
+                    for regular expressions. These modules can be
+                    imported and reused directly in Python programs.
+
+                </p>
+
+            </div>
+
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+
+                <a class="btn btn-outline-secondary"
+                   href="@Url.Action("ImportStatement", "ModulesPackages", new { area = "Python" })">
+
+                    ← Previous: Topic
+
+                </a>
+
+
+                <a class="btn btn-primary"
+                   href="@Url.Action("PipPackages", "ModulesPackages", new { area = "Python" })">
+
+                    Next: Topic →
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

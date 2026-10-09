@@ -1,0 +1,213 @@
+@{
+    ViewData["Title"] = "First Azure Resource";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+
+                <h1>First Azure Resource</h1>
+
+                <h2>What is a resource group?</h2>
+
+                <p>
+                    A resource group is a container that holds related resources for an
+                    Azure solution. The resource group can include all the resources for
+                    the solution or only those resources that you want to manage as a group.
+                    You decide how to allocate resources to resource groups based on what
+                    makes the most sense for your organization.
+                </p>
+
+                <p>
+                    Generally, add resources sharing the same lifecycle to the same resource
+                    group so you can easily deploy, update, and delete them as a group.
+                </p>
+
+                <h3 class="mt-4">Resource Group Scope</h3>
+
+                <p>
+                    The Azure portal uses the resource group scope to create views that
+                    span across multiple resources. For example:
+                </p>
+
+                <ul>
+                    <li>
+                        <b>Metrics blade</b> provides metrics information
+                        (CPU, resources) to users.
+                    </li>
+
+                    <li>
+                        <b>Deployments blade</b> shows the history of ARM template or
+                        Bicep deployments targeted to that resource group
+                        (which includes portal deployments).
+                    </li>
+
+                    <li>
+                        <b>Policy blade</b> provides information related to the policies
+                        enforced on the resource group.
+                    </li>
+
+                    <li>
+                        <b>Diagnostics settings blade</b> provides errors and warnings
+                        to review.
+                    </li>
+                </ul>
+
+                <h3 class="mt-4">Resource Group Location</h3>
+
+                <p>
+                    The resource group stores metadata about the resources. When you specify
+                    a location for the resource group, you're specifying where that metadata
+                    is stored.
+                </p>
+
+                <p>
+                    For compliance reasons, you might need to ensure that your data is stored
+                    in a particular region. Resources inside a resource group can be in
+                    different regions.
+                </p>
+
+                <h2 class="mt-5">Create resource groups</h2>
+
+                <ol>
+                    <li class="mb-3">
+                        <b>Sign in to the Azure portal.</b>
+                    </li>
+
+                    <li class="mb-3">
+                        <b>Select Resource groups.</b>
+                    </li>
+
+                    <li class="mb-3">
+                        <b>Select Create.</b>
+                    </li>
+                </ol>
+
+                <div class="text-center my-4">
+                    <img src="https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/media/manage-resource-groups-portal/manage-resource-groups-add-group.png"
+                         alt="Azure Portal Create Resource Group"
+                         class="img-fluid rounded shadow-sm"
+                         style="max-width:850px;width:100%;height:auto;" />
+                </div>
+
+                <h3 class="mt-4">4. Enter the following values</h3>
+
+                <div class="table-responsive my-4">
+                    <table class="table table-bordered align-middle">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Field</th>
+                                <th>Value</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td><b>Subscription</b></td>
+                                <td>Select your Azure subscription.</td>
+                            </tr>
+
+                            <tr>
+                                <td><b>Resource group</b></td>
+                                <td>Enter a new resource group name.</td>
+                            </tr>
+
+                            <tr>
+                                <td><b>Region</b></td>
+                                <td>Select an Azure location such as Central US.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="text-center my-4">
+                    <img src="https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/media/manage-resource-groups-portal/manage-resource-groups-create-group.png"
+                         alt="Create Resource Group Settings"
+                         class="img-fluid rounded shadow-sm"
+                         style="max-width:850px;width:100%;height:auto;" />
+                </div>
+
+                <ol start="5">
+                    <li class="mb-3">
+                        Select <b>Review + Create</b>.
+                    </li>
+
+                    <li class="mb-3">
+                        Select <b>Create</b>. It takes a few seconds to create a
+                        resource group.
+                    </li>
+
+                    <li class="mb-3">
+                        To refresh the resource group list, select <b>Refresh</b>
+                        from the top menu. To open the newly created resource group,
+                        select it from the list.
+                    </li>
+                </ol>
+
+                <p>
+                    Or, select <b>Notification</b> (the bell icon) from the top,
+                    and then select <b>Go to resource group</b> to open the newly
+                    created resource group.
+                </p>
+
+                <div class="text-center my-4">
+                    <img src="https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/media/manage-resource-groups-portal/manage-resource-groups-add-group-go-to-resource-group.png"
+                         alt="Go to newly created Azure Resource Group"
+                         class="img-fluid rounded shadow-sm"
+                         style="max-width:850px;width:100%;height:auto;" />
+                </div>
+
+                <h2 class="mt-5">List resource groups</h2>
+
+                <ol>
+                    <li class="mb-3">
+                        <b>Sign in to the Azure portal.</b>
+                    </li>
+
+                    <li class="mb-3">
+                        To list the resource groups, select <b>Resource groups</b>.
+                    </li>
+
+                    <li class="mb-3">
+                        To customize the information displayed for the resource groups,
+                        configure the filters.
+                    </li>
+                </ol>
+
+                <div class="text-center my-4">
+                    <img src="https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/media/manage-resource-groups-portal/manage-resource-groups-list-groups.png"
+                         alt="List Azure Resource Groups"
+                         class="img-fluid rounded shadow-sm"
+                         style="max-width:850px;width:100%;height:auto;" />
+                </div>
+
+                <div style="min-height:80px;"></div>
+
+                <div class="mt-4 d-flex justify-content-between align-items-center">
+
+                    <a class="btn btn-outline-primary fw-semibold"
+                       href="@Url.Action("AzurePortalIntroduction", "Introduction", new { area = "Azure" })">
+                        ← Previous
+                    </a>
+
+                    @* <a class="btn btn-primary fw-semibold"
+                       href="@Url.Action("FirstAzureResource", "Introduction", new { area = "Azure" })">
+                        Next →
+                    </a> *@
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</div>

@@ -1,0 +1,839 @@
+﻿@{
+    var currentController =
+        ViewContext.RouteData.Values["controller"]?.ToString();
+
+    var currentAction =
+        ViewContext.RouteData.Values["action"]?.ToString();
+
+    bool IsActive(string controller, string action)
+    {
+        return string.Equals(
+                   currentController,
+                   controller,
+                   StringComparison.OrdinalIgnoreCase)
+               &&
+               string.Equals(
+                   currentAction,
+                   action,
+                   StringComparison.OrdinalIgnoreCase);
+    }
+}
+
+<style>
+
+    /* ===================================================== */
+    /* ANGULAR SYLLABUS CARD */
+    /* ===================================================== */
+
+    .angular-syllabus-card {
+        border: 0;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        position: sticky;
+        top: 90px;
+        max-height: calc(100vh - 110px);
+        overflow-y: auto;
+        overflow-x: hidden;
+        background-color: #ffffff;
+    }
+
+
+    /* ===================================================== */
+    /* HEADER */
+    /* ===================================================== */
+
+    .angular-syllabus-header {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        padding: 14px 18px !important;
+        font-size: 15px;
+        font-weight: 700;
+        display: block !important;
+        visibility: visible !important;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+
+
+    /* ===================================================== */
+    /* MODULE TITLE */
+    /* ===================================================== */
+
+    .angular-module-title {
+        background-color: #f8f9fa !important;
+        font-weight: 700 !important;
+        color: #212529 !important;
+        padding: 12px 16px;
+        border-bottom: 1px solid #e9ecef;
+    }
+
+
+    /* ===================================================== */
+    /* TOPIC LINK */
+    /* ===================================================== */
+
+    .angular-topic-link {
+        display: block;
+        padding: 10px 16px 10px 28px;
+        font-size: 14px;
+        color: #495057 !important;
+        text-decoration: none !important;
+        border: 0 !important;
+        border-bottom: 1px solid #f1f1f1 !important;
+        background-color: #ffffff !important;
+    }
+
+
+    .angular-topic-link:hover {
+        background-color: #f1f3f5 !important;
+        color: #212529 !important;
+    }
+
+
+    /* ===================================================== */
+    /* ACTIVE TOPIC */
+    /* ===================================================== */
+
+    .angular-topic-link.active,
+    .angular-topic-link.active:hover,
+    .angular-topic-link.active:focus {
+        background-color: #ffffff !important;
+        color: #495057 !important;
+        font-weight: 400 !important;
+        border-top: 0 !important;
+        border-left: 0 !important;
+        border-right: 0 !important;
+        border-bottom: 2px solid #dd0031 !important;
+        box-shadow: none !important;
+    }
+
+
+    /* ===================================================== */
+    /* SCROLLBAR */
+    /* ===================================================== */
+
+    .angular-syllabus-card::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .angular-syllabus-card::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    .angular-syllabus-card::-webkit-scrollbar-thumb {
+        background: #c8c8c8;
+        border-radius: 10px;
+    }
+
+    .angular-syllabus-card::-webkit-scrollbar-thumb:hover {
+        background: #aaaaaa;
+    }
+
+
+    /* ===================================================== */
+    /* MOBILE */
+    /* ===================================================== */
+
+    @@media (max-width: 991px) {
+
+        .angular-syllabus-card {
+            position: relative;
+            top: auto;
+            max-height: none;
+            overflow: hidden;
+        }
+
+        .angular-syllabus-header {
+            position: relative;
+        }
+
+    }
+
+</style>
+
+
+<div class="card angular-syllabus-card">
+
+    <!-- ===================================================== -->
+    <!-- HEADER -->
+    <!-- ===================================================== -->
+
+    <div class="card-header angular-syllabus-header">
+        <span>ANGULAR COURSE SYLLABUS</span>
+    </div>
+
+
+    <div class="list-group list-group-flush">
+
+
+        <!-- ===================================================== -->
+        <!-- MODULE 1 -->
+        <!-- ===================================================== -->
+
+        <div class="list-group-item angular-module-title">
+            1. Angular Introduction
+        </div>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Introduction", "Index") ? "active" : "")"
+           href="@Url.Action("Index", "Introduction", new { area = "Angular" })">
+            Angular Introduction
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Introduction", "History") ? "active" : "")"
+           href="@Url.Action("History", "Introduction", new { area = "Angular" })">
+            Angular History
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Introduction", "Fundamentals") ? "active" : "")"
+           href="@Url.Action("Fundamentals", "Introduction", new { area = "Angular" })">
+            Angular Fundamentals
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Introduction", "Architecture") ? "active" : "")"
+           href="@Url.Action("Architecture", "Introduction", new { area = "Angular" })">
+            Angular Architecture
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Introduction", "ComponentBasedAngular") ? "active" : "")"
+           href="@Url.Action("ComponentBasedAngular", "Introduction", new { area = "Angular" })">
+            Component-Based Angular
+        </a>
+
+
+        <!-- ===================================================== -->
+        <!-- MODULE 2 -->
+        <!-- ===================================================== -->
+
+        <div class="list-group-item angular-module-title">
+            2. Angular Setup
+        </div>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Setup", "Index") ? "active" : "")"
+           href="@Url.Action("Index", "Setup", new { area = "Angular" })">
+            Angular Setup Introduction
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Setup", "NodeJS") ? "active" : "")"
+           href="@Url.Action("NodeJS", "Setup", new { area = "Angular" })">
+            Installing Node.js
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Setup", "AngularCLI") ? "active" : "")"
+           href="@Url.Action("AngularCLI", "Setup", new { area = "Angular" })">
+            Installing Angular CLI
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Setup", "CreatingApplication") ? "active" : "")"
+           href="@Url.Action("CreatingApplication", "Setup", new { area = "Angular" })">
+            Creating an Angular Application
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Setup", "ProjectStructure") ? "active" : "")"
+           href="@Url.Action("ProjectStructure", "Setup", new { area = "Angular" })">
+            Angular Project Structure
+        </a>
+
+
+        <!-- ===================================================== -->
+        <!-- MODULE 3 -->
+        <!-- ===================================================== -->
+
+        <div class="list-group-item angular-module-title">
+            3. Components
+        </div>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Components", "Index") ? "active" : "")"
+           href="@Url.Action("Index", "Components", new { area = "Angular" })">
+            Components Overview
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Components", "ComponentAnatomy") ? "active" : "")"
+           href="@Url.Action("ComponentAnatomy", "Components", new { area = "Angular" })">
+            Component Anatomy
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Components", "CreatingComponents") ? "active" : "")"
+           href="@Url.Action("CreatingComponents", "Components", new { area = "Angular" })">
+            Creating Components
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Components", "ComponentSelector") ? "active" : "")"
+           href="@Url.Action("ComponentSelector", "Components", new { area = "Angular" })">
+            Component Selector
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Components", "ComponentTemplate") ? "active" : "")"
+           href="@Url.Action("ComponentTemplate", "Components", new { area = "Angular" })">
+            Component Template
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Components", "ComponentStyles") ? "active" : "")"
+           href="@Url.Action("ComponentStyles", "Components", new { area = "Angular" })">
+            Component Styles
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Components", "ComponentMetadata") ? "active" : "")"
+           href="@Url.Action("ComponentMetadata", "Components", new { area = "Angular" })">
+            Component Metadata
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Components", "StandaloneComponents") ? "active" : "")"
+           href="@Url.Action("StandaloneComponents", "Components", new { area = "Angular" })">
+            Standalone Components
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Components", "ParentChildComponents") ? "active" : "")"
+           href="@Url.Action("ParentChildComponents", "Components", new { area = "Angular" })">
+            Parent and Child Components
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Components", "ReusableComponents") ? "active" : "")"
+           href="@Url.Action("ReusableComponents", "Components", new { area = "Angular" })">
+            Reusable Components
+        </a>
+
+
+        <!-- ===================================================== -->
+        <!-- MODULE 4 -->
+        <!-- ===================================================== -->
+
+        <div class="list-group-item angular-module-title">
+            4. Templates
+        </div>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Templates", "Index") ? "active" : "")"
+           href="@Url.Action("Index", "Templates", new { area = "Angular" })">
+            Templates Introduction
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Templates", "TemplateSyntax") ? "active" : "")"
+           href="@Url.Action("TemplateSyntax", "Templates", new { area = "Angular" })">
+            Template Syntax
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Templates", "TemplateExpressions") ? "active" : "")"
+           href="@Url.Action("TemplateExpressions", "Templates", new { area = "Angular" })">
+            Template Expressions
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Templates", "TemplateStatements") ? "active" : "")"
+           href="@Url.Action("TemplateStatements", "Templates", new { area = "Angular" })">
+            Template Statements
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Templates", "TemplateReferenceVariables") ? "active" : "")"
+           href="@Url.Action("TemplateReferenceVariables", "Templates", new { area = "Angular" })">
+            Template Reference Variables
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Templates", "NgTemplate") ? "active" : "")"
+           href="@Url.Action("NgTemplate", "Templates", new { area = "Angular" })">
+            ng-template
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Templates", "NgContainer") ? "active" : "")"
+           href="@Url.Action("NgContainer", "Templates", new { area = "Angular" })">
+            ng-container
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Templates", "NgTemplateOutlet") ? "active" : "")"
+           href="@Url.Action("NgTemplateOutlet", "Templates", new { area = "Angular" })">
+            ngTemplateOutlet
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Templates", "ControlFlow") ? "active" : "")"
+           href="@Url.Action("ControlFlow", "Templates", new { area = "Angular" })">
+            Built-in Control Flow
+        </a>
+
+
+        <!-- ===================================================== -->
+        <!-- MODULE 5 -->
+        <!-- ===================================================== -->
+
+        <div class="list-group-item angular-module-title">
+            5. Data Binding
+        </div>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("DataBinding", "Index") ? "active" : "")"
+           href="@Url.Action("Index", "DataBinding", new { area = "Angular" })">
+            Data Binding Introduction
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("DataBinding", "Interpolation") ? "active" : "")"
+           href="@Url.Action("Interpolation", "DataBinding", new { area = "Angular" })">
+            Interpolation Binding
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("DataBinding", "PropertyBinding") ? "active" : "")"
+           href="@Url.Action("PropertyBinding", "DataBinding", new { area = "Angular" })">
+            Property Binding
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("DataBinding", "EventBinding") ? "active" : "")"
+           href="@Url.Action("EventBinding", "DataBinding", new { area = "Angular" })">
+            Event Binding
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("DataBinding", "TwoWayBinding") ? "active" : "")"
+           href="@Url.Action("TwoWayBinding", "DataBinding", new { area = "Angular" })">
+            Two-Way Data Binding
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("DataBinding", "ClassAndStyleBinding") ? "active" : "")"
+           href="@Url.Action("ClassAndStyleBinding", "DataBinding", new { area = "Angular" })">
+            Class & Style Binding
+        </a>
+
+
+        <!-- ===================================================== -->
+        <!-- MODULE 6 -->
+        <!-- ===================================================== -->
+
+        <div class="list-group-item angular-module-title">
+            6. Directives
+        </div>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Directives", "Index") ? "active" : "")"
+           href="@Url.Action("Index", "Directives", new { area = "Angular" })">
+            Directives Introduction
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Directives", "AttributeDirectives") ? "active" : "")"
+           href="@Url.Action("AttributeDirectives", "Directives", new { area = "Angular" })">
+            Attribute Directives
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Directives", "StructuralDirectives") ? "active" : "")"
+           href="@Url.Action("StructuralDirectives", "Directives", new { area = "Angular" })">
+            Structural Directives
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Directives", "CustomDirectives") ? "active" : "")"
+           href="@Url.Action("CustomDirectives", "Directives", new { area = "Angular" })">
+            Custom Directives
+        </a>
+
+
+        <!-- ===================================================== -->
+        <!-- MODULE 7 -->
+        <!-- ===================================================== -->
+
+        <div class="list-group-item angular-module-title">
+            7. Pipes
+        </div>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Pipes", "Index") ? "active" : "")"
+           href="@Url.Action("Index", "Pipes", new { area = "Angular" })">
+            Pipes Introduction
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Pipes", "BuiltInPipes") ? "active" : "")"
+           href="@Url.Action("BuiltInPipes", "Pipes", new { area = "Angular" })">
+            Built-in Pipes
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Pipes", "ParameterizedPipes") ? "active" : "")"
+           href="@Url.Action("ParameterizedPipes", "Pipes", new { area = "Angular" })">
+            Parameterized Pipes
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Pipes", "ChainingPipes") ? "active" : "")"
+           href="@Url.Action("ChainingPipes", "Pipes", new { area = "Angular" })">
+            Chaining Pipes
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Pipes", "CustomPipes") ? "active" : "")"
+           href="@Url.Action("CustomPipes", "Pipes", new { area = "Angular" })">
+            Custom Pipes
+        </a>
+
+
+        <!-- ===================================================== -->
+        <!-- MODULE 8 -->
+        <!-- ===================================================== -->
+
+        <div class="list-group-item angular-module-title">
+            8. Event Handling
+        </div>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("EventHandling", "Index") ? "active" : "")"
+           href="@Url.Action("Index", "EventHandling", new { area = "Angular" })">
+            Event Handling Introduction
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("EventHandling", "DOMEvents") ? "active" : "")"
+           href="@Url.Action("DOMEvents", "EventHandling", new { area = "Angular" })">
+            DOM Events
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("EventHandling", "EventBinding") ? "active" : "")"
+           href="@Url.Action("EventBinding", "EventHandling", new { area = "Angular" })">
+            Event Binding Syntax
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("EventHandling", "EventObject") ? "active" : "")"
+           href="@Url.Action("EventObject", "EventHandling", new { area = "Angular" })">
+            Event Object
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("EventHandling", "PassingData") ? "active" : "")"
+           href="@Url.Action("PassingData", "EventHandling", new { area = "Angular" })">
+            Passing Data to Event Handlers
+        </a>
+
+
+        <!-- ===================================================== -->
+        <!-- MODULE 9 -->
+        <!-- ===================================================== -->
+
+        <div class="list-group-item angular-module-title">
+            9. Input & Output
+        </div>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("InputOutput", "Index") ? "active" : "")"
+           href="@Url.Action("Index", "InputOutput", new { area = "Angular" })">
+            Component Communication
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("InputOutput", "Input") ? "active" : "")"
+           href="@Url.Action("Input", "InputOutput", new { area = "Angular" })">
+            @@Input
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("InputOutput", "Output") ? "active" : "")"
+           href="@Url.Action("Output", "InputOutput", new { area = "Angular" })">
+            @@Output
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("InputOutput", "EventEmitter") ? "active" : "")"
+           href="@Url.Action("EventEmitter", "InputOutput", new { area = "Angular" })">
+            EventEmitter
+        </a>
+
+        @* <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("InputOutput", "InputOutputCommunication") ? "active" : "")"
+           href="@Url.Action("InputOutputCommunication", "InputOutput", new { area = "Angular" })">
+            Input & Output Communication
+        </a> *@
+
+
+        <!-- ===================================================== -->
+        <!-- MODULE 10 -->
+        <!-- ===================================================== -->
+
+        <div class="list-group-item angular-module-title">
+            10. Lifecycle Hooks
+        </div>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("LifecycleHooks", "Index") ? "active" : "")"
+           href="@Url.Action("Index", "LifecycleHooks", new { area = "Angular" })">
+            Lifecycle Hooks Introduction
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("LifecycleHooks", "OnInit") ? "active" : "")"
+           href="@Url.Action("OnInit", "LifecycleHooks", new { area = "Angular" })">
+            ngOnInit
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("LifecycleHooks", "OnChanges") ? "active" : "")"
+           href="@Url.Action("OnChanges", "LifecycleHooks", new { area = "Angular" })">
+            ngOnChanges
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("LifecycleHooks", "AfterViewInit") ? "active" : "")"
+           href="@Url.Action("AfterViewInit", "LifecycleHooks", new { area = "Angular" })">
+            ngAfterViewInit
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("LifecycleHooks", "OnDestroy") ? "active" : "")"
+           href="@Url.Action("OnDestroy", "LifecycleHooks", new { area = "Angular" })">
+            ngOnDestroy
+        </a>
+
+
+        <!-- ===================================================== -->
+        <!-- MODULE 11 -->
+        <!-- ===================================================== -->
+
+        <div class="list-group-item angular-module-title">
+            11. Services
+        </div>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Services", "Index") ? "active" : "")"
+           href="@Url.Action("Index", "Services", new { area = "Angular" })">
+            Services Introduction
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Services", "CreatingServices") ? "active" : "")"
+           href="@Url.Action("CreatingServices", "Services", new { area = "Angular" })">
+            Creating Angular Services
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Services", "UsingServices") ? "active" : "")"
+           href="@Url.Action("UsingServices", "Services", new { area = "Angular" })">
+            Using Services in Components
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Services", "SharingData") ? "active" : "")"
+           href="@Url.Action("SharingData", "Services", new { area = "Angular" })">
+            Sharing Data Through Services
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Services", "ServiceScope") ? "active" : "")"
+           href="@Url.Action("ServiceScope", "Services", new { area = "Angular" })">
+            Service Scope
+        </a>
+
+
+        <!-- ===================================================== -->
+        <!-- MODULE 12 -->
+        <!-- ===================================================== -->
+
+        <div class="list-group-item angular-module-title">
+            12. Dependency Injection
+        </div>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("DependencyInjection", "Index") ? "active" : "")"
+           href="@Url.Action("Index", "DependencyInjection", new { area = "Angular" })">
+            Dependency Injection Introduction
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("DependencyInjection", "InjectingDependencies") ? "active" : "")"
+           href="@Url.Action("InjectingDependencies", "DependencyInjection", new { area = "Angular" })">
+            Injecting Dependencies
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("DependencyInjection", "InjectionToken") ? "active" : "")"
+           href="@Url.Action("InjectionToken", "DependencyInjection", new { area = "Angular" })">
+            InjectionToken
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("DependencyInjection", "Providers") ? "active" : "")"
+           href="@Url.Action("Providers", "DependencyInjection", new { area = "Angular" })">
+            Provider Configuration
+        </a>
+
+
+        <!-- ===================================================== -->
+        <!-- MODULE 13 -->
+        <!-- ===================================================== -->
+
+        <div class="list-group-item angular-module-title">
+            13. Routing
+        </div>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Routing", "Index") ? "active" : "")"
+           href="@Url.Action("Index", "Routing", new { area = "Angular" })">
+            Routing Introduction
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Routing", "RouteConfiguration") ? "active" : "")"
+           href="@Url.Action("RouteConfiguration", "Routing", new { area = "Angular" })">
+            Route Configuration
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Routing", "Navigation") ? "active" : "")"
+           href="@Url.Action("Navigation", "Routing", new { area = "Angular" })">
+            RouterLink & Navigation
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Routing", "RouteParameters") ? "active" : "")"
+           href="@Url.Action("RouteParameters", "Routing", new { area = "Angular" })">
+            Route Parameters
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Routing", "ChildRoutes") ? "active" : "")"
+           href="@Url.Action("ChildRoutes", "Routing", new { area = "Angular" })">
+            Child Routes
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Routing", "RouteGuards") ? "active" : "")"
+           href="@Url.Action("RouteGuards", "Routing", new { area = "Angular" })">
+            Route Guards
+        </a>
+
+
+        <!-- ===================================================== -->
+        <!-- MODULE 14 -->
+        <!-- ===================================================== -->
+
+        <div class="list-group-item angular-module-title">
+            14. Forms
+        </div>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Forms", "Index") ? "active" : "")"
+           href="@Url.Action("Index", "Forms", new { area = "Angular" })">
+            Angular Forms Introduction
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Forms", "TemplateDrivenForms") ? "active" : "")"
+           href="@Url.Action("TemplateDrivenForms", "Forms", new { area = "Angular" })">
+            Template-Driven Forms
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Forms", "ReactiveForms") ? "active" : "")"
+           href="@Url.Action("ReactiveForms", "Forms", new { area = "Angular" })">
+            Reactive Forms
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Forms", "FormValidation") ? "active" : "")"
+           href="@Url.Action("FormValidation", "Forms", new { area = "Angular" })">
+            Form Validation
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Forms", "FormSubmission") ? "active" : "")"
+           href="@Url.Action("FormSubmission", "Forms", new { area = "Angular" })">
+            Form Submission & Error Handling
+        </a>
+
+
+        <!-- ===================================================== -->
+        <!-- MODULE 15 -->
+        <!-- ===================================================== -->
+
+        <div class="list-group-item angular-module-title">
+            15. HttpClient
+        </div>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("HttpClient", "Index") ? "active" : "")"
+           href="@Url.Action("Index", "HttpClient", new { area = "Angular" })">
+            HttpClient Introduction
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("HttpClient", "Configuration") ? "active" : "")"
+           href="@Url.Action("Configuration", "HttpClient", new { area = "Angular" })">
+            Configuring HttpClient
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("HttpClient", "GetRequest") ? "active" : "")"
+           href="@Url.Action("GetRequest", "HttpClient", new { area = "Angular" })">
+            GET Request
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("HttpClient", "HttpMethods") ? "active" : "")"
+           href="@Url.Action("HttpMethods", "HttpClient", new { area = "Angular" })">
+            POST, PUT & DELETE Requests
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("HttpClient", "HeadersAndParameters") ? "active" : "")"
+           href="@Url.Action("HeadersAndParameters", "HttpClient", new { area = "Angular" })">
+            Headers & Parameters
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("HttpClient", "ErrorHandling") ? "active" : "")"
+           href="@Url.Action("ErrorHandling", "HttpClient", new { area = "Angular" })">
+            HTTP Error Handling
+        </a>
+
+
+        <!-- ===================================================== -->
+        <!-- MODULE 16 -->
+        <!-- ===================================================== -->
+
+        <div class="list-group-item angular-module-title">
+            16. Observables
+        </div>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Observables", "Index") ? "active" : "")"
+           href="@Url.Action("Index", "Observables", new { area = "Angular" })">
+            Observables Introduction
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Observables", "Subscription") ? "active" : "")"
+           href="@Url.Action("Subscription", "Observables", new { area = "Angular" })">
+            Creating & Subscribing to Observables
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Observables", "DataStreams") ? "active" : "")"
+           href="@Url.Action("DataStreams", "Observables", new { area = "Angular" })">
+            Observable Data Streams
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Observables", "Operators") ? "active" : "")"
+           href="@Url.Action("Operators", "Observables", new { area = "Angular" })">
+            Observable Operators
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("Observables", "Unsubscribe") ? "active" : "")"
+           href="@Url.Action("Unsubscribe", "Observables", new { area = "Angular" })">
+            Subscription Management
+        </a>
+
+
+        <!-- ===================================================== -->
+        <!-- MODULE 17 -->
+        <!-- ===================================================== -->
+
+        <div class="list-group-item angular-module-title">
+            17. RxJS
+        </div>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("RxJS", "Index") ? "active" : "")"
+           href="@Url.Action("Index", "RxJS", new { area = "Angular" })">
+            RxJS Introduction
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("RxJS", "Operators") ? "active" : "")"
+           href="@Url.Action("Operators", "RxJS", new { area = "Angular" })">
+            RxJS Operators
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("RxJS", "TransformationFiltering") ? "active" : "")"
+           href="@Url.Action("TransformationFiltering", "RxJS", new { area = "Angular" })">
+            Transformation & Filtering
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("RxJS", "CombiningObservables") ? "active" : "")"
+           href="@Url.Action("CombiningObservables", "RxJS", new { area = "Angular" })">
+            Combining Observables
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("RxJS", "HigherOrderMapping") ? "active" : "")"
+           href="@Url.Action("HigherOrderMapping", "RxJS", new { area = "Angular" })">
+            Higher-Order Mapping
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("RxJS", "Subjects") ? "active" : "")"
+           href="@Url.Action("Subjects", "RxJS", new { area = "Angular" })">
+            Subjects
+        </a>
+
+
+        <!-- ===================================================== -->
+        <!-- MODULE 18 -->
+        <!-- ===================================================== -->
+
+        <div class="list-group-item angular-module-title">
+            18. API Integration
+        </div>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("APIIntegration", "Index") ? "active" : "")"
+           href="@Url.Action("Index", "APIIntegration", new { area = "Angular" })">
+            API Integration Introduction
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("APIIntegration", "ConnectingAPI") ? "active" : "")"
+           href="@Url.Action("ConnectingAPI", "APIIntegration", new { area = "Angular" })">
+            Connecting Angular with REST API
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("APIIntegration", "ConsumingAPI") ? "active" : "")"
+           href="@Url.Action("ConsumingAPI", "APIIntegration", new { area = "Angular" })">
+            Consuming API Data
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("APIIntegration", "CRUDIntegration") ? "active" : "")"
+           href="@Url.Action("CRUDIntegration", "APIIntegration", new { area = "Angular" })">
+            CRUD API Integration
+        </a>
+
+        <a class="list-group-item list-group-item-action angular-topic-link @(IsActive("APIIntegration", "ResponseHandling") ? "active" : "")"
+           href="@Url.Action("ResponseHandling", "APIIntegration", new { area = "Angular" })">
+            API Response & Error Handling
+        </a>
+
+
+    </div>
+
+</div>

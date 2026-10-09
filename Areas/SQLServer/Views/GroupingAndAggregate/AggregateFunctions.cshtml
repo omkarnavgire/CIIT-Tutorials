@@ -1,0 +1,493 @@
+﻿@{
+    ViewData["Title"] = "Aggregate Functions - SQL Server";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- =========================
+         PAGE HEADER
+    ========================== -->
+
+    <div class="mb-5">
+
+        <h1 class="fw-bold">
+            Aggregate Functions
+        </h1>
+
+        <p class="lead text-muted">
+            Aggregate functions perform calculations on multiple rows
+            and return a single summarized result.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         1. INTRODUCTION
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            What are Aggregate Functions?
+        </h2>
+
+        <p>
+            Aggregate functions in SQL Server are used to perform
+            calculations on a set of rows and return one summarized
+            value.
+        </p>
+
+        <p>
+            They are commonly used with the
+            <strong>GROUP BY</strong> clause when we need
+            department-wise, category-wise, or other grouped results.
+        </p>
+
+        <div class="alert alert-info">
+
+            <strong>In simple words:</strong>
+
+            <p class="mb-0 mt-2">
+                Aggregate functions take multiple records as input
+                and produce a calculated result.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         2. COMMON FUNCTIONS
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Common Aggregate Functions
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>Function</th>
+                        <th>Purpose</th>
+                        <th>Example</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td><strong>COUNT()</strong></td>
+                        <td>Counts rows or values.</td>
+                        <td>COUNT(*)</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>SUM()</strong></td>
+                        <td>Calculates the total.</td>
+                        <td>SUM(Salary)</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>AVG()</strong></td>
+                        <td>Calculates the average.</td>
+                        <td>AVG(Salary)</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>MIN()</strong></td>
+                        <td>Returns the smallest value.</td>
+                        <td>MIN(Salary)</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>MAX()</strong></td>
+                        <td>Returns the largest value.</td>
+                        <td>MAX(Salary)</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         3. SAMPLE TABLE
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Example Table
+        </h2>
+
+        <p>
+            Consider the following <strong>Employees</strong> table:
+        </p>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-primary">
+
+                    <tr>
+                        <th>EmployeeId</th>
+                        <th>EmployeeName</th>
+                        <th>Department</th>
+                        <th>Salary</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>1</td>
+                        <td>Rahul</td>
+                        <td>IT</td>
+                        <td>50000</td>
+                    </tr>
+
+                    <tr>
+                        <td>2</td>
+                        <td>Priya</td>
+                        <td>HR</td>
+                        <td>40000</td>
+                    </tr>
+
+                    <tr>
+                        <td>3</td>
+                        <td>Amit</td>
+                        <td>IT</td>
+                        <td>60000</td>
+                    </tr>
+
+                    <tr>
+                        <td>4</td>
+                        <td>Neha</td>
+                        <td>HR</td>
+                        <td>45000</td>
+                    </tr>
+
+                    <tr>
+                        <td>5</td>
+                        <td>Rohit</td>
+                        <td>Sales</td>
+                        <td>35000</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         4. COUNT
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            COUNT()
+        </h2>
+
+        <p>
+            COUNT() is used to count rows or non-NULL values
+            in a column.
+        </p>
+
+        <pre class="bg-light p-4 rounded border"><code>SELECT COUNT(*) AS TotalEmployees
+FROM Employees;</code></pre>
+
+        <p>
+            The above query returns the total number of employees.
+        </p>
+
+        <div class="alert alert-secondary">
+
+            <strong>Result:</strong>
+
+            <p class="mb-0 mt-2">
+                TotalEmployees = 5
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         5. SUM
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            SUM()
+        </h2>
+
+        <p>
+            SUM() calculates the total of numeric values.
+        </p>
+
+        <pre class="bg-light p-4 rounded border"><code>SELECT SUM(Salary) AS TotalSalary
+FROM Employees;</code></pre>
+
+        <p>
+            This query calculates the total salary of all employees.
+        </p>
+
+        <div class="alert alert-secondary">
+
+            <strong>Result:</strong>
+
+            <p class="mb-0 mt-2">
+                TotalSalary = 230000
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         6. AVG
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            AVG()
+        </h2>
+
+        <p>
+            AVG() calculates the average value of a numeric column.
+        </p>
+
+        <pre class="bg-light p-4 rounded border"><code>SELECT AVG(Salary) AS AverageSalary
+FROM Employees;</code></pre>
+
+        <p>
+            This query calculates the average salary of all employees.
+        </p>
+
+        <div class="alert alert-secondary">
+
+            <strong>Result:</strong>
+
+            <p class="mb-0 mt-2">
+                AverageSalary = 46000
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         7. MIN
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            MIN()
+        </h2>
+
+        <p>
+            MIN() returns the smallest value from a column.
+        </p>
+
+        <pre class="bg-light p-4 rounded border"><code>SELECT MIN(Salary) AS MinimumSalary
+FROM Employees;</code></pre>
+
+        <div class="alert alert-secondary">
+
+            <strong>Result:</strong>
+
+            <p class="mb-0 mt-2">
+                MinimumSalary = 35000
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         8. MAX
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            MAX()
+        </h2>
+
+        <p>
+            MAX() returns the largest value from a column.
+        </p>
+
+        <pre class="bg-light p-4 rounded border"><code>SELECT MAX(Salary) AS MaximumSalary
+FROM Employees;</code></pre>
+
+        <div class="alert alert-secondary">
+
+            <strong>Result:</strong>
+
+            <p class="mb-0 mt-2">
+                MaximumSalary = 60000
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         9. GROUP BY WITH AGGREGATE
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Aggregate Functions with GROUP BY
+        </h2>
+
+        <p>
+            Aggregate functions are frequently combined with
+            GROUP BY to calculate results for each group.
+        </p>
+
+        <pre class="bg-light p-4 rounded border"><code>SELECT
+    Department,
+    COUNT(*) AS EmployeeCount,
+    SUM(Salary) AS TotalSalary,
+    AVG(Salary) AS AverageSalary,
+    MIN(Salary) AS MinimumSalary,
+    MAX(Salary) AS MaximumSalary
+FROM Employees
+GROUP BY Department;</code></pre>
+
+    </section>
+
+
+    <!-- =========================
+         10. IMPORTANT POINTS
+    ========================== -->
+
+    <section class="mb-5">
+
+        <div class="alert alert-warning">
+
+            <h3 class="fw-bold">
+                Important Points
+            </h3>
+
+            <ul class="mb-0">
+
+                <li class="mb-2">
+                    Aggregate functions work on multiple rows.
+                </li>
+
+                <li class="mb-2">
+                    They return a summarized result.
+                </li>
+
+                <li class="mb-2">
+                    COUNT() counts records or values.
+                </li>
+
+                <li class="mb-2">
+                    SUM() calculates totals.
+                </li>
+
+                <li class="mb-2">
+                    AVG() calculates averages.
+                </li>
+
+                <li class="mb-2">
+                    MIN() returns the smallest value.
+                </li>
+
+                <li>
+                    MAX() returns the largest value.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         11. SUMMARY
+    ========================== -->
+
+    <section class="mb-5">
+
+        <div class="alert alert-success">
+
+            <h3 class="fw-bold">
+                Summary
+            </h3>
+
+            <p class="mb-0">
+                Aggregate functions are used to perform calculations
+                on multiple rows and return summarized information.
+                The most commonly used aggregate functions in SQL
+                Server are COUNT(), SUM(), AVG(), MIN() and MAX().
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         PREVIOUS / NEXT
+    ========================== -->
+
+    <div class="d-flex justify-content-between align-items-center
+        mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/GroupingAndAggregate/Index"
+           class="btn btn-outline-primary">
+
+            ← Previous: GROUP BY
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/GroupingAndAggregate/CountFunction"
+           class="btn btn-primary">
+
+            Next: COUNT() →
+
+        </a>
+
+    </div>
+
+</div>

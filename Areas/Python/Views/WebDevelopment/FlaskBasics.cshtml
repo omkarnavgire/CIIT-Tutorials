@@ -1,0 +1,754 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Python Flask Basics";
+}
+
+<style>
+    #python-flask-basics-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #python-flask-basics-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #python-flask-basics-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #python-flask-basics-page .diagram-box {
+        background: #ffffff;
+        border: 2px solid #6f42c1;
+        border-radius: 10px;
+        padding: 18px;
+        text-align: center;
+        height: 100%;
+    }
+
+        #python-flask-basics-page .diagram-box h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        #python-flask-basics-page .diagram-box p {
+            margin-bottom: 0;
+            font-size: 14px;
+            color: #495057;
+        }
+
+    #python-flask-basics-page .diagram-arrow {
+        text-align: center;
+        font-size: 28px;
+        font-weight: 700;
+        color: #6f42c1;
+        padding: 8px 0;
+    }
+
+    #python-flask-basics-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #python-flask-basics-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+        }
+</style>
+
+<main id="python-flask-basics-page" class="container py-5">
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+                <h1 class="fw-bold">Flask Basics</h1>
+
+                <p class="lead">
+                    Flask is a lightweight Python web framework used to
+                    create web applications and backend services.
+                </p>
+            </div>
+
+            <!-- WHAT IS FLASK -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">What is Flask?</h2>
+
+                <p>
+                    Flask is a lightweight and flexible web framework
+                    written in Python. It provides the basic tools required
+                    to build web applications.
+                </p>
+
+                <p>
+                    Flask is easy to understand because it does not force a
+                    large project structure. Developers can start with a
+                    small application and add more features as the project grows.
+                </p>
+
+                <div class="concept-box mt-3">
+                    <h5 class="fw-bold">Simple Definition</h5>
+
+                    <p class="mb-0">
+                        <strong>Flask</strong> is a Python framework used
+                        to create websites, web applications and APIs.
+                    </p>
+                </div>
+            </div>
+
+            <!-- FEATURES -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Features of Flask</h2>
+
+                <div class="row g-3 mt-2">
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Lightweight</h5>
+
+                            <p class="mb-0">
+                                Flask provides the basic components required
+                                for web development without unnecessary complexity.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Easy to Learn</h5>
+
+                            <p class="mb-0">
+                                Its simple structure makes Flask suitable
+                                for beginners.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Flexible</h5>
+
+                            <p class="mb-0">
+                                Developers can choose libraries and
+                                project structures according to requirements.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>API Support</h5>
+
+                            <p class="mb-0">
+                                Flask can be used to create backend APIs
+                                and web services.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- FLASK FLOW -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Flask Request Flow</h2>
+
+                <p>
+                    A Flask application receives a request, matches it
+                    with a route, executes a Python function, and returns
+                    a response.
+                </p>
+
+                <div class="row g-3 mt-3">
+
+                    <div class="col-md-3">
+                        <div class="diagram-box">
+                            <h5>Browser</h5>
+
+                            <p>
+                                User sends a request to a URL.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-1 d-flex align-items-center justify-content-center">
+                        <div class="diagram-arrow">→</div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="diagram-box">
+                            <h5>Flask Route</h5>
+
+                            <p>
+                                Flask finds the matching route.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-1 d-flex align-items-center justify-content-center">
+                        <div class="diagram-arrow">→</div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="diagram-box">
+                            <h5>Python Function</h5>
+
+                            <p>
+                                The function processes the request
+                                and returns the response.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- INSTALLATION -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Installing Flask</h2>
+
+                <p>
+                    Flask can be installed using Python's package manager,
+                    <strong>pip</strong>.
+                </p>
+
+                <pre><code>pip install flask</code></pre>
+
+                <div class="alert alert-info mt-3">
+                    <strong>Note:</strong>
+                    Installing Flask inside a virtual environment is
+                    recommended for project-based development.
+                </div>
+            </div>
+
+            <!-- FIRST APPLICATION -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Creating Your First Flask Application</h2>
+
+                <p>
+                    Create a Python file named <strong>app.py</strong>
+                    and write the following code:
+                </p>
+
+                <pre><code>from flask import Flask
+
+app = Flask(__name__)
+
+&#64;app.route("/")
+def home():
+    return "Hello from Flask"
+
+if __name__ == "__main__":
+    app.run(debug=True)</code></pre>
+            </div>
+
+            <!-- CODE EXPLANATION -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Understanding the Code</h2>
+
+                <div class="row g-3 mt-2">
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+
+                            <h5>Flask Import</h5>
+
+                            <pre><code>from flask import Flask</code></pre>
+
+                            <p>
+                                Imports the Flask class from the Flask package.
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+
+                            <h5>Application Object</h5>
+
+                            <pre><code>app = Flask(__name__)</code></pre>
+
+                            <p>
+                                Creates the Flask application object.
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+
+                            <h5>Route</h5>
+
+                            <pre><code>&#64;app.route("/")</code></pre>
+
+                            <p>
+                                Connects the root URL with a Python function.
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+
+                            <h5>Run Application</h5>
+
+                            <pre><code>app.run(debug=True)</code></pre>
+
+                            <p>
+                                Starts the Flask development server.
+                            </p>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- BASIC ROUTE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Creating a Basic Route</h2>
+
+                <p>
+                    A route connects a URL to a Python function.
+                    When a user visits that URL, the function executes.
+                </p>
+
+                <pre><code>from flask import Flask
+
+app = Flask(__name__)
+
+&#64;app.route("/")
+def home():
+    return "Home Page"
+
+if __name__ == "__main__":
+    app.run(debug=True)</code></pre>
+            </div>
+
+            <!-- MULTIPLE ROUTES -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Creating Multiple Routes</h2>
+
+                <p>
+                    A Flask application can have multiple routes for
+                    different pages.
+                </p>
+
+                <pre><code>from flask import Flask
+
+app = Flask(__name__)
+
+&#64;app.route("/")
+def home():
+    return "Home Page"
+
+&#64;app.route("/about")
+def about():
+    return "About Page"
+
+&#64;app.route("/contact")
+def contact():
+    return "Contact Page"
+
+if __name__ == "__main__":
+    app.run(debug=True)</code></pre>
+            </div>
+
+            <!-- ROUTE TABLE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Understanding Flask Routes</h2>
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered">
+
+                        <thead class="table-light">
+                            <tr>
+                                <th>URL</th>
+                                <th>Function</th>
+                                <th>Purpose</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>/</td>
+                                <td>home()</td>
+                                <td>Displays the home page</td>
+                            </tr>
+
+                            <tr>
+                                <td>/about</td>
+                                <td>about()</td>
+                                <td>Displays the about page</td>
+                            </tr>
+
+                            <tr>
+                                <td>/contact</td>
+                                <td>contact()</td>
+                                <td>Displays the contact page</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+            </div>
+
+            <!-- RUN APPLICATION -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Running the Flask Application</h2>
+
+                <p>
+                    Open the terminal inside the project folder and run:
+                </p>
+
+                <pre><code>python app.py</code></pre>
+
+                <p class="mt-3">
+                    Flask starts a local development server.
+                </p>
+
+                <pre><code>http://127.0.0.1:5000/</code></pre>
+
+                <div class="alert alert-success mt-3">
+                    Open the URL in a browser to view your Flask application.
+                </div>
+            </div>
+
+            <!-- PRACTICAL EXAMPLE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">
+                    Example: CIIT Training Institute 👀🤓
+                </h2>
+
+                <p>
+                    The following example creates simple routes for a
+                    training institute.
+                </p>
+
+                <pre><code>from flask import Flask
+
+app = Flask(__name__)
+
+&#64;app.route("/")
+def home():
+    return "Welcome to CIIT Training Institute"
+
+&#64;app.route("/courses")
+def courses():
+    return "Python | .NET | Java | Data Science"
+
+&#64;app.route("/contact")
+def contact():
+    return "Contact CIIT Training Institute"
+
+if __name__ == "__main__":
+    app.run(debug=True)</code></pre>
+            </div>
+
+            <!-- DEBUG MODE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Debug Mode</h2>
+
+                <p>
+                    Debug mode is useful while developing a Flask application.
+                    It helps display development errors and reload the
+                    application when source code changes.
+                </p>
+
+                <pre><code>app.run(debug=True)</code></pre>
+
+                <div class="alert alert-warning mt-3">
+
+                    <strong>Important:</strong>
+                    Debug mode should be used for development and not
+                    treated as a production configuration.
+
+                </div>
+            </div>
+
+            <!-- REQUEST AND RESPONSE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Request and Response</h2>
+
+                <div class="row g-3 mt-2">
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+
+                            <h5>Request</h5>
+
+                            <p>
+                                A request is sent by the browser or another
+                                client to the Flask server.
+                            </p>
+
+                            <pre><code>GET /about</code></pre>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+
+                            <h5>Response</h5>
+
+                            <p>
+                                Flask processes the request and sends
+                                a response back to the client.
+                            </p>
+
+                            <pre><code>About Page</code></pre>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- IMPORTANT CONCEPTS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Important Flask Concepts</h2>
+
+                <div class="row g-3 mt-2">
+
+                    <div class="col-md-4">
+                        <div class="info-card">
+                            <h5>Application</h5>
+
+                            <p class="mb-0">
+                                Represents the Flask web application.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="info-card">
+                            <h5>Route</h5>
+
+                            <p class="mb-0">
+                                Connects a URL to a Python function.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="info-card">
+                            <h5>Response</h5>
+
+                            <p class="mb-0">
+                                Data returned to the browser or client.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="info-card">
+                            <h5>Request</h5>
+
+                            <p class="mb-0">
+                                Data sent by a client to the server.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="info-card">
+                            <h5>Server</h5>
+
+                            <p class="mb-0">
+                                Runs the backend Flask application.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="info-card">
+                            <h5>URL</h5>
+
+                            <p class="mb-0">
+                                Identifies a route or resource in the application.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- BEST PRACTICES -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Best Practices</h2>
+
+                <div class="concept-box">
+
+                    <ul class="mb-0">
+
+                        <li>
+                            Use a virtual environment for Flask projects.
+                        </li>
+
+                        <li>
+                            Use meaningful route and function names.
+                        </li>
+
+                        <li>
+                            Keep application logic organized.
+                        </li>
+
+                        <li>
+                            Validate user input before processing it.
+                        </li>
+
+                        <li>
+                            Keep sensitive information outside source code.
+                        </li>
+
+                        <li>
+                            Use debug mode only during development.
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div>
+
+            <!-- COMMON MISTAKES -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Common Mistakes</h2>
+
+                <div class="alert alert-warning">
+
+                    <ul class="mb-0">
+
+                        <li>
+                            Flask package is not installed.
+                        </li>
+
+                        <li>
+                            Wrong URL is used in the browser.
+                        </li>
+
+                        <li>
+                            Incorrect route syntax.
+                        </li>
+
+                        <li>
+                            Forgetting to run the Python application.
+                        </li>
+
+                        <li>
+                            Incorrect indentation in Python code.
+                        </li>
+
+                        <li>
+                            Using development settings carelessly for production.
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div>
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Practice Exercise</h2>
+
+                <div class="concept-box">
+
+                    <p>
+                        Create a Flask application with these routes:
+                    </p>
+
+                    <ol>
+
+                        <li>
+                            <strong>/</strong> → "Welcome to Python"
+                        </li>
+
+                        <li>
+                            <strong>/student</strong> → "Student Page"
+                        </li>
+
+                        <li>
+                            <strong>/courses</strong> → "Python Courses"
+                        </li>
+
+                        <li>
+                            <strong>/contact</strong> → "Contact Page"
+                        </li>
+
+                    </ol>
+
+                    <p class="mb-0">
+                        Run the application and test every route in the browser.
+                    </p>
+
+                </div>
+            </div>
+
+          <!-- SUMMARY -->
+<div class="alert alert-info mt-4">
+
+    <h2 class="h4 fw-bold">
+        Summary
+    </h2>
+
+    <p class="mb-0">
+
+        Flask is a lightweight Python web framework used to build web
+        applications and APIs. Flask applications are created using the
+        <code>Flask</code> class, and routes connect URLs with Python
+        functions. A Flask application can contain multiple routes, while
+        the <code>app.run()</code> method starts the development server.
+        Debug mode is useful during development, and Flask provides a
+        simple and flexible way to develop web applications.
+
+    </p>
+
+</div>
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+
+                <a class="btn btn-outline-secondary"
+                   href="@Url.Action("Index", "WebDevelopment", new { area = "Python" })">
+                    ← Previous: Topic
+                </a>
+
+                <a class="btn btn-primary"
+                   href="@Url.Action("FastAPIBasics", "WebDevelopment", new { area = "Python" })">
+                    Next: Topic →
+                </a>
+
+            </div>
+
+        </section>
+    </div>
+</main>

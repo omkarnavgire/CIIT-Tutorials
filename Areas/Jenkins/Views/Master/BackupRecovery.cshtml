@@ -1,0 +1,189 @@
+@{
+    Layout = "~/Areas/Jenkins/Views/Shared/JenkinsLayout.cshtml";
+    ViewData["Title"] = "Backup and Disaster Recovery";
+}
+
+<style>
+    #backup-and-disaster-recovery-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #backup-and-disaster-recovery-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #backup-and-disaster-recovery-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #backup-and-disaster-recovery-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #backup-and-disaster-recovery-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+    #backup-and-disaster-recovery-page .example-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+    }
+</style>
+
+<main id="backup-and-disaster-recovery-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/Jenkins/Views/Shared/JenkinsTopics.cshtml")
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+                <h1 class="fw-bold">Backup and Disaster Recovery</h1>
+                <p class="lead">
+                    Protect system state, project configurations, and build histories by implementing strict backup scopes, automated snapshot retention, and high-availability failover architectures.
+                </p>
+            </div>
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">What is Backup and Disaster Recovery in Jenkins?</h2>
+                <p>
+                    Unplanned server dropouts, corrupted plug-in updates, and human infrastructure mistakes can bring corporate software delivery pipelines to a total standstill. <strong>Backup and Disaster Recovery (DR)</strong> ensures that your Jenkins state can be completely rebuilt or failed over to an alternate availability zone with minimal Recovery Point Objective (RPO) data loss.
+                </p>
+                <p>
+                    Effective enterprise strategies focus entirely on capturing the `JENKINS_HOME` state directory while ignoring high-volume, temporary build artifacts and workspace caches. By separating code-based state elements (like configurations and encryption keys) from temporary cache folders, recovery structures stay thin, predictable, and rapidly deployable.
+                </p>
+                <div class="alert alert-info">
+                    <strong>Simple Definition:</strong> Backup and Disaster Recovery is the operational framework of capturing scheduling metadata, system keys, and core XML configurations while setting up cold or warm standby controllers to guarantee quick recovery during systemic network outages.
+                </div>
+            </div>
+
+            <!-- KEY CONCEPTS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Key Data Retention Pillars</h2>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Understanding JENKINS_HOME</h5>
+                            <p class="mb-0">All core data lives in `JENKINS_HOME`. Critical backup scopes must include the `config.xml` files, the `secrets/` sub-folder containing system decryption credentials, and the `users/` and `plugins/` definitions.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>ThinBackup Strategy</h5>
+                            <p class="mb-0">Avoid massive storage costs. A "ThinBackup" skips volatile node build workspaces, transient caching directories, and heavy output artifact logs, capturing only structural layout configuration properties.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Storage Volume Snapshots</h5>
+                            <p class="mb-0">Cloud-native solutions leverage cloud storage blocks (e.g., AWS EBS/EFS snapshots, Azure Managed Disks) to take point-in-time, incremental storage volume backups automatically without disrupting runtime performance.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>RTO and RPO Targets</h5>
+                            <p class="mb-0">Define organizational bounds. Recovery Time Objective (RTO) measures how long your platform can stay down during an emergency, while Recovery Point Objective (RPO) targets dictate how much data can safely be lost between snapshots.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXAMPLE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Practical Backup Engine Blueprint</h2>
+                <p>
+                    Below is an example showing an enterprise-grade automation task designed to bundle core XML files, ignore large cache paths, and upload the finalized thin state to secure offsite cloud object storage:
+                </p>
+                <pre><code>pipeline {
+    agent { label 'infra-backup-runner' }
+    options {
+        // Enforce strict timeout metrics for state capture operations
+        timeout(time: 1, unit: 'HOURS')
+    }
+    environment {
+        BACKUP_TARGET_DIR = '/var/jenkins_home'
+        OUTPUT_ARCHIVE     = "jenkins-thin-backup-\${env.BUILD_NUMBER}.tar.gz"
+    }
+    stages {
+        stage('Isolate Configurations') {
+            steps {
+                echo 'Compressing core system XML layout files and cryptographic key rings...'
+                // Exclude massive workspace caches, build build logs, and temporary tooling folders
+                sh '''
+                    tar --exclude='*/workspace*' \
+                        --exclude='*/caches*' \
+                        --exclude='*/plugins/wrapped*' \
+                        -czf \${OUTPUT_ARCHIVE} \
+                        -C \${BACKUP_TARGET_DIR} \
+                        config.xml secrets/ users/ plugins/ jobs/
+                '''
+            }
+        }
+        stage('Offsite Replication') {
+            steps {
+                echo 'Replicating archive payload to cold storage buckets...'
+                // sh "aws s3 cp \${OUTPUT_ARCHIVE} s3://enterprise-jenkins-backups/backups/\${OUTPUT_ARCHIVE}"
+            }
+        }
+    }
+    post {
+        always {
+            echo 'Purging temporary host workspace storage files...'
+            cleanWs()
+        }
+    }
+}</code></pre>
+            </div>
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Disaster Recovery Practice Exercise</h2>
+                <ol>
+                    <li class="mb-2"><strong>Locate Key Configuration Files:</strong> Connect to your underlying controller server terminal path and verify the position of your `config.xml` and `secrets/master.key` assets.</li>
+                    <li class="mb-2"><strong>Configure the ThinBackup Plugin:</strong> Navigate to <em>Manage Jenkins</em>, install the <strong>ThinBackup Plugin</strong>, open its settings workspace, and specify a target folder destination.</li>
+                    <li class="mb-2"><strong>Execute a Manual Backup Test:</strong> Click the <strong>Backup Now</strong> manual trigger loop using the plugin UI dashboard and confirm that no build workspace items are inside the output folder.</li>
+                    <li><strong>Simulate an Engine Recovery:</strong> Build a local mock fallback directory, extract your generated thin backup file into it, and verify that all system settings load perfectly on initialization.</li>
+                </ol>
+            </div>
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+                <h2 class="h4 fw-bold">Summary</h2>
+                <p class="mb-0">You have completed the <strong>Backup and Disaster Recovery</strong> module. You are now prepared to build offsite storage strategies, set up thin metadata capture routines, and plan cluster failover paths to maintain continuous pipeline availability. Proceed to the next module to monitor and optimize server performance.</p>
+            </div>
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+                <a class="btn btn-outline-primary" href="@Url.Action("JCasC", "Master", new { area = "Jenkins" })">← Previous: Jenkins Configuration as Code</a>
+                <a class="btn btn-primary" href="@Url.Action("Performance", "Master", new { area = "Jenkins" })">Next: Performance and Troubleshooting →</a>
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

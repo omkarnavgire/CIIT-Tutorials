@@ -1,0 +1,570 @@
+﻿@{
+    ViewData["Title"] = "Introduction to SQL Server";
+}
+
+<div class="card border-0 shadow-sm">
+
+    <div class="card-body p-4 p-lg-5">
+
+        <!-- PAGE HEADER -->
+        <div class="mb-4">
+
+            <h2 class="fw-bold mb-3">
+                Introduction to SQL Server
+            </h2>
+
+            <p class="lead text-muted mb-0">
+                Learn the fundamentals of SQL Server and understand how
+                relational databases are used to store, manage and retrieve data.
+            </p>
+
+        </div>
+
+
+        <!-- WHAT IS SQL SERVER -->
+        <section class="mb-5">
+
+            <h3 class="fw-bold mb-3">
+                What is SQL Server?
+            </h3>
+
+            <p>
+                SQL Server is a relational database management system (RDBMS)
+                developed by Microsoft. It is used to store, manage, retrieve
+                and process structured data.
+            </p>
+
+            <p>
+                SQL Server uses <strong>Structured Query Language (SQL)</strong>
+                to communicate with databases. It allows developers and
+                database administrators to create databases, tables, queries,
+                stored procedures and other database objects.
+            </p>
+
+        </section>
+
+
+        <!-- WHY SQL SERVER -->
+        <section class="mb-5">
+
+            <h3 class="fw-bold mb-3">
+                Why Learn SQL Server?
+            </h3>
+
+            <div class="row g-3">
+
+                <div class="col-md-6">
+
+                    <div class="card h-100 border">
+
+                        <div class="card-body">
+
+                            <h5 class="fw-bold">
+                                Reliable Database System
+                            </h5>
+
+                            <p class="text-muted mb-0">
+                                SQL Server provides a reliable platform for
+                                storing and managing structured business data.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-6">
+
+                    <div class="card h-100 border">
+
+                        <div class="card-body">
+
+                            <h5 class="fw-bold">
+                                Powerful SQL Queries
+                            </h5>
+
+                            <p class="text-muted mb-0">
+                                SQL Server supports SQL queries for inserting,
+                                updating, deleting and retrieving data.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-6">
+
+                    <div class="card h-100 border">
+
+                        <div class="card-body">
+
+                            <h5 class="fw-bold">
+                                Security
+                            </h5>
+
+                            <p class="text-muted mb-0">
+                                SQL Server provides authentication, authorization
+                                and security features for protecting database data.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-6">
+
+                    <div class="card h-100 border">
+
+                        <div class="card-body">
+
+                            <h5 class="fw-bold">
+                                Enterprise Support
+                            </h5>
+
+                            <p class="text-muted mb-0">
+                                SQL Server is widely used for business,
+                                enterprise and data-driven applications.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- KEY FEATURES -->
+        <section class="mb-5">
+
+            <h3 class="fw-bold mb-3">
+                Key Features of SQL Server
+            </h3>
+
+            <ul>
+
+                <li class="mb-2">
+                    Relational database management
+                </li>
+
+                <li class="mb-2">
+                    Structured Query Language (SQL) support
+                </li>
+
+                <li class="mb-2">
+                    Data security and authentication
+                </li>
+
+                <li class="mb-2">
+                    Transactions and data integrity
+                </li>
+
+                <li class="mb-2">
+                    Stored procedures
+                </li>
+
+                <li class="mb-2">
+                    Views and functions
+                </li>
+
+                <li class="mb-2">
+                    Triggers
+                </li>
+
+                <li class="mb-2">
+                    Backup and restore
+                </li>
+
+                <li class="mb-2">
+                    Query optimization
+                </li>
+
+            </ul>
+
+        </section>
+
+
+        <!-- SQL SERVER COMPONENTS -->
+        <section class="mb-5">
+
+            <h3 class="fw-bold mb-3">
+                SQL Server Components
+            </h3>
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-striped">
+
+                    <thead class="table-dark">
+
+                        <tr>
+
+                            <th>
+                                Component
+                            </th>
+
+                            <th>
+                                Description
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+
+                            <td>
+                                <strong>Database Engine</strong>
+                            </td>
+
+                            <td>
+                                The core service responsible for storing,
+                                processing and securing data.
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>
+                                <strong>SQL Server Database</strong>
+                            </td>
+
+                            <td>
+                                A collection of tables, views, procedures,
+                                functions and other database objects.
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>
+                                <strong>SQL Server Management Studio</strong>
+                            </td>
+
+                            <td>
+                                A graphical tool used to connect to SQL Server,
+                                write queries and manage databases.
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>
+                                <strong>T-SQL</strong>
+                            </td>
+
+                            <td>
+                                Transact-SQL is Microsoft's extension of SQL
+                                used for programming and database operations.
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- HOW SQL SERVER WORKS -->
+        <section class="mb-5">
+
+            <h3 class="fw-bold mb-3">
+                How SQL Server Works
+            </h3>
+
+            <p>
+                A client application sends a SQL query to SQL Server.
+                SQL Server processes the query and communicates with the
+                database engine to retrieve or modify the required data.
+            </p>
+
+
+            <div class="code-block mb-3">
+
+                <div class="code-lang-tag">
+                    SQL Server
+                </div>
+
+                <pre class="mb-0">
+                                                         <code>Client Application
+                                                                ↓
+                                                            SQL Query
+                                                                ↓
+                                                            SQL Server
+                                                                ↓
+                                                           Database Engine
+                                                                ↓
+                                                            Database
+                                                                ↓
+                                                             Result</code></pre>
+
+            </div>
+
+
+            <p>
+                The Database Engine processes the SQL statement and returns
+                the requested result to the client application.
+            </p>
+
+        </section>
+
+
+        <!-- FIRST SQL EXAMPLE -->
+        <section class="mb-5">
+
+            <h3 class="fw-bold mb-3">
+                Simple SQL Server Query
+            </h3>
+
+            <div class="code-block">
+
+                <div class="code-lang-tag">
+                    SQL
+                </div>
+
+                <pre class="mb-0"><code>CREATE DATABASE CollegeDB;
+
+USE CollegeDB;
+
+CREATE TABLE Students
+(
+    Id INT,
+    Name VARCHAR(100),
+    Age INT
+);
+
+INSERT INTO Students
+VALUES (1, 'Rahul', 21);
+
+SELECT * FROM Students;</code></pre>
+
+            </div>
+
+            <br />
+
+            <h4 class="fw-bold text-dark mb-3">
+                Output
+            </h4>
+
+            <div class="code-block mb-4 shadow-sm">
+
+                <div class="code-lang-tag">
+                    Output
+                </div>
+
+                <pre class="mb-0"><code>Id    Name     Age
+1     Rahul    21</code></pre>
+
+            </div>
+
+        </section>
+
+
+        <!-- EXPLANATION -->
+        <section class="mb-5">
+
+            <h3 class="fw-bold mb-3">
+                Understanding the Query
+            </h3>
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered">
+
+                    <thead class="table-dark">
+
+                        <tr>
+
+                            <th>
+                                SQL Statement
+                            </th>
+
+                            <th>
+                                Purpose
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+
+                            <td>
+                                <code>CREATE DATABASE CollegeDB</code>
+                            </td>
+
+                            <td>
+                                Creates a new database named
+                                <strong>CollegeDB</strong>.
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>
+                                <code>USE CollegeDB</code>
+                            </td>
+
+                            <td>
+                                Selects CollegeDB as the current database.
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>
+                                <code>CREATE TABLE Students</code>
+                            </td>
+
+                            <td>
+                                Creates a Students table with Id, Name and Age
+                                columns.
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>
+                                <code>INSERT INTO Students</code>
+                            </td>
+
+                            <td>
+                                Inserts a new student record into the table.
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>
+                                <code>SELECT * FROM Students</code>
+                            </td>
+
+                            <td>
+                                Retrieves all records from the Students table.
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- SQL SERVER USE CASES -->
+        <section class="mb-5">
+
+            <h3 class="fw-bold mb-3">
+                Where is SQL Server Used?
+            </h3>
+
+            <ul>
+
+                <li class="mb-2">
+                    Enterprise applications
+                </li>
+
+                <li class="mb-2">
+                    Banking and financial systems
+                </li>
+
+                <li class="mb-2">
+                    Web applications
+                </li>
+
+                <li class="mb-2">
+                    Business applications
+                </li>
+
+                <li class="mb-2">
+                    Reporting and analytics
+                </li>
+
+                <li class="mb-2">
+                    Customer management systems
+                </li>
+
+                <li class="mb-2">
+                    Inventory management systems
+                </li>
+
+                <li class="mb-2">
+                    Data-driven applications
+                </li>
+
+            </ul>
+
+        </section>
+
+
+        <!-- SUMMARY -->
+        <section class="mb-4">
+
+            <div class="alert alert-primary border-0">
+
+                <h5 class="fw-bold">
+                    Summary
+                </h5>
+
+                <p class="mb-0">
+                    SQL Server is a powerful relational database management
+                    system used to store, manage and retrieve structured data.
+                    Understanding databases, tables, SQL queries, the Database
+                    Engine and SQL Server Management Studio provides a strong
+                    foundation for learning advanced SQL Server concepts.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- NEXT TOPIC -->
+        <div class="d-flex justify-content-end border-top pt-4">
+
+            <a href="@Url.Action(
+                       "Installation",
+                       "Introduction",
+                       new { area = "SQLServer" }
+                   )"
+               class="btn btn-primary px-4">
+
+                Next <Topic></Topic>
+                <span class="ms-2">→</span>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>

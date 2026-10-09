@@ -1,0 +1,81 @@
+@{
+    ViewData["Title"] = "How to Create the Azure DevOps Project?";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+                <div class="azure-notes-content">
+                    <pre class="azure-notes-text">How to Create the Azure DevOps Project?
+You can start the Azure DevOps project by simply following the steps mentioned below. And
+you can use multiple services to automate the workflow.
+Step 1: Set up a Microsoft Azure DevOps account. by clicking on My Azure DevOps
+Organization
+Step 2: Create an organization with the name of your company or if it is a personal project
+give the name of the organization according to your interest. The organization represents
+the no. of projects that you are going to deal with.
+
+
+
+
+After clicking on create a new organization you can give the name of the organization as
+shown below.
+Your Azure DevOps dashboard will like as shown in the image below.
+
+
+
+
+Step 3: Setup the Azure Repos which is a version control tool by which you push or pull the
+code depending upon your need the version control that is used in Azure Repo is the most
+commonly used Repo which is GIT.
+Step 4: Set up the pipeline for automating the continuous integration and continuous
+deployment by using pipelines. Pipeline plays a major role in DevOps and Azure DevOps
+which will reduce human efforts. You can set up your pipeline by clicking on Create Pipeline
+as shown in the following image.
+
+
+
+
+Step 5: Set up the Azure test plans to perform the automated or manual testing on the
+source code or you can also integrate some automation tools with the Azure test plan as
+shown in the following figure.</pre>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_2_-_Fundamentals_of_DevOps/p03-000.jpg" class="img-fluid rounded shadow-sm" alt="How to Create the Azure DevOps Project? - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_2_-_Fundamentals_of_DevOps/p04-000.jpg" class="img-fluid rounded shadow-sm" alt="How to Create the Azure DevOps Project? - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_2_-_Fundamentals_of_DevOps/p04-001.jpg" class="img-fluid rounded shadow-sm" alt="How to Create the Azure DevOps Project? - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_2_-_Fundamentals_of_DevOps/p05-000.jpg" class="img-fluid rounded shadow-sm" alt="How to Create the Azure DevOps Project? - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_2_-_Fundamentals_of_DevOps/p05-001.jpg" class="img-fluid rounded shadow-sm" alt="How to Create the Azure DevOps Project? - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_2_-_Fundamentals_of_DevOps/p06-000.jpg" class="img-fluid rounded shadow-sm" alt="How to Create the Azure DevOps Project? - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_2_-_Fundamentals_of_DevOps/p06-001.jpg" class="img-fluid rounded shadow-sm" alt="How to Create the Azure DevOps Project? - source image" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+            @await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureLessonNavigation.cshtml")
+</section>
+</div>
+<style>
+.azure-notes-text{white-space:pre-wrap;word-break:normal;font-family:inherit;font-size:1rem;line-height:1.7;background:#fff;border:0;padding:0;margin:0;color:#212529;}
+.azure-notes-content img{max-height:720px;}
+</style>

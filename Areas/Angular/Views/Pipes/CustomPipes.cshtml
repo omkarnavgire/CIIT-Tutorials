@@ -1,0 +1,686 @@
+﻿@{
+    ViewData["Title"] = "Custom Pipes";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- Header -->
+    <section class="mb-4">
+        <h1 class="fw-bold text-dark">Custom Pipes</h1>
+        <p class="lead text-muted">
+            Learn how to create reusable Angular Pipes for custom data
+            transformation and formatting requirements.
+        </p>
+    </section>
+
+    <!-- What are Custom Pipes -->
+    <section class="mb-4">
+        <h2 class="fw-bold">What are Custom Pipes?</h2>
+
+        <div class="info-card">
+            <p>
+                Custom Pipes are developer-created Pipes used when the
+                built-in Angular Pipes do not provide the required
+                transformation.
+            </p>
+
+            <p class="mb-0">
+                They allow reusable formatting or transformation logic
+                to be used directly inside Angular templates.
+            </p>
+        </div>
+    </section>
+
+    <!-- Flow -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Custom Pipe Flow</h2>
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+                <div class="syntax-icon">1</div>
+                <h5>Input Data</h5>
+                <p>Component provides the original value.</p>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+                <div class="syntax-icon">2</div>
+                <h5>Custom Pipe</h5>
+                <p>The Pipe receives the value.</p>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+                <div class="syntax-icon">3</div>
+                <h5>Transform</h5>
+                <p>The custom transformation is performed.</p>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+                <div class="syntax-icon">4</div>
+                <h5>Output</h5>
+                <p>The transformed value is displayed.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Why Custom Pipes -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Why Use Custom Pipes?</h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+                <div class="syntax-icon">R</div>
+                <h5>Reusable</h5>
+                <p>
+                    Use the same transformation in multiple templates.
+                </p>
+            </div>
+
+            <div class="syntax-card">
+                <div class="syntax-icon">C</div>
+                <h5>Clean Templates</h5>
+                <p>
+                    Keep transformation logic outside complex template expressions.
+                </p>
+            </div>
+
+            <div class="syntax-card">
+                <div class="syntax-icon">F</div>
+                <h5>Flexible</h5>
+                <p>
+                    Create formatting rules specific to your application.
+                </p>
+            </div>
+
+            <div class="syntax-card">
+                <div class="syntax-icon">M</div>
+                <h5>Maintainable</h5>
+                <p>
+                    Keep reusable transformation logic in one place.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Generate Pipe -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Creating a Custom Pipe</h2>
+
+        <p>
+            Angular CLI can generate a custom Pipe automatically.
+        </p>
+
+        <div class="code-card">
+            <div class="code-title">CLI Command</div>
+
+            <pre><code>ng generate pipe studentName</code></pre>
+        </div>
+
+        <p>
+            Short form:
+        </p>
+
+        <div class="code-card">
+            <div class="code-title">CLI</div>
+
+            <pre><code>ng g pipe studentName</code></pre>
+        </div>
+    </section>
+
+    <!-- Pipe Structure -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Custom Pipe Structure</h2>
+
+        <div class="code-card">
+            <div class="code-title">student-name.pipe.ts</div>
+
+            <pre><code>import { Pipe, PipeTransform } from '@@angular/core';
+
+@@Pipe({
+    name: 'studentName'
+})
+export class StudentNamePipe implements PipeTransform {
+
+    transform(value: string): string {
+        return value;
+    }
+
+}</code></pre>
+        </div>
+
+        <div class="output-box">
+            <strong>Explanation:</strong>
+
+            <div class="output-preview">
+                The <code>@@Pipe</code> decorator defines the Pipe and
+                <code>PipeTransform</code> provides the transformation
+                method.
+            </div>
+        </div>
+    </section>
+
+    <!-- Transform Method -->
+    <section class="mb-4">
+        <h2 class="fw-bold">The transform() Method</h2>
+
+        <p>
+            The <code>transform()</code> method receives the input value
+            and returns the transformed result.
+        </p>
+
+        <div class="code-card">
+            <div class="code-title">Example</div>
+
+            <pre><code>transform(value: string): string {
+    return value.toUpperCase();
+}</code></pre>
+        </div>
+
+        <div class="output-box">
+            <strong>Result:</strong>
+
+            <div class="output-preview">
+                The input text is converted to uppercase.
+            </div>
+        </div>
+    </section>
+
+    <!-- Complete Uppercase Pipe -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Complete Custom Pipe Example</h2>
+
+        <div class="code-card">
+            <div class="code-title">student-name.pipe.ts</div>
+
+            <pre><code>import {
+    Pipe,
+    PipeTransform
+} from '@@angular/core';
+
+@@Pipe({
+    name: 'studentName'
+})
+export class StudentNamePipe implements PipeTransform {
+
+    transform(value: string): string {
+        return value.toUpperCase();
+    }
+
+}</code></pre>
+        </div>
+
+        <div class="code-card">
+            <div class="code-title">student.component.ts</div>
+
+            <pre><code>studentName = 'Samiksha';</code></pre>
+        </div>
+
+        <div class="code-card">
+            <div class="code-title">student.component.html</div>
+
+            <pre><code>&lt;p&gt;
+    {{studentName | studentName}}
+&lt;/p&gt;</code></pre>
+        </div>
+
+        <div class="output-box">
+            <strong>Output:</strong>
+
+            <div class="output-preview">
+                SAMIKSHA
+            </div>
+        </div>
+    </section>
+
+    <!-- Custom Pipe Parameter -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Custom Pipe with Parameter</h2>
+
+        <p>
+            Custom Pipes can also accept parameters to make the
+            transformation configurable.
+        </p>
+
+        <div class="code-card">
+            <div class="code-title">Pipe</div>
+
+            <pre><code>transform(
+    value: string,
+    prefix: string
+): string {
+
+    return prefix + value;
+
+}</code></pre>
+        </div>
+
+        <div class="code-card">
+            <div class="code-title">Template</div>
+
+            <pre><code>&lt;p&gt;
+    {{studentName | studentName:'Student: '}}
+&lt;/p&gt;</code></pre>
+        </div>
+
+        <div class="output-box">
+            <strong>Output:</strong>
+
+            <div class="output-preview">
+                Student: Samiksha
+            </div>
+        </div>
+    </section>
+
+    <!-- Multiple Students -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Using a Custom Pipe with Multiple Students</h2>
+
+        <div class="code-card">
+            <div class="code-title">Component</div>
+
+            <pre><code>student1 = 'Sam';
+student2 = 'Pradnya';
+student3 = 'Samiksha';</code></pre>
+        </div>
+
+        <div class="code-card">
+            <div class="code-title">Template</div>
+
+            <pre><code>&lt;p&gt;
+    {{student1 | studentName}}
+&lt;/p&gt;
+
+&lt;p&gt;
+    {{student2 | studentName}}
+&lt;/p&gt;
+
+&lt;p&gt;
+    {{student3 | studentName}}
+&lt;/p&gt;</code></pre>
+        </div>
+
+        <div class="student-preview">
+            <h4>SAM</h4>
+            <h4>PRADNYA</h4>
+            <h4>SAMIKSHA</h4>
+        </div>
+    </section>
+
+    <!-- Built-in vs Custom -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Built-in Pipe vs Custom Pipe</h2>
+
+        <div class="table-responsive">
+
+            <table class="table syntax-table">
+
+                <thead>
+                    <tr>
+                        <th>Built-in Pipe</th>
+                        <th>Custom Pipe</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>Provided by Angular</td>
+                        <td>Created by developer</td>
+                    </tr>
+
+                    <tr>
+                        <td>Ready to use</td>
+                        <td>Created for specific requirements</td>
+                    </tr>
+
+                    <tr>
+                        <td>Examples: date, currency, uppercase</td>
+                        <td>Example: studentName</td>
+                    </tr>
+
+                    <tr>
+                        <td>General-purpose transformations</td>
+                        <td>Application-specific transformations</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+    </section>
+
+    <!-- Common Use Cases -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Common Custom Pipe Use Cases</h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+                <div class="syntax-icon">N</div>
+                <h5>Name Formatting</h5>
+                <p>
+                    Format student or employee names consistently.
+                </p>
+            </div>
+
+            <div class="syntax-card">
+                <div class="syntax-icon">F</div>
+                <h5>Custom Formatting</h5>
+                <p>
+                    Create application-specific display formats.
+                </p>
+            </div>
+
+            <div class="syntax-card">
+                <div class="syntax-icon">T</div>
+                <h5>Text Transformation</h5>
+                <p>
+                    Transform text according to application requirements.
+                </p>
+            </div>
+
+            <div class="syntax-card">
+                <div class="syntax-icon">R</div>
+                <h5>Reusable Logic</h5>
+                <p>
+                    Reuse the same transformation in multiple views.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Pipe Flow Example -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Custom Pipe Transformation Flow</h2>
+
+        <div class="binding-flow">
+
+            <div class="binding-item">
+                <strong>Samiksha</strong>
+                <span>Original Value</span>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="binding-item">
+                <strong>studentName</strong>
+                <span>Custom Pipe</span>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="binding-item">
+                <strong>SAMIKSHA</strong>
+                <span>Transformed Value</span>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Best Practices -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Best Practices</h2>
+
+        <ul class="best-practice-list">
+            <li>Create a custom Pipe only when built-in Pipes are not sufficient.</li>
+            <li>Keep the transformation logic simple and focused.</li>
+            <li>Use meaningful Pipe names.</li>
+            <li>Keep reusable formatting logic inside the Pipe.</li>
+            <li>Use parameters when the transformation needs customization.</li>
+            <li>Avoid placing complex business logic inside Pipes.</li>
+            <li>Keep Pipes focused on presentation and transformation.</li>
+        </ul>
+    </section>
+
+    <!-- Summary -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Summary</h2>
+
+        <div class="summary-box">
+            <ul class="mb-0">
+                <li>Custom Pipes are created for application-specific transformations.</li>
+                <li>The <code>@@Pipe</code> decorator defines a custom Pipe.</li>
+                <li><code>PipeTransform</code> provides the <code>transform()</code> method.</li>
+                <li>The <code>transform()</code> method receives and transforms data.</li>
+                <li>Custom Pipes can accept parameters.</li>
+                <li>Custom Pipes make reusable transformation logic easier to maintain.</li>
+                <li>Use built-in Pipes whenever they already satisfy the requirement.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Navigation -->
+    <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+
+        <a class="btn btn-outline-secondary"
+           href="@Url.Action("ChainingPipes", "Pipes", new { area = "Angular" })">
+            ← Chaining Pipes
+        </a>
+
+        <a class="btn btn-primary"
+           href="@Url.Action("Index", "EventHandling", new { area = "Angular" })">
+            Event Handling Introduction →
+        </a>
+
+    </div>
+
+</div>
+
+<style>
+
+    .info-card {
+        background: #f8fafc;
+        border-left: 5px solid #4c1d95;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    .syntax-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .syntax-box {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 20px;
+        text-align: center;
+        width: 190px;
+        min-height: 160px;
+    }
+
+    .syntax-icon {
+        width: 45px;
+        height: 45px;
+        background: #4c1d95;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 12px;
+        font-weight: bold;
+    }
+
+    .syntax-arrow {
+        font-size: 28px;
+        font-weight: bold;
+        color: #4c1d95;
+    }
+
+    .syntax-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+
+    .syntax-card {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .code-card {
+        background: #0f172a;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-bottom: 20px;
+    }
+
+    .code-title {
+        background: #1e293b;
+        color: #ddd6fe;
+        padding: 10px 15px;
+        font-weight: 600;
+    }
+
+    .code-card pre {
+        margin: 0;
+        padding: 20px;
+        overflow-x: auto;
+    }
+
+    .code-card code {
+        color: #f8fafc;
+        font-family: Consolas, monospace;
+        line-height: 1.7;
+    }
+
+    .output-box {
+        background: #ede9fe;
+        border-left: 5px solid #4c1d95;
+        padding: 18px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+
+    .output-preview {
+        background: white;
+        border-radius: 8px;
+        padding: 15px;
+        margin-top: 10px;
+    }
+
+    .syntax-table {
+        border: 1px solid #e2e8f0;
+    }
+
+        .syntax-table th {
+            background: #4c1d95;
+            color: white;
+        }
+
+        .syntax-table td {
+            vertical-align: middle;
+        }
+
+    .student-preview {
+        background: #ede9fe;
+        border: 2px solid #4c1d95;
+        border-radius: 12px;
+        padding: 25px;
+        text-align: center;
+    }
+
+    .binding-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .binding-item {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        padding: 18px;
+        text-align: center;
+        min-width: 170px;
+    }
+
+        .binding-item strong {
+            display: block;
+            color: #4c1d95;
+            margin-bottom: 6px;
+        }
+
+        .binding-item span {
+            color: #334155;
+        }
+
+    .best-practice-list {
+        background: #f8fafc;
+        border-radius: 10px;
+        padding: 25px 40px;
+        border-left: 5px solid #4c1d95;
+    }
+
+        .best-practice-list li {
+            margin-bottom: 10px;
+        }
+
+    .summary-box {
+        background: #cfe2ff;
+        color: #084298;
+        border-radius: 10px;
+        padding: 20px;
+    }
+
+    @@media (max-width: 991px) {
+
+        .syntax-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .syntax-flow,
+        .binding-flow {
+            flex-direction: column;
+        }
+
+        .syntax-arrow {
+            transform: rotate(90deg);
+        }
+    }
+
+    @@media (max-width: 576px) {
+
+        .syntax-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .syntax-box {
+            width: 100%;
+        }
+
+        .binding-item {
+            width: 100%;
+        }
+
+        .best-practice-list {
+            padding: 20px 30px;
+        }
+
+        .code-card pre {
+            font-size: 13px;
+        }
+    }
+
+</style>

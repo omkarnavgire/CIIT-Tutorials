@@ -1,0 +1,176 @@
+@using System.Collections.Generic
+@{
+    var currentController = ViewContext.RouteData.Values["controller"]?.ToString() ?? "";
+    var currentAction = ViewContext.RouteData.Values["action"]?.ToString() ?? "";
+
+    var items = new List<(string Chapter, string Controller, string Action, string Title)>
+    {
+        // Chapter 1
+        ("Chapter 1 - Introduction to Microsoft Azure", "Introduction", "WhatisMicrosoftAzure", "Introduction to Microsoft Azure - A Cloud Computing Service"),
+        ("Chapter 1 - Introduction to Microsoft Azure", "Introduction", "MicrosoftAzureWorking", "Microsoft Azure Working"),
+        ("Chapter 1 - Introduction to Microsoft Azure", "Introduction", "MicrosoftAzureArchitecture", "Microsoft Azure Architecture"),
+        ("Chapter 1 - Introduction to Microsoft Azure", "Introduction", "ServiceCategories", "The 3 Service Categories Provided by Microsoft Azure"),
+        ("Chapter 1 - Introduction to Microsoft Azure", "Introduction", "AzureUseCases", "Microsoft Azure Use cases"),
+        ("Chapter 1 - Introduction to Microsoft Azure", "Introduction", "VariousAzureServices", "Various Azure Services"),
+        ("Chapter 1 - Introduction to Microsoft Azure", "Introduction", "AzureCompetition", "Azure Competition"),
+        ("Chapter 1 - Introduction to Microsoft Azure", "Introduction", "AzureCloudShell", "Azure Cloud Shell"),
+        ("Chapter 1 - Introduction to Microsoft Azure", "Introduction", "HowToAccessAzureShell", "How to Access Azure Shell?"),
+        ("Chapter 1 - Introduction to Microsoft Azure", "Introduction", "AwsGoogleCloudAzureComparison", "Difference between AWS, Google Cloud, and Azure"),
+
+        // Chapter 2 - Fundamentals of DevOps
+        ("Chapter 2 - Fundamentals of DevOps & Cloud", "DevOpsFundamentals", "AzureDevOps", "Azure DevOps"),
+        ("Chapter 2 - Fundamentals of DevOps & Cloud", "DevOpsFundamentals", "WhatIsDevOps", "What is DevOps?"),
+        ("Chapter 2 - Fundamentals of DevOps & Cloud", "DevOpsFundamentals", "BenefitsOfDevOps", "Benefits of DevOps"),
+        ("Chapter 2 - Fundamentals of DevOps & Cloud", "DevOpsFundamentals", "WhatIsAzureDevOps", "What is Azure DevOps?"),
+        ("Chapter 2 - Fundamentals of DevOps & Cloud", "DevOpsFundamentals", "ServicesUsedInAzureDevOps", "Services Used in Azure DevOps"),
+        ("Chapter 2 - Fundamentals of DevOps & Cloud", "DevOpsFundamentals", "CreateAzureDevOpsProject", "How to Create the Azure DevOps Project?"),
+        ("Chapter 2 - Fundamentals of DevOps & Cloud", "DevOpsFundamentals", "AzureDevOpsUsersAndUseCases", "Who uses Azure DevOps?"),
+        ("Chapter 2 - Fundamentals of DevOps & Cloud", "DevOpsFundamentals", "AzureDevOpsBenefits", "Azure DevOps Benefits"),
+        ("Chapter 2 - Fundamentals of DevOps & Cloud", "DevOpsFundamentals", "AzureDevOpsDrawbacks", "Azure DevOps Drawbacks"),
+        ("Chapter 2 - Fundamentals of DevOps & Cloud", "DevOpsFundamentals", "AzureDevOpsVsDevOps", "Difference Between Azure DevOps and DevOps"),
+        ("Chapter 2 - Fundamentals of DevOps & Cloud", "DevOpsFundamentals", "AzureDevOpsCertification", "Microsoft Azure Cloud Certification Exam"),
+        ("Chapter 2 - Fundamentals of DevOps & Cloud", "DevOpsFundamentals", "AzureBoards", "Microsoft Azure Boards"),
+
+        // Chapter 2 - DockerFile
+        ("Chapter 2 - DockerFile", "Dockerfile", "WhatIsDockerfile", "What is Dockerfile"),
+        ("Chapter 2 - DockerFile", "Dockerfile", "DockerfileSyntaxRules", "The general syntax rules"),
+        ("Chapter 2 - DockerFile", "Dockerfile", "DockerfileInstructions", "Dockerfile Instructions"),
+        ("Chapter 2 - DockerFile", "Dockerfile", "FromInstruction", "1. FROM"),
+        ("Chapter 2 - DockerFile", "Dockerfile", "MaintainerInstruction", "2. MAINTAINER"),
+        ("Chapter 2 - DockerFile", "Dockerfile", "RunInstruction", "3. RUN"),
+        ("Chapter 2 - DockerFile", "Dockerfile", "AddInstruction", "4. ADD"),
+        ("Chapter 2 - DockerFile", "Dockerfile", "EnvInstruction", "5. ENV"),
+        ("Chapter 2 - DockerFile", "Dockerfile", "EntrypointInstruction", "6. ENTRYPOINT"),
+        ("Chapter 2 - DockerFile", "Dockerfile", "CmdInstruction", "7. CMD"),
+        ("Chapter 2 - DockerFile", "Dockerfile", "ExposeInstruction", "8. EXPOSE"),
+        ("Chapter 2 - DockerFile", "Dockerfile", "VolumeInstruction", "9. VOLUME"),
+        ("Chapter 2 - DockerFile", "Dockerfile", "WorkdirInstruction", "10. WORKDIR"),
+        ("Chapter 2 - DockerFile", "Dockerfile", "UserInstruction", "11. USER"),
+        ("Chapter 2 - DockerFile", "Dockerfile", "ArgInstruction", "12. ARG"),
+        ("Chapter 2 - DockerFile", "Dockerfile", "DockerfileBestPractices", "Best practices for writing Dockerfiles"),
+        ("Chapter 2 - DockerFile", "Dockerfile", "CreateDockerfileForMaven", "Creating a New Dockerfile for Maven"),
+
+        // Chapter 3
+        ("Chapter 3 - Microsoft Azure - Using the Azure Quickstart Centre", "Quickstart", "AzureQuickstartCentre", "The Azure Quickstart Center"),
+        ("Chapter 3 - Microsoft Azure - Using the Azure Quickstart Centre", "Quickstart", "QuickstartImplementation", "Implementation"),
+        ("Chapter 3 - Microsoft Azure - Using the Azure Quickstart Centre", "Quickstart", "QuickstartGuidesAndCourses", "Guides and online courses"),
+        ("Chapter 3 - Microsoft Azure - Using the Azure Quickstart Centre", "Quickstart", "QuickstartCreateWebApp", "Create a web app"),
+        ("Chapter 3 - Microsoft Azure - Using the Azure Quickstart Centre", "Quickstart", "QuickstartCentreSummary", "Microsoft Azure - Getting Free Trial with Azure Quickstart Center"),
+
+        // Chapter 4
+        ("Chapter 4 - Microsoft Azure - Storage Accounts", "StorageAccounts", "StorageAccounts", "Azure Storage Account"),
+        ("Chapter 4 - Microsoft Azure - Storage Accounts", "StorageAccounts", "StorageAccountPolicies", "The policies that we can define"),
+        ("Chapter 4 - Microsoft Azure - Storage Accounts", "StorageAccounts", "CreateStorageAccount", "Creating a storage account using Microsoft Azure Portal"),
+        ("Chapter 4 - Microsoft Azure - Storage Accounts", "StorageAccounts", "StorageAccountBasics", "Step 5: Basics"),
+        ("Chapter 4 - Microsoft Azure - Storage Accounts", "StorageAccounts", "StorageAccountAdvanced", "Step 6: Advanced"),
+        ("Chapter 4 - Microsoft Azure - Storage Accounts", "StorageAccounts", "StorageAccountNetworking", "Step 7: Networking"),
+        ("Chapter 4 - Microsoft Azure - Storage Accounts", "StorageAccounts", "StorageAccountDataProtection", "Step 8: Data protection"),
+        ("Chapter 4 - Microsoft Azure - Storage Accounts", "StorageAccounts", "StorageAccountEncryptionAndTags", "Step 9: Encryption and Step 10: Tags"),
+        ("Chapter 4 - Microsoft Azure - Storage Accounts", "StorageAccounts", "StorageAccountReviewAndCreate", "Step 11-14: Review, Create and Go to resource"),
+
+        // Chapter 5
+        ("Chapter 5 - Azure Virtual Machines", "VirtualMachines", "AzureVirtualMachines", "Chapter 5 - Azure Virtual Machines"),
+        ("Chapter 5 - Azure Virtual Machines", "VirtualMachines", "WhatAreVirtualMachines", "What Are Virtual Machines?"),
+        ("Chapter 5 - Azure Virtual Machines", "VirtualMachines", "UsesOfVirtualMachines", "Uses Of Virtual Machines"),
+        ("Chapter 5 - Azure Virtual Machines", "VirtualMachines", "BeforeCreatingAzureVirtualMachine", "Before Creating A Azure Virtual Machine"),
+        ("Chapter 5 - Azure Virtual Machines", "VirtualMachines", "LocationOfAzureVirtualMachine", "Location Of Azure Virtual Machine"),
+        ("Chapter 5 - Azure Virtual Machines", "VirtualMachines", "AzureVirtualMachineSize", "Azure Virtual Machine Size"),
+        ("Chapter 5 - Azure Virtual Machines", "VirtualMachines", "OperatingSystemDisksAndImages", "Azure Virtual Machine Operating System Disks and Images"),
+        ("Chapter 5 - Azure Virtual Machines", "VirtualMachines", "VirtualMachineExtensions", "Extensions of Virtual Machine"),
+        ("Chapter 5 - Azure Virtual Machines", "VirtualMachines", "CreateAzureVirtualMachine", "Creating Azure Virtual machine in Azure Portal"),
+
+        // Chapter 6
+        ("Chapter 6 - Microsoft Azure - Creating an App Service Plan", "AppService", "AppServicePlan", "App Service Plan"),
+        ("Chapter 6 - Microsoft Azure - Creating an App Service Plan", "AppService", "CreateAppServicePlan", "Creating an App Service Plan"),
+        ("Chapter 6 - Microsoft Azure - Creating an App Service Plan", "AppService", "CreateWebApp", "Microsoft Azure - Create Web Apps in Azure"),
+        ("Chapter 6 - Microsoft Azure - Creating an App Service Plan", "AppService", "DeployStaticWebApp", "Microsoft Azure - Deploy a Static Web App"),
+        ("Chapter 6 - Microsoft Azure - Creating an App Service Plan", "AppService", "UsingGithubActionInAzureAppService", "Microsoft Azure - Using Github Action in Azure App Service"),
+
+        // Chapter 7
+        ("Chapter 7 - Dashboards", "Dashboards", "CustomizingChartsOnAzureDashboard", "Microsoft Azure - Customizing Charts on Azure Dashboard"),
+        ("Chapter 7 - Dashboards", "Dashboards", "CustomizingAzureDashboardTiles", "Microsoft Azure - Customizing Azure Dashboard Tiles"),
+        ("Chapter 7 - Dashboards", "Dashboards", "AutoRefreshingDashboards", "Microsoft Azure - Auto Refreshing Dashboards"),
+        ("Chapter 7 - Dashboards", "Dashboards", "SharedDashboards", "Shared Dashboards"),
+        ("Chapter 7 - Dashboards", "Dashboards", "PinningToPortalDashboard", "Microsoft Azure - Pinning to Portal Dashboard"),
+
+        // Chapter 8
+        ("Chapter 8 - Microsoft Azure - Database Availability and Consistency For Azure SQL", "AzureSQL", "DatabaseAvailabilityAndConsistency", "Microsoft Azure - Database Availability and Consistency For Azure SQL"),
+        ("Chapter 8 - Microsoft Azure - Database Availability and Consistency For Azure SQL", "AzureSQL", "KeyTerminologies", "Key Terminologies"),
+        ("Chapter 8 - Microsoft Azure - Database Availability and Consistency For Azure SQL", "AzureSQL", "DeploymentModesInAzure", "Deployment Modes in Azure"),
+        ("Chapter 8 - Microsoft Azure - Database Availability and Consistency For Azure SQL", "AzureSQL", "AvailabilityAndConsistency", "Availability and Consistency"),
+        ("Chapter 8 - Microsoft Azure - Database Availability and Consistency For Azure SQL", "AzureSQL", "ForSingleServerDeployment", "For Single-Server Deployment"),
+        ("Chapter 8 - Microsoft Azure - Database Availability and Consistency For Azure SQL", "AzureSQL", "ForFlexibleServerDeployment", "For Flexible Server Deployment"),
+        ("Chapter 8 - Microsoft Azure - Database Availability and Consistency For Azure SQL", "AzureSQL", "AzureDatabaseAvailabilityServices", "Azure Database for MYSQL availability and consistency services"),
+        ("Chapter 8 - Microsoft Azure - Database Availability and Consistency For Azure SQL", "AzureSQL", "MicrosoftAzureSQLDatabase", "Microsoft Azure SQL Database"),
+        ("Chapter 8 - Microsoft Azure - Database Availability and Consistency For Azure SQL", "AzureSQL", "WhatIsMicrosoftAzureSQLDatabase", "What is Microsoft Azure SQL Database?"),
+        ("Chapter 8 - Microsoft Azure - Database Availability and Consistency For Azure SQL", "AzureSQL", "AzureSQLVsSQLServer", "Azure SQL vs. SQL Server"),
+        ("Chapter 8 - Microsoft Azure - Database Availability and Consistency For Azure SQL", "AzureSQL", "WhyAzureSQLDatabase", "Why Azure SQL Database?"),
+        ("Chapter 8 - Microsoft Azure - Database Availability and Consistency For Azure SQL", "AzureSQL", "AzureSQLUseCases", "Often Used Cases"),
+        ("Chapter 8 - Microsoft Azure - Database Availability and Consistency For Azure SQL", "AzureSQL", "AzureSQLArchitecture", "SQL Azure Architecture"),
+        ("Chapter 8 - Microsoft Azure - Database Availability and Consistency For Azure SQL", "AzureSQL", "AzureSQLDatabaseFeatures", "Azure SQL Database Features"),
+        ("Chapter 8 - Microsoft Azure - Database Availability and Consistency For Azure SQL", "AzureSQL", "AzureSQLDatabaseTiers", "Azure SQL Database Tiers"),
+        ("Chapter 8 - Microsoft Azure - Database Availability and Consistency For Azure SQL", "AzureSQL", "AzureSQLDatabaseServices", "Azure SQL Database Services"),
+        ("Chapter 8 - Microsoft Azure - Database Availability and Consistency For Azure SQL", "AzureSQL", "AzureSQLHandsOn", "Microsoft Azure SQL Database Hands-on"),
+        ("Chapter 8 - Microsoft Azure - Database Availability and Consistency For Azure SQL", "AzureSQL", "QueryingUsingAzureSQLDatabase", "Querying using Azure SQL Database"),
+        ("Chapter 8 - Microsoft Azure - Database Availability and Consistency For Azure SQL", "AzureSQL", "PricingOfAzureSQLDatabase", "Pricing Of Azure SQL Database"),
+        ("Chapter 8 - Microsoft Azure - Database Availability and Consistency For Azure SQL", "AzureSQL", "DeletingDatabasesInAzureSQL", "Deleting Databases in AzureSQL"),
+
+        // Chapter 9
+        ("Chapter 9 - Microsoft Azure - Create Project in Azure DevOps using Basic Process", "DevOps", "CreateProjectUsingBasicProcess", "Microsoft Azure - Create Project in Azure Devops using Basic Process"),
+        ("Chapter 9 - Microsoft Azure - Create Project in Azure DevOps using Basic Process", "DevOps", "AzureDevOpsProcesses", "The three primary built-in processes"),
+        ("Chapter 9 - Microsoft Azure - Create Project in Azure DevOps using Basic Process", "DevOps", "WhyChooseBasicProcess", "Why Choose the Basic Process?"),
+        ("Chapter 9 - Microsoft Azure - Create Project in Azure DevOps using Basic Process", "DevOps", "BasicProcessWorkItems", "Work Items in the Basic Process"),
+        ("Chapter 9 - Microsoft Azure - Create Project in Azure DevOps using Basic Process", "DevOps", "WhenShouldYouChooseBasicProcess", "When Should You Choose the Basic Process?"),
+        ("Chapter 9 - Microsoft Azure - Create Project in Azure DevOps using Basic Process", "DevOps", "CreateBasicProcessProject", "Step-by-Step Guide to Creating a Project Using Basic Process"),
+        ("Chapter 9 - Microsoft Azure - Create Project in Azure DevOps using Basic Process", "DevOps", "AzureDevOpsProjectFeatures", "Exploring Azure DevOps Project Features After Creation"),
+        ("Chapter 9 - Microsoft Azure - Create Project in Azure DevOps using Basic Process", "DevOps", "CreateProjectUsingAgileProcess", "Microsoft Azure – Create Project in Azure Devops using Agile Process"),
+        ("Chapter 9 - Microsoft Azure - Create Project in Azure DevOps using Basic Process", "DevOps", "AgileProcessWorkItems", "Step 4: Overview of work item types available in the Agile process"),
+
+        // Chapter 10
+        ("Chapter 10 - Azure Pipelines", "DevOps", "AzurePipelinesIntroduction", "Chapter 10 - Azure Pipelines"),
+        ("Chapter 10 - Azure Pipelines", "DevOps", "WhatIsAzurePipelines", "What is Azure Pipelines?"),
+        ("Chapter 10 - Azure Pipelines", "DevOps", "WhyAzurePipelinesForCICD", "Why do we use Azure Pipelines for CI/CD?"),
+        ("Chapter 10 - Azure Pipelines", "DevOps", "KeyFeaturesOfAzurePipelines", "Key Features of Azure Pipelines"),
+        ("Chapter 10 - Azure Pipelines", "DevOps", "CreatingAzureDevOpsPipeline", "Creating an Azure DevOps Pipeline"),
+        ("Chapter 10 - Azure Pipelines", "DevOps", "CreateAzureDevOpsOrganization", "Create Your Azure DevOps Organization"),
+        ("Chapter 10 - Azure Pipelines", "DevOps", "CreateDevOpsProject", "Create a Project"),
+        ("Chapter 10 - Azure Pipelines", "DevOps", "CreateBuildPipeline", "Create a Build Pipeline"),
+        ("Chapter 10 - Azure Pipelines", "DevOps", "CreateReleasePipeline", "Create a Release Pipeline"),
+        ("Chapter 10 - Azure Pipelines", "DevOps", "AzurePipelinesContinuousDelivery", "Azure Pipelines for Continuous Delivery (CD)"),
+        ("Chapter 10 - Azure Pipelines", "DevOps", "CICDPipelineInAzure", "What is the CI/CD Pipeline in Azure?"),
+        ("Chapter 10 - Azure Pipelines", "DevOps", "AzurePipelinesVsJenkins", "Difference Between Azure Pipeline and Jenkins")
+    };
+
+    var index = items.FindIndex(x => x.Controller == currentController && x.Action == currentAction);
+    var hasPrevious = index > 0;
+    var hasNext = index >= 0 && index < items.Count - 1;
+}
+
+@if (index >= 0)
+{
+    <div class="d-flex justify-content-between mt-4">
+        <div>
+            @if (hasPrevious)
+            {
+                var previous = items[index - 1];
+
+                <a class="btn btn-outline-primary fw-semibold"
+                   href="@Url.Action(previous.Action, previous.Controller, new { area = "Azure" })">
+                    ← Previous
+                </a>
+            }
+        </div>
+
+        <div>
+            @if (hasNext)
+            {
+                var next = items[index + 1];
+
+                <a class="btn btn-primary fw-semibold"
+                   href="@Url.Action(next.Action, next.Controller, new { area = "Azure" })">
+                    Next →
+                </a>
+            }
+        </div>
+    </div>
+}

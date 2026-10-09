@@ -1,0 +1,132 @@
+@{
+    ViewData["Title"] = "Cloud Computing Basics";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+
+                <h1>Cloud Computing Basics</h1>
+
+                <h2>What is Cloud Computing?</h2>
+
+                <p>
+                    <b>Cloud computing</b> is the delivery of computing services over the internet
+                    ("the cloud") on a pay-as-you-go pricing model. Instead of purchasing, owning,
+                    and maintaining physical infrastructure such as servers, databases, software,
+                    and networks, users can rent computing resources from cloud providers such as Azure.
+                </p>
+
+                <div class="text-center my-4">
+                    <img src="https://dotnettrickscloud.blob.core.windows.net/article/120220728114146.webp"
+                         alt="Cloud Computing"
+                         class="img-fluid rounded shadow-sm"
+                         style="max-width: 850px; width: 100%; height: auto;">
+                </div>
+
+                <p>
+                    Azure samjhnasathi <b>cloud computing che 4 core concepts</b> mahit asne
+                    garjeche aahe:
+                </p>
+
+                <h2>1. The Pay-As-You-Go Model (Pay-per-use)</h2>
+
+                <ul>
+                    <li>
+                        <b>Traditional IT:</b> Khup mothe physical servers, space, ani security
+                        saathi suruvatilaach khup motha kharch
+                        (<b>Capital Expenditure / CapEx</b>) karava lagto.
+                    </li>
+
+                    <li>
+                        <b>Azure Cloud:</b> Tumhi jitke resources (Storage, RAM, CPU) jitkya
+                        velasathi vapral, titkech paise dyave lagtat
+                        (<b>Operational Expenditure / OpEx</b>). It's like an electricity bill.
+                    </li>
+                </ul>
+
+                <h2>2. High Scalability &amp; Elasticity</h2>
+
+                <ul>
+                    <li>
+                        <b>Scalability:</b> Tumchya website var traffic vadhle, tar tumhi
+                        software configuration madhun servers chi capacity vadhvu shakata.
+                    </li>
+
+                    <li>
+                        <b>Elasticity:</b> Traffic kami jhale ki servers automatic kami hotat,
+                        jyane unnecessary resource usage ani cost kami hou shakto.
+                    </li>
+                </ul>
+
+                <h2>3. High Availability &amp; Fault Tolerance</h2>
+
+                <ul>
+                    <li>
+                        <b>High Availability:</b> Azure infrastructure madhye multiple locations
+                        ani availability options available aahet. Appropriate architecture use
+                        kelyas service availability improve karta yete.
+                    </li>
+
+                    <li>
+                        <b>Fault Tolerance:</b> System madhye kahi component fail zala tari
+                        redundancy ani backup mechanisms mule service continue thevnyas madat hote.
+                    </li>
+                </ul>
+
+                <h2>4. Cloud Deployment Models</h2>
+
+                <p>
+                    Azure vapartana cloud deployment samjhun ghene important aahe.
+                    Basic deployment models madhye he teen options samavisht aahet:
+                </p>
+
+                <ul>
+                    <li>
+                        <b>Public Cloud:</b> Cloud provider cha infrastructure anek customers
+                        sathi available aste. Azure he public cloud platform che example aahe.
+                    </li>
+
+                    <li>
+                        <b>Private Cloud:</b> Ekach organization sathi dedicated cloud environment
+                        aste, jyavar organization cha adhik control asto.
+                    </li>
+
+                    <li>
+                        <b>Hybrid Cloud:</b> Public ani private cloud environments cha combination.
+                        Sensitive workloads on-premises/private environment madhye thevun,
+                        kahi applications kiwa workloads Azure var run karta yetat.
+                    </li>
+                </ul>
+
+
+                <div style="min-height:80px;"></div>
+
+                <div class="mt-4 d-flex justify-content-between align-items-center">
+
+                    <a class="btn btn-outline-primary fw-semibold"
+                       href="@Url.Action("WhatisMicrosoftAzure", "Introduction", new { area = "Azure" })">
+                        ← Previous
+                    </a>
+
+                    <a class="btn btn-primary fw-semibold"
+                       href="@Url.Action("AzureGlobalInfrastructure", "Introduction", new { area = "Azure" })">
+                        Next →
+                    </a>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</div>

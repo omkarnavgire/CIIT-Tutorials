@@ -1,0 +1,166 @@
+@{
+    Layout = "~/Areas/Jenkins/Views/Shared/JenkinsLayout.cshtml";
+    ViewData["Title"] = "Jenkins Architecture";
+}
+
+<style>
+    #jenkins-architecture-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #jenkins-architecture-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #jenkins-architecture-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #jenkins-architecture-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #jenkins-architecture-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+    #jenkins-architecture-page .example-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+    }
+</style>
+
+<main id="jenkins-architecture-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/Jenkins/Views/Shared/JenkinsTopics.cshtml")
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+                <h1 class="fw-bold">Jenkins Architecture</h1>
+                <p class="lead">
+                    Learn the concepts, configuration, commands, and practical workflow required to use Jenkins Architecture in a real Jenkins environment.
+                </p>
+            </div>
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">What is Jenkins Architecture?</h2>
+                <p>
+                    <strong>Jenkins Architecture</strong> follows a distributed Master-Agent (formerly Master-Slave) architecture to manage software builds and automation at scale. It divides the workload between a central controlling unit and multiple worker instances to enable parallel execution and continuous integration.
+                </p>
+
+                <div class="alert alert-info my-3">
+                    <strong>Simple Definition:</strong> Jenkins Architecture uses a distributed Master-Agent model where a central controller manages configurations and schedules jobs, while multiple worker agents execute the actual builds and tests.
+                </div>
+
+                <h3 class="h4 fw-bold mt-4 mb-3">Core Components</h3>
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <div class="info-card">
+                            <h5>Jenkins Master (Controller)</h5>
+                            <p class="small mb-0">The brain of the system. Hosts the UI, manages configurations, schedules build jobs, dispatches tasks, and records final results.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="info-card">
+                            <h5>Jenkins Agents (Workers)</h5>
+                            <p class="small mb-0">Separate executables on physical, virtual, or containerized environments. They run the explicit build steps and test scripts assigned by the master.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="info-card">
+                            <h5>Modular Plugins</h5>
+                            <p class="small mb-0">Extensions that integrate Jenkins with external source controls (Git), build tools (Maven, Gradle), and targeted deployment environments.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- KEY CONCEPTS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Key Concepts</h2>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Workload Distribution</h5>
+                            <p class="mb-0">Understand how offloading resource-heavy builds from the controller to multiple nodes avoids performance bottlenecks.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Real-World Scaling</h5>
+                            <p class="mb-0">Apply this architecture to match specific environments (e.g., executing a Linux build on a Linux agent and a Mac build on a macOS agent).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXAMPLE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Practical Jenkins Example</h2>
+                <p>The following basic declarative pipeline utilizes the agent directive to assign tasks within the architecture:</p>
+                <pre><code>pipeline {
+    agent any
+    stages {
+        stage('Learn Jenkins Architecture') {
+            steps {
+                echo 'Jenkins lesson: Jenkins Architecture' 
+            }
+        }
+    }
+}</code></pre>
+            </div>
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Practice Exercise</h2>
+                <ol>
+                    <li class="mb-2">Open the Jenkins dashboard and navigate to <strong>Manage Jenkins &gt; Nodes</strong> to view existing infrastructure layout.</li>
+                    <li class="mb-2">Create or update a small test pipeline using the sample code block above.</li>
+                    <li class="mb-2">Run the job and inspect the <strong>Console Output</strong> to see which node executed the task.</li>
+                    <li>Verify how the controller tracked and outputted the log history from the agent node.</li>
+                </ol>
+            </div>
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+                <h2 class="h4 fw-bold">Summary</h2>
+                <p class="mb-0">You have completed the <strong>Jenkins Architecture</strong> lesson. Continue through the syllabus to build the Jenkins skills required for real CI/CD automation.</p>
+            </div>
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+                <a class="btn btn-outline-primary" href="@Url.Action("WhyJenkins", "Foundations", new { area = "Jenkins" })">← Previous: Why Jenkins?</a>
+                <a class="btn btn-primary" href="@Url.Action("ControllerAndAgents", "Foundations", new { area = "Jenkins" })">Next: Controller and Agents →</a>
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

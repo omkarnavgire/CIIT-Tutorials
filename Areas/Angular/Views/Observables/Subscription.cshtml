@@ -1,0 +1,1359 @@
+﻿@{
+    ViewData["Title"] = "Angular Subscription";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- Header -->
+    <section class="mb-4">
+
+        <h1 class="fw-bold text-dark">
+            Angular Subscription
+        </h1>
+
+        <p class="lead text-muted">
+            Learn how to subscribe to an Observable, receive emitted values,
+            handle errors and completion, and work with active subscriptions
+            in Angular applications.
+        </p>
+
+    </section>
+
+
+    <!-- Introduction -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            What is a Subscription?
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                A <strong>Subscription</strong> represents an active execution
+                of an Observable.
+            </p>
+
+            <p>
+                When we call <strong>subscribe()</strong>, the application
+                starts listening to values emitted by the Observable.
+            </p>
+
+            <p class="mb-0">
+                The returned Subscription object can also be used to
+                stop the Observable execution when required.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Subscription Flow -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Subscription Flow
+        </h2>
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+
+                <strong>Observable</strong>
+
+                <span>
+                    Data Source
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>subscribe()</strong>
+
+                <span>
+                    Start Listening
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>next()</strong>
+
+                <span>
+                    Receive Value
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>Subscription</strong>
+
+                <span>
+                    Active Execution
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Basic Syntax -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Basic subscribe() Syntax
+        </h2>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                TypeScript
+            </div>
+
+            <pre><code>observable.subscribe({
+    next: value =&gt; {
+        console.log(value);
+    },
+    error: error =&gt; {
+        console.error(error);
+    },
+    complete: () =&gt; {
+        console.log('Completed');
+    }
+});</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Observer Callbacks -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Observer Callbacks
+        </h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    N
+                </div>
+
+                <h5>
+                    next
+                </h5>
+
+                <p>
+                    Runs whenever the Observable emits a value.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    E
+                </div>
+
+                <h5>
+                    error
+                </h5>
+
+                <p>
+                    Runs when the Observable reports an error.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    C
+                </div>
+
+                <h5>
+                    complete
+                </h5>
+
+                <p>
+                    Runs when the Observable completes successfully.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    S
+                </div>
+
+                <h5>
+                    Subscription
+                </h5>
+
+                <p>
+                    Represents the active execution created by subscribe().
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Simple Example -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Simple Subscription Example
+        </h2>
+
+        <p>
+            Consider an Observable that emits three course categories.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Observable
+            </div>
+
+            <pre><code>const courses$ =
+    new Observable&lt;string&gt;(subscriber =&gt; {
+
+        subscriber.next('Java Full Stack');
+        subscriber.next('.NET Full Stack');
+        subscriber.next('Python Full Stack');
+
+        subscriber.complete();
+    });</code></pre>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Subscribe to Observable
+            </div>
+
+            <pre><code>courses$.subscribe({
+
+    next: course =&gt; {
+
+        console.log(course);
+
+    },
+
+    complete: () =&gt; {
+
+        console.log('Course stream completed');
+
+    }
+
+});</code></pre>
+
+        </div>
+
+
+        <div class="output-box mt-3">
+
+            <div class="student-preview">
+
+                <h4>
+                    Console Output
+                </h4>
+
+                <p>
+                    Java Full Stack
+                </p>
+
+                <p>
+                    .NET Full Stack
+                </p>
+
+                <p>
+                    Python Full Stack
+                </p>
+
+                <p class="mb-0">
+                    <strong>Course stream completed</strong>
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Store Subscription -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Storing the Subscription
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                The <strong>subscribe()</strong> method returns a
+                Subscription object.
+            </p>
+
+            <p class="mb-0">
+                We can store that object in a variable when the application
+                needs to manage the subscription later.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>const courseSubscription =
+    courses$.subscribe({
+
+        next: course =&gt; {
+
+            console.log(course);
+
+        }
+
+    });</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Subscription Object -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Subscription Object
+        </h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    A
+                </div>
+
+                <h5>
+                    Active
+                </h5>
+
+                <p>
+                    Represents whether the subscription is still active.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    U
+                </div>
+
+                <h5>
+                    unsubscribe()
+                </h5>
+
+                <p>
+                    Stops the subscription when it is no longer required.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    S
+                </div>
+
+                <h5>
+                    Subscription
+                </h5>
+
+                <p>
+                    Holds the execution created by subscribe().
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    M
+                </div>
+
+                <h5>
+                    Multiple
+                </h5>
+
+                <p>
+                    An application can have multiple active subscriptions.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Error Handling -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Handling Errors in Subscription
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                The <strong>error</strong> callback is used when an Observable
+                reports an error.
+            </p>
+
+            <p class="mb-0">
+                Error handling helps the application respond gracefully
+                instead of ignoring failures.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Error Handling Example
+            </div>
+
+            <pre><code>courseService.getCourses()
+    .subscribe({
+
+        next: courses =&gt; {
+
+            console.log(courses);
+
+        },
+
+        error: error =&gt; {
+
+            console.error(
+                'Unable to load courses',
+                error
+            );
+
+        }
+
+    });</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Complete -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Handling Completion
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                The <strong>complete</strong> callback executes when the
+                Observable finishes successfully.
+            </p>
+
+            <p class="mb-0">
+                It can be used for actions that should happen after the
+                complete data stream has finished.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Completion Example
+            </div>
+
+            <pre><code>courses$.subscribe({
+
+    next: course =&gt; {
+
+        console.log(course);
+
+    },
+
+    complete: () =&gt; {
+
+        console.log(
+            'All courses received'
+        );
+
+    }
+
+});</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- HTTP Subscription -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Subscription with HttpClient
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                Angular HttpClient methods commonly return Observables.
+            </p>
+
+            <p class="mb-0">
+                The application can subscribe to the returned Observable
+                to receive the HTTP response.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Service
+            </div>
+
+            <pre><code>getCourses() {
+
+    return this.http.get&lt;Course[]&gt;(
+        '/api/courses'
+    );
+
+}</code></pre>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Component
+            </div>
+
+            <pre><code>this.courseService
+    .getCourses()
+    .subscribe({
+
+        next: courses =&gt; {
+
+            this.courses = courses;
+
+        },
+
+        error: error =&gt; {
+
+            console.error(error);
+
+        }
+
+    });</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- CIIT Example -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            CIIT Training Institute Example
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                Suppose the CIIT Training Institute dashboard receives
+                course enquiry notifications.
+            </p>
+
+            <p class="mb-0">
+                The dashboard can subscribe to an Observable and process
+                each new enquiry whenever it is emitted.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Enquiry Subscription
+            </div>
+
+            <pre><code>const enquirySubscription =
+    enquiryService.getEnquiries()
+        .subscribe({
+
+            next: enquiry =&gt; {
+
+                console.log(
+                    'New enquiry:',
+                    enquiry
+                );
+
+            },
+
+            error: error =&gt; {
+
+                console.error(error);
+
+            }
+
+        });</code></pre>
+
+        </div>
+
+
+        <div class="output-box mt-3">
+
+            <div class="student-preview">
+
+                <h4>
+                    CIIT Enquiry Dashboard
+                </h4>
+
+                <p>
+                    New enquiry received
+                </p>
+
+                <p>
+                    Course: Java Full Stack
+                </p>
+
+                <p>
+                    Course: .NET Full Stack
+                </p>
+
+                <p class="mb-0">
+                    Subscription is receiving updates...
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Multiple Subscriptions -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Multiple Subscriptions
+        </h2>
+
+        <p>
+            A component may subscribe to more than one Observable when
+            different data sources are required.
+        </p>
+
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>const coursesSubscription =
+    courses$.subscribe({
+
+        next: course =&gt; {
+
+            console.log(course);
+
+        }
+
+    });
+
+
+const enquiriesSubscription =
+    enquiry$.subscribe({
+
+        next: enquiry =&gt; {
+
+            console.log(enquiry);
+
+        }
+
+    });</code></pre>
+
+        </div>
+
+
+        <div class="info-card mt-3">
+
+            <p class="mb-0">
+                When multiple subscriptions are created, they should be
+                managed carefully according to how long they need to remain
+                active.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Subscription Lifecycle -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Subscription Lifecycle
+        </h2>
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+
+                <strong>Create Observable</strong>
+
+                <span>
+                    Data Source
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>subscribe()</strong>
+
+                <span>
+                    Start Execution
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>Receive Values</strong>
+
+                <span>
+                    next()
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>Complete / Unsubscribe</strong>
+
+                <span>
+                    End Execution
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Important Difference -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Observable vs Subscription
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table syntax-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Feature
+                        </th>
+
+                        <th>
+                            Observable
+                        </th>
+
+                        <th>
+                            Subscription
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            Purpose
+                        </td>
+
+                        <td>
+                            Represents a data stream
+                        </td>
+
+                        <td>
+                            Represents an active execution
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Created By
+                        </td>
+
+                        <td>
+                            Observable source
+                        </td>
+
+                        <td>
+                            subscribe()
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Receives Values
+                        </td>
+
+                        <td>
+                            Emits values
+                        </td>
+
+                        <td>
+                            Receives emitted values
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Management
+                        </td>
+
+                        <td>
+                            Defines the stream
+                        </td>
+
+                        <td>
+                            Can be stopped using unsubscribe()
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Multiple Consumers
+                        </td>
+
+                        <td>
+                            Possible
+                        </td>
+
+                        <td>
+                            Each subscribe() creates an execution
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- Best Practices -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Subscription Best Practices
+        </h2>
+
+        <ul class="best-practice-list">
+
+            <li>
+                Subscribe only when the application actually needs the
+                Observable values.
+            </li>
+
+            <li>
+                Handle errors where appropriate instead of silently
+                ignoring failures.
+            </li>
+
+            <li>
+                Keep subscription logic easy to understand and maintain.
+            </li>
+
+            <li>
+                Manage long-lived subscriptions carefully.
+            </li>
+
+            <li>
+                Avoid keeping subscriptions active after they are no
+                longer required.
+            </li>
+
+            <li>
+                Use suitable Angular or RxJS patterns for managing
+                asynchronous streams.
+            </li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- Important Points -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Important Points
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                <strong>1.</strong>
+                Calling <strong>subscribe()</strong> starts listening
+                to an Observable.
+            </p>
+
+            <p>
+                <strong>2.</strong>
+                The returned object is a
+                <strong>Subscription</strong>.
+            </p>
+
+            <p>
+                <strong>3.</strong>
+                <strong>next</strong> handles emitted values.
+            </p>
+
+            <p>
+                <strong>4.</strong>
+                <strong>error</strong> handles Observable errors.
+            </p>
+
+            <p class="mb-0">
+                <strong>5.</strong>
+                <strong>complete</strong> runs when the Observable
+                completes successfully.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Summary -->
+    <section class="mb-4">
+
+        <div class="summary-box">
+
+            <h4 class="fw-bold">
+                Summary
+            </h4>
+
+            <p>
+                A Subscription represents an active execution of an
+                Observable.
+            </p>
+
+            <p>
+                The <strong>subscribe()</strong> method is used to receive
+                values through callbacks such as
+                <strong>next</strong>,
+                <strong>error</strong> and
+                <strong>complete</strong>.
+            </p>
+
+            <p class="mb-0">
+                Subscriptions should be managed carefully, especially for
+                long-lived streams. In the next topic, we will learn about
+                <strong>Data Streams</strong>.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Navigation -->
+    <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+
+        <a class="btn btn-outline-secondary"
+           href="@Url.Action("Index", "Observables", new { area = "Angular" })">
+
+            ← Observables
+
+        </a>
+
+
+        <a class="btn btn-primary"
+           href="@Url.Action("DataStreams", "Observables", new { area = "Angular" })">
+
+            Data Streams →
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<style>
+
+    .info-card {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-left: 5px solid #4c1d95;
+        border-radius: 10px;
+        padding: 20px;
+        line-height: 1.7;
+        color: #334155;
+    }
+
+
+    .syntax-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        flex-wrap: wrap;
+        margin: 25px 0;
+    }
+
+
+    .syntax-box {
+        background: linear-gradient( 135deg, #2e1065, #4c1d95 );
+        color: white;
+        padding: 18px 25px;
+        border-radius: 12px;
+        text-align: center;
+        min-width: 180px;
+        box-shadow: 0 5px 15px rgba(76, 29, 149, 0.15);
+    }
+
+
+        .syntax-box strong {
+            display: block;
+            font-size: 16px;
+        }
+
+
+        .syntax-box span {
+            display: block;
+            margin-top: 5px;
+            color: #d8c9f5;
+            font-size: 14px;
+        }
+
+
+    .syntax-arrow {
+        font-size: 28px;
+        font-weight: bold;
+        color: #4c1d95;
+    }
+
+
+    .syntax-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+
+
+    .syntax-card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 22px;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+    }
+
+
+        .syntax-card h5 {
+            margin-top: 15px;
+            font-weight: 700;
+            color: #2e1065;
+        }
+
+
+        .syntax-card p {
+            color: #64748b;
+            margin-bottom: 0;
+        }
+
+
+    .syntax-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: #ede9fe;
+        color: #4c1d95;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 18px;
+        margin: 0 auto;
+    }
+
+
+    .code-card {
+        background: #0f172a;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(15, 23, 42, 0.10);
+    }
+
+
+    .code-title {
+        background: #1e293b;
+        color: #ffffff;
+        padding: 12px 18px;
+        font-weight: 700;
+        font-size: 14px;
+    }
+
+
+    .code-card pre {
+        margin: 0;
+        padding: 20px;
+        overflow-x: auto;
+    }
+
+
+    .code-card code {
+        color: #f8fafc;
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+
+    .output-box {
+        background: #f8fafc;
+        border: 1px solid #ddd6fe;
+        border-radius: 12px;
+        padding: 20px;
+    }
+
+
+    .student-preview {
+        background: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        padding: 20px;
+    }
+
+
+        .student-preview h4 {
+            color: #2e1065;
+            font-weight: 700;
+        }
+
+
+        .student-preview p {
+            color: #64748b;
+        }
+
+
+    .syntax-table {
+        width: 100%;
+        margin-bottom: 0;
+        border: 1px solid #e2e8f0;
+    }
+
+
+        .syntax-table thead th {
+            background: #2e1065;
+            color: white;
+            padding: 14px;
+            border-color: #4c1d95;
+        }
+
+
+        .syntax-table tbody td {
+            padding: 14px;
+            vertical-align: middle;
+            color: #334155;
+            border-color: #e2e8f0;
+        }
+
+
+        .syntax-table tbody tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+
+        .syntax-table code {
+            color: #4c1d95;
+            font-weight: 600;
+        }
+
+
+    .best-practice-list {
+        margin: 0;
+        padding-left: 20px;
+    }
+
+
+        .best-practice-list li {
+            margin-bottom: 10px;
+            color: #334155;
+            line-height: 1.6;
+        }
+
+
+    .summary-box {
+        background: #cfe2ff;
+        color: #084298;
+        border-radius: 10px;
+        padding: 22px;
+        border: 1px solid #b6d4fe;
+    }
+
+
+        .summary-box h4 {
+            margin-bottom: 12px;
+        }
+
+
+    @@media (max-width: 991px) {
+
+        .syntax-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .syntax-flow {
+            gap: 12px;
+        }
+
+        .syntax-box {
+            min-width: 160px;
+        }
+    }
+
+
+    @@media (max-width: 576px) {
+
+        .syntax-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .syntax-flow {
+            flex-direction: column;
+        }
+
+        .syntax-arrow {
+            transform: rotate(90deg);
+        }
+
+        .syntax-box {
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .code-card pre {
+            padding: 15px;
+        }
+
+        .code-card code {
+            font-size: 13px;
+        }
+    }
+
+</style>

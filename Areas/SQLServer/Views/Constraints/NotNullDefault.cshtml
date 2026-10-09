@@ -1,0 +1,477 @@
+﻿@{
+    ViewData["Title"] = "NOT NULL & DEFAULT";
+}
+
+<section>
+
+    <!-- PAGE INTRODUCTION -->
+    <div class="mb-5">
+
+        <h1 class="fw-bold mb-3">
+            NOT NULL & DEFAULT
+        </h1>
+
+        <p class="lead text-muted">
+            NOT NULL and DEFAULT are SQL Server constraints used to
+            control the values stored in table columns. NOT NULL
+            prevents NULL values, while DEFAULT automatically provides
+            a value when no value is supplied.
+        </p>
+
+    </div>
+
+
+    <!-- NOT NULL -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            What is NOT NULL?
+        </h2>
+
+        <p>
+            The NOT NULL constraint ensures that a column must always
+            contain a value. A NULL value cannot be inserted into a
+            NOT NULL column.
+        </p>
+
+        <div class="alert alert-primary border-0">
+
+            <h5 class="fw-bold">
+                Simple Example
+            </h5>
+
+            <p class="mb-0">
+                If StudentName is defined as NOT NULL, every student
+                record must contain a StudentName.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- NOT NULL EXAMPLE -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Creating a NOT NULL Column
+        </h2>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>CREATE TABLE Students
+(
+    StudentId INT PRIMARY KEY,
+    StudentName VARCHAR(100) NOT NULL,
+    Age INT
+);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- NOT NULL OUTPUT -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            NOT NULL Example Output
+        </h2>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>INSERT INTO Students
+VALUES (101, NULL, 22);</code></pre>
+
+        </div>
+
+        <div class="alert alert-danger border-0">
+
+            <strong>Error:</strong>
+            StudentName cannot contain NULL because the column is
+            defined with the NOT NULL constraint.
+
+        </div>
+
+    </section>
+
+
+    <!-- DEFAULT -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            What is DEFAULT?
+        </h2>
+
+        <p>
+            The DEFAULT constraint automatically inserts a predefined
+            value when a value is not provided for a column.
+        </p>
+
+        <div class="alert alert-primary border-0">
+
+            <h5 class="fw-bold">
+                Simple Example
+            </h5>
+
+            <p class="mb-0">
+                If City has a DEFAULT value of Pune, SQL Server will
+                automatically insert Pune when City is not specified.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- DEFAULT EXAMPLE -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Creating a DEFAULT Constraint
+        </h2>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>CREATE TABLE Students
+(
+    StudentId INT PRIMARY KEY,
+    StudentName VARCHAR(100) NOT NULL,
+    City VARCHAR(50) DEFAULT 'Pune'
+);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- DEFAULT INSERT -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Using DEFAULT Value
+        </h2>
+
+        <p>
+            When City is not specified, SQL Server automatically uses
+            the default value.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>INSERT INTO Students
+(
+    StudentId,
+    StudentName
+)
+VALUES
+(
+    101,
+    'Rahul'
+);</code></pre>
+
+        </div>
+
+        <h5 class="fw-bold">
+            Output
+        </h5>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>StudentId</th>
+                        <th>StudentName</th>
+                        <th>City</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>101</td>
+                        <td>Rahul</td>
+                        <td>Pune</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- NAMED DEFAULT -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Named DEFAULT Constraint
+        </h2>
+
+        <p>
+            We can provide a specific name to a DEFAULT constraint.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>CREATE TABLE Students
+(
+    StudentId INT PRIMARY KEY,
+    StudentName VARCHAR(100) NOT NULL,
+    City VARCHAR(50),
+
+    CONSTRAINT DF_Students_City
+    DEFAULT 'Pune' FOR City
+);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- ADD DEFAULT -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Add DEFAULT to Existing Table
+        </h2>
+
+        <p>
+            A DEFAULT constraint can be added to an existing table
+            using ALTER TABLE.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>ALTER TABLE Students
+ADD CONSTRAINT DF_Students_City
+DEFAULT 'Pune' FOR City;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- NOT NULL VS DEFAULT -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            NOT NULL vs DEFAULT
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>NOT NULL</th>
+                        <th>DEFAULT</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>Prevents NULL values.</td>
+                        <td>Provides a default value.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Column must contain a value.</td>
+                        <td>Value is automatically supplied when omitted.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Used for mandatory data.</td>
+                        <td>Used for automatic default data.</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- COMBINED EXAMPLE -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            NOT NULL and DEFAULT Together
+        </h2>
+
+        <p>
+            NOT NULL and DEFAULT can be used together when a column
+            must always contain a value and should receive an automatic
+            value when one is not supplied.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>CREATE TABLE Employees
+(
+    EmployeeId INT PRIMARY KEY,
+
+    EmployeeName VARCHAR(100) NOT NULL,
+
+    Department VARCHAR(50) DEFAULT 'IT'
+);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- DIAGRAM -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            NOT NULL & DEFAULT Structure
+        </h2>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL Server
+            </div>
+
+            <pre class="mb-0"><code>Column
+  |
+  ├── NOT NULL
+  |      ↓
+  |   NULL Not Allowed
+  |
+  └── DEFAULT
+         ↓
+   Automatic Value
+         ↓
+      When Value
+      Is Not Provided</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- IMPORTANT POINTS -->
+    <section class="mb-5">
+
+        <div class="alert alert-info border-0">
+
+            <h5 class="fw-bold">
+                Important Points
+            </h5>
+
+            <ul class="mb-0">
+
+                <li class="mb-2">
+                    NOT NULL prevents NULL values.
+                </li>
+
+                <li class="mb-2">
+                    DEFAULT provides an automatic value when a value
+                    is not supplied.
+                </li>
+
+                <li class="mb-2">
+                    NOT NULL is useful for mandatory columns.
+                </li>
+
+                <li>
+                    NOT NULL and DEFAULT can be used together.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </section>
+
+
+    <!-- SUMMARY -->
+    <section class="mb-4">
+
+        <div class="alert alert-primary border-0">
+
+            <h2 class="fw-bold mb-3">
+                Summary
+            </h2>
+
+            <p class="mb-0">
+                In this section, we learned about NOT NULL and DEFAULT
+                constraints, how to create them, how to add them to an
+                existing table and how they control values stored in
+                SQL Server tables.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- PREVIOUS / NEXT -->
+
+    <div class="d-flex justify-content-between align-items-center
+                mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/Constraints/UniqueConstraint"
+           class="btn btn-outline-primary">
+
+            ← Previous: UNIQUE Constraint
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/Constraints/CheckConstraint"
+           class="btn btn-primary">
+
+            Next: CHECK Constraint →
+
+        </a>
+
+    </div>
+
+</section>

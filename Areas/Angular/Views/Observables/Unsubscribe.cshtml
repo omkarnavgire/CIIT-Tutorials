@@ -1,0 +1,1289 @@
+﻿@{
+    ViewData["Title"] = "Angular Unsubscribe";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- Header -->
+    <section class="mb-4">
+
+        <h1 class="fw-bold text-dark">
+            Angular Unsubscribe
+        </h1>
+
+        <p class="lead text-muted">
+            Learn how to stop an Observable subscription when it is no longer
+            required and how subscription management helps maintain efficient
+            Angular applications.
+        </p>
+
+    </section>
+
+
+    <!-- Introduction -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            What is Unsubscribe?
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                <strong>Unsubscribe</strong> means stopping an active
+                Observable subscription.
+            </p>
+
+            <p>
+                When an Observable is subscribed to, the resulting
+                Subscription can remain active until the source completes,
+                errors, or the subscription is explicitly cancelled.
+            </p>
+
+            <p class="mb-0">
+                For long-lived streams, proper subscription management helps
+                prevent work from continuing after it is no longer needed.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Flow -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Subscription and Unsubscribe Flow
+        </h2>
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+
+                <strong>Observable</strong>
+
+                <span>
+                    Data Stream
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>subscribe()</strong>
+
+                <span>
+                    Start Listening
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>Subscription</strong>
+
+                <span>
+                    Active
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>unsubscribe()</strong>
+
+                <span>
+                    Stop Listening
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Why Unsubscribe -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Why is Unsubscribe Important?
+        </h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    1
+                </div>
+
+                <h5>
+                    Stop Unnecessary Work
+                </h5>
+
+                <p>
+                    Stops an active subscription when the data is no longer
+                    required.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    2
+                </div>
+
+                <h5>
+                    Manage Long Streams
+                </h5>
+
+                <p>
+                    Useful for streams that can remain active for a long time.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    3
+                </div>
+
+                <h5>
+                    Cleaner Components
+                </h5>
+
+                <p>
+                    Helps components stop work that is no longer relevant.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    4
+                </div>
+
+                <h5>
+                    Better Resource Management
+                </h5>
+
+                <p>
+                    Properly managed subscriptions can reduce unnecessary
+                    ongoing activity.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Basic Syntax -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Basic unsubscribe() Syntax
+        </h2>
+
+        <div class="info-card">
+
+            <p class="mb-0">
+                Store the Subscription returned by <strong>subscribe()</strong>
+                and call <strong>unsubscribe()</strong> when the subscription
+                is no longer required.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                TypeScript
+            </div>
+
+            <pre><code>const subscription =
+    data$.subscribe({
+
+        next: value =&gt; {
+
+            console.log(value);
+
+        }
+
+    });
+
+subscription.unsubscribe();</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Simple Example -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Simple Unsubscribe Example
+        </h2>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Observable
+            </div>
+
+            <pre><code>const numbers$ =
+    interval(1000);</code></pre>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Subscribe
+            </div>
+
+            <pre><code>const subscription =
+    numbers$.subscribe({
+
+        next: value =&gt; {
+
+            console.log(value);
+
+        }
+
+    });</code></pre>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Unsubscribe
+            </div>
+
+            <pre><code>setTimeout(() =&gt; {
+
+    subscription.unsubscribe();
+
+}, 5000);</code></pre>
+
+        </div>
+
+
+        <div class="output-box mt-3">
+
+            <div class="student-preview">
+
+                <h4>
+                    Example Output
+                </h4>
+
+                <p>
+                    0
+                </p>
+
+                <p>
+                    1
+                </p>
+
+                <p>
+                    2
+                </p>
+
+                <p>
+                    3
+                </p>
+
+                <p class="mb-0">
+                    Subscription stopped after the specified time.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Complete vs Unsubscribe -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Complete vs Unsubscribe
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                An Observable may complete by itself after finishing its
+                sequence of values.
+            </p>
+
+            <p class="mb-0">
+                <strong>Unsubscribe()</strong> is an explicit action used by
+                the consumer to cancel its subscription.
+            </p>
+
+        </div>
+
+
+        <div class="table-responsive mt-3">
+
+            <table class="table syntax-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Feature
+                        </th>
+
+                        <th>
+                            Complete
+                        </th>
+
+                        <th>
+                            Unsubscribe
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            Triggered By
+                        </td>
+
+                        <td>
+                            Observable
+                        </td>
+
+                        <td>
+                            Subscriber / Application
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Meaning
+                        </td>
+
+                        <td>
+                            Stream has finished successfully
+                        </td>
+
+                        <td>
+                            Subscription is cancelled
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Method
+                        </td>
+
+                        <td>
+                            complete callback
+                        </td>
+
+                        <td>
+                            unsubscribe()
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Common Use
+                        </td>
+
+                        <td>
+                            Finite streams
+                        </td>
+
+                        <td>
+                            Long-lived or no-longer-needed streams
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- Multiple Subscriptions -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Managing Multiple Subscriptions
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                An application may create more than one subscription.
+            </p>
+
+            <p class="mb-0">
+                Each Subscription can be managed separately, or related
+                subscriptions can be grouped for cleanup.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>const courseSubscription =
+    courses$.subscribe({
+
+        next: course =&gt; {
+
+            console.log(course);
+
+        }
+
+    });
+
+
+const enquirySubscription =
+    enquiries$.subscribe({
+
+        next: enquiry =&gt; {
+
+            console.log(enquiry);
+
+        }
+
+    });
+
+
+courseSubscription.unsubscribe();
+
+enquirySubscription.unsubscribe();</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Subscription Add -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Grouping Subscriptions
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                RxJS Subscription objects can be grouped so that related
+                subscriptions can be cancelled together.
+            </p>
+
+            <p class="mb-0">
+                This is useful when several subscriptions belong to the
+                same component or workflow.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>const subscription =
+    new Subscription();
+
+subscription.add(
+    courses$.subscribe({
+        next: course =&gt; {
+            console.log(course);
+        }
+    })
+);
+
+subscription.add(
+    enquiries$.subscribe({
+        next: enquiry =&gt; {
+            console.log(enquiry);
+        }
+    })
+);
+
+
+subscription.unsubscribe();</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- CIIT Example -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            CIIT Training Institute Example
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                Suppose a CIIT Training Institute dashboard subscribes to a
+                continuously updating enquiry stream.
+            </p>
+
+            <p class="mb-0">
+                When the dashboard component is no longer using the stream,
+                the subscription should be cleaned up according to the
+                application's subscription-management strategy.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Enquiry Subscription
+            </div>
+
+            <pre><code>const enquirySubscription =
+    enquiryService.getLiveEnquiries()
+        .subscribe({
+
+            next: enquiry =&gt; {
+
+                console.log(
+                    'New enquiry:',
+                    enquiry
+                );
+
+            }
+
+        });</code></pre>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Cleanup
+            </div>
+
+            <pre><code>enquirySubscription.unsubscribe();</code></pre>
+
+        </div>
+
+
+        <div class="output-box mt-3">
+
+            <div class="student-preview">
+
+                <h4>
+                    CIIT Enquiry Dashboard
+                </h4>
+
+                <p>
+                    Java Full Stack enquiry received
+                </p>
+
+                <p>
+                    .NET Full Stack enquiry received
+                </p>
+
+                <p>
+                    Python Full Stack enquiry received
+                </p>
+
+                <p class="mb-0">
+                    Live enquiry subscription stopped.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- When to Unsubscribe -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            When Should We Unsubscribe?
+        </h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    L
+                </div>
+
+                <h5>
+                    Long-Lived Stream
+                </h5>
+
+                <p>
+                    When the source can continue emitting for a long time.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    P
+                </div>
+
+                <h5>
+                    Page / Component Exit
+                </h5>
+
+                <p>
+                    When a component no longer needs an active stream.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    C
+                </div>
+
+                <h5>
+                    Cancel Operation
+                </h5>
+
+                <p>
+                    When the application intentionally cancels ongoing work.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    S
+                </div>
+
+                <h5>
+                    Stop Monitoring
+                </h5>
+
+                <p>
+                    When continuous updates are no longer required.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Finite Observable -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Finite and Long-Lived Observables
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table syntax-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Type
+                        </th>
+
+                        <th>
+                            Example
+                        </th>
+
+                        <th>
+                            Typical Behavior
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            Finite
+                        </td>
+
+                        <td>
+                            A stream with a known completion
+                        </td>
+
+                        <td>
+                            Emits values and then completes
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Long-Lived
+                        </td>
+
+                        <td>
+                            Timer or ongoing event stream
+                        </td>
+
+                        <td>
+                            May continue until cancelled
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            User Controlled
+                        </td>
+
+                        <td>
+                            Start / Stop workflow
+                        </td>
+
+                        <td>
+                            Subscription can be cancelled explicitly
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- Modern Angular Management -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Angular Subscription Management
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                Angular provides patterns for managing Observable lifecycles
+                together with component lifecycles.
+            </p>
+
+            <p class="mb-0">
+                The exact approach can depend on the Angular version and the
+                application's architecture.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Important Points -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Important Points
+        </h2>
+
+        <div class="best-practice-list">
+
+            <div class="info-card mb-3">
+
+                <strong>
+                    1. subscribe() Returns a Subscription
+                </strong>
+
+                <p class="mb-0">
+                    Store the returned Subscription when explicit
+                    subscription management is required.
+                </p>
+
+            </div>
+
+
+            <div class="info-card mb-3">
+
+                <strong>
+                    2. unsubscribe() Cancels the Subscription
+                </strong>
+
+                <p class="mb-0">
+                    Calling unsubscribe() stops that subscription from
+                    continuing to receive future emissions.
+                </p>
+
+            </div>
+
+
+            <div class="info-card mb-3">
+
+                <strong>
+                    3. Long-Lived Streams Need Attention
+                </strong>
+
+                <p class="mb-0">
+                    Timers, event streams and other ongoing sources should
+                    be managed carefully.
+                </p>
+
+            </div>
+
+
+            <div class="info-card">
+
+                <strong>
+                    4. Choose the Right Lifecycle Strategy
+                </strong>
+
+                <p class="mb-0">
+                    Use an appropriate Angular or RxJS subscription-management
+                    approach for the application's requirements.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Best Practices -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Unsubscribe Best Practices
+        </h2>
+
+        <ul class="best-practice-list">
+
+            <li>
+                Identify subscriptions that can remain active for a long time.
+            </li>
+
+            <li>
+                Cancel subscriptions when their work is no longer required.
+            </li>
+
+            <li>
+                Keep subscription ownership clear inside the application.
+            </li>
+
+            <li>
+                Group related subscriptions when that makes cleanup simpler.
+            </li>
+
+            <li>
+                Avoid unnecessary manual subscription management when a
+                suitable Angular pattern already handles the lifecycle.
+            </li>
+
+            <li>
+                Review long-lived streams carefully during component design.
+            </li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- Summary -->
+    <section class="mb-4">
+
+        <div class="summary-box">
+
+            <h4 class="fw-bold">
+                Summary
+            </h4>
+
+            <p>
+                <strong>unsubscribe()</strong> is used to cancel an active
+                Observable subscription when it is no longer required.
+            </p>
+
+            <p>
+                Subscription management is especially important for
+                long-lived streams such as timers, event streams and
+                continuously updating application data.
+            </p>
+
+            <p class="mb-0">
+                The Observables module is now complete. In the next module,
+                we will learn about <strong>RxJS</strong>.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Navigation -->
+    <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+
+        <a class="btn btn-outline-secondary"
+           href="@Url.Action("Operators", "Observables", new { area = "Angular" })">
+
+            ← Operators
+
+        </a>
+
+
+        <a class="btn btn-primary"
+           href="@Url.Action("Index", "RxJS", new { area = "Angular" })">
+
+            RxJS →
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<style>
+
+    .info-card {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-left: 5px solid #4c1d95;
+        border-radius: 10px;
+        padding: 20px;
+        line-height: 1.7;
+        color: #334155;
+    }
+
+
+    .syntax-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        flex-wrap: wrap;
+        margin: 25px 0;
+    }
+
+
+    .syntax-box {
+        background: linear-gradient( 135deg, #2e1065, #4c1d95 );
+        color: white;
+        padding: 18px 25px;
+        border-radius: 12px;
+        text-align: center;
+        min-width: 180px;
+        box-shadow: 0 5px 15px rgba(76, 29, 149, 0.15);
+    }
+
+
+        .syntax-box strong {
+            display: block;
+            font-size: 16px;
+        }
+
+
+        .syntax-box span {
+            display: block;
+            margin-top: 5px;
+            color: #d8c9f5;
+            font-size: 14px;
+        }
+
+
+    .syntax-arrow {
+        font-size: 28px;
+        font-weight: bold;
+        color: #4c1d95;
+    }
+
+
+    .syntax-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+
+
+    .syntax-card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 22px;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+    }
+
+
+        .syntax-card h5 {
+            margin-top: 15px;
+            font-weight: 700;
+            color: #2e1065;
+        }
+
+
+        .syntax-card p {
+            color: #64748b;
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+
+
+    .syntax-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: #ede9fe;
+        color: #4c1d95;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 18px;
+        margin: 0 auto;
+    }
+
+
+    .code-card {
+        background: #0f172a;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(15, 23, 42, 0.10);
+    }
+
+
+    .code-title {
+        background: #1e293b;
+        color: #ffffff;
+        padding: 12px 18px;
+        font-weight: 700;
+        font-size: 14px;
+    }
+
+
+    .code-card pre {
+        margin: 0;
+        padding: 20px;
+        overflow-x: auto;
+    }
+
+
+    .code-card code {
+        color: #f8fafc;
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+
+    .output-box {
+        background: #f8fafc;
+        border: 1px solid #ddd6fe;
+        border-radius: 12px;
+        padding: 20px;
+    }
+
+
+    .student-preview {
+        background: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        padding: 20px;
+    }
+
+
+        .student-preview h4 {
+            color: #2e1065;
+            font-weight: 700;
+        }
+
+
+        .student-preview p {
+            color: #64748b;
+        }
+
+
+    .syntax-table {
+        width: 100%;
+        margin-bottom: 0;
+        border: 1px solid #e2e8f0;
+    }
+
+
+        .syntax-table thead th {
+            background: #2e1065;
+            color: white;
+            padding: 14px;
+            border-color: #4c1d95;
+        }
+
+
+        .syntax-table tbody td {
+            padding: 14px;
+            vertical-align: middle;
+            color: #334155;
+            border-color: #e2e8f0;
+        }
+
+
+        .syntax-table tbody tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+
+        .syntax-table code {
+            color: #4c1d95;
+            font-weight: 600;
+        }
+
+
+    .best-practice-list {
+        margin: 0;
+        padding-left: 20px;
+    }
+
+
+        .best-practice-list li {
+            margin-bottom: 10px;
+            color: #334155;
+            line-height: 1.6;
+        }
+
+
+    .summary-box {
+        background: #cfe2ff;
+        color: #084298;
+        border-radius: 10px;
+        padding: 22px;
+        border: 1px solid #b6d4fe;
+    }
+
+
+        .summary-box h4 {
+            margin-bottom: 12px;
+        }
+
+
+    @@media (max-width: 991px) {
+
+        .syntax-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .syntax-flow {
+            gap: 12px;
+        }
+
+        .syntax-box {
+            min-width: 160px;
+        }
+    }
+
+
+    @@media (max-width: 576px) {
+
+        .syntax-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .syntax-flow {
+            flex-direction: column;
+        }
+
+        .syntax-arrow {
+            transform: rotate(90deg);
+        }
+
+        .syntax-box {
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .code-card pre {
+            padding: 15px;
+        }
+
+        .code-card code {
+            font-size: 13px;
+        }
+    }
+
+</style>

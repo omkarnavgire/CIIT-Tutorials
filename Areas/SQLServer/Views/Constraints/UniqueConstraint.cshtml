@@ -1,0 +1,498 @@
+﻿@{
+    ViewData["Title"] = "UNIQUE Constraint";
+}
+
+<section>
+
+    <!-- PAGE INTRODUCTION -->
+    <div class="mb-5">
+
+        <h1 class="fw-bold mb-3">
+            UNIQUE Constraint
+        </h1>
+
+        <p class="lead text-muted">
+            The UNIQUE constraint is used to ensure that all values
+            in a column are different. It prevents duplicate values
+            from being stored in a column.
+        </p>
+
+    </div>
+
+
+    <!-- WHAT IS UNIQUE -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            What is a UNIQUE Constraint?
+        </h2>
+
+        <p>
+            A UNIQUE constraint ensures that no two rows contain the
+            same value in the specified column.
+        </p>
+
+        <p>
+            It is commonly used for columns such as Email, Phone
+            Number, Username or other values that should remain unique.
+        </p>
+
+        <div class="alert alert-primary border-0">
+
+            <h5 class="fw-bold">
+                Simple Example
+            </h5>
+
+            <p class="mb-0">
+                If Email has a UNIQUE constraint, two students cannot
+                have the same email address.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- UNIQUE RULES -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            UNIQUE Constraint Rules
+        </h2>
+
+        <ul>
+
+            <li class="mb-2">
+                Duplicate values are not allowed.
+            </li>
+
+            <li class="mb-2">
+                UNIQUE constraints maintain data uniqueness.
+            </li>
+
+            <li class="mb-2">
+                A table can have multiple UNIQUE constraints.
+            </li>
+
+            <li class="mb-2">
+                A UNIQUE constraint can be applied to one or more columns.
+            </li>
+
+            <li>
+                A UNIQUE constraint is different from a PRIMARY KEY.
+            </li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- CREATE TABLE -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Create UNIQUE Constraint
+        </h2>
+
+        <p>
+            A UNIQUE constraint can be created while defining a table.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>CREATE TABLE Students
+(
+    StudentId INT PRIMARY KEY,
+    StudentName VARCHAR(100),
+    Email VARCHAR(150) UNIQUE
+);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- NAMED UNIQUE -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Named UNIQUE Constraint
+        </h2>
+
+        <p>
+            We can also provide a specific name to the UNIQUE constraint.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>CREATE TABLE Students
+(
+    StudentId INT PRIMARY KEY,
+    StudentName VARCHAR(100),
+    Email VARCHAR(150),
+
+    CONSTRAINT UQ_Students_Email
+    UNIQUE (Email)
+);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- INSERT VALID DATA -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Insert Unique Values
+        </h2>
+
+        <p>
+            Different email addresses can be inserted successfully.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>INSERT INTO Students
+VALUES (101, 'Rahul', 'rahul@gmail.com');
+
+INSERT INTO Students
+VALUES (102, 'Priya', 'priya@gmail.com');</code></pre>
+
+        </div>
+
+        <div class="alert alert-success border-0">
+
+            <strong>Result:</strong>
+            Both records are inserted because their Email values
+            are different.
+
+        </div>
+
+    </section>
+
+
+    <!-- DUPLICATE VALUE -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Duplicate Value Example
+        </h2>
+
+        <p>
+            Suppose the email already exists in the table.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>INSERT INTO Students
+VALUES (103, 'Amit', 'rahul@gmail.com');</code></pre>
+
+        </div>
+
+        <div class="alert alert-danger border-0">
+
+            <strong>Error:</strong>
+            The INSERT operation fails because the Email value already
+            exists in the table.
+
+        </div>
+
+    </section>
+
+
+    <!-- ADD UNIQUE -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Add UNIQUE Constraint to Existing Table
+        </h2>
+
+        <p>
+            A UNIQUE constraint can be added to an existing table
+            using ALTER TABLE.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>ALTER TABLE Students
+ADD CONSTRAINT UQ_Students_Email
+UNIQUE (Email);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- MULTIPLE UNIQUE -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Multiple UNIQUE Constraints
+        </h2>
+
+        <p>
+            A table can contain multiple UNIQUE constraints.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>CREATE TABLE Users
+(
+    UserId INT PRIMARY KEY,
+
+    Username VARCHAR(50),
+
+    Email VARCHAR(150),
+
+    CONSTRAINT UQ_Users_Username
+    UNIQUE (Username),
+
+    CONSTRAINT UQ_Users_Email
+    UNIQUE (Email)
+);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- OUTPUT -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Example Output
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>StudentId</th>
+                        <th>StudentName</th>
+                        <th>Email</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>101</td>
+                        <td>Rahul</td>
+                        <td>rahul@gmail.com</td>
+                    </tr>
+
+                    <tr>
+                        <td>102</td>
+                        <td>Priya</td>
+                        <td>priya@gmail.com</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <p class="text-muted">
+            Every Email value is unique in the table.
+        </p>
+
+    </section>
+
+
+    <!-- DIAGRAM -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            UNIQUE Constraint Structure
+        </h2>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL Server
+            </div>
+
+            <pre class="mb-0"><code>
+                                                            Students Table
+                                                                  |
+                                                                  ↓
+                                                             Email Column
+                                                                  |
+                                                                  ↓
+                                                            UNIQUE Constraint
+                                                                  |
+                                                                  ↓
+                                                            Duplicate Values
+                                                                 ❌
+                                                                  |
+                                                                  ↓
+                                                             Unique Values
+                                                                 ✓</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- PRIMARY KEY VS UNIQUE -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            PRIMARY KEY vs UNIQUE
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>PRIMARY KEY</th>
+                        <th>UNIQUE</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>Uniquely identifies each row.</td>
+                        <td>Ensures values are unique.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Only one PRIMARY KEY per table.</td>
+                        <td>Multiple UNIQUE constraints can exist.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Does not allow NULL values.</td>
+                        <td>NULL handling is different from PRIMARY KEY.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Usually identifies the main record.</td>
+                        <td>Used for additional unique values.</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- IMPORTANT POINTS -->
+    <section class="mb-5">
+
+        <div class="alert alert-info border-0">
+
+            <h5 class="fw-bold">
+                Important Points
+            </h5>
+
+            <ul class="mb-0">
+
+                <li class="mb-2">
+                    UNIQUE prevents duplicate values.
+                </li>
+
+                <li class="mb-2">
+                    Multiple UNIQUE constraints can be created in a table.
+                </li>
+
+                <li class="mb-2">
+                    UNIQUE constraints can be named explicitly.
+                </li>
+
+                <li>
+                    UNIQUE constraints can be added using ALTER TABLE.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </section>
+
+
+    <!-- SUMMARY -->
+    <section class="mb-4">
+
+        <div class="alert alert-primary border-0">
+
+            <h2 class="fw-bold mb-3">
+                Summary
+            </h2>
+
+            <p class="mb-0">
+                In this section, we learned how the UNIQUE constraint
+                prevents duplicate values, how to create it during
+                table creation and how to add it to an existing table.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- PREVIOUS / NEXT -->
+
+    <div class="d-flex justify-content-between align-items-center
+                mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/Constraints/ForeignKey"
+           class="btn btn-outline-primary">
+
+            ← Previous: FOREIGN KEY
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/Constraints/NotNullDefault"
+           class="btn btn-primary">
+
+            Next: NOT NULL & DEFAULT →
+
+        </a>
+
+    </div>
+
+</section>

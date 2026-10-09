@@ -1,0 +1,124 @@
+@{
+    ViewData["Title"] = "Now, we want to drag this over";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+                <div class="azure-notes-content">
+                    <pre class="azure-notes-text">Now, we want to drag this over because we want this to be front and center. So, we are going to have
+this be like the first thing that we see when we come into my dashboard.
+Now, every time we log into the portal, this information is going to be the first thing we see, so we
+can monitor and know what&#x27;s actually happening with our application.
+Microsoft Azure - Customizing Azure Dashboard Tiles
+we&#x27;ll learn how you can customize your Azure dashboard by moving around the tiles. In the Azure
+portal, we can easily customize the look on our dashboard by simply moving our tiles around.
+
+So let&#x27;s say we wanted to have the below-shown resource group be the first tile inside our
+dashboard.
+
+
+
+
+We could grab it, we could move it over to the left.
+
+
+
+
+Notice how our dashboard has changed, and we are now in Edit mode.
+So, we could do things like we could change the name of our dashboard.
+
+
+
+
+Another thing that we could do is if let&#x27;s say we want a particular tile to take up more space. We can
+have this take up as much, or as little space as we want it to. This will resize our tile as per our need.
+When we are done customizing we could hit &quot;Done customizing&quot;.
+
+
+
+
+Not only that but we can actually create a new dashboard by clicking on the New dashboard option.
+
+
+
+
+So if we had a new dashboard, we would just leave this as My Dashboard. Notice that we have a
+blank canvas now that we could continue to add new tiles.
+So, here on the left in the tile gallery, we are just going to grab a couple of tiles and we are just going
+to grab them, and just drop them in here. We are going to grab a &#x27;&#x27;Clock&#x27;&#x27; and let&#x27;s grab the
+&#x27;&#x27;Resource groups&#x27;&#x27;. So this is our new dashboard.
+
+
+
+
+Now, If we hit &quot;Done customizing&quot;, we will have the second dashboard that&#x27;s available to us. If we
+want to switch back and forth between dashboards, notice here we have Dashboard New, and
+also My dashboard. So we can pick and choose between what view of information is important for
+us to see at that particular time.
+Microsoft Azure - Auto Refreshing Dashboards
+We will learn how to use Auto-Refresh for Dashboards. It&#x27;s sure that you have a lot of data on your
+dashboards that changes over time. Many of you may be even putting this dashboard up on a
+display, to share with the people that you work with. You would not want to be looking at the same
+data that doesn’t change over time because it gets old.</pre>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_7_-_Dashboards/p02-000.jpg" class="img-fluid rounded shadow-sm" alt="Now, we want to drag this over - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_7_-_Dashboards/p02-001.jpg" class="img-fluid rounded shadow-sm" alt="Now, we want to drag this over - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_7_-_Dashboards/p03-000.jpg" class="img-fluid rounded shadow-sm" alt="Now, we want to drag this over - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_7_-_Dashboards/p04-000.jpg" class="img-fluid rounded shadow-sm" alt="Now, we want to drag this over - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_7_-_Dashboards/p04-001.jpg" class="img-fluid rounded shadow-sm" alt="Now, we want to drag this over - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_7_-_Dashboards/p05-000.jpg" class="img-fluid rounded shadow-sm" alt="Now, we want to drag this over - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_7_-_Dashboards/p05-001.jpg" class="img-fluid rounded shadow-sm" alt="Now, we want to drag this over - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_7_-_Dashboards/p06-000.jpg" class="img-fluid rounded shadow-sm" alt="Now, we want to drag this over - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_7_-_Dashboards/p06-001.jpg" class="img-fluid rounded shadow-sm" alt="Now, we want to drag this over - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_7_-_Dashboards/p06-002.jpg" class="img-fluid rounded shadow-sm" alt="Now, we want to drag this over - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_7_-_Dashboards/p07-000.jpg" class="img-fluid rounded shadow-sm" alt="Now, we want to drag this over - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_7_-_Dashboards/p07-001.jpg" class="img-fluid rounded shadow-sm" alt="Now, we want to drag this over - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_7_-_Dashboards/p08-000.jpg" class="img-fluid rounded shadow-sm" alt="Now, we want to drag this over - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_7_-_Dashboards/p08-001.jpg" class="img-fluid rounded shadow-sm" alt="Now, we want to drag this over - source image" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+            @await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureLessonNavigation.cshtml")
+</section>
+</div>
+<style>
+.azure-notes-text{white-space:pre-wrap;word-break:normal;font-family:inherit;font-size:1rem;line-height:1.7;background:#fff;border:0;padding:0;margin:0;color:#212529;}
+.azure-notes-content img{max-height:720px;}
+</style>

@@ -1,0 +1,100 @@
+@{
+    ViewData["Title"] = "Create a Release Pipeline";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+                <div class="azure-notes-content">
+                    <pre class="azure-notes-text">Create a Release Pipeline
+
+Now once the build succeeds, we need to create a release definition. You can select the release
+menu from the pipeline or click on the release button as shown below. When you get into the
+release pipeline screen, you’ll need to select a template.
+Azure DevOps has provided a lot of predefined templates for deployment. Some of them are as
+follows
+
+    1. Azure App Service Deployment with Test and without Test
+
+    2. Azure App Service Deployment with continuous monitoring
+
+    3. Cloud Service Deployment
+
+    4. On-Premise deployment
+
+    5. Azure VM Scale Set
+
+    6. Service Fabric (Stateful/ stateless)
+
+    7. Azure Policy Deployment
+
+    8. Function App to Azure
+
+We can create our own custom template as well as per our requirements.
+
+
+
+
+Figure 9. Choose Release Template
+
+After selecting the template, we can add tasks so that we can deploy a build multiple environments
+like dev, test, UAT, etc. We can add a particular use as a release approver as well. We can set the
+variable values which are used in the release definition. You can convert those templates to YAML in
+a later stage as well and then check in version control if you want. You see that there are all kinds of
+pre-defined templates for your builds.
+
+So for example, a Gradle build or a Go build, or you want to do some load testing, or you want to do
+Xamarin app for iOS, Ant builds, you name it; it&#x27;s all there and part of the out-of-the-box experience.
+Azure DevOps has things like NuGet restore, Test Assemblies, Build the solution, and all kinds of
+things that we can pick from the task picker.
+After saving the release definition, you can create a new release. You can choose environments for
+release if you have added multiple release tasks.
+After creating a release, we can track release progress as shown below.
+
+
+
+
+We can enable pre-deployment approvals as shown below. Now, what happens when I do a
+deployment and the deployment fails? Well, I can select to re-deploy the previous well-known stable
+deployment so I&#x27;m always in a good state again, which is quite handy. So that&#x27;s a way we can define
+those post-approvals before we move to the next phase in our deployment.</pre>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_10_-_Azure_Pipelines_A_Complete_Guide_to_CICD_Automation/p06-000.jpg" class="img-fluid rounded shadow-sm" alt="Create a Release Pipeline - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_10_-_Azure_Pipelines_A_Complete_Guide_to_CICD_Automation/p06-001.jpg" class="img-fluid rounded shadow-sm" alt="Create a Release Pipeline - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_10_-_Azure_Pipelines_A_Complete_Guide_to_CICD_Automation/p07-000.jpg" class="img-fluid rounded shadow-sm" alt="Create a Release Pipeline - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_10_-_Azure_Pipelines_A_Complete_Guide_to_CICD_Automation/p08-000.jpg" class="img-fluid rounded shadow-sm" alt="Create a Release Pipeline - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_10_-_Azure_Pipelines_A_Complete_Guide_to_CICD_Automation/p08-001.jpg" class="img-fluid rounded shadow-sm" alt="Create a Release Pipeline - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_10_-_Azure_Pipelines_A_Complete_Guide_to_CICD_Automation/p09-000.jpg" class="img-fluid rounded shadow-sm" alt="Create a Release Pipeline - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_10_-_Azure_Pipelines_A_Complete_Guide_to_CICD_Automation/p09-001.jpg" class="img-fluid rounded shadow-sm" alt="Create a Release Pipeline - source image" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+            @await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureLessonNavigation.cshtml")
+</section>
+</div>
+<style>
+.azure-notes-text{white-space:pre-wrap;word-break:normal;font-family:inherit;font-size:1rem;line-height:1.7;background:#fff;border:0;padding:0;margin:0;color:#212529;}
+.azure-notes-content img{max-height:720px;}
+</style>

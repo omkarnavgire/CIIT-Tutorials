@@ -1,0 +1,63 @@
+@{
+    ViewData["Title"] = "SQL Azure Architecture";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+                <div class="azure-notes-content">
+                    <pre class="azure-notes-text">SQL Azure Architecture
+
+There are four layers in Azure SQL Architecture:
+
+    •   Client Layer
+
+    •   Service Layer
+
+    •   Platform Layer
+
+    •   Infrastructure Layer
+SQL Azure Architecture
+
+Client Layer: Applications connect to and communicate with the database service through the client
+layer of the Azure SQL Database. It comes with utilities like PHP extensions, ADO.NET, ODBC, and SQL
+Server Management Studio. The Tabular Data Stream (TDS) protocol is a useful tool for transferring
+data between SQL databases and applications.
+
+Service Layer: In Azure SQL Database, the service layer manages provisioning, billing, and connection
+routing in its capacity as a go-between for the client and platform layers. In order to ensure seamless
+communication and interaction, it is essential for validating requests, authenticating users, and
+creating secure connections between client applications and database servers. It also oversees the
+entire service delivery process, maximizing scalability and performance while guaranteeing
+compliance with security and regulatory requirements.
+
+Platform Layer: Within the data center, Azure SQL Server computers, sometimes referred to as data
+nodes, are hosted by the platform layer of Azure SQL Database. To provide redundancy, each SQL
+Database is housed on a node and replicated across many physical servers. In order to preserve
+consistency and dependability for stored data, this layer makes sure that data is synchronized across
+several copies within the Azure Cloud.
+
+Infrastructure Layer: The Azure SQL Database&#x27;s infrastructure layer manages the hardware and
+operating system below it, making sure they are properly administered. It is in charge of overseeing
+the provisioning, upkeep, and distribution of resources for the hardware that supports Azure SQL
+Database. The foundation of the Azure SQL architecture, this layer offers crucial support for the
+platform and service layers to operate at their best.</pre>
+                </div>
+            </div>
+        </div>
+    
+
+            @await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureLessonNavigation.cshtml")
+</section>
+</div>
+<style>
+.azure-notes-text{white-space:pre-wrap;word-break:normal;font-family:inherit;font-size:1rem;line-height:1.7;background:#fff;border:0;padding:0;margin:0;color:#212529;}
+.azure-notes-content img{max-height:720px;}
+</style>

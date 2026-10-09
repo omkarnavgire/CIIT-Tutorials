@@ -1,0 +1,1108 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Python Conditional Statements";
+}
+
+<main id="tutorials" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- ================================================= -->
+        <!-- LEFT SIDEBAR -->
+        <!-- ================================================= -->
+
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+
+        </aside>
+
+
+        <!-- ================================================= -->
+        <!-- MAIN CONTENT -->
+        <!-- ================================================= -->
+
+        <section class="col-lg-9">
+
+            <div class="card shadow-sm border-0 p-4 p-md-5 mb-4">
+
+                <!-- ================================================= -->
+                <!-- PAGE TITLE -->
+                <!-- ================================================= -->
+
+                <h1 class="h1 fw-bold text-dark mt-1 mb-4">
+                    Conditional Statements
+                </h1>
+
+                <p class="text-muted mb-4">
+                    Conditional statements allow a Python program to make
+                    decisions. Based on whether a condition is
+                    <strong>True</strong> or <strong>False</strong>,
+                    Python executes the appropriate block of code.
+                </p>
+
+
+                <!-- ================================================= -->
+                <!-- CIIT INTRO -->
+                <!-- ================================================= -->
+
+                <div class="alert alert-info mb-4"
+                     style="background-color:#cfe2ff; border:0; color:#123c73;">
+
+                    <strong style="color:#123c73;">
+                        CIIT Training Institute :
+                    </strong>
+
+                    <span style="color:#123c73;">
+                        Conditional statements are used in real-world
+                        applications for login validation, eligibility
+                        checks, result processing, permissions, discounts,
+                        authentication, and business rules.
+                    </span>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- WHAT IS CONDITION -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    What is a Condition?
+                </h2>
+
+                <p class="text-muted mb-3">
+                    A condition is an expression that produces either
+                    <strong>True</strong> or <strong>False</strong>.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>age = 25
+
+print(age &gt;= 18)</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>True</code></pre>
+
+                </div>
+
+                <p class="text-muted mb-4">
+                    Since the value of <strong>age</strong> is 25,
+                    the condition <strong>age &gt;= 18</strong> is true.
+                </p>
+
+
+                <!-- ================================================= -->
+                <!-- DECISION FLOW -->
+                <!-- ================================================= -->
+
+                <div class="border rounded p-4 mb-4 bg-light">
+
+                    <h3 class="h5 fw-bold text-dark text-center mb-4">
+                        Conditional Decision Flow
+                    </h3>
+
+                    <div class="d-flex flex-column align-items-center gap-2">
+
+                        <div class="px-4 py-3 border rounded bg-white shadow-sm text-center"
+                             style="max-width:430px; width:100%;">
+
+                            <strong>Start</strong>
+
+                        </div>
+
+                        <div class="fw-bold text-primary fs-4">
+                            ↓
+                        </div>
+
+                        <div class="px-4 py-3 border rounded bg-white shadow-sm text-center"
+                             style="max-width:430px; width:100%;">
+
+                            <strong>Check Condition</strong>
+
+                            <br />
+
+                            <small class="text-muted">
+                                Example: marks &gt;= 40
+                            </small>
+
+                        </div>
+
+                        <div class="fw-bold text-primary fs-4">
+                            ↓
+                        </div>
+
+                        <div class="px-4 py-3 border rounded bg-white shadow-sm text-center"
+                             style="max-width:430px; width:100%;">
+
+                            <strong>Condition True?</strong>
+
+                            <br />
+
+                            <small class="text-muted">
+                                Yes → Execute if block
+                            </small>
+
+                        </div>
+
+                        <div class="fw-bold text-primary fs-4">
+                            ↓
+                        </div>
+
+                        <div class="px-4 py-3 border rounded bg-white shadow-sm text-center"
+                             style="max-width:430px; width:100%;">
+
+                            <strong>Otherwise</strong>
+
+                            <br />
+
+                            <small class="text-muted">
+                                Execute else / next condition
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- IF STATEMENT -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    1. if Statement
+                </h2>
+
+                <p class="text-muted mb-3">
+                    The <strong>if</strong> statement executes a block
+                    of code only when the specified condition is true.
+                </p>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Syntax
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>if condition:
+    statement</code></pre>
+
+                </div>
+
+                <p class="text-muted mb-3">
+                    Notice the colon <strong>:</strong> after the
+                    condition. The statement inside the block must be
+                    indented.
+                </p>
+
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Example
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>marks = 80
+
+if marks &gt;= 40:
+    print("Student Passed")</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>Student Passed</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- IF FALSE -->
+                <!-- ================================================= -->
+
+                <h3 class="h5 fw-bold text-dark mt-4 mb-3">
+                    What Happens When the Condition is False?
+                </h3>
+
+                <p class="text-muted mb-3">
+                    If the condition is false, Python simply skips the
+                    code inside the <strong>if</strong> block.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>marks = 30
+
+if marks &gt;= 40:
+    print("Student Passed")
+
+print("Program Completed")</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>Program Completed</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- ELSE -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    2. if-else Statement
+                </h2>
+
+                <p class="text-muted mb-3">
+                    The <strong>else</strong> block executes when the
+                    <strong>if</strong> condition is false.
+                </p>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Syntax
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>if condition:
+    statement
+else:
+    statement</code></pre>
+
+                </div>
+
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Example
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>marks = 35
+
+if marks &gt;= 40:
+    print("Pass")
+else:
+    print("Fail")</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>Fail</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- ELIF -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    3. if-elif-else Statement
+                </h2>
+
+                <p class="text-muted mb-3">
+                    When a program needs to check multiple conditions,
+                    Python provides the <strong>elif</strong> keyword.
+                </p>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Syntax
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>if condition1:
+    statement
+elif condition2:
+    statement
+else:
+    statement</code></pre>
+
+                </div>
+
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Grade Example
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>marks = 82
+
+if marks &gt;= 90:
+    print("Grade A+")
+elif marks &gt;= 75:
+    print("Grade A")
+elif marks &gt;= 60:
+    print("Grade B")
+elif marks &gt;= 40:
+    print("Grade C")
+else:
+    print("Fail")</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>Grade A</code></pre>
+
+                </div>
+
+                <p class="text-muted mb-4">
+                    Python checks the conditions from top to bottom.
+                    Once it finds the first true condition, its block
+                    executes and the remaining conditions are skipped.
+                </p>
+
+
+                <!-- ================================================= -->
+                <!-- MULTIPLE ELIF -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Multiple elif Conditions
+                </h2>
+
+                <p class="text-muted mb-3">
+                    You can use multiple <strong>elif</strong> blocks
+                    when the application has several possible outcomes.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>temperature = 30
+
+if temperature &gt; 35:
+    print("Very Hot")
+elif temperature &gt; 25:
+    print("Warm")
+elif temperature &gt; 15:
+    print("Cool")
+else:
+    print("Cold")</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>Warm</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- NESTED IF -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Nested if Statements
+                </h2>
+
+                <p class="text-muted mb-3">
+                    An <strong>if</strong> statement placed inside another
+                    <strong>if</strong> statement is called a nested
+                    conditional statement.
+                </p>
+
+                <p class="text-muted mb-3">
+                    Nested conditions are useful when a second decision
+                    depends on the result of the first decision.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>age = 25
+has_id = True
+
+if age &gt;= 18:
+
+    if has_id:
+        print("Entry Allowed")
+    else:
+        print("ID Required")
+
+else:
+    print("Entry Not Allowed")</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>Entry Allowed</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- COMPARISON OPERATORS -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Conditions using Comparison Operators
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Comparison operators are commonly used inside
+                    conditional statements.
+                </p>
+
+                <div class="table-responsive mb-4">
+
+                    <table class="table table-bordered align-middle">
+
+                        <thead class="table-light">
+
+                            <tr>
+                                <th>Operator</th>
+                                <th>Meaning</th>
+                                <th>Example</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>==</td>
+                                <td>Equal to</td>
+                                <td>age == 25</td>
+                            </tr>
+
+                            <tr>
+                                <td>!=</td>
+                                <td>Not equal to</td>
+                                <td>age != 25</td>
+                            </tr>
+
+                            <tr>
+                                <td>&gt;</td>
+                                <td>Greater than</td>
+                                <td>marks &gt; 50</td>
+                            </tr>
+
+                            <tr>
+                                <td>&lt;</td>
+                                <td>Less than</td>
+                                <td>marks &lt; 50</td>
+                            </tr>
+
+                            <tr>
+                                <td>&gt;=</td>
+                                <td>Greater than or equal to</td>
+                                <td>marks &gt;= 40</td>
+                            </tr>
+
+                            <tr>
+                                <td>&lt;=</td>
+                                <td>Less than or equal to</td>
+                                <td>marks &lt;= 100</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- LOGICAL OPERATORS -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Conditions using Logical Operators
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Logical operators allow multiple conditions to be
+                    combined into a single expression.
+                </p>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Using and
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>age = 25
+attendance = 85
+
+if age &gt;= 18 and attendance &gt;= 75:
+    print("Eligible")</code></pre>
+
+                </div>
+
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Using or
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>day = "Sunday"
+
+if day == "Saturday" or day == "Sunday":
+    print("Weekend")</code></pre>
+
+                </div>
+
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Using not
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>is_logged_in = False
+
+if not is_logged_in:
+    print("Please Login")</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- STRING CONDITION -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Conditions with Strings
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Conditional statements can also compare strings.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>username = "Samadhan"
+
+if username == "Samadhan":
+    print("Welcome Samadhan")
+else:
+    print("User Not Found")</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- IN OPERATOR -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Conditions using in
+                </h2>
+
+                <p class="text-muted mb-3">
+                    The <strong>in</strong> operator can check whether
+                    a value exists inside a collection or string.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>course = "Python Full Stack"
+
+if "Python" in course:
+    print("Python course selected")</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- BOOLEAN CONDITION -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Conditions using Boolean Values
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Boolean variables can be directly used in
+                    conditional statements.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>is_active = True
+
+if is_active:
+    print("Account is Active")
+else:
+    print("Account is Inactive")</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- SHORT HAND IF -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Short-Hand if
+                </h2>
+
+                <p class="text-muted mb-3">
+                    A simple one-line condition can sometimes be written
+                    on a single line.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>age = 25
+
+if age &gt;= 18: print("Adult")</code></pre>
+
+                </div>
+
+                <p class="text-muted mb-4">
+                    This style is suitable only for very simple statements.
+                    For larger logic, normal indentation is easier to read.
+                </p>
+
+
+                <!-- ================================================= -->
+                <!-- TERNARY -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Conditional Expression
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Python also supports a one-line conditional expression
+                    for simple choices.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>age = 25
+
+status = "Adult" if age &gt;= 18 else "Minor"
+
+print(status)</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>Adult</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- REAL WORLD ELIGIBILITY -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Example: Course Eligibility 📩🤓
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Suppose a student wants to join a course at
+                    <strong>CIIT Training Institute 🤓</strong>.
+                    The application can check the student's qualification
+                    and programming experience.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>qualification = "Graduate"
+experience = 1
+
+if qualification == "Graduate" and experience &gt;= 1:
+    print("Eligible for Advanced Training")
+elif qualification == "Graduate":
+    print("Eligible for Beginner Training")
+else:
+    print("Please check eligibility requirements")</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>Eligible for Advanced Training</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- REAL WORLD LOGIN -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Example: Login Check 📩🤓
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Conditional statements are commonly used in login
+                    and authentication logic.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>username = "sam"
+password = "python123"
+
+if username == "sam" and password == "python123":
+    print("Login Successful")
+else:
+    print("Invalid Username or Password")</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>Login Successful</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- INDENTATION -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Importance of Indentation
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Python uses indentation to identify which statements
+                    belong to a conditional block.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>marks = 80
+
+if marks &gt;= 40:
+    print("Pass")
+    print("Good Job")</code></pre>
+
+                </div>
+
+                <p class="text-muted mb-4">
+                    Both statements are part of the
+                    <strong>if</strong> block because they have the
+                    same indentation level.
+                </p>
+
+
+                <!-- ================================================= -->
+                <!-- COMMON MISTAKES -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Common Mistakes
+                </h2>
+
+                <ul class="text-muted mb-4">
+
+                    <li class="mb-2">
+                        Forgetting the colon <strong>:</strong> after
+                        if, elif, or else.
+                    </li>
+
+                    <li class="mb-2">
+                        Using <strong>=</strong> instead of
+                        <strong>==</strong> for comparison.
+                    </li>
+
+                    <li class="mb-2">
+                        Incorrect indentation inside the condition.
+                    </li>
+
+                    <li class="mb-2">
+                        Writing conditions in the wrong order.
+                    </li>
+
+                    <li class="mb-2">
+                        Creating unnecessarily complicated nested
+                        conditions.
+                    </li>
+
+                </ul>
+
+
+                <!-- ================================================= -->
+                <!-- CONDITION ORDER -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Why Condition Order Matters
+                </h2>
+
+                <p class="text-muted mb-3">
+                    In an <strong>if-elif-else</strong> structure,
+                    Python checks conditions from top to bottom.
+                    Therefore, the order of conditions matters.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>marks = 95
+
+if marks &gt;= 40:
+    print("Pass")
+elif marks &gt;= 90:
+    print("A+")
+
+</code></pre>
+
+                </div>
+                <h3 class="h5 fw-bold text-dark mb-3">
+    Output:
+</h3>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="code-lang-tag">
+        Output
+    </div>
+
+    <pre class="mb-0"><code>Pass</code></pre>
+</div>
+                <p class="text-muted mb-4">
+                    Here, <strong>marks &gt;= 40</strong> is already true,
+                    so Python executes that block and never reaches the
+                    <strong>elif</strong>. More specific conditions should
+                    generally be checked before broader conditions.
+                </p>
+
+
+                <!-- ================================================= -->
+                <!-- CIIT LEARNING POINT -->
+                <!-- ================================================= -->
+
+                <div class="alert alert-success mt-4">
+
+                    <h5 class="fw-bold">
+                        CIIT Learning Point
+                    </h5>
+
+                    <p class="mb-0">
+                        Conditional statements are the foundation of
+                        decision-making in programming. Practice
+                        <strong>if</strong>, <strong>if-else</strong>,
+                        and <strong>if-elif-else</strong> with different
+                        conditions. Then combine them with comparison
+                        and logical operators to solve real-world problems.
+                    </p>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- SAM PRACTICE 1 -->
+                <!-- ================================================= -->
+
+                <div class="border rounded p-4 mt-4 mb-4">
+
+                    <h3 class="h5 fw-bold text-dark mb-3">
+                       CIIT Practice Task 1
+                    </h3>
+
+                    <p class="text-muted mb-3">
+                        Create a Python program that accepts a student's
+                        marks and displays whether the student has passed
+                        or failed.
+                    </p>
+
+                    <div class="bg-dark text-light rounded p-3">
+
+                        <pre class="mb-0"><code>marks = int(input("Enter marks: "))
+
+if marks &gt;= 40:
+    print("Pass")
+else:
+    print("Fail")</code></pre>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- SAM PRACTICE 2 -->
+                <!-- ================================================= -->
+
+                <div class="border rounded p-4 mt-4 mb-4">
+
+                    <h3 class="h5 fw-bold text-dark mb-3">
+                        CIIT Practice Task 2
+                    </h3>
+
+                    <p class="text-muted mb-3">
+                        Create a program that accepts age and displays:
+                    </p>
+
+                    <ul class="text-muted mb-3">
+
+                        <li>Below 13 → Child</li>
+                        <li>13 to 19 → Teenager</li>
+                        <li>20 to 59 → Adult</li>
+                        <li>60 and above → Senior Citizen</li>
+
+                    </ul>
+
+                    <div class="bg-dark text-light rounded p-3">
+
+                        <pre class="mb-0"><code>age = int(input("Enter age: "))
+
+if age &lt; 13:
+    print("Child")
+elif age &lt; 20:
+    print("Teenager")
+elif age &lt; 60:
+    print("Adult")
+else:
+    print("Senior Citizen")</code></pre>
+
+                    </div>
+                    <h3 class="h5 fw-bold text-dark mb-3">
+    Output:
+</h3>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="code-lang-tag">
+        Output
+    </div>
+
+    <pre class="mb-0"><code>Enter age: 25
+Adult</code></pre>
+</div>
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- SAM PRACTICE 3 -->
+                <!-- ================================================= -->
+
+                <div class="border rounded p-4 mt-4 mb-4">
+
+                    <h3 class="h5 fw-bold text-dark mb-3">
+                        CIIT Practice Task 3
+                    </h3>
+
+                    <p class="text-muted mb-3">
+                        Build a simple login validation program using
+                        username and password. Display
+                        <strong>Login Successful</strong> when both
+                        values are correct; otherwise display
+                        <strong>Invalid Login</strong>.
+                    </p>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- SUMMARY -->
+                <!-- ================================================= -->
+
+                <div class="alert alert-info mt-4 mb-0"
+                     style="background-color:#cfe2ff; border:0; color:#123c73;">
+
+                    <h2 class="h3 fw-bold mt-0 mb-3"
+                        style="color:#123c73;">
+
+                        Summary :
+
+                    </h2>
+
+                    <p class="mb-0"
+                       style="color:#123c73;">
+
+                        Conditional statements allow Python programs to
+                        make decisions based on conditions. You learned
+                        if, if-else, if-elif-else, nested conditions,
+                        comparison and logical operators, string and
+                        boolean conditions, conditional expressions,
+                        indentation, condition ordering, and real-world
+                        examples such as login validation and course
+                        eligibility.
+
+                    </p>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- NAVIGATION -->
+                <!-- ================================================= -->
+
+                <div class="d-flex justify-content-between align-items-center mt-5 pt-4 border-top">
+
+                    <a href="@Url.Action("Index", "ControlFlow", new { area = "Python" })"
+                       class="btn btn-outline-secondary">
+
+                        ← Previous: Topic
+
+                    </a>
+
+                    <a href="@Url.Action("ForLoop", "ControlFlow", new { area = "Python" })"
+                       class="btn btn-primary">
+
+                        Next: Topic →
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

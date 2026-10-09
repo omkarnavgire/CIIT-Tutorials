@@ -1,0 +1,162 @@
+@{
+    Layout = "~/Areas/Jenkins/Views/Shared/JenkinsLayout.cshtml";
+    ViewData["Title"] = "Controller and Agents";
+}
+
+<style>
+    #controller-and-agents-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #controller-and-agents-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #controller-and-agents-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #controller-and-agents-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #controller-and-agents-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+    #controller-and-agents-page .example-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+    }
+</style>
+
+<main id="controller-and-agents-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/Jenkins/Views/Shared/JenkinsTopics.cshtml")
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+                <h1 class="fw-bold">Controller and Agents</h1>
+                <p class="lead">
+                    Learn the concepts, configuration, commands, and practical workflow required to use Controller and Agents in a real Jenkins environment.
+                </p>
+            </div>
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">What is Controller and Agents?</h2>
+                <p>
+                    <strong>Controller and Agents</strong> represent the fundamental operational paradigm of a distributed Jenkins cluster. This structure ensures high availability, security, and parallel processing capabilities across distinct servers.
+                </p>
+
+                <div class="alert alert-info my-3">
+                    <strong>Simple Definition:</strong> The Controller acts as the central brain that orchestrates tasks and stores global settings, while Agents are separate worker systems that carry out the resource-intensive compilation and testing pipelines.
+                </div>
+
+                <h3 class="h4 fw-bold mt-4">Jenkins Controller (The Orchestrator)</h3>
+                <p class="mb-2">The management machine dedicated to steering administrative pipelines rather than heavy compute work.</p>
+                <ul class="mb-3">
+                    <li class="mb-1"><strong>Hosting the Dashboard:</strong> It serves the primary web interface used to create pipelines and inspect logs.</li>
+                    <li class="mb-1"><strong>Job Scheduling:</strong> It handles incoming build requests from triggers, hooks, or timed cron operations.</li>
+                    <li class="mb-1"><strong>Workload Dispatching:</strong> It analyzes build requirements and sends commands out to available executing nodes.</li>
+                    <li><strong>Log Aggregation:</strong> It saves and streams performance diagnostics and historical build artifacts from execution steps.</li>
+                </ul>
+
+                <h3 class="h4 fw-bold mt-4">Jenkins Agents (The Execution Engines)</h3>
+                <p class="mb-2">Independent runtime instances configured on separate execution targets to perform real physical labor.</p>
+                <ul class="mb-3">
+                    <li class="mb-1"><strong>Executing Build Commands:</strong> They carry out commands defined inside steps, such as shell scripts or test scripts.</li>
+                    <li class="mb-1"><strong>Platform Diversity:</strong> They spin up on diverse targets (Linux, Windows, macOS) to support target-specific application builds.</li>
+                    <li class="mb-1"><strong>Environment Isolation:</strong> They store temporary workspace directory checkouts away from the critical system files of the master.</li>
+                    <li><strong>Connection Adaptability:</strong> They link back to the hub securely using SSH connections or Inbound WebSockets (agent.jar).</li>
+                </ul>
+            </div>
+
+            <!-- KEY CONCEPTS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Key Concepts</h2>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Decoupled Execution</h5>
+                            <p class="mb-0">Splitting configuration administration away from task execution to keep heavy compilation workloads from freezing the central management dashboard.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Agent Labeling</h5>
+                            <p class="mb-0">Using custom labels or tags to match appropriate build stages to matching environments (e.g., dispatching iOS tasks only to a macOS node).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXAMPLE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Practical Jenkins Example</h2>
+                <p>The following basic declarative pipeline demonstrates how to target custom node parameters across the cluster setup:</p>
+                <pre><code>pipeline {
+    agent { label 'linux-docker-node' }
+    stages {
+        stage('Learn Controller and Agents') {
+            steps {
+                echo 'Jenkins lesson: Controller and Agents' 
+            }
+        }
+    }
+}</code></pre>
+            </div>
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Practice Exercise</h2>
+                <ol>
+                    <li class="mb-2">Open Jenkins and go to <strong>Manage Jenkins &gt; Nodes</strong> to inspect the configured controller status and worker agents list.</li>
+                    <li class="mb-2">Create a new pipeline test script using the specific label code block shown in the example above.</li>
+                    <li class="mb-2">Execute the pipeline build run and monitor the <strong>Console Output</strong>.</li>
+                    <li>Verify the specific host line showing which machine node executed the build instructions.</li>
+                </ol>
+            </div>
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+                <h2 class="h4 fw-bold">Summary</h2>
+                <p class="mb-0">You have completed the <strong>Controller and Agents</strong> lesson. Continue through the syllabus to build the Jenkins skills required for real CI/CD automation.</p>
+            </div>
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+                <a class="btn btn-outline-primary" href="@Url.Action("JenkinsArchitecture", "Foundations", new { area = "Jenkins" })">← Previous: Jenkins Architecture</a>
+                <a class="btn btn-primary" href="@Url.Action("JenkinsEcosystem", "Foundations", new { area = "Jenkins" })">Next: Jenkins Ecosystem →</a>
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

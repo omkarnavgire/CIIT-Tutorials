@@ -1,0 +1,71 @@
+@{
+    ViewData["Title"] = "Services Used in Azure DevOps";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+                <div class="azure-notes-content">
+                    <pre class="azure-notes-text">Services Used in Azure DevOps
+
+
+               Azure Boards is a tool that helps teams plan, track, visualize, and discuss
+ Azure
+               the work that needs to be done. It offers four different processes to choose
+ Boards
+               from: CMMI, Scrum, Agile, Basic.
+
+
+               Azure Pipelines is a cloud service that can be used to automatically build,
+ Azure         test, and deploy any code project. It is a cloud-agnostic CI/CD platform with
+ Pipelines     support for containers or Kubernetes and works with any language or
+               project type.
+
+
+ Azure
+               Azure Repos provides unlimited, cloud-hosted private, and public Git repos.
+ Repos
+
+
+               Azure Artifacts lets you create, host, and share packages. It also provides
+ Azure
+               integrated package management with support for Maven, npm, Python,
+ Artifacts
+               and NuGet package feeds from public or private sources.
+
+
+ Azure Test    Azure Test Plans provides manual and exploratory testing solutions. Azure
+ Plans         DevOps is also compatible with various third-party tools.
+
+
+
+Azure DevOps is flexible, platform-agnostic, and cloud-agnostic. This means that you don&#x27;t
+have to use all the services provided by Azure and Azure DevOps for your needs. You can
+choose the best services according to your requirements without any trouble.
+Azure DevOps is not platform dependent i.e. it doesn&#x27;t matter whether you are using
+Windows/Linux/Mac or whether you use .NET, C/C++, Python, or any other language for
+your development, Azure DevOps is compatible with almost all platforms, and languages.
+The story does not end here, it also does not matter whether you deploy your software
+to Azure, AWS, or GCP, continuous delivery is supported by all these cloud services.</pre>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_2_-_Fundamentals_of_DevOps/p03-000.jpg" class="img-fluid rounded shadow-sm" alt="Services Used in Azure DevOps - source image" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+            @await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureLessonNavigation.cshtml")
+</section>
+</div>
+<style>
+.azure-notes-text{white-space:pre-wrap;word-break:normal;font-family:inherit;font-size:1rem;line-height:1.7;background:#fff;border:0;padding:0;margin:0;color:#212529;}
+.azure-notes-content img{max-height:720px;}
+</style>

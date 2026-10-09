@@ -1,0 +1,724 @@
+﻿@{
+    ViewData["Title"] = "NULL Functions";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- =========================
+         PAGE HEADER
+    ========================== -->
+
+    <div class="mb-5">
+
+        <h1 class="fw-bold">
+            SQL Server NULL Functions
+        </h1>
+
+        <p class="lead text-muted">
+            NULL Functions in SQL Server are used to handle missing,
+            unknown or NULL values in database columns.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         INTRODUCTION
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            What is NULL?
+        </h2>
+
+        <p>
+            In SQL Server, <strong>NULL</strong> represents a missing,
+            unknown or unavailable value.
+        </p>
+
+        <p>
+            NULL is not the same as zero, an empty string or a blank
+            space. It means that no value is available.
+        </p>
+
+        <div class="alert alert-info mt-4">
+
+            <strong>Example:</strong>
+
+            <p class="mb-0 mt-2">
+                Suppose an employee has not provided a phone number.
+                The PhoneNumber column may contain NULL because the
+                value is not available.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         NULL FUNCTIONS TABLE
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Common NULL Functions
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped align-middle">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>Function</th>
+                        <th>Purpose</th>
+                        <th>Example</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            <strong>ISNULL()</strong>
+                        </td>
+
+                        <td>
+                            Replaces a NULL value with a specified value.
+                        </td>
+
+                        <td>
+                            <code>ISNULL(Phone, 'Not Available')</code>
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            <strong>COALESCE()</strong>
+                        </td>
+
+                        <td>
+                            Returns the first non-NULL value from
+                            a list of expressions.
+                        </td>
+
+                        <td>
+                            <code>COALESCE(Phone, Email, 'N/A')</code>
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            <strong>NULLIF()</strong>
+                        </td>
+
+                        <td>
+                            Returns NULL when two expressions are equal.
+                        </td>
+
+                        <td>
+                            <code>NULLIF(10, 10)</code>
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         1. ISNULL()
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            1. ISNULL() Function
+        </h2>
+
+        <p>
+            The <strong>ISNULL()</strong> function is used to replace
+            a NULL value with a specified replacement value.
+        </p>
+
+        <h5 class="fw-bold mt-4">
+            Syntax
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>ISNULL(expression, replacement_value)</code></pre>
+
+        <h5 class="fw-bold mt-4">
+            Simple Example
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT ISNULL(NULL, 'Not Available');</code></pre>
+
+        <div class="alert alert-success mt-3">
+
+            <strong>Output:</strong>
+
+            <br />
+
+            Not Available
+
+        </div>
+
+
+        <h5 class="fw-bold mt-4">
+            Example with Column
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT
+    EmployeeName,
+    ISNULL(PhoneNumber, 'Not Available') AS PhoneNumber
+FROM Employees;</code></pre>
+
+        <p class="mt-3">
+            If PhoneNumber contains NULL, SQL Server displays
+            <strong>Not Available</strong>.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         2. COALESCE()
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            2. COALESCE() Function
+        </h2>
+
+        <p>
+            The <strong>COALESCE()</strong> function returns the
+            first non-NULL value from a list of expressions.
+        </p>
+
+        <h5 class="fw-bold mt-4">
+            Syntax
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>COALESCE(expression1, expression2, expression3, ...)</code></pre>
+
+        <h5 class="fw-bold mt-4">
+            Example
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT
+    COALESCE(NULL, NULL, 'Hello');</code></pre>
+
+        <div class="alert alert-success mt-3">
+
+            <strong>Output:</strong>
+
+            <br />
+
+            Hello
+
+        </div>
+
+        <p>
+            SQL Server checks the expressions from left to right
+            and returns the first non-NULL value.
+        </p>
+
+
+        <h5 class="fw-bold mt-4">
+            Practical Example
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT
+    EmployeeName,
+    COALESCE(PhoneNumber, Email, 'No Contact Available')
+        AS ContactInformation
+FROM Employees;</code></pre>
+
+        <p class="mt-3">
+            If PhoneNumber is NULL, SQL Server checks Email.
+            If Email is also NULL, it returns
+            <strong>No Contact Available</strong>.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         3. NULLIF()
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            3. NULLIF() Function
+        </h2>
+
+        <p>
+            The <strong>NULLIF()</strong> function returns NULL
+            when two expressions are equal.
+        </p>
+
+        <p>
+            If the two expressions are different, the first
+            expression is returned.
+        </p>
+
+        <h5 class="fw-bold mt-4">
+            Syntax
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>NULLIF(expression1, expression2)</code></pre>
+
+
+        <h5 class="fw-bold mt-4">
+            Example 1: Values are Equal
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT NULLIF(10, 10);</code></pre>
+
+        <div class="alert alert-warning mt-3">
+
+            <strong>Output:</strong>
+
+            <br />
+
+            NULL
+
+        </div>
+
+
+        <h5 class="fw-bold mt-4">
+            Example 2: Values are Different
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT NULLIF(10, 20);</code></pre>
+
+        <div class="alert alert-success mt-3">
+
+            <strong>Output:</strong>
+
+            <br />
+
+            10
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         NULL COMPARISON
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            How to Check for NULL Values?
+        </h2>
+
+        <p>
+            We should use <strong>IS NULL</strong> and
+            <strong>IS NOT NULL</strong> to check NULL values.
+        </p>
+
+
+        <h5 class="fw-bold mt-4">
+            IS NULL
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT *
+FROM Employees
+WHERE PhoneNumber IS NULL;</code></pre>
+
+        <p class="mt-3">
+            This query returns employees whose PhoneNumber is NULL.
+        </p>
+
+
+        <h5 class="fw-bold mt-4">
+            IS NOT NULL
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT *
+FROM Employees
+WHERE PhoneNumber IS NOT NULL;</code></pre>
+
+        <p class="mt-3">
+            This query returns employees whose PhoneNumber
+            contains a value.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         IMPORTANT DIFFERENCE
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            NULL vs Zero vs Empty String
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>Value</th>
+                        <th>Meaning</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td><strong>NULL</strong></td>
+
+                        <td>
+                            Value is missing or unknown.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>0</strong></td>
+
+                        <td>
+                            Numeric value zero.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>''</strong></td>
+
+                        <td>
+                            Empty string.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>' '</strong></td>
+
+                        <td>
+                            String containing a space.
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         PRACTICAL TABLE
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Practical Example with Employees
+        </h2>
+
+        <h5 class="fw-bold">
+            Create Table
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>CREATE TABLE Employees
+(
+    EmployeeId INT,
+    EmployeeName VARCHAR(100),
+    PhoneNumber VARCHAR(20),
+    Email VARCHAR(100)
+);</code></pre>
+
+
+        <h5 class="fw-bold mt-4">
+            Insert Data
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>INSERT INTO Employees
+VALUES
+(1, 'Rahul', '9876543210', 'rahul@gmail.com'),
+(2, 'Priya', NULL, 'priya@gmail.com'),
+(3, 'Amit', NULL, NULL);</code></pre>
+
+
+        <h5 class="fw-bold mt-4">
+            Display Replacement for NULL
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT
+    EmployeeName,
+    ISNULL(PhoneNumber, 'Phone Not Available') AS PhoneNumber
+FROM Employees;</code></pre>
+
+
+        <h5 class="fw-bold mt-4">
+            Use COALESCE()
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT
+    EmployeeName,
+    COALESCE(
+        PhoneNumber,
+        Email,
+        'No Contact Available'
+    ) AS Contact
+FROM Employees;</code></pre>
+
+
+        <h5 class="fw-bold mt-4">
+            Find Employees Without Phone Number
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT *
+FROM Employees
+WHERE PhoneNumber IS NULL;</code></pre>
+
+    </section>
+
+
+    <!-- =========================
+         ISNULL VS COALESCE
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            ISNULL() vs COALESCE()
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>ISNULL()</th>
+                        <th>COALESCE()</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            Accepts two arguments.
+                        </td>
+
+                        <td>
+                            Can accept multiple expressions.
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            SQL Server-specific function.
+                        </td>
+
+                        <td>
+                            Standard SQL expression.
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            <code>ISNULL(Phone, 'N/A')</code>
+                        </td>
+
+                        <td>
+                            <code>COALESCE(Phone, Email, 'N/A')</code>
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         WHEN TO USE
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            When Do We Use NULL Functions?
+        </h2>
+
+        <ul>
+
+            <li class="mb-2">
+                To handle missing database values.
+            </li>
+
+            <li class="mb-2">
+                To replace NULL values with meaningful values.
+            </li>
+
+            <li class="mb-2">
+                To display user-friendly reports.
+            </li>
+
+            <li class="mb-2">
+                To select the first available value from multiple columns.
+            </li>
+
+            <li class="mb-2">
+                To check whether a column contains NULL.
+            </li>
+
+            <li>
+                To safely handle missing data during calculations.
+            </li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- =========================
+         IMPORTANT POINTS
+    ========================== -->
+
+    <section class="mb-5">
+
+        <div class="alert alert-warning">
+
+            <h4 class="fw-bold">
+                Important Points
+            </h4>
+
+            <ul class="mb-0">
+
+                <li class="mb-2">
+                    NULL means the value is missing or unknown.
+                </li>
+
+                <li class="mb-2">
+                    NULL is different from zero.
+                </li>
+
+                <li class="mb-2">
+                    NULL is also different from an empty string.
+                </li>
+
+                <li class="mb-2">
+                    Use IS NULL to find NULL values.
+                </li>
+
+                <li class="mb-2">
+                    Use IS NOT NULL to find values that are not NULL.
+                </li>
+
+                <li class="mb-2">
+                    ISNULL() can replace a NULL value.
+                </li>
+
+                <li class="mb-2">
+                    COALESCE() returns the first non-NULL value.
+                </li>
+
+                <li>
+                    NULLIF() returns NULL when two expressions are equal.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         SUMMARY
+    ========================== -->
+
+    <section class="mb-5">
+
+        <div class="alert alert-primary">
+
+            <h2 class="fw-bold">
+                Summary
+            </h2>
+
+            <p class="mb-0">
+                NULL handling is an important part of SQL Server
+                development. In this topic, we learned how NULL
+                values work and how to use ISNULL(), COALESCE(),
+                NULLIF(), IS NULL and IS NOT NULL. These techniques
+                are useful when working with incomplete or missing
+                database information.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- =========================
+     PREVIOUS / NEXT
+========================== -->
+
+    <div class="d-flex justify-content-between align-items-center
+        mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/Functions/ConversionFunctions"
+           class="btn btn-outline-primary">
+
+            ← Previous: Conversion Functions
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/GroupingAndAggregate/Index"
+           class="btn btn-primary">
+
+            Next: GROUP BY →
+
+        </a>
+
+    </div>
+
+</div>

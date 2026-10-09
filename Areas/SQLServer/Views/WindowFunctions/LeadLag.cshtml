@@ -1,0 +1,669 @@
+﻿@{
+    ViewData["Title"] = "LEAD() and LAG()";
+}
+
+<div class="container-fluid">
+
+    <!-- =========================
+         PAGE HEADER
+    ========================== -->
+
+    <div class="mb-4">
+
+        <h1 class="fw-bold">
+            LEAD() and LAG()
+        </h1>
+
+        <p class="text-muted">
+            Learn how to use LEAD() and LAG() Window Functions
+            in SQL Server to access values from following and
+            previous rows.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         INTRODUCTION
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                What are LEAD() and LAG()?
+            </h2>
+
+            <p>
+                <strong>LEAD()</strong> and <strong>LAG()</strong> are
+                SQL Server Window Functions used to access data from
+                another row without using a self join.
+            </p>
+
+            <p>
+                <strong>LAG()</strong> is used to access a value from
+                a previous row.
+            </p>
+
+            <p class="mb-0">
+                <strong>LEAD()</strong> is used to access a value from
+                a following row.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         LAG()
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                LAG()
+            </h2>
+
+            <p>
+                The <strong>LAG()</strong> function allows us to access
+                a value from a previous row in the result set.
+            </p>
+
+            <p>
+                It is useful when we want to compare the current row
+                with the previous row.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>SELECT
+    EmployeeName,
+    Salary,
+
+    LAG(Salary) OVER
+    (
+        ORDER BY EmployeeId
+    ) AS PreviousSalary
+
+FROM Employees;</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         LAG OUTPUT
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                LAG() Example
+            </h2>
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-striped">
+
+                    <thead class="table-dark">
+
+                        <tr>
+                            <th>EmployeeName</th>
+                            <th>Salary</th>
+                            <th>PreviousSalary</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>Amit</td>
+                            <td>60000</td>
+                            <td>NULL</td>
+                        </tr>
+
+                        <tr>
+                            <td>Rahul</td>
+                            <td>70000</td>
+                            <td>60000</td>
+                        </tr>
+
+                        <tr>
+                            <td>Priya</td>
+                            <td>80000</td>
+                            <td>70000</td>
+                        </tr>
+
+                        <tr>
+                            <td>Neha</td>
+                            <td>90000</td>
+                            <td>80000</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <p class="mt-3 mb-0">
+                For the first row there is no previous row, so
+                <strong>LAG()</strong> returns NULL.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         LEAD()
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                LEAD()
+            </h2>
+
+            <p>
+                The <strong>LEAD()</strong> function allows us to access
+                a value from a following row in the result set.
+            </p>
+
+            <p>
+                It is useful when we want to compare the current row
+                with the next row.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>SELECT
+    EmployeeName,
+    Salary,
+
+    LEAD(Salary) OVER
+    (
+        ORDER BY EmployeeId
+    ) AS NextSalary
+
+FROM Employees;</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         LEAD OUTPUT
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                LEAD() Example
+            </h2>
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-striped">
+
+                    <thead class="table-dark">
+
+                        <tr>
+                            <th>EmployeeName</th>
+                            <th>Salary</th>
+                            <th>NextSalary</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>Amit</td>
+                            <td>60000</td>
+                            <td>70000</td>
+                        </tr>
+
+                        <tr>
+                            <td>Rahul</td>
+                            <td>70000</td>
+                            <td>80000</td>
+                        </tr>
+
+                        <tr>
+                            <td>Priya</td>
+                            <td>80000</td>
+                            <td>90000</td>
+                        </tr>
+
+                        <tr>
+                            <td>Neha</td>
+                            <td>90000</td>
+                            <td>NULL</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <p class="mt-3 mb-0">
+                For the last row there is no following row, so
+                <strong>LEAD()</strong> returns NULL.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         SYNTAX
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Syntax
+            </h2>
+
+            <h4 class="fw-bold">
+                LAG()
+            </h4>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>LAG(column_name)
+OVER
+(
+    ORDER BY column_name
+)</code></pre>
+
+            <h4 class="fw-bold mt-4">
+                LEAD()
+            </h4>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>LEAD(column_name)
+OVER
+(
+    ORDER BY column_name
+)</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         OFFSET
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Using Offset
+            </h2>
+
+            <p>
+                By default, LEAD() and LAG() access one row before
+                or after the current row. We can also specify an
+                offset.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>SELECT
+    EmployeeName,
+    Salary,
+
+    LAG(Salary, 2) OVER
+    (
+        ORDER BY EmployeeId
+    ) AS SalaryTwoRowsBefore
+
+FROM Employees;</code></pre>
+
+            <p class="mt-3 mb-0">
+                Here <strong>LAG(Salary, 2)</strong> accesses the
+                salary from two rows before the current row.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         DEFAULT VALUE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Using a Default Value
+            </h2>
+
+            <p>
+                We can provide a default value when a previous or
+                following row does not exist.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>SELECT
+    EmployeeName,
+    Salary,
+
+    LAG(Salary, 1, 0) OVER
+    (
+        ORDER BY EmployeeId
+    ) AS PreviousSalary
+
+FROM Employees;</code></pre>
+
+            <p class="mt-3 mb-0">
+                Here <strong>0</strong> is returned instead of NULL
+                when there is no previous row.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         LEAD LAG COMPARISON
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                LEAD() vs LAG()
+            </h2>
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-striped">
+
+                    <thead class="table-dark">
+
+                        <tr>
+                            <th>Feature</th>
+                            <th>LAG()</th>
+                            <th>LEAD()</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>Accesses</td>
+                            <td>Previous Row</td>
+                            <td>Following Row</td>
+                        </tr>
+
+                        <tr>
+                            <td>Direction</td>
+                            <td>Backward</td>
+                            <td>Forward</td>
+                        </tr>
+
+                        <tr>
+                            <td>Common Use</td>
+                            <td>Compare with previous value</td>
+                            <td>Compare with next value</td>
+                        </tr>
+
+                        <tr>
+                            <td>Example</td>
+                            <td>Previous Salary</td>
+                            <td>Next Salary</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         PRACTICAL EXAMPLE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Practical Example
+            </h2>
+
+            <p>
+                We can calculate the difference between an employee's
+                current salary and the previous employee's salary.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>SELECT
+    EmployeeName,
+    Salary,
+
+    LAG(Salary) OVER
+    (
+        ORDER BY EmployeeId
+    ) AS PreviousSalary,
+
+    Salary -
+    LAG(Salary) OVER
+    (
+        ORDER BY EmployeeId
+    ) AS SalaryDifference
+
+FROM Employees;</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         PARTITION BY
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                LEAD() and LAG() with PARTITION BY
+            </h2>
+
+            <p>
+                LEAD() and LAG() can be combined with
+                <strong>PARTITION BY</strong> to perform the calculation
+                separately for each group.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>SELECT
+    EmployeeName,
+    Department,
+    Salary,
+
+    LAG(Salary) OVER
+    (
+        PARTITION BY Department
+        ORDER BY EmployeeId
+    ) AS PreviousSalary
+
+FROM Employees;</code></pre>
+
+            <p class="mt-3 mb-0">
+                Here the previous salary is calculated separately
+                for each department.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         USE CASES
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Practical Uses
+            </h2>
+
+            <ul>
+
+                <li class="mb-2">
+                    Comparing current and previous values.
+                </li>
+
+                <li class="mb-2">
+                    Comparing current and next values.
+                </li>
+
+                <li class="mb-2">
+                    Calculating changes between records.
+                </li>
+
+                <li class="mb-2">
+                    Finding salary or price changes.
+                </li>
+
+                <li class="mb-2">
+                    Analyzing sales trends.
+                </li>
+
+                <li>
+                    Comparing dates and time-based records.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         IMPORTANT POINTS
+    ========================== -->
+
+    <div class="alert alert-warning mb-4">
+
+        <h4 class="fw-bold">
+            Important Points
+        </h4>
+
+        <ul class="mb-0">
+
+            <li class="mb-2">
+                LAG() accesses a previous row.
+            </li>
+
+            <li class="mb-2">
+                LEAD() accesses a following row.
+            </li>
+
+            <li class="mb-2">
+                Both functions use the OVER() clause.
+            </li>
+
+            <li class="mb-2">
+                ORDER BY determines the row sequence.
+            </li>
+
+            <li class="mb-2">
+                An offset can be specified.
+            </li>
+
+            <li>
+                PARTITION BY can be used to perform calculations
+                separately for each group.
+            </li>
+
+        </ul>
+
+    </div>
+
+
+    <!-- =========================
+         SUMMARY
+    ========================== -->
+
+    <div class="p-4 rounded mb-4"
+         style="background-color:#cfe2ff;">
+
+        <h2 class="fw-bold mb-3">
+            Summary
+        </h2>
+
+        <p>
+            <strong>LAG()</strong> is used to access values from a
+            previous row, while <strong>LEAD()</strong> is used to
+            access values from a following row.
+        </p>
+
+        <p class="mb-0">
+            Both functions are useful for comparing rows, calculating
+            changes and analyzing trends. They can also be combined
+            with PARTITION BY for group-wise analysis.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         PREVIOUS / NEXT
+    ========================== -->
+
+    <div class="d-flex justify-content-between align-items-center
+        mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/WindowFunctions/RankDenseRank"
+           class="btn btn-outline-primary">
+
+            ← Previous: RANK() and DENSE_RANK()
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/WindowFunctions/PartitionBy"
+           class="btn btn-primary">
+
+            Next: PARTITION BY →
+
+        </a>
+
+    </div>
+
+</div>

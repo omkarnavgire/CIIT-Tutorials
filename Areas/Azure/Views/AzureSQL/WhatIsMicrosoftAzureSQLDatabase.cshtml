@@ -1,0 +1,55 @@
+@{
+    ViewData["Title"] = "What is Microsoft Azure SQL Database?";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+                <div class="azure-notes-content">
+                    <pre class="azure-notes-text">What is Microsoft Azure SQL Database?
+
+The Microsoft Azure SQL Database is like a digital storage unit for your data, but it&#x27;s in the cloud. It&#x27;s
+managed by Microsoft, so you don&#x27;t have to worry about maintaining servers or backups. You can
+create databases, organize information into tables, and run queries to retrieve data. It&#x27;s a convenient
+and scalable way to store and manage your data online.
+
+The databases are available as Single databases and elastic pools.
+
+Single Database: This option helps the developers instantly get started with a single SQL Server
+database by creating and running it in the cloud and accessing this database through the server. It is
+a PaaS offering so everything is managed by Microsoft, so all we have to do is to configure the
+database, create the necessary tables required to carry out the operations, and fill in the required
+data. We can scale the database as per our requirements (if we need more storage, memory, and
+processing power). By default, Microsoft pre-allocates some resources and we are charged per hour
+based on the resources we are using.
+We can also choose to have a server-less configuration. Here, Microsoft creates its own server for the
+database, which may get shared among other Azure subscribers but maintains the privacy of the
+database of its users. The database automatically scales and resources are allocated and unallocated
+as per the necessary requirements.
+
+Elastic Pool: It is similar to single databases that we have talked about above, except that by default
+multiple databases can share the same resources (memory, storage space, processing power)
+through multiple tenancies. Here the different resources are referred to as a pool. This model is very
+useful when we have databases with resource requirements varying with time as it helps allocate
+and deallocate the resources as per our needs thus reducing costs and helping us be quick and
+efficient. It enables us to use resources available in the created pool and then release them once
+processing is complete.</pre>
+                </div>
+            </div>
+        </div>
+    
+
+            @await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureLessonNavigation.cshtml")
+</section>
+</div>
+<style>
+.azure-notes-text{white-space:pre-wrap;word-break:normal;font-family:inherit;font-size:1rem;line-height:1.7;background:#fff;border:0;padding:0;margin:0;color:#212529;}
+.azure-notes-content img{max-height:720px;}
+</style>

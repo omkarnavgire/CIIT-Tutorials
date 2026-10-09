@@ -1,0 +1,68 @@
+@{
+    ViewData["Title"] = "Azure Virtual Machine Size";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+                <div class="azure-notes-content">
+                    <pre class="azure-notes-text">Azure Virtual Machine Size
+VM size is also an important factor on which the working of our virtual machine depends. As
+we mentioned above that the VM size depends on the type of workload we are working on.
+If the workload is very large so according to it we have to choose more VM sizes so that
+working should be smooth and workable.
+Different factors such as the capacity of our storage, and processing power depend on the
+size of our VM. The large the VM size is the better and more workable we have these factors.
+Hourly charges are paid to Azure which is based on the operating system and also VM Size.
+
+Type             Sizes              Description
+
+
+                                    Having a balanced CPU-to-memory ratio, general-
+                                    purpose virtual machines are appropriate for a variety
+ General         B-series, D-
+                                    of workloads, including web servers, small- to medium-
+ Purpose         series, E-series
+                                    sized databases, and development and test
+                                    environments.
+
+
+                                    Compute Optimized VMs have a greater CPU-to-
+                 F-series, H-
+ Compute                            memory ratio, making them suited for CPU-intensive
+                 series, M-
+ Optimized                          activities including batch processing, video encoding,
+                 series
+                                    and high-performance computing.
+
+
+                 M-series, G-       For memory-intensive tasks like big databases, in-
+ Memory
+                 series, GS-        memory analytics, and machine learning, Memory
+ Optimized
+                 series             Optimized VMs offer a higher ratio of memory to CPU.
+
+
+                                    Storage The greater storage to CPU and memory ratio
+ Storage         L-series and H-    offered by optimized VMs makes them appropriate for
+ Optimized       series             storage-intensive tasks like big data analytics, data
+                                    warehousing, and massive NoSQL databases.</pre>
+                </div>
+            </div>
+        </div>
+    
+
+            @await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureLessonNavigation.cshtml")
+</section>
+</div>
+<style>
+.azure-notes-text{white-space:pre-wrap;word-break:normal;font-family:inherit;font-size:1rem;line-height:1.7;background:#fff;border:0;padding:0;margin:0;color:#212529;}
+.azure-notes-content img{max-height:720px;}
+</style>

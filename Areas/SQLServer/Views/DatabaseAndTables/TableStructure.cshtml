@@ -1,0 +1,507 @@
+﻿@{
+    ViewData["Title"] = "Table Structure";
+}
+
+<section>
+
+    <!-- PAGE INTRODUCTION -->
+    <div class="mb-5">
+
+        <h1 class="fw-bold mb-3">
+            Table Structure
+        </h1>
+
+        <p class="lead text-muted">
+            A SQL Server table is made up of columns and rows. Each
+            column defines the type of data that can be stored, while
+            each row represents a complete record.
+        </p>
+
+    </div>
+
+
+    <!-- BASIC TABLE STRUCTURE -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Understanding Table Structure
+        </h2>
+
+        <p>
+            Consider the following <strong>Students</strong> table:
+        </p>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>StudentId</th>
+                        <th>StudentName</th>
+                        <th>Age</th>
+                        <th>Course</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>1</td>
+                        <td>Samadhan</td>
+                        <td>22</td>
+                        <td>Java</td>
+                    </tr>
+
+                    <tr>
+                        <td>2</td>
+                        <td>Samiksha</td>
+                        <td>21</td>
+                        <td>.NET</td>
+                    </tr>
+
+                    <tr>
+                        <td>3</td>
+                        <td>Pradnya</td>
+                        <td>23</td>
+                        <td>Python</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- TABLE DIAGRAM -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Table Structure Diagram
+        </h2>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL Server
+            </div>
+
+            <pre class="mb-0"><code>Students Table
+│
+├── Columns
+│   ├── StudentId
+│   ├── StudentName
+│   ├── Age
+│   └── Course
+│
+└── Rows
+    ├── Record 1
+    ├── Record 2
+    └── Record 3</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- COLUMNS -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Columns
+        </h2>
+
+        <p>
+            A column represents a particular type of information in a
+            table. Each column has a name and a data type.
+        </p>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>Column</th>
+                        <th>Data Type</th>
+                        <th>Description</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>StudentId</td>
+                        <td>INT</td>
+                        <td>Stores the student identifier.</td>
+                    </tr>
+
+                    <tr>
+                        <td>StudentName</td>
+                        <td>VARCHAR(100)</td>
+                        <td>Stores the student name.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Age</td>
+                        <td>INT</td>
+                        <td>Stores the student's age.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Course</td>
+                        <td>VARCHAR(50)</td>
+                        <td>Stores the course name.</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- ROWS -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Rows
+        </h2>
+
+        <p>
+            A row represents one complete record in a table.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>1 | Samadhan | 22 | Java
+2 | Samiksh | 21 | .NET
+3 | Pradnya  | 23 | Python</code></pre>
+
+        </div>
+
+        <p>
+            In the above example, each line represents one student
+            record.
+        </p>
+
+    </section>
+
+
+    <!-- DATA TYPES -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Data Types in Table Structure
+        </h2>
+
+        <p>
+            Every column should have an appropriate data type.
+            The data type determines what kind of value can be stored
+            in the column.
+        </p>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>Data Type</th>
+                        <th>Example</th>
+                        <th>Common Usage</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>INT</td>
+                        <td>100</td>
+                        <td>Numbers</td>
+                    </tr>
+
+                    <tr>
+                        <td>VARCHAR</td>
+                        <td>'Rahul'</td>
+                        <td>Text</td>
+                    </tr>
+
+                    <tr>
+                        <td>DATE</td>
+                        <td>'2026-10-02'</td>
+                        <td>Date values</td>
+                    </tr>
+
+                    <tr>
+                        <td>DECIMAL</td>
+                        <td>45000.50</td>
+                        <td>Precise numeric values</td>
+                    </tr>
+
+                    <tr>
+                        <td>BIT</td>
+                        <td>1 / 0</td>
+                        <td>True / False type values</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- CREATE TABLE -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Creating a Table Structure
+        </h2>
+
+        <p>
+            The table structure is defined while creating the table.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>CREATE TABLE Students
+(
+    StudentId INT,
+    StudentName VARCHAR(100),
+    Age INT,
+    Course VARCHAR(50)
+);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- VIEW STRUCTURE -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            View Table Structure
+        </h2>
+
+        <p>
+            The <strong>sp_help</strong> system stored procedure can
+            be used to view information about a table.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>EXEC sp_help 'Students';</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- INFORMATION_SCHEMA -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            View Columns Using INFORMATION_SCHEMA
+        </h2>
+
+        <p>
+            We can also use INFORMATION_SCHEMA.COLUMNS to retrieve
+            column information.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT
+    COLUMN_NAME,
+    DATA_TYPE,
+    CHARACTER_MAXIMUM_LENGTH
+FROM INFORMATION_SCHEMA.COLUMNS
+WHERE TABLE_NAME = 'Students';</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- OUTPUT -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Example Output
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>Column Name</th>
+                        <th>Data Type</th>
+                        <th>Length</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>StudentId</td>
+                        <td>int</td>
+                        <td>NULL</td>
+                    </tr>
+
+                    <tr>
+                        <td>StudentName</td>
+                        <td>varchar</td>
+                        <td>100</td>
+                    </tr>
+
+                    <tr>
+                        <td>Age</td>
+                        <td>int</td>
+                        <td>NULL</td>
+                    </tr>
+
+                    <tr>
+                        <td>Course</td>
+                        <td>varchar</td>
+                        <td>50</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- TABLE STRUCTURE FLOW -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Table Structure Flow
+        </h2>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL Server
+            </div>
+
+            <pre class="mb-0"><code>Table
+  ↓
+Columns
+  ↓
+Column Name + Data Type
+  ↓
+Rows
+  ↓
+Records / Data</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- IMPORTANT -->
+    <section class="mb-5">
+
+        <div class="alert alert-warning border-0">
+
+            <h5 class="fw-bold">
+                Important
+            </h5>
+
+            <p class="mb-0">
+                A well-designed table structure should use meaningful
+                column names and appropriate data types for the data
+                being stored.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- SUMMARY -->
+    <section class="mb-4">
+
+        <div class="alert alert-primary border-0">
+
+            <h2 class="fw-bold mb-3">
+                Summary
+            </h2>
+
+            <p class="mb-0">
+                In this section, we learned about the structure of a
+                SQL Server table, columns, rows, data types and different
+                ways to view the structure of a table.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- PREVIOUS / NEXT -->
+
+    <div class="d-flex justify-content-between align-items-center
+                mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/DatabaseAndTables/CreatingTables"
+           class="btn btn-outline-primary">
+
+            ← Previous: Creating Tables
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/DatabaseAndTables/AlteringTables"
+           class="btn btn-primary">
+
+            Next: Altering Tables →
+
+        </a>
+
+    </div>
+
+</section>

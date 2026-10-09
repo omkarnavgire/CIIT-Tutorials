@@ -1,0 +1,68 @@
+@{
+    ViewData["Title"] = "Deleting Databases in AzureSQL";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+                <div class="azure-notes-content">
+                    <pre class="azure-notes-text">Deleting Databases in AzureSQL
+
+Simple and Easy-to-Understand Examples:
+
+There are different ways to delete a database in Azure SQL. In this article, we will discuss two
+methods:
+
+Method 1: Delete a Database using Azure Portal
+
+Step 1: Log in to the Azure Portal using your credentials.
+
+Step 2: Navigate to the Azure SQL instance that contains the database you want to delete.
+
+Step 3: Click on the &quot;Databases&quot; option on the left-hand side of the page.
+
+Step 4: Select the database you want to delete from the list of databases.
+
+Step 5: Click on the &quot;Delete&quot; button located at the top of the page.
+
+Step 6: Confirm the deletion by clicking on the &quot;Yes&quot; button.
+
+Method 2: Delete a Database using Azure CLI
+
+Step 1: Open Azure CLI on your computer.
+
+Step 2: Login to your Azure account using the command
+
+&quot;az login&quot;.
+
+Step 3: Select the subscription that contains the Azure SQL instance by using the command &quot;az
+account set --subscription &lt;subscription name&gt;&quot;.
+
+az account set --subscription &lt;subscription name&gt;
+
+Step 4: Delete the database using the command &quot;az sql db delete --resource-group &lt;resource group
+name&gt; --server &lt;server name&gt; --name &lt;database name&gt;&quot;.
+
+az sql db delete --resource-group &lt;resource group name&gt; --server &lt;server name&gt; --name &lt;database
+name&gt;
+
+Step 5: Confirm the deletion by typing &quot;y&quot; and pressing Enter.</pre>
+                </div>
+            </div>
+        </div>
+    
+
+            @await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureLessonNavigation.cshtml")
+</section>
+</div>
+<style>
+.azure-notes-text{white-space:pre-wrap;word-break:normal;font-family:inherit;font-size:1rem;line-height:1.7;background:#fff;border:0;padding:0;margin:0;color:#212529;}
+.azure-notes-content img{max-height:720px;}
+</style>

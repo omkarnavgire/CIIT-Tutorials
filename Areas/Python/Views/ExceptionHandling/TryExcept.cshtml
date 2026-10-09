@@ -1,0 +1,985 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Python try & except";
+}
+
+<style>
+
+    #python-try-except-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #python-try-except-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #python-try-except-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #python-try-except-page .diagram-box {
+        background: #ffffff;
+        border: 2px solid #6f42c1;
+        border-radius: 10px;
+        padding: 18px;
+        text-align: center;
+        height: 100%;
+    }
+
+        #python-try-except-page .diagram-box h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        #python-try-except-page .diagram-box p {
+            margin-bottom: 0;
+            font-size: 14px;
+            color: #495057;
+        }
+
+    #python-try-except-page .diagram-arrow {
+        text-align: center;
+        font-size: 28px;
+        font-weight: 700;
+        color: #6f42c1;
+        padding: 8px 0;
+    }
+
+    #python-try-except-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #python-try-except-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+        }
+
+</style>
+
+
+<main id="python-try-except-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+
+                <h1 class="fw-bold">
+                    try &amp; except in Python
+                </h1>
+
+                <p class="lead">
+                    Learn how to handle exceptions using Python's
+                    <code>try</code> and <code>except</code> blocks.
+                </p>
+
+            </div>
+
+
+            <!-- WHAT IS TRY EXCEPT -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    What are try and except?
+                </h2>
+
+                <p>
+                    The <code>try</code> and <code>except</code> blocks
+                    are used to handle exceptions in Python.
+                </p>
+
+                <p>
+                    Code that may cause an exception is placed inside
+                    the <code>try</code> block.
+                </p>
+
+                <p>
+                    If an exception occurs, Python moves to the
+                    matching <code>except</code> block.
+                </p>
+
+                <div class="alert alert-info">
+
+                    <strong>Simple Definition:</strong>
+
+                    <code>try</code> contains risky code and
+                    <code>except</code> handles the error.
+
+                </div>
+
+            </div>
+
+
+            <!-- BASIC DIAGRAM -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    try &amp; except Flow
+                </h2>
+
+                <div class="concept-box">
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            try Block
+                        </h5>
+
+                        <p>
+                            Python executes the code that may
+                            cause an exception.
+                        </p>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="row g-3">
+
+                        <div class="col-md-6">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    No Exception
+                                </h5>
+
+                                <p>
+                                    Program continues normally.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-6">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    Exception Occurs
+                                </h5>
+
+                                <p>
+                                    Control moves to the
+                                    matching except block.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            except Block
+                        </h5>
+
+                        <p>
+                            The exception is handled and the
+                            program can continue.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- BASIC SYNTAX -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Basic Syntax
+                </h2>
+
+                <pre><code>try:
+
+    # code that may cause an exception
+
+except:
+
+    # code to handle the exception</code></pre>
+
+                <p class="mt-3">
+                    The <code>try</code> block must be followed by
+                    an <code>except</code> block.
+                </p>
+
+            </div>
+
+
+            <!-- SIMPLE EXAMPLE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Simple Example
+                </h2>
+
+                <pre><code>try:
+
+    number = 10 / 0
+
+    print(number)
+
+except:
+
+    print("An error occurred")</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>An error occurred</code></pre>
+
+                <p>
+                    The division causes an exception, so Python executes
+                    the <code>except</code> block.
+                </p>
+
+            </div>
+
+
+            <!-- SPECIFIC EXCEPTION -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Handling a Specific Exception
+                </h2>
+
+                <p>
+                    It is better to catch the specific exception
+                    that we expect.
+                </p>
+
+                <pre><code>try:
+
+    number = 10 / 0
+
+except ZeroDivisionError:
+
+    print("Cannot divide by zero")</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Cannot divide by zero</code></pre>
+
+                <p>
+                    Here we specifically handle
+                    <code>ZeroDivisionError</code>.
+                </p>
+
+            </div>
+
+
+            <!-- VALUE ERROR -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Handling ValueError
+                </h2>
+
+                <p>
+                    A <code>ValueError</code> can occur when a value
+                    is not valid for an operation.
+                </p>
+
+                <pre><code>try:
+
+    age = int("abc")
+
+    print(age)
+
+except ValueError:
+
+    print("Please enter a valid number")</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Please enter a valid number</code></pre>
+
+            </div>
+
+
+            <!-- TYPE ERROR -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Handling TypeError
+                </h2>
+
+                <pre><code>try:
+
+    result = "10" + 5
+
+    print(result)
+
+except TypeError:
+
+    print("Invalid data types")</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Invalid data types</code></pre>
+
+            </div>
+
+
+            <!-- INDEX ERROR -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Handling IndexError
+                </h2>
+
+                <pre><code>numbers = [10, 20, 30]
+
+try:
+
+    print(numbers[5])
+
+except IndexError:
+
+    print("Invalid index")</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Invalid index</code></pre>
+
+            </div>
+
+
+            <!-- KEY ERROR -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Handling KeyError
+                </h2>
+
+                <pre><code>student = {
+    "name": "Rahul",
+    "course": "Python"
+}
+
+try:
+
+    print(student["fees"])
+
+except KeyError:
+
+    print("Key not found")</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Key not found</code></pre>
+
+            </div>
+
+
+            <!-- FILE ERROR -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Handling FileNotFoundError
+                </h2>
+
+                <pre><code>try:
+
+    with open(
+        "students.txt",
+        "r"
+    ) as file:
+
+        data = file.read()
+
+        print(data)
+
+except FileNotFoundError:
+
+    print("File not found")</code></pre>
+
+                <p>
+                    This is useful when the file may not exist.
+                </p>
+
+            </div>
+            <div class="px-2">
+    <h5 class="fw-bold mb-2">
+        Output
+    </h5>
+
+    <pre class="mb-4"><code>Error: invalid literal for int() with base 10: 'abc'</code></pre>
+</div>
+
+            <!-- EXCEPTION AS -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Using <code>as</code> with except
+                </h2>
+
+                <p>
+                    We can store the exception object in a variable
+                    using the <code>as</code> keyword.
+                </p>
+
+                <pre><code>try:
+
+    number = int("abc")
+
+except ValueError as error:
+
+    print("Error:", error)</code></pre>
+
+                <p>
+                    The variable <code>error</code> contains information
+                    about the exception.
+                </p>
+
+            </div>
+            <div class="px-2">
+                <h5 class="fw-bold mb-2">
+                    Output
+                </h5>
+
+                <pre class="mb-4"><code>Error: invalid literal for int() with base 10: 'abc'</code></pre>
+            </div>
+
+            <!-- INPUT EXAMPLE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    try &amp; except with User Input
+                </h2>
+
+                <p>
+                    User input may contain invalid data, so exception
+                    handling is useful in input programs.
+                </p>
+
+                <pre><code>try:
+
+    marks = int(
+        input("Enter marks: ")
+    )
+
+    print("Marks:", marks)
+
+except ValueError:
+
+    print("Please enter numbers only")</code></pre>
+
+                <p>
+                    If the user enters text instead of a number,
+                    the <code>except</code> block handles the problem.
+                </p>
+
+            </div>
+            <div class="px-2">
+                <h5 class="fw-bold mb-2">
+                    Output
+                </h5>
+
+                <pre class="mb-4"><code>Enter marks: 85
+Marks: 85</code></pre>
+            </div>
+
+            <!-- NORMAL FLOW -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    When No Exception Occurs
+                </h2>
+
+                <p>
+                    If the code inside <code>try</code> does not
+                    raise an exception, the <code>except</code>
+                    block is skipped.
+                </p>
+
+                <pre><code>try:
+
+    number = 10 / 2
+
+    print(number)
+
+except ZeroDivisionError:
+
+    print("Cannot divide by zero")
+
+print("Program continues")</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>5.0
+Program continues</code></pre>
+
+            </div>
+
+
+            <!-- TRY EXCEPT STEPS -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Step-by-Step Execution
+                </h2>
+
+                <div class="concept-box">
+
+                    <p>
+                        <strong>Step 1:</strong>
+                        Python enters the <code>try</code> block.
+                    </p>
+
+                    <p>
+                        ↓
+                    </p>
+
+                    <p>
+                        <strong>Step 2:</strong>
+                        Python executes the statements.
+                    </p>
+
+                    <p>
+                        ↓
+                    </p>
+
+                    <p>
+                        <strong>Step 3:</strong>
+                        If no exception occurs, Python skips
+                        <code>except</code>.
+                    </p>
+
+                    <p>
+                        ↓
+                    </p>
+
+                    <p>
+                        <strong>Step 4:</strong>
+                        If an exception occurs, Python looks for
+                        the matching <code>except</code>.
+                    </p>
+
+                    <p>
+                        ↓
+                    </p>
+
+                    <p class="mb-0">
+                        <strong>Step 5:</strong>
+                        The exception handler executes.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- SPECIFIC IS BETTER -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Why Catch Specific Exceptions?
+                </h2>
+
+                <p>
+                    Catching a specific exception makes the program
+                    easier to understand and helps avoid hiding
+                    unrelated programming errors.
+                </p>
+
+                <h4 class="fw-bold mt-4">
+                    Less Specific
+                </h4>
+
+                <pre><code>try:
+
+    number = int("abc")
+
+except:
+
+    print("Something went wrong")</code></pre>
+
+                <h4 class="fw-bold mt-4">
+                    More Specific
+                </h4>
+
+                <pre><code>try:
+
+    number = int("abc")
+
+except ValueError:
+
+    print("Invalid number")</code></pre>
+
+                <p>
+                    The second example clearly tells us which problem
+                    is being handled.
+                </p>
+
+            </div>
+
+
+            <!-- GENERAL EXCEPTION -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Using the General Exception Class
+                </h2>
+
+                <p>
+                    We can use <code>Exception</code> to catch many
+                    standard exceptions.
+                </p>
+
+                <pre><code>try:
+
+    result = 10 / 0
+
+except Exception as error:
+
+    print("Error:", error)</code></pre>
+
+                <p>
+                    Use broad exception handling carefully so that
+                    important programming errors are not hidden.
+                </p>
+
+            </div>
+
+            <div class="px-2">
+                <h5 class="fw-bold mb-2">
+                    Output
+                </h5>
+
+                <pre class="mb-4"><code>Error: division by zero</code></pre>
+            </div>
+            <!-- NESTED TRY -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Nested try Blocks
+                </h2>
+
+                <p>
+                    A <code>try</code> block can also be placed inside
+                    another <code>try</code> block when the program
+                    specifically requires nested error handling.
+                </p>
+
+                <pre><code>try:
+
+    number = int(
+        input("Enter a number: ")
+    )
+
+    try:
+
+        result = 100 / number
+
+        print(result)
+
+    except ZeroDivisionError:
+
+        print("Cannot divide by zero")
+
+except ValueError:
+
+    print("Invalid number")</code></pre>
+
+            </div>
+            <div class="px-2">
+                <h5 class="fw-bold mb-2">
+                    Output
+                </h5>
+
+                <pre class="mb-4"><code>Enter a number: 0
+Cannot divide by zero</code></pre>
+            </div>
+
+            <!-- REAL WORLD EXAMPLE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Example: Student Marks 👀📩
+                </h2>
+
+                <pre><code>try:
+
+    marks = int(
+        input("Enter student marks: ")
+    )
+
+    if marks < 0 or marks > 100:
+
+        print("Marks must be between 0 and 100")
+
+    else:
+
+        print("Valid marks:", marks)
+
+except ValueError:
+
+    print("Please enter a valid number")</code></pre>
+
+                <p>
+                    This example combines input validation with
+                    exception handling.
+                </p>
+
+            </div>
+            <div class="px-2">
+                <h5 class="fw-bold mb-2">
+                    Output
+                </h5>
+
+                <pre class="mb-4"><code>Enter student marks: 85
+Valid marks: 85</code></pre>
+            </div>
+
+            <!-- BEST PRACTICES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Best Practices
+                </h2>
+
+                <div class="row g-3">
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Specific Exceptions
+                            </h5>
+
+                            <p class="mb-0">
+                                Catch the expected exception type
+                                whenever practical.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Clear Messages
+                            </h5>
+
+                            <p class="mb-0">
+                                Provide useful information about
+                                the problem.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Small try Blocks
+                            </h5>
+
+                            <p class="mb-0">
+                                Keep the try block focused on
+                                operations that may fail.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- COMMON MISTAKES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Common Mistakes
+                </h2>
+
+                <ul>
+
+                    <li>
+                        Forgetting the <code>except</code> block.
+                    </li>
+
+                    <li>
+                        Catching the wrong exception type.
+                    </li>
+
+                    <li>
+                        Using a completely generic <code>except</code>
+                        without understanding the error.
+                    </li>
+
+                    <li>
+                        Putting too much code inside the
+                        <code>try</code> block.
+                    </li>
+
+                    <li>
+                        Hiding useful error information.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Practice Programs
+                </h2>
+
+                <ol>
+
+                    <li>
+                        Handle division by zero using
+                        <code>ZeroDivisionError</code>.
+                    </li>
+
+                    <li>
+                        Convert user input into an integer and handle
+                        <code>ValueError</code>.
+                    </li>
+
+                    <li>
+                        Handle an invalid list index.
+                    </li>
+
+                    <li>
+                        Handle a missing dictionary key.
+                    </li>
+
+                    <li>
+                        Handle a missing text file.
+                    </li>
+
+                    <li>
+                        Print the exception message using
+                        <code>as error</code>.
+                    </li>
+
+                </ol>
+
+            </div>
+
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+
+                <h2 class="h4 fw-bold">
+                    Summary
+                </h2>
+
+                <p class="mb-0">
+
+                    The <code>try</code> block contains code that may
+                    raise an exception, while the <code>except</code>
+                    block handles the exception. Python allows us to
+                    catch specific exceptions such as
+                    <code>ValueError</code>, <code>TypeError</code>,
+                    <code>IndexError</code>, <code>KeyError</code> and
+                    <code>FileNotFoundError</code>. Specific exception
+                    handling makes programs easier to understand,
+                    maintain and debug.
+
+                </p>
+
+            </div>
+
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+
+                <a class="btn btn-outline-secondary"
+                   href="@Url.Action("Index", "ExceptionHandling", new { area = "Python" })">
+
+                    ← Previous: Topic
+
+                </a>
+
+
+                <a class="btn btn-primary"
+                   href="@Url.Action("MultipleExceptions", "ExceptionHandling", new { area = "Python" })">
+
+                    Next: Topic →
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

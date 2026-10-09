@@ -1,0 +1,796 @@
+﻿@{
+    ViewData["Title"] = "Numeric Functions";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- =========================
+         PAGE HEADER
+    ========================== -->
+
+    <div class="mb-5">
+
+        <h1 class="fw-bold">
+            SQL Server Numeric Functions
+        </h1>
+
+        <p class="lead text-muted">
+            Numeric Functions in SQL Server are used to perform
+            mathematical calculations and operations on numeric data.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         INTRODUCTION
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            What are Numeric Functions?
+        </h2>
+
+        <p>
+            Numeric functions are built-in SQL Server functions that
+            are used to perform calculations and manipulate numerical
+            values.
+        </p>
+
+        <p>
+            They are commonly used for rounding numbers, finding
+            absolute values, calculating powers, square roots and
+            performing other mathematical operations.
+        </p>
+
+        <div class="alert alert-info mt-4">
+
+            <strong>Example:</strong>
+
+            <p class="mb-0 mt-2">
+                If a database contains product prices such as
+                <strong>125.75</strong>, <strong>99.49</strong> and
+                <strong>-50</strong>, numeric functions can be used
+                to round values, find absolute values and perform
+                mathematical calculations.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         COMMON NUMERIC FUNCTIONS
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Common Numeric Functions
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped align-middle">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>Function</th>
+                        <th>Purpose</th>
+                        <th>Example</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td><strong>ABS()</strong></td>
+
+                        <td>
+                            Returns the absolute value of a number.
+                        </td>
+
+                        <td>
+                            <code>ABS(-25)</code>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td><strong>CEILING()</strong></td>
+
+                        <td>
+                            Returns the smallest integer greater than
+                            or equal to the specified number.
+                        </td>
+
+                        <td>
+                            <code>CEILING(12.4)</code>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td><strong>FLOOR()</strong></td>
+
+                        <td>
+                            Returns the largest integer less than
+                            or equal to the specified number.
+                        </td>
+
+                        <td>
+                            <code>FLOOR(12.8)</code>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td><strong>ROUND()</strong></td>
+
+                        <td>
+                            Rounds a number to the specified number
+                            of decimal places.
+                        </td>
+
+                        <td>
+                            <code>ROUND(125.678, 2)</code>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td><strong>POWER()</strong></td>
+
+                        <td>
+                            Returns a number raised to a specified power.
+                        </td>
+
+                        <td>
+                            <code>POWER(2, 3)</code>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td><strong>SQRT()</strong></td>
+
+                        <td>
+                            Returns the square root of a number.
+                        </td>
+
+                        <td>
+                            <code>SQRT(25)</code>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td><strong>SIGN()</strong></td>
+
+                        <td>
+                            Returns the sign of a number.
+                        </td>
+
+                        <td>
+                            <code>SIGN(-10)</code>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td><strong>RAND()</strong></td>
+
+                        <td>
+                            Returns a pseudo-random floating-point
+                            value between 0 and 1.
+                        </td>
+
+                        <td>
+                            <code>RAND()</code>
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         1. ABS()
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            1. ABS() Function
+        </h2>
+
+        <p>
+            The <strong>ABS()</strong> function returns the absolute
+            value of a number.
+        </p>
+
+        <p>
+            An absolute value is always positive or zero.
+        </p>
+
+        <h5 class="fw-bold mt-4">
+            Syntax
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>ABS(number)</code></pre>
+
+        <h5 class="fw-bold mt-4">
+            Example
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT ABS(-25);</code></pre>
+
+        <div class="alert alert-success mt-3">
+            <strong>Output:</strong> 25
+        </div>
+
+        <p>
+            The negative value <strong>-25</strong> becomes
+            <strong>25</strong>.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         2. CEILING()
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            2. CEILING() Function
+        </h2>
+
+        <p>
+            The <strong>CEILING()</strong> function returns the
+            smallest integer that is greater than or equal to
+            the specified number.
+        </p>
+
+        <h5 class="fw-bold mt-4">
+            Syntax
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>CEILING(number)</code></pre>
+
+        <h5 class="fw-bold mt-4">
+            Example
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT CEILING(12.4);</code></pre>
+
+        <div class="alert alert-success mt-3">
+            <strong>Output:</strong> 13
+        </div>
+
+        <p>
+            13 is the smallest integer greater than or equal to 12.4.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         3. FLOOR()
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            3. FLOOR() Function
+        </h2>
+
+        <p>
+            The <strong>FLOOR()</strong> function returns the largest
+            integer that is less than or equal to the specified number.
+        </p>
+
+        <h5 class="fw-bold mt-4">
+            Syntax
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>FLOOR(number)</code></pre>
+
+        <h5 class="fw-bold mt-4">
+            Example
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT FLOOR(12.8);</code></pre>
+
+        <div class="alert alert-success mt-3">
+            <strong>Output:</strong> 12
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         4. ROUND()
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            4. ROUND() Function
+        </h2>
+
+        <p>
+            The <strong>ROUND()</strong> function rounds a numeric
+            value to a specified number of decimal places.
+        </p>
+
+        <h5 class="fw-bold mt-4">
+            Syntax
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>ROUND(number, decimal_places)</code></pre>
+
+        <h5 class="fw-bold mt-4">
+            Example
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT ROUND(125.678, 2);</code></pre>
+
+        <div class="alert alert-success mt-3">
+            <strong>Output:</strong> 125.68
+        </div>
+
+        <p>
+            The number is rounded to two decimal places.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         5. POWER()
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            5. POWER() Function
+        </h2>
+
+        <p>
+            The <strong>POWER()</strong> function returns a number
+            raised to the specified power.
+        </p>
+
+        <h5 class="fw-bold mt-4">
+            Syntax
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>POWER(number, power)</code></pre>
+
+        <h5 class="fw-bold mt-4">
+            Example
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT POWER(2, 3);</code></pre>
+
+        <div class="alert alert-success mt-3">
+            <strong>Output:</strong> 8
+        </div>
+
+        <p>
+            Here, 2 is raised to the power of 3:
+            <strong>2 × 2 × 2 = 8</strong>.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         6. SQRT()
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            6. SQRT() Function
+        </h2>
+
+        <p>
+            The <strong>SQRT()</strong> function returns the square
+            root of a specified number.
+        </p>
+
+        <h5 class="fw-bold mt-4">
+            Syntax
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SQRT(number)</code></pre>
+
+        <h5 class="fw-bold mt-4">
+            Example
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT SQRT(25);</code></pre>
+
+        <div class="alert alert-success mt-3">
+            <strong>Output:</strong> 5
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         7. SIGN()
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            7. SIGN() Function
+        </h2>
+
+        <p>
+            The <strong>SIGN()</strong> function returns the sign
+            of a numeric expression.
+        </p>
+
+        <ul>
+
+            <li>
+                <strong>-1</strong> is returned for a negative number.
+            </li>
+
+            <li>
+                <strong>0</strong> is returned for zero.
+            </li>
+
+            <li>
+                <strong>1</strong> is returned for a positive number.
+            </li>
+
+        </ul>
+
+        <h5 class="fw-bold mt-4">
+            Syntax
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SIGN(number)</code></pre>
+
+        <h5 class="fw-bold mt-4">
+            Example
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT SIGN(-10);</code></pre>
+
+        <div class="alert alert-success mt-3">
+            <strong>Output:</strong> -1
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         8. RAND()
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            8. RAND() Function
+        </h2>
+
+        <p>
+            The <strong>RAND()</strong> function returns a pseudo-random
+            floating-point value between 0 and 1.
+        </p>
+
+        <h5 class="fw-bold mt-4">
+            Syntax
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>RAND()</code></pre>
+
+        <h5 class="fw-bold mt-4">
+            Example
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT RAND();</code></pre>
+
+        <div class="alert alert-success mt-3">
+            <strong>Output:</strong> A random decimal value between 0 and 1.
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         PRACTICAL TABLE EXAMPLE
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Practical Example with a Table
+        </h2>
+
+        <p>
+            Suppose we have a Products table containing product prices.
+        </p>
+
+        <pre class="bg-light p-3 rounded"><code>CREATE TABLE Products
+(
+    ProductId INT,
+    ProductName VARCHAR(100),
+    Price DECIMAL(10,2)
+);</code></pre>
+
+
+        <p class="mt-4">
+            Insert sample data:
+        </p>
+
+        <pre class="bg-light p-3 rounded"><code>INSERT INTO Products
+VALUES
+(1, 'Keyboard', 125.75),
+(2, 'Mouse', 99.49),
+(3, 'Monitor', 450.80);</code></pre>
+
+
+        <h5 class="fw-bold mt-4">
+            Round Product Prices
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT
+    ProductName,
+    Price,
+    ROUND(Price, 0) AS RoundedPrice
+FROM Products;</code></pre>
+
+
+        <h5 class="fw-bold mt-4">
+            Find Absolute Value
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT
+    ABS(-500) AS AbsoluteValue;</code></pre>
+
+
+        <h5 class="fw-bold mt-4">
+            Round Price Up
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT
+    ProductName,
+    Price,
+    CEILING(Price) AS CeilingPrice
+FROM Products;</code></pre>
+
+
+        <h5 class="fw-bold mt-4">
+            Round Price Down
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT
+    ProductName,
+    Price,
+    FLOOR(Price) AS FloorPrice
+FROM Products;</code></pre>
+
+    </section>
+
+
+    <!-- =========================
+         CEILING VS FLOOR VS ROUND
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            CEILING() vs FLOOR() vs ROUND()
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>Function</th>
+                        <th>Example</th>
+                        <th>Result</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>CEILING()</td>
+                        <td><code>CEILING(12.4)</code></td>
+                        <td>13</td>
+                    </tr>
+
+                    <tr>
+                        <td>FLOOR()</td>
+                        <td><code>FLOOR(12.8)</code></td>
+                        <td>12</td>
+                    </tr>
+
+                    <tr>
+                        <td>ROUND()</td>
+                        <td><code>ROUND(12.56, 1)</code></td>
+                        <td>12.6</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         WHEN TO USE
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            When Do We Use Numeric Functions?
+        </h2>
+
+        <ul>
+
+            <li class="mb-2">
+                When mathematical calculations are required.
+            </li>
+
+            <li class="mb-2">
+                When decimal values need to be rounded.
+            </li>
+
+            <li class="mb-2">
+                When positive values are required from negative numbers.
+            </li>
+
+            <li class="mb-2">
+                When calculating powers or square roots.
+            </li>
+
+            <li class="mb-2">
+                When values need to be rounded up or down.
+            </li>
+
+            <li>
+                When processing numerical data stored in database tables.
+            </li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- =========================
+         IMPORTANT POINTS
+    ========================== -->
+
+    <section class="mb-5">
+
+        <div class="alert alert-warning">
+
+            <h4 class="fw-bold">
+                Important Points
+            </h4>
+
+            <ul class="mb-0">
+
+                <li class="mb-2">
+                    ABS() returns the absolute value.
+                </li>
+
+                <li class="mb-2">
+                    CEILING() rounds a value upward to an integer.
+                </li>
+
+                <li class="mb-2">
+                    FLOOR() rounds a value downward to an integer.
+                </li>
+
+                <li class="mb-2">
+                    ROUND() rounds a value to the specified decimal places.
+                </li>
+
+                <li class="mb-2">
+                    POWER() is used for exponent calculations.
+                </li>
+
+                <li class="mb-2">
+                    SQRT() returns the square root.
+                </li>
+
+                <li class="mb-2">
+                    SIGN() identifies whether a number is negative,
+                    zero or positive.
+                </li>
+
+                <li>
+                    RAND() generates a pseudo-random decimal value.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         SUMMARY
+    ========================== -->
+
+    <section class="mb-5">
+
+        <div class="alert alert-primary">
+
+            <h2 class="fw-bold">
+                Summary
+            </h2>
+
+            <p class="mb-0">
+                SQL Server Numeric Functions are used to perform
+                mathematical operations on numeric data. In this
+                topic, we learned ABS(), CEILING(), FLOOR(), ROUND(),
+                POWER(), SQRT(), SIGN() and RAND(). These functions
+                are useful when working with prices, marks, quantities,
+                calculations and other numerical values stored in
+                database tables.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         PREVIOUS / NEXT
+    ========================== -->
+
+    <div class="d-flex justify-content-between align-items-center
+        mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/Functions/StringFunctions"
+           class="btn btn-outline-primary">
+
+            ← Previous: String Functions
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/Functions/DateTimeFunctions"
+           class="btn btn-primary">
+
+            Next: Date &amp; Time Functions →
+
+        </a>
+
+    </div>
+
+</div>

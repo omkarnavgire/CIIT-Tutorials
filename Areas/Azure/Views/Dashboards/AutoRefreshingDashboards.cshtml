@@ -1,0 +1,66 @@
+@{
+    ViewData["Title"] = "Implementation:";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+                <div class="azure-notes-content">
+                    <pre class="azure-notes-text">Implementation:
+
+ If you take a look on your screen underneath your dashboard title, you can see Auto-Refresh. Now if
+you click on this Auto-Refresh, this is how you can set up your setting. You can turn it off so that your
+dashboard never refreshes, or you can make it refresh every 30 minutes, every hour, every two
+hours, every four hours, or every day.
+So, let’s suppose you want this dashboard to refresh every hour. You can go ahead and click every
+hour and apply. And so now, every time after you first open this dashboard, every hour after that it
+will refresh
+
+If you want to refresh it immediately and you don&#x27;t want to wait for the entire hour, you can click this
+refresh button that’s at the end of the command bar. So, if you go ahead and click refresh, you can
+see that the data just refreshed. And also, you can see your last updated time right here. And that
+last updated time also will be updated every time you use Auto-Refresh.
+
+
+
+
+And if you want to update refresh on the individual title you can click on in the....on the top right and
+then you can click refresh. And this will refresh that individual title on its own. And this is a private
+dashboard, so basically it’s a dashboard only for you.</pre>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_7_-_Dashboards/p08-000.jpg" class="img-fluid rounded shadow-sm" alt="Implementation: - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_7_-_Dashboards/p08-001.jpg" class="img-fluid rounded shadow-sm" alt="Implementation: - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_7_-_Dashboards/p09-000.jpg" class="img-fluid rounded shadow-sm" alt="Implementation: - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_7_-_Dashboards/p09-001.jpg" class="img-fluid rounded shadow-sm" alt="Implementation: - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_7_-_Dashboards/p09-002.jpg" class="img-fluid rounded shadow-sm" alt="Implementation: - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_7_-_Dashboards/p09-003.jpg" class="img-fluid rounded shadow-sm" alt="Implementation: - source image" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+            @await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureLessonNavigation.cshtml")
+</section>
+</div>
+<style>
+.azure-notes-text{white-space:pre-wrap;word-break:normal;font-family:inherit;font-size:1rem;line-height:1.7;background:#fff;border:0;padding:0;margin:0;color:#212529;}
+.azure-notes-content img{max-height:720px;}
+</style>

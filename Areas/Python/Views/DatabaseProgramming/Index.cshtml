@@ -1,0 +1,911 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Python Database Programming";
+}
+
+<style>
+
+    #python-database-programming-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #python-database-programming-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #python-database-programming-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #python-database-programming-page .diagram-box {
+        background: #ffffff;
+        border: 2px solid #6f42c1;
+        border-radius: 10px;
+        padding: 18px;
+        text-align: center;
+        height: 100%;
+    }
+
+        #python-database-programming-page .diagram-box h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        #python-database-programming-page .diagram-box p {
+            margin-bottom: 0;
+            font-size: 14px;
+            color: #495057;
+        }
+
+    #python-database-programming-page .diagram-arrow {
+        text-align: center;
+        font-size: 28px;
+        font-weight: 700;
+        color: #6f42c1;
+        padding: 8px 0;
+    }
+
+    #python-database-programming-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #python-database-programming-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+        }
+
+</style>
+
+
+<main id="python-database-programming-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+
+                <h1 class="fw-bold">
+                    Database Programming in Python
+                </h1>
+
+                <p class="lead">
+                    Learn how Python programs can connect to databases,
+                    store data and work with database records.
+                </p>
+
+            </div>
+
+
+            <!-- WHAT IS DATABASE PROGRAMMING -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    What is Database Programming?
+                </h2>
+
+                <p>
+                    Database programming means using a programming language
+                    to create, read, update and delete data stored in a database.
+                </p>
+
+                <p>
+                    Python provides modules and libraries that allow programs
+                    to connect to databases and execute SQL commands.
+                </p>
+
+                <div class="alert alert-info">
+
+                    <strong>Simple Definition:</strong>
+
+                    Database programming allows a Python application to
+                    communicate with a database and manage stored data.
+
+                </div>
+
+            </div>
+
+
+            <!-- BASIC DIAGRAM -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Database Programming Flow
+                </h2>
+
+                <div class="concept-box">
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            Python Application
+                        </h5>
+
+                        <p>
+                            Sends commands and receives data.
+                        </p>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            Database Connection
+                        </h5>
+
+                        <p>
+                            Connects the application to the database.
+                        </p>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            Database
+                        </h5>
+
+                        <p>
+                            Stores and manages application data.
+                        </p>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            Result
+                        </h5>
+
+                        <p>
+                            Database returns the requested information.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- DATABASE TYPES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Common Databases Used with Python
+                </h2>
+
+                <div class="row g-3">
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                SQLite
+                            </h5>
+
+                            <p class="mb-0">
+                                A lightweight database included with Python.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                MySQL
+                            </h5>
+
+                            <p class="mb-0">
+                                A popular relational database used in applications.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                PostgreSQL
+                            </h5>
+
+                            <p class="mb-0">
+                                A powerful relational database used for many applications.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- SQLITE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    SQLite with Python
+                </h2>
+
+                <p>
+                    SQLite is a lightweight relational database. Python
+                    provides the built-in <code>sqlite3</code> module for
+                    working with SQLite databases.
+                </p>
+
+                <pre><code>import sqlite3
+
+connection = sqlite3.connect("students.db")
+
+print("Database connected")</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Database connected</code></pre>
+
+            </div>
+
+
+            <!-- CREATE TABLE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Creating a Table
+                </h2>
+
+                <p>
+                    SQL can be used to create tables inside the database.
+                </p>
+
+                <pre><code>import sqlite3
+
+connection = sqlite3.connect("students.db")
+
+cursor = connection.cursor()
+
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS students
+(
+    id INTEGER PRIMARY KEY,
+    name TEXT,
+    course TEXT
+)
+""")
+
+connection.commit()
+
+connection.close()
+
+print("Table created")</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Table created</code></pre>
+
+            </div>
+
+
+            <!-- INSERT -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Inserting Data
+                </h2>
+
+                <p>
+                    The SQL <code>INSERT</code> statement is used to add
+                    records to a table.
+                </p>
+
+                <pre><code>import sqlite3
+
+connection = sqlite3.connect("students.db")
+
+cursor = connection.cursor()
+
+cursor.execute(
+    "INSERT INTO students (name, course) VALUES (?, ?)",
+    ("Rahul", "Python")
+)
+
+connection.commit()
+
+connection.close()
+
+print("Student inserted")</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Student inserted</code></pre>
+
+            </div>
+
+
+            <!-- SELECT -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Reading Data
+                </h2>
+
+                <p>
+                    The SQL <code>SELECT</code> statement is used to
+                    retrieve records from a table.
+                </p>
+
+                <pre><code>import sqlite3
+
+connection = sqlite3.connect("students.db")
+
+cursor = connection.cursor()
+
+cursor.execute("SELECT * FROM students")
+
+rows = cursor.fetchall()
+
+for row in rows:
+
+    print(row)
+
+connection.close()</code></pre>
+
+                <p class="mt-3">
+                    Example Output:
+                </p>
+
+                <pre><code>(1, 'Rahul', 'Python')
+(2, 'Priya', '.NET')</code></pre>
+
+            </div>
+
+
+            <!-- UPDATE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Updating Data
+                </h2>
+
+                <p>
+                    The SQL <code>UPDATE</code> statement is used to
+                    modify existing records.
+                </p>
+
+                <pre><code>import sqlite3
+
+connection = sqlite3.connect("students.db")
+
+cursor = connection.cursor()
+
+cursor.execute(
+    "UPDATE students SET course = ? WHERE id = ?",
+    ("Python Full Stack", 1)
+)
+
+connection.commit()
+
+connection.close()
+
+print("Student updated")</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Student updated</code></pre>
+
+            </div>
+
+
+            <!-- DELETE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Deleting Data
+                </h2>
+
+                <p>
+                    The SQL <code>DELETE</code> statement is used to
+                    remove records from a table.
+                </p>
+
+                <pre><code>import sqlite3
+
+connection = sqlite3.connect("students.db")
+
+cursor = connection.cursor()
+
+cursor.execute(
+    "DELETE FROM students WHERE id = ?",
+    (1,)
+)
+
+connection.commit()
+
+connection.close()
+
+print("Student deleted")</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Student deleted</code></pre>
+
+            </div>
+
+
+            <!-- CRUD -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    CRUD Operations
+                </h2>
+
+                <p>
+                    Most database applications perform four basic operations.
+                </p>
+
+                <div class="row g-3">
+
+                    <div class="col-md-3">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Create
+                            </h5>
+
+                            <p class="mb-0">
+                                Add new records.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-3">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Read
+                            </h5>
+
+                            <p class="mb-0">
+                                Retrieve records.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-3">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Update
+                            </h5>
+
+                            <p class="mb-0">
+                                Modify records.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-3">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Delete
+                            </h5>
+
+                            <p class="mb-0">
+                                Remove records.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PARAMETERS -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Parameterized Queries
+                </h2>
+
+                <p>
+                    Parameterized queries allow values to be safely passed
+                    to SQL statements.
+                </p>
+
+                <pre><code>name = "Rahul"
+course = "Python"
+
+cursor.execute(
+    "INSERT INTO students (name, course) VALUES (?, ?)",
+    (name, course)
+)</code></pre>
+
+                <p>
+                    This approach is preferred when inserting user-provided
+                    values into SQL statements.
+                </p>
+
+            </div>
+
+
+            <!-- PRACTICAL EXAMPLE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Example 👀📩
+                </h2>
+
+                <p>
+                    The following example creates a database, inserts a
+                    student and reads the stored data.
+                </p>
+
+                <pre><code>import sqlite3
+
+connection = sqlite3.connect("college.db")
+
+cursor = connection.cursor()
+
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS students
+(
+    id INTEGER PRIMARY KEY,
+    name TEXT,
+    course TEXT
+)
+""")
+
+cursor.execute(
+    "INSERT INTO students (name, course) VALUES (?, ?)",
+    ("Amit", "Python")
+)
+
+connection.commit()
+
+cursor.execute("SELECT * FROM students")
+
+students = cursor.fetchall()
+
+for student in students:
+
+    print(student)
+
+connection.close()</code></pre>
+
+            </div>
+
+            <div class="px-2">
+                <h5 class="fw-bold mb-2">
+                    Output
+                </h5>
+
+                <pre class="mb-4"><code>(1, 'Amit', 'Python')</code></pre>
+            </div>
+            <!-- ADVANTAGES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Advantages of Database Programming
+                </h2>
+
+                <div class="row g-3">
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Data Storage
+                            </h5>
+
+                            <p class="mb-0">
+                                Data can be stored permanently in a database.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Data Management
+                            </h5>
+
+                            <p class="mb-0">
+                                Applications can create, read, update
+                                and delete data.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Applications
+                            </h5>
+
+                            <p class="mb-0">
+                                Databases are used by many real-world
+                                software applications.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- BEST PRACTICES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Best Practices
+                </h2>
+
+                <div class="row g-3">
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Close Connections
+                            </h5>
+
+                            <p class="mb-0">
+                                Close database connections after operations.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Use Parameters
+                            </h5>
+
+                            <p class="mb-0">
+                                Use parameterized queries for input values.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Commit Changes
+                            </h5>
+
+                            <p class="mb-0">
+                                Commit INSERT, UPDATE and DELETE operations.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- COMMON MISTAKES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Common Mistakes
+                </h2>
+
+                <ul>
+
+                    <li>
+                        Forgetting to close the database connection.
+                    </li>
+
+                    <li>
+                        Forgetting to call <code>commit()</code> after
+                        modifying data.
+                    </li>
+
+                    <li>
+                        Writing SQL queries incorrectly.
+                    </li>
+
+                    <li>
+                        Building SQL statements directly from user input.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Practice Programs
+                </h2>
+
+                <ol>
+
+                    <li>
+                        Create an SQLite database using Python.
+                    </li>
+
+                    <li>
+                        Create a students table.
+                    </li>
+
+                    <li>
+                        Insert five student records.
+                    </li>
+
+                    <li>
+                        Display all student records.
+                    </li>
+
+                    <li>
+                        Update a student record.
+                    </li>
+
+                    <li>
+                        Delete a student record.
+                    </li>
+
+                </ol>
+
+            </div>
+
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+
+                <h2 class="h4 fw-bold">
+                    Summary
+                </h2>
+
+                <p class="mb-0">
+
+                    Database programming allows Python applications to
+                    communicate with databases and manage stored data.
+                    Python provides the <code>sqlite3</code> module for
+                    SQLite databases. Common database operations include
+                    creating tables, inserting data, reading records,
+                    updating records and deleting records.
+
+                </p>
+
+            </div>
+
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+
+                <a class="btn btn-outline-secondary"
+                   href="@Url.Action("RegularExpressions", "AdvancedPython", new { area = "Python" })">
+
+                    ← Previous: Topic
+
+                </a>
+
+
+                <a class="btn btn-primary"
+                   href="@Url.Action("SQLite", "DatabaseProgramming", new { area = "Python" })">
+
+                    Next: Topic →
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

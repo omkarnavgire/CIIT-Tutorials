@@ -1,0 +1,865 @@
+﻿@{
+    ViewData["Title"] = "SQL Command Categories";
+}
+
+<section>
+
+    <!-- PAGE INTRODUCTION -->
+    <div class="mb-5">
+
+        <h1 class="fw-bold mb-3">
+            SQL Command Categories
+        </h1>
+
+        <p class="lead text-muted">
+            SQL commands are divided into different categories based on
+            the type of operation they perform. Understanding these
+            categories makes it easier to identify which SQL command
+            should be used for a particular database operation.
+        </p>
+
+        <p>
+            In SQL Server, commands are commonly studied under five major
+            categories: <strong>DDL, DML, DQL, DCL and TCL</strong>.
+            Each category has a different responsibility when working
+            with databases and data.
+        </p>
+
+    </div>
+
+
+    <!-- OVERVIEW -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            SQL Command Categories Overview
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>Category</th>
+                        <th>Full Form</th>
+                        <th>Main Purpose</th>
+                        <th>Common Commands</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            <strong>DDL</strong>
+                        </td>
+
+                        <td>
+                            Data Definition Language
+                        </td>
+
+                        <td>
+                            Defines and changes the structure of
+                            database objects.
+                        </td>
+
+                        <td>
+                            CREATE, ALTER, DROP, TRUNCATE
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            <strong>DML</strong>
+                        </td>
+
+                        <td>
+                            Data Manipulation Language
+                        </td>
+
+                        <td>
+                            Adds, modifies and removes data.
+                        </td>
+
+                        <td>
+                            INSERT, UPDATE, DELETE
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            <strong>DQL</strong>
+                        </td>
+
+                        <td>
+                            Data Query Language
+                        </td>
+
+                        <td>
+                            Retrieves data from tables.
+                        </td>
+
+                        <td>
+                            SELECT
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            <strong>DCL</strong>
+                        </td>
+
+                        <td>
+                            Data Control Language
+                        </td>
+
+                        <td>
+                            Controls permissions and access.
+                        </td>
+
+                        <td>
+                            GRANT, REVOKE
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            <strong>TCL</strong>
+                        </td>
+
+                        <td>
+                            Transaction Control Language
+                        </td>
+
+                        <td>
+                            Manages transactions.
+                        </td>
+
+                        <td>
+                            COMMIT, ROLLBACK
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- DDL -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            1. DDL – Data Definition Language
+        </h2>
+
+        <p>
+            DDL stands for <strong>Data Definition Language</strong>.
+            DDL commands are mainly used to define and modify the
+            structure of database objects.
+        </p>
+
+        <p>
+            Database objects include databases, tables, views and other
+            objects. DDL commands do not primarily deal with changing
+            individual records; they work with the structure of objects.
+        </p>
+
+        <h5 class="fw-bold mt-4">
+            Common DDL Commands
+        </h5>
+
+        <ul>
+
+            <li class="mb-2">
+                <strong>CREATE</strong> – Creates a database object.
+            </li>
+
+            <li class="mb-2">
+                <strong>ALTER</strong> – Changes the structure of an
+                existing object.
+            </li>
+
+            <li class="mb-2">
+                <strong>DROP</strong> – Removes a database object.
+            </li>
+
+            <li>
+                <strong>TRUNCATE</strong> – Removes all rows from a table
+                while keeping the table structure.
+            </li>
+
+        </ul>
+
+
+        <h5 class="fw-bold mt-4">
+            CREATE Example
+        </h5>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>CREATE TABLE Students
+(
+    StudentId INT,
+    StudentName VARCHAR(100),
+    Age INT
+);</code></pre>
+
+        </div>
+
+
+        <h5 class="fw-bold mt-4">
+            ALTER Example
+        </h5>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>ALTER TABLE Students
+ADD Email VARCHAR(100);</code></pre>
+
+        </div>
+
+
+        <h5 class="fw-bold mt-4">
+            DROP Example
+        </h5>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>DROP TABLE Students;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- DML -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            2. DML – Data Manipulation Language
+        </h2>
+
+        <p>
+            DML stands for <strong>Data Manipulation Language</strong>.
+            DML commands are used to work with the actual records stored
+            inside database tables.
+        </p>
+
+        <p>
+            When we want to add a new record, change an existing record
+            or remove a record, we use DML commands.
+        </p>
+
+        <h5 class="fw-bold mt-4">
+            Common DML Commands
+        </h5>
+
+        <ul>
+
+            <li class="mb-2">
+                <strong>INSERT</strong> – Adds new records.
+            </li>
+
+            <li class="mb-2">
+                <strong>UPDATE</strong> – Modifies existing records.
+            </li>
+
+            <li>
+                <strong>DELETE</strong> – Removes records.
+            </li>
+
+        </ul>
+
+
+        <h5 class="fw-bold mt-4">
+            INSERT Example
+        </h5>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>INSERT INTO Students
+(
+    StudentId,
+    StudentName,
+    Age
+)
+VALUES
+(
+    101,
+    'Rahul',
+    22
+);</code></pre>
+
+        </div>
+
+
+        <h5 class="fw-bold mt-4">
+            UPDATE Example
+        </h5>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>UPDATE Students
+SET Age = 23
+WHERE StudentId = 101;</code></pre>
+
+        </div>
+
+
+        <h5 class="fw-bold mt-4">
+            DELETE Example
+        </h5>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>DELETE FROM Students
+WHERE StudentId = 101;</code></pre>
+
+        </div>
+
+
+        <div class="alert alert-warning border-0 mt-4">
+
+            <strong>Important:</strong>
+            Always use a proper WHERE condition with UPDATE and DELETE
+            when you intend to affect specific records.
+
+        </div>
+
+    </section>
+
+
+    <!-- DQL -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            3. DQL – Data Query Language
+        </h2>
+
+        <p>
+            DQL stands for <strong>Data Query Language</strong>.
+            It is used to retrieve data from database tables.
+        </p>
+
+        <p>
+            The main command associated with data retrieval is
+            <strong>SELECT</strong>.
+        </p>
+
+        <h5 class="fw-bold mt-4">
+            SELECT Example
+        </h5>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT *
+FROM Students;</code></pre>
+
+        </div>
+
+
+        <h5 class="fw-bold mt-4">
+            Selecting Specific Columns
+        </h5>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT StudentName, Age
+FROM Students;</code></pre>
+
+        </div>
+
+
+        <h5 class="fw-bold mt-4">
+            Filtering Data
+        </h5>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT *
+FROM Students
+WHERE Age &gt; 18;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- DCL -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            4. DCL – Data Control Language
+        </h2>
+
+        <p>
+            DCL stands for <strong>Data Control Language</strong>.
+            DCL commands are used to control access and permissions
+            on database objects.
+        </p>
+
+        <p>
+            Database administrators can use permissions to determine
+            what operations a user or database principal is allowed
+            to perform.
+        </p>
+
+        <h5 class="fw-bold mt-4">
+            Common DCL Commands
+        </h5>
+
+        <ul>
+
+            <li class="mb-2">
+                <strong>GRANT</strong> – Gives permissions.
+            </li>
+
+            <li>
+                <strong>REVOKE</strong> – Removes previously granted
+                permissions.
+            </li>
+
+        </ul>
+
+
+        <h5 class="fw-bold mt-4">
+            GRANT Example
+        </h5>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>GRANT SELECT
+ON Students
+TO UserName;</code></pre>
+
+        </div>
+
+
+        <h5 class="fw-bold mt-4">
+            REVOKE Example
+        </h5>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>REVOKE SELECT
+ON Students
+FROM UserName;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- TCL -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            5. TCL – Transaction Control Language
+        </h2>
+
+        <p>
+            TCL stands for <strong>Transaction Control Language</strong>.
+            It is used to manage transactions and control changes made
+            during a transaction.
+        </p>
+
+        <p>
+            A transaction is a logical unit of work containing one or
+            more database operations.
+        </p>
+
+        <h5 class="fw-bold mt-4">
+            Common TCL Commands
+        </h5>
+
+        <ul>
+
+            <li class="mb-2">
+                <strong>COMMIT</strong> – Permanently saves the changes
+                made in a transaction.
+            </li>
+
+            <li class="mb-2">
+                <strong>ROLLBACK</strong> – Undoes changes according to
+                the transaction state.
+            </li>
+
+            <li>
+                <strong>SAVE TRANSACTION</strong> – Creates a savepoint
+                within a transaction.
+            </li>
+
+        </ul>
+
+
+        <h5 class="fw-bold mt-4">
+            Transaction Example
+        </h5>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>BEGIN TRANSACTION;
+
+UPDATE Students
+SET Age = 25
+WHERE StudentId = 101;
+
+COMMIT;</code></pre>
+
+        </div>
+
+
+        <h5 class="fw-bold mt-4">
+            ROLLBACK Example
+        </h5>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>BEGIN TRANSACTION;
+
+UPDATE Students
+SET Age = 30
+WHERE StudentId = 101;
+
+ROLLBACK;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- COMPLETE FLOW -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            SQL Command Categories Flow
+        </h2>
+
+        <p>
+            The complete classification can be understood using the
+            following diagram:
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>
+                         SQL Commands
+                              |
+          ---------------------------------------------
+          |             |             |        |      |
+         DDL           DML           DQL      DCL    TCL
+          |             |             |        |      |
+      Structure        Data        Retrieve  Access  Transaction
+          |             |             |        |      |
+    CREATE          INSERT        SELECT    GRANT   COMMIT
+    ALTER           UPDATE                  REVOKE  ROLLBACK
+    DROP            DELETE
+    TRUNCATE
+            </code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- REAL WORLD UNDERSTANDING -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Real-World Understanding
+        </h2>
+
+        <p>
+            Suppose we are developing a Student Management System.
+            Different SQL categories will be used for different tasks.
+        </p>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>Requirement</th>
+                        <th>Category</th>
+                        <th>Command</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>Create Students table</td>
+                        <td>DDL</td>
+                        <td>CREATE</td>
+                    </tr>
+
+                    <tr>
+                        <td>Add a new student</td>
+                        <td>DML</td>
+                        <td>INSERT</td>
+                    </tr>
+
+                    <tr>
+                        <td>Display students</td>
+                        <td>DQL</td>
+                        <td>SELECT</td>
+                    </tr>
+
+                    <tr>
+                        <td>Change student's age</td>
+                        <td>DML</td>
+                        <td>UPDATE</td>
+                    </tr>
+
+                    <tr>
+                        <td>Delete a student</td>
+                        <td>DML</td>
+                        <td>DELETE</td>
+                    </tr>
+
+                    <tr>
+                        <td>Give SELECT permission</td>
+                        <td>DCL</td>
+                        <td>GRANT</td>
+                    </tr>
+
+                    <tr>
+                        <td>Save transaction changes</td>
+                        <td>TCL</td>
+                        <td>COMMIT</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- QUICK COMPARISON -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Quick Comparison
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>Category</th>
+                        <th>Works With</th>
+                        <th>Main Purpose</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td><strong>DDL</strong></td>
+                        <td>Database Structure</td>
+                        <td>Create / Change / Remove structure</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>DML</strong></td>
+                        <td>Table Data</td>
+                        <td>Insert / Update / Delete records</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>DQL</strong></td>
+                        <td>Table Data</td>
+                        <td>Retrieve records</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>DCL</strong></td>
+                        <td>Permissions</td>
+                        <td>Control access</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>TCL</strong></td>
+                        <td>Transactions</td>
+                        <td>Manage transaction changes</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- IMPORTANT POINTS -->
+    <section class="mb-5">
+
+        <div class="alert alert-info border-0">
+
+            <h5 class="fw-bold">
+                Important Points
+            </h5>
+
+            <ul class="mb-0">
+
+                <li class="mb-2">
+                    DDL mainly deals with database object structure.
+                </li>
+
+                <li class="mb-2">
+                    DML works with records stored in tables.
+                </li>
+
+                <li class="mb-2">
+                    SELECT is used to retrieve data.
+                </li>
+
+                <li class="mb-2">
+                    DCL is related to database permissions.
+                </li>
+
+                <li>
+                    TCL is used to manage transactions.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </section>
+
+
+    <!-- SUMMARY -->
+    <section class="mb-4">
+
+        <div class="alert alert-primary border-0">
+
+            <h2 class="fw-bold mb-3">
+                Summary
+            </h2>
+
+            <p class="mb-0">
+                In this section, we learned the major SQL command
+                categories: DDL, DML, DQL, DCL and TCL. We understood
+                the purpose of each category, studied their common
+                commands and looked at practical examples of where each
+                category is used in SQL Server.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- PREVIOUS / NEXT -->
+
+    <div class="d-flex justify-content-between align-items-center
+                mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/SQLBasics/SQLCommands"
+           class="btn btn-outline-primary">
+
+            ← Previous: SQL Commands
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/SQLBasics/SelectStatement"
+           class="btn btn-primary">
+
+            Next: SELECT Statement →
+
+        </a>
+
+    </div>
+
+</section>

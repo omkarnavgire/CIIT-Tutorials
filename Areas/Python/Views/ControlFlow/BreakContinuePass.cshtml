@@ -1,0 +1,1477 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Python Break Continue Pass";
+}
+
+<!-- =====================================================
+     BREAK / CONTINUE / PASS PAGE
+     All programs and outputs stay DARK
+====================================================== -->
+<style>
+
+    #python-break-continue-pass-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 0.5rem;
+        padding: 1rem !important;
+        overflow-x: auto;
+    }
+
+        #python-break-continue-pass-page pre code {
+            background-color: transparent !important;
+            color: #ffffff !important;
+        }
+
+</style>
+
+
+<main id="python-break-continue-pass-page"
+      class="container py-5">
+
+    <div class="row g-4">
+
+
+        <!-- =====================================================
+             LEFT SIDEBAR
+        ====================================================== -->
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+
+        </aside>
+
+
+        <!-- =====================================================
+             MAIN CONTENT
+        ====================================================== -->
+        <section class="col-lg-9">
+
+
+            <!-- =====================================================
+                 PAGE HEADING
+            ====================================================== -->
+            <div class="mb-4">
+
+                <h1 class="fw-bold">
+                    Break, Continue & Pass
+                </h1>
+
+                <p class="lead">
+                    Python provides <strong>break</strong>,
+                    <strong>continue</strong> and <strong>pass</strong>
+                    statements to control the execution of loops.
+                </p>
+
+            </div>
+
+
+            <!-- =====================================================
+                 CIIT INTRODUCTION
+            ====================================================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        Break, Continue & Pass
+                    </h2>
+
+                    <p>
+
+                        At <strong>CIIT Training Institute</strong>, loop
+                        control statements are explained using practical
+                        examples so students can understand exactly when
+                        a loop should stop, skip an iteration or simply
+                        do nothing.
+
+                    </p>
+
+                    <p class="mb-0">
+
+                        The three important statements are:
+
+                        <strong>break</strong> → stop the loop,
+
+                        <strong>continue</strong> → skip the current
+                        iteration,
+
+                        <strong>pass</strong> → do nothing and continue
+                        normally.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 WHAT ARE LOOP CONTROL STATEMENTS
+            ====================================================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        What are Loop Control Statements?
+                    </h2>
+
+                    <p>
+
+                        Normally, a loop executes its statements one after
+                        another. Loop control statements allow us to change
+                        this normal execution flow.
+
+                    </p>
+
+
+                    <div class="table-responsive">
+
+                        <table class="table table-bordered align-middle">
+
+                            <thead class="table-light">
+
+                                <tr>
+
+                                    <th>
+                                        Statement
+                                    </th>
+
+                                    <th>
+                                        Purpose
+                                    </th>
+
+                                    <th>
+                                        Simple Meaning
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody>
+
+                                <tr>
+
+                                    <td>
+                                        <code>break</code>
+                                    </td>
+
+                                    <td>
+                                        Terminates the loop completely.
+                                    </td>
+
+                                    <td>
+                                        Stop the loop.
+                                    </td>
+
+                                </tr>
+
+
+                                <tr>
+
+                                    <td>
+                                        <code>continue</code>
+                                    </td>
+
+                                    <td>
+                                        Skips the current iteration.
+                                    </td>
+
+                                    <td>
+                                        Skip this turn.
+                                    </td>
+
+                                </tr>
+
+
+                                <tr>
+
+                                    <td>
+                                        <code>pass</code>
+                                    </td>
+
+                                    <td>
+                                        Performs no operation.
+                                    </td>
+
+                                    <td>
+                                        Do nothing for now.
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 FLOW DIAGRAM
+            ====================================================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        Loop Control Flow
+                    </h2>
+
+
+                    <div class="border rounded p-4 text-center bg-light">
+
+                        <div class="fw-bold mb-3">
+                            Start Loop
+                        </div>
+
+
+                        <div class="border rounded p-3 bg-white mb-3">
+                            Execute Current Iteration
+                        </div>
+
+
+                        <div class="row g-3 justify-content-center">
+
+
+                            <div class="col-md-4">
+
+                                <div class="border rounded p-3 bg-white">
+
+                                    <strong>break</strong>
+
+                                    <br />
+
+                                    ↓
+
+                                    <br />
+
+                                    Exit Loop
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="col-md-4">
+
+                                <div class="border rounded p-3 bg-white">
+
+                                    <strong>continue</strong>
+
+                                    <br />
+
+                                    ↓
+
+                                    <br />
+
+                                    Next Iteration
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="col-md-4">
+
+                                <div class="border rounded p-3 bg-white">
+
+                                    <strong>pass</strong>
+
+                                    <br />
+
+                                    ↓
+
+                                    <br />
+
+                                    Do Nothing
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 BREAK
+            ====================================================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        1. break Statement
+                    </h2>
+
+                    <p>
+
+                        The <code>break</code> statement is used to
+                        immediately terminate a loop.
+
+                    </p>
+
+                    <p>
+
+                        Once Python executes <code>break</code>, the loop
+                        stops completely and program execution continues
+                        with the statement after the loop.
+
+                    </p>
+
+
+                    <h5 class="fw-bold">
+                        Basic Example
+                    </h5>
+
+
+                    <pre><code>for number in range(1, 10):
+
+    if number == 5:
+        break
+
+    print(number)</code></pre>
+
+
+                    <h5 class="fw-bold">
+                        Output
+                    </h5>
+
+
+                    <pre><code>1
+2
+3
+4</code></pre>
+
+
+                    <p class="mb-0">
+
+                        When <code>number</code> becomes 5, the
+                        <code>break</code> statement terminates the loop.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 BREAK FLOW
+            ====================================================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        How break Works
+                    </h2>
+
+
+                    <pre><code>for number in range(1, 6):
+
+    print("Checking:", number)
+
+    if number == 3:
+        break
+
+print("Loop ended")</code></pre>
+
+
+                    <h5 class="fw-bold">
+                        Output
+                    </h5>
+
+
+                    <pre><code>Checking: 1
+Checking: 2
+Checking: 3
+Loop ended</code></pre>
+
+
+                    <p class="mb-0">
+
+                        The loop does not continue with 4 and 5 because
+                        <code>break</code> has already stopped it.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 BREAK WITH WHILE
+            ====================================================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        break With While Loop
+                    </h2>
+
+
+                    <pre><code>number = 1
+
+while number &lt;= 10:
+
+    if number == 6:
+        break
+
+    print(number)
+
+    number += 1</code></pre>
+
+
+                    <h5 class="fw-bold">
+                        Output
+                    </h5>
+
+
+                    <pre><code>1
+2
+3
+4
+5</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 PRACTICAL BREAK
+            ====================================================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        Example: Search Student 🤓🔓
+                    </h2>
+
+                    <p>
+
+                        Suppose we have a list of students and want to stop
+                        searching as soon as we find a particular student.
+
+                    </p>
+
+
+                    <pre><code>students = [
+    "Rahul",
+    "Priya",
+    "Sam",
+    "Amit",
+    "Sneha"
+]
+
+for student in students:
+
+    print("Checking:", student)
+
+    if student == "Sam":
+        print("Student Found!")
+        break</code></pre>
+
+
+                    <h5 class="fw-bold">
+                        Output
+                    </h5>
+
+
+                    <pre><code>Checking: Rahul
+Checking: Priya
+Checking: Sam
+Student Found!</code></pre>
+
+
+                    <p class="mb-0">
+
+                        Once <strong>Sam</strong> is found, there is no need
+                        to check the remaining students.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 CONTINUE
+            ====================================================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        2. continue Statement
+                    </h2>
+
+                    <p>
+
+                        The <code>continue</code> statement skips the current
+                        iteration and moves to the next iteration of the loop.
+
+                    </p>
+
+
+                    <h5 class="fw-bold">
+                        Basic Example
+                    </h5>
+
+
+                    <pre><code>for number in range(1, 6):
+
+    if number == 3:
+        continue
+
+    print(number)</code></pre>
+
+
+                    <h5 class="fw-bold">
+                        Output
+                    </h5>
+
+
+                    <pre><code>1
+2
+4
+5</code></pre>
+
+
+                    <p class="mb-0">
+
+                        Number 3 is skipped, but the loop continues with
+                        numbers 4 and 5.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 CONTINUE FLOW
+            ====================================================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        How continue Works
+                    </h2>
+
+
+                    <pre><code>for number in range(1, 6):
+
+    if number == 3:
+        continue
+
+    print("Number:", number)</code></pre>
+
+
+                    <h5 class="fw-bold">
+                        Output
+                    </h5>
+
+
+                    <pre><code>Number: 1
+Number: 2
+Number: 4
+Number: 5</code></pre>
+
+
+                    <p class="mb-0">
+
+                        When the value is 3, Python skips the remaining
+                        statements of that iteration.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 CONTINUE EVEN NUMBERS
+            ====================================================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        Example: Skip Odd Numbers 📩🔓
+                    </h2>
+
+
+                    <pre><code>numbers = [1, 2, 3, 4, 5, 6, 7, 8]
+
+for number in numbers:
+
+    if number % 2 != 0:
+        continue
+
+    print(number)</code></pre>
+
+
+                    <h5 class="fw-bold">
+                        Output
+                    </h5>
+
+
+                    <pre><code>2
+4
+6
+8</code></pre>
+
+
+                    <p class="mb-0">
+
+                        Odd numbers are skipped using
+                        <code>continue</code>, so only even numbers
+                        are printed.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 CONTINUE WITH STUDENTS
+            ====================================================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        Example: Skip Inactive Students 🤓🔓
+                    </h2>
+
+
+                    <pre><code>students = [
+    ("Sam", True),
+    ("Rahul", False),
+    ("Priya", True),
+    ("Amit", False)
+]
+
+for name, active in students:
+
+    if not active:
+        continue
+
+    print("Active Student:", name)</code></pre>
+
+
+                    <h5 class="fw-bold">
+                        Output
+                    </h5>
+
+
+                    <pre><code>Active Student: Sam
+Active Student: Priya</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 PASS
+            ====================================================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        3. pass Statement
+                    </h2>
+
+                    <p>
+
+                        The <code>pass</code> statement is a placeholder.
+                        It does nothing when executed.
+
+                    </p>
+
+                    <p>
+
+                        It is useful when we are planning to add code later
+                        but Python currently requires a valid statement.
+
+                    </p>
+
+
+                    <h5 class="fw-bold">
+                        Basic Example
+                    </h5>
+
+
+                    <pre><code>for number in range(1, 6):
+
+    if number == 3:
+        pass
+
+    print(number)</code></pre>
+
+
+                    <h5 class="fw-bold">
+                        Output
+                    </h5>
+
+
+                    <pre><code>1
+2
+3
+4
+5</code></pre>
+
+
+                    <p class="mb-0">
+
+                        Unlike <code>break</code> and
+                        <code>continue</code>, <code>pass</code> does not
+                        change the loop flow.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 PASS WITH FUNCTION
+            ====================================================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        pass as a Placeholder
+                    </h2>
+
+                    <p>
+
+                        <code>pass</code> is commonly used while creating
+                        an incomplete function, class or conditional block.
+
+                    </p>
+
+
+                    <pre><code>def calculate_result():
+
+    pass</code></pre>
+
+
+                    <p>
+
+                        The function can be completed later without causing
+                        an indentation or syntax problem.
+
+                    </p>
+
+
+                    <h5 class="fw-bold">
+                        Another Example
+                    </h5>
+
+
+                    <pre><code>class Student:
+
+    pass</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 BREAK VS CONTINUE VS PASS
+            ====================================================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        break vs continue vs pass
+                    </h2>
+
+
+                    <div class="table-responsive">
+
+                        <table class="table table-bordered align-middle">
+
+                            <thead class="table-light">
+
+                                <tr>
+
+                                    <th>
+                                        Feature
+                                    </th>
+
+                                    <th>
+                                        break
+                                    </th>
+
+                                    <th>
+                                        continue
+                                    </th>
+
+                                    <th>
+                                        pass
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody>
+
+                                <tr>
+
+                                    <td>
+                                        Stops loop
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                </tr>
+
+
+                                <tr>
+
+                                    <td>
+                                        Skips current iteration
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                </tr>
+
+
+                                <tr>
+
+                                    <td>
+                                        Does nothing
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+                                </tr>
+
+
+                                <tr>
+
+                                    <td>
+                                        Main purpose
+                                    </td>
+
+                                    <td>
+                                        Exit loop
+                                    </td>
+
+                                    <td>
+                                        Skip iteration
+                                    </td>
+
+                                    <td>
+                                        Placeholder
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 BREAK AND CONTINUE TOGETHER
+            ====================================================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        Using break and continue Together
+                    </h2>
+
+                    <p>
+
+                        Both statements can be used in the same loop when
+                        different conditions require different actions.
+
+                    </p>
+
+
+                    <pre><code>for number in range(1, 11):
+
+    if number == 3:
+        continue
+
+    if number == 8:
+        break
+
+    print(number)</code></pre>
+
+
+                    <h5 class="fw-bold">
+                        Output
+                    </h5>
+
+
+                    <pre><code>1
+2
+4
+5
+6
+7</code></pre>
+
+
+                    <p class="mb-0">
+
+                        Number 3 is skipped, while the loop completely stops
+                        when number reaches 8.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 NESTED LOOP BREAK
+            ====================================================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        break in Nested Loops
+                    </h2>
+
+                    <p>
+
+                        When <code>break</code> is used inside a nested loop,
+                        it terminates the <strong>nearest loop</strong>
+                        in which it appears.
+
+                    </p>
+
+
+                    <pre><code>for i in range(1, 4):
+
+    for j in range(1, 4):
+
+        if j == 2:
+            break
+
+        print(i, j)</code></pre>
+
+
+                    <h5 class="fw-bold">
+                        Output
+                    </h5>
+
+
+                    <pre><code>1 1
+2 1
+3 1</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 CONTINUE IN NESTED LOOP
+            ====================================================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        continue in Nested Loops
+                    </h2>
+
+
+                    <pre><code>for i in range(1, 4):
+
+    for j in range(1, 4):
+
+        if j == 2:
+            continue
+
+        print(i, j)</code></pre>
+
+
+                    <h5 class="fw-bold">
+                        Output
+                    </h5>
+
+
+                    <pre><code>1 1
+1 3
+2 1
+2 3
+3 1
+3 3</code></pre>
+
+                    <p class="mb-0">
+
+                        The value 2 is skipped in the inner loop while the
+                        outer loop continues normally.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 SEARCH EXAMPLE
+            ====================================================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        Example: Course Search 📩🤓
+                    </h2>
+
+
+                    <pre><code>courses = [
+    "Python",
+    ".NET",
+    "Java",
+    "Data Science"
+]
+
+search = "Java"
+
+for course in courses:
+
+    if course != search:
+        continue
+
+    print("Course Found:", course)
+    break</code></pre>
+
+
+                    <h5 class="fw-bold">
+                        Output
+                    </h5>
+
+
+                    <pre><code>Course Found: Java</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 COMMON MISTAKES
+            ====================================================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        Common Mistakes
+                    </h2>
+
+
+                    <div class="table-responsive">
+
+                        <table class="table table-bordered align-middle">
+
+                            <thead class="table-light">
+
+                                <tr>
+
+                                    <th>
+                                        Mistake
+                                    </th>
+
+                                    <th>
+                                        Explanation
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody>
+
+                                <tr>
+
+                                    <td>
+                                        Using break when you only want to skip
+                                    </td>
+
+                                    <td>
+                                        Use <code>continue</code> when the loop
+                                        should continue.
+                                    </td>
+
+                                </tr>
+
+
+                                <tr>
+
+                                    <td>
+                                        Using continue without understanding
+                                        loop flow
+                                    </td>
+
+                                    <td>
+                                        The remaining statements in the current
+                                        iteration are skipped.
+                                    </td>
+
+                                </tr>
+
+
+                                <tr>
+
+                                    <td>
+                                        Expecting pass to skip an iteration
+                                    </td>
+
+                                    <td>
+                                        <code>pass</code> does not skip anything.
+                                        It simply does nothing.
+                                    </td>
+
+                                </tr>
+
+
+                                <tr>
+
+                                    <td>
+                                        Forgetting indentation
+                                    </td>
+
+                                    <td>
+                                        Python depends on indentation to define
+                                        code blocks.
+                                    </td>
+
+                                </tr>
+
+
+                                <tr>
+
+                                    <td>
+                                        Infinite loop with continue
+                                    </td>
+
+                                    <td>
+                                        In a while loop, make sure the required
+                                        variable update still happens.
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 INTERVIEW QUESTIONS
+            ====================================================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        Important Interview Questions
+                    </h2>
+
+
+                    <ol>
+
+                        <li class="mb-3">
+
+                            What is the purpose of the
+                            <code>break</code> statement?
+
+                        </li>
+
+
+                        <li class="mb-3">
+
+                            What is the difference between
+                            <code>break</code> and <code>continue</code>?
+
+                        </li>
+
+
+                        <li class="mb-3">
+
+                            What does the <code>pass</code> statement do?
+
+                        </li>
+
+
+                        <li class="mb-3">
+
+                            Does <code>continue</code> terminate a loop?
+
+                        </li>
+
+
+                        <li class="mb-3">
+
+                            What happens when <code>break</code> is used
+                            inside a nested loop?
+
+                        </li>
+
+
+                        <li>
+
+                            Why is <code>pass</code> useful when writing
+                            incomplete code?
+
+                        </li>
+
+                    </ol>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 CIIT LEARNING POINT
+            ====================================================== -->
+            <div class="alert alert-success mt-4">
+
+                <h2 class="h4 fw-bold">
+                    CIIT Learning Point
+                </h2>
+
+
+                <p class="mb-0">
+
+                    <strong>Remember:</strong>
+
+                    Use <code>break</code> when you want to
+                    <strong>stop the loop</strong>, use
+                    <code>continue</code> when you want to
+                    <strong>skip the current iteration</strong>, and use
+                    <code>pass</code> when you need a
+                    <strong>placeholder</strong> without performing any
+                    operation. Understanding the difference between these
+                    three statements is important for both real-world
+                    Python programming and coding interviews.
+
+                </p>
+
+            </div>
+
+
+            <!-- =====================================================
+                 SAM PRACTICE TASKS
+            ====================================================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        CIIT Practice Tasks
+                    </h2>
+
+
+                    <ol>
+
+                        <li class="mb-3">
+
+                            Print numbers from 1 to 10, but stop the loop
+                            when the number becomes 6 using
+                            <code>break</code>.
+
+                        </li>
+
+
+                        <li class="mb-3">
+
+                            Print numbers from 1 to 20 but skip all
+                            multiples of 3 using <code>continue</code>.
+
+                        </li>
+
+
+                        <li class="mb-3">
+
+                            Create a student list and search for a particular
+                            student. Stop the search when the student is found.
+
+                        </li>
+
+
+                        <li class="mb-3">
+
+                            Create a list of numbers and print only even
+                            numbers using <code>continue</code>.
+
+                        </li>
+
+
+                        <li class="mb-3">
+
+                            Create a function with <code>pass</code> as a
+                            temporary placeholder.
+
+                        </li>
+
+
+                        <li>
+
+                            Create a nested loop and use both
+                            <code>break</code> and <code>continue</code>
+                            to control its execution.
+
+                        </li>
+
+                    </ol>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 SUMMARY
+            ====================================================== -->
+            <div class="alert alert-info mt-4 mb-0"
+                 style="background-color:#cfe2ff; border:0; color:#123c73;">
+
+                <h2 class="h3 fw-bold mt-0 mb-3"
+                    style="color:#123c73;">
+
+                    Summary :
+
+                </h2>
+
+
+                <p class="mb-0"
+                   style="color:#123c73;">
+
+                    Python provides three important loop control statements:
+                    <strong>break</strong>, <strong>continue</strong> and
+                    <strong>pass</strong>. The <code>break</code> statement
+                    completely terminates the loop, while
+                    <code>continue</code> skips the current iteration and
+                    moves to the next one. The <code>pass</code> statement
+                    performs no operation and is mainly used as a
+                    placeholder. These statements give developers better
+                    control over loop execution and are commonly used in
+                    practical Python programs.
+
+                </p>
+
+            </div>
+
+
+            <!-- =====================================================
+                 NAVIGATION
+            ====================================================== -->
+            <div class="d-flex justify-content-between mt-4">
+
+
+                <a class="btn btn-outline-secondary"
+                   href="@Url.Action("WhileLoop", "ControlFlow", new { area = "Python" })">
+
+                    ← Previous : Topic
+
+                </a>
+
+
+                <a class="btn btn-primary"
+                   href="@Url.Action("Index", "Functions", new { area = "Python" })">
+
+                    Next : Topic →
+
+                </a>
+
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

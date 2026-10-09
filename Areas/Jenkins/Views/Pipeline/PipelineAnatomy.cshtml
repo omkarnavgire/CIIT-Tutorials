@@ -1,0 +1,191 @@
+@{
+    Layout = "~/Areas/Jenkins/Views/Shared/JenkinsLayout.cshtml";
+    ViewData["Title"] = "Pipeline Anatomy";
+}
+
+<style>
+    #pipeline-anatomy-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #pipeline-anatomy-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #pipeline-anatomy-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #pipeline-anatomy-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #pipeline-anatomy-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+    #pipeline-anatomy-page .example-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+    }
+</style>
+
+<main id="pipeline-anatomy-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/Jenkins/Views/Shared/JenkinsTopics.cshtml")
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+                <h1 class="fw-bold">Pipeline Anatomy</h1>
+                <p class="lead">
+                    Learn the concepts, syntax hierarchies, structural sections, and validation scopes required to map out a fully functional, production-ready Jenkinsfile.
+                </p>
+            </div>
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">What is Pipeline Anatomy?</h2>
+                <p>
+                    Understanding <strong>Pipeline Anatomy</strong> means mastering the mandatory structural blocks and layout rules that compose a Declarative Jenkinsfile. Just like standard programming languages have fixed boilerplate wrappers, Jenkins requires a specific nested hierarchy to successfully parse, validate, and execute your automation stages.
+                </p>
+
+                <div class="alert alert-info my-3">
+                    <strong>Simple Definition:</strong> Pipeline Anatomy is the structural hierarchy of nested blocks (pipeline, agent, stages, stage, steps) required to write a syntactically correct and executable Jenkins code script.
+                </div>
+
+                <h3 class="h4 fw-bold mt-4">The Crucial Anatomy Hierarchy</h3>
+                <p class="mb-2">A properly structured declarative file must contain these distinct sections nested top-to-bottom:</p>
+                <ul class="mb-3">
+                    <li class="mb-1"><strong>The `pipeline` Root Container:</strong> The absolute outer boundary block that alerts Jenkins to interpret the internal text parameters using modern declarative validation rules.</li>
+                    <li class="mb-1"><strong>The `agent` Resource Allocator:</strong> Placed immediately at the top layer to declare which physical machine server node, cloud instance, or Docker container executes the steps.</li>
+                    <li class="mb-1"><strong>The `stages` Orchestration Wrapper:</strong> A centralized chronological container layout housing the discrete business logical checkpoints of your pipeline.</li>
+                    <li class="mb-1"><strong>The `stage` Logical Checkpoints:</strong> Sub-containers named explicitly by the engineer to represent single distinct jobs (e.g., `stage('Compile')`, `stage('Test')`).</li>
+                    <li><strong>The `steps` Functional Atoms:</strong> The final inner blocks that contain the physical terminal execution instructions, plugin hooks, or scripts.</li>
+                </ul>
+            </div>
+
+            <!-- KEY CONCEPTS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Key Concepts</h2>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Enforced Code Nesting Rules</h5>
+                            <p class="mb-0">Understanding that declarative code is strictly rigid: a `steps` block cannot exist outside a `stage`, and a `stage` block must be housed inside the main `stages` array block wrapper.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Optional Structural Components</h5>
+                            <p class="mb-0">Learning to enrich baseline anatomy blueprints by grafting on specialized auxiliary control blocks, such as global `environment` maps, custom `parameters`, and `post` build actions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXAMPLE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Practical Jenkins Example</h2>
+                <p>The following full code script provides an annotated blueprint highlighting the precise layout hierarchy of modern pipeline workflows:</p>
+                <pre><code>// 1. Root Container Wrapper
+pipeline {
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // 2. Global Execution Environment Agent Allocation
+    agent any
+
+    // 3. Centralized Sequence Stage Wrapper
+    stages {
+        
+        // 4. First Discrete Logical Block
+        stage('Initialize Environment') {
+            // 5. Functional Action Steps Block
+            steps {
+                echo 'Anatomy Step: Verifying pipeline layout hierarchy...'
+                sh 'echo "Workspace directory ready."'
+            }
+        }
+
+        // 4. Second Discrete Logical Block
+        stage('Simulate Build Production') {
+            // 5. Functional Action Steps Block
+            steps {
+                echo 'Anatomy Step: Running compilation routines...'
+                sh 'echo "Compilation steps executed successfully."'
+            }
+        }
+    }
+}</code></pre>
+                </div>
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+        <h2 class="h3 fw-bold">Practice Exercise: Verify and Map Code Anatomy</h2>
+                <div class="concept-box">
+    <h5 class="fw-bold">Step-by-Step Task Sequence:</h5>
+                    <ol class="ps-3 mb-0">
+<li class="mb-2">Open the script block workspace of an active test pipeline or initialize a fresh Pipeline item.</li>
+                        <li class="mb-2">Copy-paste the complete practical structural example script provided in the example section above directly into the code field.</li>
+                        <li class="mb-2">Intentionally introduce a syntax error by deleting the closing brace `}` of the `stages` wrapper block, then click <strong>Save</strong>.</li>
+<li class="mb-2">Click **Build Now** and inspect how Jenkins instantly rejects the execution pass inside the **Console Output**, logging a structural parsing anomaly error.</li>
+<li>Return to the script editor window, re-insert the missing closing brace `}` to restore proper nesting layout structure, click **Save**, and execute the build again to watch it finish cleanly.</li>
+</ol>
+</div>
+</div>
+
+<!-- SUMMARY -->
+<div class="alert alert-info mt-4">
+<h2 class="h4 fw-bold">Summary</h2>
+<p class="mb-0">You have completed the <strong>Pipeline Anatomy</strong> lesson. You have finished the introductory architectural sections of Phase 3 (Pipeline as Code). Continue through the syllabus to learn how to explicitly control target workload node paths via the Agent Directive lesson.</p>
+</div>
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+                <a class="btn btn-outline-primary" href="@Url.Action("DeclarativeVsScripted", "Pipeline", new { area = "Jenkins" })">← Previous: Declarative vs Scripted Pipeline</a>
+                <a class="btn btn-primary" href="@Url.Action("AgentDirective", "Pipeline", new { area = "Jenkins" })">Next: Agent Directive →</a>
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

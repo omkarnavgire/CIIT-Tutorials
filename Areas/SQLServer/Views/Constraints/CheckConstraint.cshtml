@@ -1,0 +1,511 @@
+﻿@{
+    ViewData["Title"] = "CHECK Constraint";
+}
+
+<section>
+
+    <!-- PAGE INTRODUCTION -->
+    <div class="mb-5">
+
+        <h1 class="fw-bold mb-3">
+            CHECK Constraint
+        </h1>
+
+        <p class="lead text-muted">
+            The CHECK constraint is used to restrict the values that
+            can be stored in a column. It allows data to be inserted
+            only when a specified condition is satisfied.
+        </p>
+
+    </div>
+
+
+    <!-- WHAT IS CHECK -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            What is a CHECK Constraint?
+        </h2>
+
+        <p>
+            A CHECK constraint defines a condition that must be true
+            when data is inserted or updated in a table.
+        </p>
+
+        <p>
+            If the condition is false, SQL Server rejects the
+            INSERT or UPDATE operation.
+        </p>
+
+        <div class="alert alert-primary border-0">
+
+            <h5 class="fw-bold">
+                Simple Example
+            </h5>
+
+            <p class="mb-0">
+                If the Age column must contain a value greater than
+                or equal to 18, a CHECK constraint can be used to
+                enforce this rule.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- WHY CHECK -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Why Use CHECK Constraint?
+        </h2>
+
+        <ul>
+
+            <li class="mb-2">
+                Restricts invalid data.
+            </li>
+
+            <li class="mb-2">
+                Maintains data integrity.
+            </li>
+
+            <li class="mb-2">
+                Applies business rules at database level.
+            </li>
+
+            <li class="mb-2">
+                Prevents incorrect values from being inserted.
+            </li>
+
+            <li>
+                Validates data during INSERT and UPDATE operations.
+            </li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- CREATE CHECK -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Create CHECK Constraint
+        </h2>
+
+        <p>
+            A CHECK constraint can be created while defining a table.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>CREATE TABLE Students
+(
+    StudentId INT PRIMARY KEY,
+    StudentName VARCHAR(100),
+    Age INT CHECK (Age &gt;= 18)
+);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- VALID DATA -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Insert Valid Data
+        </h2>
+
+        <p>
+            Since the CHECK condition is Age &gt;= 18, values greater
+            than or equal to 18 are accepted.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>INSERT INTO Students
+VALUES (101, 'Rahul', 22);</code></pre>
+
+        </div>
+
+        <div class="alert alert-success border-0">
+
+            <strong>Result:</strong>
+            Record inserted successfully because Age 22 satisfies
+            the CHECK condition.
+
+        </div>
+
+    </section>
+
+
+    <!-- INVALID DATA -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Insert Invalid Data
+        </h2>
+
+        <p>
+            A value that does not satisfy the CHECK condition will
+            be rejected.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>INSERT INTO Students
+VALUES (102, 'Priya', 15);</code></pre>
+
+        </div>
+
+        <div class="alert alert-danger border-0">
+
+            <strong>Error:</strong>
+            The record is rejected because Age 15 does not satisfy
+            the condition Age &gt;= 18.
+
+        </div>
+
+    </section>
+
+
+    <!-- NAMED CHECK -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Named CHECK Constraint
+        </h2>
+
+        <p>
+            A CHECK constraint can be given a meaningful name.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>CREATE TABLE Students
+(
+    StudentId INT PRIMARY KEY,
+    StudentName VARCHAR(100),
+    Age INT,
+
+    CONSTRAINT CK_Students_Age
+    CHECK (Age &gt;= 18)
+);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- ADD CHECK -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Add CHECK Constraint to Existing Table
+        </h2>
+
+        <p>
+            A CHECK constraint can also be added to an existing table
+            using ALTER TABLE.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>ALTER TABLE Students
+ADD CONSTRAINT CK_Students_Age
+CHECK (Age &gt;= 18);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- MULTIPLE CONDITIONS -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            CHECK with Multiple Conditions
+        </h2>
+
+        <p>
+            A CHECK constraint can contain more than one condition.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>CREATE TABLE Employees
+(
+    EmployeeId INT PRIMARY KEY,
+    EmployeeName VARCHAR(100),
+    Age INT,
+    Salary DECIMAL(10,2),
+
+    CONSTRAINT CK_Employees_Age
+    CHECK (Age &gt;= 18),
+
+    CONSTRAINT CK_Employees_Salary
+    CHECK (Salary &gt; 0)
+);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- RANGE EXAMPLE -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            CHECK with Range
+        </h2>
+
+        <p>
+            CHECK can be used to restrict a value within a specific
+            range.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>CREATE TABLE Students
+(
+    StudentId INT PRIMARY KEY,
+    StudentName VARCHAR(100),
+    Marks INT,
+
+    CONSTRAINT CK_Students_Marks
+    CHECK (Marks BETWEEN 0 AND 100)
+);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- OUTPUT -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Example Output
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>StudentId</th>
+                        <th>StudentName</th>
+                        <th>Age</th>
+                        <th>Marks</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>101</td>
+                        <td>Rahul</td>
+                        <td>22</td>
+                        <td>85</td>
+                    </tr>
+
+                    <tr>
+                        <td>102</td>
+                        <td>Priya</td>
+                        <td>21</td>
+                        <td>92</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <p class="text-muted">
+            The records above satisfy the defined CHECK conditions.
+        </p>
+
+    </section>
+
+
+    <!-- DIAGRAM -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            CHECK Constraint Structure
+        </h2>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL Server
+            </div>
+
+            <pre class="mb-0"><code>
+                                                        Insert / Update Data
+                                                              |
+                                                              ↓
+                                                        CHECK Condition
+                                                              |
+                                                          ┌───┴───┐
+                                                          ↓       ↓
+                                                       TRUE      FALSE
+                                                        ↓          ↓
+                                                     Accepted    Rejected
+                                                        ↓          ↓
+                                                      Table      Error</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- DROP CHECK -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Remove CHECK Constraint
+        </h2>
+
+        <p>
+            A named CHECK constraint can be removed using ALTER TABLE
+            and DROP CONSTRAINT.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>ALTER TABLE Students
+DROP CONSTRAINT CK_Students_Age;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- IMPORTANT POINTS -->
+    <section class="mb-5">
+
+        <div class="alert alert-info border-0">
+
+            <h5 class="fw-bold">
+                Important Points
+            </h5>
+
+            <ul class="mb-0">
+
+                <li class="mb-2">
+                    CHECK validates values against a condition.
+                </li>
+
+                <li class="mb-2">
+                    Invalid values are rejected.
+                </li>
+
+                <li class="mb-2">
+                    Multiple CHECK constraints can exist in a table.
+                </li>
+
+                <li class="mb-2">
+                    CHECK constraints can be named.
+                </li>
+
+                <li>
+                    CHECK constraints can be added or removed using
+                    ALTER TABLE.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </section>
+
+
+    <!-- SUMMARY -->
+    <section class="mb-4">
+
+        <div class="alert alert-primary border-0">
+
+            <h2 class="fw-bold mb-3">
+                Summary
+            </h2>
+
+            <p class="mb-0">
+                In this section, we learned how the CHECK constraint
+                validates data, how to create and name CHECK constraints,
+                how to add them to existing tables and how invalid
+                values are prevented.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- PREVIOUS / NEXT -->
+
+<div class="d-flex justify-content-between align-items-center
+            mt-5 pt-4 border-top">
+
+    <!-- PREVIOUS -->
+
+    <a href="/SQLServer/Constraints/NotNullDefault"
+       class="btn btn-outline-primary">
+
+        ← Previous: NOT NULL & DEFAULT
+
+    </a>
+
+
+    <!-- NEXT -->
+
+    <a href="/SQLServer/SQLBasics/Index"
+       class="btn btn-primary">
+
+        Next: SQL Basics Introduction →
+
+    </a>
+
+</div>
+
+</section>

@@ -1,0 +1,815 @@
+﻿@{
+    ViewData["Title"] = "Angular Input";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- Header -->
+    <section class="mb-4">
+        <h1 class="fw-bold text-dark">Angular @@Input</h1>
+        <p class="lead text-muted">
+            Learn how to use @@Input to pass data from a parent component to a child component
+            in Angular.
+        </p>
+    </section>
+
+    <!-- Introduction -->
+    <section class="mb-4">
+        <h2 class="fw-bold">What is @@Input?</h2>
+
+        <div class="info-card">
+            <p>
+                In Angular, <strong>@@Input</strong> is used when a parent component needs to
+                send data to a child component.
+            </p>
+
+            <p>
+                The parent component provides the data using
+                <strong>property binding</strong>, while the child component receives that
+                data through an Input property.
+            </p>
+
+            <p class="mb-0">
+                This creates a simple and controlled way for components to communicate
+                from <strong>Parent → Child</strong>.
+            </p>
+        </div>
+    </section>
+
+    <!-- Communication Flow -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Parent to Child Communication</h2>
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+                <strong>Parent Component</strong>
+                <span>Provides Data</span>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+                <strong>Property Binding</strong>
+                <span>[courseName]</span>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+                <strong>Child Component</strong>
+                <span>@@Input()</span>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Basic Syntax -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Basic @@Input Syntax</h2>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Parent Component
+            </div>
+
+            <pre><code>&lt;app-course-card
+    [courseName]="selectedCourse"&gt;
+&lt;/app-course-card&gt;</code></pre>
+
+        </div>
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Child Component
+            </div>
+
+            <pre><code>import { Component, Input } from '@@angular/core';
+
+@@Component({
+    selector: 'app-course-card',
+    templateUrl: './course-card.component.html'
+})
+export class CourseCardComponent {
+
+    @@Input() courseName = '';
+
+}</code></pre>
+
+        </div>
+    </section>
+
+    <!-- How Input Works -->
+    <section class="mb-4">
+        <h2 class="fw-bold">How @@Input Works</h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+                <div class="syntax-icon">1</div>
+                <h5>Parent Has Data</h5>
+                <p>
+                    The parent component contains the value that needs to be shared.
+                </p>
+            </div>
+
+            <div class="syntax-card">
+                <div class="syntax-icon">2</div>
+                <h5>Property Binding</h5>
+                <p>
+                    The value is passed using Angular property binding.
+                </p>
+            </div>
+
+            <div class="syntax-card">
+                <div class="syntax-icon">3</div>
+                <h5>Child Receives Data</h5>
+                <p>
+                    The child component receives the value through @@Input.
+                </p>
+            </div>
+
+            <div class="syntax-card">
+                <div class="syntax-icon">4</div>
+                <h5>Child Uses Data</h5>
+                <p>
+                    The child can display or process the received value.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Simple Example -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Simple @@Input Example</h2>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Parent Component
+            </div>
+
+            <pre><code>export class CourseComponent {
+
+    selectedCourse = 'Full Stack .NET';
+
+}</code></pre>
+
+        </div>
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Parent HTML
+            </div>
+
+            <pre><code>&lt;app-course-card
+    [courseName]="selectedCourse"&gt;
+&lt;/app-course-card&gt;</code></pre>
+
+        </div>
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Child Component
+            </div>
+
+            <pre><code>import { Component, Input } from '@@angular/core';
+
+@@Component({
+    selector: 'app-course-card',
+    templateUrl: './course-card.component.html'
+})
+export class CourseCardComponent {
+
+    @@Input() courseName = '';
+
+}</code></pre>
+
+        </div>
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Child HTML
+            </div>
+
+            <pre><code>&lt;div class="course-card"&gt;
+
+    &lt;h3&gt;&#123;&#123; courseName &#125;&#125;&lt;/h3&gt;
+
+    &lt;p&gt;
+        Welcome to CIIT Training Institute.
+    &lt;/p&gt;
+
+&lt;/div&gt;</code></pre>
+
+        </div>
+    </section>
+
+    <!-- Output -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Output</h2>
+
+        <div class="output-box">
+
+            <div class="student-preview">
+
+                <h4>Full Stack .NET</h4>
+
+                <p class="mb-0">
+                    Welcome to CIIT Training Institute.
+                </p>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Property Binding -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Using Property Binding with @@Input</h2>
+
+        <p>
+            The square bracket syntax
+            <strong>[property]</strong>
+            is used to bind a parent component property to a child component Input.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Property Binding
+            </div>
+
+            <pre><code>&lt;app-course-card
+    [courseName]="selectedCourse"&gt;
+&lt;/app-course-card&gt;</code></pre>
+
+        </div>
+
+        <div class="binding-flow mt-4">
+
+            <div class="binding-item">
+                <strong>selectedCourse</strong>
+                <span>Parent Property</span>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="binding-item">
+                <strong>[courseName]</strong>
+                <span>Property Binding</span>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="binding-item">
+                <strong>@@Input()</strong>
+                <span>Child Property</span>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Multiple Inputs -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Multiple @@Input Properties</h2>
+
+        <p>
+            A child component can receive multiple values from its parent component.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Child Component
+            </div>
+
+            <pre><code>import { Component, Input } from '@@angular/core';
+
+@@Component({
+    selector: 'app-course-card',
+    templateUrl: './course-card.component.html'
+})
+export class CourseCardComponent {
+
+    @@Input() courseName = '';
+    @@Input() duration = '';
+    @@Input() fees = 0;
+    @@Input() onlineAvailable = false;
+
+}</code></pre>
+
+        </div>
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Parent HTML
+            </div>
+
+            <pre><code>&lt;app-course-card
+    [courseName]="course"
+    [duration]="duration"
+    [fees]="fees"
+    [onlineAvailable]="online"&gt;
+&lt;/app-course-card&gt;</code></pre>
+
+        </div>
+    </section>
+
+    <!-- CIIT Example -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Complete CIIT Training Institute Example</h2>
+
+        <div class="info-card">
+
+            <p>
+                Suppose the CIIT Training Institute course page has a parent component
+                containing course information.
+            </p>
+
+            <p class="mb-0">
+                That information can be passed to a reusable course-card child component
+                using multiple @@Input properties.
+            </p>
+
+        </div>
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Parent Component
+            </div>
+
+            <pre><code>export class CoursesComponent {
+
+    course = 'Java Full Stack';
+    duration = '6 Months';
+    fees = 35000;
+    online = true;
+
+}</code></pre>
+
+        </div>
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Parent Template
+            </div>
+
+            <pre><code>&lt;app-course-card
+    [courseName]="course"
+    [duration]="duration"
+    [fees]="fees"
+    [onlineAvailable]="online"&gt;
+&lt;/app-course-card&gt;</code></pre>
+
+        </div>
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Child Component
+            </div>
+
+            <pre><code>import { Component, Input } from '@@angular/core';
+
+@@Component({
+    selector: 'app-course-card',
+    templateUrl: './course-card.component.html'
+})
+export class CourseCardComponent {
+
+    @@Input() courseName = '';
+    @@Input() duration = '';
+    @@Input() fees = 0;
+    @@Input() onlineAvailable = false;
+
+}</code></pre>
+
+        </div>
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Child Template
+            </div>
+
+            <pre><code>&lt;div class="course-card"&gt;
+
+    &lt;h3&gt;&#123;&#123; courseName &#125;&#125;&lt;/h3&gt;
+
+    &lt;p&gt;
+        Duration: &#123;&#123; duration &#125;&#125;
+    &lt;/p&gt;
+
+    &lt;p&gt;
+        Fees: ₹&#123;&#123; fees &#125;&#125;
+    &lt;/p&gt;
+
+    &lt;p&gt;
+        Online Training:
+        &#123;&#123; onlineAvailable ? 'Available' : 'Not Available' &#125;&#125;
+    &lt;/p&gt;
+
+&lt;/div&gt;</code></pre>
+
+        </div>
+    </section>
+
+    <!-- Data Types -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Different Types of Data</h2>
+
+        <div class="table-responsive">
+            <table class="syntax-table">
+                <thead>
+                    <tr>
+                        <th>Data Type</th>
+                        <th>Input Example</th>
+                        <th>Purpose</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>String</td>
+                        <td>@@Input() courseName = ''</td>
+                        <td>Course name or text</td>
+                    </tr>
+
+                    <tr>
+                        <td>Number</td>
+                        <td>@@Input() fees = 0</td>
+                        <td>Course fees</td>
+                    </tr>
+
+                    <tr>
+                        <td>Boolean</td>
+                        <td>@@Input() onlineAvailable = false</td>
+                        <td>True / False values</td>
+                    </tr>
+
+                    <tr>
+                        <td>Object</td>
+                        <td>@@Input() course = { }</td>
+                        <td>Multiple related values</td>
+                    </tr>
+
+                    <tr>
+                        <td>Array</td>
+                        <td>@@Input() topics = [ ]</td>
+                        <td>List of topics</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Important Points -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Important Points</h2>
+
+        <div class="best-practice-list">
+
+            <div class="info-card mb-3">
+                <strong>1. Parent → Child</strong>
+                <p class="mb-0">
+                    @@Input is mainly used for passing data from a parent component
+                    to a child component.
+                </p>
+            </div>
+
+            <div class="info-card mb-3">
+                <strong>2. Use Property Binding</strong>
+                <p class="mb-0">
+                    Use square brackets such as
+                    <strong>[courseName]</strong>
+                    when binding dynamic values.
+                </p>
+            </div>
+
+            <div class="info-card mb-3">
+                <strong>3. Keep Child Components Reusable</strong>
+                <p class="mb-0">
+                    Passing data through Inputs allows the same child component to be
+                    reused with different values.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <strong>4. Use Meaningful Names</strong>
+                <p class="mb-0">
+                    Input property names should clearly describe the data being received.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Best Practices -->
+    <section class="mb-4">
+        <h2 class="fw-bold">@@Input Best Practices</h2>
+
+        <ul class="best-practice-list">
+            <li>Use @@Input for Parent → Child communication.</li>
+            <li>Use meaningful Input property names.</li>
+            <li>Keep child components focused and reusable.</li>
+            <li>Use property binding for dynamic values.</li>
+            <li>Keep data flow clear between components.</li>
+            <li>Avoid unnecessary duplicate data in child components.</li>
+        </ul>
+    </section>
+
+    <!-- Summary -->
+    <section class="mb-4">
+        <div class="summary-box">
+
+            <h4 class="fw-bold">Summary</h4>
+
+            <p class="mb-0">
+                Angular <strong>@@Input</strong> allows a parent component to send data
+                to a child component. The parent uses property binding, while the child
+                receives the value through an Input property. This makes Angular
+                components reusable and keeps communication between components organized.
+            </p>
+
+        </div>
+    </section>
+
+    <!-- Navigation -->
+    <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+
+        <a class="btn btn-outline-secondary"
+           href="@Url.Action("Index", "InputOutput", new { area = "Angular" })">
+            ← Componet Commubication
+        </a>
+
+        <a class="btn btn-primary"
+           href="@Url.Action("Output", "InputOutput", new { area = "Angular" })">
+            Output →
+        </a>
+
+    </div>
+
+</div>
+
+<style>
+
+    .info-card {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-left: 5px solid #4c1d95;
+        border-radius: 10px;
+        padding: 20px;
+        line-height: 1.7;
+    }
+
+    .syntax-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        flex-wrap: wrap;
+        margin: 25px 0;
+    }
+
+    .syntax-box {
+        background: linear-gradient(135deg, #2e1065, #4c1d95);
+        color: white;
+        padding: 18px 25px;
+        border-radius: 12px;
+        text-align: center;
+        min-width: 180px;
+        box-shadow: 0 5px 15px rgba(76, 29, 149, 0.15);
+    }
+
+        .syntax-box strong {
+            display: block;
+            font-size: 16px;
+        }
+
+        .syntax-box span {
+            display: block;
+            margin-top: 5px;
+            color: #d8c9f5;
+            font-size: 14px;
+        }
+
+    .syntax-arrow {
+        font-size: 28px;
+        font-weight: bold;
+        color: #4c1d95;
+    }
+
+    .syntax-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+
+    .syntax-card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 22px;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+    }
+
+        .syntax-card h5 {
+            margin-top: 15px;
+            font-weight: 700;
+        }
+
+        .syntax-card p {
+            color: #64748b;
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+
+    .syntax-icon {
+        width: 48px;
+        height: 48px;
+        margin: auto;
+        border-radius: 50%;
+        background: #ede9fe;
+        color: #4c1d95;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 18px;
+    }
+
+    .code-card {
+        background: #0f172a;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-top: 15px;
+    }
+
+    .code-title {
+        background: #1e293b;
+        color: #ddd6fe;
+        padding: 10px 16px;
+        font-weight: 600;
+        border-bottom: 1px solid #334155;
+    }
+
+    .code-card pre {
+        margin: 0;
+        padding: 20px;
+        overflow-x: auto;
+    }
+
+    .code-card code {
+        color: #f8fafc;
+        font-family: Consolas, Monaco, monospace;
+        line-height: 1.7;
+    }
+
+    .output-box {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 25px;
+    }
+
+    .student-preview {
+        background: white;
+        border: 1px solid #ddd6fe;
+        border-radius: 10px;
+        padding: 22px;
+        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+    }
+
+        .student-preview h4 {
+            color: #4c1d95;
+            font-weight: 700;
+        }
+
+    .binding-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .binding-item {
+        background: #ede9fe;
+        border: 1px solid #ddd6fe;
+        border-radius: 10px;
+        padding: 15px 22px;
+        text-align: center;
+        min-width: 170px;
+    }
+
+        .binding-item strong {
+            display: block;
+            color: #2e1065;
+        }
+
+        .binding-item span {
+            display: block;
+            color: #64748b;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+
+    .syntax-table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        border: 1px solid #e2e8f0;
+    }
+
+        .syntax-table th {
+            background: #4c1d95;
+            color: white;
+            padding: 14px;
+            text-align: left;
+        }
+
+        .syntax-table td {
+            padding: 14px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .syntax-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .syntax-table td:first-child {
+            font-weight: 600;
+            color: #2e1065;
+        }
+
+    .best-practice-list {
+        padding-left: 20px;
+        line-height: 1.9;
+    }
+
+        .best-practice-list li {
+            margin-bottom: 7px;
+        }
+
+    .summary-box {
+        background: #cfe2ff;
+        color: #084298;
+        border-radius: 10px;
+        padding: 22px;
+        border: 1px solid #b6d4fe;
+    }
+
+    @@media (max-width: 991px) {
+
+        .syntax-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .syntax-flow {
+            flex-direction: column;
+        }
+
+        .syntax-arrow {
+            transform: rotate(90deg);
+        }
+
+        .binding-flow {
+            flex-direction: column;
+        }
+    }
+
+    @@media (max-width: 576px) {
+
+        .syntax-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .syntax-box {
+            width: 100%;
+        }
+
+        .binding-item {
+            width: 100%;
+        }
+
+        .code-card pre {
+            font-size: 13px;
+        }
+
+        .syntax-table {
+            font-size: 13px;
+        }
+    }
+
+</style>

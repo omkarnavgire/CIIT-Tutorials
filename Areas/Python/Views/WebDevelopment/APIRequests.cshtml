@@ -1,0 +1,864 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Python API Requests";
+}
+
+<style>
+    #python-api-requests-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #python-api-requests-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #python-api-requests-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #python-api-requests-page .diagram-box {
+        background: #ffffff;
+        border: 2px solid #6f42c1;
+        border-radius: 10px;
+        padding: 18px;
+        text-align: center;
+        height: 100%;
+    }
+
+        #python-api-requests-page .diagram-box h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        #python-api-requests-page .diagram-box p {
+            margin-bottom: 0;
+            font-size: 14px;
+            color: #495057;
+        }
+
+    #python-api-requests-page .diagram-arrow {
+        text-align: center;
+        font-size: 28px;
+        font-weight: 700;
+        color: #6f42c1;
+        padding: 8px 0;
+    }
+
+    #python-api-requests-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #python-api-requests-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+        }
+</style>
+
+<main id="python-api-requests-page" class="container py-5">
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+                <h1 class="fw-bold">API Requests in Python</h1>
+
+                <p class="lead">
+                    Python can send HTTP requests to APIs, receive responses,
+                    and work with data returned by web services.
+                </p>
+            </div>
+
+            <!-- WHAT ARE API REQUESTS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">What are API Requests?</h2>
+
+                <p>
+                    An API request is a communication sent from one application
+                    to another application through an API.
+                </p>
+
+                <p>
+                    Python can send requests to REST APIs to retrieve data,
+                    create records, update information, or delete resources.
+                </p>
+
+                <div class="concept-box mt-3">
+                    <h5 class="fw-bold">Simple Definition</h5>
+
+                    <p class="mb-0">
+                        An <strong>API request</strong> is a request sent by a
+                        client application to an API endpoint to perform an
+                        operation or retrieve data.
+                    </p>
+                </div>
+            </div>
+
+            <!-- API REQUEST FLOW -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">API Request Flow</h2>
+
+                <div class="row g-3 mt-3">
+
+                    <div class="col-md-3">
+                        <div class="diagram-box">
+                            <h5>Python Client</h5>
+
+                            <p>
+                                Python application creates a request.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-1 d-flex align-items-center justify-content-center">
+                        <div class="diagram-arrow">→</div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="diagram-box">
+                            <h5>API Server</h5>
+
+                            <p>
+                                API receives and processes the request.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-1 d-flex align-items-center justify-content-center">
+                        <div class="diagram-arrow">→</div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="diagram-box">
+                            <h5>API Response</h5>
+
+                            <p>
+                                Server returns status, headers, and data.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- REQUESTS LIBRARY -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Python Requests Library</h2>
+
+                <p>
+                    The <strong>requests</strong> library is commonly used
+                    in Python programs to send HTTP requests.
+                </p>
+
+                <p>
+                    Install it using:
+                </p>
+
+                <pre><code>pip install requests</code></pre>
+
+                <div class="alert alert-info mt-3">
+                    <strong>Tip:</strong>
+                    Use a virtual environment for project dependencies.
+                </div>
+            </div>
+
+            <!-- BASIC GET REQUEST -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Basic GET Request</h2>
+
+                <p>
+                    A GET request is commonly used to retrieve information
+                    from an API.
+                </p>
+
+                <pre><code>import requests
+
+response = requests.get("https://example.com")
+
+print(response.status_code)
+print(response.text)</code></pre>
+
+                <p class="mt-3">
+                    The response object contains information returned by
+                    the server.
+                </p>
+            </div>
+
+            <!-- RESPONSE OBJECT -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Understanding the Response Object</h2>
+
+                <div class="row g-3 mt-2">
+
+                    <div class="col-md-4">
+                        <div class="info-card">
+
+                            <h5>status_code</h5>
+
+                            <p>
+                                Returns the HTTP status code.
+                            </p>
+
+                            <pre><code>response.status_code</code></pre>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="info-card">
+
+                            <h5>text</h5>
+
+                            <p>
+                                Returns the response content as text.
+                            </p>
+
+                            <pre><code>response.text</code></pre>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="info-card">
+
+                            <h5>json()</h5>
+
+                            <p>
+                                Converts a JSON response into Python data.
+                            </p>
+
+                            <pre><code>response.json()</code></pre>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- GET JSON -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Reading JSON Response</h2>
+
+                <p>
+                    Many REST APIs return data in JSON format. The
+                    <code>json()</code> method can be used to read it.
+                </p>
+
+                <pre><code>import requests
+
+url = "https://api.example.com/students"
+
+response = requests.get(url)
+
+data = response.json()
+
+print(data)</code></pre>
+            </div>
+
+            <!-- HEADERS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Sending Headers</h2>
+
+                <p>
+                    Headers can provide additional information with an API request.
+                </p>
+
+                <pre><code>import requests
+
+url = "https://api.example.com/students"
+
+headers = {
+    "Accept": "application/json"
+}
+
+response = requests.get(
+    url,
+    headers=headers
+)
+
+print(response.json())</code></pre>
+            </div>
+
+            <!-- QUERY PARAMETERS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Sending Query Parameters</h2>
+
+                <p>
+                    Query parameters can be sent using the <code>params</code>
+                    argument.
+                </p>
+
+                <pre><code>import requests
+
+url = "https://api.example.com/students"
+
+params = {
+    "city": "Pune"
+}
+
+response = requests.get(
+    url,
+    params=params
+)
+
+print(response.json())</code></pre>
+
+                <div class="alert alert-success mt-3">
+                    The requests library builds the query string from
+                    the supplied parameters.
+                </div>
+            </div>
+
+            <!-- POST REQUEST -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">POST Request</h2>
+
+                <p>
+                    POST is commonly used to send data to an API and create
+                    a new resource.
+                </p>
+
+                <pre><code>import requests
+
+url = "https://api.example.com/students"
+
+student = {
+    "name": "Rahul",
+    "course": "Python"
+}
+
+response = requests.post(
+    url,
+    json=student
+)
+
+print(response.status_code)
+print(response.json())</code></pre>
+            </div>
+
+            <!-- PUT REQUEST -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">PUT Request</h2>
+
+                <p>
+                    PUT can be used to update an existing resource.
+                </p>
+
+                <pre><code>import requests
+
+url = "https://api.example.com/students/1"
+
+student = {
+    "name": "Rahul",
+    "course": "FastAPI"
+}
+
+response = requests.put(
+    url,
+    json=student
+)
+
+print(response.status_code)
+print(response.json())</code></pre>
+            </div>
+
+            <!-- DELETE REQUEST -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">DELETE Request</h2>
+
+                <p>
+                    DELETE is used to remove a resource from an API.
+                </p>
+
+                <pre><code>import requests
+
+url = "https://api.example.com/students/1"
+
+response = requests.delete(url)
+
+print(response.status_code)</code></pre>
+            </div>
+
+            <!-- REQUEST METHODS TABLE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Common API Requests in Python</h2>
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered">
+
+                        <thead class="table-light">
+                            <tr>
+                                <th>Python Method</th>
+                                <th>HTTP Method</th>
+                                <th>Common Purpose</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>requests.get()</td>
+                                <td>GET</td>
+                                <td>Retrieve data</td>
+                            </tr>
+
+                            <tr>
+                                <td>requests.post()</td>
+                                <td>POST</td>
+                                <td>Create data</td>
+                            </tr>
+
+                            <tr>
+                                <td>requests.put()</td>
+                                <td>PUT</td>
+                                <td>Update data</td>
+                            </tr>
+
+                            <tr>
+                                <td>requests.delete()</td>
+                                <td>DELETE</td>
+                                <td>Delete data</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+            </div>
+
+            <!-- STATUS CODE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Checking Status Codes</h2>
+
+                <p>
+                    Always check the response status before processing
+                    important API data.
+                </p>
+
+                <pre><code>import requests
+
+response = requests.get(
+    "https://example.com"
+)
+
+if response.status_code == 200:
+    print("Request successful")
+else:
+    print("Request failed")</code></pre>
+            </div>
+            <div class="px-2">
+                <h5 class="fw-bold mb-2">
+                    Output
+                </h5>
+
+                <pre class="mb-4"><code>Request successful</code></pre>
+            </div>
+            <!-- RAISE FOR STATUS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Handling HTTP Errors</h2>
+
+                <p>
+                    The <code>raise_for_status()</code> method raises an
+                    exception when the response contains an HTTP error status.
+                </p>
+
+                <pre><code>import requests
+
+response = requests.get(
+    "https://example.com"
+)
+
+response.raise_for_status()
+
+print(response.text)</code></pre>
+            </div>
+
+            <!-- TIMEOUT -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Using a Timeout</h2>
+
+                <p>
+                    A timeout prevents the program from waiting indefinitely
+                    for a server response.
+                </p>
+
+                <pre><code>import requests
+
+response = requests.get(
+    "https://example.com",
+    timeout=10
+)
+
+print(response.status_code)</code></pre>
+
+                <div class="alert alert-info mt-3">
+                    Setting a suitable timeout is a useful practice for
+                    network-based applications.
+                </div>
+            </div>
+
+            <!-- EXCEPTION HANDLING -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Handling Request Exceptions</h2>
+
+                <p>
+                    Network problems can occur while communicating with
+                    an external API. Python can handle request-related
+                    exceptions using <code>try</code> and <code>except</code>.
+                </p>
+
+                <pre><code>import requests
+
+try:
+    response = requests.get(
+        "https://example.com",
+        timeout=10
+    )
+
+    response.raise_for_status()
+
+    print(response.json())
+
+except requests.RequestException as error:
+    print("Request failed:", error)</code></pre>
+            </div>
+
+            <!-- PRACTICAL EXAMPLE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">
+                    Example: Reading Student Data 🤓📩
+                </h2>
+
+                <p>
+                    The following example demonstrates how a Python program
+                    can request student data from an API.
+                </p>
+
+                <pre><code>import requests
+
+url = "https://api.example.com/students"
+
+try:
+    response = requests.get(
+        url,
+        timeout=10
+    )
+
+    response.raise_for_status()
+
+    students = response.json()
+
+    for student in students:
+        print(student)
+
+except requests.RequestException as error:
+    print("Unable to fetch students:", error)</code></pre>
+            </div>
+
+            <!-- API RESPONSE EXAMPLE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Example JSON Response</h2>
+
+                <p>
+                    Suppose an API returns the following JSON data:
+                </p>
+
+                <pre><code>{
+    "id": 101,
+    "name": "Rahul",
+    "course": "Python",
+    "city": "Pune"
+}</code></pre>
+
+                <p class="mt-3">
+                    Python can read individual values from the returned data.
+                </p>
+
+                <pre><code>data = response.json()
+
+print(data["name"])
+print(data["course"])</code></pre>
+            </div>
+
+            <!-- API REQUEST COMPONENTS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Main Parts of an API Request</h2>
+
+                <div class="row g-3 mt-2">
+
+                    <div class="col-md-4">
+                        <div class="info-card">
+
+                            <h5>URL</h5>
+
+                            <p class="mb-0">
+                                Identifies the API endpoint.
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="info-card">
+
+                            <h5>Method</h5>
+
+                            <p class="mb-0">
+                                Defines the requested operation.
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="info-card">
+
+                            <h5>Headers</h5>
+
+                            <p class="mb-0">
+                                Provide additional request information.
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="info-card">
+
+                            <h5>Parameters</h5>
+
+                            <p class="mb-0">
+                                Provide extra values required by the API.
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="info-card">
+
+                            <h5>Request Body</h5>
+
+                            <p class="mb-0">
+                                Contains data sent to the server.
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="info-card">
+
+                            <h5>Response</h5>
+
+                            <p class="mb-0">
+                                Contains status and returned data.
+                            </p>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- API CLIENTS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Tools Used for API Testing</h2>
+
+                <div class="concept-box">
+
+                    <ul class="mb-0">
+                        <li>Postman</li>
+                        <li>Swagger UI</li>
+                        <li>Browser</li>
+                        <li>cURL</li>
+                        <li>Python requests library</li>
+                    </ul>
+
+                </div>
+            </div>
+
+            <!-- BEST PRACTICES -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Best Practices</h2>
+
+                <div class="concept-box">
+
+                    <ul class="mb-0">
+
+                        <li>
+                            Use clear and valid API URLs.
+                        </li>
+
+                        <li>
+                            Always check response status codes.
+                        </li>
+
+                        <li>
+                            Use timeouts for external requests.
+                        </li>
+
+                        <li>
+                            Handle request exceptions.
+                        </li>
+
+                        <li>
+                            Validate API response data before using it.
+                        </li>
+
+                        <li>
+                            Keep API keys and credentials secure.
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div>
+
+            <!-- COMMON MISTAKES -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Common Mistakes</h2>
+
+                <div class="alert alert-warning">
+
+                    <ul class="mb-0">
+
+                        <li>
+                            Using an incorrect API URL.
+                        </li>
+
+                        <li>
+                            Forgetting to install the requests library.
+                        </li>
+
+                        <li>
+                            Not checking the response status.
+                        </li>
+
+                        <li>
+                            Not handling network errors.
+                        </li>
+
+                        <li>
+                            Waiting indefinitely because no timeout was specified.
+                        </li>
+
+                        <li>
+                            Exposing API credentials in source code.
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div>
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Practice Exercise</h2>
+
+                <div class="concept-box">
+
+                    <p>
+                        Create a Python program that:
+                    </p>
+
+                    <ol>
+
+                        <li>
+                            Sends a GET request to an API.
+                        </li>
+
+                        <li>
+                            Prints the response status code.
+                        </li>
+
+                        <li>
+                            Converts the response into JSON.
+                        </li>
+
+                        <li>
+                            Prints selected values from the JSON response.
+                        </li>
+
+                        <li>
+                            Handles request errors using <code>try</code>
+                            and <code>except</code>.
+                        </li>
+
+                        <li>
+                            Uses a timeout for the request.
+                        </li>
+
+                    </ol>
+
+                    <p class="mb-0">
+                        Test the program using a public API or a local API
+                        created with FastAPI.
+                    </p>
+
+                </div>
+            </div>
+<!-- SUMMARY -->
+<div class="alert alert-info mt-4">
+
+    <h2 class="h4 fw-bold">
+        Summary
+    </h2>
+
+    <p class="mb-0">
+
+        Python can communicate with APIs using HTTP requests. The
+        <code>requests</code> library is commonly used for API communication,
+        while GET retrieves data, POST creates data, PUT updates data, and
+        DELETE removes data. JSON responses can be converted into Python data,
+        and status codes, timeouts, and exceptions should be handled properly
+        when working with APIs.
+
+    </p>
+
+</div>
+
+
+<!-- COURSE COMPLETED -->
+<div class="text-center mt-4 mb-4">
+
+    <button type="button" class="btn btn-success px-4 py-2">
+        ✓ Course Completed
+    </button>
+
+</div>
+
+
+<!-- NAVIGATION -->
+<div class="d-flex justify-content-start mt-4">
+
+    <a class="btn btn-outline-secondary"
+       href="@Url.Action("RESTAPIs", "WebDevelopment", new { area = "Python" })">
+        ← Previous: Topic
+    </a>
+
+</div>

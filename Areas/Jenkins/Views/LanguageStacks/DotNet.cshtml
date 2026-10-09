@@ -1,0 +1,225 @@
+@{
+    Layout = "~/Areas/Jenkins/Views/Shared/JenkinsLayout.cshtml";
+    ViewData["Title"] = "C# and .NET Pipeline";
+}
+
+<style>
+    #c-and-net-pipeline-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #c-and-net-pipeline-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #c-and-net-pipeline-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #c-and-net-pipeline-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #c-and-net-pipeline-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+    #c-and-net-pipeline-page .example-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+    }
+</style>
+
+<main id="c-and-net-pipeline-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/Jenkins/Views/Shared/JenkinsTopics.cshtml")
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+                <h1 class="fw-bold">C# and .NET Pipeline</h1>
+                <p class="lead">
+                    Learn how to structure enterprise-grade CI pipelines for modern .NET applications using the cross-platform .NET CLI, managing dependencies, compiling binaries, and logging test outcomes.
+                </p>
+            </div>
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">What is a C# and .NET Pipeline?</h2>
+                <p>
+                    With the shift from legacy Windows-only frameworks to modern, cross-platform **.NET (Core)** ecosystems, running C# compilation tasks inside Jenkins has become highly versatile. Continuous Integration workflows for .NET apps focus on consolidating NuGet dependency tracking, verifying type-safety constraints, executing unit tests, and compiling optimized static distribution binaries.
+                </p>
+                <p>
+                    Using the unified <code>dotnet</code> Command Line Interface (CLI), your Jenkins automation scripts can build and test systems seamlessly across either Linux build agents or Windows server execution nodes. This uniformity ensures that environmental code disparities are detected early during pull request reviews before pushing production assemblies into cloud runtimes.
+                </p>
+                <div class="alert alert-info">
+                    <strong>Simple Definition:</strong> An automated compilation sequence in Jenkins that utilizes the unified .NET toolchain to validate library syntax dependencies, execute test suites, and generate cross-platform executable deployment bundles.
+                </div>
+            </div>
+
+            <!-- KEY CONCEPTS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Key Concepts</h2>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>NuGet Dependency Restore</h5>
+                            <p class="mb-0">Invoking explicit package recovery steps via <code>dotnet restore</code> to download and cache external dependencies mapped inside <code>.csproj</code> manifests.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>The VSTest Engine Logging</h5>
+                            <p class="mb-0">Instructing execution frameworks to format test summaries using specific flags like <code>--logger "trx"</code> or custom JUnit adaptors so Jenkins can chart error histories.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Release Configuration Profiles</h5>
+                            <p class="mb-0">Compiling assets under strict production parameters (<code>-c Release</code>) to enforce optimizations, prune debug symbols, and improve application velocity.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Self-Contained Publishing</h5>
+                            <p class="mb-0">Using <code>dotnet publish</code> configurations to output a consolidated binary framework distribution containing everything the system needs to run on target infrastructure.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXAMPLE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Practical Jenkins Example</h2>
+                <p>This cross-platform declarative pipeline restores dependencies, builds the target solution under a Release configuration, runs tests with custom test loggers, and archives the output assemblies:</p>
+                <pre><code>pipeline {
+    agent any
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    stages {
+        stage('Restore Dependencies') {
+            steps {
+                echo 'Fetching NuGet package libraries...'
+                // Resolves external package dependencies pinned inside solution maps
+                sh 'dotnet restore'
+            }
+        }
+
+        stage('Compile Solution') {
+            steps {
+                echo 'Compiling C# application binaries...'
+                // Builds structural elements without re-running restore overheads
+                sh 'dotnet build --configuration Release --no-restore'
+            }
+        }
+
+        stage('Execute Unit Tests') {
+            steps {
+                echo 'Running test assertions...'
+                // Outputs a visual Studio Test Results (.trx) file for dashboard processing
+                sh 'dotnet test --configuration Release --no-build --logger "trx"'
+            }
+        }
+
+        stage('Publish Distribution Bundle') {
+            steps {
+                echo 'Assembling standalone target files...'
+                sh 'dotnet publish --configuration Release --no-build --output ./publish'
+            }
+        }
+    }
+
+    post {
+        always {
+            echo 'Parsing test suite execution outcomes...'
+            // Ingests generated TRX logs via the MSTest/VSTest plugin engine block
+            mstest testResults: '**/*.trx', keepLongStdio: true
+        }
+        success {
+            echo 'Build successful. Archiving compiled artifacts...'
+            // Persists the self-contained output directory structure onto the controller
+            archiveArtifacts artifacts: 'publish/**', fingerprint: true, allowEmptyArchive: false
+        }
+    }
+}</code></pre>
+            </div>
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Practice Exercise</h2>
+                <ol>
+                    <li class="mb-2">Verify that the target Jenkins agent execution machine has the official <strong>.NET SDK</strong> runtime libraries installed globally.</li>
+                    <li class="mb-2">Ensure that the **MSTest Plugin** is installed on your Jenkins controller via **Manage Jenkins &rarr; Plugins** to process TRX files.</li>
+                    <li class="mb-2">Create a new **Pipeline** automation build workspace in your console portal directory named <code>dotnet-ci-pipeline</code>.</li>
+                    <li class="mb-2">Paste the complete cross-platform declarative structure script template listed in the practical configuration example above.</li>
+                    <li class="mb-2">Trigger a build run, evaluate the **Console Output**, and open the **Test Result** tab to audit individual method assertion trends.</li>
+                </ol>
+            </div>
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+                <h2 class="h4 fw-bold">Summary</h2>
+                <p class="mb-0">You have completed the <strong>C# and .NET Pipeline</strong> lesson. Concluding your training on native language runtimes sets up a natural progression toward infrastructure orchestration, starting with **Cloud-Native Jenkins** structures.</p>
+            </div>
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+                <a class="btn btn-outline-primary" href="@Url.Action("Pytest", "LanguageStacks", new { area = "Jenkins" })">&larr; Previous: pytest Testing</a>
+                <a class="btn btn-primary" href="@Url.Action("Index", "CloudDevOps", new { area = "Jenkins" })">Next: Cloud-Native Jenkins &rarr;</a>
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

@@ -1,0 +1,796 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Python Generators";
+}
+
+<style>
+
+    #python-generators-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #python-generators-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #python-generators-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #python-generators-page .diagram-box {
+        background: #ffffff;
+        border: 2px solid #6f42c1;
+        border-radius: 10px;
+        padding: 18px;
+        text-align: center;
+        height: 100%;
+    }
+
+        #python-generators-page .diagram-box h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        #python-generators-page .diagram-box p {
+            margin-bottom: 0;
+            font-size: 14px;
+            color: #495057;
+        }
+
+    #python-generators-page .diagram-arrow {
+        text-align: center;
+        font-size: 28px;
+        font-weight: 700;
+        color: #6f42c1;
+        padding: 8px 0;
+    }
+
+    #python-generators-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #python-generators-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+        }
+
+</style>
+
+
+<main id="python-generators-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+
+                <h1 class="fw-bold">
+                    Generators in Python
+                </h1>
+
+                <p class="lead">
+                    Learn how Python generators produce values one at a time
+                    using the <code>yield</code> keyword.
+                </p>
+
+            </div>
+
+
+            <!-- WHAT IS GENERATOR -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    What is a Generator?
+                </h2>
+
+                <p>
+                    A generator is a special type of function that produces
+                    values one at a time instead of creating and returning
+                    all values at once.
+                </p>
+
+                <p>
+                    Generators use the <code>yield</code> keyword to return
+                    a value and pause the function until the next value
+                    is requested.
+                </p>
+
+                <div class="alert alert-info">
+
+                    <strong>Simple Definition:</strong>
+
+                    A generator produces values one by one using
+                    the <code>yield</code> keyword.
+
+                </div>
+
+            </div>
+
+
+            <!-- BASIC DIAGRAM -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Generator Flow
+                </h2>
+
+                <div class="concept-box">
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            Generator Function
+                        </h5>
+
+                        <p>
+                            Function contains one or more
+                            yield statements.
+                        </p>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            yield
+                        </h5>
+
+                        <p>
+                            Produces one value and pauses execution.
+                        </p>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            Next Value
+                        </h5>
+
+                        <p>
+                            Function continues when another value is requested.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- BASIC SYNTAX -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Basic Syntax
+                </h2>
+
+                <pre><code>def generator_function():
+
+    yield value</code></pre>
+
+                <p class="mt-3">
+                    A function containing <code>yield</code> becomes
+                    a generator function.
+                </p>
+
+            </div>
+
+
+            <!-- SIMPLE EXAMPLE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Simple Generator Example
+                </h2>
+
+                <pre><code>def numbers():
+
+    yield 10
+    yield 20
+    yield 30
+
+
+for number in numbers():
+
+    print(number)</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>10
+20
+30</code></pre>
+
+                <p>
+                    The generator produces each value one at a time.
+                </p>
+
+            </div>
+
+
+            <!-- YIELD -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Using yield
+                </h2>
+
+                <p>
+                    The <code>yield</code> keyword returns a value from
+                    a generator and pauses its execution.
+                </p>
+
+                <pre><code>def show_numbers():
+
+    yield 1
+    yield 2
+    yield 3
+
+
+generator = show_numbers()
+
+print(next(generator))
+print(next(generator))
+print(next(generator))</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>1
+2
+3</code></pre>
+
+            </div>
+
+
+            <!-- NEXT WITH GENERATOR -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Generator with next()
+                </h2>
+
+                <p>
+                    We can use <code>next()</code> to retrieve values
+                    from a generator one at a time.
+                </p>
+
+                <pre><code>def colors():
+
+    yield "Red"
+    yield "Green"
+    yield "Blue"
+
+
+generator = colors()
+
+print(next(generator))
+print(next(generator))
+print(next(generator))</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Red
+Green
+Blue</code></pre>
+
+            </div>
+
+
+            <!-- GENERATOR WITH LOOP -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Generator with for Loop
+                </h2>
+
+                <p>
+                    A generator can be directly used with a
+                    <code>for</code> loop.
+                </p>
+
+                <pre><code>def courses():
+
+    yield "Python"
+    yield ".NET"
+    yield "Java"
+
+
+for course in courses():
+
+    print(course)</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Python
+.NET
+Java</code></pre>
+
+            </div>
+
+
+            <!-- RANGE-LIKE GENERATOR -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Generator for Numbers
+                </h2>
+
+                <pre><code>def count_numbers():
+
+    for number in range(1, 6):
+
+        yield number
+
+
+for number in count_numbers():
+
+    print(number)</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>1
+2
+3
+4
+5</code></pre>
+
+            </div>
+
+
+            <!-- GENERATOR EXPRESSION -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Generator Expression
+                </h2>
+
+                <p>
+                    A generator expression provides a short way to create
+                    a generator.
+                </p>
+
+                <pre><code>numbers = (number * 2 for number in range(1, 6))
+
+for number in numbers:
+
+    print(number)</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>2
+4
+6
+8
+10</code></pre>
+
+            </div>
+
+
+            <!-- GENERATOR VS LIST -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Generator vs List
+                </h2>
+
+                <div class="row g-3">
+
+                    <div class="col-md-6">
+
+                        <div class="info-card">
+
+                            <h5>
+                                List
+                            </h5>
+
+                            <p>
+                                A list stores all values in memory.
+                            </p>
+
+                            <pre><code>numbers = [1, 2, 3, 4, 5]</code></pre>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-6">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Generator
+                            </h5>
+
+                            <p>
+                                A generator produces values when they
+                                are requested.
+                            </p>
+
+                            <pre><code>numbers = (x for x in range(1, 6))</code></pre>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- MEMORY BENEFIT -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Memory Efficiency
+                </h2>
+
+                <p>
+                    Generators are useful when working with large amounts
+                    of data because values can be generated one at a time.
+                </p>
+
+                <pre><code>def large_numbers():
+
+    number = 1
+
+    while number &lt;= 1000000:
+
+        yield number
+
+        number += 1
+
+
+for number in large_numbers():
+
+    if number == 5:
+
+        print(number)
+
+        break</code></pre>
+
+                <p>
+                    The generator produces values as needed instead of
+                    creating all one million values at once.
+                </p>
+
+            </div>
+
+            <div class="px-2">
+                <h5 class="fw-bold mb-2">
+                    Output
+                </h5>
+
+                <pre class="mb-4"><code>5</code></pre>
+            </div>
+            <!-- PRACTICAL EXAMPLE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Example 👀🌍
+                </h2>
+
+                <p>
+                    The following example generates student marks one
+                    at a time.
+                </p>
+
+                <pre><code>def student_marks():
+
+    yield 75
+    yield 82
+    yield 90
+
+
+for marks in student_marks():
+
+    print("Marks:", marks)</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Marks: 75
+Marks: 82
+Marks: 90</code></pre>
+
+            </div>
+
+
+            <!-- ADVANTAGES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Advantages of Generators
+                </h2>
+
+                <div class="row g-3">
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Memory Efficient
+                            </h5>
+
+                            <p class="mb-0">
+                                Values are produced when required instead
+                                of storing all values.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Easy to Use
+                            </h5>
+
+                            <p class="mb-0">
+                                A simple yield statement can create a generator.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Large Data
+                            </h5>
+
+                            <p class="mb-0">
+                                Generators are useful when processing large
+                                collections or streams of data.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- BEST PRACTICES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Best Practices
+                </h2>
+
+                <div class="row g-3">
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Use yield
+                            </h5>
+
+                            <p class="mb-0">
+                                Use yield when values should be produced
+                                one at a time.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Use for Loop
+                            </h5>
+
+                            <p class="mb-0">
+                                Use a for loop when processing all generated
+                                values.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Avoid Unnecessary Lists
+                            </h5>
+
+                            <p class="mb-0">
+                                Use generators when you do not need all
+                                values stored at once.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- COMMON MISTAKES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Common Mistakes
+                </h2>
+
+                <ul>
+
+                    <li>
+                        Confusing <code>yield</code> with <code>return</code>.
+                    </li>
+
+                    <li>
+                        Calling <code>next()</code> after the generator
+                        has no more values.
+                    </li>
+
+                    <li>
+                        Converting a generator to a list unnecessarily.
+                    </li>
+
+                    <li>
+                        Forgetting that a generator is consumed as values
+                        are requested.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Practice Programs
+                </h2>
+
+                <ol>
+
+                    <li>
+                        Create a generator that produces numbers from 1 to 10.
+                    </li>
+
+                    <li>
+                        Create a generator that produces even numbers.
+                    </li>
+
+                    <li>
+                        Create a generator for course names.
+                    </li>
+
+                    <li>
+                        Use <code>next()</code> to retrieve generator values.
+                    </li>
+
+                    <li>
+                        Create a generator that produces student marks.
+                    </li>
+
+                </ol>
+
+            </div>
+
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+
+                <h2 class="h4 fw-bold">
+                    Summary
+                </h2>
+
+                <p class="mb-0">
+
+                    Generators are special functions that produce values
+                    one at a time using the <code>yield</code> keyword.
+                    They are memory efficient and useful for processing
+                    large amounts of data. Generator values can be
+                    accessed using <code>next()</code> or a
+                    <code>for</code> loop.
+
+                </p>
+
+            </div>
+
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+
+                <a class="btn btn-outline-secondary"
+                   href="@Url.Action("Iterators", "AdvancedPython", new { area = "Python" })">
+
+                    ← Previous: Topic
+
+                </a>
+
+
+                <a class="btn btn-primary"
+                   href="@Url.Action("Decorators", "AdvancedPython", new { area = "Python" })">
+
+                    Next: Topic →
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

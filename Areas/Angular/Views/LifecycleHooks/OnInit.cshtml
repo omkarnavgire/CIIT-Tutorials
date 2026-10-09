@@ -1,0 +1,1267 @@
+﻿@{
+    ViewData["Title"] = "Angular OnInit";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- Header -->
+    <section class="mb-4">
+
+        <h1 class="fw-bold text-dark">Angular OnInit</h1>
+
+        <p class="lead text-muted">
+            Angular <strong>@@OnInit</strong> is a lifecycle hook used to perform
+            initialization work after Angular has initialized the component's
+            data-bound properties.
+        </p>
+
+    </section>
+
+    <!-- What is OnInit -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">What is @@OnInit?</h2>
+
+        <p>
+            The <strong>ngOnInit()</strong> lifecycle hook is called once after
+            Angular has initialized the component's input properties.
+        </p>
+
+        <p>
+            It is commonly used for initialization tasks such as loading data,
+            preparing component properties, calling services, and setting up
+            values required by the template.
+        </p>
+
+        <div class="info-card">
+
+            <h5>Simple Definition</h5>
+
+            <p>
+                <strong>ngOnInit()</strong> is the place where we perform
+                component initialization logic after Angular creates the
+                component and initializes its bound properties.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- Lifecycle Flow -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold mb-3">Where @@OnInit Fits in Angular Lifecycle</h2>
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+
+                <i class="bi bi-box"></i>
+
+                <strong>Component Created</strong>
+
+                <span>Angular creates component</span>
+
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+
+                <i class="bi bi-arrow-down-circle"></i>
+
+                <strong>Inputs Initialized</strong>
+
+                <span>Bound values become available</span>
+
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+
+                <i class="bi bi-play-circle"></i>
+
+                <strong>ngOnInit()</strong>
+
+                <span>Initialization logic runs</span>
+
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+
+                <i class="bi bi-display"></i>
+
+                <strong>Component Ready</strong>
+
+                <span>UI continues rendering</span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Basic Syntax -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Basic Syntax</h2>
+
+        <p>
+            To use the OnInit lifecycle hook, implement the
+            <strong>OnInit</strong> interface and define the
+            <strong>ngOnInit()</strong> method.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Component
+            </div>
+
+            <pre><code>import &#123; Component, OnInit &#125; from '@@angular/core';
+
+@@Component(&#123;
+    selector: 'app-courses',
+    templateUrl: './courses.component.html'
+&#125;)
+export class CoursesComponent implements OnInit &#123;
+
+    ngOnInit(): void &#123;
+
+        console.log('Component initialized');
+
+    &#125;
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="info-card">
+
+            <h5>Important</h5>
+
+            <p>
+                Angular calls <strong>ngOnInit()</strong> automatically.
+                We normally do not call it manually from the template.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- Why use OnInit -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Why Use @@OnInit?</h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-database-check"></i>
+                </div>
+
+                <h5>Load Data</h5>
+
+                <p>
+                    Load course or application data when the component starts.
+                </p>
+
+                <code>loadCourses()</code>
+
+            </div>
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-gear"></i>
+                </div>
+
+                <h5>Initialize Values</h5>
+
+                <p>
+                    Set default values required by the component.
+                </p>
+
+                <code>status = 'Active'</code>
+
+            </div>
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-cloud-arrow-down"></i>
+                </div>
+
+                <h5>Service Calls</h5>
+
+                <p>
+                    Start initial API or service related operations.
+                </p>
+
+                <code>service.getData()</code>
+
+            </div>
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-ui-checks-grid"></i>
+                </div>
+
+                <h5>Prepare UI</h5>
+
+                <p>
+                    Prepare component properties required by the template.
+                </p>
+
+                <code>prepareDashboard()</code>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Simple Example -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">1. Simple OnInit Example</h2>
+
+        <p>
+            The following example initializes a message when the component is
+            created.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Component
+            </div>
+
+            <pre><code>import &#123; Component, OnInit &#125; from '@@angular/core';
+
+@@Component(&#123;
+    selector: 'app-welcome',
+    templateUrl: './welcome.component.html'
+&#125;)
+export class WelcomeComponent implements OnInit &#123;
+
+    message = '';
+
+    ngOnInit(): void &#123;
+
+        this.message = 'Welcome to CIIT Training Institute';
+
+    &#125;
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Template
+            </div>
+
+            <pre><code>&lt;h2&gt;
+    &#123;&#123; message &#125;&#125;
+&lt;/h2&gt;</code></pre>
+
+        </div>
+
+        <div class="output-box">
+
+            <strong>Expected Output:</strong>
+
+            <div class="output-preview">
+
+                <h3>
+                    Welcome to CIIT Training Institute
+                </h3>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Initializing Properties -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">2. Initializing Component Properties</h2>
+
+        <p>
+            OnInit can be used to assign initial values to multiple component
+            properties.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Component
+            </div>
+
+            <pre><code>export class CourseDashboardComponent implements OnInit &#123;
+
+    instituteName = '';
+    totalCourses = 0;
+    mode = '';
+
+    ngOnInit(): void &#123;
+
+        this.instituteName = 'CIIT Training Institute';
+
+        this.totalCourses = 6;
+
+        this.mode = 'Online + Offline';
+
+    &#125;
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Template
+            </div>
+
+            <pre><code>&lt;h2&gt;
+    &#123;&#123; instituteName &#125;&#125;
+&lt;/h2&gt;
+
+&lt;p&gt;
+    Total Courses:
+    &#123;&#123; totalCourses &#125;&#125;
+&lt;/p&gt;
+
+&lt;p&gt;
+    Training Mode:
+    &#123;&#123; mode &#125;&#125;
+&lt;/p&gt;</code></pre>
+
+        </div>
+
+        <div class="output-box">
+
+            <strong>Expected Output:</strong>
+
+            <div class="output-preview">
+
+                <h3>
+                    CIIT Training Institute
+                </h3>
+
+                <p>
+                    <strong>Total Courses:</strong> 6
+                </p>
+
+                <p>
+                    <strong>Training Mode:</strong> Online + Offline
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Loading Data -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">3. Loading Initial Data</h2>
+
+        <p>
+            One common use of ngOnInit() is to prepare data that the template
+            will display.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Component
+            </div>
+
+            <pre><code>export class CoursesComponent implements OnInit &#123;
+
+    courses: string[] = [];
+
+    ngOnInit(): void &#123;
+
+        this.courses = [
+            'Java Full Stack',
+            'Python Full Stack',
+            'Full Stack .NET',
+            'Data Analytics'
+        ];
+
+    &#125;
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Template
+            </div>
+
+            <pre><code>&lt;h3&gt;Available Courses&lt;/h3&gt;
+
+&lt;ul&gt;
+
+    &lt;li *ngFor="let course of courses"&gt;
+        &#123;&#123; course &#125;&#125;
+    &lt;/li&gt;
+
+&lt;/ul&gt;</code></pre>
+
+        </div>
+
+        <div class="info-card">
+
+            <h5>How it works</h5>
+
+            <p>
+                Angular creates the component, calls
+                <strong>ngOnInit()</strong>, initializes the
+                <strong>courses</strong> array, and the template can then
+                display the available courses.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- Service Initialization -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">4. Initializing Data from a Service</h2>
+
+        <p>
+            In real applications, ngOnInit() is often used to start an initial
+            service call.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Component
+            </div>
+
+            <pre><code>import &#123; Component, OnInit &#125; from '@@angular/core';
+import &#123; CourseService &#125; from './course.service';
+
+@@Component(&#123;
+    selector: 'app-course-list',
+    templateUrl: './course-list.component.html'
+&#125;)
+export class CourseListComponent implements OnInit &#123;
+
+    courses: any[] = [];
+
+    constructor(private courseService: CourseService) &#123;
+    &#125;
+
+    ngOnInit(): void &#123;
+
+        this.courseService.getCourses()
+            .subscribe(data =&gt; &#123;
+
+                this.courses = data;
+
+            &#125;);
+
+    &#125;
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="info-card">
+
+            <h5>Important Point</h5>
+
+            <p>
+                The constructor can receive the service dependency, while
+                <strong>ngOnInit()</strong> can start the initialization
+                operation.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- OnInit vs Constructor -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold mb-3">@@OnInit vs Constructor</h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered syntax-table">
+
+                <thead>
+
+                    <tr>
+                        <th>Constructor</th>
+                        <th>ngOnInit()</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            Used mainly for dependency injection and basic setup.
+                        </td>
+
+                        <td>
+                            Used for component initialization logic.
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            Runs when the class instance is created.
+                        </td>
+
+                        <td>
+                            Runs during Angular's lifecycle initialization.
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            Angular lifecycle values may not be fully initialized.
+                        </td>
+
+                        <td>
+                            Data-bound input properties are initialized.
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            Keep constructor logic simple.
+                        </td>
+
+                        <td>
+                            Suitable for loading initial data and setup tasks.
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+    <!-- Lifecycle Sequence -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Lifecycle Execution Sequence</h2>
+
+        <div class="binding-flow">
+
+            <div class="binding-item">
+
+                <strong>1. Create Component</strong>
+
+                <span>
+                    Angular creates the component instance
+                </span>
+
+            </div>
+
+            <div class="binding-arrow">→</div>
+
+            <div class="binding-item">
+
+                <strong>2. Initialize Inputs</strong>
+
+                <span>
+                    Input properties are initialized
+                </span>
+
+            </div>
+
+            <div class="binding-arrow">→</div>
+
+            <div class="binding-item">
+
+                <strong>3. ngOnInit()</strong>
+
+                <span>
+                    Initialization logic executes
+                </span>
+
+            </div>
+
+            <div class="binding-arrow">→</div>
+
+            <div class="binding-item">
+
+                <strong>4. Continue Lifecycle</strong>
+
+                <span>
+                    Angular continues processing the component
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Complete CIIT Example -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Complete CIIT Training Institute Example</h2>
+
+        <p>
+            Suppose CIIT Training Institute has a course dashboard. When the
+            dashboard loads, we can initialize the institute name, course
+            count, and available training modes using ngOnInit().
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                course-dashboard.component.ts
+            </div>
+
+            <pre><code>import &#123; Component, OnInit &#125; from '@@angular/core';
+
+@@Component(&#123;
+    selector: 'app-course-dashboard',
+    templateUrl: './course-dashboard.component.html'
+&#125;)
+export class CourseDashboardComponent implements OnInit &#123;
+
+    instituteName = '';
+
+    courses: string[] = [];
+
+    trainingModes: string[] = [];
+
+    ngOnInit(): void &#123;
+
+        this.instituteName = 'CIIT Training Institute';
+
+        this.courses = [
+            'Java Full Stack',
+            'Python Full Stack',
+            'Full Stack .NET',
+            'Data Analytics'
+        ];
+
+        this.trainingModes = [
+            'Online',
+            'Offline'
+        ];
+
+    &#125;
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                course-dashboard.component.html
+            </div>
+
+            <pre><code>&lt;div&gt;
+
+    &lt;h2&gt;
+        &#123;&#123; instituteName &#125;&#125;
+    &lt;/h2&gt;
+
+    &lt;h4&gt;
+        Available Courses
+    &lt;/h4&gt;
+
+    &lt;ul&gt;
+
+        &lt;li *ngFor="let course of courses"&gt;
+            &#123;&#123; course &#125;&#125;
+        &lt;/li&gt;
+
+    &lt;/ul&gt;
+
+    &lt;h4&gt;
+        Training Modes
+    &lt;/h4&gt;
+
+    &lt;ul&gt;
+
+        &lt;li *ngFor="let mode of trainingModes"&gt;
+            &#123;&#123; mode &#125;&#125;
+        &lt;/li&gt;
+
+    &lt;/ul&gt;
+
+&lt;/div&gt;</code></pre>
+
+        </div>
+
+        <div class="output-box">
+
+            <strong>Expected Output:</strong>
+
+            <div class="student-preview">
+
+                <h3>
+                    CIIT Training Institute
+                </h3>
+
+                <p>
+                    <strong>Available Courses</strong>
+                </p>
+
+                <ul>
+
+                    <li>Java Full Stack</li>
+                    <li>Python Full Stack</li>
+                    <li>Full Stack .NET</li>
+                    <li>Data Analytics</li>
+
+                </ul>
+
+                <p>
+                    <strong>Training Modes</strong>
+                </p>
+
+                <ul>
+
+                    <li>Online</li>
+                    <li>Offline</li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Important Points -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Important Points About @@OnInit</h2>
+
+        <ul class="best-practice-list">
+
+            <li>
+                <strong>ngOnInit()</strong> is called once for a component
+                initialization cycle.
+            </li>
+
+            <li>
+                It is commonly used for initialization logic.
+            </li>
+
+            <li>
+                It is useful for preparing data required by the template.
+            </li>
+
+            <li>
+                It can be used to start service or API operations.
+            </li>
+
+            <li>
+                Avoid unnecessary heavy logic inside the constructor.
+            </li>
+
+            <li>
+                Keep initialization code organized and easy to understand.
+            </li>
+
+        </ul>
+
+    </section>
+
+    <!-- Best Practices -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">@@OnInit Best Practices</h2>
+
+        <ul class="best-practice-list">
+
+            <li>
+                Use ngOnInit() for component initialization tasks.
+            </li>
+
+            <li>
+                Keep constructor logic limited mainly to dependency injection.
+            </li>
+
+            <li>
+                Use services for reusable business or API logic.
+            </li>
+
+            <li>
+                Initialize only the values required by the component.
+            </li>
+
+            <li>
+                Keep API and data loading logic readable.
+            </li>
+
+            <li>
+                Avoid unnecessary repeated initialization operations.
+            </li>
+
+        </ul>
+
+    </section>
+
+    <!-- Summary -->
+    <section class="summary-box">
+
+        <h3>Summary</h3>
+
+        <p>
+            Angular <strong>@@OnInit</strong> provides the
+            <strong>ngOnInit()</strong> lifecycle method for performing
+            initialization work after Angular initializes the component's
+            data-bound properties.
+        </p>
+
+        <p>
+            It is commonly used for setting initial values, preparing UI data,
+            loading course information, and starting service or API operations.
+        </p>
+
+    </section>
+
+    <!-- Navigation -->
+    <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+
+        <a class="btn btn-outline-secondary"
+           href="@Url.Action("Index", "LifecycleHooks", new { area = "Angular" })">
+            ← Lifecycle Hooks
+        </a>
+
+        <a class="btn btn-primary"
+           href="@Url.Action("OnChanges", "LifecycleHooks", new { area = "Angular" })">
+            ngOnChanges →
+        </a>
+
+    </div>
+
+</div>
+
+<style>
+
+    .info-card {
+        background: #f8fafc;
+        border-left: 5px solid #4c1d95;
+        padding: 18px 20px;
+        border-radius: 7px;
+        margin-top: 15px;
+    }
+
+        .info-card h5 {
+            color: #4c1d95;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .info-card p {
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+
+    .syntax-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        padding: 25px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+    }
+
+    .syntax-box {
+        width: 175px;
+        min-height: 125px;
+        padding: 18px;
+        text-align: center;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 9px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+        .syntax-box i {
+            display: block;
+            font-size: 28px;
+            color: #4c1d95;
+            margin-bottom: 8px;
+        }
+
+        .syntax-box strong {
+            display: block;
+            color: #2e1065;
+            font-weight: 700;
+        }
+
+        .syntax-box span {
+            display: block;
+            color: #64748b;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+    .syntax-arrow {
+        color: #4c1d95;
+        font-size: 25px;
+        font-weight: 700;
+    }
+
+    .syntax-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+    }
+
+    .syntax-card {
+        padding: 20px;
+        text-align: center;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 9px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    }
+
+    .syntax-icon {
+        width: 55px;
+        height: 55px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 12px;
+        background: #ede9fe;
+        color: #4c1d95;
+        border-radius: 50%;
+        font-size: 24px;
+    }
+
+    .syntax-card h5 {
+        color: #2e1065;
+        font-weight: 700;
+    }
+
+    .syntax-card p {
+        color: #64748b;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .syntax-card code {
+        color: #4c1d95;
+        font-weight: 600;
+    }
+
+    .code-card {
+        margin-top: 15px;
+        margin-bottom: 18px;
+        border-radius: 8px;
+        overflow: hidden;
+        background: #0f172a;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .code-title {
+        background: #1e293b;
+        color: #d8c9f5;
+        padding: 10px 15px;
+        font-weight: 600;
+        border-bottom: 1px solid #334155;
+    }
+
+    .code-card pre {
+        margin: 0;
+        padding: 18px;
+        overflow-x: auto;
+    }
+
+    .code-card code {
+        color: #e2e8f0;
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    .output-box {
+        margin-top: 15px;
+        padding: 18px;
+        background: #f1f5f9;
+        border-left: 5px solid #4c1d95;
+        border-radius: 6px;
+    }
+
+    .output-preview {
+        margin-top: 12px;
+        padding: 18px;
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 7px;
+    }
+
+        .output-preview h3 {
+            color: #2e1065;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .output-preview p {
+            margin-bottom: 7px;
+        }
+
+    .binding-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 20px;
+        padding: 20px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+    }
+
+    .binding-item {
+        min-width: 170px;
+        padding: 15px;
+        text-align: center;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 8px;
+    }
+
+        .binding-item strong {
+            display: block;
+            color: #4c1d95;
+            font-weight: 700;
+        }
+
+        .binding-item span {
+            display: block;
+            color: #64748b;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+    .binding-arrow {
+        color: #4c1d95;
+        font-size: 25px;
+        font-weight: 700;
+    }
+
+    .active-preview {
+        margin-top: 12px;
+        display: inline-block;
+        padding: 12px 20px;
+        background: #ede9fe;
+        border: 2px solid #4c1d95;
+        border-radius: 7px;
+        color: #2e1065;
+        font-weight: 700;
+    }
+
+    .style-preview {
+        margin-top: 12px;
+        font-size: 20px;
+        font-weight: 600;
+        color: #4c1d95;
+    }
+
+    .control-flow-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .control-card {
+        padding: 20px;
+        background: #f8fafc;
+        border: 1px solid #ddd6fe;
+        border-radius: 8px;
+    }
+
+        .control-card h5 {
+            color: #4c1d95;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+    .code-small {
+        background: #0f172a;
+        border-radius: 7px;
+        overflow: hidden;
+    }
+
+        .code-small pre {
+            margin: 0;
+            padding: 15px;
+            overflow-x: auto;
+        }
+
+        .code-small code {
+            color: #e2e8f0;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+    .syntax-table {
+        background: #ffffff;
+    }
+
+        .syntax-table thead th {
+            background: #4c1d95;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .syntax-table td {
+            vertical-align: middle;
+        }
+
+        .syntax-table code {
+            color: #4c1d95;
+            font-weight: 600;
+        }
+
+    .student-preview {
+        margin-top: 12px;
+        padding: 20px;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 8px;
+    }
+
+        .student-preview h3 {
+            color: #2e1065;
+            font-weight: 700;
+        }
+
+    .best-practice-list {
+        padding: 20px 20px 20px 40px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+    }
+
+        .best-practice-list li {
+            margin-bottom: 11px;
+            line-height: 1.6;
+        }
+
+            .best-practice-list li:last-child {
+                margin-bottom: 0;
+            }
+
+    .summary-box {
+        background: #cfe2ff;
+        border-radius: 6px;
+        padding: 18px 22px;
+        margin-top: 20px;
+    }
+
+        .summary-box h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #084298;
+            margin-bottom: 10px;
+        }
+
+        .summary-box p {
+            font-size: 16px !important;
+            line-height: 1.6 !important;
+            color: #084298 !important;
+            margin-bottom: 8px;
+        }
+
+            .summary-box p:last-child {
+                margin-bottom: 0;
+            }
+
+    @@media (max-width: 991px) {
+
+        .syntax-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .control-flow-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @@media (max-width: 576px) {
+
+        .syntax-grid,
+        .control-flow-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .syntax-flow,
+        .binding-flow {
+            flex-direction: column;
+        }
+
+        .syntax-arrow,
+        .binding-arrow {
+            transform: rotate(90deg);
+        }
+
+        .syntax-box {
+            width: 100%;
+            max-width: 280px;
+        }
+
+        .binding-item {
+            width: 100%;
+            max-width: 250px;
+        }
+
+        .code-card code,
+        .code-small code {
+            font-size: 13px;
+        }
+
+        .d-flex.justify-content-between {
+            gap: 10px;
+        }
+
+            .d-flex.justify-content-between .btn {
+                font-size: 13px;
+                padding: 8px 12px;
+            }
+    }
+
+</style>

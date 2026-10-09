@@ -1,0 +1,300 @@
+@{
+    var currentController =
+        ViewContext.RouteData.Values["controller"]?.ToString();
+
+    var currentAction =
+        ViewContext.RouteData.Values["action"]?.ToString();
+
+    bool IsActive(string controller, string action)
+    {
+        return string.Equals(currentController, controller, StringComparison.OrdinalIgnoreCase)
+            && string.Equals(currentAction, action, StringComparison.OrdinalIgnoreCase);
+    }
+}
+
+<style>
+    .github-syllabus-card {
+        border: 0;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        position: sticky;
+        top: 90px;
+        max-height: calc(100vh - 110px);
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .github-syllabus-header {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        padding: 14px 18px !important;
+        font-size: 15px;
+        font-weight: 700;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+
+    .github-module-title {
+        background-color: #f8f9fa !important;
+        font-weight: 700 !important;
+        color: #212529 !important;
+        padding: 12px 16px;
+        border-bottom: 1px solid #e9ecef;
+    }
+
+    .github-topic-link {
+        display: block;
+        padding: 10px 16px 10px 28px;
+        font-size: 14px;
+        color: #495057 !important;
+        text-decoration: none !important;
+        border: 0 !important;
+        border-bottom: 1px solid #f1f1f1 !important;
+        background-color: #ffffff !important;
+    }
+
+    .github-topic-link:hover {
+        background-color: #f1f3f5 !important;
+        color: #212529 !important;
+    }
+
+    .github-topic-link.active,
+    .github-topic-link.active:hover,
+    .github-topic-link.active:focus {
+        background-color: #ffffff !important;
+        color: #495057 !important;
+        font-weight: 400 !important;
+        border-top: 0 !important;
+        border-left: 0 !important;
+        border-right: 0 !important;
+        border-bottom: 2px solid #2563eb !important;
+        box-shadow: none !important;
+    }
+
+    .github-syllabus-card::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .github-syllabus-card::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    .github-syllabus-card::-webkit-scrollbar-thumb {
+        background: #c8c8c8;
+        border-radius: 10px;
+    }
+
+    .github-syllabus-card::-webkit-scrollbar-thumb:hover {
+        background: #aaaaaa;
+    }
+
+    @@media (max-width: 991px) {
+        .github-syllabus-card {
+            position: relative;
+            top: auto;
+            max-height: none;
+            overflow: hidden;
+        }
+
+        .github-syllabus-header {
+            position: relative;
+        }
+    }
+</style>
+
+<div class="card github-syllabus-card">
+
+    <div class="card-header github-syllabus-header">
+        COURSE SYLLABUS
+    </div>
+
+    <div class="list-group list-group-flush">
+
+        <!-- MODULE 1 -->
+        <div class="list-group-item github-module-title">
+            1. Version Control Fundamentals
+        </div>
+
+        <a class="list-group-item list-group-item-action github-topic-link @(IsActive("VersionControlFundamental", "WhatisVersionControl") ? "active" : "")"
+           href="@Url.Action("WhatisVersionControl", "VersionControlFundamental", new { area = "GitHub" })">
+            What is Version Control?
+        </a>
+
+        <a class="list-group-item list-group-item-action github-topic-link @(IsActive("VersionControlFundamental", "GitAndGitHub") ? "active" : "")"
+           href="@Url.Action("GitAndGitHub", "VersionControlFundamental", new { area = "GitHub" })">
+            Git and GitHub
+        </a>
+
+        <a class="list-group-item list-group-item-action github-topic-link @(IsActive("VersionControlFundamental", "InstallationAndSetup") ? "active" : "")"
+           href="@Url.Action("InstallationAndSetup", "VersionControlFundamental", new { area = "GitHub" })">
+            Installation &amp; Setup
+        </a>
+
+        <a class="list-group-item list-group-item-action github-topic-link @(IsActive("VersionControlFundamental", "InitialConfiguration") ? "active" : "")"
+           href="@Url.Action("InitialConfiguration", "VersionControlFundamental", new { area = "GitHub" })">
+            Initial Git Configuration
+        </a>
+
+
+        <!-- MODULE 2 -->
+        <div class="list-group-item github-module-title">
+            2. Local Git Workflow
+        </div>
+
+        <a class="list-group-item list-group-item-action github-topic-link @(IsActive("LocalGitWorkflow", "InitializingRepositories") ? "active" : "")"
+           href="@Url.Action("InitializingRepositories", "LocalGitWorkflow", new { area = "GitHub" })">
+            Initializing a Repository
+        </a>
+
+        <a class="list-group-item list-group-item-action github-topic-link @(IsActive("LocalGitWorkflow", "ThreeStates") ? "active" : "")"
+           href="@Url.Action("ThreeStates", "LocalGitWorkflow", new { area = "GitHub" })">
+            Understanding the Three States
+        </a>
+
+        <a class="list-group-item list-group-item-action github-topic-link @(IsActive("LocalGitWorkflow", "TrackingChanges") ? "active" : "")"
+           href="@Url.Action("TrackingChanges", "LocalGitWorkflow", new { area = "GitHub" })">
+            Tracking Changes
+        </a>
+
+        <a class="list-group-item list-group-item-action github-topic-link @(IsActive("LocalGitWorkflow", "CheckingStatus") ? "active" : "")"
+           href="@Url.Action("CheckingStatus", "LocalGitWorkflow", new { area = "GitHub" })">
+            Checking Repository Status
+        </a>
+
+        <a class="list-group-item list-group-item-action github-topic-link @(IsActive("LocalGitWorkflow", "InspectingHistory") ? "active" : "")"
+           href="@Url.Action("InspectingHistory", "LocalGitWorkflow", new { area = "GitHub" })">
+            Inspecting Commit History
+        </a>
+
+        <a class="list-group-item list-group-item-action github-topic-link @(IsActive("LocalGitWorkflow", "IgnoringFiles") ? "active" : "")"
+           href="@Url.Action("IgnoringFiles", "LocalGitWorkflow", new { area = "GitHub" })">
+            Ignoring Files with .gitignore
+        </a>
+
+
+        <!-- MODULE 3 -->
+        <div class="list-group-item github-module-title">
+            3. Branching &amp; Merging
+        </div>
+
+        <a class="list-group-item list-group-item-action github-topic-link @(IsActive("BranchingAndMerging", "GitBranchingConcept") ? "active" : "")"
+           href="@Url.Action("GitBranchingConcept", "BranchingAndMerging", new { area = "GitHub" })">
+            Git Branching Concepts
+        </a>
+
+        <a class="list-group-item list-group-item-action github-topic-link @(IsActive("BranchingAndMerging", "ManagingBranches") ? "active" : "")"
+           href="@Url.Action("ManagingBranches", "BranchingAndMerging", new { area = "GitHub" })">
+            Managing Branches
+        </a>
+
+        <a class="list-group-item list-group-item-action github-topic-link @(IsActive("BranchingAndMerging", "SwitchingContexts") ? "active" : "")"
+           href="@Url.Action("SwitchingContexts", "BranchingAndMerging", new { area = "GitHub" })">
+            Switching Branches &amp; Contexts
+        </a>
+
+        <a class="list-group-item list-group-item-action github-topic-link @(IsActive("BranchingAndMerging", "BasicMerging") ? "active" : "")"
+           href="@Url.Action("BasicMerging", "BranchingAndMerging", new { area = "GitHub" })">
+            Basic Merging
+        </a>
+
+        <a class="list-group-item list-group-item-action github-topic-link @(IsActive("BranchingAndMerging", "ResolvingMergeConflicts") ? "active" : "")"
+           href="@Url.Action("ResolvingMergeConflicts", "BranchingAndMerging", new { area = "GitHub" })">
+            Resolving Merge Conflicts
+        </a>
+
+
+        <!-- MODULE 4 -->
+        <div class="list-group-item github-module-title">
+            4. Remote Collaboration with GitHub
+        </div>
+
+        <a class="list-group-item list-group-item-action github-topic-link @(IsActive("RemoteCollaboration", "ConnectingRemotes") ? "active" : "")"
+           href="@Url.Action("ConnectingRemotes", "RemoteCollaboration", new { area = "GitHub" })">
+            Connecting to Remote Repositories
+        </a>
+
+        <a class="list-group-item list-group-item-action github-topic-link @(IsActive("RemoteCollaboration", "CloningProjects") ? "active" : "")"
+           href="@Url.Action("CloningProjects", "RemoteCollaboration", new { area = "GitHub" })">
+            Cloning Projects
+        </a>
+
+        <a class="list-group-item list-group-item-action github-topic-link @(IsActive("RemoteCollaboration", "PushingCode") ? "active" : "")"
+           href="@Url.Action("PushingCode", "RemoteCollaboration", new { area = "GitHub" })">
+            Pushing Code
+        </a>
+
+        <a class="list-group-item list-group-item-action github-topic-link @(IsActive("RemoteCollaboration", "PullingUpdates") ? "active" : "")"
+           href="@Url.Action("PullingUpdates", "RemoteCollaboration", new { area = "GitHub" })">
+            Pulling Updates
+        </a>
+
+        <a class="list-group-item list-group-item-action github-topic-link @(IsActive("RemoteCollaboration", "PullRequests") ? "active" : "")"
+           href="@Url.Action("PullRequests", "RemoteCollaboration", new { area = "GitHub" })">
+            Pull Requests (PRs)
+        </a>
+
+        <a class="list-group-item list-group-item-action github-topic-link @(IsActive("RemoteCollaboration", "ForksvsClones") ? "active" : "")"
+           href="@Url.Action("ForksvsClones", "RemoteCollaboration", new { area = "GitHub" })">
+            Forks vs. Clones
+        </a>
+
+
+        <!-- MODULE 5 -->
+        <div class="list-group-item github-module-title">
+            5. Advanced Git
+        </div>
+
+        <a class="list-group-item list-group-item-action github-topic-link @(IsActive("AdvancedGitAndHistory", "Stashing") ? "active" : "")"
+           href="@Url.Action("Stashing", "AdvancedGitAndHistory", new { area = "GitHub" })">
+            Stashing Changes
+        </a>
+
+        <a class="list-group-item list-group-item-action github-topic-link @(IsActive("AdvancedGitAndHistory", "Tagging") ? "active" : "")"
+           href="@Url.Action("Tagging", "AdvancedGitAndHistory", new { area = "GitHub" })">
+            Tagging Releases
+        </a>
+
+        <a class="list-group-item list-group-item-action github-topic-link @(IsActive("AdvancedGitAndHistory", "UndoingMistakes") ? "active" : "")"
+           href="@Url.Action("UndoingMistakes", "AdvancedGitAndHistory", new { area = "GitHub" })">
+            Undoing Mistakes
+        </a>
+
+        <a class="list-group-item list-group-item-action github-topic-link @(IsActive("AdvancedGitAndHistory", "Rebasing") ? "active" : "")"
+           href="@Url.Action("Rebasing", "AdvancedGitAndHistory", new { area = "GitHub" })">
+            Rebasing
+        </a>
+
+        <a class="list-group-item list-group-item-action github-topic-link @(IsActive("AdvancedGitAndHistory", "BlamingAuditing") ? "active" : "")"
+           href="@Url.Action("BlamingAuditing", "AdvancedGitAndHistory", new { area = "GitHub" })">
+            Git Blame &amp; Auditing
+        </a>
+
+
+        <!-- MODULE 6 -->
+        <div class="list-group-item github-module-title">
+            6. GitHub Ecosystem &amp; Workflow
+        </div>
+
+        <a class="list-group-item list-group-item-action github-topic-link @(IsActive("GitHubEcosystemAndWorkflow", "GitHubActions") ? "active" : "")"
+           href="@Url.Action("GitHubActions", "GitHubEcosystemAndWorkflow", new { area = "GitHub" })">
+            GitHub Actions
+        </a>
+
+        <a class="list-group-item list-group-item-action github-topic-link @(IsActive("GitHubEcosystemAndWorkflow", "GitHubIssues") ? "active" : "")"
+           href="@Url.Action("GitHubIssues", "GitHubEcosystemAndWorkflow", new { area = "GitHub" })">
+            GitHub Issues
+        </a>
+
+        <a class="list-group-item list-group-item-action github-topic-link @(IsActive("GitHubEcosystemAndWorkflow", "GitHubPages") ? "active" : "")"
+           href="@Url.Action("GitHubPages", "GitHubEcosystemAndWorkflow", new { area = "GitHub" })">
+            GitHub Pages
+        </a>
+
+        <a class="list-group-item list-group-item-action github-topic-link @(IsActive("GitHubEcosystemAndWorkflow", "MarkdownDocumentation") ? "active" : "")"
+           href="@Url.Action("MarkdownDocumentation", "GitHubEcosystemAndWorkflow", new { area = "GitHub" })">
+            Markdown &amp; Documentation
+        </a>
+
+    </div>
+</div>

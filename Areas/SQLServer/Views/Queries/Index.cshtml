@@ -1,0 +1,316 @@
+﻿@{
+    ViewData["Title"] = "SQL Queries";
+}
+
+<section>
+
+    <!-- PAGE INTRODUCTION -->
+
+    <div class="mb-5">
+
+        <h1 class="fw-bold mb-3">
+            SQL Queries
+        </h1>
+
+        <p class="lead text-muted">
+            SQL Queries are used to retrieve, filter, sort and
+            manipulate data stored in SQL Server databases.
+        </p>
+
+        <p>
+            In this module, we will learn commonly used SQL queries
+            and clauses that help us work efficiently with database
+            data.
+        </p>
+
+    </div>
+
+
+    <!-- WHAT IS SQL QUERY -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            What is a SQL Query?
+        </h2>
+
+        <p>
+            A SQL query is a statement written using Structured Query
+            Language (SQL) to communicate with a database.
+        </p>
+
+        <p>
+            Using SQL queries, we can retrieve data, filter records,
+            sort results, group data and perform calculations.
+        </p>
+
+    </section>
+
+
+    <!-- BASIC QUERY -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Basic SQL Query
+        </h2>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT *
+FROM Students;</code></pre>
+
+        </div>
+
+        <p class="mt-3">
+            This query retrieves all columns and all records from the
+            Students table.
+        </p>
+
+    </section>
+
+
+    <!-- COMMON QUERY CLAUSES -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Common SQL Query Clauses
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>Clause</th>
+                        <th>Purpose</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td><strong>SELECT</strong></td>
+                        <td>Retrieves data from a table.</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>FROM</strong></td>
+                        <td>Specifies the table from which data is retrieved.</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>WHERE</strong></td>
+                        <td>Filters records based on a condition.</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>ORDER BY</strong></td>
+                        <td>Sorts the query result.</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>GROUP BY</strong></td>
+                        <td>Groups rows having similar values.</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>HAVING</strong></td>
+                        <td>Filters grouped results.</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- WHERE EXAMPLE -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Example – WHERE Clause
+        </h2>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT *
+FROM Students
+WHERE Age &gt; 21;</code></pre>
+
+        </div>
+
+        <p class="mt-3">
+            This query returns only those students whose age is
+            greater than 21.
+        </p>
+
+    </section>
+
+
+    <!-- ORDER BY EXAMPLE -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Example – ORDER BY
+        </h2>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT *
+FROM Students
+ORDER BY StudentName ASC;</code></pre>
+
+        </div>
+
+        <p class="mt-3">
+            This query sorts the student records by StudentName in
+            ascending order.
+        </p>
+
+    </section>
+
+
+    <!-- QUERY PROCESS -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            How a SQL Query Works
+        </h2>
+
+        <ol>
+
+            <li class="mb-2">
+                The query is written using SQL syntax.
+            </li>
+
+            <li class="mb-2">
+                SQL Server parses and validates the query.
+            </li>
+
+            <li class="mb-2">
+                SQL Server determines how to execute the query.
+            </li>
+
+            <li>
+                The requested result is returned to the user.
+            </li>
+
+        </ol>
+
+    </section>
+
+
+    <!-- IMPORTANT POINTS -->
+
+    <section class="mb-5">
+
+        <div class="alert alert-info border-0">
+
+            <h4 class="fw-bold mb-3">
+                Important Points
+            </h4>
+
+            <ul class="mb-0">
+
+                <li class="mb-2">
+                    SQL queries are used to communicate with databases.
+                </li>
+
+                <li class="mb-2">
+                    SELECT is commonly used to retrieve data.
+                </li>
+
+                <li class="mb-2">
+                    WHERE is used to filter records.
+                </li>
+
+                <li class="mb-2">
+                    ORDER BY is used to sort results.
+                </li>
+
+                <li class="mb-2">
+                    GROUP BY is used to group records.
+                </li>
+
+                <li>
+                    HAVING is used to filter grouped results.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </section>
+
+
+    <!-- SUMMARY -->
+
+    <section class="mb-4">
+
+        <div class="alert alert-primary border-0">
+
+            <h2 class="fw-bold mb-3">
+                Summary
+            </h2>
+
+            <p class="mb-0">
+                In this section, we introduced SQL Queries and learned
+                the purpose of commonly used clauses such as SELECT,
+                FROM, WHERE, ORDER BY, GROUP BY and HAVING.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- PREVIOUS / NEXT -->
+
+    <div class="d-flex justify-content-between align-items-center
+                mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/CRUDOperations/DeleteOperation"
+           class="btn btn-outline-primary">
+
+            ← Previous: DELETE Operation
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/Queries/WhereClause"
+   class="btn btn-primary">
+
+    Next: WHERE Clause →
+
+</a>
+
+    </div>
+
+</section>

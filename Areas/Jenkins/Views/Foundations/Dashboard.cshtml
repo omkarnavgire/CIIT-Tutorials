@@ -1,0 +1,179 @@
+@{
+    Layout = "~/Areas/Jenkins/Views/Shared/JenkinsLayout.cshtml";
+    ViewData["Title"] = "Jenkins Dashboard";
+}
+
+<style>
+    #jenkins-dashboard-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #jenkins-dashboard-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #jenkins-dashboard-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #jenkins-dashboard-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #jenkins-dashboard-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+    #jenkins-dashboard-page .example-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+    }
+</style>
+
+<main id="jenkins-dashboard-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/Jenkins/Views/Shared/JenkinsTopics.cshtml")
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+                <h1 class="fw-bold">Jenkins Dashboard</h1>
+                <p class="lead">
+                    Master the central user interface of Jenkins to build, monitor, control, and organize your automated CI/CD jobs and system operations.
+                </p>
+            </div>
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">What is the Jenkins Dashboard?</h2>
+                <p>
+                    The Jenkins Dashboard is the main entry point and web-based graphical user interface (GUI) for your Jenkins controller. It acts as an operational control room, providing an at-a-glance view of all project build statuses, execution health metrics, running build executors, and navigation routes to administrative settings.
+                </p>
+
+                <div class="alert alert-info">
+                    <strong>UI Concept:</strong> Statuses in the dashboard are color-coded and represented by weather icons (e.g., sunny, stormy) indicating the stability of jobs over recent successive execution history.
+                </div>
+            </div>
+
+            <!-- KEY CONCEPTS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Key Elements of the Interface</h2>
+                <div class="row g-3">
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>1. Sidebar Navigation Menu</h5>
+                            <p class="mb-0">Located on the left side. Contains direct links to create a <strong>New Item</strong>, access <strong>Manage Jenkins</strong> administrative settings, and view user profiles or credentials profiles.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>2. Main Job Table View</h5>
+                            <p class="mb-0">The primary grid listing item names, last success/failure timestamps, execution durations, and status weather health signals for all configured automated pipelines.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>3. Build Queue Pane</h5>
+                            <p class="mb-0">Positioned in the lower-left corner. Displays scheduled automation tasks waiting for an available worker environment slot to pick them up and process them.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>4. Build Executor Status</h5>
+                            <p class="mb-0">Tracks active worker operations in real time across the controller node and connected distributed execution agents, showing exactly what steps are executing right now.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- EXAMPLE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Simulating Dashboard Workflow in a Pipeline</h2>
+                <p>While the dashboard is primarily visual, you interact with its structural concepts directly when running pipeline jobs. The script snippet below shows how metadata controls how a job registers and renders on your dashboard views:</p>
+                <pre><code>pipeline {
+    agent any
+    
+
+
+
+
+    // Set parameters and display preferences for how this item behaves on the dashboard
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '10')) // Restricts history cluttering the UI
+        disableConcurrentBuilds()                    // Prevents parallel execution rows
+    }
+    
+    stages {
+        stage('Dashboard Feedback') {
+            steps {
+                echo 'Printing log output stream visible inside the Jenkins Dashboard UI'
+                
+                // Set a custom display name that changes how this exact build shows on the dashboard
+                script {
+                    currentBuild.displayName = "#${BUILD_NUMBER} - Stable Production Run"
+                    currentBuild.description = "Triggered automatically from main branch commit hooks"
+                }
+            }
+        }
+    }
+}</code></pre>
+            </div>
+
+                <!-- PRACTICE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Practice Exercise</h2>
+        <ol>
+                    <li class="mb-2">Log into your active Jenkins server instance via your browser (typically at <code>http://localhost:8080</code>).</li>
+    <li class="mb-2">Locate the left sidebar and select the **New Item** button link to explore different project layout templates.</li>
+                    <li class="mb-2">Return to the main dashboard page and observe the lower left section to spot the **Build Queue** and **Build Executor Status** panels.</li>
+<li>Click on the **+ (New View)** tab near the top of the main job table to try organizing multiple pipeline jobs into a custom dashboard collection view.</li>
+                </ol>
+            </div>
+
+<!-- SUMMARY -->
+<div class="alert alert-info mt-4">
+<h2 class="h4 fw-bold">Summary</h2>
+<p class="mb-0">You have completed the <strong>Jenkins Dashboard</strong> lesson. You now understand how to navigate the layout components of the Jenkins interface, inspect queue workloads, evaluate job stability weather statuses, and segment execution environments.</p>
+</div>
+
+<!-- NAVIGATION -->
+<div class="d-flex justify-content-between mt-4">
+<a class="btn btn-outline-primary" href="@Url.Action("NativeInstallation", "Foundations", new { area = "Jenkins" })">← Previous: Native OS Installation</a>
+<a class="btn btn-primary" href="@Url.Action("Index", "CoreCICD", new { area = "Jenkins" })">Next: Freestyle Projects →</a>
+</div>
+
+
+        </section>
+
+    </div>
+
+</main>

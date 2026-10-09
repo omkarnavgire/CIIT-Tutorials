@@ -1,0 +1,998 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Python Constructors";
+}
+
+<style>
+    #python-constructors-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #python-constructors-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #python-constructors-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #python-constructors-page .diagram-box {
+        background: #ffffff;
+        border: 2px solid #6f42c1;
+        border-radius: 10px;
+        padding: 18px;
+        text-align: center;
+        height: 100%;
+    }
+
+        #python-constructors-page .diagram-box h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        #python-constructors-page .diagram-box p {
+            margin-bottom: 0;
+            font-size: 14px;
+            color: #495057;
+        }
+
+    #python-constructors-page .diagram-arrow {
+        text-align: center;
+        font-size: 28px;
+        font-weight: 700;
+        color: #6f42c1;
+        padding: 8px 0;
+    }
+
+    #python-constructors-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #python-constructors-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+        }
+</style>
+
+
+<main id="python-constructors-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- Left Sidebar -->
+        <aside class="col-lg-3">
+
+            @Html.Partial("~/Areas/Python/Views/Shared/PythonTopics.cshtml")
+
+        </aside>
+
+
+        <!-- Main Content -->
+        <section class="col-lg-9">
+
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+
+                <h1 class="fw-bold">
+                    Constructors in Python
+                </h1>
+
+                <p class="lead">
+                    Learn how constructors initialize objects in Python
+                    with simple examples and practical programs.
+                </p>
+
+            </div>
+
+
+            <!-- WHAT IS CONSTRUCTOR -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    What is a Constructor?
+                </h2>
+
+                <p>
+                    A constructor is a special method that is used to
+                    initialize an object when the object is created.
+                </p>
+
+                <p>
+                    In Python, the method commonly used for initialization
+                    is <code>__init__()</code>.
+                </p>
+
+                <p>
+                    It runs automatically when we create an object from
+                    a class.
+                </p>
+
+                <div class="alert alert-info">
+
+                    <strong>
+                        Simple Definition:
+                    </strong>
+
+                    A constructor gives initial values to an object
+                    when the object is created.
+
+                </div>
+
+            </div>
+
+
+            <!-- WHY USE CONSTRUCTOR -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Why Do We Use Constructors?
+                </h2>
+
+                <p>
+                    Suppose we create a Student object. We may want to
+                    give the student a name, age and course immediately.
+                </p>
+
+                <p>
+                    A constructor allows us to initialize these values
+                    automatically.
+                </p>
+
+                <ul>
+
+                    <li>
+                        Initialize object data.
+                    </li>
+
+                    <li>
+                        Reduce repeated code.
+                    </li>
+
+                    <li>
+                        Create objects with ready-to-use values.
+                    </li>
+
+                    <li>
+                        Make object creation easier and cleaner.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- SYNTAX -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Constructor Syntax
+                </h2>
+
+                <p>
+                    The basic syntax of a constructor is:
+                </p>
+
+                <pre><code>class ClassName:
+
+    def __init__(self):
+        # initialization code</code></pre>
+
+                <p class="mt-3">
+                    Important points:
+                </p>
+
+                <ul>
+
+                    <li>
+                        Constructor is written using
+                        <code>__init__()</code>.
+                    </li>
+
+                    <li>
+                        It is written inside the class.
+                    </li>
+
+                    <li>
+                        The first parameter is usually
+                        <code>self</code>.
+                    </li>
+
+                    <li>
+                        It runs automatically when an object is created.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- HOW CONSTRUCTOR WORKS -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    How Does a Constructor Work?
+                </h2>
+
+                <p>
+                    When we create an object, Python automatically calls
+                    the <code>__init__()</code> method.
+                </p>
+
+                <pre><code>class Student:
+
+    def __init__(self):
+        print("Student object created")
+
+
+student1 = Student()</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Student object created</code></pre>
+
+                <p>
+                    When <code>Student()</code> is executed,
+                    Python automatically calls <code>__init__()</code>.
+                </p>
+
+            </div>
+
+
+            <!-- TYPES DIAGRAM -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Types of Constructors in Python
+                </h2>
+
+                <p>
+                    At the beginner level, we commonly discuss these
+                    constructor forms:
+                </p>
+
+                <div class="concept-box">
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            Constructors
+                        </h5>
+
+                        <p>
+                            <code>__init__()</code> is used to initialize
+                            an object.
+                        </p>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="row g-3">
+
+                        <div class="col-md-4">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    1. Default
+                                </h5>
+
+                                <p>
+                                    No extra values are passed
+                                    while creating the object.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-4">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    2. Parameterized
+                                </h5>
+
+                                <p>
+                                    Values are passed while
+                                    creating the object.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-4">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    3. Default Arguments
+                                </h5>
+
+                                <p>
+                                    Parameters have predefined
+                                    default values.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- TYPE 1 -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    1. Default / Non-Parameterized Constructor
+                </h2>
+
+                <p>
+                    A default or non-parameterized constructor does not
+                    take extra values from the user when the object is created.
+                </p>
+
+                <p>
+                    It can be used when every object starts with the
+                    same initial information.
+                </p>
+
+                <h4 class="fw-bold mt-4">
+                    Example
+                </h4>
+
+                <pre><code>class Student:
+
+    def __init__(self):
+        self.name = "Sam"
+        self.course = "Python"
+
+
+student1 = Student()
+
+print(student1.name)
+print(student1.course)</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Sam
+Python</code></pre>
+
+                <p>
+                    Here, we do not pass any values while creating
+                    <code>Student()</code>.
+                </p>
+
+                <p>
+                    The constructor automatically gives the object
+                    the values defined inside <code>__init__()</code>.
+                </p>
+
+            </div>
+
+
+            <!-- TYPE 1 SECOND EXAMPLE -->
+            <div class="mb-4">
+
+                <h3 class="h4 fw-bold">
+                    Another Example
+                </h3>
+
+                <pre><code>class Company:
+
+    def __init__(self):
+        self.company_name = "CIIT Training Institute 📩🤓...!"
+        self.location = "Pune"
+
+
+company1 = Company()
+
+print(company1.company_name)
+print(company1.location)</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>CIIT Training Institute 📩🤓...!
+Pune</code></pre>
+
+                <p>
+                    This is useful when the initial values are fixed
+                    or do not need to be supplied during object creation.
+                </p>
+
+            </div>
+
+
+            <!-- TYPE 2 -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    2. Parameterized Constructor
+                </h2>
+
+                <p>
+                    A parameterized constructor accepts values while
+                    creating the object.
+                </p>
+
+                <p>
+                    This is useful when each object needs different
+                    information.
+                </p>
+
+                <h4 class="fw-bold mt-4">
+                    Example
+                </h4>
+
+                <pre><code>class Student:
+
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+
+student1 = Student("Omkar", 25)
+
+print(student1.name)
+print(student1.age)</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Omkar
+25</code></pre>
+
+                <p>
+                    Here, <code>Omkar</code> and <code>25</code> are
+                    passed while creating the object.
+                </p>
+
+            </div>
+
+
+            <!-- PARAMETERIZED MULTIPLE OBJECTS -->
+            <div class="mb-4">
+
+                <h3 class="h4 fw-bold">
+                    Multiple Objects with Parameterized Constructor
+                </h3>
+
+                <p>
+                    We can create multiple objects with different values
+                    using the same constructor.
+                </p>
+
+                <pre><code>class Student:
+
+    def __init__(self, name, course):
+        self.name = name
+        self.course = course
+
+
+student1 = Student("Samadhan", "Python")
+student2 = Student("Omkar", "Java")
+student3 = Student("Komal", ".NET")
+
+print(student1.name, student1.course)
+print(student2.name, student2.course)
+print(student3.name, student3.course)</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Samadhan Python
+Omkar Java
+Komal .NET</code></pre>
+
+                <p>
+                    The same constructor is reused for all three objects,
+                    but each object stores different values.
+                </p>
+
+            </div>
+
+
+            <!-- TYPE 3 -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    3. Constructor with Default Arguments
+                </h2>
+
+                <p>
+                    A constructor can also have default values for its
+                    parameters.
+                </p>
+
+                <p>
+                    If the user does not pass a value, Python uses the
+                    default value.
+                </p>
+
+                <h4 class="fw-bold mt-4">
+                    Example
+                </h4>
+
+                <pre><code>class Student:
+
+    def __init__(self, name, course="Python"):
+        self.name = name
+        self.course = course
+
+
+student1 = Student("Samadhan")
+student2 = Student("Omkar", "Java")
+
+print(student1.name, student1.course)
+print(student2.name, student2.course)</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Samadhan Python
+Omkar Java</code></pre>
+
+                <p>
+                    For <code>student1</code>, the course value is not passed,
+                    so Python uses the default value <code>Python</code>.
+                </p>
+
+                <p>
+                    For <code>student2</code>, the value <code>Java</code>
+                    is passed, so that value is used.
+                </p>
+
+            </div>
+
+
+            <!-- SELF -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Understanding <code>self</code>
+                </h2>
+
+                <p>
+                    <code>self</code> refers to the current object.
+                </p>
+
+                <p>
+                    We use <code>self</code> to store values inside
+                    the object.
+                </p>
+
+                <pre><code>class Student:
+
+    def __init__(self, name):
+        self.name = name
+
+
+student1 = Student("Rahul")
+
+print(student1.name)</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Rahul</code></pre>
+
+                <p>
+                    Here, <code>self.name</code> belongs to the
+                    current student object.
+                </p>
+
+            </div>
+
+
+            <!-- CONSTRUCTOR WITH METHOD -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Constructor with a Method
+                </h2>
+
+                <p>
+                    We can initialize values using a constructor and
+                    then use another method to perform an operation.
+                </p>
+
+                <pre><code>class Student:
+
+    def __init__(self, name, course):
+        self.name = name
+        self.course = course
+
+    def display(self):
+        print("Name:", self.name)
+        print("Course:", self.course)
+
+
+student1 = Student("Neha", "Python")
+
+student1.display()</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Name: Neha
+Course: Python</code></pre>
+
+            </div>
+
+
+            <!-- CONSTRUCTOR FLOW -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Constructor Execution Flow
+                </h2>
+
+                <div class="concept-box">
+
+                    <p>
+                        <strong>Step 1:</strong>
+                        Create a class.
+                    </p>
+
+                    <p>
+                        <strong>Step 2:</strong>
+                        Define the <code>__init__()</code> method.
+                    </p>
+
+                    <p>
+                        <strong>Step 3:</strong>
+                        Create an object.
+                    </p>
+
+                    <p>
+                        <strong>Step 4:</strong>
+                        Python automatically calls
+                        <code>__init__()</code>.
+                    </p>
+
+                    <p>
+                        <strong>Step 5:</strong>
+                        Initial values are assigned to the object.
+                    </p>
+
+                    <p class="mb-0">
+                        <strong>Step 6:</strong>
+                        The object is ready to use.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- NO CUSTOM CONSTRUCTOR -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    What If We Do Not Define <code>__init__()</code>?
+                </h2>
+
+                <p>
+                    A class does not always need a custom
+                    <code>__init__()</code> method.
+                </p>
+
+                <pre><code>class Student:
+    pass
+
+
+student1 = Student()
+
+print("Object created")</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Object created</code></pre>
+
+                <p>
+                    However, when we need to initialize object data,
+                    defining a constructor is useful.
+                </p>
+
+            </div>
+
+
+            <!-- COMMON MISTAKES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Common Mistakes
+                </h2>
+
+                <ul>
+
+                    <li>
+                        Writing <code>init()</code> instead of
+                        <code>__init__()</code>.
+                    </li>
+
+                    <li>
+                        Forgetting <code>self</code>.
+                    </li>
+
+                    <li>
+                        Forgetting <code>self.</code> before
+                        instance variables.
+                    </li>
+
+                    <li>
+                        Passing the wrong number of arguments.
+                    </li>
+
+                </ul>
+
+                <pre><code>class Student:
+
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+
+student1 = Student("Rahul", 22)</code></pre>
+
+                <p>
+                    Here the constructor expects two values:
+                    <code>name</code> and <code>age</code>.
+                </p>
+
+            </div>
+
+
+            <!-- TYPES COMPARISON -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Constructor Types Comparison
+                </h2>
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered align-middle">
+
+                        <thead>
+
+                            <tr>
+                                <th>Type</th>
+                                <th>Values Passed?</th>
+                                <th>Example</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+
+                                <td>
+                                    Default / Non-Parameterized
+                                </td>
+
+                                <td>
+                                    No extra values
+                                </td>
+
+                                <td>
+                                    <code>Student()</code>
+                                </td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>
+                                    Parameterized
+                                </td>
+
+                                <td>
+                                    Yes
+                                </td>
+
+                                <td>
+                                    <code>Student("Rahul", 22)</code>
+                                </td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>
+                                    Default Arguments
+                                </td>
+
+                                <td>
+                                    Optional
+                                </td>
+
+                                <td>
+                                    <code>Student("Rahul")</code>
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <!-- COMPLETE EXAMPLE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Complete Example
+                </h2>
+
+                <p>
+                    Let's combine constructor initialization with a method.
+                </p>
+
+                <pre><code>class Employee:
+
+    def __init__(self, name, department, salary):
+        self.name = name
+        self.department = department
+        self.salary = salary
+
+    def display(self):
+        print("Name:", self.name)
+        print("Department:", self.department)
+        print("Salary:", self.salary)
+
+
+employee1 = Employee(
+    "Rahul",
+    "IT",
+    60000
+)
+
+employee1.display()</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Name: Rahul
+Department: IT
+Salary: 60000</code></pre>
+
+            </div>
+
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Practice Programs
+                </h2>
+
+                <ol>
+
+                    <li>
+                        Create a <code>Student</code> class using a
+                        default constructor.
+                    </li>
+
+                    <li>
+                        Create a <code>Student</code> class using a
+                        parameterized constructor.
+                    </li>
+
+                    <li>
+                        Create an <code>Employee</code> class with
+                        name and salary.
+                    </li>
+
+                    <li>
+                        Create a constructor with a default course value.
+                    </li>
+
+                    <li>
+                        Create three objects using the same constructor.
+                    </li>
+
+                    <li>
+                        Add a <code>display()</code> method to show
+                        object information.
+                    </li>
+
+                </ol>
+
+            </div>
+
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+
+                <h2 class="h4 fw-bold">
+                    Summary
+                </h2>
+
+                <p class="mb-0">
+
+                    A constructor is used to initialize an object when
+                    it is created. Python commonly uses the
+                    <code>__init__()</code> method for initialization.
+                    A constructor can be written without extra parameters,
+                    can accept parameters, or can use default parameter
+                    values. The <code>self</code> keyword is used to store
+                    data inside the current object.
+
+                </p>
+
+            </div>
+
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+
+                <a class="btn btn-outline-secondary"
+                   href="@Url.Action("ClassesObjects", "OOPs", new { area = "Python" })">
+
+                    ← Previous: Topic
+
+                </a>
+
+
+                <a class="btn btn-primary"
+                   href="@Url.Action("Encapsulation", "OOPs", new { area = "Python" })">
+
+                    Next: Topic →
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

@@ -1,0 +1,818 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Python FastAPI Basics";
+}
+
+<style>
+    #python-fastapi-basics-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #python-fastapi-basics-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #python-fastapi-basics-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #python-fastapi-basics-page .diagram-box {
+        background: #ffffff;
+        border: 2px solid #6f42c1;
+        border-radius: 10px;
+        padding: 18px;
+        text-align: center;
+        height: 100%;
+    }
+
+        #python-fastapi-basics-page .diagram-box h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        #python-fastapi-basics-page .diagram-box p {
+            margin-bottom: 0;
+            font-size: 14px;
+            color: #495057;
+        }
+
+    #python-fastapi-basics-page .diagram-arrow {
+        text-align: center;
+        font-size: 28px;
+        font-weight: 700;
+        color: #6f42c1;
+        padding: 8px 0;
+    }
+
+    #python-fastapi-basics-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #python-fastapi-basics-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+        }
+</style>
+
+<main id="python-fastapi-basics-page" class="container py-5">
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+                <h1 class="fw-bold">FastAPI Basics</h1>
+
+                <p class="lead">
+                    FastAPI is a modern Python framework used to build
+                    APIs and backend web services.
+                </p>
+            </div>
+
+            <!-- WHAT IS FASTAPI -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">What is FastAPI?</h2>
+
+                <p>
+                    FastAPI is a Python web framework mainly used for building
+                    APIs and backend applications.
+                </p>
+
+                <p>
+                    It provides a simple way to define API endpoints,
+                    receive data from clients, process the data, and return
+                    responses.
+                </p>
+
+                <div class="concept-box mt-3">
+                    <h5 class="fw-bold">Simple Definition</h5>
+
+                    <p class="mb-0">
+                        <strong>FastAPI</strong> is a Python framework used
+                        to build modern APIs and backend services.
+                    </p>
+                </div>
+            </div>
+
+            <!-- FEATURES -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Features of FastAPI</h2>
+
+                <div class="row g-3 mt-2">
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Simple API Development</h5>
+
+                            <p class="mb-0">
+                                API endpoints can be created using simple
+                                Python functions.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Type Hints</h5>
+
+                            <p class="mb-0">
+                                Python type hints can be used to describe
+                                the expected data.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Automatic Documentation</h5>
+
+                            <p class="mb-0">
+                                FastAPI can provide interactive API documentation
+                                for available endpoints.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>JSON Responses</h5>
+
+                            <p class="mb-0">
+                                APIs can easily return structured data such
+                                as JSON responses.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- FASTAPI FLOW -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">FastAPI Request Flow</h2>
+
+                <p>
+                    A client sends an HTTP request to a FastAPI endpoint.
+                    FastAPI processes the request and sends a response.
+                </p>
+
+                <div class="row g-3 mt-3">
+
+                    <div class="col-md-3">
+                        <div class="diagram-box">
+                            <h5>Client</h5>
+
+                            <p>
+                                Browser or application sends a request.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-1 d-flex align-items-center justify-content-center">
+                        <div class="diagram-arrow">→</div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="diagram-box">
+                            <h5>FastAPI</h5>
+
+                            <p>
+                                FastAPI receives and processes the request.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-1 d-flex align-items-center justify-content-center">
+                        <div class="diagram-arrow">→</div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="diagram-box">
+                            <h5>JSON Response</h5>
+
+                            <p>
+                                The API returns structured data to the client.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- INSTALLATION -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Installing FastAPI</h2>
+
+                <p>
+                    FastAPI can be installed using pip.
+                </p>
+
+                <pre><code>pip install fastapi</code></pre>
+
+                <p class="mt-3">
+                    To run the FastAPI application using the Uvicorn server,
+                    install Uvicorn as well.
+                </p>
+
+                <pre><code>pip install uvicorn</code></pre>
+
+                <div class="alert alert-info mt-3">
+                    <strong>Tip:</strong>
+                    Use a virtual environment for your FastAPI project.
+                </div>
+            </div>
+
+            <!-- FIRST FASTAPI APPLICATION -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Creating Your First FastAPI Application</h2>
+
+                <p>
+                    Create a Python file named <strong>main.py</strong>.
+                </p>
+
+                <pre><code>from fastapi import FastAPI
+
+app = FastAPI()
+
+&#64;app.get("/")
+def home():
+    return {"message": "Hello from FastAPI"}</code></pre>
+            </div>
+
+            <!-- CODE EXPLANATION -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Understanding the Code</h2>
+
+                <div class="row g-3 mt-2">
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+
+                            <h5>FastAPI Import</h5>
+
+                            <pre><code>from fastapi import FastAPI</code></pre>
+
+                            <p>
+                                Imports the FastAPI class.
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+
+                            <h5>Application Object</h5>
+
+                            <pre><code>app = FastAPI()</code></pre>
+
+                            <p>
+                                Creates the FastAPI application object.
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+
+                            <h5>GET Endpoint</h5>
+
+                            <pre><code>&#64;app.get("/")</code></pre>
+
+                            <p>
+                                Creates a GET endpoint for the root URL.
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+
+                            <h5>JSON Response</h5>
+
+                            <pre><code>return {"message": "Hello from FastAPI"}</code></pre>
+
+                            <p>
+                                Returns data as a JSON-compatible response.
+                            </p>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- RUN APPLICATION -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Running the FastAPI Application</h2>
+
+                <p>
+                    Use Uvicorn to run the FastAPI application.
+                </p>
+
+                <pre><code>uvicorn main:app --reload</code></pre>
+
+                <p class="mt-3">
+                    After starting the server, open the local URL in a browser.
+                </p>
+
+                <pre><code>http://127.0.0.1:8000/</code></pre>
+
+                <div class="alert alert-success mt-3">
+                    The FastAPI endpoint returns the JSON response defined
+                    in the Python function.
+                </div>
+            </div>
+
+            <!-- GET ENDPOINT -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Creating a GET Endpoint</h2>
+
+                <p>
+                    A GET endpoint is commonly used to retrieve data.
+                </p>
+
+                <pre><code>from fastapi import FastAPI
+
+app = FastAPI()
+
+&#64;app.get("/students")
+def get_students():
+    return {
+        "students": [
+            "Rahul",
+            "Priya",
+            "Amit"
+        ]
+    }</code></pre>
+            </div>
+
+            <!-- MULTIPLE ENDPOINTS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Creating Multiple Endpoints</h2>
+
+                <p>
+                    A FastAPI application can contain many endpoints.
+                </p>
+
+                <pre><code>from fastapi import FastAPI
+
+app = FastAPI()
+
+&#64;app.get("/")
+def home():
+    return {"message": "Home Page"}
+
+&#64;app.get("/about")
+def about():
+    return {"message": "About Page"}
+
+&#64;app.get("/courses")
+def courses():
+    return {
+        "courses": [
+            "Python",
+            ".NET",
+            "Java"
+        ]
+    }</code></pre>
+            </div>
+
+            <!-- HTTP METHODS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Common HTTP Methods</h2>
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered">
+
+                        <thead class="table-light">
+                            <tr>
+                                <th>Method</th>
+                                <th>Purpose</th>
+                                <th>Example</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>GET</td>
+                                <td>Retrieve data</td>
+                                <td>/students</td>
+                            </tr>
+
+                            <tr>
+                                <td>POST</td>
+                                <td>Create new data</td>
+                                <td>/students</td>
+                            </tr>
+
+                            <tr>
+                                <td>PUT</td>
+                                <td>Update existing data</td>
+                                <td>/students/1</td>
+                            </tr>
+
+                            <tr>
+                                <td>DELETE</td>
+                                <td>Delete data</td>
+                                <td>/students/1</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+            </div>
+
+            <!-- PATH PARAMETERS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Path Parameters</h2>
+
+                <p>
+                    A path parameter allows a value to be included
+                    directly in the URL.
+                </p>
+
+                <pre><code>from fastapi import FastAPI
+
+app = FastAPI()
+
+&#64;app.get("/students/{student_id}")
+def get_student(student_id: int):
+    return {
+        "student_id": student_id
+    }</code></pre>
+
+                <p class="mt-3">
+                    For example, a request to
+                    <strong>/students/10</strong> passes the value
+                    <strong>10</strong> to the function.
+                </p>
+            </div>
+
+            <!-- QUERY PARAMETERS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Query Parameters</h2>
+
+                <p>
+                    Query parameters are values sent after the
+                    question mark in a URL.
+                </p>
+
+                <pre><code>from fastapi import FastAPI
+
+app = FastAPI()
+
+&#64;app.get("/search")
+def search(name: str):
+    return {
+        "search_name": name
+    }</code></pre>
+
+                <p class="mt-3">
+                    Example URL:
+                </p>
+
+                <pre><code>http://127.0.0.1:8000/search?name=Python</code></pre>
+            </div>
+
+            <!-- POST REQUEST -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Basic POST Endpoint</h2>
+
+                <p>
+                    POST is commonly used when the client needs to send
+                    data to the server.
+                </p>
+
+                <pre><code>from fastapi import FastAPI
+
+app = FastAPI()
+
+&#64;app.post("/students")
+def create_student(name: str):
+    return {
+        "message": "Student created",
+        "name": name
+    }</code></pre>
+            </div>
+
+            <!-- AUTOMATIC DOCS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Automatic API Documentation</h2>
+
+                <p>
+                    FastAPI provides interactive API documentation that
+                    can be used to view and test API endpoints.
+                </p>
+
+                <div class="concept-box">
+
+                    <h5 class="fw-bold">Swagger Documentation</h5>
+
+                    <p class="mb-2">
+                        Open the following URL after starting the application:
+                    </p>
+
+                    <pre><code>http://127.0.0.1:8000/docs</code></pre>
+
+                    <p class="mb-0">
+                        The page displays available endpoints and allows
+                        developers to test them.
+                    </p>
+
+                </div>
+            </div>
+
+            <!-- PRACTICAL EXAMPLE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold"> 
+                    Example: Course API 🤓📩
+                </h2>
+
+                <p>
+                    The following example creates a small API for
+                    displaying course information.
+                </p>
+
+                <pre><code>from fastapi import FastAPI
+
+app = FastAPI()
+
+&#64;app.get("/courses")
+def get_courses():
+    return {
+        "courses": [
+            {
+                "id": 1,
+                "name": "Python"
+            },
+            {
+                "id": 2,
+                "name": ".NET Full Stack"
+            },
+            {
+                "id": 3,
+                "name": "Java"
+            }
+        ]
+    }</code></pre>
+
+                <div class="alert alert-success mt-3">
+                    The API returns course information in JSON format.
+                </div>
+            </div>
+            <div class="px-2">
+                <h5 class="fw-bold mb-2">
+                    Output
+                </h5>
+
+                <pre class="mb-4"><code>{
+    "courses": [
+        {
+            "id": 1,
+            "name": "Python"
+        },
+        {
+            "id": 2,
+            "name": ".NET Full Stack"
+        },
+        {
+            "id": 3,
+            "name": "Java"
+        }
+    ]
+}</code></pre>
+            </div>
+            <!-- FLASK VS FASTAPI -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Flask vs FastAPI</h2>
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered">
+
+                        <thead class="table-light">
+                            <tr>
+                                <th>Feature</th>
+                                <th>Flask</th>
+                                <th>FastAPI</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>Main Use</td>
+                                <td>Web applications and APIs</td>
+                                <td>APIs and backend services</td>
+                            </tr>
+
+                            <tr>
+                                <td>Learning</td>
+                                <td>Simple</td>
+                                <td>Simple with type hints</td>
+                            </tr>
+
+                            <tr>
+                                <td>API Documentation</td>
+                                <td>Additional setup may be required</td>
+                                <td>Automatic documentation support</td>
+                            </tr>
+
+                            <tr>
+                                <td>Type Hints</td>
+                                <td>Optional</td>
+                                <td>Commonly used</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+            </div>
+
+            <!-- BEST PRACTICES -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Best Practices</h2>
+
+                <div class="concept-box">
+
+                    <ul class="mb-0">
+
+                        <li>
+                            Use a virtual environment for each project.
+                        </li>
+
+                        <li>
+                            Use meaningful endpoint names.
+                        </li>
+
+                        <li>
+                            Use type hints for better readability.
+                        </li>
+
+                        <li>
+                            Validate incoming data.
+                        </li>
+
+                        <li>
+                            Keep business logic separate from route definitions
+                            as the project grows.
+                        </li>
+
+                        <li>
+                            Do not store passwords or secret keys directly
+                            in the source code.
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div>
+
+            <!-- COMMON MISTAKES -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Common Mistakes</h2>
+
+                <div class="alert alert-warning">
+
+                    <ul class="mb-0">
+
+                        <li>
+                            Forgetting to install FastAPI.
+                        </li>
+
+                        <li>
+                            Forgetting to install Uvicorn.
+                        </li>
+
+                        <li>
+                            Using the wrong application name in the
+                            Uvicorn command.
+                        </li>
+
+                        <li>
+                            Using incorrect endpoint URLs.
+                        </li>
+
+                        <li>
+                            Forgetting required type information for
+                            parameters.
+                        </li>
+
+                        <li>
+                            Sending data in an incorrect format.
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div>
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Practice Exercise</h2>
+
+                <div class="concept-box">
+
+                    <p>
+                        Create a FastAPI application with these endpoints:
+                    </p>
+
+                    <ol>
+
+                        <li>
+                            <strong>/</strong> → Return a welcome message.
+                        </li>
+
+                        <li>
+                            <strong>/students</strong> → Return a list of students.
+                        </li>
+
+                        <li>
+                            <strong>/courses</strong> → Return a list of courses.
+                        </li>
+
+                        <li>
+                            <strong>/students/{id}</strong> →
+                            Return the requested student ID.
+                        </li>
+
+                    </ol>
+
+                    <p class="mb-0">
+                        Start the application using Uvicorn and test
+                        the endpoints using the browser or API documentation.
+                    </p>
+
+                </div>
+            </div>
+
+       <!-- SUMMARY -->
+<div class="alert alert-info mt-4">
+
+    <h2 class="h4 fw-bold">
+        Summary
+    </h2>
+
+    <p class="mb-0">
+
+        FastAPI is a Python framework used to build APIs and backend services.
+        A FastAPI application is created using the <code>FastAPI()</code> class,
+        and endpoints can be defined using HTTP methods such as GET and POST.
+        Path parameters and query parameters can be used to receive data,
+        while FastAPI can return JSON responses to clients. Uvicorn can be
+        used to run the application, and FastAPI provides interactive API
+        documentation for testing and understanding endpoints.
+
+    </p>
+
+</div>
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+
+                <a class="btn btn-outline-secondary"
+                   href="@Url.Action("FlaskBasics", "WebDevelopment", new { area = "Python" })">
+                    ← Previous: Topic
+                </a>
+
+                <a class="btn btn-primary"
+                   href="@Url.Action("WebRoutes", "WebDevelopment", new { area = "Python" })">
+                    Next: Topic →
+                </a>
+
+            </div>
+
+        </section>
+    </div>
+</main>

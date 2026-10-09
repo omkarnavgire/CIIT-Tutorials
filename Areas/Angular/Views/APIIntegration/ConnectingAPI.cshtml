@@ -1,0 +1,1688 @@
+﻿@{
+    ViewData["Title"] = "Connecting Angular to API";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- Header -->
+    <section class="mb-4">
+
+        <h1 class="fw-bold text-dark">
+            Connecting Angular to API
+        </h1>
+
+        <p class="lead text-muted">
+            Learn how to connect an Angular application with a backend REST API
+            using HttpClient and an Angular service.
+        </p>
+
+    </section>
+
+
+    <!-- Introduction -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            What Does Connecting to an API Mean?
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                Connecting Angular to an API means establishing communication
+                between the Angular frontend and a backend application.
+            </p>
+
+            <p>
+                Angular sends HTTP requests to API endpoints and receives
+                responses from the backend.
+            </p>
+
+            <p class="mb-0">
+                The API may internally communicate with a database or other
+                backend services before returning the requested result.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Connection Flow -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Angular API Connection Flow
+        </h2>
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+
+                <strong>Angular Component</strong>
+
+                <span>
+                    Requests Data
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>Angular Service</strong>
+
+                <span>
+                    Calls HttpClient
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>REST API</strong>
+
+                <span>
+                    Processes Request
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>Response</strong>
+
+                <span>
+                    Returns Data
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Required Parts -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            What is Required?
+        </h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    A
+                </div>
+
+                <h5>
+                    API Endpoint
+                </h5>
+
+                <p>
+                    The URL through which Angular communicates with the backend.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    H
+                </div>
+
+                <h5>
+                    HttpClient
+                </h5>
+
+                <p>
+                    Angular API used to send HTTP requests.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    S
+                </div>
+
+                <h5>
+                    Service
+                </h5>
+
+                <p>
+                    Organizes API communication logic.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    M
+                </div>
+
+                <h5>
+                    Model / Type
+                </h5>
+
+                <p>
+                    Describes the expected structure of API data.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- API URL -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Step 1: Define the API URL
+        </h2>
+
+        <p>
+            The Angular service needs to know which backend endpoint should
+            be called.
+        </p>
+
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>private apiUrl =
+    'https://localhost:5001/api/courses';</code></pre>
+
+        </div>
+
+
+        <div class="info-card mt-3">
+
+            <p class="mb-0">
+                The actual URL depends on the backend application and its
+                configured API routes.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- HttpClient Import -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Step 2: Import HttpClient
+        </h2>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                TypeScript
+            </div>
+
+            <pre><code>import {
+    HttpClient
+} from '@@angular/common/http';</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Provide HttpClient -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Step 3: Configure HttpClient
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                The Angular application must make HttpClient available through
+                the application's dependency injection configuration.
+            </p>
+
+            <p class="mb-0">
+                In a standalone Angular application, this can be configured
+                with <strong>provideHttpClient()</strong>.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Application Configuration
+            </div>
+
+            <pre><code>import {
+    ApplicationConfig
+} from '@@angular/core';
+
+import {
+    provideHttpClient
+} from '@@angular/common/http';
+
+
+export const appConfig:
+    ApplicationConfig = {
+
+    providers: [
+
+        provideHttpClient()
+
+    ]
+
+};</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Service -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Step 4: Create an API Service
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                A service is commonly used to keep API communication separate
+                from the component.
+            </p>
+
+            <p class="mb-0">
+                The service can expose methods such as
+                <strong>getCourses()</strong>,
+                <strong>addCourse()</strong> and
+                other API operations.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                course.service.ts
+            </div>
+
+            <pre><code>import {
+    Injectable
+} from '@@angular/core';
+
+import {
+    HttpClient
+} from '@@angular/common/http';
+
+
+@@Injectable({
+    providedIn: 'root'
+})
+export class CourseService {
+
+    private apiUrl =
+        'https://localhost:5001/api/courses';
+
+
+    constructor(
+        private http: HttpClient
+    ) {
+    }
+
+
+    getCourses() {
+
+        return this.http.get(
+            this.apiUrl
+        );
+
+    }
+
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Typed Response -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Using a TypeScript Type for API Data
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                Defining a TypeScript type or interface can make the expected
+                API response structure easier to understand and use.
+            </p>
+
+            <p class="mb-0">
+                This also gives the application better type checking while
+                working with the response.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Course Model
+            </div>
+
+            <pre><code>export interface Course {
+
+    id: number;
+
+    name: string;
+
+    duration: string;
+
+    fees: number;
+
+}</code></pre>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Typed API Method
+            </div>
+
+            <pre><code>getCourses() {
+
+    return this.http.get&lt;Course[]&gt;(
+        this.apiUrl
+    );
+
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- GET Connection -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Connecting with a GET API
+        </h2>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Service Method
+            </div>
+
+            <pre><code>getCourses() {
+
+    return this.http.get&lt;Course[]&gt;(
+        this.apiUrl
+    );
+
+}</code></pre>
+
+        </div>
+
+
+        <div class="syntax-flow mt-4">
+
+            <div class="syntax-box">
+
+                <strong>Angular</strong>
+
+                <span>
+                    getCourses()
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>GET</strong>
+
+                <span>
+                    API Request
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>/api/courses</strong>
+
+                <span>
+                    Endpoint
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Component -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Calling the Service from a Component
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                The component can inject the service and call the service
+                method when data is required.
+            </p>
+
+            <p class="mb-0">
+                The returned Observable can then be consumed by the component.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Component
+            </div>
+
+            <pre><code>export class CoursesComponent {
+
+    courses: Course[] = [];
+
+
+    constructor(
+        private courseService: CourseService
+    ) {
+    }
+
+
+    loadCourses() {
+
+        this.courseService
+            .getCourses()
+            .subscribe({
+
+                next: courses =&gt; {
+
+                    this.courses = courses;
+
+                },
+
+                error: error =&gt; {
+
+                    console.error(
+                        'API Error:',
+                        error
+                    );
+
+                }
+
+            });
+
+    }
+
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Connection Process -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Complete Connection Process
+        </h2>
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+
+                <strong>Component</strong>
+
+                <span>
+                    loadCourses()
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>Service</strong>
+
+                <span>
+                    getCourses()
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>HttpClient</strong>
+
+                <span>
+                    HTTP GET
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>API</strong>
+
+                <span>
+                    Returns JSON
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- POST Connection -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Connecting with a POST API
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                A POST request can send data from Angular to the backend API.
+            </p>
+
+            <p class="mb-0">
+                The service method can accept the object that needs to be
+                sent to the server.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                POST Example
+            </div>
+
+            <pre><code>addCourse(course: Course) {
+
+    return this.http.post&lt;Course&gt;(
+        this.apiUrl,
+        course
+    );
+
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- PUT Connection -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Connecting with a PUT API
+        </h2>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                PUT Example
+            </div>
+
+            <pre><code>updateCourse(
+    id: number,
+    course: Course
+) {
+
+    return this.http.put&lt;Course&gt;(
+        this.apiUrl + '/' + id,
+        course
+    );
+
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- DELETE Connection -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Connecting with a DELETE API
+        </h2>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                DELETE Example
+            </div>
+
+            <pre><code>deleteCourse(id: number) {
+
+    return this.http.delete(
+        this.apiUrl + '/' + id
+    );
+
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Headers -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Sending HTTP Headers
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                Some APIs require HTTP headers for information such as
+                content type, authorization or other request metadata.
+            </p>
+
+            <p class="mb-0">
+                HttpClient allows headers to be supplied through request options.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>const headers =
+    new HttpHeaders({
+
+        'Content-Type':
+            'application/json'
+
+    });
+
+
+return this.http.get&lt;Course[]&gt;(
+    this.apiUrl,
+    {
+        headers: headers
+    }
+);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Query Parameters -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Sending Query Parameters
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                Query parameters are useful when the API needs additional
+                values such as search terms, page numbers or filters.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>const params =
+    new HttpParams()
+        .set('search', 'Angular')
+        .set('page', '1');
+
+
+return this.http.get&lt;Course[]&gt;(
+    this.apiUrl,
+    {
+        params: params
+    }
+);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Environment -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Using Environment Configuration
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                Instead of hard-coding an API base URL throughout the
+                application, projects can keep environment-specific
+                configuration in a dedicated configuration mechanism.
+            </p>
+
+            <p class="mb-0">
+                This makes it easier to use different API URLs for different
+                deployment environments.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>export const environment = {
+
+    apiUrl:
+        'https://localhost:5001/api'
+
+};</code></pre>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Service
+            </div>
+
+            <pre><code>private apiUrl =
+    environment.apiUrl +
+    '/courses';
+
+
+getCourses() {
+
+    return this.http.get&lt;Course[]&gt;(
+        this.apiUrl
+    );
+
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- CIIT Example -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            CIIT Training Institute Example
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                Suppose the CIIT Training Institute website has a backend API
+                that provides available courses.
+            </p>
+
+            <p class="mb-0">
+                Angular can connect to that API through a dedicated
+                CourseService and request the course data.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Course Service
+            </div>
+
+            <pre><code>import {
+    Injectable
+} from '@@angular/core';
+
+import {
+    HttpClient
+} from '@@angular/common/http';
+
+
+@@Injectable({
+    providedIn: 'root'
+})
+export class CourseService {
+
+    private apiUrl =
+        'https://localhost:5001/api/courses';
+
+
+    constructor(
+        private http: HttpClient
+    ) {
+    }
+
+
+    getCourses() {
+
+        return this.http.get&lt;Course[]&gt;(
+            this.apiUrl
+        );
+
+    }
+
+}</code></pre>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Courses Component
+            </div>
+
+            <pre><code>export class CoursesComponent {
+
+    courses: Course[] = [];
+
+
+    constructor(
+        private courseService: CourseService
+    ) {
+    }
+
+
+    loadCourses() {
+
+        this.courseService
+            .getCourses()
+            .subscribe({
+
+                next: courses =&gt; {
+
+                    this.courses = courses;
+
+                },
+
+                error: error =&gt; {
+
+                    console.error(error);
+
+                }
+
+            });
+
+    }
+
+}</code></pre>
+
+        </div>
+
+
+        <div class="output-box mt-3">
+
+            <div class="student-preview">
+
+                <h4>
+                    CIIT Training Institute
+                </h4>
+
+                <p>
+                    Java Full Stack
+                </p>
+
+                <p>
+                    .NET Full Stack
+                </p>
+
+                <p>
+                    Python Full Stack
+                </p>
+
+                <p class="mb-0">
+                    Courses received from backend API.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Connection Checklist -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            API Connection Checklist
+        </h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    1
+                </div>
+
+                <h5>
+                    API URL
+                </h5>
+
+                <p>
+                    Confirm the backend endpoint is correct and reachable.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    2
+                </div>
+
+                <h5>
+                    HttpClient
+                </h5>
+
+                <p>
+                    Configure HttpClient in the Angular application.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    3
+                </div>
+
+                <h5>
+                    Service
+                </h5>
+
+                <p>
+                    Place API communication methods inside a service.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    4
+                </div>
+
+                <h5>
+                    Response
+                </h5>
+
+                <p>
+                    Consume and handle the returned Observable data.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Common Problems -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Common API Connection Problems
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table syntax-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Problem
+                        </th>
+
+                        <th>
+                            Possible Cause
+                        </th>
+
+                        <th>
+                            What to Check
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            Request fails
+                        </td>
+
+                        <td>
+                            Incorrect URL or backend unavailable
+                        </td>
+
+                        <td>
+                            API endpoint and backend server
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            CORS error
+                        </td>
+
+                        <td>
+                            Backend cross-origin configuration
+                        </td>
+
+                        <td>
+                            Backend CORS policy
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            404
+                        </td>
+
+                        <td>
+                            Endpoint not found
+                        </td>
+
+                        <td>
+                            Route and API URL
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            401 / 403
+                        </td>
+
+                        <td>
+                            Authentication or authorization issue
+                        </td>
+
+                        <td>
+                            Credentials and permissions
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Unexpected response
+                        </td>
+
+                        <td>
+                            Response structure differs from expected type
+                        </td>
+
+                        <td>
+                            API response and TypeScript model
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- Best Practices -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            API Connection Best Practices
+        </h2>
+
+        <ul class="best-practice-list">
+
+            <li>
+                Keep API URLs and configuration separate from UI components.
+            </li>
+
+            <li>
+                Put HTTP communication inside dedicated Angular services.
+            </li>
+
+            <li>
+                Use TypeScript interfaces or types for structured API data.
+            </li>
+
+            <li>
+                Handle success and error responses appropriately.
+            </li>
+
+            <li>
+                Avoid duplicating the same API URL and communication logic
+                across multiple components.
+            </li>
+
+            <li>
+                Check backend routing, CORS and authentication settings when
+                requests fail.
+            </li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- Important Points -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Important Points
+        </h2>
+
+        <div class="best-practice-list">
+
+            <div class="info-card mb-3">
+
+                <strong>
+                    1. HttpClient Handles HTTP Requests
+                </strong>
+
+                <p class="mb-0">
+                    Angular uses HttpClient to communicate with backend
+                    HTTP APIs.
+                </p>
+
+            </div>
+
+
+            <div class="info-card mb-3">
+
+                <strong>
+                    2. Services Organize API Logic
+                </strong>
+
+                <p class="mb-0">
+                    Keeping API calls in services makes components easier
+                    to maintain.
+                </p>
+
+            </div>
+
+
+            <div class="info-card mb-3">
+
+                <strong>
+                    3. Observable Results
+                </strong>
+
+                <p class="mb-0">
+                    HttpClient methods return Observable-based results that
+                    can be consumed by the application.
+                </p>
+
+            </div>
+
+
+            <div class="info-card">
+
+                <strong>
+                    4. Backend Configuration Also Matters
+                </strong>
+
+                <p class="mb-0">
+                    A successful Angular connection also depends on correct
+                    backend routing, availability, CORS and authentication
+                    configuration when applicable.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Summary -->
+    <section class="mb-4">
+
+        <div class="summary-box">
+
+            <h4 class="fw-bold">
+                Summary
+            </h4>
+
+            <p>
+                Angular can communicate with backend REST APIs using
+                <strong>HttpClient</strong>.
+            </p>
+
+            <p>
+                A common architecture is
+                <strong>
+                    Component → Service → HttpClient → API →
+                    Response
+                </strong>.
+            </p>
+
+            <p class="mb-0">
+                The API connection can be used for GET, POST, PUT and DELETE
+                operations. In the next topic, we will learn how to
+                <strong>Consume API Data</strong> inside Angular components.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Navigation -->
+    <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+
+        <a class="btn btn-outline-secondary"
+           href="@Url.Action("Index", "APIIntegration", new { area = "Angular" })">
+
+            ← API Integration
+
+        </a>
+
+
+        <a class="btn btn-primary"
+           href="@Url.Action("ConsumingAPI", "APIIntegration", new { area = "Angular" })">
+
+            Consuming API →
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<style>
+
+    .info-card {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-left: 5px solid #4c1d95;
+        border-radius: 10px;
+        padding: 20px;
+        line-height: 1.7;
+        color: #334155;
+    }
+
+
+    .syntax-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        flex-wrap: wrap;
+        margin: 25px 0;
+    }
+
+
+    .syntax-box {
+        background: linear-gradient( 135deg, #2e1065, #4c1d95 );
+        color: white;
+        padding: 18px 25px;
+        border-radius: 12px;
+        text-align: center;
+        min-width: 180px;
+        box-shadow: 0 5px 15px rgba(76, 29, 149, 0.15);
+    }
+
+
+        .syntax-box strong {
+            display: block;
+            font-size: 16px;
+        }
+
+
+        .syntax-box span {
+            display: block;
+            margin-top: 5px;
+            color: #d8c9f5;
+            font-size: 14px;
+        }
+
+
+    .syntax-arrow {
+        font-size: 28px;
+        font-weight: bold;
+        color: #4c1d95;
+    }
+
+
+    .syntax-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+
+
+    .syntax-card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 22px;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+    }
+
+
+        .syntax-card h5 {
+            margin-top: 15px;
+            font-weight: 700;
+            color: #2e1065;
+        }
+
+
+        .syntax-card p {
+            color: #64748b;
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+
+
+    .syntax-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: #ede9fe;
+        color: #4c1d95;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 18px;
+        margin: 0 auto;
+    }
+
+
+    .code-card {
+        background: #0f172a;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(15, 23, 42, 0.10);
+    }
+
+
+    .code-title {
+        background: #1e293b;
+        color: #ffffff;
+        padding: 12px 18px;
+        font-weight: 700;
+        font-size: 14px;
+    }
+
+
+    .code-card pre {
+        margin: 0;
+        padding: 20px;
+        overflow-x: auto;
+    }
+
+
+    .code-card code {
+        color: #f8fafc;
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+
+    .output-box {
+        background: #f8fafc;
+        border: 1px solid #ddd6fe;
+        border-radius: 12px;
+        padding: 20px;
+    }
+
+
+    .student-preview {
+        background: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        padding: 20px;
+    }
+
+
+        .student-preview h4 {
+            color: #2e1065;
+            font-weight: 700;
+        }
+
+
+        .student-preview p {
+            color: #64748b;
+        }
+
+
+    .syntax-table {
+        width: 100%;
+        margin-bottom: 0;
+        border: 1px solid #e2e8f0;
+    }
+
+
+        .syntax-table thead th {
+            background: #2e1065;
+            color: white;
+            padding: 14px;
+            border-color: #4c1d95;
+        }
+
+
+        .syntax-table tbody td {
+            padding: 14px;
+            vertical-align: middle;
+            color: #334155;
+            border-color: #e2e8f0;
+        }
+
+
+        .syntax-table tbody tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+
+        .syntax-table code {
+            color: #4c1d95;
+            font-weight: 600;
+        }
+
+
+    .best-practice-list {
+        margin: 0;
+        padding-left: 20px;
+    }
+
+
+        .best-practice-list li {
+            margin-bottom: 10px;
+            color: #334155;
+            line-height: 1.6;
+        }
+
+
+    .summary-box {
+        background: #cfe2ff;
+        color: #084298;
+        border-radius: 10px;
+        padding: 22px;
+        border: 1px solid #b6d4fe;
+    }
+
+
+        .summary-box h4 {
+            margin-bottom: 12px;
+        }
+
+
+    @@media (max-width: 991px) {
+
+        .syntax-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .syntax-flow {
+            gap: 12px;
+        }
+
+        .syntax-box {
+            min-width: 160px;
+        }
+    }
+
+
+    @@media (max-width: 576px) {
+
+        .syntax-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .syntax-flow {
+            flex-direction: column;
+        }
+
+        .syntax-arrow {
+            transform: rotate(90deg);
+        }
+
+        .syntax-box {
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .code-card pre {
+            padding: 15px;
+        }
+
+        .code-card code {
+            font-size: 13px;
+        }
+    }
+
+</style>

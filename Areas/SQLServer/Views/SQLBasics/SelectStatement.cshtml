@@ -1,0 +1,612 @@
+﻿@{
+    ViewData["Title"] = "SELECT Statement";
+}
+
+<section>
+
+    <!-- PAGE INTRODUCTION -->
+    <div class="mb-5">
+
+        <h1 class="fw-bold mb-3">
+            SELECT Statement
+        </h1>
+
+        <p class="lead text-muted">
+            The SELECT statement is used to retrieve data from one or
+            more tables in SQL Server. It is one of the most frequently
+            used SQL statements.
+        </p>
+
+        <p>
+            With SELECT, we can retrieve all columns, specific columns,
+            filtered records, sorted records and a limited set of rows.
+        </p>
+
+    </div>
+
+
+    <!-- BASIC SYNTAX -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Basic SELECT Syntax
+        </h2>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT column_name
+FROM table_name;</code></pre>
+
+        </div>
+
+        <p class="mt-3">
+            The <strong>SELECT</strong> keyword specifies the columns
+            that we want to retrieve, while <strong>FROM</strong>
+            specifies the table from which the data should be retrieved.
+        </p>
+
+    </section>
+
+
+    <!-- SAMPLE TABLE -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Sample Students Table
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>StudentId</th>
+                        <th>StudentName</th>
+                        <th>Age</th>
+                        <th>City</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>101</td>
+                        <td>Rahul</td>
+                        <td>22</td>
+                        <td>Pune</td>
+                    </tr>
+
+                    <tr>
+                        <td>102</td>
+                        <td>Priya</td>
+                        <td>23</td>
+                        <td>Mumbai</td>
+                    </tr>
+
+                    <tr>
+                        <td>103</td>
+                        <td>Amit</td>
+                        <td>21</td>
+                        <td>Pune</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- SELECT ALL -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            SELECT All Columns
+        </h2>
+
+        <p>
+            The asterisk <strong>*</strong> is used when we want to
+            retrieve all columns from a table.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT *
+FROM Students;</code></pre>
+
+        </div>
+
+        <h5 class="fw-bold mt-4">
+            Output
+        </h5>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>StudentId</th>
+                        <th>StudentName</th>
+                        <th>Age</th>
+                        <th>City</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>101</td>
+                        <td>Rahul</td>
+                        <td>22</td>
+                        <td>Pune</td>
+                    </tr>
+
+                    <tr>
+                        <td>102</td>
+                        <td>Priya</td>
+                        <td>23</td>
+                        <td>Mumbai</td>
+                    </tr>
+
+                    <tr>
+                        <td>103</td>
+                        <td>Amit</td>
+                        <td>21</td>
+                        <td>Pune</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- SELECT SPECIFIC COLUMNS -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            SELECT Specific Columns
+        </h2>
+
+        <p>
+            We can retrieve only the columns that are required instead
+            of selecting every column.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT StudentName, Age
+FROM Students;</code></pre>
+
+        </div>
+
+        <h5 class="fw-bold mt-4">
+            Output
+        </h5>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>StudentName</th>
+                        <th>Age</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>Rahul</td>
+                        <td>22</td>
+                    </tr>
+
+                    <tr>
+                        <td>Priya</td>
+                        <td>23</td>
+                    </tr>
+
+                    <tr>
+                        <td>Amit</td>
+                        <td>21</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- WHERE -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            SELECT with WHERE
+        </h2>
+
+        <p>
+            The WHERE clause is used to filter records based on a
+            specified condition.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT *
+FROM Students
+WHERE Age &gt; 21;</code></pre>
+
+        </div>
+
+        <h5 class="fw-bold mt-4">
+            Output
+        </h5>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>StudentId</th>
+                        <th>StudentName</th>
+                        <th>Age</th>
+                        <th>City</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>101</td>
+                        <td>Rahul</td>
+                        <td>22</td>
+                        <td>Pune</td>
+                    </tr>
+
+                    <tr>
+                        <td>102</td>
+                        <td>Priya</td>
+                        <td>23</td>
+                        <td>Mumbai</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- AND -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            SELECT with AND
+        </h2>
+
+        <p>
+            The AND operator is used when multiple conditions must be
+            satisfied.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT *
+FROM Students
+WHERE Age &gt; 20
+AND City = 'Pune';</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- OR -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            SELECT with OR
+        </h2>
+
+        <p>
+            The OR operator is used when at least one of multiple
+            conditions should be satisfied.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT *
+FROM Students
+WHERE City = 'Pune'
+OR City = 'Mumbai';</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- ORDER BY -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            SELECT with ORDER BY
+        </h2>
+
+        <p>
+            ORDER BY is used to sort the result in ascending or
+            descending order.
+        </p>
+
+        <h5 class="fw-bold mt-4">
+            Ascending Order
+        </h5>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT *
+FROM Students
+ORDER BY Age ASC;</code></pre>
+
+        </div>
+
+        <h5 class="fw-bold mt-4">
+            Descending Order
+        </h5>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT *
+FROM Students
+ORDER BY Age DESC;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- DISTINCT -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            SELECT DISTINCT
+        </h2>
+
+        <p>
+            DISTINCT is used to return only unique values from the
+            selected column or columns.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT DISTINCT City
+FROM Students;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- TOP -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            SELECT TOP
+        </h2>
+
+        <p>
+            TOP is used to return a specified number of rows from
+            the result.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT TOP 2 *
+FROM Students;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- SELECT FLOW -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            SELECT Statement Flow
+        </h2>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>
+SELECT
+   ↓
+FROM
+   ↓
+WHERE
+   ↓
+ORDER BY
+   ↓
+Result
+            </code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- QUICK REFERENCE -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            SELECT Statement Quick Reference
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>Clause / Keyword</th>
+                        <th>Purpose</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td><strong>SELECT</strong></td>
+                        <td>Specifies the columns to retrieve.</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>FROM</strong></td>
+                        <td>Specifies the table.</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>WHERE</strong></td>
+                        <td>Filters records.</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>ORDER BY</strong></td>
+                        <td>Sorts the result.</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>DISTINCT</strong></td>
+                        <td>Returns unique values.</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>TOP</strong></td>
+                        <td>Returns a specified number of rows.</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- SUMMARY -->
+    <section class="mb-4">
+
+        <div class="alert alert-primary border-0">
+
+            <h5 class="fw-bold">
+                Summary
+            </h5>
+
+            <p class="mb-0">
+                The SELECT statement is used to retrieve data from
+                SQL Server tables. We learned how to select all or
+                specific columns, filter records using WHERE, combine
+                conditions using AND and OR, sort results using
+                ORDER BY, retrieve unique values using DISTINCT and
+                limit the number of rows using TOP.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- PREVIOUS / NEXT -->
+
+    <div class="d-flex justify-content-between align-items-center
+                mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/SQLBasics/SQLCommandCategories"
+           class="btn btn-outline-primary">
+
+            ← Previous: SQL Command Categories
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/SQLBasics/InsertUpdateDelete"
+           class="btn btn-primary">
+
+            Next: INSERT, UPDATE &amp; DELETE →
+
+        </a>
+
+    </div>
+
+</section>

@@ -1,0 +1,257 @@
+@{
+    Layout = "~/Areas/Jenkins/Views/Shared/JenkinsLayout.cshtml";
+    ViewData["Title"] = "S3 Artifact Storage";
+}
+
+<style>
+    #s3-artifact-storage-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+    #s3-artifact-storage-page pre code {
+        background: transparent !important;
+        color: #ffffff !important;
+    }
+
+    #s3-artifact-storage-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #s3-artifact-storage-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+    #s3-artifact-storage-page .info-card h5 {
+        color: #5b21b6;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+
+    #s3-artifact-storage-page .example-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+    }
+</style>
+
+<main id="s3-artifact-storage-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Jenkins/Views/Shared/JenkinsTopics.cshtml"
+            )
+
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+
+                <h1 class="fw-bold">
+                    S3 Artifact Storage
+                </h1>
+
+                <p class="lead">
+                    Learn the concepts, configuration, commands, and practical workflow required to securely archive pipeline build assets using Amazon S3 in a real Jenkins environment.
+                </p>
+
+            </div>
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    What is S3 Artifact Storage?
+                </h2>
+
+                <p>
+                    <strong>S3 Artifact Storage</strong> represents the practice of decoupling long-term build artifacts (like compiled `.war`/`.jar` distributions, execution reports, or logs) from local Jenkins storage drives and shifting them into **Amazon Simple Storage Service (S3)** object storage buckets.
+                </p>
+
+                <p>
+                    In ancient Jenkins structures, file output was preserved directly on the controller host master hard drive. In Phase 5 cloud architectures, local archiving is a heavy anti-pattern because controller clusters are designed to be entirely stateless and ephemeral.
+                </p>
+
+                <div class="alert alert-info">
+                    <strong>Simple Definition:</strong> S3 Artifact Storage automates the collection and external safe-keeping of pipeline execution outputs inside cloud storage, ensuring build binaries remain persistent even if your automated Jenkins cluster tears down.
+                </div>
+
+            </div>
+
+            <!-- CORE QUESTION A: WHY IS IT NEEDED? -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold text-dark">
+                    Why Is S3 Artifact Storage Needed?
+                </h2>
+
+                <p>
+                    Transitioning to external cloud storage resolves three critical engineering pain points encountered during enterprise production scaling:
+                </p>
+
+                <div class="bg-light p-3 rounded border mb-3">
+                    <ul class="mb-0">
+                        <li class="mb-2"><strong>Prevents Controller Disk Saturation:</strong> High-volume pipeline builds (like multiple large Docker images or large dependencies packaged hourly) will easily saturate a server hard drive over time, crashing active automation processes.</li>
+                        <li class="mb-2"><strong>Supports Cloud-Native Architecture:</strong> Modern agents and controllers inside environments like Kubernetes scale up and down dynamically. When a container worker node terminates, any local files are permanently destroyed unless safely offloaded.</li>
+                        <li><strong>Simplifies Multi-Region Deployments:</strong> Centralizing binaries inside an S3 bucket allows down-stream deployment processes or separate target regions to pull verified, un-tampered artifacts asynchronously.</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- CORE QUESTION B: HOW TO STORE ARTIFACTS? -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold text-dark">
+                    How To Store Artifacts in Amazon S3?
+                </h2>
+
+                <p>
+                    Automating cloud persistence follows a standard four-part execution strategy within your CI/CD automation design:
+                </p>
+
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>1. Prepare the Bucket Context</h5>
+                            <p class="mb-0 small text-muted">Create a private Amazon S3 storage container with structural folder naming frameworks and apply strict object lifecycle rules to auto-delete archaic debug logs.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>2. Link Vault Access Tokens</h5>
+                            <p class="mb-0 small text-muted">Map your target IAM system account secret configurations inside the Jenkins credentials locker profile using secure system identifiers.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>3. Map the S3 Steps Plugin</h5>
+                            <p class="mb-0 small text-muted">Incorporate standard pipeline plugin hooks like <code>s3Upload</code> to isolate and package target binary files patterns automatically.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>4. Clear Execution Workspaces</h5>
+                            <p class="mb-0 small text-muted">Leverage post-actions like <code>cleanWs()</code> to wipe out duplicate target payloads locally, ensuring clean node agent hard drives.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- S3 ARTIFACT STORAGE IMAGE ATTACHMENT -->
+            <div class="my-4 text-center bg-light rounded shadow-sm border p-3">
+                <img src="~/Images/Jenkins/s3-artifact-storage-flow.jpg"
+                     asp-append-version="true"
+                     alt="Jenkins to Amazon S3 Artifact Archival Workflow Diagram"
+                     class="img-fluid rounded"
+                     style="max-width: 100%; height: auto;" />
+                <div class="form-text mt-2 text-muted small">
+                    Visualizing the continuous delivery model showing local staging, secure AWS plugin authentication, cloud object storage parsing, and dynamic post-build node workspace pruning.
+                </div>
+            </div>
+
+
+
+
+            <!-- KEY CONCEPTS -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Key Architectural Concepts
+                </h2>
+
+                <div class="row g-3">
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>S3 Upload Pattern Synaxes</h5>
+                            <p class="mb-0">The Pipeline S3 Steps plugin introduces clean declarative wrapper frameworks like <code>s3Upload</code> which accept paths, destination bucket targets, and tracking configuration matrices seamlessly.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Object Lifecycle Policies</h5>
+                            <p class="mb-0">Instead of retaining debugging binaries indefinitely, engineers implement bucket rules to transition artifacts automatically to lower cost storage levels like Glacier or execute permanent pruning passes after 30 days.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- EXAMPLE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Practical Jenkins Example
+                </h2>
+
+                <pre><code>pipeline {
+    agent any
+    stages {
+        stage(&#x27;Learn S3 Artifact Storage&#x27;) {
+            steps {
+                echo &#x27;Jenkins lesson: S3 Artifact Storage &#x27; 
+            }
+        }
+    }
+}</code></pre>
+
+            </div>
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Practice Exercise
+                </h2>
+
+                <ol>
+                    <li class="mb-2">Open Jenkins and identify the relevant configuration area.</li>
+                    <li class="mb-2">Create or update a small test job or pipeline for this lesson.</li>
+                    <li class="mb-2">Run the job and inspect the Console Output.</li>
+                    <li>Record what changed and verify the result.</li>
+                </ol>
+
+            </div>
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+                <h2 class="h4 fw-bold">Summary</h2>
+                <p class="mb-0">You have completed the <strong>S3 Artifact Storage</strong> lesson. Continue through the syllabus to build the Jenkins skills required for real CI/CD automation.</p>
+            </div>
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+                <a class="btn btn-outline-primary" href="@Url.Action("Ec2Deployment", "CloudDevOps", new { area = "Jenkins" })">← Previous: EC2 Deployment</a>
+                <a class="btn btn-primary" href="@Url.Action("KubernetesAgents", "CloudDevOps", new { area = "Jenkins" })">Next: Kubernetes Pod Agents →</a>
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

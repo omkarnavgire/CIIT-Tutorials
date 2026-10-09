@@ -1,0 +1,882 @@
+﻿@{
+    ViewData["Title"] = "Other SQL Server Data Types";
+}
+
+<section>
+
+    <!-- =====================================================
+         PAGE INTRODUCTION
+         ===================================================== -->
+
+    <div class="mb-5">
+
+        <h1 class="fw-bold mb-3">
+            Other SQL Server Data Types
+        </h1>
+
+        <p class="lead text-muted">
+            SQL Server provides several other data types for storing
+            Boolean values, monetary values, unique identifiers, binary
+            data, XML documents and other specialized information.
+        </p>
+
+    </div>
+
+
+    <!-- =====================================================
+         WHAT ARE OTHER DATA TYPES?
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h3 class="fw-bold mb-3">
+            What are Other Data Types?
+        </h3>
+
+        <p>
+            Apart from numeric, character, date and time data types,
+            SQL Server provides specialized data types for specific
+            application requirements.
+        </p>
+
+        <p>
+            These data types are useful when an application needs to
+            store Boolean values, currency, globally unique identifiers,
+            binary files, XML documents or other specialized information.
+        </p>
+
+    </section>
+
+
+    <!-- =====================================================
+         VISUAL DIAGRAM
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h3 class="fw-bold mb-4">
+            SQL Server Other Data Types
+        </h3>
+
+        <div class="row g-3">
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="border rounded-3 p-4 h-100 bg-light">
+
+                    <h5 class="fw-bold">
+                        BIT
+                    </h5>
+
+                    <p class="mb-0 text-muted">
+                        Stores Boolean values such as 0 and 1.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="border rounded-3 p-4 h-100 bg-light">
+
+                    <h5 class="fw-bold">
+                        MONEY
+                    </h5>
+
+                    <p class="mb-0 text-muted">
+                        Stores monetary values.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="border rounded-3 p-4 h-100 bg-light">
+
+                    <h5 class="fw-bold">
+                        UNIQUEIDENTIFIER
+                    </h5>
+
+                    <p class="mb-0 text-muted">
+                        Stores globally unique identifiers.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="border rounded-3 p-4 h-100 bg-light">
+
+                    <h5 class="fw-bold">
+                        BINARY / VARBINARY
+                    </h5>
+
+                    <p class="mb-0 text-muted">
+                        Stores binary data.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="border rounded-3 p-4 h-100 bg-light">
+
+                    <h5 class="fw-bold">
+                        XML
+                    </h5>
+
+                    <p class="mb-0 text-muted">
+                        Stores XML formatted data.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="border rounded-3 p-4 h-100 bg-light">
+
+                    <h5 class="fw-bold">
+                        SQL_VARIANT
+                    </h5>
+
+                    <p class="mb-0 text-muted">
+                        Stores values of different SQL Server data types.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         DATA TYPE TABLE
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h3 class="fw-bold mb-3">
+            Common Other Data Types
+        </h3>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped align-middle">
+
+                <thead class="table-dark">
+
+                    <tr>
+
+                        <th>
+                            Data Type
+                        </th>
+
+                        <th>
+                            Purpose
+                        </th>
+
+                        <th>
+                            Example
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            <strong>BIT</strong>
+                        </td>
+
+                        <td>
+                            Stores Boolean or yes/no type values.
+                        </td>
+
+                        <td>
+                            0 / 1
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            <strong>MONEY</strong>
+                        </td>
+
+                        <td>
+                            Stores monetary values.
+                        </td>
+
+                        <td>
+                            45000.50
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            <strong>SMALLMONEY</strong>
+                        </td>
+
+                        <td>
+                            Stores smaller-range monetary values.
+                        </td>
+
+                        <td>
+                            1500.25
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            <strong>UNIQUEIDENTIFIER</strong>
+                        </td>
+
+                        <td>
+                            Stores GUID values.
+                        </td>
+
+                        <td>
+                            6F9619FF-8B86-D011-B42D-00C04FC964FF
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            <strong>BINARY</strong>
+                        </td>
+
+                        <td>
+                            Stores fixed-length binary data.
+                        </td>
+
+                        <td>
+                            0x123456
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            <strong>VARBINARY</strong>
+                        </td>
+
+                        <td>
+                            Stores variable-length binary data.
+                        </td>
+
+                        <td>
+                            0x1234567890
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            <strong>XML</strong>
+                        </td>
+
+                        <td>
+                            Stores XML documents and fragments.
+                        </td>
+
+                        <td>
+                            &lt;Student&gt;...&lt;/Student&gt;
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            <strong>SQL_VARIANT</strong>
+                        </td>
+
+                        <td>
+                            Stores values of different supported
+                            SQL Server data types.
+                        </td>
+
+                        <td>
+                            100 / 'Hello'
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         BIT
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h3 class="fw-bold mb-3">
+            BIT Data Type
+        </h3>
+
+        <p>
+            The <strong>BIT</strong> data type is commonly used to store
+            Boolean values such as Yes/No, True/False or Active/Inactive.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>CREATE TABLE Students
+(
+    StudentId INT,
+    StudentName VARCHAR(100),
+    IsActive BIT
+);</code></pre>
+
+        </div>
+
+        <p>
+            A value of <strong>1</strong> can represent true or active,
+            while <strong>0</strong> can represent false or inactive.
+        </p>
+
+    </section>
+
+
+    <!-- =====================================================
+         MONEY
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h3 class="fw-bold mb-3">
+            MONEY and SMALLMONEY
+        </h3>
+
+        <p>
+            The <strong>MONEY</strong> data type is used to store
+            monetary values such as salary, fees, price and transaction
+            amounts.
+        </p>
+
+        <p>
+            <strong>SMALLMONEY</strong> is used when a smaller monetary
+            range is sufficient.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>CREATE TABLE Employees
+(
+    EmployeeId INT,
+    EmployeeName VARCHAR(100),
+    Salary MONEY
+);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         UNIQUEIDENTIFIER
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h3 class="fw-bold mb-3">
+            UNIQUEIDENTIFIER
+        </h3>
+
+        <p>
+            The <strong>UNIQUEIDENTIFIER</strong> data type stores a
+            globally unique identifier, commonly called a GUID.
+        </p>
+
+        <p>
+            It is useful when records need identifiers that are unique
+            across different systems or databases.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>CREATE TABLE Customers
+(
+    CustomerId UNIQUEIDENTIFIER,
+    CustomerName VARCHAR(100)
+);
+
+INSERT INTO Customers
+(
+    CustomerId,
+    CustomerName
+)
+VALUES
+(
+    NEWID(),
+    'Rahul'
+);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         BINARY / VARBINARY
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h3 class="fw-bold mb-3">
+            BINARY and VARBINARY
+        </h3>
+
+        <p>
+            <strong>BINARY</strong> and <strong>VARBINARY</strong> are
+            used to store binary data.
+        </p>
+
+        <p>
+            They can be useful for storing binary information such as
+            hashes or other application-specific binary values.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>CREATE TABLE Files
+(
+    FileId INT,
+    FileData VARBINARY(MAX)
+);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         XML
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h3 class="fw-bold mb-3">
+            XML Data Type
+        </h3>
+
+        <p>
+            The <strong>XML</strong> data type is used to store XML
+            documents and XML fragments.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>CREATE TABLE StudentDetails
+(
+    StudentId INT,
+    StudentData XML
+);</code></pre>
+
+        </div>
+
+        <p>
+            Example XML value:
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                XML
+            </div>
+
+            <pre class="mb-0"><code>&lt;Student&gt;
+    &lt;Name&gt;Rahul&lt;/Name&gt;
+    &lt;City&gt;Pune&lt;/City&gt;
+&lt;/Student&gt;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         SQL_VARIANT
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h3 class="fw-bold mb-3">
+            SQL_VARIANT
+        </h3>
+
+        <p>
+            The <strong>SQL_VARIANT</strong> data type can store values
+            of several supported SQL Server data types.
+        </p>
+
+        <p>
+            It should be used carefully because it is intended for
+            specialized scenarios rather than normal application columns.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>CREATE TABLE DynamicValues
+(
+    Id INT,
+    ValueData SQL_VARIANT
+);
+
+INSERT INTO DynamicValues
+VALUES
+(1, 100);
+
+INSERT INTO DynamicValues
+VALUES
+(2, 'Hello');</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         COMPLETE EXAMPLE
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h3 class="fw-bold mb-3">
+            Practical Example
+        </h3>
+
+        <p>
+            The following example demonstrates several specialized
+            data types in a single table.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>CREATE TABLE EmployeeDetails
+(
+    EmployeeId INT,
+    EmployeeName VARCHAR(100),
+    IsActive BIT,
+    Salary MONEY,
+    EmployeeGuid UNIQUEIDENTIFIER,
+    EmployeeData XML
+);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         INSERT EXAMPLE
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h3 class="fw-bold mb-3">
+            Insert Data
+        </h3>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>INSERT INTO EmployeeDetails
+(
+    EmployeeId,
+    EmployeeName,
+    IsActive,
+    Salary,
+    EmployeeGuid,
+    EmployeeData
+)
+VALUES
+(
+    1,
+    'Rahul',
+    1,
+    45000.50,
+    NEWID(),
+    '&lt;Employee&gt;
+        &lt;Department&gt;IT&lt;/Department&gt;
+        &lt;City&gt;Pune&lt;/City&gt;
+     &lt;/Employee&gt;'
+);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         OUTPUT
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h3 class="fw-bold mb-3">
+            Output
+        </h3>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped align-middle">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>EmployeeId</th>
+                        <th>EmployeeName</th>
+                        <th>IsActive</th>
+                        <th>Salary</th>
+                        <th>EmployeeGuid</th>
+                        <th>EmployeeData</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>1</td>
+
+                        <td>Rahul</td>
+
+                        <td>1</td>
+
+                        <td>45000.50</td>
+
+                        <td>
+                            6F9619FF-8B86-D011-B42D-00C04FC964FF
+                        </td>
+
+                        <td>
+                            &lt;Employee&gt;...&lt;/Employee&gt;
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <p class="mt-3">
+            The exact GUID value generated by <strong>NEWID()</strong>
+            will be different each time.
+        </p>
+
+    </section>
+
+
+    <!-- =====================================================
+         WHEN TO USE
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h3 class="fw-bold mb-3">
+            When Should We Use These Data Types?
+        </h3>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>Requirement</th>
+                        <th>Recommended Type</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>True / False or Active / Inactive</td>
+                        <td><strong>BIT</strong></td>
+                    </tr>
+
+                    <tr>
+                        <td>Money or currency values</td>
+                        <td><strong>MONEY / SMALLMONEY</strong></td>
+                    </tr>
+
+                    <tr>
+                        <td>Globally unique identifier</td>
+                        <td><strong>UNIQUEIDENTIFIER</strong></td>
+                    </tr>
+
+                    <tr>
+                        <td>Binary information</td>
+                        <td><strong>VARBINARY</strong></td>
+                    </tr>
+
+                    <tr>
+                        <td>XML documents</td>
+                        <td><strong>XML</strong></td>
+                    </tr>
+
+                    <tr>
+                        <td>Specialized mixed-type values</td>
+                        <td><strong>SQL_VARIANT</strong></td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         IMPORTANT NOTE
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <div class="alert alert-warning border-0">
+
+            <h5 class="fw-bold">
+                Important
+            </h5>
+
+            <p class="mb-0">
+                Always choose a data type according to the actual
+                requirement of the application. Specialized data types
+                should be used only when they provide a clear benefit
+                for the data being stored.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         SUMMARY
+         ===================================================== -->
+
+    <section class="mb-4">
+
+        <div class="alert alert-primary border-0">
+
+            <h5 class="fw-bold">
+                Summary
+            </h5>
+
+            <p class="mb-0">
+                In this section, we learned about several specialized
+                SQL Server data types including BIT, MONEY, SMALLMONEY,
+                UNIQUEIDENTIFIER, BINARY, VARBINARY, XML and SQL_VARIANT.
+                We also learned their practical uses and examples.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         PREVIOUS / NEXT
+         ===================================================== -->
+<!-- PREVIOUS / NEXT -->
+
+<div class="d-flex justify-content-between align-items-center
+            mt-5 pt-4 border-top">
+
+    <!-- PREVIOUS -->
+
+    <a href="/SQLServer/DataTypes/DateTimeDataTypes"
+       class="btn btn-outline-primary">
+
+        ← Previous: Date & Time Data Types
+
+    </a>
+
+
+    <!-- NEXT -->
+
+    <a href="/SQLServer/DatabaseAndTables/Index"
+       class="btn btn-primary">
+
+        Next: Database & Tables Introduction →
+
+    </a>
+
+</div>
+
+</section>

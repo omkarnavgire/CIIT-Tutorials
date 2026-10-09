@@ -1,0 +1,210 @@
+@{
+    Layout = "~/Areas/Jenkins/Views/Shared/JenkinsLayout.cshtml";
+    ViewData["Title"] = "Jenkins Shared Libraries";
+}
+
+<style>
+    #shared-libraries-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #shared-libraries-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #shared-libraries-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #shared-libraries-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #shared-libraries-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+    #shared-libraries-page .example-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+    }
+</style>
+
+<main id="shared-libraries-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/Jenkins/Views/Shared/JenkinsTopics.cshtml")
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+                <h1 class="fw-bold">Jenkins Shared Libraries</h1>
+                <p class="lead">
+                    Enforce DRY (Don't Repeat Yourself) pipeline engineering by centralizing re-usable Groovy logic, custom build steps, and standardized corporate automation patterns.
+                </p>
+            </div>
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">What are Shared Libraries?</h2>
+                <p>
+                    As organizations scale out hundreds of application deployment pipelines, copying and pasting similar pipeline configurations across code repositories leads to management failure, configuration drift, and security auditing blindspots.
+                </p>
+                <p>
+                    <strong>Jenkins Shared Libraries</strong> provide a centralized mechanism to share modular Groovy code across completely distinct pipelines. Stored inside an external Git repository, these libraries allow platform teams to construct unified corporate pipeline frameworks, encapsulate complex shell invocations, and mask specialized logic behind simple, single-line global step commands.
+                </p>
+                <div class="alert alert-info">
+                    <strong>Simple Definition:</strong> A Shared Library is an external version-controlled repository populated with Groovy files that dynamically injects custom pipeline steps, standard global functions, and shared object classes into any running Jenkins pipeline instance.
+                </div>
+            </div>
+
+            <!-- KEY CONCEPTS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Standard Layout & Execution</h2>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Directory Blueprint Architecture</h5>
+                            <p class="mb-0">Shared repositories must match a strict three-tier layout: `src/` for classic object-oriented Groovy helper classes, `vars/` for custom global steps and variables exposed directly to pipelines, and `resources/` for static file assets (JSON schema, XML config templates).</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Dynamic Version Scoping</h5>
+                            <p class="mb-0">Pipelines import libraries via a version specifier, such as a Git tag, branch, or specific commit hash (`@@Library('my-lib@@v1.2.0')`). This isolates pipelines from unvetted updates and breaks, allowing controlled blue-green framework evolution.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Global Variable Custom Steps</h5>
+                            <p class="mb-0">Any Groovy script saved within the `vars/` directory defines a globally accessible method matching the filename. Defining a `call(Map config)` block inside `vars/buildApp.groovy` allows multiple applications to use `buildApp(type: 'maven')` seamlessly.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Implicit vs. Explicit Inclusion</h5>
+                            <p class="mb-0">Libraries can be marked as *Load Implicitly* within system administration configurations to run automatically on all pipelines, or they can be declared explicitly inside specific Jenkinsfiles via the `@@Library` annotation block.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXAMPLE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Shared Library Implementation Blueprint</h2>
+                <p>
+                    Below is an enterprise configuration pattern showing a custom global step definition file, alongside a declarative `Jenkinsfile` consuming that custom wrapper step:
+                </p>
+
+                <h6 class="fw-bold mt-3 text-secondary">1. Custom Global Variable Step File (`vars/standardNotify.groovy`)</h6>
+                <pre><code>// vars/standardNotify.groovy
+def call(Map config) {
+    def status = config.get('status', 'SUCCESS')
+    def channel = config.get('channel', '#ci-alerts')
+
+
+
+
+
+
+
+
+
+
+    echo "Sending standardized enterprise notifications to \${channel}..."
+    if (status == 'FAILURE') {
+        echo "[ALERT] Execution failure detected! Notifying platform operations."
+        // actual slackSend or email steps would be placed here
+    } else {
+        echo "[INFO] Execution terminated successfully."
+    }
+}</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <h6 class="fw-bold mt-4 text-secondary">2. Declarative Pipeline Consuming the Variable</h6>
+<pre><code>@@Library('enterprise-pipeline-framework@@v3.1') _
+
+pipeline {
+    agent any
+    stages {
+        stage('Compile & Test Execution') {
+            steps {
+                echo 'Running basic building processes...'
+            }
+        }
+    }
+    post {
+        success {
+            // Invoking our custom global step directly from the library
+            standardNotify status: 'SUCCESS', channel: '#delivery-stream'
+        }
+        failure {
+            standardNotify status: 'FAILURE', channel: '#delivery-stream'
+        }
+    }
+}</code></pre>
+                </div>
+
+            <!-- PRACTICE -->
+        <div class="mb-4">
+                <h2 class="h3 fw-bold">Shared Library Exercise</h2>
+    <ol>
+                    <li class="mb-2"><strong>Explore Global Library Declarations:</strong> Go to <em>Manage Jenkins &rarr; System</em>, scroll down to the <strong>Global Pipeline Libraries</strong> section, and analyze the configured backing Git repositories.</li>
+<li class="mb-2"><strong>Build a Mock Global Variable:</strong> Create a dummy code structure with a file path of `vars/sayHello.groovy` containing a basic `def call() { echo 'Hello World' }` statement.</li>
+                    <li class="mb-2"><strong>Verify Runtime Library Compilation:</strong> Create a pipeline referencing your framework repo via `@@Library`, trigger the execution loop, and inspect the top of the <strong>Console Output</strong> log to trace the library checkout.</li>
+                    <li><strong>Investigate Sandboxing Controls:</strong> Intentionally invoke non-sandboxed Java methods (e.g., file writing helpers or runtime executions) inside a shared script to observe how the engine handles script approval challenges.</li>
+</ol>
+</div>
+
+<!-- SUMMARY -->
+<div class="alert alert-info mt-4">
+<h2 class="h4 fw-bold">Summary</h2>
+<p class="mb-0">You have completed the <strong>Shared Libraries</strong> architecture module. You now possess the foundational knowledge required to encapsulate structural execution patterns, prevent pipeline script duplication, and deploy consistent build engines at enterprise scale. Proceed to the next topic to manage code-based cluster orchestration via configuration as code.</p>
+</div>
+
+<!-- NAVIGATION -->
+<div class="d-flex justify-content-between mt-4">
+<a class="btn btn-outline-primary" href="@Url.Action("AgentSecurity", "Master", new { area = "Jenkins" })">← Previous: Agent and Controller Security</a>
+                <a class="btn btn-primary" href="@Url.Action("JCasC", "Master", new { area = "Jenkins" })">Next: Jenkins Configuration as Code →</a>
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

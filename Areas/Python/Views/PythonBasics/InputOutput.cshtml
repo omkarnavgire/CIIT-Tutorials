@@ -1,0 +1,821 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Python Input & Output";
+}
+
+<main id="tutorials" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- ================================================= -->
+        <!-- LEFT SIDEBAR -->
+        <!-- ================================================= -->
+
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+
+        </aside>
+
+
+        <!-- ================================================= -->
+        <!-- MAIN CONTENT -->
+        <!-- ================================================= -->
+
+        <section class="col-lg-9">
+
+            <div class="card shadow-sm border-0 p-4 p-md-5 mb-4">
+
+                <!-- ================================================= -->
+                <!-- PAGE TITLE -->
+                <!-- ================================================= -->
+
+                <h1 class="h1 fw-bold text-dark mt-1 mb-4">
+                    Input &amp; Output
+                </h1>
+
+                <p class="text-muted mb-4">
+                    Input and output are basic building blocks of every
+                    interactive program. Python provides the
+                    <strong>input()</strong> function to accept data from
+                    the user and the <strong>print()</strong> function to
+                    display information on the screen.
+                </p>
+
+
+                <!-- ================================================= -->
+                <!-- CIIT INTRO -->
+                <!-- ================================================= -->
+
+                <div class="alert alert-info mb-4"
+                     style="background-color:#cfe2ff; border:0; color:#123c73;">
+
+                    <strong style="color:#123c73;">
+                        CIIT Training Institute :
+                    </strong>
+
+                    <span style="color:#123c73;">
+                        Input and output concepts are used in real-world
+                        applications for collecting user information,
+                        displaying results, accepting form data, and
+                        communicating application status.
+                    </span>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- WHAT IS INPUT OUTPUT -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    What are Input and Output?
+                </h2>
+
+                <p class="text-muted mb-3">
+                    <strong>Input</strong> means receiving data from a user
+                    or another source.
+                </p>
+
+                <p class="text-muted mb-4">
+                    <strong>Output</strong> means displaying or returning
+                    information produced by a program.
+                </p>
+
+
+                <!-- ================================================= -->
+                <!-- FLOW DIAGRAM -->
+                <!-- ================================================= -->
+
+                <div class="border rounded p-4 mb-4 bg-light">
+
+                    <h3 class="h5 fw-bold text-dark text-center mb-4">
+                        Input → Processing → Output
+                    </h3>
+
+                    <div class="d-flex flex-column align-items-center gap-2">
+
+                        <div class="px-4 py-3 border rounded bg-white shadow-sm text-center"
+                             style="max-width:420px; width:100%;">
+
+                            <strong>User Input</strong>
+
+                            <br />
+
+                            <small class="text-muted">
+                                Name, Age, Marks
+                            </small>
+
+                        </div>
+
+                        <div class="fw-bold text-primary fs-4">
+                            ↓
+                        </div>
+
+                        <div class="px-4 py-3 border rounded bg-white shadow-sm text-center"
+                             style="max-width:420px; width:100%;">
+
+                            <strong>Python Program</strong>
+
+                            <br />
+
+                            <small class="text-muted">
+                                Process the data
+                            </small>
+
+                        </div>
+
+                        <div class="fw-bold text-primary fs-4">
+                            ↓
+                        </div>
+
+                        <div class="px-4 py-3 border rounded bg-white shadow-sm text-center"
+                             style="max-width:420px; width:100%;">
+
+                            <strong>Output</strong>
+
+                            <br />
+
+                            <small class="text-muted">
+                                Result displayed to user
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- PRINT -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Displaying Output using print()
+                </h2>
+
+                <p class="text-muted mb-3">
+                    The <strong>print()</strong> function is used to display
+                    text, numbers, variables, and calculated results.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>print("Hello, Python!")
+print("Welcome to CIIT Training Institute 👨‍🏫")
+print(100)</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>Hello, Python!
+Welcome to CIIT Training Institute 👨‍🏫
+100</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- VARIABLES PRINT -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Printing Variables
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Variables can be passed directly to
+                    <strong>print()</strong>.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>name = "Sam"
+age = 21
+
+print(name)
+print(age)</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- MULTIPLE VALUES -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Printing Multiple Values
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Multiple values can be passed to
+                    <strong>print()</strong>, separated by commas.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>name = "Sam"
+course = "Python"
+
+print("Name:", name, "Course:", course)</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>Name: Samadhan Course: Python</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- SEPARATOR -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Using sep with print()
+                </h2>
+
+                <p class="text-muted mb-3">
+                    The <strong>sep</strong> parameter specifies what should
+                    be placed between multiple values.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>print("CIIT", "Training", "Institute", sep=" - ")</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>CIIT - Training - Institute</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- END -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Using end with print()
+                </h2>
+
+                <p class="text-muted mb-3">
+                    By default, <strong>print()</strong> moves to a new line
+                    after displaying output. The <strong>end</strong>
+                    parameter can change this behavior.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>print("Hello", end=" ")
+print("Samadhan")</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>Hello Samadhan</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- INPUT -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Taking Input using input()
+                </h2>
+
+                <p class="text-muted mb-3">
+                    The <strong>input()</strong> function pauses the program
+                    and waits for the user to enter some information.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>name = input("Enter your name: ")
+
+print("Hello", name)</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Example
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>Enter your name: Samadhan
+Hello Samadhan</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- INPUT RETURNS STRING -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    input() Returns a String
+                </h2>
+
+                <p class="text-muted mb-3">
+                    An important point to remember is that
+                    <strong>input()</strong> returns the entered value
+                    as a string.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>age = input("Enter your age: ")
+
+print(age)
+print(type(age))</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Example Input
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>Enter your age: 25</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>25
+&lt;class 'str'&gt;</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- INTEGER INPUT -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Taking Integer Input
+                </h2>
+
+                <p class="text-muted mb-3">
+                    If the user enters a number that needs to be used in
+                    calculations, convert it using <strong>int()</strong>.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>age = int(input("Enter your age: "))
+
+print("Age:", age)
+print("Next year:", age + 1)</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Example
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>Enter your age: 25
+
+Age: 25
+Next year: 26</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- FLOAT INPUT -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Taking Float Input
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Use <strong>float()</strong> when the input contains
+                    decimal values.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>percentage = float(
+    input("Enter your percentage: ")
+)
+
+print("Percentage:", percentage)</code></pre>
+
+                </div>
+                <h3 class="h5 fw-bold text-dark mb-3">
+    Output:
+</h3>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="code-lang-tag">
+        Output
+    </div>
+
+    <pre class="mb-0"><code>Enter your percentage: 85.5
+Percentage: 85.5</code></pre>
+</div>
+
+                <!-- ================================================= -->
+                <!-- TWO INPUTS -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Accepting Multiple Inputs
+                </h2>
+
+                <p class="text-muted mb-3">
+                    A program can accept multiple values from the user
+                    using separate <strong>input()</strong> statements.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>name = input("Enter your name: ")
+city = input("Enter your city: ")
+
+print("Name:", name)
+print("City:", city)</code></pre>
+
+                </div>
+                <h3 class="h5 fw-bold text-dark mb-3">
+    Output:
+</h3>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="code-lang-tag">
+        Output
+    </div>
+
+    <pre class="mb-0"><code>Enter your name: Pradnya
+Enter your city: Pune
+Name: Pradnya
+City: Pune</code></pre>
+</div>
+
+                <!-- ================================================= -->
+                <!-- CALCULATOR -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Simple Calculator Example
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Let's combine input, type conversion, variables,
+                    operators, and output to create a simple calculator.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>number1 = float(input("Enter first number: "))
+number2 = float(input("Enter second number: "))
+
+addition = number1 + number2
+
+print("Addition:", addition)</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Example
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>Enter first number: 10
+Enter second number: 20
+
+Addition: 30.0</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- F STRING OUTPUT -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Using f-Strings for Output
+                </h2>
+
+                <p class="text-muted mb-3">
+                    f-strings provide a clean and readable way to combine
+                    variables with text.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>name = "Samadhan"
+course = "Python"
+
+print(f"My name is {name}")
+print(f"I am learning {course}")</code></pre>
+
+                </div>
+                <h3 class="h5 fw-bold text-dark mb-3">
+    Output:
+</h3>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="code-lang-tag">
+        Output
+    </div>
+
+    <pre class="mb-0"><code>My name is Samadhan
+I am learning Python</code></pre>
+</div>
+
+                <!-- ================================================= -->
+                <!-- NEWLINE -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Escape Characters
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Escape characters allow special formatting inside
+                    strings.
+                </p>
+
+                <div class="table-responsive mb-4">
+
+                    <table class="table table-bordered align-middle">
+
+                        <thead class="table-light">
+
+                            <tr>
+                                <th>Escape Character</th>
+                                <th>Purpose</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td><strong>\n</strong></td>
+                                <td>New line</td>
+                            </tr>
+
+                            <tr>
+                                <td><strong>\t</strong></td>
+                                <td>Tab space</td>
+                            </tr>
+
+                            <tr>
+                                <td><strong>\\</strong></td>
+                                <td>Backslash</td>
+                            </tr>
+
+                            <tr>
+                                <td><strong>\"</strong></td>
+                                <td>Double quote inside a string</td>
+                            </tr>
+
+                            <tr>
+                                <td><strong>\'</strong></td>
+                                <td>Single quote inside a string</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>print("CIIT Training Institute\nPython Course")</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>CIIT Training Institute
+Python Course</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- REAL WORLD EXAMPLE -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Student Example 🧑‍🎓
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Let's create a small program that accepts student
+                    information for a Python course at
+                    <strong>CIIT Training Institute</strong>.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>name = input("Enter student name: ")
+age = int(input("Enter student age: "))
+course = input("Enter course name: ")
+
+print("\n--- Student Details ---")
+print(f"Name: {name}")
+print(f"Age: {age}")
+print(f"Course: {course}")
+print("Institute: CIIT Training Institute")</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Example
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>Enter student name: Samadhan
+Enter student age: 25
+Enter course name: Python
+
+--- Student Details ---
+Name: Samadhan
+Age: 25
+Course: Python
+Institute: CIIT Training Institute</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- CIIT LEARNING POINT -->
+                <!-- ================================================= -->
+
+                <div class="alert alert-success mt-4">
+
+                    <h5 class="fw-bold">
+                        CIIT Learning Point
+                    </h5>
+
+                    <p class="mb-0">
+                        Remember the basic flow:
+                        <strong>Input → Processing → Output</strong>.
+                        The <strong>input()</strong> function collects user
+                        data, Python processes that data, and
+                        <strong>print()</strong> displays the result.
+                        Always convert numeric input when calculations
+                        are required.
+                    </p>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- SAM PRACTICE -->
+                <!-- ================================================= -->
+
+                <div class="border rounded p-4 mt-4 mb-4">
+
+                    <h3 class="h5 fw-bold text-dark mb-3">
+                        CIIT Practice Task
+                    </h3>
+
+                    <p class="text-muted mb-3">
+                        Create a Python program that accepts a student's
+                        name and marks for three subjects. Calculate the
+                        total and percentage, then display the result.
+                    </p>
+
+                    <div class="bg-dark text-light rounded p-3">
+
+                        <pre class="mb-0"><code>name = input("Enter student name: ")
+
+math = float(input("Enter Math marks: "))
+python = float(input("Enter Python marks: "))
+sql = float(input("Enter SQL marks: "))
+
+total = math + python + sql
+percentage = total / 3
+
+print("\nStudent:", name)
+print("Total:", total)
+print("Percentage:", percentage)</code></pre>
+
+                    </div>
+                    <h3 class="h5 fw-bold text-dark mb-3">
+    Output:
+</h3>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="code-lang-tag">
+        Output
+    </div>
+
+    <pre class="mb-0"><code>Enter student name: Samadhan
+Enter Math marks: 80
+Enter Python marks: 90
+Enter SQL marks: 85
+
+Student: Samadhan
+Total: 255.0
+Percentage: 85.0</code></pre>
+</div>
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- SUMMARY -->
+                <!-- ================================================= -->
+
+                <div class="alert alert-info mt-4 mb-0"
+                     style="background-color:#cfe2ff; border:0; color:#123c73;">
+
+                    <h2 class="h3 fw-bold mt-0 mb-3"
+                        style="color:#123c73;">
+
+                        Summary :
+
+                    </h2>
+
+                    <p class="mb-0"
+                       style="color:#123c73;">
+
+                        Python uses print() to display output and input()
+                        to accept data from the user. You learned how to
+                        display variables, accept string and numeric input,
+                        convert input values, use sep and end, format
+                        output with f-strings, and build simple interactive
+                        programs using the Input → Processing → Output flow.
+
+                    </p>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- NAVIGATION -->
+                <!-- ================================================= -->
+
+                <div class="d-flex justify-content-between align-items-center mt-5 pt-4 border-top">
+
+                    <a href="@Url.Action("Strings", "PythonBasics", new { area = "Python" })"
+                       class="btn btn-outline-secondary">
+
+                        ← Previous: Topic
+
+                    </a>
+
+                    <a href="@Url.Action("Index", "ControlFlow", new { area = "Python" })"
+                       class="btn btn-primary">
+
+                        Next: Topic →
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

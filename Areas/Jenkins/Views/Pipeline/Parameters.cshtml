@@ -1,0 +1,196 @@
+@{
+    Layout = "~/Areas/Jenkins/Views/Shared/JenkinsLayout.cshtml";
+    ViewData["Title"] = "Pipeline Parameters";
+}
+
+<style>
+    #pipeline-parameters-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #pipeline-parameters-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #pipeline-parameters-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #pipeline-parameters-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #pipeline-parameters-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+    #pipeline-parameters-page .example-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+    }
+</style>
+
+<main id="pipeline-parameters-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/Jenkins/Views/Shared/JenkinsTopics.cshtml")
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+                <h1 class="fw-bold">Pipeline Parameters</h1>
+                <p class="lead">
+                    Learn the concepts, syntax options, parameter types, and scoping techniques required to define code-driven runtime inputs inside your Jenkinsfile.
+                </p>
+            </div>
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">What are Pipeline Parameters?</h2>
+                <p>
+                    While Phase 2 introduced basic UI-configured job fields, **Pipeline Parameters** in a modern Declarative Jenkinsfile are defined explicitly as code. By declaring a dedicated <code>parameters</code> block at the root layer of your script, you instruct Jenkins to dynamically build its interactive user input dashboard directly from your source control asset.
+                </p>
+
+                <div class="alert alert-info my-3">
+                    <strong>Simple Definition:</strong> Pipeline Parameters are user-defined input blocks written natively into a Jenkinsfile, allowing team members to supply distinct arguments (like text strings, options, or checkboxes) right before starting a pipeline run.
+                </div>
+
+                <h3 class="h4 fw-bold mt-4">Code-Driven Parameter Types</h3>
+                <p class="mb-2">A standard declarative configuration supports several specific input types declared directly inside the root block structure:</p>
+                <ul class="mb-3">
+                    <li class="mb-1"><strong>The `string` Parameter:</strong> A plain text text box ideal for supplying freeform tracking labels, target branch tags, or custom version metadata strings.</li>
+                    <li class="mb-1"><strong>The `choice` Parameter:</strong> An explicit multi-option dropdown list layout that prevents input typos by confining user selections to approved safety values.</li>
+                    <li class="mb-1"><strong>The `booleanParam` Parameter:</strong> A standard checkbox toggle switch used to pass clean true/false conditional statements to downstream code paths.</li>
+                    <li><strong>The `text` Parameter:</strong> An expanded multi-line string input block reserved for passing longer configurations, scripts, or runtime release summary notes.</li>
+                </ul>
+            </div>
+
+            <!-- KEY CONCEPTS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Key Concepts</h2>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>First-Run Registration Lag</h5>
+                            <p class="mb-0">Understanding that when you commit a new `parameters` block to your repository, Jenkins must execute the pipeline at least once using default fallback parameters before the interactive dashboard UI updates on the server.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>The `params` Object Scope</h5>
+                            <p class="mb-0">Learning to safely query user-supplied configuration values within your stage blocks by referencing the global read-only namespace wrapper using dot notation (e.g., `params.CHOICE_NAME`).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXAMPLE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Practical Jenkins Example</h2>
+                <p>The following declarative blueprint introduces native parameter declaration blocks along with programmatic evaluation syntax rules:</p>
+                <pre><code>pipeline {
+    agent any
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // 1. Defining input configurations natively as code
+    parameters {
+        string(name: 'GIT_BRANCH', defaultValue: 'main', description: 'Target code branch repository path.')
+        choice(name: 'TARGET_ENVIRONMENT', choices: ['Development', 'Staging', 'Production'], description: 'Target deployment infrastructure node.')
+        booleanParam(name: 'SKIP_CODE_LINTING', defaultValue: false, description: 'Check box to bypass checking validation stages.')
+    }
+
+    stages {
+        stage('Initialize Custom Runtime') {
+            steps {
+                // 2. Reading dynamic arguments using standard string interpolation mappings
+                echo "INFO: Initializing build workflows for branch: \${params.GIT_BRANCH}"
+                echo "INFO: Target staging server target assigned: \${params.TARGET_ENVIRONMENT}"
+            }
+        }
+        stage('Conditional Quality Controls') {
+            steps {
+                echo 'INFO: Analyzing step configurations against parameter rules...'
+                // Code conditions can evaluate these parameter values directly
+            }
+        }
+    }
+}</code></pre>
+            </div>
+
+                <!-- PRACTICE -->
+                <div class="mb-4">
+            <h2 class="h3 fw-bold">Practice Exercise: Instantiate a Code-Defined Parameter Matrix</h2>
+                <div class="concept-box">
+        <h5 class="fw-bold">Step-by-Step Task Sequence:</h5>
+                    <ol class="ps-3 mb-0">
+    <li class="mb-2">Open the script configuration code panel for an active test pipeline or spin up a new Pipeline item from your portal home screen.</li>
+                        <li class="mb-2">Copy-paste the complete practical declarative sample code provided in the example section above directly into your script block window and click <strong>Save</strong>.</li>
+<li class="mb-2">Click **Build Now** to start a baseline registration run. *Note: The first run uses your predefined default values because the interface dashboard hasn't parsed the file options yet.*</li>
+                        <li class="mb-2">Once the initial run iteration registers successfully, return to the job's main landing page to observe the **Build Now** link update to read **Build with Parameters**.</li>
+                        <li>Click **Build with Parameters**, tweak the string branch properties or change the environment selection options in the generated form, and click **Build** to verify your inputs inside the **Console Output**.</li>
+</ol>
+</div>
+</div>
+
+<!-- SUMMARY -->
+<div class="alert alert-info mt-4">
+<h2 class="h4 fw-bold">Summary</h2>
+<p class="mb-0">You have completed the <strong>Pipeline Parameters</strong> lesson. Continue through the syllabus to leverage these input choices to drive conditional execution criteria by exploring the Conditional Execution with when lesson.</p>
+</div>
+
+<!-- NAVIGATION -->
+<div class="d-flex justify-content-between mt-4">
+                <a class="btn btn-outline-primary" href="@Url.Action("EnvironmentVariables", "Pipeline", new { area = "Jenkins" })">← Previous: Environment Variables</a>
+                <a class="btn btn-primary" href="@Url.Action("WhenDirective", "Pipeline", new { area = "Jenkins" })">Next: Conditional Execution with when →</a>
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

@@ -1,0 +1,456 @@
+﻿@{
+    ViewData["Title"] = "DISTINCT";
+}
+
+<section>
+
+    <!-- PAGE INTRODUCTION -->
+
+    <div class="mb-5">
+
+        <h1 class="fw-bold mb-3">
+            DISTINCT
+        </h1>
+
+        <p class="lead text-muted">
+            The DISTINCT keyword is used to return only unique
+            values from a column or combination of columns.
+        </p>
+
+        <p>
+            When a table contains duplicate values and we want to
+            display each value only once, we can use the
+            <strong>DISTINCT</strong> keyword.
+        </p>
+
+    </div>
+
+
+    <!-- WHAT IS DISTINCT -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            What is DISTINCT?
+        </h2>
+
+        <p>
+            DISTINCT removes duplicate values from the result
+            returned by a SELECT query.
+        </p>
+
+        <p>
+            It does not delete duplicate records from the actual
+            table. It only removes duplicate values from the query
+            result.
+        </p>
+
+    </section>
+
+
+    <!-- BASIC SYNTAX -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Syntax
+        </h2>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT DISTINCT column_name
+FROM table_name;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- SAMPLE TABLE -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Example Table
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>StudentId</th>
+                        <th>StudentName</th>
+                        <th>City</th>
+                        <th>Course</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>101</td>
+                        <td>Rahul</td>
+                        <td>Pune</td>
+                        <td>.NET</td>
+                    </tr>
+
+                    <tr>
+                        <td>102</td>
+                        <td>Priya</td>
+                        <td>Mumbai</td>
+                        <td>Java</td>
+                    </tr>
+
+                    <tr>
+                        <td>103</td>
+                        <td>Amit</td>
+                        <td>Pune</td>
+                        <td>Python</td>
+                    </tr>
+
+                    <tr>
+                        <td>104</td>
+                        <td>Neha</td>
+                        <td>Nashik</td>
+                        <td>.NET</td>
+                    </tr>
+
+                    <tr>
+                        <td>105</td>
+                        <td>Rohan</td>
+                        <td>Pune</td>
+                        <td>Java</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- WITHOUT DISTINCT -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Without DISTINCT
+        </h2>
+
+        <p>
+            Suppose we want to display all cities from the Students
+            table.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT City
+FROM Students;</code></pre>
+
+        </div>
+
+        <p class="mt-3">
+            The result may contain duplicate city names because
+            multiple students can belong to the same city.
+        </p>
+
+    </section>
+
+
+    <!-- WITH DISTINCT -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Using DISTINCT
+        </h2>
+
+        <p>
+            To display each city only once, use DISTINCT.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT DISTINCT City
+FROM Students;</code></pre>
+
+        </div>
+
+        <p class="mt-3">
+            The result will contain only unique city names.
+        </p>
+
+    </section>
+
+
+    <!-- DISTINCT COURSE -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            DISTINCT with Course
+        </h2>
+
+        <p>
+            DISTINCT can be applied to any column where we want
+            unique values.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT DISTINCT Course
+FROM Students;</code></pre>
+
+        </div>
+
+        <p class="mt-3">
+            This returns each course only once.
+        </p>
+
+    </section>
+
+
+    <!-- DISTINCT MULTIPLE COLUMNS -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            DISTINCT with Multiple Columns
+        </h2>
+
+        <p>
+            DISTINCT can also be used with multiple columns.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT DISTINCT City, Course
+FROM Students;</code></pre>
+
+        </div>
+
+        <p class="mt-3">
+            In this case, SQL Server returns unique combinations of
+            City and Course.
+        </p>
+
+    </section>
+
+
+    <!-- DISTINCT WITH WHERE -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            DISTINCT with WHERE
+        </h2>
+
+        <p>
+            DISTINCT can be combined with the WHERE clause to filter
+            records and then return unique values.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT DISTINCT City
+FROM Students
+WHERE Course = '.NET';</code></pre>
+
+        </div>
+
+        <p class="mt-3">
+            This returns the unique cities of students enrolled in
+            the .NET course.
+        </p>
+
+    </section>
+
+
+    <!-- DISTINCT WITH ORDER BY -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            DISTINCT with ORDER BY
+        </h2>
+
+        <p>
+            DISTINCT can also be used with ORDER BY to return unique
+            values in a specific order.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT DISTINCT City
+FROM Students
+ORDER BY City ASC;</code></pre>
+
+        </div>
+
+        <p class="mt-3">
+            This returns unique city names in alphabetical order.
+        </p>
+
+    </section>
+
+
+    <!-- DISTINCT VS GROUP BY -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            DISTINCT vs GROUP BY
+        </h2>
+
+        <p>
+            DISTINCT is mainly used to remove duplicate values from
+            a result set.
+        </p>
+
+        <p>
+            GROUP BY is generally used when we want to group records
+            and perform aggregate operations such as COUNT, SUM,
+            AVG, MIN and MAX.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT DISTINCT City
+FROM Students;</code></pre>
+
+        </div>
+
+        <p class="mt-3">
+            The above query simply returns unique cities.
+        </p>
+
+    </section>
+
+
+    <!-- IMPORTANT -->
+
+    <section class="mb-5">
+
+        <div class="alert alert-warning border-0">
+
+            <h4 class="fw-bold mb-3">
+                Important
+            </h4>
+
+            <ul class="mb-0">
+
+                <li class="mb-2">
+                    DISTINCT returns unique values.
+                </li>
+
+                <li class="mb-2">
+                    DISTINCT does not delete duplicate records from
+                    the table.
+                </li>
+
+                <li class="mb-2">
+                    DISTINCT can be used with one or multiple columns.
+                </li>
+
+                <li class="mb-2">
+                    DISTINCT can be combined with WHERE.
+                </li>
+
+                <li>
+                    DISTINCT can be combined with ORDER BY.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </section>
+
+
+    <!-- SUMMARY -->
+
+    <section class="mb-4">
+
+        <div class="alert alert-primary border-0">
+
+            <h2 class="fw-bold mb-3">
+                Summary
+            </h2>
+
+            <p class="mb-0">
+                In this section, we learned how the DISTINCT keyword
+                is used to return unique values from SQL Server query
+                results. We covered DISTINCT with single columns,
+                multiple columns, WHERE and ORDER BY.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- PREVIOUS / NEXT -->
+
+    <div class="d-flex justify-content-between align-items-center
+                mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/Queries/OrderByClause"
+           class="btn btn-outline-primary">
+
+            ← Previous: ORDER BY Clause
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/Queries/LikeOperator"
+           class="btn btn-primary">
+
+            Next: LIKE Operator →
+
+        </a>
+
+    </div>
+
+</section>

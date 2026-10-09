@@ -1,0 +1,184 @@
+@{
+    Layout = "~/Areas/Jenkins/Views/Shared/JenkinsLayout.cshtml";
+    ViewData["Title"] = "Native OS Installation";
+}
+
+<style>
+    #native-os-installation-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #native-os-installation-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #native-os-installation-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #native-os-installation-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #native-os-installation-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+    #native-os-installation-page .example-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+    }
+</style>
+
+<main id="native-os-installation-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/Jenkins/Views/Shared/JenkinsTopics.cshtml")
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+                <h1 class="fw-bold">Native OS Installation</h1>
+                <p class="lead">
+                    Learn how to install Jenkins directly on host operating systems using native package managers and manage it as a persistent system background service.
+                </p>
+            </div>
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">What is a Native OS Installation?</h2>
+                <p>
+                    A Native OS Installation involves running Jenkins directly inside your host's operating system environment rather than wrapping it in an isolated container. Jenkins configures itself as a system daemon or background process (such as a <code>systemd</code> service on Linux or a standard Windows Service), allowing it to boot up automatically when the server starts.
+                </p>
+
+                <div class="alert alert-info">
+                    <strong>Production Note:</strong> Native installations are highly favored by enterprise infrastructure teams who prefer standard system monitoring tools, localized OS configurations, and direct access to server host hardware resources.
+                </div>
+            </div>
+
+            <!-- KEY CONCEPTS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Key Concepts By Platform</h2>
+                <div class="row g-3">
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>1. Debian / Ubuntu Linux</h5>
+                            <p class="mb-2">Uses official apt repositories. Requires importing the GPG authentication key before adding the Jenkins source list.</p>
+                            <strong>Package Manager:</strong> <code>apt-get install jenkins</code>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>2. Red Hat / CentOS / Fedora</h5>
+                            <p class="mb-2">Configured by pulling down the official Jenkins yum configuration file and importing the corresponding Red Hat key.</p>
+                            <strong>Package Manager:</strong> <code>yum install jenkins</code>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>3. Microsoft Windows</h5>
+                            <p class="mb-2">Distributed as a standard graphical installer (<code>.msi</code>). It guides users through setup wizard screens and configures a background Windows Service.</p>
+                            <strong>Service Context:</strong> <code>services.msc</code>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>4. Service Orchestration</h5>
+                            <p class="mb-2">On modern Linux nodes, Jenkins relies heavily on system managers to gracefully start, stop, restart, or evaluate daemon status hooks.</p>
+                            <strong>Daemon Utility:</strong> <code>systemctl</code>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- EXAMPLE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Ubuntu Linux Installation Script Example</h2>
+                <p>The following workflow shows how to register the official Jenkins LTS (Long-Term Support) repository key, inject the repository into your system package manager list, and trigger the install sequence:</p>
+                <pre><code># 1. Download and register the official Jenkins repository GPG signing key
+sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
+  https://jenkins.io
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 2. Append the authenticated Debian package repository to the host source configurations
+echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+  https://jenkins.io binary/" | sudo tee \
+  /etc/apt/sources.list.d/jenkins.list > /dev/null
+
+# 3. Synchronize package index indices and deploy the application service binary
+sudo apt-get update
+sudo apt-get install jenkins -y
+
+# 4. Initialize and evaluate the state of the native system background daemon
+sudo systemctl start jenkins
+sudo systemctl status jenkins</code></pre>
+            </div>
+
+            <!-- PRACTICE -->
+                <div class="mb-4">
+                <h2 class="h3 fw-bold">Practice Exercise</h2>
+            <ol>
+                    <li class="mb-2">Log into your target target test Linux server infrastructure utilizing an SSH client connection.</li>
+            <li class="mb-2">Follow the sequential system package commands detailed in the example script above to register and download the binary.</li>
+            <li class="mb-2">Run <code>sudo systemctl status jenkins</code> to guarantee your automation engine state flag evaluates as <strong>active (running)</strong>.</li>
+                <li>Locate your default administrator security entry password string by reading the initial initialization setup path: <br /><code>sudo cat /var/lib/jenkins/secrets/initialAdminPassword</code>.</li>
+                </ol>
+            </div>
+
+        <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+    <h2 class="h4 fw-bold">Summary</h2>
+                <p class="mb-0">You have completed the <strong>Native OS Installation</strong> lesson! You now know how to deploy Jenkins directly to an operating system as a managed service, handle keys, and inspect background service statuses.</p>
+</div>
+
+
+<!-- NAVIGATION -->
+<div class="d-flex justify-content-between mt-4">
+<a class="btn btn-outline-primary" href="@Url.Action("DockerInstallation", "Foundations", new { area = "Jenkins" })">← Previous: Jenkins with Docker</a>
+<a class="btn btn-primary" href="@Url.Action("Dashboard", "Foundations", new { area = "Jenkins" })">Next: Jenkins Dashboard →</a>
+</div>
+
+</section>
+
+</div>
+
+</main>

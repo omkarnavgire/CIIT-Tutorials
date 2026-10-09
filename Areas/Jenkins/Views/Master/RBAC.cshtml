@@ -1,0 +1,192 @@
+@{
+    Layout = "~/Areas/Jenkins/Views/Shared/JenkinsLayout.cshtml";
+    ViewData["Title"] = "Roles and Access Control";
+}
+
+<style>
+    #roles-and-access-control-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #roles-and-access-control-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #roles-and-access-control-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #roles-and-access-control-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #roles-and-access-control-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+    #roles-and-access-control-page .example-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+    }
+</style>
+
+<main id="roles-and-access-control-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/Jenkins/Views/Shared/JenkinsTopics.cshtml")
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+                <h1 class="fw-bold">Roles and Access Control</h1>
+                <p class="lead">
+                    Implement the Principle of Least Privilege by configuring granular authorization strategies, project-based security matrices, and custom role assignments.
+                </p>
+            </div>
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">What is Roles and Access Control?</h2>
+                <p>
+                    By default, an unrestricted Jenkins installation allows any logged-in user to modify global settings, view private credentials, or delete execution nodes. In enterprise environments, this creates catastrophic security risks.
+                </p>
+                <p>
+                    <strong>Roles and Access Control (RBAC)</strong> separates authentication (verifying who you are) from authorization (verifying what you are allowed to do). Leveraging the <strong>Role-based Authorization Strategy</strong> plugin, security engineers can define custom technical permission rules grouped into Global Roles, Item (Project) Roles, and Agent Roles to isolate business segments from one another completely.
+                </p>
+                <div class="alert alert-info">
+                    <strong>Simple Definition:</strong> Roles and Access Control is an administrative security framework that restricts user capabilities inside Jenkins by mapping specific profiles (e.g., Developer, Auditor, Admin) to discrete folders, jobs, or infrastructure nodes.
+                </div>
+            </div>
+
+            <!-- KEY CONCEPTS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Key Authorization Concepts</h2>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Global Roles vs. Item Roles</h5>
+                            <p class="mb-0">Global roles dictate system-wide privileges like read-only dashboard visibility or tool configuration. Item roles restrict item actions (such as build triggers, build configurations, or workspaces) using pattern matching based on regular expressions like `^finance-.*`.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>The Principle of Least Privilege</h5>
+                            <p class="mb-0">Enforce governance parameters by explicitly locking down security defaults. Users are assigned only the minimum baseline permissions required to manage their specific pipeline operations, protecting the master server from data corruption.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Folder-Level Isolation</h5>
+                            <p class="mb-0">Combine structural folder hierarchies with project roles. By housing multi-branch pipelines inside group folders, cross-team data access is blocked, isolating project configurations seamlessly.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Matrix Authorization Strategy</h5>
+                            <p class="mb-0">An alternative classic authorization model displaying a visual matrix grid layout. Administrators check explicit permission check-boxes manually or via code scripts for distinct users or active directory groups.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXAMPLE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Practical Matrix Authorization Definition</h2>
+                <p>
+                    The following declarative code sample shows how programmatic role permissions can be evaluated contextually at pipeline runtime to enforce security checks before running privileged build stages:
+                </p>
+                <pre><code>pipeline {
+    agent any
+    stages {
+        stage('Authorization Evaluation') {
+            steps {
+                script {
+                    echo 'Checking running user security group permissions before execution...'
+                    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    // Code-based runtime simulation checking if the executing job meets folder boundaries
+                    if (env.JOB_NAME.startsWith('production/')) {
+                        echo '[SECURITY] Enforcing strict deployment privilege tracking constraints.'
+                        // Only users mapped to production-release item roles should trigger this flow
+                    } else {
+                        echo '[INFO] Standard sandbox pipeline path detected.'
+                    }
+                }
+            }
+        }
+        stage('Restricted Task Run') {
+            steps {
+                echo 'Executing secure build lifecycle operations...'
+            }
+        }
+    }
+}</code></pre>
+            </div>
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">RBAC Practice Exercise</h2>
+                <ol>
+            <li class="mb-2"><strong>Install Role Strategy:</strong> Navigate to <em>Manage Jenkins &rarr; Plugins</em> and ensure the <strong>Role-based Authorization Strategy</strong> plugin is installed on your server engine.</li>
+                    <li class="mb-2"><strong>Switch Authorization Control:</strong> Open <em>Manage Jenkins &rarr; Security</em>, scroll down to <strong>Authorization</strong>, select the <strong>Role-Based Strategy</strong> option, and save your selection.</li>
+        <li class="mb-2"><strong>Define an Item Pattern:</strong> Go to <em>Manage Jenkins &rarr; Manage and Assign Roles &rarr; Manage Roles</em>. Under <strong>Item Roles</strong>, create a role named `developer-qa` with a regex pattern of `^QA-.*` and assign specific Build and Read privileges.</li>
+                    <li><strong>Test Access Bounds:</strong> Create a dummy user, assign them to your newly created item role structure under <strong>Assign Roles</strong>, log in as that test user, and verify they cannot see or modify jobs outside the matching name pattern.</li>
+    </ol>
+            </div>
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+<h2 class="h4 fw-bold">Summary</h2>
+<p class="mb-0">You have completed the <strong>Roles and Access Control</strong> lesson. You now understand how to divide administrative responsibilities, prevent privilege escalation, and enforce zero-trust governance profiles across large teams. Move forward to set up external directory lookups.</p>
+</div>
+
+<!-- NAVIGATION -->
+<div class="d-flex justify-content-between mt-4">
+<a class="btn btn-outline-primary" href="@Url.Action("Secrets", "Master", new { area = "Jenkins" })">← Previous: Secrets and Secret Handling</a>
+<a class="btn btn-primary" href="@Url.Action("LdapOidc", "Master", new { area = "Jenkins" })">Next: LDAP and OIDC →</a>
+</div>
+
+</section>
+
+    </div>
+
+</main>

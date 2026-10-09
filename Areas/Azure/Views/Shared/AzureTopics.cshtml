@@ -1,0 +1,163 @@
+<style>
+.ciit-syllabus-card{border:0;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.08);position:sticky;top:90px;max-height:calc(100vh - 110px);overflow-y:auto;overflow-x:hidden}
+.ciit-syllabus-header{background-color:#212529!important;color:#fff!important;padding:14px 18px!important;font-size:15px;font-weight:700;display:block!important;position:sticky;top:0;z-index:10}
+.module-title{background-color:#f8f9fa!important;font-weight:700!important;color:#212529!important;padding:12px 16px;border-bottom:1px solid #e9ecef}
+.topic-link{display:block;padding:10px 16px 10px 28px;font-size:14px;color:#495057!important;text-decoration:none!important;border:0!important;border-bottom:1px solid #f1f1f1!important;background-color:#fff!important}
+.topic-link:hover{background-color:#f1f3f5!important;color:#212529!important}
+.topic-link.active{background-color:#fff!important;color:#212529!important;font-weight:700!important;border-bottom:2px solid #2563eb!important}
+.ciit-syllabus-card::-webkit-scrollbar{width:6px}.ciit-syllabus-card::-webkit-scrollbar-track{background:#f1f1f1}.ciit-syllabus-card::-webkit-scrollbar-thumb{background:#c8c8c8;border-radius:10px}
+@@media(max-width:991.98px){.ciit-syllabus-card{position:static;max-height:none;overflow:visible}.ciit-syllabus-header{position:relative}}
+</style>
+@{
+    var currentController = ViewContext.RouteData.Values["controller"]?.ToString() ?? string.Empty;
+    var currentAction = ViewContext.RouteData.Values["action"]?.ToString() ?? string.Empty;
+    bool IsActive(string controller, string action) => currentController == controller && currentAction == action;
+}
+<div class="card ciit-syllabus-card">
+    <div class="card-header ciit-syllabus-header"><span>COURSE SYLLABUS</span></div>
+    <div class="list-group list-group-flush">
+
+        <div class="list-group-item module-title">Chapter 1 - Introduction to Microsoft Azure</div>
+        <a class="list-group-item topic-link @(IsActive("Introduction","WhatisMicrosoftAzure") ? "active" : "")" href="@Url.Action("WhatisMicrosoftAzure","Introduction",new { area="Azure" })">Introduction to Microsoft Azure - A Cloud Computing Service</a>
+        <a class="list-group-item topic-link @(IsActive("Introduction","MicrosoftAzureWorking") ? "active" : "")" href="@Url.Action("MicrosoftAzureWorking","Introduction",new { area="Azure" })">Microsoft Azure Working</a>
+        <a class="list-group-item topic-link @(IsActive("Introduction","MicrosoftAzureArchitecture") ? "active" : "")" href="@Url.Action("MicrosoftAzureArchitecture","Introduction",new { area="Azure" })">Microsoft Azure Architecture</a>
+        <a class="list-group-item topic-link @(IsActive("Introduction","ServiceCategories") ? "active" : "")" href="@Url.Action("ServiceCategories","Introduction",new { area="Azure" })">The 3 Service Categories Provided by Microsoft Azure</a>
+        <a class="list-group-item topic-link @(IsActive("Introduction","AzureUseCases") ? "active" : "")" href="@Url.Action("AzureUseCases","Introduction",new { area="Azure" })">Microsoft Azure Use cases</a>
+        <a class="list-group-item topic-link @(IsActive("Introduction","VariousAzureServices") ? "active" : "")" href="@Url.Action("VariousAzureServices","Introduction",new { area="Azure" })">Various Azure Services</a>
+        <a class="list-group-item topic-link @(IsActive("Introduction","AzureCompetition") ? "active" : "")" href="@Url.Action("AzureCompetition","Introduction",new { area="Azure" })">Azure Competition</a>
+        <a class="list-group-item topic-link @(IsActive("Introduction","AzureCloudShell") ? "active" : "")" href="@Url.Action("AzureCloudShell","Introduction",new { area="Azure" })">Azure Cloud Shell</a>
+        <a class="list-group-item topic-link @(IsActive("Introduction","HowToAccessAzureShell") ? "active" : "")" href="@Url.Action("HowToAccessAzureShell","Introduction",new { area="Azure" })">How to Access Azure Shell?</a>
+        <a class="list-group-item topic-link @(IsActive("Introduction","AwsGoogleCloudAzureComparison") ? "active" : "")" href="@Url.Action("AwsGoogleCloudAzureComparison","Introduction",new { area="Azure" })">Difference between AWS, Google Cloud, and Azure</a>
+
+        <div class="list-group-item module-title">Chapter 2 - Fundamentals of DevOps &amp; Cloud</div>
+        <a class="list-group-item topic-link @(IsActive("DevOpsFundamentals","AzureDevOps") ? "active" : "")" href="@Url.Action("AzureDevOps","DevOpsFundamentals",new { area="Azure" })">Azure DevOps</a>
+        <a class="list-group-item topic-link @(IsActive("DevOpsFundamentals","WhatIsDevOps") ? "active" : "")" href="@Url.Action("WhatIsDevOps","DevOpsFundamentals",new { area="Azure" })">What is DevOps?</a>
+        <a class="list-group-item topic-link @(IsActive("DevOpsFundamentals","BenefitsOfDevOps") ? "active" : "")" href="@Url.Action("BenefitsOfDevOps","DevOpsFundamentals",new { area="Azure" })">Benefits of DevOps</a>
+        <a class="list-group-item topic-link @(IsActive("DevOpsFundamentals","WhatIsAzureDevOps") ? "active" : "")" href="@Url.Action("WhatIsAzureDevOps","DevOpsFundamentals",new { area="Azure" })">What is Azure DevOps?</a>
+        <a class="list-group-item topic-link @(IsActive("DevOpsFundamentals","ServicesUsedInAzureDevOps") ? "active" : "")" href="@Url.Action("ServicesUsedInAzureDevOps","DevOpsFundamentals",new { area="Azure" })">Services Used in Azure DevOps</a>
+        <a class="list-group-item topic-link @(IsActive("DevOpsFundamentals","CreateAzureDevOpsProject") ? "active" : "")" href="@Url.Action("CreateAzureDevOpsProject","DevOpsFundamentals",new { area="Azure" })">How to Create the Azure DevOps Project?</a>
+        <a class="list-group-item topic-link @(IsActive("DevOpsFundamentals","AzureDevOpsUsersAndUseCases") ? "active" : "")" href="@Url.Action("AzureDevOpsUsersAndUseCases","DevOpsFundamentals",new { area="Azure" })">Who uses Azure DevOps?</a>
+        <a class="list-group-item topic-link @(IsActive("DevOpsFundamentals","AzureDevOpsBenefits") ? "active" : "")" href="@Url.Action("AzureDevOpsBenefits","DevOpsFundamentals",new { area="Azure" })">Azure DevOps Benefits</a>
+        <a class="list-group-item topic-link @(IsActive("DevOpsFundamentals","AzureDevOpsDrawbacks") ? "active" : "")" href="@Url.Action("AzureDevOpsDrawbacks","DevOpsFundamentals",new { area="Azure" })">Azure DevOps Drawbacks</a>
+        <a class="list-group-item topic-link @(IsActive("DevOpsFundamentals","AzureDevOpsVsDevOps") ? "active" : "")" href="@Url.Action("AzureDevOpsVsDevOps","DevOpsFundamentals",new { area="Azure" })">Difference Between Azure DevOps and DevOps</a>
+        <a class="list-group-item topic-link @(IsActive("DevOpsFundamentals","AzureDevOpsCertification") ? "active" : "")" href="@Url.Action("AzureDevOpsCertification","DevOpsFundamentals",new { area="Azure" })">Microsoft Azure Cloud Certification Exam</a>
+        <a class="list-group-item topic-link @(IsActive("DevOpsFundamentals","AzureBoards") ? "active" : "")" href="@Url.Action("AzureBoards","DevOpsFundamentals",new { area="Azure" })">Microsoft Azure Boards</a>
+
+        <div class="list-group-item module-title">Chapter 2 - DockerFile</div>
+        <a class="list-group-item topic-link @(IsActive("Dockerfile","WhatIsDockerfile") ? "active" : "")" href="@Url.Action("WhatIsDockerfile","Dockerfile",new { area="Azure" })">What is Dockerfile</a>
+        <a class="list-group-item topic-link @(IsActive("Dockerfile","DockerfileSyntaxRules") ? "active" : "")" href="@Url.Action("DockerfileSyntaxRules","Dockerfile",new { area="Azure" })">The general syntax rules</a>
+        <a class="list-group-item topic-link @(IsActive("Dockerfile","DockerfileInstructions") ? "active" : "")" href="@Url.Action("DockerfileInstructions","Dockerfile",new { area="Azure" })">Dockerfile Instructions</a>
+        <a class="list-group-item topic-link @(IsActive("Dockerfile","FromInstruction") ? "active" : "")" href="@Url.Action("FromInstruction","Dockerfile",new { area="Azure" })">1. FROM</a>
+        <a class="list-group-item topic-link @(IsActive("Dockerfile","MaintainerInstruction") ? "active" : "")" href="@Url.Action("MaintainerInstruction","Dockerfile",new { area="Azure" })">2. MAINTAINER</a>
+        <a class="list-group-item topic-link @(IsActive("Dockerfile","RunInstruction") ? "active" : "")" href="@Url.Action("RunInstruction","Dockerfile",new { area="Azure" })">3. RUN</a>
+        <a class="list-group-item topic-link @(IsActive("Dockerfile","AddInstruction") ? "active" : "")" href="@Url.Action("AddInstruction","Dockerfile",new { area="Azure" })">4. ADD</a>
+        <a class="list-group-item topic-link @(IsActive("Dockerfile","EnvInstruction") ? "active" : "")" href="@Url.Action("EnvInstruction","Dockerfile",new { area="Azure" })">5. ENV</a>
+        <a class="list-group-item topic-link @(IsActive("Dockerfile","EntrypointInstruction") ? "active" : "")" href="@Url.Action("EntrypointInstruction","Dockerfile",new { area="Azure" })">6. ENTRYPOINT</a>
+        <a class="list-group-item topic-link @(IsActive("Dockerfile","CmdInstruction") ? "active" : "")" href="@Url.Action("CmdInstruction","Dockerfile",new { area="Azure" })">7. CMD</a>
+        <a class="list-group-item topic-link @(IsActive("Dockerfile","ExposeInstruction") ? "active" : "")" href="@Url.Action("ExposeInstruction","Dockerfile",new { area="Azure" })">8. EXPOSE</a>
+        <a class="list-group-item topic-link @(IsActive("Dockerfile","VolumeInstruction") ? "active" : "")" href="@Url.Action("VolumeInstruction","Dockerfile",new { area="Azure" })">9. VOLUME</a>
+        <a class="list-group-item topic-link @(IsActive("Dockerfile","WorkdirInstruction") ? "active" : "")" href="@Url.Action("WorkdirInstruction","Dockerfile",new { area="Azure" })">10. WORKDIR</a>
+        <a class="list-group-item topic-link @(IsActive("Dockerfile","UserInstruction") ? "active" : "")" href="@Url.Action("UserInstruction","Dockerfile",new { area="Azure" })">11. USER</a>
+        <a class="list-group-item topic-link @(IsActive("Dockerfile","ArgInstruction") ? "active" : "")" href="@Url.Action("ArgInstruction","Dockerfile",new { area="Azure" })">12. ARG</a>
+        <a class="list-group-item topic-link @(IsActive("Dockerfile","DockerfileBestPractices") ? "active" : "")" href="@Url.Action("DockerfileBestPractices","Dockerfile",new { area="Azure" })">Best practices for writing Dockerfiles</a>
+        <a class="list-group-item topic-link @(IsActive("Dockerfile","CreateDockerfileForMaven") ? "active" : "")" href="@Url.Action("CreateDockerfileForMaven","Dockerfile",new { area="Azure" })">Creating a New Dockerfile for Maven</a>
+
+        <div class="list-group-item module-title">Chapter 3 - Microsoft Azure - Using the Azure Quickstart Centre</div>
+        <a class="list-group-item topic-link @(IsActive("Quickstart","AzureQuickstartCentre") ? "active" : "")" href="@Url.Action("AzureQuickstartCentre","Quickstart",new { area="Azure" })">The Azure Quickstart Center</a>
+        <a class="list-group-item topic-link @(IsActive("Quickstart","QuickstartImplementation") ? "active" : "")" href="@Url.Action("QuickstartImplementation","Quickstart",new { area="Azure" })">Implementation</a>
+        <a class="list-group-item topic-link @(IsActive("Quickstart","QuickstartGuidesAndCourses") ? "active" : "")" href="@Url.Action("QuickstartGuidesAndCourses","Quickstart",new { area="Azure" })">Guides and online courses</a>
+        <a class="list-group-item topic-link @(IsActive("Quickstart","QuickstartCreateWebApp") ? "active" : "")" href="@Url.Action("QuickstartCreateWebApp","Quickstart",new { area="Azure" })">Create a web app</a>
+        <a class="list-group-item topic-link @(IsActive("Quickstart","QuickstartCentreSummary") ? "active" : "")" href="@Url.Action("QuickstartCentreSummary","Quickstart",new { area="Azure" })">Microsoft Azure - Getting Free Trial with Azure Quickstart Center</a>
+
+        <div class="list-group-item module-title">Chapter 4 - Microsoft Azure - Storage Accounts</div>
+        <a class="list-group-item topic-link @(IsActive("StorageAccounts","StorageAccounts") ? "active" : "")" href="@Url.Action("StorageAccounts","StorageAccounts",new { area="Azure" })">Azure Storage Account</a>
+        <a class="list-group-item topic-link @(IsActive("StorageAccounts","StorageAccountPolicies") ? "active" : "")" href="@Url.Action("StorageAccountPolicies","StorageAccounts",new { area="Azure" })">The policies that we can define</a>
+        <a class="list-group-item topic-link @(IsActive("StorageAccounts","CreateStorageAccount") ? "active" : "")" href="@Url.Action("CreateStorageAccount","StorageAccounts",new { area="Azure" })">Creating a storage account using Microsoft Azure Portal</a>
+        <a class="list-group-item topic-link @(IsActive("StorageAccounts","StorageAccountBasics") ? "active" : "")" href="@Url.Action("StorageAccountBasics","StorageAccounts",new { area="Azure" })">Basics</a>
+        <a class="list-group-item topic-link @(IsActive("StorageAccounts","StorageAccountAdvanced") ? "active" : "")" href="@Url.Action("StorageAccountAdvanced","StorageAccounts",new { area="Azure" })">Advanced</a>
+        <a class="list-group-item topic-link @(IsActive("StorageAccounts","StorageAccountNetworking") ? "active" : "")" href="@Url.Action("StorageAccountNetworking","StorageAccounts",new { area="Azure" })">Networking</a>
+        <a class="list-group-item topic-link @(IsActive("StorageAccounts","StorageAccountDataProtection") ? "active" : "")" href="@Url.Action("StorageAccountDataProtection","StorageAccounts",new { area="Azure" })">Data Protection</a>
+        <a class="list-group-item topic-link @(IsActive("StorageAccounts","StorageAccountEncryptionAndTags") ? "active" : "")" href="@Url.Action("StorageAccountEncryptionAndTags","StorageAccounts",new { area="Azure" })">Encryption and Tags</a>
+        <a class="list-group-item topic-link @(IsActive("StorageAccounts","StorageAccountReviewAndCreate") ? "active" : "")" href="@Url.Action("StorageAccountReviewAndCreate","StorageAccounts",new { area="Azure" })">Review, Create and Go to Resource</a>
+
+        <div class="list-group-item module-title">Chapter 5 - Azure Virtual Machines</div>
+        <a class="list-group-item topic-link @(IsActive("VirtualMachines","AzureVirtualMachines") ? "active" : "")" href="@Url.Action("AzureVirtualMachines","VirtualMachines",new { area="Azure" })">Chapter 5 - Azure Virtual Machines</a>
+        <a class="list-group-item topic-link @(IsActive("VirtualMachines","WhatAreVirtualMachines") ? "active" : "")" href="@Url.Action("WhatAreVirtualMachines","VirtualMachines",new { area="Azure" })">What Are Virtual Machines?</a>
+        <a class="list-group-item topic-link @(IsActive("VirtualMachines","UsesOfVirtualMachines") ? "active" : "")" href="@Url.Action("UsesOfVirtualMachines","VirtualMachines",new { area="Azure" })">Uses Of Virtual Machines</a>
+        <a class="list-group-item topic-link @(IsActive("VirtualMachines","BeforeCreatingAzureVirtualMachine") ? "active" : "")" href="@Url.Action("BeforeCreatingAzureVirtualMachine","VirtualMachines",new { area="Azure" })">Before Creating A Azure Virtual Machine</a>
+        <a class="list-group-item topic-link @(IsActive("VirtualMachines","LocationOfAzureVirtualMachine") ? "active" : "")" href="@Url.Action("LocationOfAzureVirtualMachine","VirtualMachines",new { area="Azure" })">Location Of Azure Virtual Machine</a>
+        <a class="list-group-item topic-link @(IsActive("VirtualMachines","AzureVirtualMachineSize") ? "active" : "")" href="@Url.Action("AzureVirtualMachineSize","VirtualMachines",new { area="Azure" })">Azure Virtual Machine Size</a>
+        <a class="list-group-item topic-link @(IsActive("VirtualMachines","OperatingSystemDisksAndImages") ? "active" : "")" href="@Url.Action("OperatingSystemDisksAndImages","VirtualMachines",new { area="Azure" })">Azure Virtual Machine Operating System Disks and Images</a>
+        <a class="list-group-item topic-link @(IsActive("VirtualMachines","VirtualMachineExtensions") ? "active" : "")" href="@Url.Action("VirtualMachineExtensions","VirtualMachines",new { area="Azure" })">Extensions of Virtual Machine</a>
+        <a class="list-group-item topic-link @(IsActive("VirtualMachines","CreateAzureVirtualMachine") ? "active" : "")" href="@Url.Action("CreateAzureVirtualMachine","VirtualMachines",new { area="Azure" })">Creating Azure Virtual machine in Azure Portal</a>
+
+        <div class="list-group-item module-title">Chapter 6 - Microsoft Azure - Creating an App Service Plan</div>
+        <a class="list-group-item topic-link @(IsActive("AppService","AppServicePlan") ? "active" : "")" href="@Url.Action("AppServicePlan","AppService",new { area="Azure" })">App Service Plan</a>
+        <a class="list-group-item topic-link @(IsActive("AppService","CreateAppServicePlan") ? "active" : "")" href="@Url.Action("CreateAppServicePlan","AppService",new { area="Azure" })">Creating an App Service Plan</a>
+        <a class="list-group-item topic-link @(IsActive("AppService","CreateWebApp") ? "active" : "")" href="@Url.Action("CreateWebApp","AppService",new { area="Azure" })">Microsoft Azure - Create Web Apps in Azure</a>
+        <a class="list-group-item topic-link @(IsActive("AppService","DeployStaticWebApp") ? "active" : "")" href="@Url.Action("DeployStaticWebApp","AppService",new { area="Azure" })">Microsoft Azure - Deploy a Static Web App</a>
+        <a class="list-group-item topic-link @(IsActive("AppService","UsingGithubActionInAzureAppService") ? "active" : "")" href="@Url.Action("UsingGithubActionInAzureAppService","AppService",new { area="Azure" })">Microsoft Azure - Using Github Action in Azure App Service</a>
+
+        <div class="list-group-item module-title">Chapter 7 - Dashboards</div>
+        <a class="list-group-item topic-link @(IsActive("Dashboards","CustomizingChartsOnAzureDashboard") ? "active" : "")" href="@Url.Action("CustomizingChartsOnAzureDashboard","Dashboards",new { area="Azure" })">Microsoft Azure - Customizing Charts on Azure Dashboard</a>
+        <a class="list-group-item topic-link @(IsActive("Dashboards","CustomizingAzureDashboardTiles") ? "active" : "")" href="@Url.Action("CustomizingAzureDashboardTiles","Dashboards",new { area="Azure" })">Microsoft Azure - Customizing Azure Dashboard Tiles</a>
+        <a class="list-group-item topic-link @(IsActive("Dashboards","AutoRefreshingDashboards") ? "active" : "")" href="@Url.Action("AutoRefreshingDashboards","Dashboards",new { area="Azure" })">Microsoft Azure - Auto Refreshing Dashboards</a>
+        <a class="list-group-item topic-link @(IsActive("Dashboards","SharedDashboards") ? "active" : "")" href="@Url.Action("SharedDashboards","Dashboards",new { area="Azure" })">Shared Dashboards</a>
+        <a class="list-group-item topic-link @(IsActive("Dashboards","PinningToPortalDashboard") ? "active" : "")" href="@Url.Action("PinningToPortalDashboard","Dashboards",new { area="Azure" })">Microsoft Azure - Pinning to Portal Dashboard</a>
+
+        <div class="list-group-item module-title">Chapter 8 - Microsoft Azure - Database Availability and Consistency For Azure SQL</div>
+        <a class="list-group-item topic-link @(IsActive("AzureSQL","DatabaseAvailabilityAndConsistency") ? "active" : "")" href="@Url.Action("DatabaseAvailabilityAndConsistency","AzureSQL",new { area="Azure" })">Microsoft Azure - Database Availability and Consistency For Azure SQL</a>
+        <a class="list-group-item topic-link @(IsActive("AzureSQL","KeyTerminologies") ? "active" : "")" href="@Url.Action("KeyTerminologies","AzureSQL",new { area="Azure" })">Key Terminologies</a>
+        <a class="list-group-item topic-link @(IsActive("AzureSQL","DeploymentModesInAzure") ? "active" : "")" href="@Url.Action("DeploymentModesInAzure","AzureSQL",new { area="Azure" })">Deployment Modes in Azure</a>
+        <a class="list-group-item topic-link @(IsActive("AzureSQL","AvailabilityAndConsistency") ? "active" : "")" href="@Url.Action("AvailabilityAndConsistency","AzureSQL",new { area="Azure" })">Availability and Consistency</a>
+        <a class="list-group-item topic-link @(IsActive("AzureSQL","ForSingleServerDeployment") ? "active" : "")" href="@Url.Action("ForSingleServerDeployment","AzureSQL",new { area="Azure" })">For Single-Server Deployment</a>
+        <a class="list-group-item topic-link @(IsActive("AzureSQL","ForFlexibleServerDeployment") ? "active" : "")" href="@Url.Action("ForFlexibleServerDeployment","AzureSQL",new { area="Azure" })">For Flexible Server Deployment</a>
+        <a class="list-group-item topic-link @(IsActive("AzureSQL","AzureDatabaseAvailabilityServices") ? "active" : "")" href="@Url.Action("AzureDatabaseAvailabilityServices","AzureSQL",new { area="Azure" })">Azure Database for MYSQL availability and consistency services</a>
+        <a class="list-group-item topic-link @(IsActive("AzureSQL","MicrosoftAzureSQLDatabase") ? "active" : "")" href="@Url.Action("MicrosoftAzureSQLDatabase","AzureSQL",new { area="Azure" })">Microsoft Azure SQL Database</a>
+        <a class="list-group-item topic-link @(IsActive("AzureSQL","WhatIsMicrosoftAzureSQLDatabase") ? "active" : "")" href="@Url.Action("WhatIsMicrosoftAzureSQLDatabase","AzureSQL",new { area="Azure" })">What is Microsoft Azure SQL Database?</a>
+        <a class="list-group-item topic-link @(IsActive("AzureSQL","AzureSQLVsSQLServer") ? "active" : "")" href="@Url.Action("AzureSQLVsSQLServer","AzureSQL",new { area="Azure" })">Azure SQL vs. SQL Server</a>
+        <a class="list-group-item topic-link @(IsActive("AzureSQL","WhyAzureSQLDatabase") ? "active" : "")" href="@Url.Action("WhyAzureSQLDatabase","AzureSQL",new { area="Azure" })">Why Azure SQL Database?</a>
+        <a class="list-group-item topic-link @(IsActive("AzureSQL","AzureSQLUseCases") ? "active" : "")" href="@Url.Action("AzureSQLUseCases","AzureSQL",new { area="Azure" })">Some of the Often Use Cases</a>
+        <a class="list-group-item topic-link @(IsActive("AzureSQL","AzureSQLArchitecture") ? "active" : "")" href="@Url.Action("AzureSQLArchitecture","AzureSQL",new { area="Azure" })">SQL Azure Architecture</a>
+        <a class="list-group-item topic-link @(IsActive("AzureSQL","AzureSQLDatabaseFeatures") ? "active" : "")" href="@Url.Action("AzureSQLDatabaseFeatures","AzureSQL",new { area="Azure" })">Azure SQL Database Features</a>
+        <a class="list-group-item topic-link @(IsActive("AzureSQL","AzureSQLDatabaseTiers") ? "active" : "")" href="@Url.Action("AzureSQLDatabaseTiers","AzureSQL",new { area="Azure" })">Azure SQL Database Tiers</a>
+        <a class="list-group-item topic-link @(IsActive("AzureSQL","AzureSQLDatabaseServices") ? "active" : "")" href="@Url.Action("AzureSQLDatabaseServices","AzureSQL",new { area="Azure" })">Azure SQL Database Services</a>
+        <a class="list-group-item topic-link @(IsActive("AzureSQL","AzureSQLHandsOn") ? "active" : "")" href="@Url.Action("AzureSQLHandsOn","AzureSQL",new { area="Azure" })">Microsoft Azure SQL Database Hands-on</a>
+        <a class="list-group-item topic-link @(IsActive("AzureSQL","QueryingUsingAzureSQLDatabase") ? "active" : "")" href="@Url.Action("QueryingUsingAzureSQLDatabase","AzureSQL",new { area="Azure" })">Querying using Azure SQL Database</a>
+        <a class="list-group-item topic-link @(IsActive("AzureSQL","PricingOfAzureSQLDatabase") ? "active" : "")" href="@Url.Action("PricingOfAzureSQLDatabase","AzureSQL",new { area="Azure" })">Pricing Of Azure SQL Database</a>
+        <a class="list-group-item topic-link @(IsActive("AzureSQL","DeletingDatabasesInAzureSQL") ? "active" : "")" href="@Url.Action("DeletingDatabasesInAzureSQL","AzureSQL",new { area="Azure" })">Deleting Databases in AzureSQL</a>
+
+        <div class="list-group-item module-title">Chapter 9 - Microsoft Azure - Create Project in Azure DevOps using Basic Process</div>
+        <a class="list-group-item topic-link @(IsActive("DevOps","CreateProjectUsingBasicProcess") ? "active" : "")" href="@Url.Action("CreateProjectUsingBasicProcess","DevOps",new { area="Azure" })">Microsoft Azure - Create Project in Azure Devops using Basic Process</a>
+        <a class="list-group-item topic-link @(IsActive("DevOps","AzureDevOpsProcesses") ? "active" : "")" href="@Url.Action("AzureDevOpsProcesses","DevOps",new { area="Azure" })">The three primary built-in processes</a>
+        <a class="list-group-item topic-link @(IsActive("DevOps","WhyChooseBasicProcess") ? "active" : "")" href="@Url.Action("WhyChooseBasicProcess","DevOps",new { area="Azure" })">Why Choose the Basic Process?</a>
+        <a class="list-group-item topic-link @(IsActive("DevOps","BasicProcessWorkItems") ? "active" : "")" href="@Url.Action("BasicProcessWorkItems","DevOps",new { area="Azure" })">Work Items in the Basic Process</a>
+        <a class="list-group-item topic-link @(IsActive("DevOps","WhenShouldYouChooseBasicProcess") ? "active" : "")" href="@Url.Action("WhenShouldYouChooseBasicProcess","DevOps",new { area="Azure" })">When Should You Choose the Basic Process?</a>
+        <a class="list-group-item topic-link @(IsActive("DevOps","CreateBasicProcessProject") ? "active" : "")" href="@Url.Action("CreateBasicProcessProject","DevOps",new { area="Azure" })">Creating a Project Using Basic Process</a>
+        <a class="list-group-item topic-link @(IsActive("DevOps","AzureDevOpsProjectFeatures") ? "active" : "")" href="@Url.Action("AzureDevOpsProjectFeatures","DevOps",new { area="Azure" })">Exploring Azure DevOps Project Features After Creation</a>
+        <a class="list-group-item topic-link @(IsActive("DevOps","CreateProjectUsingAgileProcess") ? "active" : "")" href="@Url.Action("CreateProjectUsingAgileProcess","DevOps",new { area="Azure" })">Microsoft Azure – Create Project in Azure Devops using Agile Process</a>
+        <a class="list-group-item topic-link @(IsActive("DevOps","AgileProcessWorkItems") ? "active" : "")" href="@Url.Action("AgileProcessWorkItems","DevOps",new { area="Azure" })">Overview of Work Item Types Available in the Agile Process</a>
+
+        <div class="list-group-item module-title">Chapter 10 - Azure Pipelines</div>
+        <a class="list-group-item topic-link @(IsActive("DevOps","AzurePipelinesIntroduction") ? "active" : "")" href="@Url.Action("AzurePipelinesIntroduction","DevOps",new { area="Azure" })">Chapter 10 - Azure Pipelines</a>
+        <a class="list-group-item topic-link @(IsActive("DevOps","WhatIsAzurePipelines") ? "active" : "")" href="@Url.Action("WhatIsAzurePipelines","DevOps",new { area="Azure" })">What is Azure Pipelines?</a>
+        <a class="list-group-item topic-link @(IsActive("DevOps","WhyAzurePipelinesForCICD") ? "active" : "")" href="@Url.Action("WhyAzurePipelinesForCICD","DevOps",new { area="Azure" })">Why do we use Azure Pipelines for CI/CD?</a>
+        <a class="list-group-item topic-link @(IsActive("DevOps","KeyFeaturesOfAzurePipelines") ? "active" : "")" href="@Url.Action("KeyFeaturesOfAzurePipelines","DevOps",new { area="Azure" })">Key Features of Azure Pipelines</a>
+        <a class="list-group-item topic-link @(IsActive("DevOps","CreatingAzureDevOpsPipeline") ? "active" : "")" href="@Url.Action("CreatingAzureDevOpsPipeline","DevOps",new { area="Azure" })">Creating an Azure DevOps Pipeline</a>
+        <a class="list-group-item topic-link @(IsActive("DevOps","CreateAzureDevOpsOrganization") ? "active" : "")" href="@Url.Action("CreateAzureDevOpsOrganization","DevOps",new { area="Azure" })">Create Your Azure DevOps Organization</a>
+        <a class="list-group-item topic-link @(IsActive("DevOps","CreateDevOpsProject") ? "active" : "")" href="@Url.Action("CreateDevOpsProject","DevOps",new { area="Azure" })">Create a Project</a>
+        <a class="list-group-item topic-link @(IsActive("DevOps","CreateBuildPipeline") ? "active" : "")" href="@Url.Action("CreateBuildPipeline","DevOps",new { area="Azure" })">Create a Build Pipeline</a>
+        <a class="list-group-item topic-link @(IsActive("DevOps","CreateReleasePipeline") ? "active" : "")" href="@Url.Action("CreateReleasePipeline","DevOps",new { area="Azure" })">Create a Release Pipeline</a>
+        <a class="list-group-item topic-link @(IsActive("DevOps","AzurePipelinesContinuousDelivery") ? "active" : "")" href="@Url.Action("AzurePipelinesContinuousDelivery","DevOps",new { area="Azure" })">Azure Pipelines for Continuous Delivery (CD)</a>
+        <a class="list-group-item topic-link @(IsActive("DevOps","CICDPipelineInAzure") ? "active" : "")" href="@Url.Action("CICDPipelineInAzure","DevOps",new { area="Azure" })">What is the CI/CD Pipeline in Azure?</a>
+        <a class="list-group-item topic-link @(IsActive("DevOps","AzurePipelinesVsJenkins") ? "active" : "")" href="@Url.Action("AzurePipelinesVsJenkins","DevOps",new { area="Azure" })">Difference Between Azure Pipeline and Jenkins</a>
+
+        <div class="list-group-item module-title">APPROVED ADDITIONAL</div>
+        <a class="list-group-item topic-link @(IsActive("Introduction","WhatisMicrosoftAzure") ? "active" : "")" href="@Url.Action("WhatisMicrosoftAzure","Introduction",new { area="Azure" })">Cloud Computing Basics</a>
+        <a class="list-group-item topic-link @(IsActive("Introduction","AzureGlobalInfrastructure") ? "active" : "")" href="@Url.Action("AzureGlobalInfrastructure","Introduction",new { area="Azure" })">Azure Global Infrastructure</a>
+        <a class="list-group-item topic-link @(IsActive("Introduction","AzurePortalIntroduction") ? "active" : "")" href="@Url.Action("AzurePortalIntroduction","Introduction",new { area="Azure" })">Azure Portal Introduction</a>
+        <a class="list-group-item topic-link @(IsActive("Introduction","FirstAzureResource") ? "active" : "")" href="@Url.Action("FirstAzureResource","Introduction",new { area="Azure" })">First Azure Resource</a>
+        <a class="list-group-item topic-link @(IsActive("EntraID","WhatisMicrosoftEntraID") ? "active" : "")" href="@Url.Action("WhatisMicrosoftEntraID","EntraID",new { area="Azure" })">What is Microsoft Entra ID</a>
+        <a class="list-group-item topic-link @(IsActive("EntraID","AuthenticationvsAuthorization") ? "active" : "")" href="@Url.Action("AuthenticationvsAuthorization","EntraID",new { area="Azure" })">Authentication vs Authorization</a>
+    </div>
+</div>

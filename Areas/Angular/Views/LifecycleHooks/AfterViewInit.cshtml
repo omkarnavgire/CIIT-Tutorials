@@ -1,0 +1,1261 @@
+﻿@{
+    ViewData["Title"] = "Angular AfterViewInit";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- Header -->
+    <section class="mb-4">
+
+        <h1 class="fw-bold text-dark">Angular AfterViewInit</h1>
+
+        <p class="lead text-muted">
+            Angular <strong>@@AfterViewInit</strong> is a lifecycle hook that
+            runs after Angular has completely initialized the component's
+            view and its child views.
+        </p>
+
+    </section>
+
+    <!-- What is AfterViewInit -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">What is @@AfterViewInit?</h2>
+
+        <p>
+            The <strong>ngAfterViewInit()</strong> lifecycle hook is called
+            after Angular finishes initializing the component view.
+        </p>
+
+        <p>
+            It is useful when code needs to work with elements or child
+            components after the view has been created.
+        </p>
+
+        <div class="info-card">
+
+            <h5>Simple Definition</h5>
+
+            <p>
+                <strong>ngAfterViewInit()</strong> is used when you need to
+                perform an operation after the component's view and child
+                views are initialized.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- Lifecycle Flow -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold mb-3">Where @@AfterViewInit Fits in Angular Lifecycle</h2>
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+
+                <i class="bi bi-box"></i>
+
+                <strong>Component Created</strong>
+
+                <span>Angular creates component</span>
+
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+
+                <i class="bi bi-code-square"></i>
+
+                <strong>View Initialized</strong>
+
+                <span>Component template is initialized</span>
+
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+
+                <i class="bi bi-play-circle"></i>
+
+                <strong>ngAfterViewInit()</strong>
+
+                <span>View initialization logic runs</span>
+
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+
+                <i class="bi bi-display"></i>
+
+                <strong>View Ready</strong>
+
+                <span>Child views are available</span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Basic Syntax -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Basic Syntax</h2>
+
+        <p>
+            To use this lifecycle hook, implement the
+            <strong>AfterViewInit</strong> interface and define the
+            <strong>ngAfterViewInit()</strong> method.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Component
+            </div>
+
+            <pre><code>import &#123; Component, AfterViewInit &#125; from '@@angular/core';
+
+@@Component(&#123;
+    selector: 'app-dashboard',
+    templateUrl: './dashboard.component.html'
+&#125;)
+export class DashboardComponent implements AfterViewInit &#123;
+
+    ngAfterViewInit(): void &#123;
+
+        console.log('View initialized');
+
+    &#125;
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="info-card">
+
+            <h5>Important</h5>
+
+            <p>
+                Angular automatically calls
+                <strong>ngAfterViewInit()</strong> after the component view
+                has been initialized.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- Why use AfterViewInit -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Why Use @@AfterViewInit?</h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-eye"></i>
+                </div>
+
+                <h5>View Access</h5>
+
+                <p>
+                    Perform operations after the component view is initialized.
+                </p>
+
+                <code>ngAfterViewInit()</code>
+
+            </div>
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-diagram-3"></i>
+                </div>
+
+                <h5>Child Components</h5>
+
+                <p>
+                    Work with initialized child component views.
+                </p>
+
+                <code>ViewChild</code>
+
+            </div>
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-input-cursor-text"></i>
+                </div>
+
+                <h5>Element References</h5>
+
+                <p>
+                    Access elements referenced from the component view.
+                </p>
+
+                <code>ElementRef</code>
+
+            </div>
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-grid-3x3-gap"></i>
+                </div>
+
+                <h5>UI Initialization</h5>
+
+                <p>
+                    Perform view-related initialization after rendering starts.
+                </p>
+
+                <code>initializeView()</code>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Simple Example -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">1. Simple AfterViewInit Example</h2>
+
+        <p>
+            The following example displays a message after the component view
+            has been initialized.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Component
+            </div>
+
+            <pre><code>import &#123; Component, AfterViewInit &#125; from '@@angular/core';
+
+@@Component(&#123;
+    selector: 'app-welcome',
+    templateUrl: './welcome.component.html'
+&#125;)
+export class WelcomeComponent implements AfterViewInit &#123;
+
+    message = '';
+
+    ngAfterViewInit(): void &#123;
+
+        this.message = 'CIIT Training Institute View Ready';
+
+    &#125;
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Template
+            </div>
+
+            <pre><code>&lt;h2&gt;
+    &#123;&#123; message &#125;&#125;
+&lt;/h2&gt;</code></pre>
+
+        </div>
+
+        <div class="output-box">
+
+            <strong>Expected Output:</strong>
+
+            <div class="output-preview">
+
+                <h3>
+                    CIIT Training Institute View Ready
+                </h3>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ViewChild Example -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">2. Using @@ViewChild with @@AfterViewInit</h2>
+
+        <p>
+            <strong>@@ViewChild</strong> can be used to obtain a reference to
+            an element or child component after the view has been initialized.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Component
+            </div>
+
+            <pre><code>import &#123;
+    Component,
+    AfterViewInit,
+    ElementRef,
+    ViewChild
+&#125; from '@@angular/core';
+
+@@Component(&#123;
+    selector: 'app-course',
+    templateUrl: './course.component.html'
+&#125;)
+export class CourseComponent implements AfterViewInit &#123;
+
+    @@ViewChild('courseTitle')
+    courseTitle!: ElementRef;
+
+    ngAfterViewInit(): void &#123;
+
+        console.log(
+            this.courseTitle.nativeElement.textContent
+        );
+
+    &#125;
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Template
+            </div>
+
+            <pre><code>&lt;h2 #courseTitle&gt;
+    Angular Full Stack
+&lt;/h2&gt;</code></pre>
+
+        </div>
+
+        <div class="info-card">
+
+            <h5>How it works</h5>
+
+            <p>
+                The template reference <strong>#courseTitle</strong> is
+                connected to <strong>@@ViewChild</strong>. After the view is
+                initialized, the element reference can be accessed inside
+                <strong>ngAfterViewInit()</strong>.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- Child Component Example -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">3. Accessing a Child Component</h2>
+
+        <p>
+            A parent component can use <strong>@@ViewChild</strong> to access
+            a child component after its view has been initialized.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Child Component
+            </div>
+
+            <pre><code>export class CourseCardComponent &#123;
+
+    courseName = 'Java Full Stack';
+
+    showCourse(): void &#123;
+
+        console.log(this.courseName);
+
+    &#125;
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Parent Component
+            </div>
+
+            <pre><code>import &#123;
+    Component,
+    AfterViewInit,
+    ViewChild
+&#125; from '@@angular/core';
+
+@@Component(&#123;
+    selector: 'app-dashboard',
+    templateUrl: './dashboard.component.html'
+&#125;)
+export class DashboardComponent implements AfterViewInit &#123;
+
+    @@ViewChild(CourseCardComponent)
+    courseCard!: CourseCardComponent;
+
+    ngAfterViewInit(): void &#123;
+
+        this.courseCard.showCourse();
+
+    &#125;
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Parent Template
+            </div>
+
+            <pre><code>&lt;app-course-card&gt;
+&lt;/app-course-card&gt;</code></pre>
+
+        </div>
+
+        <div class="output-box">
+
+            <strong>Expected Result:</strong>
+
+            <div class="output-preview">
+
+                Parent component can access the initialized child component.
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ViewChild Flow -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">4. @@ViewChild and View Initialization Flow</h2>
+
+        <div class="binding-flow">
+
+            <div class="binding-item">
+
+                <strong>Template</strong>
+
+                <span>
+                    Element / Child Component
+                </span>
+
+            </div>
+
+            <div class="binding-arrow">→</div>
+
+            <div class="binding-item">
+
+                <strong>@@ViewChild</strong>
+
+                <span>
+                    Creates Reference
+                </span>
+
+            </div>
+
+            <div class="binding-arrow">→</div>
+
+            <div class="binding-item">
+
+                <strong>ngAfterViewInit()</strong>
+
+                <span>
+                    View becomes initialized
+                </span>
+
+            </div>
+
+            <div class="binding-arrow">→</div>
+
+            <div class="binding-item">
+
+                <strong>Access View</strong>
+
+                <span>
+                    Use the reference
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Multiple View References -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">5. Working with View References</h2>
+
+        <p>
+            A component may use view references to access different elements
+            that are required after view initialization.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Component
+            </div>
+
+            <pre><code>@@ViewChild('courseTitle')
+courseTitle!: ElementRef;
+
+@@ViewChild('courseButton')
+courseButton!: ElementRef;
+
+ngAfterViewInit(): void &#123;
+
+    console.log(
+        this.courseTitle.nativeElement.textContent
+    );
+
+    console.log(
+        this.courseButton.nativeElement.textContent
+    );
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Template
+            </div>
+
+            <pre><code>&lt;h2 #courseTitle&gt;
+    Python Full Stack
+&lt;/h2&gt;
+
+&lt;button #courseButton&gt;
+    Enquire Now
+&lt;/button&gt;</code></pre>
+
+        </div>
+
+        <div class="output-box">
+
+            <strong>Expected View:</strong>
+
+            <div class="student-preview">
+
+                <h3>
+                    Python Full Stack
+                </h3>
+
+                <button class="btn btn-primary btn-sm">
+                    Enquire Now
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- OnInit vs AfterViewInit -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold mb-3">@@OnInit vs @@AfterViewInit</h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered syntax-table">
+
+                <thead>
+
+                    <tr>
+                        <th>ngOnInit()</th>
+                        <th>ngAfterViewInit()</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            Used for component initialization logic.
+                        </td>
+
+                        <td>
+                            Used for view initialization logic.
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            Runs before the component view is fully initialized.
+                        </td>
+
+                        <td>
+                            Runs after the component view is initialized.
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            Commonly used for preparing data.
+                        </td>
+
+                        <td>
+                            Useful when working with view references.
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            Suitable for initial service or API operations.
+                        </td>
+
+                        <td>
+                            Suitable for view and child-component access.
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+    <!-- Complete CIIT Example -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Complete CIIT Training Institute Example</h2>
+
+        <p>
+            Suppose CIIT Training Institute has a course enquiry component.
+            After the course view is initialized, the component can access
+            a course heading and enquiry button using
+            <strong>@@ViewChild</strong>.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                course-enquiry.component.ts
+            </div>
+
+            <pre><code>import &#123;
+    Component,
+    AfterViewInit,
+    ElementRef,
+    ViewChild
+&#125; from '@@angular/core';
+
+@@Component(&#123;
+    selector: 'app-course-enquiry',
+    templateUrl: './course-enquiry.component.html'
+&#125;)
+export class CourseEnquiryComponent
+    implements AfterViewInit &#123;
+
+    @@ViewChild('courseHeading')
+    courseHeading!: ElementRef;
+
+    @@ViewChild('enquiryButton')
+    enquiryButton!: ElementRef;
+
+    ngAfterViewInit(): void &#123;
+
+        console.log(
+            'Course:',
+            this.courseHeading.nativeElement.textContent
+        );
+
+        console.log(
+            'Button:',
+            this.enquiryButton.nativeElement.textContent
+        );
+
+    &#125;
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                course-enquiry.component.html
+            </div>
+
+            <pre><code>&lt;div&gt;
+
+    &lt;h2 #courseHeading&gt;
+        Full Stack .NET
+    &lt;/h2&gt;
+
+    &lt;p&gt;
+        Learn Full Stack .NET at CIIT Training Institute.
+    &lt;/p&gt;
+
+    &lt;button
+        #enquiryButton
+        class="btn btn-primary"&gt;
+        Enquire Now
+    &lt;/button&gt;
+
+&lt;/div&gt;</code></pre>
+
+        </div>
+
+        <div class="output-box">
+
+            <strong>Expected Output:</strong>
+
+            <div class="student-preview">
+
+                <h3>
+                    Full Stack .NET
+                </h3>
+
+                <p>
+                    Learn Full Stack .NET at CIIT Training Institute.
+                </p>
+
+                <button class="btn btn-primary btn-sm">
+                    Enquire Now
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Important Points -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Important Points About @@AfterViewInit</h2>
+
+        <ul class="best-practice-list">
+
+            <li>
+                ngAfterViewInit() runs after the component view is initialized.
+            </li>
+
+            <li>
+                It is useful when code depends on the initialized view.
+            </li>
+
+            <li>
+                @@ViewChild references can be accessed after view initialization.
+            </li>
+
+            <li>
+                It can be used for accessing child component instances.
+            </li>
+
+            <li>
+                Avoid unnecessary DOM manipulation.
+            </li>
+
+            <li>
+                Keep view-related initialization logic simple and organized.
+            </li>
+
+        </ul>
+
+    </section>
+
+    <!-- Best Practices -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">@@AfterViewInit Best Practices</h2>
+
+        <ul class="best-practice-list">
+
+            <li>
+                Use ngAfterViewInit only when logic depends on the initialized view.
+            </li>
+
+            <li>
+                Use @@ViewChild carefully for view references.
+            </li>
+
+            <li>
+                Prefer Angular bindings and component logic over unnecessary
+                direct DOM manipulation.
+            </li>
+
+            <li>
+                Keep view initialization code readable.
+            </li>
+
+            <li>
+                Avoid performing expensive operations unnecessarily.
+            </li>
+
+            <li>
+                Keep reusable application logic inside services or components.
+            </li>
+
+        </ul>
+
+    </section>
+
+    <!-- Summary -->
+    <section class="summary-box">
+
+        <h3>Summary</h3>
+
+        <p>
+            Angular <strong>@@AfterViewInit</strong> provides the
+            <strong>ngAfterViewInit()</strong> lifecycle method for performing
+            operations after the component view and child views have been
+            initialized.
+        </p>
+
+        <p>
+            It is especially useful when working with
+            <strong>@@ViewChild</strong>, element references, and initialized
+            child components.
+        </p>
+
+    </section>
+
+    <!-- Navigation -->
+    <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+
+        <a class="btn btn-outline-secondary"
+           href="@Url.Action("OnChanges", "LifecycleHooks", new { area = "Angular" })">
+            ← ngOnChanges
+        </a>
+
+        <a class="btn btn-primary"
+           href="@Url.Action("OnDestroy", "LifecycleHooks", new { area = "Angular" })">
+            ngOnDestroy →
+        </a>
+
+    </div>
+
+</div>
+
+<style>
+
+    .info-card {
+        background: #f8fafc;
+        border-left: 5px solid #4c1d95;
+        padding: 18px 20px;
+        border-radius: 7px;
+        margin-top: 15px;
+    }
+
+        .info-card h5 {
+            color: #4c1d95;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .info-card p {
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+
+    .syntax-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        padding: 25px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+    }
+
+    .syntax-box {
+        width: 175px;
+        min-height: 125px;
+        padding: 18px;
+        text-align: center;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 9px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+        .syntax-box i {
+            display: block;
+            font-size: 28px;
+            color: #4c1d95;
+            margin-bottom: 8px;
+        }
+
+        .syntax-box strong {
+            display: block;
+            color: #2e1065;
+            font-weight: 700;
+        }
+
+        .syntax-box span {
+            display: block;
+            color: #64748b;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+    .syntax-arrow {
+        color: #4c1d95;
+        font-size: 25px;
+        font-weight: 700;
+    }
+
+    .syntax-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+    }
+
+    .syntax-card {
+        padding: 20px;
+        text-align: center;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 9px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    }
+
+    .syntax-icon {
+        width: 55px;
+        height: 55px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 12px;
+        background: #ede9fe;
+        color: #4c1d95;
+        border-radius: 50%;
+        font-size: 24px;
+    }
+
+    .syntax-card h5 {
+        color: #2e1065;
+        font-weight: 700;
+    }
+
+    .syntax-card p {
+        color: #64748b;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .syntax-card code {
+        color: #4c1d95;
+        font-weight: 600;
+    }
+
+    .code-card {
+        margin-top: 15px;
+        margin-bottom: 18px;
+        border-radius: 8px;
+        overflow: hidden;
+        background: #0f172a;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .code-title {
+        background: #1e293b;
+        color: #d8c9f5;
+        padding: 10px 15px;
+        font-weight: 600;
+        border-bottom: 1px solid #334155;
+    }
+
+    .code-card pre {
+        margin: 0;
+        padding: 18px;
+        overflow-x: auto;
+    }
+
+    .code-card code {
+        color: #e2e8f0;
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    .output-box {
+        margin-top: 15px;
+        padding: 18px;
+        background: #f1f5f9;
+        border-left: 5px solid #4c1d95;
+        border-radius: 6px;
+    }
+
+    .output-preview {
+        margin-top: 12px;
+        padding: 18px;
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 7px;
+    }
+
+        .output-preview h3 {
+            color: #2e1065;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .output-preview p {
+            margin-bottom: 7px;
+        }
+
+    .binding-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 20px;
+        padding: 20px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+    }
+
+    .binding-item {
+        min-width: 170px;
+        padding: 15px;
+        text-align: center;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 8px;
+    }
+
+        .binding-item strong {
+            display: block;
+            color: #4c1d95;
+            font-weight: 700;
+        }
+
+        .binding-item span {
+            display: block;
+            color: #64748b;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+    .binding-arrow {
+        color: #4c1d95;
+        font-size: 25px;
+        font-weight: 700;
+    }
+
+    .active-preview {
+        margin-top: 12px;
+        display: inline-block;
+        padding: 12px 20px;
+        background: #ede9fe;
+        border: 2px solid #4c1d95;
+        border-radius: 7px;
+        color: #2e1065;
+        font-weight: 700;
+    }
+
+    .style-preview {
+        margin-top: 12px;
+        font-size: 20px;
+        font-weight: 600;
+        color: #4c1d95;
+    }
+
+    .control-flow-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .control-card {
+        padding: 20px;
+        background: #f8fafc;
+        border: 1px solid #ddd6fe;
+        border-radius: 8px;
+    }
+
+        .control-card h5 {
+            color: #4c1d95;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+    .code-small {
+        background: #0f172a;
+        border-radius: 7px;
+        overflow: hidden;
+    }
+
+        .code-small pre {
+            margin: 0;
+            padding: 15px;
+            overflow-x: auto;
+        }
+
+        .code-small code {
+            color: #e2e8f0;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+    .syntax-table {
+        background: #ffffff;
+    }
+
+        .syntax-table thead th {
+            background: #4c1d95;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .syntax-table td {
+            vertical-align: middle;
+        }
+
+        .syntax-table code {
+            color: #4c1d95;
+            font-weight: 600;
+        }
+
+    .student-preview {
+        margin-top: 12px;
+        padding: 20px;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 8px;
+    }
+
+        .student-preview h3 {
+            color: #2e1065;
+            font-weight: 700;
+        }
+
+    .best-practice-list {
+        padding: 20px 20px 20px 40px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+    }
+
+        .best-practice-list li {
+            margin-bottom: 11px;
+            line-height: 1.6;
+        }
+
+            .best-practice-list li:last-child {
+                margin-bottom: 0;
+            }
+
+    .summary-box {
+        background: #cfe2ff;
+        border-radius: 6px;
+        padding: 18px 22px;
+        margin-top: 20px;
+    }
+
+        .summary-box h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #084298;
+            margin-bottom: 10px;
+        }
+
+        .summary-box p {
+            font-size: 16px !important;
+            line-height: 1.6 !important;
+            color: #084298 !important;
+            margin-bottom: 8px;
+        }
+
+            .summary-box p:last-child {
+                margin-bottom: 0;
+            }
+
+    @@media (max-width: 991px) {
+
+        .syntax-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .control-flow-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @@media (max-width: 576px) {
+
+        .syntax-grid,
+        .control-flow-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .syntax-flow,
+        .binding-flow {
+            flex-direction: column;
+        }
+
+        .syntax-arrow,
+        .binding-arrow {
+            transform: rotate(90deg);
+        }
+
+        .syntax-box {
+            width: 100%;
+            max-width: 280px;
+        }
+
+        .binding-item {
+            width: 100%;
+            max-width: 250px;
+        }
+
+        .code-card code,
+        .code-small code {
+            font-size: 13px;
+        }
+
+        .d-flex.justify-content-between {
+            gap: 10px;
+        }
+
+            .d-flex.justify-content-between .btn {
+                font-size: 13px;
+                padding: 8px 12px;
+            }
+    }
+
+</style>

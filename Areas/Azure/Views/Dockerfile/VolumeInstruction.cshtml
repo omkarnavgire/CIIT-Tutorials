@@ -1,0 +1,43 @@
+@{
+    ViewData["Title"] = "9. VOLUME";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+                <div class="azure-notes-content">
+                    <pre class="azure-notes-text">9. VOLUME
+
+The VOLUME instruction creates a mount point inside the container and is used for persistent or
+shared data storage.
+
+Example:
+
+1. If you define a single argument, it creates a volume inside a container.
+
+  VOLUME [&quot;/shared-data&quot;]
+
+
+
+2. If you define multiple arguments, it creates multiple volumes inside the container.
+
+  VOLUME [&quot;/volume1&quot;, &quot;/volume2&quot;]</pre>
+                </div>
+            </div>
+        </div>
+    
+
+            @await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureLessonNavigation.cshtml")
+</section>
+</div>
+<style>
+.azure-notes-text{white-space:pre-wrap;word-break:normal;font-family:inherit;font-size:1rem;line-height:1.7;background:#fff;border:0;padding:0;margin:0;color:#212529;}
+.azure-notes-content img{max-height:720px;}
+</style>

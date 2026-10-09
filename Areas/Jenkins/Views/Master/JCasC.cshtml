@@ -1,0 +1,238 @@
+@{
+    Layout = "~/Areas/Jenkins/Views/Shared/JenkinsLayout.cshtml";
+    ViewData["Title"] = "Jenkins Configuration as Code (JCasC)";
+}
+
+<style>
+    #jenkins-configuration-as-code-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #jenkins-configuration-as-code-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #jenkins-configuration-as-code-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #jenkins-configuration-as-code-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #jenkins-configuration-as-code-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+    #jenkins-configuration-as-code-page .example-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+    }
+</style>
+
+<main id="jenkins-configuration-as-code-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/Jenkins/Views/Shared/JenkinsTopics.cshtml")
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+                <h1 class="fw-bold">Jenkins Configuration as Code (JCasC)</h1>
+                <p class="lead">
+                    Implement infrastructure-as-code methodologies by fully defining plugins, system paths, credentials, and cloud nodes inside human-readable, version-controlled YAML blueprints.
+                </p>
+            </div>
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">What is Jenkins Configuration as Code?</h2>
+                <p>
+                    Configuring enterprise controllers manually via clicking through hundreds of UI pages introduces human error, results in slow recovery times during hardware dropouts, and obscures baseline audit tracking.
+                </p>
+                <p>
+                    <strong>Jenkins Configuration as Code (JCasC)</strong> resolves these configuration drift issues by enabling administrators to model the desired status of an entire automation controller inside a structured text layout file (`jenkins.yaml`). Upon initialization or hot-reloading events, the JCasC engine automatically parses this template file, configures systemic configurations, sets up root settings, and establishes security scopes instantaneously.
+                </p>
+                <div class="alert alert-info">
+                    <strong>Simple Definition:</strong> Jenkins Configuration as Code (JCasC) is a plugin-driven automation approach that eliminates interactive user-interface tasks by relying on version-controlled YAML blueprints to consistently boot and configure standalone or clustered controllers.
+                </div>
+            </div>
+
+            <!-- KEY CONCEPTS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Key GitOps and Configuration Pillars</h2>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Human-Readable Declarative Layout</h5>
+                            <p class="mb-0">JCasC uses plain text YAML schemas mapped directly to Jenkins internal configuration classes. System parameters, plugin setups, and external credentials can be read, updated, and validated easily before deployment.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Immutable State & GitOps</h5>
+                            <p class="mb-0">By matching controller environments directly to a backing repository blueprint, changes can only be deployed via Peer Code Reviews (Pull Requests). This creates a transparent history log for all system alterations.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Dynamic Secret Interpolation</h5>
+                            <p class="mb-0">Never write plain-text administrative passwords inside a repository. The configuration framework natively pulls private values at boot from environmental inputs (`${ADMIN_SECRET}`) or vault paths.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Hot Reload Capacity</h5>
+                            <p class="mb-0">You do not need to restart an operational cluster node to introduce variations. Modifying configuration layers can be applied live directly via the controller's management URL engine or web UI dashboard flags.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXAMPLE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Production Configuration and Deployment Blueprints</h2>
+                <p>
+                    Below is a look at a standardized master system architecture YAML configuration combined with an automatic pipeline validation script:
+                </p>
+
+                <h6 class="fw-bold mt-3 text-secondary">1. Corporate Infrastructure Blueprint Schema (`jenkins.yaml`)</h6>
+                <pre><code>jenkins:
+  systemMessage: "PRODUCTION ENVIRONMENT: Controlled dynamically via enterprise GitOps repositories. Manual changes will be overwritten."
+  numExecutors: 0 # Force all workloads out to external ephemeral agent pools
+  mode: EXCLUSIVE
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  securityRealm:
+    local:
+      allowsSignup: false
+      users:
+        - id: "ops-admin"
+          password: "\${ADMIN_PASSWORD_SECRET}" # Injected from environment or private file mounts
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  authorizationStrategy:
+    roleBased:
+      roles:
+        global:
+          - name: "admin"
+            description: "System managers group"
+            permissions:
+              - "Jenkins/Administer"
+            assignments:
+              - "ops-admin"
+
+unclassified:
+  location:
+    adminAddress: "devops-alerts@enterprise.com"
+    url: "https://internal.net"</code></pre>
+
+                <h6 class="fw-bold mt-4 text-secondary">2. Continuous Deployment Validation Pipeline</h6>
+            <pre><code>pipeline {
+    agent { label 'jcasc-validator-node' }
+    environment {
+        CASC_JENKINS_CONFIG = 'configs/production/jenkins.yaml'
+    }
+    stages {
+        stage('Lint Schema Specifications') {
+            steps {
+                echo 'Validating YAML file format structure integrity...'
+                sh 'yamllint configs/production/jenkins.yaml'
+            }
+        }
+        stage('Dry-Run Compliance Test') {
+            steps {
+                echo 'Checking parameters against live JCasC structural target definitions...'
+                // Invoking an internal script parsing task or container test run
+            }
+        }
+    }
+}</code></pre>
+</div>
+
+<!-- PRACTICE -->
+<div class="mb-4">
+<h2 class="h3 fw-bold">JCasC Management Exercise</h2>
+<ol>
+<li class="mb-2"><strong>Examine the JCasC Utility:</strong> Navigate to <em>Manage Jenkins</em> and select <strong>Configuration as Code</strong>. If the plugin is absent, look it up within the plugin catalog.</li>
+                    <li class="mb-2"><strong>Export Current Engine State:</strong> Click on the <strong>Export Configuration</strong> button inside the JCasC workspace view to review how your interactive GUI configurations translate into text-based parameters.</li>
+                    <li class="mb-2"><strong>Simulate Environmental Variables:</strong> Define an operational key override rule in your terminal terminal session via `export ADMIN_PASSWORD_SECRET="SuperSecurePass123!"` and trace how JCasC imports it.</li>
+                    <li><strong>Apply a Configuration Update:</strong> Edit an output string value in your local configuration block, trigger a configuration <strong>Reload</strong>, and verify the updated parameter changes instantly inside the main system dashboard banner.</li>
+                </ol>
+            </div>
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+                <h2 class="h4 fw-bold">Summary</h2>
+                <p class="mb-0">You have completed the <strong>Jenkins Configuration as Code</strong> lesson. You now understand how to avoid manual administration bottlenecks, maintain infrastructure configurations inside version control repositories, and set up rapid disaster recovery capabilities. Proceed to the next module to manage disaster safety loops.</p>
+            </div>
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+                <a class="btn btn-outline-primary" href="@Url.Action("SharedLibraries", "Master", new { area = "Jenkins" })">← Previous: Shared Libraries</a>
+                <a class="btn btn-primary" href="@Url.Action("BackupRecovery", "Master", new { area = "Jenkins" })">Next: Backup and Disaster Recovery →</a>
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

@@ -1,0 +1,412 @@
+﻿@{
+    ViewData["Title"] = "Subquery with SELECT, INSERT, UPDATE & DELETE";
+}
+
+<div class="container-fluid">
+
+    <!-- =========================
+         PAGE HEADER
+    ========================== -->
+
+    <div class="mb-4">
+
+        <h1 class="fw-bold">
+            Subquery with SELECT, INSERT, UPDATE &amp; DELETE
+        </h1>
+
+        <p class="text-muted">
+            Learn how subqueries can be used with SELECT, INSERT,
+            UPDATE and DELETE statements.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         INTRODUCTION
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Introduction
+            </h2>
+
+            <p>
+                A subquery can be used not only with SELECT statements,
+                but also with <strong>INSERT</strong>,
+                <strong>UPDATE</strong> and <strong>DELETE</strong>
+                statements.
+            </p>
+
+            <p>
+                The subquery provides the required data or condition
+                that is used by the main SQL statement.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         SELECT WITH SUBQUERY
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                1. SELECT with Subquery
+            </h2>
+
+            <p>
+                A subquery can be used inside a SELECT statement to
+                filter records based on the result of another query.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>
+SELECT EmployeeName, Salary
+FROM Employees
+WHERE Salary &gt;
+(
+    SELECT AVG(Salary)
+    FROM Employees
+);
+            </code></pre>
+
+            <p class="mt-3">
+                The inner query calculates the average salary and the
+                outer query returns employees whose salary is greater
+                than the average.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         INSERT WITH SUBQUERY
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                2. INSERT with Subquery
+            </h2>
+
+            <p>
+                A subquery can be used with INSERT to insert the result
+                of a SELECT query into another table.
+            </p>
+
+            <p>
+                Suppose we have an archive table:
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>
+CREATE TABLE EmployeeArchive
+(
+    EmployeeId INT,
+    EmployeeName VARCHAR(100),
+    Salary DECIMAL(10,2)
+);
+            </code></pre>
+
+            <p class="mt-3">
+                We can insert selected employees using a subquery:
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>
+INSERT INTO EmployeeArchive
+    (EmployeeId, EmployeeName, Salary)
+SELECT EmployeeId, EmployeeName, Salary
+FROM Employees
+WHERE DepartmentId IN
+(
+    SELECT DepartmentId
+    FROM Departments
+    WHERE Location = 'Pune'
+);
+            </code></pre>
+
+            <p class="mt-3">
+                The inner query finds departments located in Pune.
+                The SELECT query then gets employees belonging to those
+                departments and inserts them into
+                <strong>EmployeeArchive</strong>.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         UPDATE WITH SUBQUERY
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                3. UPDATE with Subquery
+            </h2>
+
+            <p>
+                A subquery can be used in an UPDATE statement to
+                determine which records should be updated.
+            </p>
+
+            <p>
+                Example: Increase the salary of employees who belong
+                to the IT department.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>
+UPDATE Employees
+SET Salary = Salary + 5000
+WHERE DepartmentId =
+(
+    SELECT DepartmentId
+    FROM Departments
+    WHERE DepartmentName = 'IT'
+);
+            </code></pre>
+
+            <p class="mt-3">
+                The subquery finds the department ID of the IT
+                department. The UPDATE statement then increases the
+                salary of employees belonging to that department.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         DELETE WITH SUBQUERY
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                4. DELETE with Subquery
+            </h2>
+
+            <p>
+                A subquery can also be used with DELETE to identify
+                the records that should be removed.
+            </p>
+
+            <p>
+                Example: Delete employees who belong to a department
+                located in Mumbai.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>
+DELETE FROM Employees
+WHERE DepartmentId IN
+(
+    SELECT DepartmentId
+    FROM Departments
+    WHERE Location = 'Mumbai'
+);
+            </code></pre>
+
+            <p class="mt-3">
+                The inner query finds the departments located in
+                Mumbai. The DELETE statement removes employees
+                belonging to those departments.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         COMPARISON TABLE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Subquery with SQL Statements
+            </h2>
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-striped">
+
+                    <thead class="table-primary">
+
+                        <tr>
+                            <th>Statement</th>
+                            <th>Purpose</th>
+                            <th>Example Use</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td><strong>SELECT</strong></td>
+                            <td>
+                                Retrieve records based on another query.
+                            </td>
+                            <td>
+                                Find employees above average salary.
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>INSERT</strong></td>
+                            <td>
+                                Insert data obtained from another query.
+                            </td>
+                            <td>
+                                Copy selected employees to an archive.
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>UPDATE</strong></td>
+                            <td>
+                                Update records selected using a subquery.
+                            </td>
+                            <td>
+                                Update employees of a particular department.
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>DELETE</strong></td>
+                            <td>
+                                Delete records identified by a subquery.
+                            </td>
+                            <td>
+                                Delete employees from a particular location.
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         IMPORTANT POINTS
+    ========================== -->
+
+    <div class="alert alert-warning mb-4">
+
+        <h4 class="fw-bold">
+            Important Points
+        </h4>
+
+        <ul class="mb-0">
+
+            <li>
+                A subquery can be used with SELECT, INSERT, UPDATE
+                and DELETE.
+            </li>
+
+            <li>
+                Always verify the result of the subquery before
+                performing UPDATE or DELETE operations.
+            </li>
+
+            <li>
+                INSERT ... SELECT is useful for copying selected
+                records between tables.
+            </li>
+
+            <li>
+                UPDATE with a subquery can be used to modify records
+                based on related data.
+            </li>
+
+            <li>
+                DELETE with a subquery can remove records based on
+                conditions from another table.
+            </li>
+
+            <li>
+                Be especially careful with UPDATE and DELETE because
+                they can modify or remove multiple records.
+            </li>
+
+        </ul>
+
+    </div>
+
+
+    <!-- =========================
+         SUMMARY
+    ========================== -->
+
+    <div class="alert alert-info p-4 mb-4">
+
+        <h2 class="fw-bold">
+            Summary
+        </h2>
+
+        <p class="mb-0">
+            Subqueries can be used with SELECT, INSERT, UPDATE and
+            DELETE statements. They allow one query to provide data
+            or conditions for another SQL operation and are useful
+            when working with related data across tables.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+     PREVIOUS / NEXT
+========================== -->
+
+    <div class="d-flex justify-content-between align-items-center
+        mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/Subqueries/CorrelatedSubquery"
+           class="btn btn-outline-primary">
+
+            ← Previous: Correlated Subquery
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/Views/Index"
+           class="btn btn-primary">
+
+            Next: SQL Views Introduction →
+
+        </a>
+
+    </div>
+
+</div>

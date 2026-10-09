@@ -1,0 +1,1142 @@
+﻿@{
+    ViewData["Title"] = "Component Anatomy";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- ================= HEADER ================= -->
+
+    <section class="mb-4">
+
+        <h1 class="fw-bold text-dark">
+            Component Anatomy
+        </h1>
+
+        <p class="text-muted fs-5">
+            An Angular component is made up of different parts that work
+            together to create a user interface. Understanding these parts
+            helps us create and maintain Angular applications effectively.
+        </p>
+
+    </section>
+
+
+    <!-- ================= WHAT IS COMPONENT ANATOMY ================= -->
+
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            What is Component Anatomy?
+        </h2>
+
+        <p>
+            Component anatomy means understanding the different parts of
+            an Angular component and how those parts work together.
+        </p>
+
+        <p>
+            A component mainly contains a TypeScript class, a component
+            decorator, a template and styling.
+        </p>
+
+        <div class="info-highlight">
+
+            <strong>Component Anatomy:</strong>
+
+            <span>
+                Decorator + Class + Template + Styles
+            </span>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= COMPONENT ANATOMY DIAGRAM ================= -->
+
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Angular Component Anatomy
+        </h2>
+
+        <div class="anatomy-diagram">
+
+            <div class="anatomy-center">
+
+                <div class="center-icon">
+                    C
+                </div>
+
+                <h4>
+                    Angular Component
+                </h4>
+
+                <p>
+                    Complete UI building block
+                </p>
+
+            </div>
+
+
+            <div class="anatomy-grid">
+
+                <div class="anatomy-card">
+
+                    <div class="anatomy-number">
+                        1
+                    </div>
+
+                    <h5>
+                        @@Component
+                    </h5>
+
+                    <p>
+                        Provides metadata that tells Angular how to
+                        configure the component.
+                    </p>
+
+                </div>
+
+
+                <div class="anatomy-card">
+
+                    <div class="anatomy-number">
+                        2
+                    </div>
+
+                    <h5>
+                        TypeScript Class
+                    </h5>
+
+                    <p>
+                        Contains properties, methods and application logic.
+                    </p>
+
+                </div>
+
+
+                <div class="anatomy-card">
+
+                    <div class="anatomy-number">
+                        3
+                    </div>
+
+                    <h5>
+                        HTML Template
+                    </h5>
+
+                    <p>
+                        Defines the user interface displayed in the browser.
+                    </p>
+
+                </div>
+
+
+                <div class="anatomy-card">
+
+                    <div class="anatomy-number">
+                        4
+                    </div>
+
+                    <h5>
+                        Styles
+                    </h5>
+
+                    <p>
+                        Defines the appearance of the component.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= COMPLETE COMPONENT ================= -->
+
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Complete Component Example
+        </h2>
+
+        <p>
+            The following example shows the basic structure of a Student
+            component.
+        </p>
+
+
+        <div class="code-box">
+
+            <div class="code-header">
+                <span>student.component.ts</span>
+            </div>
+
+            <pre><code>import { Component } from '@@angular/core';
+
+@@Component({
+    selector: 'app-student',
+    templateUrl: './student.component.html',
+    styleUrl: './student.component.css'
+})
+export class StudentComponent {
+
+    studentName = 'Sam';
+
+    displayMessage() {
+        return 'Welcome ' + this.studentName;
+    }
+
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= IMPORT ================= -->
+
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            1. Import Statement
+        </h2>
+
+        <p>
+            The component uses the Angular <strong>Component</strong>
+            decorator. It is imported from Angular core.
+        </p>
+
+        <div class="code-box">
+
+            <div class="code-header">
+                <span>Import</span>
+            </div>
+
+            <pre><code>import { Component } from '@@angular/core';</code></pre>
+
+        </div>
+
+        <div class="info-card mt-3">
+
+            <h5>Purpose</h5>
+
+            <p class="mb-0">
+                The import statement makes the Component decorator
+                available to the TypeScript class.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= DECORATOR ================= -->
+
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            2. @@Component Decorator
+        </h2>
+
+        <p>
+            The <strong>@@Component</strong> decorator provides metadata
+            about the component.
+        </p>
+
+        <div class="code-box">
+
+            <div class="code-header">
+                <span>Component Metadata</span>
+            </div>
+
+            <pre><code>@@Component({
+    selector: 'app-student',
+    templateUrl: './student.component.html',
+    styleUrl: './student.component.css'
+})</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= SELECTOR ================= -->
+
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            3. selector
+        </h2>
+
+        <p>
+            The <strong>selector</strong> defines the custom HTML element
+            through which the component can be used.
+        </p>
+
+        <div class="code-box">
+
+            <div class="code-header">
+                <span>Selector</span>
+            </div>
+
+            <pre><code>selector: 'app-student'</code></pre>
+
+        </div>
+
+        <p class="mt-3">
+            The component can be placed inside another template using:
+        </p>
+
+        <div class="code-box">
+
+            <div class="code-header">
+                <span>HTML</span>
+            </div>
+
+            <pre><code>&lt;app-student&gt;&lt;/app-student&gt;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= TEMPLATE URL ================= -->
+
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            4. templateUrl
+        </h2>
+
+        <p>
+            The <strong>templateUrl</strong> property specifies the
+            external HTML file used by the component.
+        </p>
+
+        <div class="code-box">
+
+            <div class="code-header">
+                <span>Component Metadata</span>
+            </div>
+
+            <pre><code>templateUrl: './student.component.html'</code></pre>
+
+        </div>
+
+        <p class="mt-3">
+            The HTML template can contain Angular interpolation,
+            property binding, event binding and other template features.
+        </p>
+
+    </section>
+
+
+    <!-- ================= STYLE URL ================= -->
+
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            5. styleUrl
+        </h2>
+
+        <p>
+            The <strong>styleUrl</strong> property specifies the stylesheet
+            associated with the component.
+        </p>
+
+        <div class="code-box">
+
+            <div class="code-header">
+                <span>Component Metadata</span>
+            </div>
+
+            <pre><code>styleUrl: './student.component.css'</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= CLASS ================= -->
+
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            6. Component Class
+        </h2>
+
+        <p>
+            The TypeScript class contains the data and logic required
+            by the component.
+        </p>
+
+        <div class="code-box">
+
+            <div class="code-header">
+                <span>TypeScript Class</span>
+            </div>
+
+            <pre><code>export class StudentComponent {
+
+    studentName = 'Sam';
+
+    displayMessage() {
+        return 'Welcome ' + this.studentName;
+    }
+
+}</code></pre>
+
+        </div>
+
+        <div class="class-parts">
+
+            <div class="class-part">
+
+                <h5>Property</h5>
+
+                <code>studentName</code>
+
+                <p>
+                    Stores component data.
+                </p>
+
+            </div>
+
+
+            <div class="class-part">
+
+                <h5>Method</h5>
+
+                <code>displayMessage()</code>
+
+                <p>
+                    Performs component logic.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= TEMPLATE ================= -->
+
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            7. Component Template
+        </h2>
+
+        <p>
+            The HTML template defines what the user sees in the browser.
+        </p>
+
+        <div class="code-box">
+
+            <div class="code-header">
+                <span>student.component.html</span>
+            </div>
+
+            <pre><code>&lt;h2&gt;Student Details&lt;/h2&gt;
+
+&lt;p&gt;
+    Student Name: &#123;&#123; studentName &#125;&#125;
+&lt;/p&gt;
+
+&lt;p&gt;
+    &#123;&#123; displayMessage() &#125;&#125;
+&lt;/p&gt;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= CSS ================= -->
+
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            8. Component Styling
+        </h2>
+
+        <p>
+            Component-specific styles can be written in the component
+            stylesheet.
+        </p>
+
+        <div class="code-box">
+
+            <div class="code-header">
+                <span>student.component.css</span>
+            </div>
+
+            <pre><code>h2 {
+    color: #4c1d95;
+}
+
+p {
+    font-size: 18px;
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= EXPECTED OUTPUT ================= -->
+
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Expected Output
+        </h2>
+
+        <div class="output-box">
+
+            <h4>
+                Student Details
+            </h4>
+
+            <p>
+                Student Name: Sam
+            </p>
+
+            <p class="mb-0">
+                Welcome Sam
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= COMPONENT FLOW ================= -->
+
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            How Component Parts Work Together
+        </h2>
+
+        <div class="working-flow">
+
+            <div class="working-step">
+
+                <div class="working-number">
+                    1
+                </div>
+
+                <h5>
+                    Component Decorator
+                </h5>
+
+                <p>
+                    Defines component metadata.
+                </p>
+
+            </div>
+
+
+            <div class="working-arrow">
+                →
+            </div>
+
+
+            <div class="working-step">
+
+                <div class="working-number">
+                    2
+                </div>
+
+                <h5>
+                    TypeScript Class
+                </h5>
+
+                <p>
+                    Provides data and logic.
+                </p>
+
+            </div>
+
+
+            <div class="working-arrow">
+                →
+            </div>
+
+
+            <div class="working-step">
+
+                <div class="working-number">
+                    3
+                </div>
+
+                <h5>
+                    HTML Template
+                </h5>
+
+                <p>
+                    Displays the data.
+                </p>
+
+            </div>
+
+
+            <div class="working-arrow">
+                →
+            </div>
+
+
+            <div class="working-step">
+
+                <div class="working-number">
+                    4
+                </div>
+
+                <h5>
+                    Browser
+                </h5>
+
+                <p>
+                    Shows the final UI.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FILE RELATION ================= -->
+
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Component File Relationship
+        </h2>
+
+        <div class="file-relation">
+
+            <div class="relation-file">
+                <strong>student.component.ts</strong>
+                <span>Logic</span>
+            </div>
+
+            <div class="relation-arrow">
+                +
+            </div>
+
+            <div class="relation-file">
+                <strong>student.component.html</strong>
+                <span>UI</span>
+            </div>
+
+            <div class="relation-arrow">
+                +
+            </div>
+
+            <div class="relation-file">
+                <strong>student.component.css</strong>
+                <span>Style</span>
+            </div>
+
+            <div class="relation-arrow">
+                =
+            </div>
+
+            <div class="relation-result">
+                <strong>Student Component</strong>
+                <span>Complete Component</span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= SUMMARY ================= -->
+
+    <section class="mb-5">
+
+        <div class="summary-box">
+
+            <h3>
+                Summary
+            </h3>
+
+            <p>
+                Angular component anatomy consists of the component
+                decorator, TypeScript class, HTML template and styling.
+            </p>
+
+            <p>
+                The decorator defines component metadata such as
+                <strong>selector</strong>, <strong>templateUrl</strong>
+                and <strong>styleUrl</strong>.
+            </p>
+
+            <p class="mb-0">
+                The TypeScript class contains the component logic,
+                while the HTML template displays the data to the user.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= NAVIGATION ================= -->
+
+    <div class="topic-navigation">
+
+        <a class="btn btn-outline-secondary"
+           href="@Url.Action("Index", "Components", new { area = "Angular" })">
+            ← Angular Components
+        </a>
+
+        <a class="btn btn-primary"
+           href="@Url.Action("CreatingComponents", "Components", new { area = "Angular" })">
+            Creating Components →
+        </a>
+
+    </div>
+
+</div>
+
+
+<style>
+
+    /* ================= SECTION TITLE ================= */
+
+    .section-title {
+        font-size: 25px;
+        font-weight: 700;
+        color: #2e1065;
+        margin-bottom: 18px;
+        border-left: 5px solid #4c1d95;
+        padding-left: 12px;
+    }
+
+
+    /* ================= INFO ================= */
+
+    .info-highlight {
+        background: #f3eefe;
+        border-left: 5px solid #4c1d95;
+        padding: 15px 18px;
+        border-radius: 7px;
+        margin-top: 20px;
+    }
+
+        .info-highlight strong {
+            color: #2e1065;
+            margin-right: 8px;
+        }
+
+        .info-highlight span {
+            color: #4c1d95;
+            font-weight: 600;
+        }
+
+
+    /* ================= ANATOMY ================= */
+
+    .anatomy-diagram {
+        background: #f8f7fc;
+        border: 1px solid #e5e7eb;
+        border-radius: 10px;
+        padding: 30px;
+    }
+
+    .anatomy-center {
+        max-width: 300px;
+        margin: 0 auto 25px;
+        text-align: center;
+        background: #4c1d95;
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    .center-icon {
+        width: 45px;
+        height: 45px;
+        margin: 0 auto 10px;
+        border-radius: 50%;
+        background: white;
+        color: #4c1d95;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 20px;
+    }
+
+    .anatomy-center h4 {
+        margin-bottom: 5px;
+    }
+
+    .anatomy-center p {
+        color: #d8c9f5;
+        margin-bottom: 0;
+    }
+
+    .anatomy-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+    }
+
+    .anatomy-card {
+        background: white;
+        border: 1px solid #ddd6fe;
+        border-radius: 9px;
+        padding: 18px;
+        text-align: center;
+    }
+
+    .anatomy-number {
+        width: 38px;
+        height: 38px;
+        margin: 0 auto 10px;
+        border-radius: 50%;
+        background: #4c1d95;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+    }
+
+    .anatomy-card h5 {
+        color: #2e1065;
+        font-weight: 700;
+    }
+
+    .anatomy-card p {
+        color: #64748b;
+        font-size: 14px;
+        margin-bottom: 0;
+    }
+
+
+    /* ================= CODE ================= */
+
+    .code-box {
+        background: #0f172a;
+        border-radius: 8px;
+        margin-top: 15px;
+        overflow: hidden;
+    }
+
+    .code-header {
+        background: #1e293b;
+        color: #cbd5e1;
+        padding: 8px 15px;
+        font-size: 13px;
+        font-weight: 600;
+        border-bottom: 1px solid #334155;
+    }
+
+    .code-box pre {
+        margin: 0;
+        padding: 18px 20px;
+        overflow-x: auto;
+    }
+
+    .code-box code {
+        color: #e2e8f0;
+        font-family: Consolas, "Courier New", monospace;
+        font-size: 15px;
+        line-height: 1.7;
+    }
+
+
+    /* ================= INFO CARD ================= */
+
+    .info-card {
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        border-left: 5px solid #4c1d95;
+        border-radius: 7px;
+        padding: 18px 20px;
+    }
+
+        .info-card h5 {
+            color: #4c1d95;
+            font-weight: 700;
+        }
+
+
+    /* ================= CLASS PARTS ================= */
+
+    .class-parts {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+        margin-top: 20px;
+    }
+
+    .class-part {
+        background: #f8f7fc;
+        border: 1px solid #ddd6fe;
+        border-radius: 9px;
+        padding: 20px;
+    }
+
+        .class-part h5 {
+            color: #4c1d95;
+            font-weight: 700;
+        }
+
+        .class-part code {
+            background: #ede9fe;
+            color: #4c1d95;
+            padding: 6px 9px;
+            border-radius: 5px;
+        }
+
+        .class-part p {
+            color: #64748b;
+            margin-top: 12px;
+            margin-bottom: 0;
+        }
+
+
+    /* ================= OUTPUT ================= */
+
+    .output-box {
+        background: #f1f5f9;
+        border-left: 5px solid #4c1d95;
+        border-radius: 7px;
+        padding: 18px 20px;
+    }
+
+        .output-box h4 {
+            color: #4c1d95;
+            font-weight: 700;
+        }
+
+
+    /* ================= WORKING FLOW ================= */
+
+    .working-flow {
+        display: flex;
+        align-items: stretch;
+        justify-content: center;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .working-step {
+        width: 180px;
+        min-height: 145px;
+        text-align: center;
+        padding: 18px;
+        background: #f8f7fc;
+        border: 1px solid #ddd6fe;
+        border-radius: 9px;
+    }
+
+    .working-number {
+        width: 38px;
+        height: 38px;
+        margin: 0 auto 10px;
+        background: #4c1d95;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+    }
+
+    .working-step h5 {
+        color: #2e1065;
+        font-weight: 700;
+        font-size: 16px;
+    }
+
+    .working-step p {
+        color: #64748b;
+        font-size: 13px;
+        margin-bottom: 0;
+    }
+
+    .working-arrow {
+        align-self: center;
+        color: #4c1d95;
+        font-size: 25px;
+        font-weight: 700;
+    }
+
+
+    /* ================= FILE RELATION ================= */
+
+    .file-relation {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        background: #f8f7fc;
+        border: 1px solid #e5e7eb;
+        border-radius: 10px;
+        padding: 25px;
+    }
+
+    .relation-file,
+    .relation-result {
+        padding: 16px;
+        border-radius: 8px;
+        background: white;
+        border: 1px solid #ddd6fe;
+        text-align: center;
+    }
+
+        .relation-file strong,
+        .relation-result strong {
+            display: block;
+            color: #2e1065;
+            font-size: 14px;
+        }
+
+        .relation-file span,
+        .relation-result span {
+            display: block;
+            color: #64748b;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+    .relation-result {
+        background: #f3eefe;
+        border: 2px solid #4c1d95;
+    }
+
+    .relation-arrow {
+        color: #4c1d95;
+        font-size: 23px;
+        font-weight: 700;
+    }
+
+
+    /* ================= SUMMARY ================= */
+
+    .summary-box {
+        background: #cfe2ff;
+        border-radius: 6px;
+        padding: 18px 22px;
+        margin-top: 20px;
+    }
+
+        .summary-box h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #084298;
+            margin-bottom: 10px;
+        }
+
+        .summary-box p {
+            font-size: 16px !important;
+            line-height: 1.6 !important;
+            color: #084298 !important;
+            margin-bottom: 8px;
+        }
+
+
+    /* ================= NAVIGATION ================= */
+
+    .topic-navigation {
+        display: flex;
+        justify-content: space-between;
+        gap: 15px;
+        margin-top: 35px;
+        padding-top: 20px;
+        border-top: 1px solid #e5e7eb;
+    }
+
+        .topic-navigation .btn {
+            padding: 10px 18px;
+            font-weight: 600;
+        }
+
+        .topic-navigation .btn-primary {
+            background: #4c1d95;
+            border-color: #4c1d95;
+        }
+
+            .topic-navigation .btn-primary:hover {
+                background: #2e1065;
+                border-color: #2e1065;
+            }
+
+
+    /* ================= RESPONSIVE ================= */
+
+    @@media (max-width: 991px) {
+
+        .anatomy-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .working-arrow,
+        .relation-arrow {
+            display: none;
+        }
+    }
+
+
+    @@media (max-width: 576px) {
+
+        .section-title {
+            font-size: 22px;
+        }
+
+        .anatomy-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .class-parts {
+            grid-template-columns: 1fr;
+        }
+
+        .working-flow {
+            flex-direction: column;
+        }
+
+        .working-step {
+            width: 100%;
+        }
+
+        .file-relation {
+            flex-direction: column;
+        }
+
+        .relation-file,
+        .relation-result {
+            width: 100%;
+        }
+
+        .topic-navigation {
+            flex-direction: column;
+        }
+
+            .topic-navigation .btn {
+                width: 100%;
+                text-align: center;
+            }
+
+        .code-box code {
+            font-size: 13px;
+        }
+    }
+
+</style>

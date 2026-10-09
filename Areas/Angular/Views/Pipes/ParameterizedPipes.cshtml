@@ -1,0 +1,653 @@
+﻿@{
+    ViewData["Title"] = "Parameterized Pipes";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- Header -->
+    <section class="mb-4">
+        <h1 class="fw-bold text-dark">Parameterized Pipes</h1>
+        <p class="lead text-muted">
+            Learn how Angular Pipes accept parameters to control and
+            customize the way data is transformed and displayed.
+        </p>
+    </section>
+
+    <!-- What are Parameterized Pipes -->
+    <section class="mb-4">
+        <h2 class="fw-bold">What are Parameterized Pipes?</h2>
+
+        <div class="info-card">
+            <p>
+                Parameterized Pipes are Angular Pipes that receive one or
+                more additional values to customize their output.
+            </p>
+
+            <p class="mb-0">
+                Parameters are written after the pipe name using the
+                colon <code>:</code> symbol.
+            </p>
+        </div>
+    </section>
+
+    <!-- Flow -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Parameterized Pipe Flow</h2>
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+                <div class="syntax-icon">1</div>
+                <h5>Original Data</h5>
+                <p>Component provides the value.</p>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+                <div class="syntax-icon">2</div>
+                <h5>Pipe</h5>
+                <p>Select the required pipe.</p>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+                <div class="syntax-icon">3</div>
+                <h5>Parameter</h5>
+                <p>Pass additional formatting information.</p>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+                <div class="syntax-icon">4</div>
+                <h5>Output</h5>
+                <p>Angular displays the customized value.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Basic Syntax -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Basic Syntax</h2>
+
+        <div class="code-card">
+            <div class="code-title">Syntax</div>
+
+            <pre><code>{{value | pipeName:parameter}}</code></pre>
+        </div>
+
+        <div class="output-box">
+            <strong>Example:</strong>
+
+            <div class="output-preview">
+                <code>{{courseFee | currency:'INR'}}</code>
+            </div>
+        </div>
+    </section>
+
+    <!-- Currency Parameter -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Currency Pipe with Parameter</h2>
+
+        <p>
+            The <code>currency</code> pipe accepts a currency code as
+            a parameter.
+        </p>
+
+        <div class="code-card">
+            <div class="code-title">Component</div>
+
+            <pre><code>courseFee = 35000;</code></pre>
+        </div>
+
+        <div class="code-card">
+            <div class="code-title">Template</div>
+
+            <pre><code>&lt;p&gt;
+    {{courseFee | currency:'INR'}}
+&lt;/p&gt;</code></pre>
+        </div>
+
+        <div class="output-box">
+            <strong>Output:</strong>
+
+            <div class="output-preview">
+                ₹35,000.00
+            </div>
+        </div>
+    </section>
+
+    <!-- Date Parameter -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Date Pipe with Parameter</h2>
+
+        <p>
+            The <code>date</code> pipe can receive a format parameter
+            to control the displayed date.
+        </p>
+
+        <div class="code-card">
+            <div class="code-title">Component</div>
+
+            <pre><code>joiningDate = new Date();</code></pre>
+        </div>
+
+        <div class="code-card">
+            <div class="code-title">Template</div>
+
+            <pre><code>&lt;p&gt;
+    {{joiningDate | date:'dd/MM/yyyy'}}
+&lt;/p&gt;</code></pre>
+        </div>
+
+        <div class="output-box">
+            <strong>Example Output:</strong>
+
+            <div class="output-preview">
+                07/10/2026
+            </div>
+        </div>
+    </section>
+
+    <!-- Number Parameter -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Number Pipe with Parameter</h2>
+
+        <p>
+            The <code>number</code> pipe can accept digit information
+            as a parameter.
+        </p>
+
+        <div class="code-card">
+            <div class="code-title">Component</div>
+
+            <pre><code>marks = 87.5678;</code></pre>
+        </div>
+
+        <div class="code-card">
+            <div class="code-title">Template</div>
+
+            <pre><code>&lt;p&gt;
+    {{marks | number:'1.2-2'}}
+&lt;/p&gt;</code></pre>
+        </div>
+
+        <div class="output-box">
+            <strong>Output:</strong>
+
+            <div class="output-preview">
+                87.57
+            </div>
+        </div>
+    </section>
+
+    <!-- Percent Parameter -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Percent Pipe with Parameter</h2>
+
+        <p>
+            The <code>percent</code> pipe can accept digit information
+            for formatting the percentage.
+        </p>
+
+        <div class="code-card">
+            <div class="code-title">Component</div>
+
+            <pre><code>completion = 0.8567;</code></pre>
+        </div>
+
+        <div class="code-card">
+            <div class="code-title">Template</div>
+
+            <pre><code>&lt;p&gt;
+    {{completion | percent:'1.1-2'}}
+&lt;/p&gt;</code></pre>
+        </div>
+
+        <div class="output-box">
+            <strong>Output:</strong>
+
+            <div class="output-preview">
+                85.67%
+            </div>
+        </div>
+    </section>
+
+    <!-- Multiple Parameters -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Multiple Parameters</h2>
+
+        <p>
+            Some pipes can accept more than one parameter. Parameters
+            are separated using additional colon symbols.
+        </p>
+
+        <div class="code-card">
+            <div class="code-title">Syntax</div>
+
+            <pre><code>{{value | pipeName:param1:param2}}</code></pre>
+        </div>
+
+        <div class="code-card">
+            <div class="code-title">Example</div>
+
+            <pre><code>{{courseFee | currency:'INR':'symbol':'1.0-0'}}</code></pre>
+        </div>
+
+        <div class="output-box">
+            <strong>Explanation:</strong>
+
+            <div class="output-preview">
+                Multiple values can be supplied to customize the pipe output.
+            </div>
+        </div>
+    </section>
+
+    <!-- Uppercase No Parameter -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Pipe Without Parameter</h2>
+
+        <p>
+            Not every pipe requires a parameter.
+        </p>
+
+        <div class="code-card">
+            <div class="code-title">Example</div>
+
+            <pre><code>{{studentName | uppercase}}</code></pre>
+        </div>
+
+        <div class="output-box">
+            <strong>Output:</strong>
+
+            <div class="output-preview">
+                SAMIKSHA
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Pipe with and without Parameters</h2>
+
+        <div class="table-responsive">
+
+            <table class="table syntax-table">
+
+                <thead>
+                    <tr>
+                        <th>Pipe</th>
+                        <th>Without Parameter</th>
+                        <th>With Parameter</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>Uppercase</td>
+                        <td><code>{{name | uppercase}}</code></td>
+                        <td>Not required</td>
+                    </tr>
+
+                    <tr>
+                        <td>Date</td>
+                        <td><code>{{date | date}}</code></td>
+                        <td><code>{{date | date:'dd/MM/yyyy'}}</code></td>
+                    </tr>
+
+                    <tr>
+                        <td>Currency</td>
+                        <td><code>{{fee | currency}}</code></td>
+                        <td><code>{{fee | currency:'INR'}}</code></td>
+                    </tr>
+
+                    <tr>
+                        <td>Number</td>
+                        <td><code>{{marks | number}}</code></td>
+                        <td><code>{{marks | number:'1.2-2'}}</code></td>
+                    </tr>
+
+                    <tr>
+                        <td>Percent</td>
+                        <td><code>{{value | percent}}</code></td>
+                        <td><code>{{value | percent:'1.1-2'}}</code></td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+    </section>
+
+    <!-- Student Example -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Student Example</h2>
+
+        <div class="code-card">
+            <div class="code-title">student.component.ts</div>
+
+            <pre><code>export class StudentComponent {
+
+    studentName = 'Samiksha';
+
+    courseFee = 35000;
+
+    marks = 87.5678;
+
+    completion = 0.8567;
+
+    joiningDate = new Date();
+
+}</code></pre>
+        </div>
+
+        <div class="code-card">
+            <div class="code-title">student.component.html</div>
+
+            <pre><code>&lt;h3&gt;
+    {{studentName | uppercase}}
+&lt;/h3&gt;
+
+&lt;p&gt;
+    Course Fee:
+    {{courseFee | currency:'INR'}}
+&lt;/p&gt;
+
+&lt;p&gt;
+    Marks:
+    {{marks | number:'1.2-2'}}
+&lt;/p&gt;
+
+&lt;p&gt;
+    Completion:
+    {{completion | percent:'1.1-2'}}
+&lt;/p&gt;
+
+&lt;p&gt;
+    Joining Date:
+    {{joiningDate | date:'dd/MM/yyyy'}}
+&lt;/p&gt;</code></pre>
+        </div>
+
+        <div class="student-preview">
+            <h4>SAMIKSHA</h4>
+
+            <p>Course Fee: ₹35,000.00</p>
+
+            <p>Marks: 87.57</p>
+
+            <p>Completion: 85.67%</p>
+
+            <p class="mb-0">Angular Student</p>
+        </div>
+    </section>
+
+    <!-- Parameter Rules -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Parameter Rules</h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+                <div class="syntax-icon">1</div>
+                <h5>Colon</h5>
+                <p>
+                    Use <code>:</code> to pass a parameter to a pipe.
+                </p>
+            </div>
+
+            <div class="syntax-card">
+                <div class="syntax-icon">2</div>
+                <h5>Order</h5>
+                <p>
+                    Multiple parameters are passed in the required order.
+                </p>
+            </div>
+
+            <div class="syntax-card">
+                <div class="syntax-icon">3</div>
+                <h5>Values</h5>
+                <p>
+                    Parameters can be strings, numbers, or expressions.
+                </p>
+            </div>
+
+            <div class="syntax-card">
+                <div class="syntax-icon">4</div>
+                <h5>Output</h5>
+                <p>
+                    Parameters control the final formatted output.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Best Practices -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Best Practices</h2>
+
+        <ul class="best-practice-list">
+            <li>Use parameters only when customized formatting is required.</li>
+            <li>Keep pipe expressions readable.</li>
+            <li>Pass meaningful values to pipe parameters.</li>
+            <li>Use the correct parameter order for multiple parameters.</li>
+            <li>Avoid unnecessary complex expressions inside pipe parameters.</li>
+            <li>Use built-in pipe parameters whenever they solve the formatting requirement.</li>
+        </ul>
+    </section>
+
+    <!-- Summary -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Summary</h2>
+
+        <div class="summary-box">
+            <ul class="mb-0">
+                <li>Parameterized Pipes accept additional values.</li>
+                <li>The colon <code>:</code> is used to pass parameters.</li>
+                <li>Date pipes can receive formatting parameters.</li>
+                <li>Currency pipes can receive currency information.</li>
+                <li>Number and percent pipes can receive digit configuration.</li>
+                <li>Some pipes can accept multiple parameters.</li>
+                <li>Parameters provide greater control over displayed data.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Navigation -->
+    <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+
+        <a class="btn btn-outline-secondary"
+           href="@Url.Action("BuiltInPipes", "Pipes", new { area = "Angular" })">
+            ← Built-in Pipes
+        </a>
+
+        <a class="btn btn-primary"
+           href="@Url.Action("ChainingPipes", "Pipes", new { area = "Angular" })">
+            Chaining Pipes →
+        </a>
+
+    </div>
+
+</div>
+
+<style>
+
+    .info-card {
+        background: #f8fafc;
+        border-left: 5px solid #4c1d95;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    .syntax-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .syntax-box {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 20px;
+        text-align: center;
+        width: 190px;
+        min-height: 160px;
+    }
+
+    .syntax-icon {
+        width: 45px;
+        height: 45px;
+        background: #4c1d95;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 12px;
+        font-weight: bold;
+    }
+
+    .syntax-arrow {
+        font-size: 28px;
+        font-weight: bold;
+        color: #4c1d95;
+    }
+
+    .syntax-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+
+    .syntax-card {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .code-card {
+        background: #0f172a;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-bottom: 20px;
+    }
+
+    .code-title {
+        background: #1e293b;
+        color: #ddd6fe;
+        padding: 10px 15px;
+        font-weight: 600;
+    }
+
+    .code-card pre {
+        margin: 0;
+        padding: 20px;
+        overflow-x: auto;
+    }
+
+    .code-card code {
+        color: #f8fafc;
+        font-family: Consolas, monospace;
+        line-height: 1.7;
+    }
+
+    .output-box {
+        background: #ede9fe;
+        border-left: 5px solid #4c1d95;
+        padding: 18px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+
+    .output-preview {
+        background: white;
+        border-radius: 8px;
+        padding: 15px;
+        margin-top: 10px;
+    }
+
+    .syntax-table {
+        border: 1px solid #e2e8f0;
+    }
+
+        .syntax-table th {
+            background: #4c1d95;
+            color: white;
+        }
+
+        .syntax-table td {
+            vertical-align: middle;
+        }
+
+    .student-preview {
+        background: #ede9fe;
+        border: 2px solid #4c1d95;
+        border-radius: 12px;
+        padding: 25px;
+        text-align: center;
+    }
+
+    .best-practice-list {
+        background: #f8fafc;
+        border-radius: 10px;
+        padding: 25px 40px;
+        border-left: 5px solid #4c1d95;
+    }
+
+        .best-practice-list li {
+            margin-bottom: 10px;
+        }
+
+    .summary-box {
+        background: #cfe2ff;
+        color: #084298;
+        border-radius: 10px;
+        padding: 20px;
+    }
+
+    @@media (max-width: 991px) {
+
+        .syntax-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .syntax-flow {
+            flex-direction: column;
+        }
+
+        .syntax-arrow {
+            transform: rotate(90deg);
+        }
+    }
+
+    @@media (max-width: 576px) {
+
+        .syntax-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .syntax-box {
+            width: 100%;
+        }
+
+        .best-practice-list {
+            padding: 20px 30px;
+        }
+
+        .code-card pre {
+            font-size: 13px;
+        }
+    }
+
+</style>

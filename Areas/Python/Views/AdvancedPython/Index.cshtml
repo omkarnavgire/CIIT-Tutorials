@@ -1,0 +1,699 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Advanced Python";
+}
+
+<style>
+
+    #python-advanced-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #python-advanced-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #python-advanced-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #python-advanced-page .diagram-box {
+        background: #ffffff;
+        border: 2px solid #6f42c1;
+        border-radius: 10px;
+        padding: 18px;
+        text-align: center;
+        height: 100%;
+    }
+
+        #python-advanced-page .diagram-box h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        #python-advanced-page .diagram-box p {
+            margin-bottom: 0;
+            font-size: 14px;
+            color: #495057;
+        }
+
+    #python-advanced-page .diagram-arrow {
+        text-align: center;
+        font-size: 28px;
+        font-weight: 700;
+        color: #6f42c1;
+        padding: 8px 0;
+    }
+
+    #python-advanced-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #python-advanced-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+        }
+
+</style>
+
+
+<main id="python-advanced-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+
+                <h1 class="fw-bold">
+                    Advanced Python
+                </h1>
+
+                <p class="lead">
+                    Learn important advanced Python concepts used to write
+                    reusable, flexible and efficient programs.
+                </p>
+
+            </div>
+
+
+            <!-- WHAT IS ADVANCED PYTHON -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    What is Advanced Python?
+                </h2>
+
+                <p>
+                    Advanced Python includes language features that help
+                    developers write more powerful and reusable programs.
+                </p>
+
+                <p>
+                    These features are commonly used when developing larger
+                    applications and solving complex programming problems.
+                </p>
+
+                <div class="alert alert-info">
+
+                    <strong>Simple Definition:</strong>
+
+                    Advanced Python means using powerful Python features
+                    beyond basic programming concepts.
+
+                </div>
+
+            </div>
+
+
+            <!-- BASIC DIAGRAM -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Advanced Python Concepts
+                </h2>
+
+                <div class="concept-box">
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            Iterators
+                        </h5>
+
+                        <p>
+                            Used to access items one by one.
+                        </p>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="row g-3">
+
+                        <div class="col-md-6">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    Generators
+                                </h5>
+
+                                <p>
+                                    Produce values one at a time.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-6">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    Decorators
+                                </h5>
+
+                                <p>
+                                    Add functionality to existing functions.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="row g-3">
+
+                        <div class="col-md-6">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    Context Managers
+                                </h5>
+
+                                <p>
+                                    Manage resources safely.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-6">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    Regular Expressions
+                                </h5>
+
+                                <p>
+                                    Search and validate text patterns.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ITERATORS -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    1. Iterators
+                </h2>
+
+                <p>
+                    An iterator is an object that allows us to access
+                    collection elements one at a time.
+                </p>
+
+                <pre><code>numbers = [10, 20, 30]
+
+iterator = iter(numbers)
+
+print(next(iterator))
+print(next(iterator))
+print(next(iterator))</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>10
+20
+30</code></pre>
+
+                <p>
+                    The <code>iter()</code> function creates an iterator and
+                    the <code>next()</code> function gets the next value.
+                </p>
+
+            </div>
+
+
+            <!-- GENERATORS -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    2. Generators
+                </h2>
+
+                <p>
+                    A generator is a special type of function that produces
+                    values one at a time using the <code>yield</code> keyword.
+                </p>
+
+                <pre><code>def numbers():
+
+    yield 10
+    yield 20
+    yield 30
+
+
+for number in numbers():
+
+    print(number)</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>10
+20
+30</code></pre>
+
+            </div>
+
+
+            <!-- DECORATORS -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    3. Decorators
+                </h2>
+
+                <p>
+                    A decorator is used to add extra functionality to
+                    an existing function without changing its original code.
+                </p>
+
+                <pre><code>def message_decorator(function):
+
+    def wrapper():
+
+        print("Before function")
+
+        function()
+
+        print("After function")
+
+    return wrapper
+
+
+@@message_decorator
+def welcome():
+
+    print("Welcome to Python")
+
+
+welcome()</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Before function
+Welcome to Python
+After function</code></pre>
+
+            </div>
+
+
+            <!-- CONTEXT MANAGERS -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    4. Context Managers
+                </h2>
+
+                <p>
+                    Context managers are used to manage resources such as
+                    files safely.
+                </p>
+
+                <pre><code>with open("students.txt", "r") as file:
+
+    data = file.read()
+
+    print(data)</code></pre>
+
+                <p>
+                    The <code>with</code> statement automatically handles
+                    the resource after the operation is completed.
+                </p>
+
+            </div>
+
+
+            <!-- REGULAR EXPRESSIONS -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    5. Regular Expressions
+                </h2>
+
+                <p>
+                    Regular expressions are used to search, match and
+                    validate text patterns.
+                </p>
+
+                <pre><code>import re
+
+text = "Python is easy to learn"
+
+result = re.search("Python", text)
+
+if result:
+
+    print("Pattern found")</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Pattern found</code></pre>
+
+            </div>
+
+
+            <!-- WHY IMPORTANT -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Why are Advanced Python Concepts Important?
+                </h2>
+
+                <div class="row g-3">
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Reusable Code
+                            </h5>
+
+                            <p class="mb-0">
+                                Advanced features help create reusable
+                                programming solutions.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Better Programs
+                            </h5>
+
+                            <p class="mb-0">
+                                They help developers build structured
+                                and maintainable applications.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Real Applications
+                            </h5>
+
+                            <p class="mb-0">
+                                These concepts are used in real-world
+                                Python applications.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRACTICAL EXAMPLE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Practical Example
+                </h2>
+
+                <p>
+                    The following example uses a generator to produce
+                    student marks one by one.
+                </p>
+
+                <pre><code>def student_marks():
+
+    yield 75
+    yield 82
+    yield 90
+
+
+for marks in student_marks():
+
+    print("Marks:", marks)</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Marks: 75
+Marks: 82
+Marks: 90</code></pre>
+
+            </div>
+
+
+            <!-- BEST PRACTICES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Best Practices
+                </h2>
+
+                <div class="row g-3">
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Understand the Concept
+                            </h5>
+
+                            <p class="mb-0">
+                                Understand why a feature is used before
+                                using it in a program.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Keep Code Simple
+                            </h5>
+
+                            <p class="mb-0">
+                                Use advanced features only when they
+                                provide a clear benefit.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Practice
+                            </h5>
+
+                            <p class="mb-0">
+                                Practice each concept with small programs
+                                before using it in larger projects.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- COMMON MISTAKES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Common Mistakes
+                </h2>
+
+                <ul>
+
+                    <li>
+                        Using advanced features without understanding them.
+                    </li>
+
+                    <li>
+                        Making simple programs unnecessarily complex.
+                    </li>
+
+                    <li>
+                        Forgetting how iterators and generators work.
+                    </li>
+
+                    <li>
+                        Using decorators without understanding function flow.
+                    </li>
+
+                    <li>
+                        Writing regular expressions without testing patterns.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Practice Programs
+                </h2>
+
+                <ol>
+
+                    <li>
+                        Create an iterator for a list.
+                    </li>
+
+                    <li>
+                        Create a generator that produces numbers from 1 to 5.
+                    </li>
+
+                    <li>
+                        Create a simple decorator for a function.
+                    </li>
+
+                    <li>
+                        Read a file using a context manager.
+                    </li>
+
+                    <li>
+                        Use a regular expression to search for a word.
+                    </li>
+
+                </ol>
+
+            </div>
+
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+
+                <h2 class="h4 fw-bold">
+                    Summary
+                </h2>
+
+                <p class="mb-0">
+
+                    Advanced Python provides powerful features such as
+                    iterators, generators, decorators, context managers
+                    and regular expressions. These concepts help
+                    developers write reusable, structured and efficient
+                    Python programs.
+
+                </p>
+
+            </div>
+
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+
+                <a class="btn btn-outline-secondary"
+                   href="@Url.Action("CustomExceptions", "ExceptionHandling", new { area = "Python" })">
+
+                    ← Previous: Topic
+
+                </a>
+
+
+                <a class="btn btn-primary"
+                   href="@Url.Action("Iterators", "AdvancedPython", new { area = "Python" })">
+
+                    Next: Topic →
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

@@ -1,0 +1,299 @@
+```cshtml
+@{
+    Layout = "~/Areas/GitHub/Views/Shared/GithubLayout.cshtml";
+    ViewData["Title"] = "Ignoring Files - Git";
+}
+
+<main id="tutorials" class="container py-1">
+    <div class="row g-4">
+
+        <!-- Sidebar Navigation -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/GitHub/Views/Shared/GithubTopics.cshtml")
+        </aside>
+
+        <!-- Reading Content Area -->
+        <section class="col-lg-9">
+
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4 p-lg-5">
+
+                    <!-- HEADER -->
+                    <header class="mb-4">
+                        <h2 class="fw-bold mb-3">Ignoring Files with .gitignore</h2>
+
+                        <p class="lead text-muted">
+                            Not every file in your project should be tracked by Git.
+                            Files such as build output, temporary files, logs, and local
+                            configuration files often do not belong in version control.
+                            Git allows you to exclude these files using a
+                            <code>.gitignore</code> file.
+                        </p>
+
+                        <p>
+                            In this lesson, you will learn how to create a
+                            <code>.gitignore</code> file, define ignore patterns,
+                            and verify which files Git tracks.
+                        </p>
+                    </header>
+
+                    <!-- SECTION 1 -->
+                    <section class="mb-4">
+                        <h4 class="fw-semibold mb-3">1. What Is .gitignore?</h4>
+
+                        <p>
+                            A <code>.gitignore</code> file contains patterns that tell Git
+                            which untracked files and directories it should ignore.
+                            Git uses these patterns when identifying files to include
+                            in version control.
+                        </p>
+
+                        <p>Common examples of files to ignore include:</p>
+
+                        <ul>
+                            <li>Temporary files and application logs.</li>
+                            <li>Build output and generated files.</li>
+                            <li>IDE-specific configuration files.</li>
+                            <li>Local environment configuration files.</li>
+                            <li>Dependency folders that can be restored from package managers.</li>
+                        </ul>
+
+                        <div class="alert alert-info border-0">
+                            <strong>Important:</strong>
+                            <code>.gitignore</code> does not automatically stop tracking
+                            files that have already been committed. It primarily affects
+                            untracked files.
+                        </div>
+                    </section>
+
+                    <!-- SECTION 2 -->
+                    <section class="mb-4">
+                        <h4 class="fw-semibold mb-3">2. Create a .gitignore File</h4>
+
+                        <p>
+                            Create a file named <code>.gitignore</code> in the root
+                            directory of your Git repository.
+                        </p>
+
+                        <p>For example, your project structure might look like this:</p>
+
+                        <div class="bg-dark text-white rounded p-3 mb-3 font-monospace">
+                            my-project/<br />
+                            ├── src/<br />
+                            ├── tests/<br />
+                            ├── bin/<br />
+                            ├── obj/<br />
+                            ├── app.log<br />
+                            └── .gitignore
+                        </div>
+
+                        <p>
+                            Add patterns for files and folders that should not be tracked.
+                        </p>
+
+                        <div class="bg-dark text-white rounded p-3 mb-3 font-monospace">
+                            # Build output<br />
+                            bin/<br />
+                            obj/<br />
+                            <br />
+                            # Log files<br />
+                            *.log<br />
+                            <br />
+                            # Temporary files<br />
+                            *.tmp<br />
+                            <br />
+                            # Environment configuration<br />
+                            .env
+                        </div>
+
+                        <p>
+                            Lines beginning with <code>#</code> are comments.
+                            Each remaining pattern tells Git which matching untracked
+                            files or directories to ignore.
+                        </p>
+                    </section>
+
+                    <!-- SECTION 3 -->
+                    <section class="mb-4">
+                        <h4 class="fw-semibold mb-3">3. Common .gitignore Patterns</h4>
+
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover align-middle">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Pattern</th>
+                                        <th>Meaning</th>
+                                        <th>Example</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>*.log</code></td>
+                                        <td>Matches files ending in .log.</td>
+                                        <td><code>app.log</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>temp/</code></td>
+                                        <td>Ignores a directory named temp.</td>
+                                        <td><code>temp/cache.txt</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>*.tmp</code></td>
+                                        <td>Matches files ending in .tmp.</td>
+                                        <td><code>debug.tmp</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>/config.json</code></td>
+                                        <td>Matches config.json at the .gitignore file's directory level.</td>
+                                        <td><code>config.json</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>!important.log</code></td>
+                                        <td>Negates an earlier matching ignore pattern, subject to parent-directory rules.</td>
+                                        <td><code>important.log</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>.env</code></td>
+                                        <td>Ignores matching .env files according to the pattern's scope.</td>
+                                        <td><code>.env</code></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <!-- SECTION 4 -->
+                    <section class="mb-4">
+                        <h4 class="fw-semibold mb-3">4. Verify Ignored Files</h4>
+
+                        <p>
+                            After adding patterns to <code>.gitignore</code>, use
+                            <code>git status</code> to check which changes Git reports.
+                        </p>
+
+                        <div class="bg-dark text-white rounded p-3 mb-3 font-monospace">
+                            <span class="text-secondary">$</span> git status
+                        </div>
+
+                        <p>
+                            To identify the exact ignore rule that matches a file,
+                            use <code>git check-ignore -v</code>.
+                        </p>
+
+                        <div class="bg-dark text-white rounded p-3 mb-3 font-monospace">
+                            <span class="text-secondary">$</span> git check-ignore -v app.log
+                        </div>
+
+                        <p>
+                            If the file matches an ignore rule, Git displays the
+                            rule's source and the matching path.
+                        </p>
+                    </section>
+
+                    <!-- SECTION 5 -->
+                    <section class="mb-4">
+                        <h4 class="fw-semibold mb-3">
+                            5. Stop Tracking an Already Tracked File
+                        </h4>
+
+                        <p>
+                            If a file was already committed, adding it to
+                            <code>.gitignore</code> will not remove it from version control.
+                            To stop tracking the file while keeping it on your computer,
+                            use <code>git rm --cached</code>.
+                        </p>
+
+                        <div class="bg-dark text-white rounded p-3 mb-3 font-monospace">
+                            <span class="text-secondary">$</span>
+                            git rm --cached config.json
+                        </div>
+
+                        <p>
+                            Then commit the change:
+                        </p>
+
+                        <div class="bg-dark text-white rounded p-3 mb-3 font-monospace">
+                            <span class="text-secondary">$</span>
+                            git add .gitignore<br />
+                            <span class="text-secondary">$</span>
+                            git commit -m "Stop tracking config file"
+                        </div>
+
+                        <div class="alert alert-warning border-0">
+                            <strong>Security note:</strong>
+                            If a secret or password has already been committed or pushed,
+                            ignoring the file is not enough. Remove the secret from the
+                            relevant history when necessary and rotate the exposed
+                            credential.
+                        </div>
+                    </section>
+
+                    <!-- SECTION 6 -->
+                    <section class="mb-4">
+                        <h4 class="fw-semibold mb-3">6. Practical Workflow</h4>
+
+                        <ol>
+                            <li class="mb-2">Create a <code>.gitignore</code> file in your repository.</li>
+                            <li class="mb-2">Add patterns for temporary files, logs, and build output.</li>
+                            <li class="mb-2">Run <code>git status</code> to review the changes.</li>
+                            <li class="mb-2">Use <code>git check-ignore -v filename</code> to inspect matching rules.</li>
+                            <li>Commit the <code>.gitignore</code> file so the team shares the same ignore rules.</li>
+                        </ol>
+                    </section>
+
+                    <!-- SUMMARY -->
+                    <section class="mb-4">
+                        <div class="alert alert-dark border-0 mb-0">
+                            <h5 class="fw-bold mb-2">
+                                <i class="bi bi-lightbulb me-2"></i>
+                                Key Takeaway
+                            </h5>
+
+                            <p class="mb-0">
+                                The <code>.gitignore</code> file helps keep generated,
+                                temporary, and local-only files out of your Git repository.
+                                Use clear patterns, verify them with
+                                <code>git check-ignore</code>, and remember that ignoring
+                                a file does not remove it from Git if it is already tracked.
+                            </p>
+                        </div>
+                    </section>
+
+                    <!-- PREVIOUS / NEXT NAVIGATION -->
+                    <div class="d-flex justify-content-between align-items-center border-top pt-4 mt-4">
+
+                        <!-- PREVIOUS TOPIC -->
+                        <a href="@Url.Action(
+                                    "InspectingHistory",
+                                    "LocalGitWorkflow",
+                                    new { area = "GitHub" }
+                                 )"
+                           class="btn btn-outline-secondary px-3">
+
+                            <span class="me-2">←</span>
+                            Previous: Inspecting History
+
+                        </a>
+
+                        <!-- NEXT TOPIC -->
+                        <a href="@Url.Action(
+                                    "GitBranchingConcept",
+                                    "BranchingAndMerging",
+                                    new { area = "GitHub" }
+                                 )"
+                           class="btn btn-primary px-3">
+
+                            Next: Git Branching Concepts
+                            <span class="ms-2">→</span>
+
+                        </a>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+    </div>
+</main>
+```

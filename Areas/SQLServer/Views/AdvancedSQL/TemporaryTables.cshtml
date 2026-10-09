@@ -1,0 +1,673 @@
+﻿@{
+    ViewData["Title"] = "Temporary Tables";
+}
+
+<div class="container-fluid">
+
+    <!-- =========================
+         PAGE HEADER
+    ========================== -->
+
+    <div class="mb-4">
+
+        <h1 class="fw-bold text-primary">
+            Temporary Tables
+        </h1>
+
+        <p class="text-muted">
+            Learn how to create, use, query and remove temporary tables
+            in SQL Server.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         INTRODUCTION
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                What are Temporary Tables?
+            </h2>
+
+            <p>
+                Temporary tables are special tables used to store temporary
+                data during SQL Server operations.
+            </p>
+
+            <p>
+                They are useful when we need to store intermediate results
+                while executing complex queries, stored procedures or
+                multiple SQL operations.
+            </p>
+
+            <p class="mb-0">
+                Temporary tables are created in <strong>tempdb</strong> and
+                SQL Server automatically removes them when their scope ends.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         TYPES
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Types of Temporary Tables
+            </h2>
+
+            <p>
+                SQL Server mainly provides two types of temporary tables:
+            </p>
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-striped">
+
+                    <thead class="table-dark">
+
+                        <tr>
+                            <th>Type</th>
+                            <th>Symbol</th>
+                            <th>Scope</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>
+                                <strong>Local Temporary Table</strong>
+                            </td>
+
+                            <td>
+                                <code>#</code>
+                            </td>
+
+                            <td>
+                                Available only in the current session.
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <strong>Global Temporary Table</strong>
+                            </td>
+
+                            <td>
+                                <code>##</code>
+                            </td>
+
+                            <td>
+                                Available to multiple sessions until
+                                it is no longer being used.
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         LOCAL TEMP TABLE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                1. Local Temporary Table
+            </h2>
+
+            <p>
+                A local temporary table is created using a single
+                <strong>#</strong> symbol.
+            </p>
+
+            <p>
+                It is normally available only within the session in which
+                it was created.
+            </p>
+
+            <h4 class="fw-bold mt-4">
+                Syntax
+            </h4>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>CREATE TABLE #Employees
+(
+    EmployeeId INT,
+    EmployeeName VARCHAR(100),
+    Department VARCHAR(100),
+    Salary DECIMAL(10,2)
+);</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         INSERT DATA
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Insert Data into Temporary Table
+            </h2>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>INSERT INTO #Employees
+(
+    EmployeeId,
+    EmployeeName,
+    Department,
+    Salary
+)
+VALUES
+(1, 'Amit', 'IT', 70000),
+(2, 'Rahul', 'HR', 60000),
+(3, 'Priya', 'IT', 80000),
+(4, 'Neha', 'Finance', 65000);</code></pre>
+
+            <p class="mt-3 mb-0">
+                The temporary table can be used like a normal table after
+                it has been created.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         SELECT DATA
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Select Data from Temporary Table
+            </h2>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>SELECT *
+FROM #Employees;</code></pre>
+
+            <h4 class="fw-bold mt-4">
+                Output
+            </h4>
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-striped">
+
+                    <thead class="table-dark">
+
+                        <tr>
+                            <th>EmployeeId</th>
+                            <th>EmployeeName</th>
+                            <th>Department</th>
+                            <th>Salary</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>1</td>
+                            <td>Amit</td>
+                            <td>IT</td>
+                            <td>70000</td>
+                        </tr>
+
+                        <tr>
+                            <td>2</td>
+                            <td>Rahul</td>
+                            <td>HR</td>
+                            <td>60000</td>
+                        </tr>
+
+                        <tr>
+                            <td>3</td>
+                            <td>Priya</td>
+                            <td>IT</td>
+                            <td>80000</td>
+                        </tr>
+
+                        <tr>
+                            <td>4</td>
+                            <td>Neha</td>
+                            <td>Finance</td>
+                            <td>65000</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         WHERE CLAUSE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Query Temporary Table
+            </h2>
+
+            <p>
+                We can use filtering and sorting operations just like
+                a normal table.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>SELECT
+    EmployeeId,
+    EmployeeName,
+    Salary
+FROM #Employees
+WHERE Salary &gt; 65000
+ORDER BY Salary DESC;</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         UPDATE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Update Temporary Table
+            </h2>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>UPDATE #Employees
+SET Salary = 75000
+WHERE EmployeeId = 1;</code></pre>
+
+            <p class="mt-3 mb-0">
+                Temporary tables support INSERT, UPDATE and DELETE
+                operations like permanent tables.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         DELETE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Delete Data
+            </h2>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>DELETE FROM #Employees
+WHERE EmployeeId = 4;</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         GLOBAL TEMP TABLE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                2. Global Temporary Table
+            </h2>
+
+            <p>
+                A global temporary table is created using two
+                <strong>##</strong> symbols.
+            </p>
+
+            <p>
+                Global temporary tables can be accessed by multiple
+                sessions while the table exists and is being used.
+            </p>
+
+            <h4 class="fw-bold mt-4">
+                Example
+            </h4>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>CREATE TABLE ##GlobalEmployees
+(
+    EmployeeId INT,
+    EmployeeName VARCHAR(100),
+    Salary DECIMAL(10,2)
+);</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         DROP TEMP TABLE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Drop Temporary Table
+            </h2>
+
+            <p>
+                A temporary table can be explicitly removed using
+                the DROP TABLE statement.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>DROP TABLE #Employees;</code></pre>
+
+            <p class="mt-3">
+                For a global temporary table:
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>DROP TABLE ##GlobalEmployees;</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         TEMP TABLE WITH SELECT INTO
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Create Temporary Table using SELECT INTO
+            </h2>
+
+            <p>
+                A temporary table can also be created directly from
+                an existing table using SELECT INTO.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>SELECT
+    EmployeeId,
+    EmployeeName,
+    Department,
+    Salary
+INTO #ITEmployees
+FROM Employees
+WHERE Department = 'IT';</code></pre>
+
+            <p class="mt-3 mb-0">
+                SQL Server creates the temporary table automatically
+                based on the selected columns.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         TEMP TABLE WITH JOIN
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Temporary Table with JOIN
+            </h2>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>SELECT
+    e.EmployeeId,
+    e.EmployeeName,
+    d.DepartmentName
+INTO #EmployeeDetails
+FROM Employees e
+INNER JOIN Departments d
+    ON e.DepartmentId = d.DepartmentId;</code></pre>
+
+            <p class="mt-3 mb-0">
+                Temporary tables can store the result of complex
+                queries and joins for further processing.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         TEMP TABLE IN STORED PROCEDURE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Temporary Table in Stored Procedure
+            </h2>
+
+            <p>
+                Temporary tables are frequently used inside stored
+                procedures to store intermediate results.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>CREATE PROCEDURE GetITEmployees
+AS
+BEGIN
+
+    CREATE TABLE #ITEmployees
+    (
+        EmployeeId INT,
+        EmployeeName VARCHAR(100),
+        Salary DECIMAL(10,2)
+    );
+
+    INSERT INTO #ITEmployees
+    SELECT
+        EmployeeId,
+        EmployeeName,
+        Salary
+    FROM Employees
+    WHERE Department = 'IT';
+
+    SELECT *
+    FROM #ITEmployees;
+
+END;</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         ADVANTAGES
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Advantages of Temporary Tables
+            </h2>
+
+            <ul>
+
+                <li class="mb-2">
+                    Useful for storing intermediate results.
+                </li>
+
+                <li class="mb-2">
+                    Useful for complex queries.
+                </li>
+
+                <li class="mb-2">
+                    Can be indexed when appropriate.
+                </li>
+
+                <li class="mb-2">
+                    Support INSERT, UPDATE and DELETE operations.
+                </li>
+
+                <li>
+                    Useful inside stored procedures and complex
+                    database operations.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         IMPORTANT POINTS
+    ========================== -->
+
+    <div class="alert alert-warning shadow-sm mb-4">
+
+        <h4 class="fw-bold">
+            Important Points
+        </h4>
+
+        <ul class="mb-0">
+
+            <li class="mb-2">
+                Local temporary tables use a single <strong>#</strong>.
+            </li>
+
+            <li class="mb-2">
+                Global temporary tables use <strong>##</strong>.
+            </li>
+
+            <li class="mb-2">
+                Temporary tables are stored in the SQL Server
+                <strong>tempdb</strong> database.
+            </li>
+
+            <li class="mb-2">
+                Temporary tables can be queried like normal tables.
+            </li>
+
+            <li>
+                They can be explicitly removed using DROP TABLE.
+            </li>
+
+        </ul>
+
+    </div>
+
+
+    <!-- =========================
+         SUMMARY
+    ========================== -->
+
+    <div class="card shadow-sm mb-4"
+         style="background-color:#cfe2ff;">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Summary
+            </h2>
+
+            <p>
+                Temporary Tables are useful for storing intermediate
+                data during SQL Server operations.
+            </p>
+
+            <p class="mb-0">
+                SQL Server supports Local Temporary Tables using
+                <strong>#</strong> and Global Temporary Tables using
+                <strong>##</strong>.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         PREVIOUS / NEXT
+    ========================== -->
+
+    <div class="d-flex justify-content-between align-items-center
+        mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/AdvancedSQL/Index"
+           class="btn btn-outline-primary">
+
+            ← Previous: Advanced SQL Introduction
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/AdvancedSQL/TableVariables"
+           class="btn btn-primary">
+
+            Next: Table Variables →
+
+        </a>
+
+    </div>
+
+</div>

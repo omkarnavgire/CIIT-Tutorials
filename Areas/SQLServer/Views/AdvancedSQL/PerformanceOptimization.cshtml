@@ -1,0 +1,596 @@
+﻿@{
+    ViewData["Title"] = "Performance Optimization";
+}
+
+<div class="container-fluid px-4 py-4">
+
+    <!-- =========================
+         PAGE HEADER
+    ========================== -->
+
+    <div class="mb-4">
+        <h1 class="display-5 fw-bold text-primary">
+            Performance Optimization
+        </h1>
+
+        <p class="lead text-muted">
+            Learn how to improve SQL Server query performance,
+            reduce execution time and optimize database operations.
+        </p>
+    </div>
+
+
+    <!-- =========================
+         INTRODUCTION
+    ========================== -->
+
+    <div class="alert alert-primary shadow-sm">
+        <h4 class="fw-bold">
+            What is Performance Optimization?
+        </h4>
+
+        <p class="mb-0">
+            Performance Optimization is the process of improving SQL Server
+            queries, indexes, database design and execution plans so that
+            queries execute faster and use fewer system resources.
+        </p>
+    </div>
+
+
+    <!-- =========================
+         WHY PERFORMANCE MATTERS
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Why is SQL Performance Important?
+            </h2>
+
+            <p>
+                A poorly optimized SQL query can take a long time to execute
+                and can consume excessive CPU, memory and disk resources.
+            </p>
+
+            <p>
+                Proper optimization helps applications respond faster and
+                allows SQL Server to handle more users and requests.
+            </p>
+
+            <ul>
+                <li>Faster query execution</li>
+                <li>Reduced CPU usage</li>
+                <li>Reduced disk I/O</li>
+                <li>Better application response time</li>
+                <li>Improved scalability</li>
+                <li>Efficient use of database resources</li>
+            </ul>
+
+        </div>
+    </div>
+
+
+    <!-- =========================
+         1. USE PROPER INDEXES
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+
+            <h2 class="fw-bold">
+                1. Use Proper Indexes
+            </h2>
+
+            <p>
+                Indexes help SQL Server find rows quickly without scanning
+                the entire table.
+            </p>
+
+            <div class="bg-light border rounded p-3 mb-3">
+
+                <pre><code>CREATE INDEX IX_Employees_Department
+ON Employees(Department);</code></pre>
+
+            </div>
+
+            <p>
+                If a query frequently searches employees by Department,
+                an index on the Department column can improve performance.
+            </p>
+
+        </div>
+    </div>
+
+
+    <!-- =========================
+         2. AVOID SELECT *
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+
+            <h2 class="fw-bold">
+                2. Avoid SELECT *
+            </h2>
+
+            <p>
+                Avoid selecting unnecessary columns. Retrieve only the
+                columns required by the application.
+            </p>
+
+            <h5 class="text-danger">
+                Not Recommended
+            </h5>
+
+            <div class="bg-light border rounded p-3 mb-3">
+
+                <pre><code>SELECT *
+FROM Employees;</code></pre>
+
+            </div>
+
+            <h5 class="text-success">
+                Recommended
+            </h5>
+
+            <div class="bg-light border rounded p-3">
+
+                <pre><code>SELECT EmployeeId, EmployeeName, Department
+FROM Employees;</code></pre>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- =========================
+         3. WHERE CLAUSE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+
+            <h2 class="fw-bold">
+                3. Use WHERE Conditions Properly
+            </h2>
+
+            <p>
+                Use appropriate filtering conditions so that SQL Server
+                does not process unnecessary rows.
+            </p>
+
+            <pre class="bg-light border rounded p-3"><code>SELECT EmployeeId, EmployeeName
+FROM Employees
+WHERE Department = 'IT';</code></pre>
+
+            <p class="mt-3">
+                Filtering data as early as possible can reduce the amount
+                of data SQL Server needs to process.
+            </p>
+
+        </div>
+    </div>
+
+
+    <!-- =========================
+         4. AVOID FUNCTIONS ON INDEXED COLUMNS
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+
+            <h2 class="fw-bold">
+                4. Avoid Functions on Indexed Columns
+            </h2>
+
+            <p>
+                Applying functions directly to indexed columns can prevent
+                SQL Server from efficiently using an index.
+            </p>
+
+            <h5 class="text-danger">
+                Example
+            </h5>
+
+            <pre class="bg-light border rounded p-3"><code>SELECT *
+FROM Employees
+WHERE YEAR(HireDate) = 2025;</code></pre>
+
+            <p>
+                Depending on the query and indexes, this can make it harder
+                for SQL Server to perform an efficient index seek.
+            </p>
+
+            <h5 class="text-success mt-4">
+                Better Approach
+            </h5>
+
+            <pre class="bg-light border rounded p-3"><code>SELECT *
+FROM Employees
+WHERE HireDate >= '2025-01-01'
+  AND HireDate &lt; '2026-01-01';</code></pre>
+
+        </div>
+    </div>
+
+
+    <!-- =========================
+         5. EXECUTION PLAN
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+
+            <h2 class="fw-bold">
+                5. Use Execution Plans
+            </h2>
+
+            <p>
+                An execution plan shows how SQL Server executes a query.
+                It helps developers identify performance problems.
+            </p>
+
+            <p>
+                Execution plans can show operations such as:
+            </p>
+
+            <ul>
+                <li>Index Seek</li>
+                <li>Index Scan</li>
+                <li>Table Scan</li>
+                <li>Key Lookup</li>
+                <li>Sort</li>
+                <li>Hash Match</li>
+                <li>Nested Loops</li>
+            </ul>
+
+            <div class="alert alert-info">
+                <strong>Tip:</strong>
+                In SQL Server Management Studio, enable the Actual Execution
+                Plan using <strong>Ctrl + M</strong>.
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- =========================
+         6. AVOID UNNECESSARY JOINS
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+
+            <h2 class="fw-bold">
+                6. Avoid Unnecessary JOINs
+            </h2>
+
+            <p>
+                Joining unnecessary tables can increase query complexity
+                and execution time.
+            </p>
+
+            <pre class="bg-light border rounded p-3"><code>SELECT 
+    e.EmployeeName,
+    d.DepartmentName
+FROM Employees e
+INNER JOIN Departments d
+    ON e.DepartmentId = d.DepartmentId;</code></pre>
+
+            <p class="mt-3">
+                Only join tables that are actually required by the query.
+            </p>
+
+        </div>
+    </div>
+
+
+    <!-- =========================
+         7. OPTIMIZE JOINS
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+
+            <h2 class="fw-bold">
+                7. Optimize JOIN Conditions
+            </h2>
+
+            <p>
+                Make sure the columns used in JOIN conditions are properly
+                indexed when appropriate.
+            </p>
+
+            <pre class="bg-light border rounded p-3"><code>SELECT
+    e.EmployeeName,
+    d.DepartmentName
+FROM Employees e
+JOIN Departments d
+    ON e.DepartmentId = d.DepartmentId;</code></pre>
+
+            <p class="mt-3">
+                An appropriate index on DepartmentId can help SQL Server
+                perform the join efficiently.
+            </p>
+
+        </div>
+    </div>
+
+
+    <!-- =========================
+         8. STORED PROCEDURES
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+
+            <h2 class="fw-bold">
+                8. Use Stored Procedures Appropriately
+            </h2>
+
+            <p>
+                Stored procedures can encapsulate database operations and
+                provide a reusable way to execute commonly used logic.
+            </p>
+
+            <pre class="bg-light border rounded p-3"><code>CREATE PROCEDURE GetEmployeesByDepartment
+    @@Department VARCHAR(50)
+AS
+BEGIN
+
+    SELECT EmployeeId,
+           EmployeeName,
+           Department
+    FROM Employees
+    WHERE Department = @@Department;
+
+END;</code></pre>
+
+        </div>
+    </div>
+
+
+    <!-- =========================
+         9. UPDATE STATISTICS
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+
+            <h2 class="fw-bold">
+                9. Maintain Statistics
+            </h2>
+
+            <p>
+                SQL Server uses statistics to estimate how many rows a query
+                will return. Updated statistics help the optimizer choose
+                better execution plans.
+            </p>
+
+            <pre class="bg-light border rounded p-3"><code>UPDATE STATISTICS Employees;</code></pre>
+
+        </div>
+    </div>
+
+
+    <!-- =========================
+         10. INDEX MAINTENANCE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+
+            <h2 class="fw-bold">
+                10. Index Maintenance
+            </h2>
+
+            <p>
+                Indexes can become fragmented over time. Index maintenance
+                may help maintain efficient data access.
+            </p>
+
+            <pre class="bg-light border rounded p-3"><code>ALTER INDEX IX_Employees_Department
+ON Employees
+REORGANIZE;</code></pre>
+
+            <p class="mt-3">
+                For heavily fragmented indexes, rebuilding may be appropriate
+                depending on the database environment and maintenance plan.
+            </p>
+
+            <pre class="bg-light border rounded p-3"><code>ALTER INDEX IX_Employees_Department
+ON Employees
+REBUILD;</code></pre>
+
+        </div>
+    </div>
+
+
+    <!-- =========================
+         PERFORMANCE BEST PRACTICES
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                SQL Server Performance Best Practices
+            </h2>
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-striped">
+
+                    <thead class="table-primary">
+                        <tr>
+                            <th>Practice</th>
+                            <th>Benefit</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>Use proper indexes</td>
+                            <td>Faster data retrieval</td>
+                        </tr>
+
+                        <tr>
+                            <td>Avoid SELECT *</td>
+                            <td>Reduces unnecessary data transfer</td>
+                        </tr>
+
+                        <tr>
+                            <td>Use proper WHERE conditions</td>
+                            <td>Reduces rows processed</td>
+                        </tr>
+
+                        <tr>
+                            <td>Check execution plans</td>
+                            <td>Helps identify bottlenecks</td>
+                        </tr>
+
+                        <tr>
+                            <td>Maintain indexes</td>
+                            <td>Improves index efficiency</td>
+                        </tr>
+
+                        <tr>
+                            <td>Update statistics</td>
+                            <td>Helps query optimizer</td>
+                        </tr>
+
+                        <tr>
+                            <td>Avoid unnecessary JOINs</td>
+                            <td>Reduces query complexity</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- =========================
+         IMPORTANT POINTS
+    ========================== -->
+
+    <div class="alert alert-warning shadow-sm">
+
+        <h4 class="fw-bold">
+            Important Points
+        </h4>
+
+        <ul class="mb-0">
+
+            <li>
+                Always analyze slow queries before changing indexes.
+            </li>
+
+            <li>
+                Too many indexes can slow down INSERT, UPDATE and DELETE
+                operations.
+            </li>
+
+            <li>
+                Use execution plans to understand query behavior.
+            </li>
+
+            <li>
+                Keep statistics and indexes properly maintained.
+            </li>
+
+            <li>
+                Test optimization changes before applying them to production.
+            </li>
+
+        </ul>
+
+    </div>
+
+
+    <!-- =========================
+         SUMMARY
+    ========================== -->
+
+    <div class="card shadow-sm mb-4"
+         style="background-color:#cfe2ff;">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold">
+                Summary
+            </h2>
+
+            <p>
+                SQL Server Performance Optimization focuses on improving
+                query execution speed and reducing unnecessary resource usage.
+            </p>
+
+            <p>
+                Proper indexing, optimized queries, execution plans,
+                statistics maintenance, index maintenance and efficient
+                database design are important for achieving good performance.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         MODEL COMPLETED
+    ========================== -->
+
+    <div class="alert alert-success shadow-sm mb-4">
+
+        <h3 class="fw-bold">
+            Model 19 Completed
+        </h3>
+
+        <p class="mb-0">
+            You have completed the SQL Server Advanced SQL module:
+            Advanced SQL Introduction, Temporary Tables, Table Variables,
+            Dynamic SQL, Error Handling and Performance Optimization.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+     PREVIOUS / NEXT
+========================== -->
+
+    <div class="d-flex justify-content-between align-items-center
+        mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/AdvancedSQL/ErrorHandling"
+           class="btn btn-outline-primary">
+
+            ← Previous: Error Handling
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a asp-area="SQLServer"
+           asp-controller="AdvancedSQL"
+           asp-action="CourseCompleted"
+           class="btn btn-success">
+
+            Next: Course Completed →
+
+        </a>
+
+    </div>
+
+</div>

@@ -1,0 +1,252 @@
+@{
+    Layout = "~/Areas/GitHub/Views/Shared/GithubLayout.cshtml";
+    ViewData["Title"] = "Undoing Mistakes";
+}
+
+<main id="tutorials" class="container py-1">
+    <div class="row g-4">
+
+        <!-- Sidebar Navigation -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/GitHub/Views/Shared/GithubTopics.cshtml")
+        </aside>
+
+        <!-- Reading Content Area -->
+        <section class="col-lg-9">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4 p-lg-5">
+
+                    <h1 class="fw-bold mb-3">Undoing Mistakes</h1>
+
+                    <p>
+                        How you <strong>undo a mistake in Git</strong>
+                        depends on whether you edited a file, created a
+                        local commit, or already pushed your changes to a
+                        remote repository.
+                    </p>
+
+                    <p>
+                        Choosing the right command helps you correct mistakes
+                        while avoiding accidental loss of work or disruption
+                        to your team's shared history.
+                    </p>
+
+                    <div class="alert alert-warning">
+                        <strong>Important:</strong>
+                        Commands such as <code>git restore</code> and
+                        <code>git reset --hard</code> can discard work.
+                        Check your Git status and save anything you need
+                        before running destructive commands.
+                    </div>
+
+                    <hr class="my-4" />
+
+                    <!-- Scenario 1 -->
+                    <h3 class="fw-bold mb-3">
+                        1. You Edited a File but Haven't Committed It
+                    </h3>
+
+                    <p>
+                        If you want to discard changes to a tracked file
+                        and restore it to the version in your last commit,
+                        use the following command.
+                    </p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git checkout -- filename.ext</code></pre>
+
+                    <p>
+                        In newer Git versions, you can use
+                        <code>git restore</code> instead.
+                    </p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git restore filename.ext</code></pre>
+
+                    <div class="alert alert-danger">
+                        <strong>Warning:</strong>
+                        These commands discard the selected file's
+                        uncommitted changes. Make sure you do not need
+                        those changes before proceeding.
+                    </div>
+
+                    <hr class="my-4" />
+
+                    <!-- Scenario 2 -->
+                    <h3 class="fw-bold mb-3">
+                        2. You Committed Locally but Want to Undo the Commit
+                    </h3>
+
+                    <p>
+                        If your latest commit has not been pushed and you
+                        need to undo it, <code>git reset</code> provides
+                        different options depending on whether you want
+                        to keep your changes.
+                    </p>
+
+                    <h5 class="fw-semibold mt-4">Keep Your Changes</h5>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git reset --soft HEAD~1</code></pre>
+
+                    <p>
+                        Removes the latest commit from the current branch
+                        while keeping its changes staged.
+                    </p>
+
+                    <h5 class="fw-semibold mt-4">Discard the Commit and Its Changes</h5>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git reset --hard HEAD~1</code></pre>
+
+                    <p>
+                        Moves the current branch back one commit and resets
+                        tracked files to that commit. Changes introduced
+                        by the removed commit may be lost from your
+                        working directory.
+                    </p>
+
+                    <div class="alert alert-danger">
+                        <strong>Use with caution:</strong>
+                        <code>git reset --hard</code> can permanently
+                        discard uncommitted tracked-file changes.
+                        Prefer <code>--soft</code> when you want to
+                        preserve your work.
+                    </div>
+
+                    <hr class="my-4" />
+
+                    <!-- Scenario 3 -->
+                    <h3 class="fw-bold mb-3">
+                        3. You Forgot to Include a File in Your Last Commit
+                    </h3>
+
+                    <p>
+                        If you made a commit but forgot to include a file,
+                        you can stage the missing file and amend the
+                        previous commit.
+                    </p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git add forgotten-file.js
+git commit --amend --no-edit</code></pre>
+
+                    <p>
+                        The <code>--amend</code> option updates the latest
+                        commit, and <code>--no-edit</code> keeps its
+                        existing commit message.
+                    </p>
+
+                    <div class="alert alert-info">
+                        <strong>Note:</strong>
+                        Amending creates a replacement commit. Avoid
+                        amending commits that have already been shared
+                        with teammates unless your team has agreed on
+                        how to handle the rewritten history.
+                    </div>
+
+                    <hr class="my-4" />
+
+                    <!-- Scenario 4 -->
+                    <h3 class="fw-bold mb-3">
+                        4. You Already Pushed the Bad Commit to GitHub
+                    </h3>
+
+                    <p>
+                        If the commit is already on a shared remote
+                        repository, <code>git revert</code> is often
+                        the safer choice. It creates a new commit that
+                        reverses the changes introduced by an earlier commit.
+                    </p>
+
+                    <h5 class="fw-semibold mt-4">Step 1: Find the Commit</h5>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git log --oneline</code></pre>
+
+                    <h5 class="fw-semibold mt-4">Step 2: Revert the Commit</h5>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git revert &lt;commit-hash&gt;</code></pre>
+
+                    <p>
+                        Replace <code>&lt;commit-hash&gt;</code> with the
+                        actual commit ID you want to reverse. Git may
+                        open an editor for the revert commit message.
+                    </p>
+
+                    <h5 class="fw-semibold mt-4">Step 3: Push the Revert Commit</h5>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git push origin &lt;branch-name&gt;</code></pre>
+
+                    <p>
+                        Publishes the new revert commit to the remote branch,
+                        assuming you have the required permissions.
+                    </p>
+
+                    <hr class="my-4" />
+
+                    <!-- Quick Reference -->
+                    <h3 class="fw-bold mb-3">Quick Reference</h3>
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped align-middle">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Situation</th>
+                                    <th>Command</th>
+                                    <th>Result</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Discard changes in one file</td>
+                                    <td><code>git restore filename.ext</code></td>
+                                    <td>Restores the tracked file's working-tree version.</td>
+                                </tr>
+                                <tr>
+                                    <td>Undo latest commit, keep changes staged</td>
+                                    <td><code>git reset --soft HEAD~1</code></td>
+                                    <td>Removes the commit but keeps its changes staged.</td>
+                                </tr>
+                                <tr>
+                                    <td>Undo latest commit and discard tracked changes</td>
+                                    <td><code>git reset --hard HEAD~1</code></td>
+                                    <td>Moves the branch back and resets tracked files.</td>
+                                </tr>
+                                <tr>
+                                    <td>Update the latest commit</td>
+                                    <td><code>git commit --amend --no-edit</code></td>
+                                    <td>Amends the commit while keeping its message.</td>
+                                </tr>
+                                <tr>
+                                    <td>Undo a commit already pushed</td>
+                                    <td><code>git revert &lt;commit-hash&gt;</code></td>
+                                    <td>Creates a new commit that reverses the selected commit.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="alert alert-success mt-4">
+                        <strong>Key Takeaway:</strong>
+                        Use <code>git restore</code> for file changes,
+                        <code>git reset</code> for local commit history,
+                        <code>git commit --amend</code> to correct the
+                        latest commit, and <code>git revert</code> to
+                        safely reverse a commit already shared with others.
+                    </div>
+
+                    <!-- Previous / Next Navigation -->
+                    <div class="d-flex justify-content-between align-items-center gap-3 flex-wrap mt-5 pt-4 border-top">
+
+                        <a class="btn btn-outline-primary"
+                           href="@Url.Action("Tagging", "AdvancedGitAndHistory", new { area = "GitHub" })">
+                            &larr; Previous: Tagging Releases
+                        </a>
+
+                        <a class="btn btn-primary"
+                           href="@Url.Action("Rebasing", "AdvancedGitAndHistory", new { area = "GitHub" })">
+                            Next: Rebasing &rarr;
+                        </a>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+</main>

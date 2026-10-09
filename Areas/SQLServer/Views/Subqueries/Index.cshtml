@@ -1,0 +1,379 @@
+﻿@{
+    ViewData["Title"] = "Subqueries Introduction";
+}
+
+<div class="container-fluid">
+
+    <!-- =========================
+         PAGE HEADER
+    ========================== -->
+
+    <div class="mb-4">
+
+        <h1 class="fw-bold">
+            Subqueries Introduction
+        </h1>
+
+        <p class="text-muted">
+            Learn how to use a query inside another SQL query
+            to retrieve and analyze related data.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         WHAT IS A SUBQUERY?
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                What is a Subquery?
+            </h2>
+
+            <p>
+                A <strong>Subquery</strong> is a query written inside
+                another SQL query. The inner query is called the
+                <strong>subquery</strong>, and the outer query is called
+                the <strong>main query</strong>.
+            </p>
+
+            <p>
+                Subqueries are useful when the result of one query is
+                required as input for another query.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         BASIC STRUCTURE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Basic Structure of a Subquery
+            </h2>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>
+SELECT column_name
+FROM table_name
+WHERE column_name = (
+    SELECT column_name
+    FROM another_table
+    WHERE condition
+);
+            </code></pre>
+
+            <p class="mt-3 mb-0">
+                The inner query executes first and its result is then
+                used by the outer query.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         SIMPLE EXAMPLE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Simple Subquery Example
+            </h2>
+
+            <p>
+                Suppose we have an <strong>Employees</strong> table:
+            </p>
+
+            <pre class="bg-light border p-3 rounded"><code>
+EmployeeId    EmployeeName    Salary
+-----------   -------------   -------
+1             Rahul           30000
+2             Priya           45000
+3             Amit            50000
+4             Sneha           40000
+            </code></pre>
+
+            <p>
+                Now suppose we want to find employees whose salary is
+                greater than the average salary.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>
+SELECT EmployeeName, Salary
+FROM Employees
+WHERE Salary &gt; (
+    SELECT AVG(Salary)
+    FROM Employees
+);
+            </code></pre>
+
+            <h5 class="fw-bold mt-4">
+                How it works
+            </h5>
+
+            <ol>
+                <li>
+                    The inner query calculates the average salary.
+                </li>
+                <li>
+                    The outer query compares each employee's salary
+                    with that average.
+                </li>
+                <li>
+                    Employees whose salary is greater than the average
+                    are returned.
+                </li>
+            </ol>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         SUBQUERY WITH WHERE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Subquery with WHERE
+            </h2>
+
+            <p>
+                A subquery is commonly used with the
+                <strong>WHERE</strong> clause to filter records based
+                on the result of another query.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>
+SELECT EmployeeName, Salary
+FROM Employees
+WHERE Salary &gt; (
+    SELECT Salary
+    FROM Employees
+    WHERE EmployeeName = 'Rahul'
+);
+            </code></pre>
+
+            <p class="mt-3">
+                In this example, the inner query finds Rahul's salary.
+                The outer query then returns employees whose salary is
+                greater than Rahul's salary.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         SUBQUERY WITH IN
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Subquery with IN
+            </h2>
+
+            <p>
+                The <strong>IN</strong> operator can be used when a
+                subquery returns multiple values.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>
+SELECT EmployeeName
+FROM Employees
+WHERE DepartmentId IN (
+    SELECT DepartmentId
+    FROM Departments
+    WHERE Location = 'Pune'
+);
+            </code></pre>
+
+            <p class="mt-3">
+                The inner query returns department IDs for departments
+                located in Pune. The outer query then returns employees
+                belonging to those departments.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         TYPES OF SUBQUERIES
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Types of Subqueries
+            </h2>
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-striped">
+
+                    <thead class="table-primary">
+
+                        <tr>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>Single-Row Subquery</td>
+                            <td>
+                                Returns a single value or single row.
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Multiple-Row Subquery</td>
+                            <td>
+                                Returns multiple rows or values.
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Correlated Subquery</td>
+                            <td>
+                                Depends on a value from the outer query.
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Subquery with DML</td>
+                            <td>
+                                Subqueries can be used with
+                                SELECT, INSERT, UPDATE and DELETE.
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         IMPORTANT POINTS
+    ========================== -->
+
+    <div class="alert alert-warning mb-4">
+
+        <h4 class="fw-bold">
+            Important Points
+        </h4>
+
+        <ul class="mb-0">
+
+            <li>
+                A subquery is enclosed within parentheses.
+            </li>
+
+            <li>
+                The inner query is written inside the outer query.
+            </li>
+
+            <li>
+                A subquery can be used with WHERE, HAVING, FROM and
+                other SQL clauses.
+            </li>
+
+            <li>
+                The type of operator used depends on whether the
+                subquery returns one value or multiple values.
+            </li>
+
+            <li>
+                Subqueries are useful for solving complex SQL problems.
+            </li>
+
+        </ul>
+
+    </div>
+
+
+    <!-- =========================
+         SUMMARY
+    ========================== -->
+
+    <div class="alert alert-info p-4 mb-4">
+
+        <h2 class="fw-bold">
+            Summary
+        </h2>
+
+        <p class="mb-0">
+            A subquery is a query inside another SQL query. It allows
+            the result of one query to be used by another query.
+            Subqueries are commonly used with WHERE and IN and are
+            useful for filtering and analyzing related data.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         PREVIOUS / NEXT
+    ========================== -->
+
+    <div class="d-flex justify-content-between align-items-center
+        mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/GroupingAndAggregate/MinMaxFunctions"
+           class="btn btn-outline-primary">
+
+            ← Previous: MIN() &amp; MAX()
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/Subqueries/SingleRowSubquery"
+           class="btn btn-primary">
+
+            Next: Single-Row Subquery →
+
+        </a>
+
+    </div>
+
+</div>

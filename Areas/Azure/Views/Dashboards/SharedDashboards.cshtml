@@ -1,0 +1,60 @@
+@{
+    ViewData["Title"] = "But how about when you have dashboards that are shared with others";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+                <div class="azure-notes-content">
+                    <pre class="azure-notes-text">But how about when you have dashboards that are shared with others, like for example the one that
+you are sharing like the inventory dashboard? So, let’s assume you go to my shared dashboard. You
+can tell it’s a shared dashboard because there is this shared icon right there beside your dashboard
+name. Everything works the same. You can refresh manually. You can refresh your titles.
+
+
+
+
+And you can also see this Auto-Refresh here under the dashboard title.
+
+
+
+
+The only difference here now is that let’s say you share this with others. You want to see this every
+hour, but someone else wants to see this updated every 30 minutes. You can go ahead and set this
+every hour and this will only apply to look at this dashboard. When you open this dashboard
+somewhere else, you can go ahead and change it to every 30 minutes and you’d be looking at it
+every 30 minutes, and it won’t have any conflict between the two dashboards.</pre>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_7_-_Dashboards/p09-000.jpg" class="img-fluid rounded shadow-sm" alt="But how about when you have dashboards that are shared with others - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_7_-_Dashboards/p09-001.jpg" class="img-fluid rounded shadow-sm" alt="But how about when you have dashboards that are shared with others - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_7_-_Dashboards/p09-002.jpg" class="img-fluid rounded shadow-sm" alt="But how about when you have dashboards that are shared with others - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_7_-_Dashboards/p09-003.jpg" class="img-fluid rounded shadow-sm" alt="But how about when you have dashboards that are shared with others - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_7_-_Dashboards/p10-000.jpg" class="img-fluid rounded shadow-sm" alt="But how about when you have dashboards that are shared with others - source image" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+            @await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureLessonNavigation.cshtml")
+</section>
+</div>
+<style>
+.azure-notes-text{white-space:pre-wrap;word-break:normal;font-family:inherit;font-size:1rem;line-height:1.7;background:#fff;border:0;padding:0;margin:0;color:#212529;}
+.azure-notes-content img{max-height:720px;}
+</style>

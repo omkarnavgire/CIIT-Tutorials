@@ -1,0 +1,859 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Python Database Connectivity";
+}
+
+<style>
+
+    #python-database-connectivity-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #python-database-connectivity-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #python-database-connectivity-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #python-database-connectivity-page .diagram-box {
+        background: #ffffff;
+        border: 2px solid #6f42c1;
+        border-radius: 10px;
+        padding: 18px;
+        text-align: center;
+        height: 100%;
+    }
+
+        #python-database-connectivity-page .diagram-box h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        #python-database-connectivity-page .diagram-box p {
+            margin-bottom: 0;
+            font-size: 14px;
+            color: #495057;
+        }
+
+    #python-database-connectivity-page .diagram-arrow {
+        text-align: center;
+        font-size: 28px;
+        font-weight: 700;
+        color: #6f42c1;
+        padding: 8px 0;
+    }
+
+    #python-database-connectivity-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #python-database-connectivity-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+        }
+
+</style>
+
+
+<main id="python-database-connectivity-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+
+                <h1 class="fw-bold">
+                    Database Connectivity in Python
+                </h1>
+
+                <p class="lead">
+                    Learn how Python applications connect to a database
+                    and execute database operations.
+                </p>
+
+            </div>
+
+
+            <!-- WHAT IS DATABASE CONNECTIVITY -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    What is Database Connectivity?
+                </h2>
+
+                <p>
+                    Database connectivity means creating a connection between
+                    a Python application and a database.
+                </p>
+
+                <p>
+                    Once the connection is created, Python can execute SQL
+                    statements and work with data stored in the database.
+                </p>
+
+                <div class="alert alert-info">
+
+                    <strong>Simple Definition:</strong>
+
+                    Database connectivity allows a Python program to
+                    communicate with a database.
+
+                </div>
+
+            </div>
+
+
+            <!-- BASIC DIAGRAM -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Database Connectivity Flow
+                </h2>
+
+                <div class="concept-box">
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            Python Application
+                        </h5>
+
+                        <p>
+                            The application sends database requests.
+                        </p>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            Database Driver
+                        </h5>
+
+                        <p>
+                            Connects Python with the selected database.
+                        </p>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            Database
+                        </h5>
+
+                        <p>
+                            Executes SQL commands and stores data.
+                        </p>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            Result
+                        </h5>
+
+                        <p>
+                            Data or operation result is returned to Python.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- SQLITE CONNECTION -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    SQLite Database Connection
+                </h2>
+
+                <p>
+                    Python provides the built-in <code>sqlite3</code>
+                    module for connecting to SQLite databases.
+                </p>
+
+                <pre><code>import sqlite3
+
+connection = sqlite3.connect("students.db")
+
+print("Database connected")</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Database connected</code></pre>
+
+            </div>
+
+
+            <!-- CURSOR -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Creating a Cursor
+                </h2>
+
+                <p>
+                    A cursor is used to execute SQL statements on the database.
+                </p>
+
+                <pre><code>import sqlite3
+
+connection = sqlite3.connect("students.db")
+
+cursor = connection.cursor()
+
+print("Cursor created")</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Cursor created</code></pre>
+
+            </div>
+
+
+            <!-- EXECUTE SQL -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Executing SQL Commands
+                </h2>
+
+                <p>
+                    The <code>execute()</code> method is used to execute
+                    SQL statements.
+                </p>
+
+                <pre><code>import sqlite3
+
+connection = sqlite3.connect("students.db")
+
+cursor = connection.cursor()
+
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS students
+(
+    id INTEGER PRIMARY KEY,
+    name TEXT,
+    course TEXT
+)
+""")
+
+connection.commit()
+
+print("Table created")</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Table created</code></pre>
+
+            </div>
+
+
+            <!-- INSERT DATA -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Inserting Data Through Connection
+                </h2>
+
+                <pre><code>import sqlite3
+
+connection = sqlite3.connect("students.db")
+
+cursor = connection.cursor()
+
+cursor.execute(
+    "INSERT INTO students (name, course) VALUES (?, ?)",
+    ("Rahul", "Python")
+)
+
+connection.commit()
+
+print("Data inserted")</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Data inserted</code></pre>
+
+            </div>
+
+
+            <!-- READING DATA -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Reading Data Through Connection
+                </h2>
+
+                <pre><code>cursor.execute("SELECT * FROM students")
+
+rows = cursor.fetchall()
+
+for row in rows:
+
+    print(row)</code></pre>
+
+                <p class="mt-3">
+                    Example Output:
+                </p>
+
+                <pre><code>(1, 'Rahul', 'Python')</code></pre>
+
+            </div>
+
+
+            <!-- COMMIT -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Understanding commit()
+                </h2>
+
+                <p>
+                    The <code>commit()</code> method saves INSERT, UPDATE
+                    and DELETE changes to the database.
+                </p>
+
+                <pre><code>connection.commit()</code></pre>
+
+                <p>
+                    Without committing the changes, modified data may not
+                    be permanently saved.
+                </p>
+
+            </div>
+
+
+            <!-- CLOSE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Closing the Connection
+                </h2>
+
+                <p>
+                    After database operations are complete, the connection
+                    should be closed.
+                </p>
+
+                <pre><code>connection.close()
+
+print("Connection closed")</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Connection closed</code></pre>
+
+            </div>
+
+
+            <!-- PARAMETERIZED QUERY -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Parameterized Database Queries
+                </h2>
+
+                <p>
+                    Parameterized queries allow values to be passed separately
+                    from the SQL statement.
+                </p>
+
+                <pre><code>name = "Priya"
+course = ".NET"
+
+cursor.execute(
+    "INSERT INTO students (name, course) VALUES (?, ?)",
+    (name, course)
+)
+
+connection.commit()</code></pre>
+
+                <p>
+                    Parameterized queries are preferred when working with
+                    values received from users or other external sources.
+                </p>
+
+            </div>
+
+
+            <!-- ERROR HANDLING -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Database Connection with Exception Handling
+                </h2>
+
+                <p>
+                    Exception handling can be used to handle database errors.
+                </p>
+
+                <pre><code>import sqlite3
+
+try:
+
+    connection = sqlite3.connect("students.db")
+
+    cursor = connection.cursor()
+
+    cursor.execute("SELECT * FROM students")
+
+    rows = cursor.fetchall()
+
+    for row in rows:
+
+        print(row)
+
+except sqlite3.Error as error:
+
+    print("Database error:", error)
+
+finally:
+
+    if "connection" in locals():
+
+        connection.close()</code></pre>
+
+                <p>
+                    This allows the program to handle database errors and
+                    close the connection properly.
+                </p>
+
+            </div>
+            <div class="px-2">
+                <h5 class="fw-bold mb-2">
+                    Output
+                </h5>
+
+                <pre class="mb-4"><code>Database error: no such table: students</code></pre>
+            </div>
+
+            <!-- DATABASE CONNECTION OBJECT -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Connection and Cursor
+                </h2>
+
+                <div class="row g-3">
+
+                    <div class="col-md-6">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Connection
+                            </h5>
+
+                            <p>
+                                Represents the connection between Python
+                                and the database.
+                            </p>
+
+                            <pre><code>connection =
+sqlite3.connect("students.db")</code></pre>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-6">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Cursor
+                            </h5>
+
+                            <p>
+                                Executes SQL statements and retrieves results.
+                            </p>
+
+                            <pre><code>cursor =
+connection.cursor()</code></pre>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRACTICAL EXAMPLE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Example 📩🤓
+                </h2>
+
+                <p>
+                    The following example connects to an SQLite database,
+                    creates a table, inserts a record and reads the data.
+                </p>
+
+                <pre><code>import sqlite3
+
+try:
+
+    connection = sqlite3.connect("college.db")
+
+    cursor = connection.cursor()
+
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS students
+    (
+        id INTEGER PRIMARY KEY,
+        name TEXT,
+        course TEXT
+    )
+    """)
+
+    cursor.execute(
+        "INSERT INTO students (name, course) VALUES (?, ?)",
+        ("Samadhan", "Python")
+    )
+
+    connection.commit()
+
+    cursor.execute("SELECT * FROM students")
+
+    students = cursor.fetchall()
+
+    for student in students:
+
+        print(student)
+
+except sqlite3.Error as error:
+
+    print("Database error:", error)
+
+finally:
+
+    connection.close()</code></pre>
+
+                <p class="mt-3">
+                    Example Output:
+                </p>
+
+                <pre><code>(1, 'Samadhan', 'Python')</code></pre>
+
+            </div>
+
+
+            <!-- ADVANTAGES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Advantages of Database Connectivity
+                </h2>
+
+                <div class="row g-3">
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Data Access
+                            </h5>
+
+                            <p class="mb-0">
+                                Python applications can read data from databases.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Data Modification
+                            </h5>
+
+                            <p class="mb-0">
+                                Applications can insert, update and delete records.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Application Storage
+                            </h5>
+
+                            <p class="mb-0">
+                                Database connectivity allows applications
+                                to store persistent data.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- BEST PRACTICES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Best Practices
+                </h2>
+
+                <div class="row g-3">
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Handle Errors
+                            </h5>
+
+                            <p class="mb-0">
+                                Use exception handling around database operations.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Close Connections
+                            </h5>
+
+                            <p class="mb-0">
+                                Close database connections after completing operations.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Use Parameters
+                            </h5>
+
+                            <p class="mb-0">
+                                Use parameterized queries when passing values.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- COMMON MISTAKES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Common Mistakes
+                </h2>
+
+                <ul>
+
+                    <li>
+                        Forgetting to create the cursor.
+                    </li>
+
+                    <li>
+                        Forgetting to call <code>commit()</code> after
+                        modifying data.
+                    </li>
+
+                    <li>
+                        Forgetting to close the database connection.
+                    </li>
+
+                    <li>
+                        Writing SQL statements incorrectly.
+                    </li>
+
+                    <li>
+                        Not handling possible database errors.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Practice Programs
+                </h2>
+
+                <ol>
+
+                    <li>
+                        Connect Python to an SQLite database.
+                    </li>
+
+                    <li>
+                        Create a students table.
+                    </li>
+
+                    <li>
+                        Insert three student records.
+                    </li>
+
+                    <li>
+                        Retrieve and display all students.
+                    </li>
+
+                    <li>
+                        Update a student record.
+                    </li>
+
+                    <li>
+                        Handle a database error using
+                        <code>sqlite3.Error</code>.
+                    </li>
+
+                </ol>
+
+            </div>
+
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+
+                <h2 class="h4 fw-bold">
+                    Summary
+                </h2>
+
+                <p class="mb-0">
+
+                    Database connectivity allows Python applications to
+                    communicate with databases. The connection is created
+                    using a database-specific module, while a cursor is
+                    used to execute SQL statements. Applications can
+                    insert, retrieve, update and delete data. Proper
+                    error handling, parameterized queries and closing
+                    database connections are important when working with
+                    databases.
+
+                </p>
+
+            </div>
+
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+
+                <a class="btn btn-outline-secondary"
+                   href="@Url.Action("SQLite", "DatabaseProgramming", new { area = "Python" })">
+
+                    ← Previous: Topic
+
+                </a>
+
+
+                <a class="btn btn-primary"
+                   href="@Url.Action("CRUDOperations", "DatabaseProgramming", new { area = "Python" })">
+
+                    Next: Topic →
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

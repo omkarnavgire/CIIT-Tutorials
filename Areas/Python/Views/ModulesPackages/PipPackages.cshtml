@@ -1,0 +1,914 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Python pip & Packages";
+}
+
+<style>
+
+    #python-pip-packages-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #python-pip-packages-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #python-pip-packages-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #python-pip-packages-page .diagram-box {
+        background: #ffffff;
+        border: 2px solid #6f42c1;
+        border-radius: 10px;
+        padding: 18px;
+        text-align: center;
+        height: 100%;
+    }
+
+        #python-pip-packages-page .diagram-box h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        #python-pip-packages-page .diagram-box p {
+            margin-bottom: 0;
+            font-size: 14px;
+            color: #495057;
+        }
+
+    #python-pip-packages-page .diagram-arrow {
+        text-align: center;
+        font-size: 28px;
+        font-weight: 700;
+        color: #6f42c1;
+        padding: 8px 0;
+    }
+
+    #python-pip-packages-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #python-pip-packages-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+        }
+
+</style>
+
+
+<main id="python-pip-packages-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+
+                <h1 class="fw-bold">
+                    pip &amp; Packages in Python
+                </h1>
+
+                <p class="lead">
+                    Learn how to install, manage and use external Python
+                    packages with pip.
+                </p>
+
+            </div>
+
+
+            <!-- WHAT IS PIP -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    What is pip?
+                </h2>
+
+                <p>
+                    <strong>pip</strong> is the standard package installer
+                    used to install Python packages from the Python Package
+                    Index and other configured package sources.
+                </p>
+
+                <p>
+                    A package contains reusable Python code developed
+                    for a particular purpose.
+                </p>
+
+                <div class="alert alert-info">
+
+                    <strong>Simple Definition:</strong>
+
+                    pip is a tool that helps us install and manage
+                    Python packages.
+
+                </div>
+
+            </div>
+
+
+            <!-- WHAT IS PACKAGE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    What is a Python Package?
+                </h2>
+
+                <p>
+                    A Python package is reusable code that can be added
+                    to a project to provide additional functionality.
+                </p>
+
+                <p>
+                    For example, developers can use external packages
+                    for web development, data analysis, machine learning,
+                    automation and many other tasks.
+                </p>
+
+            </div>
+
+
+            <!-- DIAGRAM -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    pip &amp; Packages Diagram
+                </h2>
+
+                <p>
+                    The basic flow of installing and using a package
+                    can be understood like this:
+                </p>
+
+                <div class="concept-box">
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            Python Project
+                        </h5>
+
+                        <p>
+                            Your application
+                        </p>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            pip
+                        </h5>
+
+                        <p>
+                            Package installation tool
+                        </p>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="row g-3">
+
+                        <div class="col-md-4">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    Package
+                                </h5>
+
+                                <p>
+                                    Reusable functionality
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-4">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    Install
+                                </h5>
+
+                                <p>
+                                    pip install package-name
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-4">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    Use
+                                </h5>
+
+                                <p>
+                                    import package
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            Python Application
+                        </h5>
+
+                        <p>
+                            Use the installed package in your program.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CHECK PIP -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Check Whether pip is Installed
+                </h2>
+
+                <p>
+                    We can check whether pip is available by using the
+                    following command in the terminal.
+                </p>
+
+                <pre><code>pip --version</code></pre>
+
+                <p class="mt-3">
+                    Another commonly used form is:
+                </p>
+
+                <pre><code>python -m pip --version</code></pre>
+
+                <p>
+                    The command displays the installed pip version.
+                </p>
+
+            </div>
+
+
+            <!-- INSTALL PACKAGE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Installing a Package
+                </h2>
+
+                <p>
+                    To install a package, use:
+                </p>
+
+                <pre><code>pip install package_name</code></pre>
+
+                <p class="mt-3">
+                    For example:
+                </p>
+
+                <pre><code>pip install requests</code></pre>
+
+                <p>
+                    This tells pip to install the
+                    <code>requests</code> package.
+                </p>
+
+            </div>
+
+
+            <!-- EXAMPLE PACKAGE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Example: Installing requests
+                </h2>
+
+                <p>
+                    First install the package:
+                </p>
+
+                <pre><code>pip install requests</code></pre>
+
+                <p class="mt-3">
+                    Then use it in Python:
+                </p>
+
+                <pre><code>import requests
+
+response = requests.get("https://example.com")
+
+print(response.status_code)</code></pre>
+
+                <p>
+                    The package provides functionality that is not part
+                    of the basic Python syntax.
+                </p>
+
+            </div>
+
+
+            <!-- UPGRADE PACKAGE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Upgrade a Package
+                </h2>
+
+                <p>
+                    We can upgrade an installed package using:
+                </p>
+
+                <pre><code>pip install --upgrade package_name</code></pre>
+
+                <p class="mt-3">
+                    Example:
+                </p>
+
+                <pre><code>pip install --upgrade requests</code></pre>
+
+                <p>
+                    This asks pip to update the package to a newer
+                    available version.
+                </p>
+
+            </div>
+
+
+            <!-- UNINSTALL -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Uninstall a Package
+                </h2>
+
+                <p>
+                    To remove an installed package:
+                </p>
+
+                <pre><code>pip uninstall package_name</code></pre>
+
+                <p class="mt-3">
+                    Example:
+                </p>
+
+                <pre><code>pip uninstall requests</code></pre>
+
+                <p>
+                    pip will ask for confirmation before removing
+                    the package.
+                </p>
+
+            </div>
+
+
+            <!-- LIST -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    View Installed Packages
+                </h2>
+
+                <p>
+                    We can display packages installed in the current
+                    Python environment using:
+                </p>
+
+                <pre><code>pip list</code></pre>
+
+                <p>
+                    This displays package names and their installed versions.
+                </p>
+
+            </div>
+
+
+            <!-- SHOW -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    View Package Details
+                </h2>
+
+                <p>
+                    To see information about a particular package:
+                </p>
+
+                <pre><code>pip show requests</code></pre>
+
+                <p>
+                    This can display information such as the package
+                    version and installation location.
+                </p>
+
+            </div>
+
+
+            <!-- FREEZE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Using <code>pip freeze</code>
+                </h2>
+
+                <p>
+                    The following command displays installed packages
+                    in a format that can be saved as a requirements file.
+                </p>
+
+                <pre><code>pip freeze</code></pre>
+
+                <p>
+                    Example output:
+                </p>
+
+                <pre><code>requests==2.x.x
+urllib3==2.x.x
+certifi==202x.x.x</code></pre>
+
+                <p>
+                    The exact versions depend on the environment.
+                </p>
+
+            </div>
+
+
+            <!-- REQUIREMENTS -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    requirements.txt
+                </h2>
+
+                <p>
+                    A <code>requirements.txt</code> file is commonly used
+                    to list the Python packages required by a project.
+                </p>
+
+                <p>
+                    Example:
+                </p>
+
+                <pre><code>requests==2.x.x
+flask==3.x.x</code></pre>
+
+                <p class="mt-3">
+                    Other developers can install the listed dependencies
+                    using:
+                </p>
+
+                <pre><code>pip install -r requirements.txt</code></pre>
+
+                <p>
+                    This is useful when sharing or deploying a Python project.
+                </p>
+
+            </div>
+
+
+            <!-- UPGRADE PIP -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Upgrade pip
+                </h2>
+
+                <p>
+                    pip itself can be upgraded with:
+                </p>
+
+                <pre><code>python -m pip install --upgrade pip</code></pre>
+
+                <p>
+                    Using <code>python -m pip</code> is a common way to
+                    make sure pip is associated with the intended Python
+                    interpreter.
+                </p>
+
+            </div>
+
+
+            <!-- COMMON COMMANDS -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Common pip Commands
+                </h2>
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered align-middle">
+
+                        <thead>
+
+                            <tr>
+                                <th>Command</th>
+                                <th>Purpose</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>
+                                    <code>pip --version</code>
+                                </td>
+
+                                <td>
+                                    Check pip version.
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td>
+                                    <code>pip install package_name</code>
+                                </td>
+
+                                <td>
+                                    Install a package.
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td>
+                                    <code>pip install --upgrade package_name</code>
+                                </td>
+
+                                <td>
+                                    Upgrade a package.
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td>
+                                    <code>pip uninstall package_name</code>
+                                </td>
+
+                                <td>
+                                    Remove a package.
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td>
+                                    <code>pip list</code>
+                                </td>
+
+                                <td>
+                                    Display installed packages.
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td>
+                                    <code>pip show package_name</code>
+                                </td>
+
+                                <td>
+                                    Display package information.
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td>
+                                    <code>pip freeze</code>
+                                </td>
+
+                                <td>
+                                    Display installed packages and versions.
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td>
+                                    <code>pip install -r requirements.txt</code>
+                                </td>
+
+                                <td>
+                                    Install dependencies listed in a file.
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <!-- BUILT IN VS THIRD PARTY -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Built-in Modules vs External Packages
+                </h2>
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered align-middle">
+
+                        <thead>
+
+                            <tr>
+                                <th>Built-in / Standard Library</th>
+                                <th>External Package</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+
+                                <td>
+                                    Available with Python's standard library.
+                                </td>
+
+                                <td>
+                                    Usually installed separately.
+                                </td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>
+                                    Example: <code>math</code>
+                                </td>
+
+                                <td>
+                                    Example: <code>requests</code>
+                                </td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>
+                                    Usually no separate pip installation
+                                    is required.
+                                </td>
+
+                                <td>
+                                    Commonly installed using pip.
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <!-- PACKAGE MANAGEMENT FLOW -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Package Management Flow
+                </h2>
+
+                <div class="concept-box">
+
+                    <p>
+                        <strong>Step 1:</strong>
+                        Create or open your Python project.
+                    </p>
+
+                    <p>
+                        ↓
+                    </p>
+
+                    <p>
+                        <strong>Step 2:</strong>
+                        Identify the package required.
+                    </p>
+
+                    <p>
+                        ↓
+                    </p>
+
+                    <p>
+                        <strong>Step 3:</strong>
+                        Install it using pip.
+                    </p>
+
+                    <p>
+                        ↓
+                    </p>
+
+                    <p>
+                        <strong>Step 4:</strong>
+                        Import the package in your Python code.
+                    </p>
+
+                    <p>
+                        ↓
+                    </p>
+
+                    <p>
+                        <strong>Step 5:</strong>
+                        Use the package functionality.
+                    </p>
+
+                    <p>
+                        ↓
+                    </p>
+
+                    <p class="mb-0">
+                        <strong>Step 6:</strong>
+                        Save project dependencies when required.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- COMMON MISTAKES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Common Mistakes
+                </h2>
+
+                <ul>
+
+                    <li>
+                        Installing a package in a different Python
+                        environment than the one used by the project.
+                    </li>
+
+                    <li>
+                        Using an incorrect package name.
+                    </li>
+
+                    <li>
+                        Forgetting to install a required dependency.
+                    </li>
+
+                    <li>
+                        Not maintaining project dependencies properly.
+                    </li>
+
+                    <li>
+                        Confusing a Python module with an externally
+                        installed package.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- PRACTICAL TASK -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Practical Exercise
+                </h2>
+
+                <p>
+                    Try these commands in your terminal:
+                </p>
+
+                <pre><code>pip --version
+
+pip install requests
+
+pip show requests
+
+pip list
+
+pip freeze</code></pre>
+
+                <p class="mt-3">
+                    Then create a Python file and import the installed
+                    package.
+                </p>
+
+                <pre><code>import requests
+
+print("Requests package is ready to use.")</code></pre>
+
+            </div>
+
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+
+                <h2 class="h4 fw-bold">
+                    Summary
+                </h2>
+
+                <p class="mb-0">
+
+                    pip is used to install and manage Python packages.
+                    We can install, upgrade, uninstall and inspect packages
+                    using pip commands. The <code>requirements.txt</code>
+                    file helps record project dependencies, while
+                    <code>pip freeze</code> can be used to generate a list
+                    of installed package versions.
+
+                </p>
+
+            </div>
+
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+
+                <a class="btn btn-outline-secondary"
+                   href="@Url.Action("BuiltInModules", "ModulesPackages", new { area = "Python" })">
+
+                    ← Previous: Topic
+
+                </a>
+
+
+                <a class="btn btn-primary"
+                   href="@Url.Action("CreatingPackages", "ModulesPackages", new { area = "Python" })">
+
+                    Next: Topic →
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

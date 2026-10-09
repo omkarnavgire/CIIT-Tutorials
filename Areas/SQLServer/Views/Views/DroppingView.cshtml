@@ -1,0 +1,438 @@
+﻿@{
+    ViewData["Title"] = "Dropping a View";
+}
+
+<div class="container-fluid">
+
+    <!-- =========================
+         PAGE HEADER
+    ========================== -->
+
+    <div class="mb-4">
+
+        <h1 class="fw-bold">
+            Dropping a View
+        </h1>
+
+        <p class="text-muted">
+            Learn how to permanently remove an existing SQL Server View
+            using the DROP VIEW statement.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         INTRODUCTION
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                What is DROP VIEW?
+            </h2>
+
+            <p>
+                The <strong>DROP VIEW</strong> statement is used to
+                permanently remove an existing View from a SQL Server
+                database.
+            </p>
+
+            <p>
+                When a View is dropped, the View object and its definition
+                are removed from the database.
+            </p>
+
+            <p>
+                Dropping a View does not delete the underlying table data.
+                The tables used by the View remain in the database unless
+                they are separately deleted.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         BASIC SYNTAX
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                DROP VIEW Syntax
+            </h2>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>DROP VIEW ViewName;</code></pre>
+
+            <h5 class="fw-bold mt-4">
+                Syntax Explanation
+            </h5>
+
+            <ul>
+
+                <li class="mb-2">
+                    <strong>DROP VIEW</strong> specifies that a View
+                    should be removed.
+                </li>
+
+                <li>
+                    <strong>ViewName</strong> is the name of the View
+                    that needs to be deleted.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         SAMPLE VIEW
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Example View
+            </h2>
+
+            <p>
+                Suppose we have a View named
+                <strong>EmployeeDetailsView</strong>:
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>CREATE VIEW EmployeeDetailsView
+AS
+SELECT
+    EmployeeId,
+    EmployeeName,
+    Department,
+    Salary
+FROM Employees;</code></pre>
+
+            <p class="mt-3">
+                We can retrieve its data using:
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>SELECT *
+FROM EmployeeDetailsView;</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         DROP VIEW
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Dropping the View
+            </h2>
+
+            <p>
+                To permanently remove the View, use:
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>DROP VIEW EmployeeDetailsView;</code></pre>
+
+            <p class="mt-3">
+                After executing this statement, the
+                <strong>EmployeeDetailsView</strong> View is removed
+                from the database.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         VERIFY VIEW REMOVED
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Verify That the View Was Dropped
+            </h2>
+
+            <p>
+                We can check the Views available in the current database
+                using the system catalog:
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>SELECT
+    name
+FROM sys.views;</code></pre>
+
+            <p class="mt-3">
+                If the View was successfully dropped, its name will no
+                longer appear in the list.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         DROP MULTIPLE VIEWS
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Dropping Multiple Views
+            </h2>
+
+            <p>
+                Multiple Views can be removed by executing separate
+                DROP VIEW statements.
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>DROP VIEW EmployeeDetailsView;
+
+DROP VIEW EmployeeSalaryView;</code></pre>
+
+            <p class="mt-3">
+                Each statement removes its corresponding View.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         DROP VIEW IF EXISTS
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Using DROP VIEW IF EXISTS
+            </h2>
+
+            <p>
+                SQL Server also supports checking whether a View exists
+                before dropping it.
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>DROP VIEW IF EXISTS EmployeeDetailsView;</code></pre>
+
+            <p class="mt-3">
+                This statement drops the View if it exists. If the View
+                does not exist, SQL Server does not raise the usual
+                missing-object error for the DROP operation.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         IMPORTANT DIFFERENCE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                DROP VIEW vs DELETE
+            </h2>
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-striped">
+
+                    <thead class="table-primary">
+
+                        <tr>
+                            <th>DROP VIEW</th>
+                            <th>DELETE</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>
+                                Removes a View object.
+                            </td>
+
+                            <td>
+                                Removes rows from a table.
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                Removes the View definition.
+                            </td>
+
+                            <td>
+                                Does not remove the table itself.
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                Does not directly delete underlying
+                                table data.
+                            </td>
+
+                            <td>
+                                Deletes selected table records.
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         IMPORTANT WARNING
+    ========================== -->
+
+    <div class="alert alert-danger shadow-sm mb-4">
+
+        <h3 class="fw-bold mb-3">
+            Important Warning
+        </h3>
+
+        <p>
+            Dropping a View removes the View object from the database.
+            Applications, queries, reports, or stored procedures that
+            depend on that View may stop working.
+        </p>
+
+        <p class="mb-0">
+            Always verify dependencies before dropping a View in a
+            production database.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         BEST PRACTICES
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Best Practices
+            </h2>
+
+            <ul>
+
+                <li class="mb-2">
+                    Verify the View name before executing DROP VIEW.
+                </li>
+
+                <li class="mb-2">
+                    Check whether applications depend on the View.
+                </li>
+
+                <li class="mb-2">
+                    Use <strong>DROP VIEW IF EXISTS</strong> when
+                    appropriate.
+                </li>
+
+                <li class="mb-2">
+                    Avoid dropping Views directly in production without
+                    checking dependencies.
+                </li>
+
+                <li>
+                    Test database changes in a development environment
+                    before applying them to production.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         SUMMARY
+    ========================== -->
+
+    <div class="alert alert-primary shadow-sm mb-4">
+
+        <h2 class="fw-bold">
+            Summary
+        </h2>
+
+        <p class="mb-0">
+            The DROP VIEW statement permanently removes an existing
+            SQL Server View. Dropping a View removes the View object
+            and its definition, but it does not directly delete the
+            data stored in the underlying tables. Always check
+            dependencies before dropping a View.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+     PREVIOUS / NEXT
+========================= -->
+
+    <div class="d-flex justify-content-between align-items-center
+        mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+        <a href="/SQLServer/Views/AlteringView"
+           class="btn btn-outline-primary">
+
+            ← Previous: Altering a View
+
+        </a>
+
+
+        <!-- NEXT -->
+        <a href="/SQLServer/StoredProcedures/Index"
+           class="btn btn-primary">
+
+            Next: Stored Procedures Introduction →
+
+        </a>
+
+    </div>
+
+</div>

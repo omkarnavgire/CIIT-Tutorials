@@ -1,0 +1,197 @@
+@{
+    Layout = "~/Areas/Jenkins/Views/Shared/JenkinsLayout.cshtml";
+    ViewData["Title"] = "Upstream and Downstream Jobs";
+}
+
+<style>
+    #upstream-and-downstream-jobs-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #upstream-and-downstream-jobs-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #upstream-and-downstream-jobs-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #upstream-and-downstream-jobs-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #upstream-and-downstream-jobs-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+    #upstream-and-downstream-jobs-page .example-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+    }
+</style>
+
+<main id="upstream-and-downstream-jobs-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/Jenkins/Views/Shared/JenkinsTopics.cshtml")
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+                <h1 class="fw-bold">Upstream and Downstream Jobs</h1>
+                <p class="lead">
+                    Learn the concepts, dependency chaining methods, status thresholds, and script steps required to sequence and link multiple automated jobs into a modular CI/CD flow.
+                </p>
+            </div>
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">What are Upstream and Downstream Jobs?</h2>
+                <p>
+                    Complex CI/CD pipelines are rarely monolithic. To ensure clean separation of concerns, workflows are split into smaller, modular projects that trigger one another. The relationship between these chained tasks is defined by relative sequencing positions known as **Upstream** and **Downstream** positions.
+                </p>
+
+                <div class="alert alert-info my-3">
+                    <strong>Simple Definition:</strong> An Upstream Job is a primary task that triggers a subsequent run upon completion, while a Downstream Job is the secondary task that wakes up automatically once its parent finishes.
+                </div>
+
+                <h3 class="h4 fw-bold mt-4">Core Dependency Mechanisms</h3>
+                <p class="mb-2">Jenkins evaluates cross-project linkages using three functional integration models:</p>
+                <ul class="mb-3">
+                    <li class="mb-1"><strong>The `build` Step Directive:</strong> An explicit statement within a declarative pipeline stage that allows the master server to programmatically invoke a downstream target job.</li>
+                    <li class="mb-1"><strong>Condition Threshold Filters:</strong> Settings that prevent downstream activation if anomalies arise, ensuring subsequent jobs run only on approved states (e.g., `SUCCESS`, `UNSTABLE`, or `FAILURE`).</li>
+                    <li><strong>Decoupled Modularity:</strong> Decoupled pipelines that run fast compile actions first as an upstream pass, offloading long-running test suites or deployment tasks to downstream worker routines.</li>
+                </ul>
+            </div>
+
+            <!-- KEY CONCEPTS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Key Concepts</h2>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Synchronous vs. Asynchronous Calls</h5>
+                            <p class="mb-0">Understanding that setting `wait: true` locks the upstream pipeline until the downstream runner completes, whereas setting `wait: false` triggers it asynchronously, freeing the parent run immediately.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Downstream Parameter Inheritance</h5>
+                            <p class="mb-0">Learning to use the `parameters` block alongside the `build` step to securely forward dynamic metadata values (such as git commit hashes or build IDs) to downstream execution scripts.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXAMPLE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Practical Jenkins Example</h2>
+                <p>The following declarative pipeline snippet demonstrates how an upstream compilation job invokes a secondary downstream test automation suite with parameter hand-offs:</p>
+                <pre><code>pipeline {
+    agent any
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    stages {
+        stage('Execute Core Compilation') {
+            steps {
+                echo 'Running primary upstream source compilation routine...'
+                sh 'echo "Artifact packaged successfully."'
+            }
+        }
+        stage('Trigger Automated Downstream Validation') {
+            steps {
+                echo 'Invoking dependent downstream quality gate test pipeline...'
+                
+                // Triggers a separate job named "App-Component-Regression-Tests"
+                // Dispatches execution asynchronously without blocking the parent run
+                build(
+                    job: 'App-Component-Regression-Tests', 
+                    wait: false,
+                    parameters: [
+                        string(name: 'UPSTREAM_BUILD_NO', value: env.BUILD_NUMBER)
+                    ]
+                )
+            }
+        }
+    }
+}</code></pre>
+            </div>
+
+                <!-- PRACTICE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Practice Exercise: Build a Two-Tier Chained Pipeline Sequence</h2>
+        <div class="concept-box">
+                    <h5 class="fw-bold">Step-by-Step Task Sequence:</h5>
+    <ol class="ps-3 mb-0">
+                        <li class="mb-2">Create a new Pipeline item named exactly: <code>App-Component-Regression-Tests</code>, add a single `echo` step inside it, and save it to act as your target mock job.</li>
+<li class="mb-2">Open or create a primary test pipeline workspace, copy-paste the template code blocks provided in the practical example section above into the text area, and click <strong>Save</strong>.</li>
+                        <li class="mb-2">Launch your parent pipeline by selecting the **Build Now** menu trigger link on the left-hand navigation sidebar column.</li>
+                        <li class="mb-2">Open the current build's **Console Output** screen to trace the line where the `build` directive successfully executes.</li>
+<li>Return to the main Jenkins portal home screen to verify that your downstream job has queued and launched itself automatically.</li>
+</ol>
+</div>
+</div>
+
+<!-- SUMMARY -->
+<div class="alert alert-info mt-4">
+<h2 class="h4 fw-bold">Summary</h2>
+<p class="mb-0">You have completed the <strong>Upstream and Downstream Jobs</strong> lesson. Continue through the syllabus to learn how to monitor execution logs and inspect error outputs in Build History and Console Output.</p>
+</div>
+
+<!-- NAVIGATION -->
+              <div class="d-flex justify-content-between mt-4">
+                 <a class="btn btn-outline-primary" href="@Url.Action("Artifacts", "CoreCICD", new { area = "Jenkins" })">← Previous: Artifacts and Build Outputs</a>
+                 <a class="btn btn-primary" href="@Url.Action("BuildHistory", "CoreCICD", new { area = "Jenkins" })">Next: Build History and Console Output →</a>
+              </div>
+
+        </section>
+
+    </div>
+
+</main>

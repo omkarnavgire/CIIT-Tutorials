@@ -1,0 +1,580 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Python Basics";
+}
+
+<main id="tutorials" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- ================================================= -->
+        <!-- LEFT SIDEBAR -->
+        <!-- ================================================= -->
+
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+
+        </aside>
+
+
+        <!-- ================================================= -->
+        <!-- MAIN CONTENT -->
+        <!-- ================================================= -->
+
+        <section class="col-lg-9">
+
+            <div class="card shadow-sm border-0 p-4 p-md-5 mb-4">
+
+
+                <!-- ================================================= -->
+                <!-- PAGE TITLE -->
+                <!-- ================================================= -->
+
+                <h1 class="h1 fw-bold text-dark mt-1 mb-4">
+                    Python Basics
+                </h1>
+
+                <p class="text-muted mb-4">
+                    Python Basics is the foundation of Python programming.
+                    In this module, you will learn how Python stores data,
+                    performs operations, works with text, and communicates
+                    with the user.
+                </p>
+
+
+                <!-- ================================================= -->
+                <!-- CIIT INTRO -->
+                <!-- ================================================= -->
+
+                <div class="alert alert-info mb-4"
+                     style="background-color:#cfe2ff; border:0; color:#123c73;">
+
+                    <strong style="color:#123c73;">
+                        CIIT Training Institute :
+                    </strong>
+
+                    <span style="color:#123c73;">
+                        This module is designed to build a strong Python
+                        programming foundation before moving toward
+                        control flow, functions, OOPs, databases, and
+                        real-world projects.
+                    </span>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- WHAT YOU WILL LEARN -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    What You Will Learn
+                </h2>
+
+                <ul class="text-muted mb-4">
+
+                    <li>Variables</li>
+
+                    <li>Data Types</li>
+
+                    <li>Type Conversion</li>
+
+                    <li>Operators</li>
+
+                    <li>Strings</li>
+
+                    <li>Input &amp; Output</li>
+
+                </ul>
+
+
+                <!-- ================================================= -->
+                <!-- BASIC PROGRAMMING FLOW -->
+                <!-- ================================================= -->
+
+                <div class="border rounded p-4 mb-4 bg-light">
+
+                    <h3 class="h5 fw-bold text-dark text-center mb-4">
+                        Basic Python Programming Flow
+                    </h3>
+
+                    <div class="d-flex flex-column align-items-center gap-2">
+
+                        <div class="px-4 py-3 border rounded bg-white shadow-sm text-center"
+                             style="max-width:360px; width:100%;">
+
+                            <strong>Store Data</strong>
+
+                            <br />
+
+                            <small class="text-muted">
+                                Variables &amp; Data Types
+                            </small>
+
+                        </div>
+
+
+                        <div class="fw-bold text-primary fs-4">
+                            ↓
+                        </div>
+
+
+                        <div class="px-4 py-3 border rounded bg-white shadow-sm text-center"
+                             style="max-width:360px; width:100%;">
+
+                            <strong>Process Data</strong>
+
+                            <br />
+
+                            <small class="text-muted">
+                                Operators &amp; Type Conversion
+                            </small>
+
+                        </div>
+
+
+                        <div class="fw-bold text-primary fs-4">
+                            ↓
+                        </div>
+
+
+                        <div class="px-4 py-3 border rounded bg-white shadow-sm text-center"
+                             style="max-width:360px; width:100%;">
+
+                            <strong>Work With Text</strong>
+
+                            <br />
+
+                            <small class="text-muted">
+                                Strings
+                            </small>
+
+                        </div>
+
+
+                        <div class="fw-bold text-primary fs-4">
+                            ↓
+                        </div>
+
+
+                        <div class="px-4 py-3 border rounded bg-white shadow-sm text-center"
+                             style="max-width:360px; width:100%;">
+
+                            <strong>Interact With User</strong>
+
+                            <br />
+
+                            <small class="text-muted">
+                                Input &amp; Output
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- VARIABLES -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    1. Variables
+                </h2>
+
+                <p class="text-muted mb-3">
+                    A variable is a name used to store a value in a Python
+                    program. Python automatically determines the type of
+                    value stored in the variable.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>name = "Samadhan"
+age = 25
+
+print(name)
+print(age)</code></pre>
+
+                </div>
+                <h3 class="h5 fw-bold text-dark mb-3">
+    Output:
+</h3>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="code-lang-tag">
+        Output
+    </div>
+
+    <pre class="mb-0"><code>Samadhan
+25</code></pre>
+</div>
+
+                <!-- ================================================= -->
+                <!-- DATA TYPES -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    2. Data Types
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Data types define the kind of value stored in a variable.
+                    Python provides several built-in data types.
+                </p>
+
+                <div class="table-responsive mb-4">
+
+                    <table class="table table-bordered align-middle">
+
+                        <thead class="table-light">
+
+                            <tr>
+                                <th>Data Type</th>
+                                <th>Example</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td><strong>int</strong></td>
+                                <td>25</td>
+                            </tr>
+
+                            <tr>
+                                <td><strong>float</strong></td>
+                                <td>25.50</td>
+                            </tr>
+
+                            <tr>
+                                <td><strong>str</strong></td>
+                                <td>"Python"</td>
+                            </tr>
+
+                            <tr>
+                                <td><strong>bool</strong></td>
+                                <td>True</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- TYPE CONVERSION -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    3. Type Conversion
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Type conversion means changing a value from one data
+                    type to another data type.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>age = "25"
+
+age = int(age)
+
+print(age)
+print(type(age))</code></pre>
+
+                </div>
+                <h3 class="h5 fw-bold text-dark mb-3">
+    Output:
+</h3>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="code-lang-tag">
+        Output
+    </div>
+
+    <pre class="mb-0"><code>25
+&lt;class 'int'&gt;</code></pre>
+</div>
+
+                <!-- ================================================= -->
+                <!-- OPERATORS -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    4. Operators
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Operators are symbols used to perform operations on
+                    values and variables.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>a = 10
+b = 5
+
+print(a + b)
+print(a - b)
+print(a * b)
+print(a / b)</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+    Output:
+</h3>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="code-lang-tag">
+        Output
+    </div>
+
+    <pre class="mb-0"><code>15
+5
+50
+2.0</code></pre>
+</div>
+                <!-- ================================================= -->
+                <!-- STRINGS -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    5. Strings
+                </h2>
+
+                <p class="text-muted mb-3">
+                    A string is a sequence of characters. Strings are
+                    commonly used to store names, messages, addresses,
+                    and other text data.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>name = "Samadhan"
+
+print(name)
+print(name.upper())</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+    Output:
+</h3>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="code-lang-tag">
+        Output
+    </div>
+
+    <pre class="mb-0"><code>Samadhan
+SAMADHAN</code></pre>
+</div>
+
+                <!-- ================================================= -->
+                <!-- INPUT OUTPUT -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    6. Input &amp; Output
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Python provides the <strong>input()</strong> function
+                    to receive data from the user.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>name = input("Enter your name: ")
+
+print("Welcome", name)</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- OUTPUT -->
+                <!-- ================================================= -->
+
+                <h3 class="h5 fw-bold text-dark mt-4 mb-3">
+                    Example Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>Enter your name: Samadhan
+Welcome Samadhan</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- REAL WORLD EXAMPLE -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Example 🌍🫥
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Suppose we want to store information about a student
+                    at <strong>CIIT Training Institute</strong>.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>student_name = "Samadhan"
+course = "Python Programming"
+experience = 0
+
+print("Student:", student_name)
+print("Course:", course)
+print("Experience:", experience)</code></pre>
+
+                </div>
+                <h3 class="h5 fw-bold text-dark mb-3">
+    Output:
+</h3>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="code-lang-tag">
+        Output
+    </div>
+
+    <pre class="mb-0"><code>Student: Samadhan
+Course: Python Programming
+Experience: 0</code></pre>
+</div>
+
+                <!-- ================================================= -->
+                <!-- CIIT LEARNING POINT -->
+                <!-- ================================================= -->
+
+                <div class="alert alert-success mt-4">
+
+                    <h5 class="fw-bold">
+                        CIIT Learning Point
+                    </h5>
+
+                    <p class="mb-0">
+                        Before learning advanced Python concepts, make sure
+                        you are comfortable with variables, data types,
+                        type conversion, operators, strings, and user input.
+                        These concepts will be used throughout your Python
+                        development journey.
+                    </p>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- SAM PRACTICE -->
+                <!-- ================================================= -->
+
+                <div class="border rounded p-4 mt-4 mb-4">
+
+                    <h3 class="h5 fw-bold text-dark mb-3">
+                        CIIT Practice Task
+                    </h3>
+
+                    <p class="text-muted mb-3">
+                        Create a Python program that accepts a student's
+                        name and course and displays the information.
+                    </p>
+
+                    <div class="bg-dark text-light rounded p-3">
+
+                        <pre class="mb-0"><code>name = input("Enter student name: ")
+course = input("Enter course name: ")
+
+print("Student:", name)
+print("Course:", course)</code></pre>
+                    </div>
+                    
+<h3 class="h5 fw-bold text-dark mb-2">
+    Output:
+</h3>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="code-lang-tag">
+        
+        Output
+    </div>
+
+    <pre class="mb-0"><code>Enter student name: Samadhan
+Enter course name: Python Programming
+Student: Samadhan
+Course: Python Programming</code></pre>
+</div>
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- SUMMARY -->
+                <!-- ================================================= -->
+
+                <div class="alert alert-info mt-4 mb-0"
+                     style="background-color:#cfe2ff; border:0; color:#123c73;">
+
+                    <h2 class="h3 fw-bold mt-0 mb-3"
+                        style="color:#123c73;">
+
+                        Summary :
+
+                    </h2>
+
+                    <p class="mb-0"
+                       style="color:#123c73;">
+
+                        Python Basics introduces the core concepts required
+                        for programming with Python. You learned about
+                        variables, data types, type conversion, operators,
+                        strings, and input and output. These concepts form
+                        the foundation for writing practical Python programs.
+
+                    </p>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- NAVIGATION -->
+                <!-- ================================================= -->
+
+                <div class="d-flex justify-content-between align-items-center mt-5 pt-4 border-top">
+
+                    <a href="@Url.Action("FirstProgram", "Introduction", new { area = "Python" })"
+                       class="btn btn-outline-secondary">
+
+                        ← Previous: Topic
+
+                    </a>
+
+
+                    <a href="@Url.Action("Variables", "PythonBasics", new { area = "Python" })"
+                       class="btn btn-primary">
+
+                        Next: Topic →
+
+                    </a>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

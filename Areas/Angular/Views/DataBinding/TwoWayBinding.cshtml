@@ -1,0 +1,951 @@
+﻿@{
+    ViewData["Title"] = "Two-Way Data Binding";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- Header -->
+    <section class="mb-4">
+        <h1 class="fw-bold text-dark">Two-Way Data Binding</h1>
+        <p class="lead text-muted">
+            Learn how Angular keeps component data and user input synchronized
+            using two-way data binding.
+        </p>
+    </section>
+
+    <!-- What is Two-Way Data Binding -->
+    <section class="mb-4">
+        <h2 class="fw-bold">What is Two-Way Data Binding?</h2>
+
+        <div class="info-card">
+            <p>
+                Two-way data binding allows data to flow in both directions
+                between the component and the template.
+            </p>
+
+            <p class="mb-0">
+                When the component value changes, the UI is updated. When the
+                user changes the value in the UI, the component value is also
+                updated.
+            </p>
+        </div>
+    </section>
+
+    <!-- Flow -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Two-Way Data Binding Flow</h2>
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+                <div class="syntax-icon">1</div>
+                <h5>Component</h5>
+                <p>Component contains the application data.</p>
+            </div>
+
+            <div class="syntax-arrow">↔</div>
+
+            <div class="syntax-box">
+                <div class="syntax-icon">2</div>
+                <h5>Binding</h5>
+                <p>Angular creates a two-way connection.</p>
+            </div>
+
+            <div class="syntax-arrow">↔</div>
+
+            <div class="syntax-box">
+                <div class="syntax-icon">3</div>
+                <h5>Template</h5>
+                <p>Template displays and updates the value.</p>
+            </div>
+
+            <div class="syntax-arrow">↔</div>
+
+            <div class="syntax-box">
+                <div class="syntax-icon">4</div>
+                <h5>User</h5>
+                <p>User can change the value through the UI.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Main Concepts -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Main Two-Way Binding Concepts</h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+                <div class="syntax-icon">M</div>
+                <h5>ngModel</h5>
+                <p>
+                    Commonly used for two-way binding with form controls.
+                </p>
+            </div>
+
+            <div class="syntax-card">
+                <div class="syntax-icon">I</div>
+                <h5>Input</h5>
+                <p>
+                    User input can update component data.
+                </p>
+            </div>
+
+            <div class="syntax-card">
+                <div class="syntax-icon">U</div>
+                <h5>UI Update</h5>
+                <p>
+                    Component changes are reflected in the UI.
+                </p>
+            </div>
+
+            <div class="syntax-card">
+                <div class="syntax-icon">S</div>
+                <h5>Synchronization</h5>
+                <p>
+                    Component and template values stay synchronized.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Basic Syntax -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Two-Way Binding Syntax</h2>
+
+        <p>
+            Angular commonly uses the banana-in-a-box syntax
+            <code>[(ngModel)]</code> for two-way binding.
+        </p>
+
+        <div class="code-card">
+            <div class="code-title">Basic Syntax</div>
+
+            <pre><code>&lt;input [(ngModel)]="property"&gt;</code></pre>
+        </div>
+
+        <div class="info-card">
+            <p class="mb-0">
+                The <code>[(ngModel)]</code> syntax combines property binding
+                and event binding to create two-way data synchronization.
+            </p>
+        </div>
+    </section>
+
+    <!-- Basic Example -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Basic Two-Way Binding Example</h2>
+
+        <div class="code-card">
+            <div class="code-title">Component</div>
+
+            <pre><code>export class StudentComponent {
+
+    studentName = 'Sam';
+
+}</code></pre>
+        </div>
+
+        <div class="code-card">
+            <div class="code-title">Template</div>
+
+            <pre><code>&lt;input
+    [(ngModel)]="studentName"
+    placeholder="Enter student name"&gt;
+
+&lt;p&gt;
+    Student:
+    &#123;&#123; studentName &#125;&#125;
+&lt;/p&gt;</code></pre>
+        </div>
+
+        <div class="output-box">
+            <strong>Output:</strong>
+
+            <div class="output-preview">
+
+                <input class="form-control"
+                       type="text"
+                       value="Sam"
+                       readonly />
+
+                <p class="mt-3 mb-0">
+                    Student: Sam
+                </p>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- User Input -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Updating Component Data from User Input</h2>
+
+        <p>
+            When the user changes the input value, Angular updates the
+            corresponding component property.
+        </p>
+
+        <div class="code-card">
+            <div class="code-title">Example</div>
+
+            <pre><code>studentName = 'Sam';</code></pre>
+        </div>
+
+        <div class="code-card">
+            <div class="code-title">Template</div>
+
+            <pre><code>&lt;input
+    [(ngModel)]="studentName"&gt;
+
+&lt;p&gt;
+    Hello &#123;&#123; studentName &#125;&#125;
+&lt;/p&gt;</code></pre>
+        </div>
+
+        <div class="binding-flow">
+
+            <div class="binding-item">
+                <h5>Component</h5>
+                <code>studentName</code>
+            </div>
+
+            <div class="syntax-arrow">↔</div>
+
+            <div class="binding-item">
+                <h5>ngModel</h5>
+                <code>[(ngModel)]</code>
+            </div>
+
+            <div class="syntax-arrow">↔</div>
+
+            <div class="binding-item">
+                <h5>Input</h5>
+                <code>User Value</code>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Multiple Controls -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Two-Way Binding with Multiple Controls</h2>
+
+        <p>
+            Multiple form controls can be connected to different component
+            properties.
+        </p>
+
+        <div class="code-card">
+            <div class="code-title">Component</div>
+
+            <pre><code>studentName = 'Sam';
+course = 'Angular Full Stack';
+city = 'Pune';</code></pre>
+        </div>
+
+        <div class="code-card">
+            <div class="code-title">Template</div>
+
+            <pre><code>&lt;input
+    [(ngModel)]="studentName"
+    placeholder="Student Name"&gt;
+
+&lt;input
+    [(ngModel)]="course"
+    placeholder="Course"&gt;
+
+&lt;input
+    [(ngModel)]="city"
+    placeholder="City"&gt;
+
+&lt;p&gt;
+    Name: &#123;&#123; studentName &#125;&#125;
+&lt;/p&gt;
+
+&lt;p&gt;
+    Course: &#123;&#123; course &#125;&#125;
+&lt;/p&gt;
+
+&lt;p&gt;
+    City: &#123;&#123; city &#125;&#125;
+&lt;/p&gt;</code></pre>
+        </div>
+    </section>
+
+    <!-- Checkbox -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Two-Way Binding with Checkbox</h2>
+
+        <p>
+            Two-way binding can also be used with checkbox controls.
+        </p>
+
+        <div class="code-card">
+            <div class="code-title">Example</div>
+
+            <pre><code>isActive = true;</code></pre>
+        </div>
+
+        <div class="code-card">
+            <div class="code-title">Template</div>
+
+            <pre><code>&lt;input
+    type="checkbox"
+    [(ngModel)]="isActive"&gt;
+
+&lt;p&gt;
+    Active:
+    &#123;&#123; isActive &#125;&#125;
+&lt;/p&gt;</code></pre>
+        </div>
+
+        <div class="output-box">
+            <strong>Example Output:</strong>
+
+            <div class="output-preview">
+                <div class="form-check">
+                    <input class="form-check-input"
+                           type="checkbox"
+                           checked
+                           disabled />
+
+                    <label class="form-check-label">
+                        Active
+                    </label>
+                </div>
+
+                <p class="mt-3 mb-0">
+                    Active: true
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Select -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Two-Way Binding with Select</h2>
+
+        <p>
+            A select control can also be synchronized with a component
+            property.
+        </p>
+
+        <div class="code-card">
+            <div class="code-title">Component</div>
+
+            <pre><code>selectedCourse = 'Angular';</code></pre>
+        </div>
+
+        <div class="code-card">
+            <div class="code-title">Template</div>
+
+            <pre><code>&lt;select [(ngModel)]="selectedCourse"&gt;
+
+    &lt;option value="Angular"&gt;
+        Angular
+    &lt;/option&gt;
+
+    &lt;option value="Java"&gt;
+        Java
+    &lt;/option&gt;
+
+    &lt;option value="DotNet"&gt;
+        .NET
+    &lt;/option&gt;
+
+&lt;/select&gt;</code></pre>
+        </div>
+
+        <div class="output-box">
+            <strong>Output:</strong>
+
+            <div class="output-preview">
+                <select class="form-select">
+                    <option selected>Angular</option>
+                    <option>Java</option>
+                    <option>.NET</option>
+                </select>
+            </div>
+        </div>
+    </section>
+
+    <!-- Banana in Box -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Banana-in-a-Box Syntax</h2>
+
+        <p>
+            The syntax <code>[(ngModel)]</code> is commonly called
+            "banana-in-a-box" because of the combination of square brackets
+            and parentheses.
+        </p>
+
+        <div class="code-card">
+            <div class="code-title">Syntax</div>
+
+            <pre><code>[(ngModel)]="studentName"</code></pre>
+        </div>
+
+        <div class="binding-flow">
+
+            <div class="binding-item">
+                <h5>Property Binding</h5>
+                <code>[ngModel]</code>
+            </div>
+
+            <div class="syntax-arrow">+</div>
+
+            <div class="binding-item">
+                <h5>Event Binding</h5>
+                <code>(ngModelChange)</code>
+            </div>
+
+            <div class="syntax-arrow">=</div>
+
+            <div class="binding-item">
+                <h5>Two-Way Binding</h5>
+                <code>[(ngModel)]</code>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Comparison -->
+    <section class="mb-4">
+        <h2 class="fw-bold">One-Way vs Two-Way Data Binding</h2>
+
+        <div class="syntax-table">
+            <table class="table table-bordered mb-0">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>One-Way Binding</th>
+                        <th>Two-Way Binding</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Direction</td>
+                        <td>One direction</td>
+                        <td>Both directions</td>
+                    </tr>
+
+                    <tr>
+                        <td>Common Syntax</td>
+                        <td><code>&#123;&#123; value &#125;&#125;</code></td>
+                        <td><code>[(ngModel)]</code></td>
+                    </tr>
+
+                    <tr>
+                        <td>User Input</td>
+                        <td>Does not automatically update property</td>
+                        <td>Updates component property</td>
+                    </tr>
+
+                    <tr>
+                        <td>UI Update</td>
+                        <td>Component changes update UI</td>
+                        <td>Component and UI stay synchronized</td>
+                    </tr>
+
+                    <tr>
+                        <td>Common Usage</td>
+                        <td>Displaying data</td>
+                        <td>Interactive form controls</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Common Uses -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Common Uses of Two-Way Binding</h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+                <div class="syntax-icon">1</div>
+                <h5>Form Inputs</h5>
+                <p>
+                    Synchronize text input values with component properties.
+                </p>
+            </div>
+
+            <div class="syntax-card">
+                <div class="syntax-icon">2</div>
+                <h5>Checkboxes</h5>
+                <p>
+                    Keep checkbox state synchronized with component data.
+                </p>
+            </div>
+
+            <div class="syntax-card">
+                <div class="syntax-icon">3</div>
+                <h5>Dropdowns</h5>
+                <p>
+                    Synchronize selected values with component properties.
+                </p>
+            </div>
+
+            <div class="syntax-card">
+                <div class="syntax-icon">4</div>
+                <h5>Interactive Forms</h5>
+                <p>
+                    Keep user input and application data synchronized.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Complete Example -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Complete Two-Way Binding Example</h2>
+
+        <div class="code-card">
+            <div class="code-title">Student Component</div>
+
+            <pre><code>export class StudentComponent {
+
+    studentName = 'Sam';
+    course = 'Angular Full Stack';
+
+}</code></pre>
+        </div>
+
+        <div class="code-card">
+            <div class="code-title">Student Template</div>
+
+            <pre><code>&lt;h2&gt;
+    Student Registration
+&lt;/h2&gt;
+
+&lt;input
+    [(ngModel)]="studentName"
+    placeholder="Student Name"&gt;
+
+&lt;input
+    [(ngModel)]="course"
+    placeholder="Course"&gt;
+
+&lt;h4&gt;
+    Student:
+    &#123;&#123; studentName &#125;&#125;
+&lt;/h4&gt;
+
+&lt;p&gt;
+    Course:
+    &#123;&#123; course &#125;&#125;
+&lt;/p&gt;</code></pre>
+        </div>
+
+        <div class="student-preview">
+            <h5>Student Registration</h5>
+
+            <div class="mb-3">
+                <label class="form-label">
+                    Student Name
+                </label>
+
+                <input class="form-control"
+                       type="text"
+                       value="Sam"
+                       readonly />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">
+                    Course
+                </label>
+
+                <input class="form-control"
+                       type="text"
+                       value="Angular Full Stack"
+                       readonly />
+            </div>
+
+            <p>
+                <strong>Student:</strong> Sam
+            </p>
+
+            <p class="mb-0">
+                <strong>Course:</strong> Angular Full Stack
+            </p>
+        </div>
+    </section>
+
+    <!-- Best Practices -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Best Practices</h2>
+
+        <div class="best-practice-list">
+
+            <div>
+                <strong>1. Use two-way binding for synchronization</strong>
+                <p>
+                    Use two-way binding when user input needs to update
+                    component data immediately.
+                </p>
+            </div>
+
+            <div>
+                <strong>2. Use it mainly with forms</strong>
+                <p>
+                    Two-way binding is especially useful with interactive
+                    form controls.
+                </p>
+            </div>
+
+            <div>
+                <strong>3. Keep bindings simple</strong>
+                <p>
+                    Avoid complex expressions inside two-way bindings.
+                </p>
+            </div>
+
+            <div>
+                <strong>4. Understand the data flow</strong>
+                <p>
+                    Remember that two-way binding combines data display and
+                    user input updates.
+                </p>
+            </div>
+
+            <div>
+                <strong>5. Use one-way binding when synchronization is not required</strong>
+                <p>
+                    Do not use two-way binding unnecessarily when the data only
+                    needs to move in one direction.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Summary -->
+    <section class="mb-4">
+        <div class="summary-box">
+            <h4 class="fw-bold">Summary</h4>
+
+            <ul class="mb-0">
+                <li>Two-way binding synchronizes component data and UI input.</li>
+                <li><code>[(ngModel)]</code> is commonly used for two-way binding.</li>
+                <li>Changes in the component are reflected in the UI.</li>
+                <li>User input can update the component property.</li>
+                <li>Two-way binding is especially useful for forms.</li>
+                <li>It combines property binding and event-based updates.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Navigation -->
+    <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+
+        <a class="btn btn-outline-secondary"
+           href="@Url.Action("EventBinding", "DataBinding", new { area = "Angular" })">
+            ← Event Binding
+        </a>
+
+        <a class="btn btn-primary"
+           href="@Url.Action("ClassAndStyleBinding", "DataBinding", new { area = "Angular" })">
+            Class & Style Binding →
+        </a>
+
+    </div>
+
+</div>
+
+<style>
+    .info-card {
+        background: #f8fafc;
+        border-left: 5px solid #4c1d95;
+        border-radius: 10px;
+        padding: 20px;
+        color: #334155;
+    }
+
+    .syntax-flow {
+        display: flex;
+        align-items: stretch;
+        justify-content: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 20px;
+    }
+
+    .syntax-box {
+        background: #f8fafc;
+        border: 1px solid #ddd6fe;
+        border-radius: 12px;
+        padding: 20px;
+        text-align: center;
+        width: 190px;
+    }
+
+        .syntax-box h5 {
+            color: #2e1065;
+            font-weight: 700;
+            margin-top: 12px;
+        }
+
+        .syntax-box p {
+            color: #64748b;
+            margin-bottom: 0;
+            font-size: 14px;
+        }
+
+    .syntax-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: #ede9fe;
+        color: #4c1d95;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 18px;
+        margin: 0 auto 12px;
+    }
+
+    .syntax-arrow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #4c1d95;
+        font-size: 28px;
+        font-weight: 700;
+    }
+
+    .syntax-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .syntax-card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 22px;
+        text-align: center;
+        transition: all 0.2s ease;
+    }
+
+        .syntax-card:hover {
+            transform: translateY(-3px);
+            border-color: #c4b5fd;
+            box-shadow: 0 8px 20px rgba(76, 29, 149, 0.08);
+        }
+
+        .syntax-card h5 {
+            color: #2e1065;
+            font-weight: 700;
+        }
+
+        .syntax-card p {
+            color: #64748b;
+            margin-bottom: 0;
+        }
+
+    .code-card {
+        margin-top: 20px;
+        border-radius: 12px;
+        overflow: hidden;
+        background: #0f172a;
+        box-shadow: 0 5px 15px rgba(15, 23, 42, 0.12);
+    }
+
+    .code-title {
+        background: #1e293b;
+        color: #ffffff;
+        padding: 12px 18px;
+        font-weight: 600;
+        border-bottom: 1px solid #334155;
+    }
+
+    .code-card pre {
+        margin: 0;
+        padding: 20px;
+        overflow-x: auto;
+    }
+
+    .code-card code {
+        color: #e2e8f0;
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    .output-box {
+        background: #f8fafc;
+        border: 1px solid #ddd6fe;
+        border-radius: 10px;
+        padding: 18px;
+        margin-top: 20px;
+        color: #334155;
+    }
+
+    .output-preview {
+        background: #ffffff;
+        border: 1px dashed #c4b5fd;
+        border-radius: 8px;
+        padding: 16px;
+        margin-top: 12px;
+    }
+
+    .binding-flow {
+        display: flex;
+        justify-content: center;
+        align-items: stretch;
+        gap: 15px;
+        flex-wrap: wrap;
+        margin-top: 20px;
+    }
+
+    .binding-item {
+        min-width: 180px;
+        padding: 18px;
+        border: 1px solid #ddd6fe;
+        background: #f8fafc;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+        .binding-item h5 {
+            color: #2e1065;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .binding-item code {
+            color: #4c1d95;
+            font-weight: 600;
+        }
+
+    .syntax-table {
+        margin-top: 20px;
+        overflow-x: auto;
+    }
+
+        .syntax-table table {
+            min-width: 700px;
+        }
+
+        .syntax-table th {
+            background: #4c1d95;
+            color: #ffffff;
+            font-weight: 600;
+            padding: 14px;
+        }
+
+        .syntax-table td {
+            padding: 13px;
+            vertical-align: middle;
+            color: #334155;
+        }
+
+        .syntax-table tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+    .student-preview {
+        margin-top: 20px;
+        padding: 22px;
+        border-radius: 12px;
+        background: #f8fafc;
+        border: 1px solid #ddd6fe;
+    }
+
+        .student-preview h5 {
+            color: #2e1065;
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+
+        .student-preview strong {
+            color: #4c1d95;
+        }
+
+    .best-practice-list {
+        display: grid;
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+        .best-practice-list > div {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 18px 20px;
+        }
+
+        .best-practice-list strong {
+            color: #2e1065;
+        }
+
+        .best-practice-list p {
+            color: #64748b;
+            margin: 8px 0 0;
+        }
+
+    .summary-box {
+        background: #cfe2ff;
+        color: #084298;
+        border-radius: 10px;
+        padding: 22px;
+    }
+
+        .summary-box h4 {
+            color: #084298;
+        }
+
+        .summary-box li {
+            margin-bottom: 8px;
+        }
+
+    @@media (max-width: 991px) {
+        .syntax-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .syntax-flow {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .syntax-arrow {
+            transform: rotate(90deg);
+        }
+    }
+
+    @@media (max-width: 576px) {
+        .syntax-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .syntax-box {
+            width: 100%;
+        }
+
+        .binding-flow {
+            flex-direction: column;
+        }
+
+        .binding-item {
+            width: 100%;
+        }
+
+        .syntax-table {
+            font-size: 14px;
+        }
+
+        .code-card code {
+            font-size: 13px;
+        }
+    }
+</style>

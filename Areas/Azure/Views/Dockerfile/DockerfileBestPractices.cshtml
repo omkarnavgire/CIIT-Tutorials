@@ -1,0 +1,40 @@
+@{
+    ViewData["Title"] = "Best practices for writing Dockerfiles";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+                <div class="azure-notes-content">
+                    <pre class="azure-notes-text">Best practices for writing Dockerfiles
+
+    1. As a base image, use official images. And whenever it is possible, use Alpine images as a base
+       image.
+
+    2. Don&#x27;t copy unnecessary files and folders or install/use unnecessary packages of software.
+
+    3. Running a container process as root is not recommended. As a non-root user, launch the
+       application container process.
+
+    4. Reduce the number of image layers as much as you can.
+
+    5. Wherever possible, try to use multi-stage Docker files to reduce the size of the image.</pre>
+                </div>
+            </div>
+        </div>
+    
+
+            @await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureLessonNavigation.cshtml")
+</section>
+</div>
+<style>
+.azure-notes-text{white-space:pre-wrap;word-break:normal;font-family:inherit;font-size:1rem;line-height:1.7;background:#fff;border:0;padding:0;margin:0;color:#212529;}
+.azure-notes-content img{max-height:720px;}
+</style>

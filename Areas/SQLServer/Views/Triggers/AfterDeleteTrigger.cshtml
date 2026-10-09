@@ -1,0 +1,594 @@
+﻿@{
+    ViewData["Title"] = "AFTER DELETE Trigger";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- =========================
+         PAGE HEADER
+    ========================== -->
+
+    <div class="mb-4">
+
+        <h1 class="fw-bold">
+            AFTER DELETE Trigger
+        </h1>
+
+        <p class="text-muted">
+            Learn how AFTER DELETE Triggers work in SQL Server,
+            how to create them and how to use the
+            <strong>deleted</strong> logical table.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         INTRODUCTION
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            What is an AFTER DELETE Trigger?
+        </h2>
+
+        <p>
+            An <strong>AFTER DELETE Trigger</strong> is a special
+            SQL Server database object that automatically executes
+            after a successful <strong>DELETE</strong> operation
+            on a table.
+        </p>
+
+        <p>
+            It is useful when we want to perform an automatic action
+            whenever records are deleted from a table.
+        </p>
+
+        <ul>
+
+            <li>
+                It executes after a DELETE operation.
+            </li>
+
+            <li>
+                It can be used for auditing deleted records.
+            </li>
+
+            <li>
+                It can maintain a history of deleted data.
+            </li>
+
+            <li>
+                It can store information in an audit table.
+            </li>
+
+            <li>
+                It can perform automatic database operations.
+            </li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- =========================
+         BASIC SYNTAX
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Basic Syntax
+        </h2>
+
+        <pre class="bg-dark text-light p-3 rounded"><code>CREATE TRIGGER TriggerName
+ON TableName
+AFTER DELETE
+AS
+BEGIN
+
+    -- Trigger logic
+
+END;</code></pre>
+
+    </section>
+
+
+    <!-- =========================
+         EXAMPLE TABLE
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Example Table
+        </h2>
+
+        <p>
+            Let's assume that we have a
+            <strong>Students</strong> table.
+        </p>
+
+        <pre class="bg-dark text-light p-3 rounded"><code>CREATE TABLE Students
+(
+    StudentId INT PRIMARY KEY,
+    StudentName VARCHAR(100),
+    City VARCHAR(50),
+    Age INT
+);</code></pre>
+
+    </section>
+
+
+    <!-- =========================
+         INSERT SAMPLE DATA
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Insert Sample Data
+        </h2>
+
+        <pre class="bg-dark text-light p-3 rounded"><code>INSERT INTO Students
+(
+    StudentId,
+    StudentName,
+    City,
+    Age
+)
+VALUES
+(
+    101,
+    'Rahul',
+    'Pune',
+    21
+);</code></pre>
+
+        <pre class="bg-dark text-light p-3 rounded"><code>INSERT INTO Students
+(
+    StudentId,
+    StudentName,
+    City,
+    Age
+)
+VALUES
+(
+    102,
+    'Priya',
+    'Mumbai',
+    22
+);</code></pre>
+
+    </section>
+
+
+    <!-- =========================
+         CREATE AUDIT TABLE
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Create an Audit Table
+        </h2>
+
+        <p>
+            Before creating the trigger, we can create a separate
+            table to store the details of deleted students.
+        </p>
+
+        <pre class="bg-dark text-light p-3 rounded"><code>CREATE TABLE DeletedStudentAudit
+(
+    AuditId INT IDENTITY(1,1) PRIMARY KEY,
+    StudentId INT,
+    StudentName VARCHAR(100),
+    City VARCHAR(50),
+    Age INT,
+    DeletedDate DATETIME
+);</code></pre>
+
+    </section>
+
+
+    <!-- =========================
+         CREATE AFTER DELETE TRIGGER
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Creating an AFTER DELETE Trigger
+        </h2>
+
+        <p>
+            Now we create a trigger that automatically stores
+            deleted student information in the audit table.
+        </p>
+
+        <pre class="bg-dark text-light p-3 rounded"><code>CREATE TRIGGER trg_StudentAfterDelete
+ON Students
+AFTER DELETE
+AS
+BEGIN
+
+    INSERT INTO DeletedStudentAudit
+    (
+        StudentId,
+        StudentName,
+        City,
+        Age,
+        DeletedDate
+    )
+    SELECT
+        StudentId,
+        StudentName,
+        City,
+        Age,
+        GETDATE()
+    FROM deleted;
+
+END;</code></pre>
+
+    </section>
+
+
+    <!-- =========================
+         DELETED LOGICAL TABLE
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            The deleted Logical Table
+        </h2>
+
+        <p>
+            SQL Server provides a special logical table named
+            <strong>deleted</strong> inside a DELETE trigger.
+        </p>
+
+        <p>
+            The <strong>deleted</strong> logical table contains
+            the rows that were deleted by the DELETE operation.
+        </p>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-light">
+
+                    <tr>
+
+                        <th>Logical Table</th>
+
+                        <th>Contains</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            <strong>deleted</strong>
+                        </td>
+
+                        <td>
+                            Rows that were deleted from the table
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         DELETE OPERATION
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Performing a DELETE Operation
+        </h2>
+
+        <p>
+            Now delete a student from the
+            <strong>Students</strong> table.
+        </p>
+
+        <pre class="bg-dark text-light p-3 rounded"><code>DELETE FROM Students
+WHERE StudentId = 101;</code></pre>
+
+    </section>
+
+
+    <!-- =========================
+         WHAT HAPPENS
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            What Happens During DELETE?
+        </h2>
+
+        <p>
+            Suppose the student record before deletion is:
+        </p>
+
+        <pre class="bg-dark text-light p-3 rounded"><code>StudentId = 101
+StudentName = Rahul
+City = Pune
+Age = 21</code></pre>
+
+        <p>
+            When the following statement executes:
+        </p>
+
+        <pre class="bg-dark text-light p-3 rounded"><code>DELETE FROM Students
+WHERE StudentId = 101;</code></pre>
+
+        <p>
+            SQL Server makes the deleted row available through
+            the <strong>deleted</strong> logical table.
+        </p>
+
+        <p>
+            Our trigger then reads the deleted record and inserts
+            it into the <strong>DeletedStudentAudit</strong> table.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         CHECK AUDIT TABLE
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Check Deleted Records
+        </h2>
+
+        <p>
+            To check the records saved by the trigger:
+        </p>
+
+        <pre class="bg-dark text-light p-3 rounded"><code>SELECT *
+FROM DeletedStudentAudit;</code></pre>
+
+        <p class="mt-3">
+            The deleted student information will be available
+            in the audit table.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         MULTIPLE ROW DELETE
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            AFTER DELETE Trigger with Multiple Rows
+        </h2>
+
+        <p>
+            A DELETE statement can delete multiple records at once.
+        </p>
+
+        <pre class="bg-dark text-light p-3 rounded"><code>DELETE FROM Students
+WHERE City = 'Mumbai';</code></pre>
+
+        <p>
+            In this situation, the <strong>deleted</strong> logical
+            table can contain multiple rows.
+        </p>
+
+        <p>
+            Therefore, trigger logic should be written using
+            set-based operations and should not assume that only
+            one record was deleted.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         DELETE AND INSERTED
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            deleted Table in DELETE Trigger
+        </h2>
+
+        <div class="alert alert-info border-0">
+
+            <p class="mb-2">
+                During a DELETE operation:
+            </p>
+
+            <ul class="mb-0">
+
+                <li>
+                    <strong>deleted</strong> contains the deleted rows.
+                </li>
+
+                <li>
+                    The deleted rows can be accessed inside the trigger.
+                </li>
+
+                <li>
+                    The deleted information can be copied to an
+                    audit or history table.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         PRACTICAL EXAMPLE
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Practical Example
+        </h2>
+
+        <p>
+            A common real-world use of an AFTER DELETE Trigger
+            is maintaining an audit or history table.
+        </p>
+
+        <pre class="bg-dark text-light p-3 rounded"><code>CREATE TRIGGER trg_StudentDeleteHistory
+ON Students
+AFTER DELETE
+AS
+BEGIN
+
+    INSERT INTO DeletedStudentAudit
+    (
+        StudentId,
+        StudentName,
+        City,
+        Age,
+        DeletedDate
+    )
+    SELECT
+        StudentId,
+        StudentName,
+        City,
+        Age,
+        GETDATE()
+    FROM deleted;
+
+END;</code></pre>
+
+    </section>
+
+
+    <!-- =========================
+         IMPORTANT NOTES
+    ========================== -->
+
+    <section class="mb-5">
+
+        <div class="alert alert-warning border-0">
+
+            <h5 class="fw-bold">
+                Important
+            </h5>
+
+            <ul class="mb-0">
+
+                <li>
+                    AFTER DELETE triggers execute after a
+                    successful DELETE operation.
+                </li>
+
+                <li>
+                    The <strong>deleted</strong> logical table
+                    contains the deleted rows.
+                </li>
+
+                <li>
+                    A DELETE statement can affect multiple rows.
+                </li>
+
+                <li>
+                    Trigger logic should therefore support
+                    multiple deleted records.
+                </li>
+
+                <li>
+                    AFTER DELETE triggers are commonly used for
+                    auditing and maintaining deletion history.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         SUMMARY
+    ========================== -->
+
+    <section class="mb-4">
+
+        <div class="alert alert-primary border-0">
+
+            <h5 class="fw-bold">
+                Summary
+            </h5>
+
+            <p class="mb-0">
+
+                An <strong>AFTER DELETE Trigger</strong> automatically
+                executes after a successful DELETE operation.
+                The <strong>deleted</strong> logical table provides
+                access to the records that were deleted. AFTER DELETE
+                Triggers are commonly used for auditing, maintaining
+                deletion history and performing automatic database
+                operations.
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+     PREVIOUS / NEXT
+========================== -->
+
+    <div class="d-flex justify-content-between align-items-center
+        mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/Triggers/AfterUpdateTrigger"
+           class="btn btn-outline-primary">
+
+            ← Previous: AFTER UPDATE Trigger
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/Triggers/InsteadOfTrigger"
+           class="btn btn-primary">
+
+            Next: INSTEAD OF Trigger →
+
+        </a>
+
+    </div>
+
+</div>

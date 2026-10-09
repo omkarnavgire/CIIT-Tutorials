@@ -1,0 +1,430 @@
+﻿@{
+    ViewData["Title"] = "Numeric Data Types";
+}
+
+<section>
+
+    <!-- =====================================================
+         PAGE INTRODUCTION
+         ===================================================== -->
+
+    <div class="mb-5">
+
+        <h1 class="fw-bold mb-3">
+            Numeric Data Types
+        </h1>
+
+        <p class="lead text-muted">
+            SQL Server provides different numeric data types to store
+            whole numbers, decimal values and approximate numeric values.
+            Choosing the correct numeric data type helps store data
+            accurately and efficiently.
+        </p>
+
+    </div>
+
+
+    <!-- =====================================================
+         WHAT ARE NUMERIC DATA TYPES?
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h3 class="fw-bold mb-3">
+            What are Numeric Data Types?
+        </h3>
+
+        <p>
+            Numeric data types are used to store numbers in SQL Server.
+            They can be used for values such as age, quantity, marks,
+            salary, price, percentage and other numerical information.
+        </p>
+
+        <p>
+            SQL Server provides several numeric data types depending
+            on whether the value is a whole number or requires decimal
+            precision.
+        </p>
+
+    </section>
+
+
+    <!-- =====================================================
+         NUMERIC DATA TYPES TABLE
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h3 class="fw-bold mb-3">
+            Common Numeric Data Types
+        </h3>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped align-middle">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>Data Type</th>
+                        <th>Description</th>
+                        <th>Example</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td><strong>tinyint</strong></td>
+                        <td>
+                            Stores small whole numbers from 0 to 255.
+                        </td>
+                        <td>100</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>smallint</strong></td>
+                        <td>
+                            Stores small-range whole numbers.
+                        </td>
+                        <td>15000</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>int</strong></td>
+                        <td>
+                            Stores whole numbers and is commonly used
+                            for identifiers and quantities.
+                        </td>
+                        <td>50000</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>bigint</strong></td>
+                        <td>
+                            Stores very large whole numbers.
+                        </td>
+                        <td>9000000000</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>decimal</strong></td>
+                        <td>
+                            Stores exact numeric values with fixed precision
+                            and scale.
+                        </td>
+                        <td>12500.50</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>numeric</strong></td>
+                        <td>
+                            Equivalent to decimal and stores exact
+                            numeric values.
+                        </td>
+                        <td>99.95</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>float</strong></td>
+                        <td>
+                            Stores approximate floating-point numbers.
+                        </td>
+                        <td>123.456</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>real</strong></td>
+                        <td>
+                            Stores approximate single-precision numbers.
+                        </td>
+                        <td>45.67</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         INTEGER DATA TYPES
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h3 class="fw-bold mb-3">
+            Integer Data Types
+        </h3>
+
+        <p>
+            Integer data types are used when the value does not contain
+            decimal places.
+        </p>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>Data Type</th>
+                        <th>Storage</th>
+                        <th>Example</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td><strong>tinyint</strong></td>
+                        <td>1 byte</td>
+                        <td>100</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>smallint</strong></td>
+                        <td>2 bytes</td>
+                        <td>15000</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>int</strong></td>
+                        <td>4 bytes</td>
+                        <td>500000</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>bigint</strong></td>
+                        <td>8 bytes</td>
+                        <td>9000000000</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         DECIMAL DATA TYPES
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h3 class="fw-bold mb-3">
+            Decimal and Exact Numeric Values
+        </h3>
+
+        <p>
+            The <strong>decimal</strong> and <strong>numeric</strong>
+            data types are used when exact decimal values are required.
+            They are commonly used for financial and calculation-related
+            values.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>CREATE TABLE Products
+(
+    ProductId INT,
+    ProductName VARCHAR(100),
+    Price DECIMAL(10,2)
+);</code></pre>
+
+        </div>
+
+        <p>
+            In <strong>DECIMAL(10,2)</strong>, the first value represents
+            the total precision and the second value represents the number
+            of digits after the decimal point.
+        </p>
+
+    </section>
+
+
+    <!-- =====================================================
+         EXAMPLE
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h3 class="fw-bold mb-3">
+            Example: Using Numeric Data Types
+        </h3>
+
+        <p>
+            The following example creates a Students table using
+            different numeric data types.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>CREATE TABLE Students
+(
+    StudentId INT,
+    Age INT,
+    Marks DECIMAL(5,2),
+    Fees DECIMAL(10,2),
+    TotalStudents BIGINT
+);</code></pre>
+
+        </div>
+
+        <p>
+            Here, integer values are stored using integer data types,
+            while values requiring decimal precision are stored using
+            DECIMAL.
+        </p>
+
+    </section>
+
+
+    <!-- =====================================================
+         OUTPUT
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h3 class="fw-bold mb-3">
+            Output
+        </h3>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL Output
+            </div>
+
+            <pre class="mb-0"><code>StudentId    Age    Marks    Fees
+----------------------------------
+1            21     85.50    45000.00
+2            22     91.25    50000.00
+3            20     78.75    40000.00</code></pre>
+
+        </div>
+
+        <p>
+            The output shows how SQL Server stores whole numbers and
+            decimal values using appropriate numeric data types.
+        </p>
+
+    </section>
+
+
+    <!-- =====================================================
+         CHOOSING CORRECT DATA TYPE
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h3 class="fw-bold mb-3">
+            Choosing the Correct Numeric Data Type
+        </h3>
+
+        <p>
+            The numeric data type should be selected according to the
+            size and type of value that needs to be stored.
+        </p>
+
+        <ul>
+
+            <li class="mb-2">
+                Use <strong>INT</strong> for commonly used whole numbers.
+            </li>
+
+            <li class="mb-2">
+                Use <strong>BIGINT</strong> for very large whole numbers.
+            </li>
+
+            <li class="mb-2">
+                Use <strong>DECIMAL</strong> for exact decimal values.
+            </li>
+
+            <li class="mb-2">
+                Use <strong>FLOAT</strong> when approximate numeric values
+                are acceptable.
+            </li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- =====================================================
+         SUMMARY
+         ===================================================== -->
+
+    <section class="mb-4">
+
+        <div class="alert alert-primary border-0">
+
+            <h5 class="fw-bold">
+                Summary
+            </h5>
+
+            <p class="mb-0">
+                In this section, we learned about SQL Server numeric
+                data types such as TINYINT, SMALLINT, INT, BIGINT,
+                DECIMAL, NUMERIC, FLOAT and REAL. We also learned how
+                to choose an appropriate numeric data type according
+                to the type and size of data being stored.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         PREVIOUS / NEXT
+         ===================================================== -->
+
+    <div class="d-flex justify-content-between align-items-center
+                mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="@Url.Action(
+                    "Index",
+                    "DataTypes",
+                    new { area = "SQLServer" })"
+           class="btn btn-outline-primary">
+
+            ← Previous: Data Types
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="@Url.Action(
+                    "CharacterStringDataTypes",
+                    "DataTypes",
+                    new { area = "SQLServer" })"
+           class="btn btn-primary">
+
+            Next: Character & String Data Types →
+
+        </a>
+
+    </div>
+
+</section>

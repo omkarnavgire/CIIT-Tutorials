@@ -1,0 +1,857 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Python Regular Expressions";
+}
+
+<style>
+
+    #python-regular-expressions-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #python-regular-expressions-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #python-regular-expressions-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #python-regular-expressions-page .diagram-box {
+        background: #ffffff;
+        border: 2px solid #6f42c1;
+        border-radius: 10px;
+        padding: 18px;
+        text-align: center;
+        height: 100%;
+    }
+
+        #python-regular-expressions-page .diagram-box h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        #python-regular-expressions-page .diagram-box p {
+            margin-bottom: 0;
+            font-size: 14px;
+            color: #495057;
+        }
+
+    #python-regular-expressions-page .diagram-arrow {
+        text-align: center;
+        font-size: 28px;
+        font-weight: 700;
+        color: #6f42c1;
+        padding: 8px 0;
+    }
+
+    #python-regular-expressions-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #python-regular-expressions-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+        }
+
+</style>
+
+
+<main id="python-regular-expressions-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+
+                <h1 class="fw-bold">
+                    Regular Expressions in Python
+                </h1>
+
+                <p class="lead">
+                    Learn how to search, match, validate and replace text
+                    patterns using Python regular expressions.
+                </p>
+
+            </div>
+
+
+            <!-- WHAT IS REGULAR EXPRESSION -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    What is a Regular Expression?
+                </h2>
+
+                <p>
+                    A regular expression, also called a regex, is a pattern
+                    used to search and match text.
+                </p>
+
+                <p>
+                    Python provides the built-in <code>re</code> module
+                    for working with regular expressions.
+                </p>
+
+                <div class="alert alert-info">
+
+                    <strong>Simple Definition:</strong>
+
+                    A regular expression is a pattern used to find,
+                    match or validate text.
+
+                </div>
+
+            </div>
+
+
+            <!-- BASIC DIAGRAM -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Regular Expression Flow
+                </h2>
+
+                <div class="concept-box">
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            Text
+                        </h5>
+
+                        <p>
+                            Input string that needs to be checked.
+                        </p>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            Regex Pattern
+                        </h5>
+
+                        <p>
+                            Pattern describes what we want to find.
+                        </p>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            Match Result
+                        </h5>
+
+                        <p>
+                            Python returns the matching result.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- IMPORT -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Importing the re Module
+                </h2>
+
+                <p>
+                    The <code>re</code> module provides functions for
+                    working with regular expressions.
+                </p>
+
+                <pre><code>import re</code></pre>
+
+            </div>
+
+
+            <!-- SEARCH -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    re.search()
+                </h2>
+
+                <p>
+                    The <code>re.search()</code> function searches the
+                    complete string for a matching pattern.
+                </p>
+
+                <pre><code>import re
+
+text = "Python is easy to learn"
+
+result = re.search("Python", text)
+
+if result:
+
+    print("Pattern found")</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Pattern found</code></pre>
+
+            </div>
+
+
+            <!-- SEARCH NO MATCH -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Search When No Match Exists
+                </h2>
+
+                <pre><code>import re
+
+text = "Python is easy to learn"
+
+result = re.search("Java", text)
+
+if result:
+
+    print("Pattern found")
+
+else:
+
+    print("Pattern not found")</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Pattern not found</code></pre>
+
+            </div>
+
+
+            <!-- MATCH -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    re.match()
+                </h2>
+
+                <p>
+                    The <code>re.match()</code> function checks whether
+                    the pattern matches at the beginning of the string.
+                </p>
+
+                <pre><code>import re
+
+text = "Python programming"
+
+result = re.match("Python", text)
+
+if result:
+
+    print("Match found")
+
+else:
+
+    print("No match")</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Match found</code></pre>
+
+            </div>
+
+
+            <!-- FINDALL -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    re.findall()
+                </h2>
+
+                <p>
+                    The <code>re.findall()</code> function returns all
+                    matching values found in the string.
+                </p>
+
+                <pre><code>import re
+
+text = "Python Java Python C#"
+
+result = re.findall("Python", text)
+
+print(result)</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>['Python', 'Python']</code></pre>
+
+            </div>
+
+
+            <!-- SPLIT -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    re.split()
+                </h2>
+
+                <p>
+                    The <code>re.split()</code> function splits a string
+                    wherever the pattern is found.
+                </p>
+
+                <pre><code>import re
+
+text = "Python,Java,C#"
+
+result = re.split(",", text)
+
+print(result)</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>['Python', 'Java', 'C#']</code></pre>
+
+            </div>
+
+
+            <!-- SUB -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    re.sub()
+                </h2>
+
+                <p>
+                    The <code>re.sub()</code> function replaces matching
+                    text with another value.
+                </p>
+
+                <pre><code>import re
+
+text = "Python is easy"
+
+result = re.sub("easy", "powerful", text)
+
+print(result)</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Python is powerful</code></pre>
+
+            </div>
+
+
+            <!-- COMMON PATTERNS -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Common Regex Patterns
+                </h2>
+
+                <div class="row g-3">
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Digits
+                            </h5>
+
+                            <p class="mb-0">
+                                <code>\d</code> matches a digit.
+                            </p>
+
+                            <pre><code>\d</code></pre>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Word Character
+                            </h5>
+
+                            <p class="mb-0">
+                                <code>\w</code> matches a word character.
+                            </p>
+
+                            <pre><code>\w</code></pre>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Whitespace
+                            </h5>
+
+                            <p class="mb-0">
+                                <code>\s</code> matches whitespace.
+                            </p>
+
+                            <pre><code>\s</code></pre>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- DIGITS -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Finding Digits
+                </h2>
+
+                <pre><code>import re
+
+text = "My marks are 85"
+
+result = re.findall(r"\d+", text)
+
+print(result)</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>['85']</code></pre>
+
+            </div>
+
+
+            <!-- WORDS -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Finding Words
+                </h2>
+
+                <pre><code>import re
+
+text = "Python is easy"
+
+result = re.findall(r"\w+", text)
+
+print(result)</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>['Python', 'is', 'easy']</code></pre>
+
+            </div>
+
+
+            <!-- PHONE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Example: Phone Number Validation
+                </h2>
+
+                <pre><code>import re
+
+phone = "9876543210"
+
+pattern = r"^[0-9]{10}$"
+
+if re.match(pattern, phone):
+
+    print("Valid phone number")
+
+else:
+
+    print("Invalid phone number")</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Valid phone number</code></pre>
+
+            </div>
+
+
+            <!-- EMAIL -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Example: Email Validation
+                </h2>
+
+                <p>
+                    The following pattern uses <code>\x40</code> to
+                    represent the email separator character.
+                </p>
+
+                <pre><code>import re
+
+email = "student@example.com"
+
+pattern = r"^[\w.-]+\x40[\w.-]+\.\w+$"
+
+if re.match(pattern, email):
+
+    print("Valid email")
+
+else:
+
+    print("Invalid email")</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Valid email</code></pre>
+
+            </div>
+
+
+            <!-- PRACTICAL EXAMPLE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Example 📩🤓
+                </h2>
+
+                <p>
+                    The following example finds all numbers inside
+                    a text string.
+                </p>
+
+                <pre><code>import re
+
+text = "Python course costs 30000 and lasts 5 months"
+
+numbers = re.findall(r"\d+", text)
+
+print(numbers)</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>['30000', '5']</code></pre>
+
+            </div>
+
+
+            <!-- ADVANTAGES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Advantages of Regular Expressions
+                </h2>
+
+                <div class="row g-3">
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Search Text
+                            </h5>
+
+                            <p class="mb-0">
+                                Quickly find specific patterns in text.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Validation
+                            </h5>
+
+                            <p class="mb-0">
+                                Validate values such as emails and phone numbers.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Replace Text
+                            </h5>
+
+                            <p class="mb-0">
+                                Replace matching patterns using regex.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- BEST PRACTICES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Best Practices
+                </h2>
+
+                <div class="row g-3">
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Keep Patterns Simple
+                            </h5>
+
+                            <p class="mb-0">
+                                Use a simple pattern when a simple pattern
+                                is enough.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Test Patterns
+                            </h5>
+
+                            <p class="mb-0">
+                                Test regular expressions with valid and
+                                invalid examples.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Use Raw Strings
+                            </h5>
+
+                            <p class="mb-0">
+                                Raw strings make regex patterns easier to write.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- COMMON MISTAKES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Common Mistakes
+                </h2>
+
+                <ul>
+
+                    <li>
+                        Writing an incorrect regex pattern.
+                    </li>
+
+                    <li>
+                        Forgetting to import the <code>re</code> module.
+                    </li>
+
+                    <li>
+                        Using <code>re.match()</code> when a complete string
+                        search is required.
+                    </li>
+
+                    <li>
+                        Not testing both matching and non-matching values.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Practice Programs
+                </h2>
+
+                <ol>
+
+                    <li>
+                        Search for a word inside a string using
+                        <code>re.search()</code>.
+                    </li>
+
+                    <li>
+                        Find all numbers in a string using
+                        <code>re.findall()</code>.
+                    </li>
+
+                    <li>
+                        Split a string using <code>re.split()</code>.
+                    </li>
+
+                    <li>
+                        Replace a word using <code>re.sub()</code>.
+                    </li>
+
+                    <li>
+                        Validate a phone number using a regular expression.
+                    </li>
+
+                    <li>
+                        Validate an email address using a regular expression.
+                    </li>
+
+                </ol>
+
+            </div>
+
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+
+                <h2 class="h4 fw-bold">
+                    Summary
+                </h2>
+
+                <p class="mb-0">
+
+                    Regular expressions are patterns used to search, match,
+                    validate and replace text. Python provides the
+                    <code>re</code> module with functions such as
+                    <code>search()</code>, <code>match()</code>,
+                    <code>findall()</code>, <code>split()</code> and
+                    <code>sub()</code>. Regular expressions are commonly
+                    used for text processing and validation.
+
+                </p>
+
+            </div>
+
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+
+                <a class="btn btn-outline-secondary"
+                   href="@Url.Action("ContextManagers", "AdvancedPython", new { area = "Python" })">
+
+                    ← Previous: Topic
+
+                </a>
+
+
+                <a class="btn btn-primary"
+                   href="@Url.Action("Index", "DatabaseProgramming", new { area = "Python" })">
+
+                    Next: Topic →
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

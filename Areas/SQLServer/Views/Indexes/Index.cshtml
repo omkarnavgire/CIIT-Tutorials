@@ -1,0 +1,384 @@
+﻿@{
+    ViewData["Title"] = "Indexes Introduction";
+}
+
+<div class="container-fluid">
+    <div class="row">
+
+        <!-- =========================
+             MAIN CONTENT
+        ========================== -->
+
+        <div class="col-lg-12">
+
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body p-4">
+
+                    <!-- =========================
+                         TITLE
+                    ========================== -->
+
+                    <h1 class="fw-bold mb-4">
+                        Indexes Introduction
+                    </h1>
+
+
+                    <!-- =========================
+                         INTRODUCTION
+                    ========================== -->
+
+                    <h2 class="fw-bold mt-4 mb-3">
+                        What is an Index?
+                    </h2>
+
+                    <p>
+                        An <strong>Index</strong> in SQL Server is a database object
+                        used to improve the speed of data retrieval operations.
+                        Indexes help SQL Server find records faster without scanning
+                        the entire table.
+                    </p>
+
+                    <p>
+                        An index works similar to an index in a book. Instead of
+                        checking every page to find a particular topic, we can use
+                        the index to quickly locate the required information.
+                    </p>
+
+
+                    <!-- =========================
+                         WHY INDEXES ARE USED
+                    ========================== -->
+
+                    <h2 class="fw-bold mt-5 mb-3">
+                        Why are Indexes Used?
+                    </h2>
+
+                    <p>
+                        Indexes are mainly used to improve the performance of
+                        SELECT queries and make data retrieval faster.
+                    </p>
+
+                    <ul>
+                        <li>Indexes improve query performance.</li>
+                        <li>They help SQL Server find records quickly.</li>
+                        <li>They reduce the amount of data SQL Server needs to scan.</li>
+                        <li>Indexes are useful for columns frequently used in WHERE clauses.</li>
+                        <li>They can improve JOIN and ORDER BY operations.</li>
+                        <li>Indexes can also improve searching and sorting operations.</li>
+                    </ul>
+
+
+                    <!-- =========================
+                         SIMPLE EXAMPLE
+                    ========================== -->
+
+                    <h2 class="fw-bold mt-5 mb-3">
+                        Simple Example
+                    </h2>
+
+                    <p>
+                        Suppose we have a <strong>Students</strong> table:
+                    </p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>CREATE TABLE Students
+(
+    StudentId INT PRIMARY KEY,
+    StudentName VARCHAR(100),
+    City VARCHAR(50),
+    Age INT
+);</code></pre>
+
+                    <p class="mt-3">
+                        Suppose the table contains thousands of student records
+                        and we frequently search students based on the
+                        <strong>City</strong> column.
+                    </p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>SELECT *
+FROM Students
+WHERE City = 'Pune';</code></pre>
+
+                    <p class="mt-3">
+                        Creating an index on the <strong>City</strong> column can
+                        help SQL Server find the required records more efficiently.
+                    </p>
+
+
+                    <!-- =========================
+                         CREATING INDEX
+                    ========================== -->
+
+                    <h2 class="fw-bold mt-5 mb-3">
+                        Creating an Index
+                    </h2>
+
+                    <p>
+                        A non-clustered index can be created using the
+                        <strong>CREATE INDEX</strong> statement.
+                    </p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>CREATE INDEX IX_Students_City
+ON Students(City);</code></pre>
+
+                    <p class="mt-3">
+                        Here:
+                    </p>
+
+                    <ul>
+                        <li>
+                            <strong>IX_Students_City</strong> is the name of the index.
+                        </li>
+                        <li>
+                            <strong>Students</strong> is the table name.
+                        </li>
+                        <li>
+                            <strong>City</strong> is the column on which the index is created.
+                        </li>
+                    </ul>
+
+
+                    <!-- =========================
+                         TYPES OF INDEXES
+                    ========================== -->
+
+                    <h2 class="fw-bold mt-5 mb-3">
+                        Types of Indexes
+                    </h2>
+
+                    <p>
+                        SQL Server supports different types of indexes.
+                        The commonly used types are:
+                    </p>
+
+                    <ul>
+                        <li>
+                            <strong>Clustered Index</strong>
+                        </li>
+                        <li>
+                            <strong>Non-Clustered Index</strong>
+                        </li>
+                    </ul>
+
+                    <p>
+                        In the upcoming topics, we will learn about both
+                        clustered and non-clustered indexes in detail.
+                    </p>
+
+
+                    <!-- =========================
+                         CLUSTERED INDEX
+                    ========================== -->
+
+                    <h2 class="fw-bold mt-5 mb-3">
+                        Clustered Index
+                    </h2>
+
+                    <p>
+                        A <strong>Clustered Index</strong> determines the physical
+                        order of data in a table.
+                    </p>
+
+                    <p>
+                        A table can have only one clustered index because the
+                        physical data can be stored in only one order.
+                    </p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>CREATE CLUSTERED INDEX IX_Students_StudentId
+ON Students(StudentId);</code></pre>
+
+
+                    <!-- =========================
+                         NON-CLUSTERED INDEX
+                    ========================== -->
+
+                    <h2 class="fw-bold mt-5 mb-3">
+                        Non-Clustered Index
+                    </h2>
+
+                    <p>
+                        A <strong>Non-Clustered Index</strong> is a separate
+                        structure that stores indexed column values along with
+                        references to the actual rows in the table.
+                    </p>
+
+                    <p>
+                        A table can have multiple non-clustered indexes.
+                    </p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>CREATE NONCLUSTERED INDEX IX_Students_City
+ON Students(City);</code></pre>
+
+
+                    <!-- =========================
+                         INDEX AND SELECT QUERY
+                    ========================== -->
+
+                    <h2 class="fw-bold mt-5 mb-3">
+                        Index and SELECT Query
+                    </h2>
+
+                    <p>
+                        Consider the following query:
+                    </p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>SELECT StudentId,
+       StudentName,
+       City,
+       Age
+FROM Students
+WHERE City = 'Pune';</code></pre>
+
+                    <p class="mt-3">
+                        If an appropriate index exists on the
+                        <strong>City</strong> column, SQL Server may use the
+                        index to locate matching records more efficiently.
+                    </p>
+
+
+                    <!-- =========================
+                         IMPORTANT POINTS
+                    ========================== -->
+
+                    <div class="alert alert-warning mt-5">
+
+                        <h4 class="fw-bold">
+                            Important Points
+                        </h4>
+
+                        <ul class="mb-0">
+                            <li>
+                                Indexes are mainly used to improve data retrieval performance.
+                            </li>
+                            <li>
+                                Indexes are useful for frequently searched columns.
+                            </li>
+                            <li>
+                                A table can have only one clustered index.
+                            </li>
+                            <li>
+                                A table can have multiple non-clustered indexes.
+                            </li>
+                            <li>
+                                Indexes require additional storage space.
+                            </li>
+                            <li>
+                                Too many indexes can affect INSERT, UPDATE and DELETE performance.
+                            </li>
+                        </ul>
+
+                    </div>
+
+
+                    <!-- =========================
+                         WHEN TO USE INDEXES
+                    ========================== -->
+
+                    <h2 class="fw-bold mt-5 mb-3">
+                        When Should We Use Indexes?
+                    </h2>
+
+                    <p>
+                        Indexes should be considered when a table contains a
+                        large amount of data and specific columns are frequently
+                        used for searching, filtering, joining or sorting.
+                    </p>
+
+                    <ul>
+                        <li>Columns used frequently in WHERE conditions.</li>
+                        <li>Columns frequently used in JOIN conditions.</li>
+                        <li>Columns frequently used for sorting.</li>
+                        <li>Columns frequently used for searching.</li>
+                    </ul>
+
+
+                    <!-- =========================
+                         INDEX PERFORMANCE NOTE
+                    ========================== -->
+
+                    <div class="alert alert-info mt-4">
+
+                        <h5 class="fw-bold">
+                            Remember
+                        </h5>
+
+                        <p class="mb-0">
+                            Indexes can significantly improve SELECT query
+                            performance, but they also require storage and can
+                            increase the cost of INSERT, UPDATE and DELETE
+                            operations. Therefore, indexes should be created
+                            carefully.
+                        </p>
+
+                    </div>
+
+
+                    <!-- =========================
+                         SUMMARY
+                    ========================== -->
+
+                    <div class="alert alert-primary mt-5">
+
+                        <h2 class="fw-bold mb-3">
+                            Summary
+                        </h2>
+
+                        <p>
+                            Indexes are database objects used to improve the
+                            performance of data retrieval operations in SQL Server.
+                            They help SQL Server find records faster instead of
+                            scanning the entire table.
+                        </p>
+
+                        <p>
+                            The two commonly used types of indexes are
+                            <strong>Clustered Index</strong> and
+                            <strong>Non-Clustered Index</strong>.
+                            A table can have one clustered index and can have
+                            multiple non-clustered indexes.
+                        </p>
+
+                        <p class="mb-0">
+                            In the next topic, we will learn about
+                            <strong>Clustered Index</strong> in detail.
+                        </p>
+
+                    </div>
+
+
+                    <!-- =========================
+                         PREVIOUS / NEXT
+                    ========================== -->
+
+                    <div class="d-flex justify-content-between align-items-center
+                        mt-5 pt-4 border-top">
+
+                        <!-- PREVIOUS -->
+
+                        <a href="/SQLServer/Transactions/TransactionTryCatch"
+                           class="btn btn-outline-primary">
+
+                            ← Previous: Transaction with TRY...CATCH
+
+                        </a>
+
+
+                        <!-- NEXT -->
+
+                        <a href="/SQLServer/Indexes/ClusteredIndex"
+                           class="btn btn-primary">
+
+                            Next: Clustered Index →
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>

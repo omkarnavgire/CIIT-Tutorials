@@ -1,0 +1,1699 @@
+﻿@{
+    ViewData["Title"] = "Angular Form Submission";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- Header -->
+    <section class="mb-4">
+
+        <h1 class="fw-bold text-dark">
+            Angular Form Submission
+        </h1>
+
+        <p class="lead text-muted">
+            Learn how to submit Angular forms, validate the data,
+            access form values and process submitted information
+            using template-driven and reactive forms.
+        </p>
+
+    </section>
+
+
+    <!-- Introduction -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            What is Form Submission?
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                Form submission is the process of collecting the values entered
+                by the user and processing them after the form is submitted.
+            </p>
+
+            <p>
+                Angular provides different ways to handle form submission
+                depending on whether the application uses template-driven
+                or reactive forms.
+            </p>
+
+            <p class="mb-0">
+                Before processing the form, the application should check
+                whether the submitted data satisfies the required validation rules.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Submission Flow -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Form Submission Flow
+        </h2>
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+
+                <strong>User Input</strong>
+
+                <span>
+                    Enter Information
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>Validation</strong>
+
+                <span>
+                    Check Form
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>Submit</strong>
+
+                <span>
+                    Trigger Event
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>Process Data</strong>
+
+                <span>
+                    Save / Send
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Main Concepts -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Main Submission Concepts
+        </h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    1
+                </div>
+
+                <h5>
+                    Submit Event
+                </h5>
+
+                <p>
+                    Detect when the user submits the form.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    2
+                </div>
+
+                <h5>
+                    Validation
+                </h5>
+
+                <p>
+                    Check whether the form is valid before processing.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    3
+                </div>
+
+                <h5>
+                    Form Values
+                </h5>
+
+                <p>
+                    Access the values entered by the user.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    4
+                </div>
+
+                <h5>
+                    Processing
+                </h5>
+
+                <p>
+                    Save the data or send it to another service.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Template Driven Submission -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Template-driven Form Submission
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                Template-driven forms commonly use the
+                <strong>ngSubmit</strong> event to handle submission.
+            </p>
+
+            <p class="mb-0">
+                A template reference variable can provide access to
+                the complete form and its current state.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Template
+            </div>
+
+            <pre><code>&lt;form
+    #enquiryForm="ngForm"
+    (ngSubmit)="submitForm(enquiryForm)"&gt;
+
+    &lt;input
+        type="text"
+        name="name"
+        ngModel
+        required&gt;
+
+    &lt;input
+        type="email"
+        name="email"
+        ngModel
+        required
+        email&gt;
+
+    &lt;button type="submit"&gt;
+
+        Submit Enquiry
+
+    &lt;/button&gt;
+
+&lt;/form&gt;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Template Driven Component -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Handling Template-driven Submission
+        </h2>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Component
+            </div>
+
+            <pre><code>import { Component } from '@@angular/core';
+import { NgForm } from '@@angular/forms';
+
+@@Component({
+    selector: 'app-enquiry',
+    templateUrl: './enquiry.component.html'
+})
+export class EnquiryComponent {
+
+    submitForm(form: NgForm) {
+
+        if (form.valid) {
+
+            console.log(
+                form.value
+            );
+
+        }
+
+    }
+
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Template Driven Validation -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Validate Before Submission
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                The form should normally be checked before its values are
+                processed.
+            </p>
+
+            <p class="mb-0">
+                When the form is invalid, the application can display
+                validation messages instead of processing incomplete data.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>submitForm(form: NgForm) {
+
+    if (form.invalid) {
+
+        return;
+
+    }
+
+    console.log(
+        form.value
+    );
+
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Submitted State -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Tracking Submission State
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                Template-driven forms expose submission state through
+                the form object.
+            </p>
+
+            <p class="mb-0">
+                The <strong>submitted</strong> state can be used to determine
+                whether the form submission event has occurred.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Template
+            </div>
+
+            <pre><code>&lt;p&gt;
+
+    Form Submitted:
+    &#123;&#123; enquiryForm.submitted &#125;&#125;
+
+&lt;/p&gt;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Reactive Submission -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Reactive Form Submission
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                Reactive forms can handle submission using
+                the normal Angular <strong>ngSubmit</strong> event
+                while the form data is managed by a FormGroup.
+            </p>
+
+            <p class="mb-0">
+                The FormGroup provides direct access to the form model
+                and its validation state.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Template
+            </div>
+
+            <pre><code>&lt;form
+    [formGroup]="registrationForm"
+    (ngSubmit)="submitForm()"&gt;
+
+    &lt;input
+        type="text"
+        formControlName="name"&gt;
+
+    &lt;input
+        type="email"
+        formControlName="email"&gt;
+
+    &lt;button type="submit"&gt;
+
+        Register
+
+    &lt;/button&gt;
+
+&lt;/form&gt;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Reactive Component -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Handling Reactive Form Submission
+        </h2>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Component
+            </div>
+
+            <pre><code>import { Component } from '@@angular/core';
+
+import {
+    FormBuilder,
+    Validators
+} from '@@angular/forms';
+
+@@Component({
+    selector: 'app-registration',
+    templateUrl: './registration.component.html'
+})
+export class RegistrationComponent {
+
+    registrationForm = this.fb.group({
+
+        name: [
+            '',
+            Validators.required
+        ],
+
+        email: [
+            '',
+            [
+                Validators.required,
+                Validators.email
+            ]
+        ],
+
+        course: [
+            '',
+            Validators.required
+        ]
+
+    ]);
+
+
+    constructor(
+        private fb: FormBuilder
+    ) {
+    }
+
+
+    submitForm() {
+
+        if (this.registrationForm.invalid) {
+
+            return;
+
+        }
+
+
+        console.log(
+            this.registrationForm.value
+        );
+
+    }
+
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Form Values -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Accessing Submitted Form Values
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                After validation succeeds, the application's component
+                can access the current form values.
+            </p>
+
+            <p class="mb-0">
+                These values can then be passed to a service or another
+                application layer for further processing.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Reactive Form Values
+            </div>
+
+            <pre><code>const data =
+    this.registrationForm.value;
+
+console.log(data);</code></pre>
+
+        </div>
+
+
+        <div class="output-box mt-3">
+
+            <div class="student-preview">
+
+                <h4>
+                    Submitted Data
+                </h4>
+
+                <p>
+                    Name:
+                    <strong>Pradnya</strong>
+                </p>
+
+                <p>
+                    Email:
+                    <strong>pradnya@example.com</strong>
+                </p>
+
+                <p class="mb-0">
+                    Course:
+                    <strong>Angular Full Stack</strong>
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CIIT Example -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            CIIT Training Institute Example
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                Suppose a visitor submits a course enquiry form on the
+                CIIT Training Institute website.
+            </p>
+
+            <p class="mb-0">
+                Angular validates the form first. If the information is valid,
+                the component can process the enquiry data.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Component
+            </div>
+
+            <pre><code>import { Component } from '@@angular/core';
+
+import {
+    FormBuilder,
+    Validators
+} from '@@angular/forms';
+
+@@Component({
+    selector: 'app-course-enquiry',
+    templateUrl: './course-enquiry.component.html'
+})
+export class CourseEnquiryComponent {
+
+    enquiryForm = this.fb.group({
+
+        name: [
+            '',
+            Validators.required
+        ],
+
+        email: [
+            '',
+            [
+                Validators.required,
+                Validators.email
+            ]
+        ],
+
+        mobile: [
+            '',
+            Validators.required
+        ],
+
+        course: [
+            '',
+            Validators.required
+        ]
+
+    });
+
+
+    constructor(
+        private fb: FormBuilder
+    ) {
+    }
+
+
+    submitEnquiry() {
+
+        if (this.enquiryForm.invalid) {
+
+            this.enquiryForm.markAllAsTouched();
+
+            return;
+
+        }
+
+
+        const enquiryData =
+            this.enquiryForm.value;
+
+
+        console.log(
+            'CIIT Enquiry:',
+            enquiryData
+        );
+
+    }
+
+}</code></pre>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Template
+            </div>
+
+            <pre><code>&lt;form
+    [formGroup]="enquiryForm"
+    (ngSubmit)="submitEnquiry()"&gt;
+
+
+    &lt;label&gt;
+        Name
+    &lt;/label&gt;
+
+    &lt;input
+        type="text"
+        formControlName="name"&gt;
+
+
+    &lt;label&gt;
+        Email
+    &lt;/label&gt;
+
+    &lt;input
+        type="email"
+        formControlName="email"&gt;
+
+
+    &lt;label&gt;
+        Mobile
+    &lt;/label&gt;
+
+    &lt;input
+        type="text"
+        formControlName="mobile"&gt;
+
+
+    &lt;label&gt;
+        Course
+    &lt;/label&gt;
+
+    &lt;select
+        formControlName="course"&gt;
+
+        &lt;option value=""&gt;
+            Select Course
+        &lt;/option&gt;
+
+        &lt;option value="Angular Full Stack"&gt;
+            Angular Full Stack
+        &lt;/option&gt;
+
+        &lt;option value="Java Full Stack"&gt;
+            Java Full Stack
+        &lt;/option&gt;
+
+        &lt;option value=".NET Full Stack"&gt;
+            .NET Full Stack
+        &lt;/option&gt;
+
+    &lt;/select&gt;
+
+
+    &lt;button
+        type="submit"
+        [disabled]="enquiryForm.invalid"&gt;
+
+        Send Enquiry
+
+    &lt;/button&gt;
+
+&lt;/form&gt;</code></pre>
+
+        </div>
+
+
+        <div class="output-box mt-3">
+
+            <div class="student-preview">
+
+                <h4>
+                    CIIT Training Institute
+                </h4>
+
+                <p>
+                    Form Status:
+                    <strong>Valid</strong>
+                </p>
+
+                <p>
+                    Course:
+                    <strong>Angular Full Stack</strong>
+                </p>
+
+                <p class="mb-0">
+                    Submission:
+                    <strong>Enquiry Data Ready for Processing</strong>
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Sending to Service -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Sending Form Data to a Service
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                In a real application, submitted form data is often passed
+                to a service that communicates with the backend API.
+            </p>
+
+            <p class="mb-0">
+                Keeping this communication inside a service helps separate
+                form handling from API-related logic.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Component
+            </div>
+
+            <pre><code>submitForm() {
+
+    if (this.registrationForm.invalid) {
+
+        return;
+
+    }
+
+
+    const data =
+        this.registrationForm.value;
+
+
+    this.registrationService
+        .register(data)
+        .subscribe({
+
+            next: response => {
+
+                console.log(
+                    'Registration successful',
+                    response
+                );
+
+            },
+
+            error: error => {
+
+                console.error(
+                    'Registration failed',
+                    error
+                );
+
+            }
+
+        });
+
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Success -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Handling Successful Submission
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                After successful processing, the application can display
+                a confirmation message or clear the form.
+            </p>
+
+            <p class="mb-0">
+                The exact behavior depends on the application's requirements.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>submitForm() {
+
+    if (this.registrationForm.invalid) {
+
+        return;
+
+    }
+
+
+    const data =
+        this.registrationForm.value;
+
+
+    // Process data here
+
+    console.log(
+        'Submitted:',
+        data
+    );
+
+
+    this.registrationForm.reset();
+
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Reset After Submit -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Reset Form After Submission
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                The form can be reset after successful processing when
+                the application requires a fresh form.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>this.registrationForm.reset();</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Prevent Invalid Submission -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Prevent Invalid Submission
+        </h2>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>submitForm() {
+
+    if (this.registrationForm.invalid) {
+
+        this.registrationForm
+            .markAllAsTouched();
+
+        return;
+
+    }
+
+
+    // Continue with valid data
+
+}</code></pre>
+
+        </div>
+
+
+        <div class="output-box mt-3">
+
+            <div class="student-preview">
+
+                <h4>
+                    Submission Rule
+                </h4>
+
+                <p>
+                    Invalid form:
+                    <strong>Do not process</strong>
+                </p>
+
+                <p class="mb-0">
+                    Valid form:
+                    <strong>Process submitted data</strong>
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Submission Steps -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Form Submission Steps
+        </h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    1
+                </div>
+
+                <h5>
+                    Collect
+                </h5>
+
+                <p>
+                    User enters information into the form.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    2
+                </div>
+
+                <h5>
+                    Validate
+                </h5>
+
+                <p>
+                    Angular checks the configured validation rules.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    3
+                </div>
+
+                <h5>
+                    Submit
+                </h5>
+
+                <p>
+                    The ngSubmit event calls the component method.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    4
+                </div>
+
+                <h5>
+                    Process
+                </h5>
+
+                <p>
+                    Valid data is processed or sent to a service.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Template vs Reactive Submission -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Template-driven vs Reactive Submission
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table syntax-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Feature
+                        </th>
+
+                        <th>
+                            Template-driven
+                        </th>
+
+                        <th>
+                            Reactive
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            Submit Event
+                        </td>
+
+                        <td>
+                            <code>ngSubmit</code>
+                        </td>
+
+                        <td>
+                            <code>ngSubmit</code>
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Form Access
+                        </td>
+
+                        <td>
+                            <code>NgForm</code>
+                        </td>
+
+                        <td>
+                            <code>FormGroup</code>
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Values
+                        </td>
+
+                        <td>
+                            <code>form.value</code>
+                        </td>
+
+                        <td>
+                            <code>formGroup.value</code>
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Validation
+                        </td>
+
+                        <td>
+                            Template-based
+                        </td>
+
+                        <td>
+                            Programmatic
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Typical Use
+                        </td>
+
+                        <td>
+                            Simpler forms
+                        </td>
+
+                        <td>
+                            Complex forms
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- Submission Result -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Submission Result Example
+        </h2>
+
+        <div class="output-box">
+
+            <div class="student-preview">
+
+                <h4>
+                    Form Submission Successful
+                </h4>
+
+                <p>
+                    Name:
+                    <strong>Pradnya</strong>
+                </p>
+
+                <p>
+                    Course:
+                    <strong>Angular Full Stack</strong>
+                </p>
+
+                <p>
+                    Form:
+                    <strong>Valid</strong>
+                </p>
+
+                <p class="mb-0">
+                    Status:
+                    <strong>Data processed successfully</strong>
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Important Points -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Important Points
+        </h2>
+
+        <div class="best-practice-list">
+
+            <div class="info-card mb-3">
+
+                <strong>
+                    1. Use ngSubmit
+                </strong>
+
+                <p class="mb-0">
+                    Use the Angular <strong>ngSubmit</strong> event
+                    to handle form submission.
+                </p>
+
+            </div>
+
+
+            <div class="info-card mb-3">
+
+                <strong>
+                    2. Validate Before Processing
+                </strong>
+
+                <p class="mb-0">
+                    Check whether the form is valid before using
+                    the submitted values.
+                </p>
+
+            </div>
+
+
+            <div class="info-card mb-3">
+
+                <strong>
+                    3. Access Form Values
+                </strong>
+
+                <p class="mb-0">
+                    Use the form or FormGroup value to access the
+                    information entered by the user.
+                </p>
+
+            </div>
+
+
+            <div class="info-card">
+
+                <strong>
+                    4. Separate API Logic
+                </strong>
+
+                <p class="mb-0">
+                    Keep backend communication inside a service
+                    when the application grows.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Best Practices -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Form Submission Best Practices
+        </h2>
+
+        <ul class="best-practice-list">
+
+            <li>
+                Validate form data before processing or sending it.
+            </li>
+
+            <li>
+                Keep submission logic inside a clear component method.
+            </li>
+
+            <li>
+                Use services for backend communication instead of
+                placing API logic directly inside the template.
+            </li>
+
+            <li>
+                Display a useful success or error state after submission.
+            </li>
+
+            <li>
+                Reset the form only when the application requires it.
+            </li>
+
+            <li>
+                Perform validation on the backend as well; client-side
+                validation should not be the only data-integrity check.
+            </li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- Summary -->
+    <section class="mb-4">
+
+        <div class="summary-box">
+
+            <h4 class="fw-bold">
+                Summary
+            </h4>
+
+            <p>
+                Angular form submission collects user-entered information
+                and processes it after the form is submitted.
+            </p>
+
+            <p>
+                Template-driven forms commonly use
+                <strong>ngSubmit</strong> with <strong>NgForm</strong>,
+                while reactive forms use <strong>ngSubmit</strong> with
+                a <strong>FormGroup</strong>.
+            </p>
+
+            <p class="mb-0">
+                The general workflow is
+                <strong>Input → Validation → Submission → Processing</strong>.
+                With this, the Angular Forms module is complete.
+                The next module is <strong>Observables</strong>.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Navigation -->
+    <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+
+        <a class="btn btn-outline-secondary"
+           href="@Url.Action("FormValidation", "Forms", new { area = "Angular" })">
+
+            ← Form Validation
+
+        </a>
+
+
+        <a class="btn btn-primary"
+           href="@Url.Action("Index", "Observables", new { area = "Angular" })">
+
+            Observables →
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<style>
+
+    .info-card {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-left: 5px solid #4c1d95;
+        border-radius: 10px;
+        padding: 20px;
+        line-height: 1.7;
+        color: #334155;
+    }
+
+
+    .syntax-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        flex-wrap: wrap;
+        margin: 25px 0;
+    }
+
+
+    .syntax-box {
+        background: linear-gradient(
+            135deg,
+            #2e1065,
+            #4c1d95
+        );
+
+        color: white;
+        padding: 18px 25px;
+        border-radius: 12px;
+        text-align: center;
+        min-width: 180px;
+        box-shadow: 0 5px 15px rgba(76, 29, 149, 0.15);
+    }
+
+
+    .syntax-box strong {
+        display: block;
+        font-size: 16px;
+    }
+
+
+    .syntax-box span {
+        display: block;
+        margin-top: 5px;
+        color: #d8c9f5;
+        font-size: 14px;
+    }
+
+
+    .syntax-arrow {
+        font-size: 28px;
+        font-weight: bold;
+        color: #4c1d95;
+    }
+
+
+    .syntax-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+
+
+    .syntax-card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 22px;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+    }
+
+
+    .syntax-card h5 {
+        margin-top: 15px;
+        font-weight: 700;
+        color: #2e1065;
+    }
+
+
+    .syntax-card p {
+        color: #64748b;
+        margin-bottom: 0;
+    }
+
+
+    .syntax-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: #ede9fe;
+        color: #4c1d95;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 18px;
+        margin: 0 auto;
+    }
+
+
+    .code-card {
+        background: #0f172a;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(15, 23, 42, 0.10);
+    }
+
+
+    .code-title {
+        background: #1e293b;
+        color: #ffffff;
+        padding: 12px 18px;
+        font-weight: 700;
+        font-size: 14px;
+    }
+
+
+    .code-card pre {
+        margin: 0;
+        padding: 20px;
+        overflow-x: auto;
+    }
+
+
+    .code-card code {
+        color: #f8fafc;
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+
+    .output-box {
+        background: #f8fafc;
+        border: 1px solid #ddd6fe;
+        border-radius: 12px;
+        padding: 20px;
+    }
+
+
+    .student-preview {
+        background: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        padding: 20px;
+    }
+
+
+    .student-preview h4 {
+        color: #2e1065;
+        font-weight: 700;
+    }
+
+
+    .student-preview p {
+        color: #64748b;
+    }
+
+
+    .syntax-table {
+        width: 100%;
+        margin-bottom: 0;
+        border: 1px solid #e2e8f0;
+    }
+
+
+    .syntax-table thead th {
+        background: #2e1065;
+        color: white;
+        padding: 14px;
+        border-color: #4c1d95;
+    }
+
+
+    .syntax-table tbody td {
+        padding: 14px;
+        vertical-align: middle;
+        color: #334155;
+        border-color: #e2e8f0;
+    }
+
+
+    .syntax-table tbody tr:nth-child(even) {
+        background: #f8fafc;
+    }
+
+
+    .syntax-table code {
+        color: #4c1d95;
+        font-weight: 600;
+    }
+
+
+    .best-practice-list {
+        margin: 0;
+        padding-left: 20px;
+    }
+
+
+    .best-practice-list li {
+        margin-bottom: 10px;
+        color: #334155;
+        line-height: 1.6;
+    }
+
+
+    .summary-box {
+        background: #cfe2ff;
+        color: #084298;
+        border-radius: 10px;
+        padding: 22px;
+        border: 1px solid #b6d4fe;
+    }
+
+
+    .summary-box h4 {
+        margin-bottom: 12px;
+    }
+
+
+    @@media (max-width: 991px) {
+
+        .syntax-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .syntax-flow {
+            gap: 12px;
+        }
+
+        .syntax-box {
+            min-width: 160px;
+        }
+
+    }
+
+
+    @@media (max-width: 576px) {
+
+        .syntax-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .syntax-flow {
+            flex-direction: column;
+        }
+
+        .syntax-arrow {
+            transform: rotate(90deg);
+        }
+
+        .syntax-box {
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .code-card pre {
+            padding: 15px;
+        }
+
+        .code-card code {
+            font-size: 13px;
+        }
+
+    }
+
+</style>

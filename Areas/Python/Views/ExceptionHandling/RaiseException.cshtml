@@ -1,0 +1,703 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Python raise Exception";
+}
+
+<style>
+
+    #python-raise-exception-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #python-raise-exception-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #python-raise-exception-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #python-raise-exception-page .diagram-box {
+        background: #ffffff;
+        border: 2px solid #6f42c1;
+        border-radius: 10px;
+        padding: 18px;
+        text-align: center;
+        height: 100%;
+    }
+
+        #python-raise-exception-page .diagram-box h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        #python-raise-exception-page .diagram-box p {
+            margin-bottom: 0;
+            font-size: 14px;
+            color: #495057;
+        }
+
+    #python-raise-exception-page .diagram-arrow {
+        text-align: center;
+        font-size: 28px;
+        font-weight: 700;
+        color: #6f42c1;
+        padding: 8px 0;
+    }
+
+    #python-raise-exception-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #python-raise-exception-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+        }
+
+</style>
+
+
+<main id="python-raise-exception-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+
+                <h1 class="fw-bold">
+                    raise Exception in Python
+                </h1>
+
+                <p class="lead">
+                    Learn how to manually raise exceptions in Python using
+                    the <code>raise</code> statement.
+                </p>
+
+            </div>
+
+
+            <!-- WHAT IS RAISE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    What is raise?
+                </h2>
+
+                <p>
+                    The <code>raise</code> statement is used to manually
+                    generate an exception in Python.
+                </p>
+
+                <p>
+                    We can use <code>raise</code> when a program detects
+                    an invalid situation and wants to stop the current
+                    operation.
+                </p>
+
+                <div class="alert alert-info">
+
+                    <strong>Simple Definition:</strong>
+
+                    The <code>raise</code> statement is used to explicitly
+                    generate an exception.
+
+                </div>
+
+            </div>
+
+
+            <!-- BASIC DIAGRAM -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    raise Flow
+                </h2>
+
+                <div class="concept-box">
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            Program Condition
+                        </h5>
+
+                        <p>
+                            Python checks whether a condition is valid.
+                        </p>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            raise Exception
+                        </h5>
+
+                        <p>
+                            The program manually generates an exception.
+                        </p>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            except Block
+                        </h5>
+
+                        <p>
+                            The exception can be handled using except.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- BASIC SYNTAX -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Basic Syntax
+                </h2>
+
+                <pre><code>raise Exception("Error message")</code></pre>
+
+                <p class="mt-3">
+                    The <code>raise</code> keyword is followed by an
+                    exception object.
+                </p>
+
+            </div>
+
+
+            <!-- SIMPLE EXAMPLE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Simple Example
+                </h2>
+
+                <pre><code>age = 15
+
+if age &lt; 18:
+
+    raise Exception("Age must be 18 or above")</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Exception: Age must be 18 or above</code></pre>
+
+                <p>
+                    The program manually raises an exception because
+                    the age is less than 18.
+                </p>
+
+            </div>
+
+
+            <!-- RAISE VALUEERROR -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Raising ValueError
+                </h2>
+
+                <p>
+                    We can raise a specific exception such as
+                    <code>ValueError</code>.
+                </p>
+
+                <pre><code>marks = -10
+
+if marks &lt; 0:
+
+    raise ValueError("Marks cannot be negative")</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>ValueError: Marks cannot be negative</code></pre>
+
+            </div>
+
+
+            <!-- RAISE WITH TRY EXCEPT -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    raise with try and except
+                </h2>
+
+                <p>
+                    A manually raised exception can be handled using
+                    <code>try</code> and <code>except</code>.
+                </p>
+
+                <pre><code>try:
+
+    age = 15
+
+    if age &lt; 18:
+
+        raise ValueError("Age must be 18 or above")
+
+except ValueError as error:
+
+    print(error)</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Age must be 18 or above</code></pre>
+
+            </div>
+
+
+            <!-- USER INPUT -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    raise with User Input
+                </h2>
+
+                <p>
+                    We can use <code>raise</code> to validate user input.
+                </p>
+
+                <pre><code>try:
+
+    age = int(
+        input("Enter your age: ")
+    )
+
+    if age &lt; 18:
+
+        raise ValueError("You must be 18 or above")
+
+    print("You are eligible")
+
+except ValueError as error:
+
+    print("Error:", error)</code></pre>
+
+                <p>
+                    If the user enters an age below 18, the program
+                    manually raises <code>ValueError</code>.
+                </p>
+
+            </div>
+            <div class="px-2">
+                <h5 class="fw-bold mb-2">
+                    Output
+                </h5>
+
+                <pre class="mb-4"><code>Enter your age: 16
+Error: You must be 18 or above</code></pre>
+            </div>
+
+            <!-- EXAMPLE MARKS -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Example: Validate Student Marks
+                </h2>
+
+                <pre><code>try:
+
+    marks = int(
+        input("Enter marks: ")
+    )
+
+    if marks &lt; 0 or marks &gt; 100:
+
+        raise ValueError("Marks must be between 0 and 100")
+
+    print("Valid marks:", marks)
+
+except ValueError as error:
+
+    print("Error:", error)</code></pre>
+
+                <p class="mt-3">
+                    Example Output:
+                </p>
+
+                <pre><code>Enter marks: 120
+Error: Marks must be between 0 and 100</code></pre>
+
+            </div>
+
+
+            <!-- DIFFERENT EXCEPTIONS -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Raising Different Exception Types
+                </h2>
+
+                <p>
+                    Python allows us to raise different types of
+                    exceptions depending on the situation.
+                </p>
+
+                <pre><code>number = -5
+
+if number &lt; 0:
+
+    raise ValueError("Number cannot be negative")</code></pre>
+
+                <p>
+                    Here, <code>ValueError</code> is raised because
+                    the supplied value is invalid.
+                </p>
+
+            </div>
+
+
+            <!-- RAISE WITHOUT MESSAGE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    raise Without a Message
+                </h2>
+
+                <p>
+                    An exception can also be raised without providing
+                    a custom message.
+                </p>
+
+                <pre><code>age = 15
+
+if age &lt; 18:
+
+    raise ValueError</code></pre>
+
+                <p>
+                    This raises a <code>ValueError</code> without
+                    a custom error message.
+                </p>
+
+            </div>
+
+
+            <!-- RAISE EXISTING EXCEPTION -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Raising an Existing Exception
+                </h2>
+
+                <p>
+                    An exception can be caught and raised again using
+                    the <code>raise</code> statement.
+                </p>
+
+                <pre><code>try:
+
+    number = int("abc")
+
+except ValueError:
+
+    print("Handling error")
+
+    raise</code></pre>
+
+                <p>
+                    The <code>raise</code> statement raises the same
+                    exception again.
+                </p>
+
+            </div>
+
+
+            <!-- PRACTICAL USE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Practical Uses of raise
+                </h2>
+
+                <div class="row g-3">
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Validation
+                            </h5>
+
+                            <p class="mb-0">
+                                Used to reject invalid input values.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Business Rules
+                            </h5>
+
+                            <p class="mb-0">
+                                Used when application rules are not satisfied.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Error Handling
+                            </h5>
+
+                            <p class="mb-0">
+                                Used to manually generate meaningful errors.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- BEST PRACTICES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Best Practices
+                </h2>
+
+                <div class="row g-3">
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Clear Messages
+                            </h5>
+
+                            <p class="mb-0">
+                                Provide a clear message explaining the problem.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Correct Exception
+                            </h5>
+
+                            <p class="mb-0">
+                                Choose an exception type that matches
+                                the actual problem.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Validate Early
+                            </h5>
+
+                            <p class="mb-0">
+                                Validate important data before continuing
+                                with further operations.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- COMMON MISTAKES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Common Mistakes
+                </h2>
+
+                <ul>
+
+                    <li>
+                        Raising an exception without a meaningful reason.
+                    </li>
+
+                    <li>
+                        Using the wrong exception type.
+                    </li>
+
+                    <li>
+                        Raising exceptions for normal program flow.
+                    </li>
+
+                    <li>
+                        Providing unclear or misleading error messages.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Practice Programs
+                </h2>
+
+                <ol>
+
+                    <li>
+                        Raise a <code>ValueError</code> if age is below 18.
+                    </li>
+
+                    <li>
+                        Raise an exception when marks are outside
+                        the range 0 to 100.
+                    </li>
+
+                    <li>
+                        Create a calculator that raises an exception
+                        when division by zero is attempted.
+                    </li>
+
+                    <li>
+                        Take user input and manually raise an exception
+                        for invalid input.
+                    </li>
+
+                    <li>
+                        Catch an exception and raise it again using
+                        the <code>raise</code> statement.
+                    </li>
+
+                </ol>
+
+            </div>
+
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+
+                <h2 class="h4 fw-bold">
+                    Summary
+                </h2>
+
+                <p class="mb-0">
+
+                    The <code>raise</code> statement is used to manually
+                    generate an exception in Python. It is useful for
+                    validation, business rules and error handling.
+                    We can raise built-in exceptions such as
+                    <code>ValueError</code> and handle them using
+                    <code>try</code> and <code>except</code>.
+
+                </p>
+
+            </div>
+
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+
+                <a class="btn btn-outline-secondary"
+                   href="@Url.Action("Finally", "ExceptionHandling", new { area = "Python" })">
+
+                    ← Previous: Topic
+
+                </a>
+
+
+                <a class="btn btn-primary"
+                   href="@Url.Action("CustomExceptions", "ExceptionHandling", new { area = "Python" })">
+
+                    Next: Topic →
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

@@ -1,0 +1,1075 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Python Inheritance";
+}
+
+<style>
+    #python-inheritance-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #python-inheritance-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #python-inheritance-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #python-inheritance-page .diagram-box {
+        background: #ffffff;
+        border: 2px solid #6f42c1;
+        border-radius: 10px;
+        padding: 18px;
+        text-align: center;
+        height: 100%;
+    }
+
+        #python-inheritance-page .diagram-box h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        #python-inheritance-page .diagram-box p {
+            margin-bottom: 0;
+            font-size: 14px;
+            color: #495057;
+        }
+
+    #python-inheritance-page .diagram-arrow {
+        text-align: center;
+        font-size: 28px;
+        font-weight: 700;
+        color: #6f42c1;
+        padding: 8px 0;
+    }
+
+    #python-inheritance-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #python-inheritance-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+        }
+</style>
+
+
+<main id="python-inheritance-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- Sidebar -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/Python/Views/Shared/PythonTopics.cshtml")
+        </aside>
+
+
+        <!-- Main Content -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+
+                <h1 class="fw-bold">
+                    Inheritance in Python
+                </h1>
+
+                <p class="lead">
+                    Learn how one class can reuse the properties and methods
+                    of another class.
+                </p>
+
+            </div>
+
+
+            <!-- WHAT IS INHERITANCE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    What is Inheritance?
+                </h2>
+
+                <p>
+                    Inheritance is an important concept of Object-Oriented
+                    Programming.
+                </p>
+
+                <p>
+                    It allows one class to use the properties and methods
+                    of another class.
+                </p>
+
+                <p>
+                    The existing class is called the
+                    <strong>Parent Class</strong>, and the new class is
+                    called the <strong>Child Class</strong>.
+                </p>
+
+                <div class="alert alert-info">
+
+                    <strong>Simple Definition:</strong>
+
+                    Inheritance means creating a new class from an
+                    existing class so that code can be reused.
+
+                </div>
+
+            </div>
+
+
+            <!-- REAL WORLD EXAMPLE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Example 📩🌍
+                </h2>
+
+                <p>
+                    Think about a company.
+                </p>
+
+                <p>
+                    A general employee may have a name and employee ID.
+                    An IT employee can use those properties and also have
+                    additional properties such as programming skills.
+                </p>
+
+                <div class="row g-3 mt-2">
+
+                    <div class="col-md-6">
+
+                        <div class="info-card">
+
+                            <h5>Parent Class</h5>
+
+                            <p class="mb-0">
+                                Employee
+                                <br />
+                                Name
+                                <br />
+                                Employee ID
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-6">
+
+                        <div class="info-card">
+
+                            <h5>Child Class</h5>
+
+                            <p class="mb-0">
+                                IT Employee
+                                <br />
+                                Programming Skills
+                                <br />
+                                Technology
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- DIAGRAM -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Inheritance Diagram
+                </h2>
+
+                <p>
+                    The child class gets the reusable functionality
+                    from the parent class.
+                </p>
+
+                <div class="concept-box">
+
+                    <div class="diagram-box">
+
+                        <h5>Parent Class</h5>
+
+                        <p>
+                            Employee
+                            <br />
+                            name
+                            <br />
+                            employee_id
+                        </p>
+
+                    </div>
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+                    <div class="diagram-box">
+
+                        <h5>Child Class</h5>
+
+                        <p>
+                            ITEmployee
+                            <br />
+                            programming_skill
+                            <br />
+                            technology
+                        </p>
+
+                    </div>
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+                    <div class="diagram-box">
+
+                        <h5>Reusable Code</h5>
+
+                        <p>
+                            Child can use the parent class
+                            properties and methods.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- BASIC SYNTAX -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Inheritance Syntax
+                </h2>
+
+                <pre><code>class Parent:
+
+    # parent class code
+
+
+class Child(Parent):
+
+    # child class code</code></pre>
+
+                <p class="mt-3">
+                    The child class name is followed by the parent class
+                    inside brackets.
+                </p>
+
+            </div>
+
+
+            <!-- SIMPLE EXAMPLE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Simple Example
+                </h2>
+
+                <pre><code>class Animal:
+
+    def eat(self):
+        print("Animal is eating")
+
+
+class Dog(Animal):
+
+    def bark(self):
+        print("Dog is barking")
+
+
+dog1 = Dog()
+
+dog1.eat()
+dog1.bark()</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Animal is eating
+Dog is barking</code></pre>
+
+                <p>
+                    The <code>Dog</code> class gets the
+                    <code>eat()</code> method from the
+                    <code>Animal</code> class.
+                </p>
+
+            </div>
+
+
+            <!-- PARENT CHILD -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Parent Class and Child Class
+                </h2>
+
+                <p>
+                    The class from which another class inherits is called
+                    the parent or base class.
+                </p>
+
+                <p>
+                    The class that inherits is called the child or derived class.
+                </p>
+
+                <pre><code>class Person:
+
+    def show_name(self):
+        print("Rahul")
+
+
+class Student(Person):
+
+    def show_course(self):
+        print("Python")
+
+
+student1 = Student()
+
+student1.show_name()
+student1.show_course()</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Rahul
+Python</code></pre>
+
+            </div>
+
+
+            <!-- TYPES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Types of Inheritance
+                </h2>
+
+                <p>
+                    Python supports different inheritance patterns.
+                </p>
+
+                <div class="concept-box">
+
+                    <div class="diagram-box">
+
+                        <h5>Inheritance</h5>
+
+                        <p>
+                            Different ways classes can be related
+                            to each other.
+                        </p>
+
+                    </div>
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+                    <div class="row g-3">
+
+                        <div class="col-md-4">
+
+                            <div class="diagram-box">
+
+                                <h5>Single</h5>
+
+                                <p>
+                                    One parent → One child
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-4">
+
+                            <div class="diagram-box">
+
+                                <h5>Multiple</h5>
+
+                                <p>
+                                    Multiple parents → One child
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-4">
+
+                            <div class="diagram-box">
+
+                                <h5>Multilevel</h5>
+
+                                <p>
+                                    Parent → Child → Grandchild
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+                    <div class="row g-3">
+
+                        <div class="col-md-6">
+
+                            <div class="diagram-box">
+
+                                <h5>Hierarchical</h5>
+
+                                <p>
+                                    One parent → Multiple children
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <div class="diagram-box">
+
+                                <h5>Hybrid</h5>
+
+                                <p>
+                                    Combination of inheritance types
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- SINGLE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    1. Single Inheritance
+                </h2>
+
+                <p>
+                    In single inheritance, one child class inherits
+                    from one parent class.
+                </p>
+
+                <pre><code>class Animal:
+
+    def eat(self):
+        print("Eating")
+
+
+class Dog(Animal):
+
+    def bark(self):
+        print("Barking")
+
+
+dog1 = Dog()
+
+dog1.eat()
+dog1.bark()</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Eating
+Barking</code></pre>
+
+            </div>
+
+
+            <!-- MULTIPLE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    2. Multiple Inheritance
+                </h2>
+
+                <p>
+                    In multiple inheritance, one child class inherits
+                    from more than one parent class.
+                </p>
+
+                <pre><code>class Father:
+
+    def father_property(self):
+        print("Father property")
+
+
+class Mother:
+
+    def mother_property(self):
+        print("Mother property")
+
+
+class Child(Father, Mother):
+
+    def child_property(self):
+        print("Child property")
+
+
+child1 = Child()
+
+child1.father_property()
+child1.mother_property()
+child1.child_property()</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Father property
+Mother property
+Child property</code></pre>
+
+            </div>
+
+
+            <!-- MULTILEVEL -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    3. Multilevel Inheritance
+                </h2>
+
+                <p>
+                    In multilevel inheritance, one class inherits from
+                    another class, and a third class inherits from the second class.
+                </p>
+
+                <pre><code>class Grandparent:
+
+    def property1(self):
+        print("Grandparent")
+
+
+class Parent(Grandparent):
+
+    def property2(self):
+        print("Parent")
+
+
+class Child(Parent):
+
+    def property3(self):
+        print("Child")
+
+
+child1 = Child()
+
+child1.property1()
+child1.property2()
+child1.property3()</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Grandparent
+Parent
+Child</code></pre>
+
+            </div>
+
+
+            <!-- HIERARCHICAL -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    4. Hierarchical Inheritance
+                </h2>
+
+                <p>
+                    In hierarchical inheritance, multiple child classes
+                    inherit from one parent class.
+                </p>
+
+                <pre><code>class Animal:
+
+    def eat(self):
+        print("Eating")
+
+
+class Dog(Animal):
+
+    def bark(self):
+        print("Barking")
+
+
+class Cat(Animal):
+
+    def meow(self):
+        print("Meowing")
+
+
+dog1 = Dog()
+cat1 = Cat()
+
+dog1.eat()
+dog1.bark()
+
+cat1.eat()
+cat1.meow()</code></pre>
+
+            </div>
+            <div class="px-2">
+    <h5 class="fw-bold mb-2">
+        Output
+    </h5>
+
+    <pre class="mb-4"><code>Eating
+Barking
+Eating
+Meowing</code></pre>
+</div>
+
+            <!-- HYBRID -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    5. Hybrid Inheritance
+                </h2>
+
+                <p>
+                    Hybrid inheritance is a combination of two or more
+                    inheritance patterns.
+                </p>
+
+                <p>
+                    It is generally used in more complex class designs.
+                </p>
+
+                <pre><code>class A:
+
+    def show_a(self):
+        print("Class A")
+
+
+class B(A):
+
+    def show_b(self):
+        print("Class B")
+
+
+class C(A):
+
+    def show_c(self):
+        print("Class C")
+
+
+class D(B, C):
+
+    def show_d(self):
+        print("Class D")
+
+
+obj = D()
+
+obj.show_a()
+obj.show_b()
+obj.show_c()
+obj.show_d()</code></pre>
+
+            </div>
+            <div class="px-2">
+    <h5 class="fw-bold mb-2">
+        Output
+    </h5>
+
+    <pre class="mb-4"><code>Class A
+Class B
+Class C
+Class D</code></pre>
+</div>
+
+            <!-- SUPER -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Using <code>super()</code>
+                </h2>
+
+                <p>
+                    The <code>super()</code> function is used to call
+                    a method from the parent class.
+                </p>
+
+                <pre><code>class Parent:
+
+    def show(self):
+        print("Parent method")
+
+
+class Child(Parent):
+
+    def show(self):
+        super().show()
+        print("Child method")
+
+
+child1 = Child()
+
+child1.show()</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Parent method
+Child method</code></pre>
+
+                <p>
+                    Here <code>super().show()</code> calls the parent
+                    class method.
+                </p>
+
+            </div>
+
+
+            <!-- CONSTRUCTOR IN INHERITANCE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Constructor in Inheritance
+                </h2>
+
+                <p>
+                    A child class can also have its own constructor.
+                </p>
+
+                <pre><code>class Person:
+
+    def __init__(self, name):
+        self.name = name
+
+
+class Student(Person):
+
+    def __init__(self, name, course):
+        super().__init__(name)
+        self.course = course
+
+
+student1 = Student("Rahul", "Python")
+
+print(student1.name)
+print(student1.course)</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Rahul
+Python</code></pre>
+
+                <p>
+                    The child constructor uses <code>super()</code> to
+                    call the parent constructor.
+                </p>
+
+            </div>
+
+
+            <!-- METHOD OVERRIDING -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Method Overriding
+                </h2>
+
+                <p>
+                    A child class can provide its own version of a method
+                    that already exists in the parent class.
+                </p>
+
+                <pre><code>class Animal:
+
+    def sound(self):
+        print("Animal makes sound")
+
+
+class Dog(Animal):
+
+    def sound(self):
+        print("Dog barks")
+
+
+dog1 = Dog()
+
+dog1.sound()</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Dog barks</code></pre>
+
+                <p>
+                    The child class replaces the behavior of the inherited
+                    method.
+                </p>
+
+            </div>
+
+
+            <!-- BENEFITS -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Benefits of Inheritance
+                </h2>
+
+                <ul>
+
+                    <li>
+                        Reuse existing code.
+                    </li>
+
+                    <li>
+                        Reduce duplicate code.
+                    </li>
+
+                    <li>
+                        Make code easier to maintain.
+                    </li>
+
+                    <li>
+                        Create parent-child relationships between classes.
+                    </li>
+
+                    <li>
+                        Support method overriding.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- COMPARISON -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Parent Class vs Child Class
+                </h2>
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered align-middle">
+
+                        <thead>
+
+                            <tr>
+                                <th>Parent Class</th>
+                                <th>Child Class</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+
+                                <td>
+                                    Existing class
+                                </td>
+
+                                <td>
+                                    New class
+                                </td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>
+                                    Provides reusable code
+                                </td>
+
+                                <td>
+                                    Reuses and can extend the code
+                                </td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>
+                                    Also called base class
+                                </td>
+
+                                <td>
+                                    Also called derived class
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <!-- COMMON MISTAKES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Common Mistakes
+                </h2>
+
+                <ul>
+
+                    <li>
+                        Forgetting to write the parent class in brackets.
+                    </li>
+
+                    <li>
+                        Confusing inheritance with object creation.
+                    </li>
+
+                    <li>
+                        Forgetting <code>super()</code> when the parent
+                        constructor needs to be called.
+                    </li>
+
+                    <li>
+                        Accidentally overriding a parent method.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Practice Programs
+                </h2>
+
+                <ol>
+
+                    <li>
+                        Create a <code>Vehicle</code> parent class and a
+                        <code>Car</code> child class.
+                    </li>
+
+                    <li>
+                        Create an <code>Animal</code> parent class and
+                        <code>Dog</code> child class.
+                    </li>
+
+                    <li>
+                        Create an example of multiple inheritance.
+                    </li>
+
+                    <li>
+                        Create a multilevel inheritance example.
+                    </li>
+
+                    <li>
+                        Use <code>super()</code> to call a parent constructor.
+                    </li>
+
+                    <li>
+                        Create an example of method overriding.
+                    </li>
+
+                </ol>
+
+            </div>
+
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+
+                <h2 class="h4 fw-bold">
+                    Summary
+                </h2>
+
+                <p class="mb-0">
+
+                    Inheritance allows one class to reuse the properties
+                    and methods of another class. The existing class is
+                    called the parent class and the new class is called
+                    the child class. Python supports single, multiple,
+                    multilevel, hierarchical and hybrid inheritance.
+                    The <code>super()</code> function can be used to access
+                    parent class functionality.
+
+                </p>
+
+            </div>
+
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+
+                <a class="btn btn-outline-secondary"
+                   href="@Url.Action("Encapsulation", "OOPs", new { area = "Python" })">
+
+                    ← Previous: Topic
+
+                </a>
+
+
+                <a class="btn btn-primary"
+                   href="@Url.Action("Polymorphism", "OOPs", new { area = "Python" })">
+
+                    Next: Topic →
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

@@ -1,0 +1,636 @@
+﻿@{
+    ViewData["Title"] = "Transactions Introduction";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- =========================
+         PAGE HEADER
+    ========================== -->
+
+    <div class="mb-4">
+
+        <h1 class="fw-bold text-primary">
+            Transactions Introduction
+        </h1>
+
+        <p class="text-muted fs-5">
+            Learn the basics of SQL Server Transactions,
+            why transactions are used, and how COMMIT,
+            ROLLBACK and SAVEPOINT work.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         WHAT IS A TRANSACTION?
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                What is a Transaction?
+            </h2>
+
+            <p>
+                A <strong>Transaction</strong> is a group of one or more
+                SQL statements that are treated as a single unit of work.
+            </p>
+
+            <p>
+                A transaction allows us to make sure that a group of
+                database operations is completed successfully.
+                If something goes wrong, the changes can be rolled back.
+            </p>
+
+            <p>
+                Transactions are commonly used when multiple database
+                operations must be performed together.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         WHY TRANSACTIONS?
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Why Do We Use Transactions?
+            </h2>
+
+            <p>
+                Transactions help maintain the consistency and reliability
+                of data in a database.
+            </p>
+
+            <ul>
+
+                <li class="mb-2">
+                    To group multiple SQL operations together.
+                </li>
+
+                <li class="mb-2">
+                    To save changes only when all required operations
+                    are successful.
+                </li>
+
+                <li class="mb-2">
+                    To undo changes when an error occurs.
+                </li>
+
+                <li class="mb-2">
+                    To maintain database consistency.
+                </li>
+
+                <li class="mb-2">
+                    To control when changes become permanent.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         REAL WORLD EXAMPLE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Real-World Example
+            </h2>
+
+            <p>
+                Consider a bank transfer from Account A to Account B.
+            </p>
+
+            <p>
+                Two operations are required:
+            </p>
+
+            <ol>
+
+                <li class="mb-2">
+                    Deduct money from Account A.
+                </li>
+
+                <li class="mb-2">
+                    Add money to Account B.
+                </li>
+
+            </ol>
+
+            <p>
+                Both operations should succeed together.
+                If money is deducted from Account A but the second
+                operation fails, the first operation should also be
+                undone.
+            </p>
+
+            <div class="alert alert-info">
+
+                <strong>Transaction Concept:</strong>
+
+                <br />
+
+                Either all required operations are completed successfully,
+                or the changes can be rolled back.
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         BASIC TRANSACTION SYNTAX
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Basic Transaction Syntax
+            </h2>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>BEGIN TRANSACTION;
+
+-- SQL statements
+
+COMMIT;</code></pre>
+
+            <p class="mt-3">
+                Here, <strong>BEGIN TRANSACTION</strong> starts the
+                transaction and <strong>COMMIT</strong> makes the
+                changes permanent.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         BEGIN TRANSACTION
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                BEGIN TRANSACTION
+            </h2>
+
+            <p>
+                <strong>BEGIN TRANSACTION</strong> starts a new
+                transaction.
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>BEGIN TRANSACTION;</code></pre>
+
+            <p class="mt-3">
+                After the transaction starts, SQL statements executed
+                as part of that transaction can be committed or rolled back.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         COMMIT
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                COMMIT
+            </h2>
+
+            <p>
+                <strong>COMMIT</strong> permanently saves the changes
+                made during the transaction.
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>COMMIT;</code></pre>
+
+            <div class="alert alert-success mt-3">
+
+                <strong>Example:</strong>
+
+                <br />
+
+                If all operations are successful, use
+                <strong>COMMIT</strong> to save the changes.
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         ROLLBACK
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                ROLLBACK
+            </h2>
+
+            <p>
+                <strong>ROLLBACK</strong> is used to undo changes
+                made during a transaction that have not been committed.
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>ROLLBACK;</code></pre>
+
+            <div class="alert alert-warning mt-3">
+
+                <strong>Example:</strong>
+
+                <br />
+
+                If an error occurs during the transaction,
+                we can use <strong>ROLLBACK</strong> to undo
+                the transaction's changes.
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         TRANSACTION EXAMPLE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Simple Transaction Example
+            </h2>
+
+            <p>
+                Let's create a simple transaction using a Students table.
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>BEGIN TRANSACTION;
+
+INSERT INTO Students
+(
+    StudentId,
+    StudentName,
+    City,
+    Age
+)
+VALUES
+(
+    105,
+    'Amit',
+    'Pune',
+    23
+);
+
+COMMIT;</code></pre>
+
+            <p class="mt-3">
+                The INSERT operation is performed inside the transaction.
+                When COMMIT is executed, the change becomes permanent.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         ROLLBACK EXAMPLE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                ROLLBACK Example
+            </h2>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>BEGIN TRANSACTION;
+
+INSERT INTO Students
+(
+    StudentId,
+    StudentName,
+    City,
+    Age
+)
+VALUES
+(
+    106,
+    'Sneha',
+    'Mumbai',
+    22
+);
+
+ROLLBACK;</code></pre>
+
+            <p class="mt-3">
+                In this example, the INSERT operation is undone because
+                the transaction is rolled back.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         TRANSACTION FLOW
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Transaction Flow
+            </h2>
+
+            <div class="alert alert-primary">
+
+                <strong>Transaction Flow:</strong>
+
+                <br /><br />
+
+                BEGIN TRANSACTION
+
+                <br />
+
+                ↓
+
+                <br />
+
+                SQL Statements
+
+                <br />
+
+                ↓
+
+                <br />
+
+                Check Result
+
+                <br />
+
+                ↓
+
+                <br />
+
+                <strong>COMMIT</strong>
+                &nbsp; → &nbsp;
+                Save Changes
+
+                <br />
+
+                OR
+
+                <br />
+
+                <strong>ROLLBACK</strong>
+                &nbsp; → &nbsp;
+                Undo Changes
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         TRANSACTION STATES
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Important Transaction Commands
+            </h2>
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-striped">
+
+                    <thead class="table-primary">
+
+                        <tr>
+
+                            <th>Command</th>
+
+                            <th>Purpose</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+
+                            <td>
+                                <code>BEGIN TRANSACTION</code>
+                            </td>
+
+                            <td>
+                                Starts a transaction.
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>
+                                <code>COMMIT</code>
+                            </td>
+
+                            <td>
+                                Permanently saves the transaction changes.
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>
+                                <code>ROLLBACK</code>
+                            </td>
+
+                            <td>
+                                Undoes uncommitted transaction changes.
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>
+                                <code>SAVE TRANSACTION</code>
+                            </td>
+
+                            <td>
+                                Creates a savepoint inside a transaction.
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         IMPORTANT POINTS
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Important Points
+            </h2>
+
+            <ul>
+
+                <li class="mb-2">
+                    A transaction groups multiple SQL operations into
+                    a single unit of work.
+                </li>
+
+                <li class="mb-2">
+                    <strong>BEGIN TRANSACTION</strong> starts the
+                    transaction.
+                </li>
+
+                <li class="mb-2">
+                    <strong>COMMIT</strong> saves the changes.
+                </li>
+
+                <li class="mb-2">
+                    <strong>ROLLBACK</strong> undoes uncommitted changes.
+                </li>
+
+                <li class="mb-2">
+                    <strong>SAVE TRANSACTION</strong> creates a
+                    savepoint inside a transaction.
+                </li>
+
+                <li class="mb-2">
+                    Transactions help maintain data consistency.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         SUMMARY
+    ========================== -->
+
+    <div class="alert alert-primary shadow-sm mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Summary
+        </h2>
+
+        <p>
+            A transaction is a group of SQL statements treated as
+            one unit of work.
+        </p>
+
+        <p>
+            SQL Server provides commands such as
+            <strong>BEGIN TRANSACTION</strong>,
+            <strong>COMMIT</strong>,
+            <strong>ROLLBACK</strong> and
+            <strong>SAVE TRANSACTION</strong>
+            to control database changes.
+        </p>
+
+        <p class="mb-0">
+            Transactions are useful when multiple database operations
+            need to be completed reliably and consistently.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         PREVIOUS / NEXT
+    ========================== -->
+
+    <div class="d-flex justify-content-between align-items-center
+        mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/Triggers/InsteadOfTrigger"
+           class="btn btn-outline-primary">
+
+            ← Previous: INSTEAD OF Trigger
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/Transactions/Commit"
+           class="btn btn-primary">
+
+            Next: COMMIT →
+
+        </a>
+
+    </div>
+
+</div>

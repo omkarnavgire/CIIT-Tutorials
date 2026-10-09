@@ -1,0 +1,478 @@
+﻿@{
+    ViewData["Title"] = "AFTER UPDATE Trigger";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- =========================
+         PAGE HEADER
+    ========================== -->
+
+    <div class="mb-4">
+
+        <h1 class="fw-bold">
+            AFTER UPDATE Trigger
+        </h1>
+
+        <p class="text-muted">
+            Learn how AFTER UPDATE Triggers work in SQL Server,
+            how to create them and how to use the
+            <strong>inserted</strong> and <strong>deleted</strong>
+            logical tables.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         INTRODUCTION
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            What is an AFTER UPDATE Trigger?
+        </h2>
+
+        <p>
+            An <strong>AFTER UPDATE Trigger</strong> is a special
+            SQL Server database object that automatically executes
+            after a successful <strong>UPDATE</strong> operation
+            on a table.
+        </p>
+
+        <p>
+            It is useful when we want to perform an automatic action
+            whenever existing records are modified.
+        </p>
+
+        <ul>
+            <li>It executes after an UPDATE operation.</li>
+            <li>It can be used for auditing changes.</li>
+            <li>It can store old and new values.</li>
+            <li>It can maintain history or log tables.</li>
+            <li>It can perform automatic database operations.</li>
+        </ul>
+
+    </section>
+
+
+    <!-- =========================
+         BASIC SYNTAX
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Basic Syntax
+        </h2>
+
+        <pre class="bg-dark text-light p-3 rounded"><code>CREATE TRIGGER TriggerName
+ON TableName
+AFTER UPDATE
+AS
+BEGIN
+
+    -- Trigger logic
+
+END;</code></pre>
+
+    </section>
+
+
+    <!-- =========================
+         EXAMPLE TABLE
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Example Table
+        </h2>
+
+        <p>
+            Let's assume we have a <strong>Students</strong> table.
+        </p>
+
+        <pre class="bg-dark text-light p-3 rounded"><code>CREATE TABLE Students
+(
+    StudentId INT PRIMARY KEY,
+    StudentName VARCHAR(100),
+    City VARCHAR(50),
+    Age INT
+);</code></pre>
+
+    </section>
+
+
+    <!-- =========================
+         INSERT SAMPLE DATA
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Insert Sample Data
+        </h2>
+
+        <pre class="bg-dark text-light p-3 rounded"><code>INSERT INTO Students
+(
+    StudentId,
+    StudentName,
+    City,
+    Age
+)
+VALUES
+(
+    101,
+    'Rahul',
+    'Pune',
+    21
+);</code></pre>
+
+    </section>
+
+
+    <!-- =========================
+         CREATE HISTORY TABLE
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Create an Audit Table
+        </h2>
+
+        <p>
+            We can create a separate table to store information
+            whenever a student record is updated.
+        </p>
+
+        <pre class="bg-dark text-light p-3 rounded"><code>CREATE TABLE StudentAudit
+(
+    AuditId INT IDENTITY(1,1) PRIMARY KEY,
+    StudentId INT,
+    OldCity VARCHAR(50),
+    NewCity VARCHAR(50),
+    OldAge INT,
+    NewAge INT,
+    ChangedDate DATETIME
+);</code></pre>
+
+    </section>
+
+
+    <!-- =========================
+         CREATE AFTER UPDATE TRIGGER
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Creating an AFTER UPDATE Trigger
+        </h2>
+
+        <p>
+            Now we create a trigger that automatically records
+            the old and new values whenever a student is updated.
+        </p>
+
+        <pre class="bg-dark text-light p-3 rounded"><code>CREATE TRIGGER trg_StudentAfterUpdate
+ON Students
+AFTER UPDATE
+AS
+BEGIN
+
+    INSERT INTO StudentAudit
+    (
+        StudentId,
+        OldCity,
+        NewCity,
+        OldAge,
+        NewAge,
+        ChangedDate
+    )
+    SELECT
+        d.StudentId,
+        d.City,
+        i.City,
+        d.Age,
+        i.Age,
+        GETDATE()
+    FROM deleted d
+    INNER JOIN inserted i
+        ON d.StudentId = i.StudentId;
+
+END;</code></pre>
+
+    </section>
+
+
+    <!-- =========================
+         IMPORTANT LOGICAL TABLES
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            inserted and deleted Logical Tables
+        </h2>
+
+        <p>
+            SQL Server provides two special logical tables inside
+            an UPDATE trigger:
+        </p>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-light">
+
+                    <tr>
+                        <th>Logical Table</th>
+                        <th>Contains</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>
+                            <strong>deleted</strong>
+                        </td>
+
+                        <td>
+                            Old values before the UPDATE
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <strong>inserted</strong>
+                        </td>
+
+                        <td>
+                            New values after the UPDATE
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         UPDATE OPERATION
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Performing an UPDATE
+        </h2>
+
+        <p>
+            Now update the student's city and age.
+        </p>
+
+        <pre class="bg-dark text-light p-3 rounded"><code>UPDATE Students
+SET
+    City = 'Mumbai',
+    Age = 22
+WHERE StudentId = 101;</code></pre>
+
+    </section>
+
+
+    <!-- =========================
+         WHAT HAPPENS
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            What Happens During UPDATE?
+        </h2>
+
+        <p>
+            Suppose the old record was:
+        </p>
+
+        <pre class="bg-dark text-light p-3 rounded"><code>StudentId = 101
+City = Pune
+Age = 21</code></pre>
+
+        <p>
+            After the UPDATE:
+        </p>
+
+        <pre class="bg-dark text-light p-3 rounded"><code>StudentId = 101
+City = Mumbai
+Age = 22</code></pre>
+
+        <p>
+            Inside the trigger:
+        </p>
+
+        <ul>
+            <li><strong>deleted</strong> contains Pune and 21.</li>
+            <li><strong>inserted</strong> contains Mumbai and 22.</li>
+        </ul>
+
+    </section>
+
+
+    <!-- =========================
+         CHECK AUDIT TABLE
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Check the Audit Record
+        </h2>
+
+        <pre class="bg-dark text-light p-3 rounded"><code>SELECT *
+FROM StudentAudit;</code></pre>
+
+        <p class="mt-3">
+            The audit table will contain the old and new values
+            generated automatically by the trigger.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         MULTIPLE ROW UPDATE
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            AFTER UPDATE Trigger and Multiple Rows
+        </h2>
+
+        <p>
+            A trigger can execute for an UPDATE statement that
+            modifies multiple rows.
+        </p>
+
+        <pre class="bg-dark text-light p-3 rounded"><code>UPDATE Students
+SET City = 'Pune'
+WHERE Age &gt; 20;</code></pre>
+
+        <p>
+            Therefore, trigger logic should be written using
+            <strong>set-based operations</strong> rather than
+            assuming that only one row is updated.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         IMPORTANT NOTE
+    ========================== -->
+
+    <section class="mb-5">
+
+        <div class="alert alert-warning border-0">
+
+            <h5 class="fw-bold">
+                Important
+            </h5>
+
+            <ul class="mb-0">
+
+                <li>
+                    AFTER UPDATE triggers execute after the UPDATE
+                    operation.
+                </li>
+
+                <li>
+                    <strong>deleted</strong> contains the old values.
+                </li>
+
+                <li>
+                    <strong>inserted</strong> contains the new values.
+                </li>
+
+                <li>
+                    A single UPDATE statement can affect multiple rows.
+                </li>
+
+                <li>
+                    Always design trigger logic to handle multiple rows.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         SUMMARY
+    ========================== -->
+
+    <section class="mb-4">
+
+        <div class="alert alert-primary border-0">
+
+            <h5 class="fw-bold">
+                Summary
+            </h5>
+
+            <p class="mb-0">
+                An <strong>AFTER UPDATE Trigger</strong> automatically
+                executes after a successful UPDATE operation.
+                It is commonly used for auditing, maintaining history,
+                tracking changes and performing automatic database
+                operations. The <strong>deleted</strong> logical table
+                contains the old values, while the
+                <strong>inserted</strong> logical table contains the
+                new values.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         PREVIOUS / NEXT
+    ========================== -->
+
+    <div class="d-flex justify-content-between align-items-center
+        mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/Triggers/AfterInsertTrigger"
+           class="btn btn-outline-primary">
+
+            ← Previous: AFTER INSERT Trigger
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/Triggers/AfterDeleteTrigger"
+           class="btn btn-primary">
+
+            Next: AFTER DELETE Trigger →
+
+        </a>
+
+    </div>
+
+</div>

@@ -1,0 +1,226 @@
+@{
+    Layout = "~/Areas/Jenkins/Views/Shared/JenkinsLayout.cshtml";
+    ViewData["Title"] = "Docker Registry Push";
+}
+
+<style>
+    #docker-registry-push-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #docker-registry-push-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #docker-registry-push-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #docker-registry-push-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #docker-registry-push-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+    #docker-registry-push-page .example-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+    }
+</style>
+
+<main id="docker-registry-push-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/Jenkins/Views/Shared/JenkinsTopics.cshtml")
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+                <h1 class="fw-bold">Docker Registry Push</h1>
+                <p class="lead">
+                    Learn how to authenticate with remote container registries, securely handle access tokens, tag application layers, and publish containerized distributions via Jenkins automation.
+                </p>
+            </div>
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">What is a Docker Registry Push Phase?</h2>
+                <p>
+                    Building application container images locally on an automation build agent is only the first step. To make these build packages accessible to staging, production environments, or Kubernetes clusters, they must be transmitted over to a centralized image storage server known as a <strong>Docker Registry</strong> (such as Docker Hub, Amazon ECR, or Azure Container Registry).
+                </p>
+                <p>
+                    The <strong>Docker Registry Push</strong> workflow within Jenkins formalizes the handoff from testing down to delivery. This step handles authenticating with the target image repository, matching structural tags to specific tracking numbers, and pushing up compressed change layers safely without exposing access passwords inside version logs.
+                </p>
+
+                <!-- DOCKER Registry Push IMAGE ATTACHMENT -->
+                <div class="my-4 text-center bg-light rounded shadow-sm border p-3">
+                    <img src="~/Images/Jenkins/dockerregistrypush.jpg"
+                         asp-append-version="true"
+                         alt="Docker Registry Push workflow Flow Diagram"
+                         class="img-fluid rounded"
+                         style="max-width: 100%; height: auto;" />
+                    <div class="form-text mt-2 text-muted small">
+                        Visualizing the automated pipeline containerization cycle from application packaging down to registry publication.
+                    </div>
+                </div>
+
+                <div class="alert alert-info">
+                    <strong>Simple Definition:</strong> The automated pipeline process where Jenkins logs into a secure remote image storage system, signs the freshly built container with tracking identifiers, and uploads it for distribution.
+                </div>
+            </div>
+
+            <!-- KEY CONCEPTS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Key Jenkins Points</h2>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>WithRegistry Masking Block</h5>
+                            <p class="mb-0">Utilizing native pipeline DSL wrappers like <code>withRegistry</code> to securely inject registry access keys while automatically scrubbing all passwords from plain-text console trace outputs.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Semantic Tag Specifications</h5>
+                            <p class="mb-0">Configuring image tags dynamically using persistent variables (such as <code>$BUILD_NUMBER</code> or short Git hashes) to maintain cryptographic traceability across deployments.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Automated Post Cleanups</h5>
+                            <p class="mb-0">Enforcing workspace scrubbing routines using <code>docker rmi</code> inside post-execution triggers to prevent cached images from consuming the runner host's hard drive space.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Layer Cache Optimization</h5>
+                            <p class="mb-0">Designing stages to reuse un-modified image build layers, maximizing compilation upload speeds to remote registry storage locations.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXAMPLE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Practical Jenkins Example</h2>
+                <p>This declarative pipeline block leverages the native **Docker Pipeline Plugin extension** to pull environment credentials, compile an app layout against a dynamic registry path tag wrapper, and push the artifact:</p>
+                <pre><code>pipeline {
+    agent any
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    environment {
+        // Target repository identifier name
+        REGISTRY_ACCOUNT = 'yourdockerhubusername'
+        IMAGE_NAME       = 'enterprise-app'
+        // Combines system labels to generate a distinct tracking identity string
+        IMAGE_TAG        = "${REGISTRY_ACCOUNT}/${IMAGE_NAME}:${BUILD_NUMBER}"
+    }
+
+    stages {
+         stage('Compile Container Image') {
+            steps {
+                echo "Assembling immutable image context layer: ${IMAGE_TAG}"
+                // Triggers the build tool engine to process local Dockerfiles
+                script {
+                    img = docker.build("${IMAGE_TAG}")
+                }
+            }
+        }
+
+        stage('Publish to Docker Registry') {
+            steps {
+                echo 'Authenticating with centralized delivery registry...'
+                script {
+                    // Pulls pre-saved username/password credentials safely from Jenkins storage
+                    docker.withRegistry('https://docker.io', 'docker-hub-credentials-id') {
+                        echo "Pushing verified image layers up to the cloud repository..."
+                        img.push()
+                        
+                        echo "Publishing additional fallback 'latest' tracker flag..."
+                        img.push('latest')
+                    }
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            echo 'Purging cached local host layer assets to protect storage disk capacity...'
+            // Drops the compiled container data signatures out of the temporary agent workspace host
+            sh "docker rmi ${IMAGE_TAG} || true"
+            sh "docker rmi ${REGISTRY_ACCOUNT}/${IMAGE_NAME}:latest || true"
+        }
+    }
+}</code></pre>
+            </div>
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Practice Exercise</h2>
+                <ol>
+                    <li class="mb-2">Go to <strong>Manage Jenkins &rarr; Credentials</strong> and add a new *Username with Password* item containing your Docker Hub token named <code>docker-hub-credentials-id</code>.</li>
+                    <li class="mb-2">Create a new <strong>Pipeline</strong> project item inside your repository catalog folder called <code>docker-registry-push-pipeline</code>.</li>
+                    <li class="mb-2">Paste the practical declarative layout blueprint template shared in the script container step above into the job configuration text field.</li>
+                    <li class="mb-2">Trigger a manual pipeline build sequence. Monitor the **Console Output** to verify that your login passwords remain fully masked while the container layers successfully upload.</li>
+                </ol>
+            </div>
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+                <h2 class="h4 fw-bold">Summary</h2>
+                <p class="mb-0">You have completed the <strong>Docker Registry Push</strong> lesson. Publishing verified image distributions across standard storage repositories provides the foundation required to deploy infrastructure securely using <strong>Jenkins and AWS</strong>.</p>
+            </div>
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+                <a class="btn btn-outline-primary" href="@Url.Action("DockerBuild", "CloudDevOps", new { area = "Jenkins" })">&larr; Previous: Docker Image Build</a>
+                <a class="btn btn-primary" href="@Url.Action("Aws", "CloudDevOps", new { area = "Jenkins" })">Next: Jenkins and AWS &rarr;</a>
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

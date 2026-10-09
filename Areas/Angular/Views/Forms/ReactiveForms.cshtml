@@ -1,0 +1,1514 @@
+﻿@{
+    ViewData["Title"] = "Angular Reactive Forms";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- Header -->
+    <section class="mb-4">
+        <h1 class="fw-bold text-dark">Angular Reactive Forms</h1>
+
+        <p class="lead text-muted">
+            Learn how to create and manage Angular forms programmatically
+            using <strong>FormControl</strong>, <strong>FormGroup</strong>,
+            <strong>FormBuilder</strong> and <strong>Validators</strong>.
+        </p>
+    </section>
+
+
+    <!-- Introduction -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">What are Reactive Forms?</h2>
+
+        <div class="info-card">
+
+            <p>
+                Reactive Forms provide a programmatic approach to creating
+                and managing Angular forms.
+            </p>
+
+            <p>
+                The form model is created in the component using objects such as
+                <strong>FormControl</strong> and <strong>FormGroup</strong>.
+            </p>
+
+            <p class="mb-0">
+                Reactive forms are especially useful when an application needs
+                complex validation, dynamic controls or precise control over
+                form state.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Flow -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Reactive Form Flow</h2>
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+                <strong>Component</strong>
+                <span>Define Form Model</span>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+                <strong>FormGroup</strong>
+                <span>Group Controls</span>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+                <strong>Validation</strong>
+                <span>Check Values</span>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+                <strong>Template</strong>
+                <span>Display Form</span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Main Concepts -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Main Reactive Form Concepts</h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">C</div>
+
+                <h5>FormControl</h5>
+
+                <p>
+                    Represents a single form field and its state.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">G</div>
+
+                <h5>FormGroup</h5>
+
+                <p>
+                    Groups multiple controls into a form model.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">B</div>
+
+                <h5>FormBuilder</h5>
+
+                <p>
+                    Provides a convenient way to create form controls and groups.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">V</div>
+
+                <h5>Validators</h5>
+
+                <p>
+                    Apply validation rules to form controls.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Import ReactiveFormsModule -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Import ReactiveFormsModule</h2>
+
+        <div class="info-card">
+
+            <p>
+                Reactive forms use Angular's
+                <strong>ReactiveFormsModule</strong>.
+            </p>
+
+            <p class="mb-0">
+                In a standalone component, the module can be included in
+                the component's <strong>imports</strong> array.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Standalone Component
+            </div>
+
+            <pre><code>import { Component } from '@@angular/core';
+import { ReactiveFormsModule } from '@@angular/forms';
+
+@@Component({
+    selector: 'app-registration',
+    imports: [ReactiveFormsModule],
+    templateUrl: './registration.component.html'
+})
+export class RegistrationComponent {
+
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- FormControl -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Creating FormControl</h2>
+
+        <div class="info-card">
+
+            <p>
+                <strong>FormControl</strong> represents one individual
+                form field.
+            </p>
+
+            <p class="mb-0">
+                It stores the field value and tracks states such as
+                valid, invalid, touched and dirty.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>name = new FormControl('');</code></pre>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Initial Value
+            </div>
+
+            <pre><code>name = new FormControl('CIIT Training Institute');</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- FormGroup -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Creating FormGroup</h2>
+
+        <div class="info-card">
+
+            <p>
+                <strong>FormGroup</strong> combines multiple FormControls
+                into a single form model.
+            </p>
+
+            <p class="mb-0">
+                It allows related fields to be managed together.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>registrationForm = new FormGroup({
+
+    name: new FormControl(''),
+
+    email: new FormControl(''),
+
+    mobile: new FormControl(''),
+
+    course: new FormControl('')
+
+});</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Form Template -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Connecting FormGroup with Template</h2>
+
+        <div class="info-card">
+
+            <p>
+                The <strong>formGroup</strong> directive connects the
+                HTML form with the FormGroup created in TypeScript.
+            </p>
+
+            <p class="mb-0">
+                Individual controls are connected using
+                <strong>formControlName</strong>.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                HTML Template
+            </div>
+
+            <pre><code>&lt;form [formGroup]="registrationForm"&gt;
+
+    &lt;input
+        type="text"
+        formControlName="name"&gt;
+
+    &lt;input
+        type="email"
+        formControlName="email"&gt;
+
+    &lt;input
+        type="text"
+        formControlName="mobile"&gt;
+
+    &lt;select formControlName="course"&gt;
+
+        &lt;option value=""&gt;
+            Select Course
+        &lt;/option&gt;
+
+        &lt;option value="Java Full Stack"&gt;
+            Java Full Stack
+        &lt;/option&gt;
+
+        &lt;option value=".NET Full Stack"&gt;
+            .NET Full Stack
+        &lt;/option&gt;
+
+    &lt;/select&gt;
+
+&lt;/form&gt;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- FormBuilder -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Using FormBuilder</h2>
+
+        <div class="info-card">
+
+            <p>
+                <strong>FormBuilder</strong> provides helper methods that
+                make creating reactive form controls and groups more concise.
+            </p>
+
+            <p class="mb-0">
+                It is useful when a form contains multiple controls.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                FormBuilder Example
+            </div>
+
+            <pre><code>import { Component } from '@@angular/core';
+import {
+    FormBuilder,
+    Validators
+} from '@@angular/forms';
+
+@@Component({
+    selector: 'app-enquiry',
+    templateUrl: './enquiry.component.html'
+})
+export class EnquiryComponent {
+
+    enquiryForm = this.fb.group({
+
+        name: [''],
+
+        email: [''],
+
+        mobile: [''],
+
+        course: ['']
+
+    });
+
+    constructor(
+        private fb: FormBuilder
+    ) {
+    }
+
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Validators -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Using Validators</h2>
+
+        <div class="info-card">
+
+            <p>
+                Angular provides built-in validators that can be attached
+                to reactive form controls.
+            </p>
+
+            <p class="mb-0">
+                Examples include <strong>required</strong>,
+                <strong>email</strong>,
+                <strong>minLength</strong> and
+                <strong>maxLength</strong>.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Validators Example
+            </div>
+
+            <pre><code>registrationForm = new FormGroup({
+
+    name: new FormControl(
+        '',
+        Validators.required
+    ),
+
+    email: new FormControl(
+        '',
+        [
+            Validators.required,
+            Validators.email
+        ]
+    )
+
+});</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Multiple Validators -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Multiple Validators</h2>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>mobile = new FormControl(
+    '',
+    [
+        Validators.required,
+        Validators.minLength(10),
+        Validators.maxLength(10)
+    ]
+);</code></pre>
+
+        </div>
+
+
+        <div class="output-box mt-3">
+
+            <div class="student-preview">
+
+                <h4>Mobile Validation</h4>
+
+                <p class="mb-0">
+                    The mobile field is required and must contain
+                    the expected number of characters.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CIIT Example -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">CIIT Training Institute Example</h2>
+
+        <div class="info-card">
+
+            <p>
+                Suppose CIIT Training Institute has a registration form
+                for visitors interested in a technical course.
+            </p>
+
+            <p class="mb-0">
+                Reactive Forms can define the complete form structure and
+                validation rules inside the component.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Component
+            </div>
+
+            <pre><code>import { Component } from '@@angular/core';
+import {
+    FormBuilder,
+    Validators
+} from '@@angular/forms';
+
+@@Component({
+    selector: 'app-course-registration',
+    templateUrl: './course-registration.component.html'
+})
+export class CourseRegistrationComponent {
+
+    registrationForm = this.fb.group({
+
+        name: [
+            '',
+            Validators.required
+        ],
+
+        email: [
+            '',
+            [
+                Validators.required,
+                Validators.email
+            ]
+        ],
+
+        mobile: [
+            '',
+            [
+                Validators.required,
+                Validators.minLength(10),
+                Validators.maxLength(10)
+            ]
+        ],
+
+        course: [
+            '',
+            Validators.required
+        ]
+
+    });
+
+    constructor(
+        private fb: FormBuilder
+    ) {
+    }
+
+    submitForm() {
+
+        if (this.registrationForm.valid) {
+
+            console.log(
+                this.registrationForm.value
+            );
+
+        }
+
+    }
+
+}</code></pre>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Template
+            </div>
+
+            <pre><code>&lt;form
+    [formGroup]="registrationForm"
+    (ngSubmit)="submitForm()"&gt;
+
+
+    &lt;label&gt;
+        Name
+    &lt;/label&gt;
+
+    &lt;input
+        type="text"
+        formControlName="name"&gt;
+
+
+    &lt;label&gt;
+        Email
+    &lt;/label&gt;
+
+    &lt;input
+        type="email"
+        formControlName="email"&gt;
+
+
+    &lt;label&gt;
+        Mobile
+    &lt;/label&gt;
+
+    &lt;input
+        type="text"
+        formControlName="mobile"&gt;
+
+
+    &lt;label&gt;
+        Course
+    &lt;/label&gt;
+
+    &lt;select
+        formControlName="course"&gt;
+
+        &lt;option value=""&gt;
+            Select Course
+        &lt;/option&gt;
+
+        &lt;option value="Java Full Stack"&gt;
+            Java Full Stack
+        &lt;/option&gt;
+
+        &lt;option value=".NET Full Stack"&gt;
+            .NET Full Stack
+        &lt;/option&gt;
+
+        &lt;option value="Python Full Stack"&gt;
+            Python Full Stack
+        &lt;/option&gt;
+
+    &lt;/select&gt;
+
+
+    &lt;button
+        type="submit"
+        [disabled]="registrationForm.invalid"&gt;
+
+        Register
+
+    &lt;/button&gt;
+
+&lt;/form&gt;</code></pre>
+
+        </div>
+
+
+        <div class="output-box mt-3">
+
+            <div class="student-preview">
+
+                <h4>CIIT Training Institute Registration</h4>
+
+                <p>
+                    Name:
+                    <strong>Required</strong>
+                </p>
+
+                <p>
+                    Email:
+                    <strong>Valid Email Required</strong>
+                </p>
+
+                <p>
+                    Mobile:
+                    <strong>10 Characters Required</strong>
+                </p>
+
+                <p class="mb-0">
+                    Course:
+                    <strong>Select Course</strong>
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Reading Values -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Reading Form Values</h2>
+
+        <div class="info-card">
+
+            <p>
+                Reactive form values can be accessed through the
+                <strong>value</strong> property of the FormGroup.
+            </p>
+
+            <p class="mb-0">
+                This is useful when form data needs to be processed
+                or sent to another service.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>console.log(
+    this.registrationForm.value
+);</code></pre>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Reading a Specific Control
+            </div>
+
+            <pre><code>console.log(
+    this.registrationForm.get('email')?.value
+);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Form Status -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Checking Form Status</h2>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Component
+            </div>
+
+            <pre><code>if (this.registrationForm.valid) {
+
+    console.log('Form is valid');
+
+}
+
+if (this.registrationForm.invalid) {
+
+    console.log('Form is invalid');
+
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Validation Message -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Displaying Validation Messages</h2>
+
+        <div class="info-card">
+
+            <p>
+                Validation messages can be displayed by checking the
+                control's validation state.
+            </p>
+
+            <p class="mb-0">
+                A common pattern is to display a message after the user
+                has interacted with the control.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Template
+            </div>
+
+            <pre><code>&lt;input
+    type="email"
+    formControlName="email"&gt;
+
+
+&lt;div
+    *ngIf="
+        registrationForm.get('email')?.invalid &amp;&amp;
+        registrationForm.get('email')?.touched
+    "&gt;
+
+    Please enter a valid email address.
+
+&lt;/div&gt;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- FormControl Access -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Accessing a FormControl</h2>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Component
+            </div>
+
+            <pre><code>get emailControl() {
+
+    return this.registrationForm.get('email');
+
+}</code></pre>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Template
+            </div>
+
+            <pre><code>&lt;div
+    *ngIf="emailControl?.invalid &amp;&amp;
+           emailControl?.touched"&gt;
+
+    Please enter a valid email.
+
+&lt;/div&gt;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Reset -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Resetting a Reactive Form</h2>
+
+        <div class="info-card">
+
+            <p>
+                The <strong>reset()</strong> method can be used to reset
+                the form values and state.
+            </p>
+
+            <p class="mb-0">
+                This is useful after a successful submission or when the
+                user wants to clear the form.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>this.registrationForm.reset();</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Disable Control -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Enable and Disable Controls</h2>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Disable Control
+            </div>
+
+            <pre><code>this.registrationForm
+    .get('email')
+    ?.disable();</code></pre>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Enable Control
+            </div>
+
+            <pre><code>this.registrationForm
+    .get('email')
+    ?.enable();</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Dynamic Validation -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Dynamic Validation</h2>
+
+        <div class="info-card">
+
+            <p>
+                Reactive forms make it possible to change validators
+                programmatically when application requirements change.
+            </p>
+
+            <p class="mb-0">
+                This is one of the reasons reactive forms are useful
+                for complex form scenarios.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>const mobileControl =
+    this.registrationForm.get('mobile');
+
+mobileControl?.setValidators([
+    Validators.required,
+    Validators.minLength(10)
+]);
+
+mobileControl?.updateValueAndValidity();</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Reactive Form Features -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Reactive Form Features</h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">M</div>
+
+                <h5>Explicit Model</h5>
+
+                <p>
+                    Form structure is defined in TypeScript.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">V</div>
+
+                <h5>Validation</h5>
+
+                <p>
+                    Validators can be defined programmatically.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">D</div>
+
+                <h5>Dynamic Forms</h5>
+
+                <p>
+                    Controls and validators can be changed dynamically.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">S</div>
+
+                <h5>State Tracking</h5>
+
+                <p>
+                    Form and control states can be inspected directly.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Reactive vs Template -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Reactive Forms vs Template-driven Forms</h2>
+
+        <div class="table-responsive">
+
+            <table class="table syntax-table">
+
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Reactive Forms</th>
+                        <th>Template-driven Forms</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>Form Model</td>
+                        <td>
+                            Explicitly defined in TypeScript
+                        </td>
+                        <td>
+                            Primarily represented in the template
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>FormControl</td>
+                        <td>
+                            Directly used
+                        </td>
+                        <td>
+                            Managed through directives
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Validation</td>
+                        <td>
+                            Programmatic
+                        </td>
+                        <td>
+                            Template-oriented
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Dynamic Controls</td>
+                        <td>
+                            Convenient for complex scenarios
+                        </td>
+                        <td>
+                            Less convenient for complex scenarios
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Typical Use</td>
+                        <td>
+                            Complex and dynamic forms
+                        </td>
+                        <td>
+                            Simpler forms
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- Important Points -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Important Points</h2>
+
+        <div class="best-practice-list">
+
+            <div class="info-card mb-3">
+
+                <strong>1. Form Model is Created in TypeScript</strong>
+
+                <p class="mb-0">
+                    Reactive forms define the form structure explicitly
+                    inside the component.
+                </p>
+
+            </div>
+
+
+            <div class="info-card mb-3">
+
+                <strong>2. Use FormControl and FormGroup</strong>
+
+                <p class="mb-0">
+                    Use FormControl for individual fields and FormGroup
+                    for a collection of controls.
+                </p>
+
+            </div>
+
+
+            <div class="info-card mb-3">
+
+                <strong>3. Validators Can Be Programmatic</strong>
+
+                <p class="mb-0">
+                    Validation rules can be attached directly to reactive
+                    form controls.
+                </p>
+
+            </div>
+
+
+            <div class="info-card">
+
+                <strong>4. Useful for Complex Forms</strong>
+
+                <p class="mb-0">
+                    Reactive forms are suitable when a form requires
+                    advanced validation or dynamic behavior.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Best Practices -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Reactive Forms Best Practices</h2>
+
+        <ul class="best-practice-list">
+
+            <li>
+                Keep the form model clearly defined in the component.
+            </li>
+
+            <li>
+                Use meaningful names for controls and groups.
+            </li>
+
+            <li>
+                Add appropriate validators to important fields.
+            </li>
+
+            <li>
+                Check form validity before processing submitted data.
+            </li>
+
+            <li>
+                Keep complex form-related logic in TypeScript instead of
+                placing unnecessary logic in the template.
+            </li>
+
+            <li>
+                Use reactive forms when dynamic controls or complex
+                validation are required.
+            </li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- Summary -->
+    <section class="mb-4">
+
+        <div class="summary-box">
+
+            <h4 class="fw-bold">
+                Summary
+            </h4>
+
+            <p>
+                Reactive Forms provide a programmatic way to create,
+                validate and manage Angular forms.
+            </p>
+
+            <p>
+                Important building blocks include
+                <strong>FormControl</strong>,
+                <strong>FormGroup</strong>,
+                <strong>FormBuilder</strong> and
+                <strong>Validators</strong>.
+            </p>
+
+            <p class="mb-0">
+                Reactive forms are especially useful for forms that require
+                explicit form models, advanced validation or dynamic behavior.
+                In the next topic, we will learn about
+                <strong>Form Validation</strong>.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Navigation -->
+    <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+
+        <a class="btn btn-outline-secondary"
+           href="@Url.Action("TemplateDrivenForms", "Forms", new { area = "Angular" })">
+            ← Template-driven Forms
+        </a>
+
+        <a class="btn btn-primary"
+           href="@Url.Action("FormValidation", "Forms", new { area = "Angular" })">
+            Form Validation →
+        </a>
+
+    </div>
+
+</div>
+
+
+<style>
+
+    .info-card {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-left: 5px solid #4c1d95;
+        border-radius: 10px;
+        padding: 20px;
+        line-height: 1.7;
+        color: #334155;
+    }
+
+
+    .syntax-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        flex-wrap: wrap;
+        margin: 25px 0;
+    }
+
+
+    .syntax-box {
+        background: linear-gradient(135deg, #2e1065, #4c1d95);
+        color: white;
+        padding: 18px 25px;
+        border-radius: 12px;
+        text-align: center;
+        min-width: 180px;
+        box-shadow: 0 5px 15px rgba(76, 29, 149, 0.15);
+    }
+
+
+        .syntax-box strong {
+            display: block;
+            font-size: 16px;
+        }
+
+
+        .syntax-box span {
+            display: block;
+            margin-top: 5px;
+            color: #d8c9f5;
+            font-size: 14px;
+        }
+
+
+    .syntax-arrow {
+        font-size: 28px;
+        font-weight: bold;
+        color: #4c1d95;
+    }
+
+
+    .syntax-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+
+
+    .syntax-card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 22px;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+    }
+
+
+        .syntax-card h5 {
+            margin-top: 15px;
+            font-weight: 700;
+            color: #2e1065;
+        }
+
+
+        .syntax-card p {
+            color: #64748b;
+            margin-bottom: 0;
+        }
+
+
+    .syntax-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: #ede9fe;
+        color: #4c1d95;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 18px;
+        margin: 0 auto;
+    }
+
+
+    .code-card {
+        background: #0f172a;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(15, 23, 42, 0.10);
+    }
+
+
+    .code-title {
+        background: #1e293b;
+        color: #ffffff;
+        padding: 12px 18px;
+        font-weight: 700;
+        font-size: 14px;
+    }
+
+
+    .code-card pre {
+        margin: 0;
+        padding: 20px;
+        overflow-x: auto;
+    }
+
+
+    .code-card code {
+        color: #f8fafc;
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+
+    .output-box {
+        background: #f8fafc;
+        border: 1px solid #ddd6fe;
+        border-radius: 12px;
+        padding: 20px;
+    }
+
+
+    .student-preview {
+        background: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        padding: 20px;
+    }
+
+
+        .student-preview h4 {
+            color: #2e1065;
+            font-weight: 700;
+        }
+
+
+        .student-preview p {
+            color: #64748b;
+        }
+
+
+    .syntax-table {
+        width: 100%;
+        margin-bottom: 0;
+        border: 1px solid #e2e8f0;
+    }
+
+
+        .syntax-table thead th {
+            background: #2e1065;
+            color: white;
+            padding: 14px;
+            border-color: #4c1d95;
+        }
+
+
+        .syntax-table tbody td {
+            padding: 14px;
+            vertical-align: middle;
+            color: #334155;
+            border-color: #e2e8f0;
+        }
+
+
+        .syntax-table tbody tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+
+        .syntax-table code {
+            color: #4c1d95;
+            font-weight: 600;
+        }
+
+
+    .best-practice-list {
+        margin: 0;
+        padding-left: 20px;
+    }
+
+
+        .best-practice-list li {
+            margin-bottom: 10px;
+            color: #334155;
+            line-height: 1.6;
+        }
+
+
+    .summary-box {
+        background: #cfe2ff;
+        color: #084298;
+        border-radius: 10px;
+        padding: 22px;
+        border: 1px solid #b6d4fe;
+    }
+
+
+        .summary-box h4 {
+            margin-bottom: 12px;
+        }
+
+
+    @@media (max-width: 991px) {
+
+        .syntax-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .syntax-flow {
+            gap: 12px;
+        }
+
+        .syntax-box {
+            min-width: 160px;
+        }
+    }
+
+
+    @@media (max-width: 576px) {
+
+        .syntax-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .syntax-flow {
+            flex-direction: column;
+        }
+
+        .syntax-arrow {
+            transform: rotate(90deg);
+        }
+
+        .syntax-box {
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .code-card pre {
+            padding: 15px;
+        }
+
+        .code-card code {
+            font-size: 13px;
+        }
+    }
+
+</style>

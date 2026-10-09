@@ -1,0 +1,725 @@
+﻿@{
+    ViewData["Title"] = "INSTEAD OF Trigger";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- =========================
+         PAGE HEADER
+    ========================== -->
+
+    <div class="mb-4">
+
+        <h1 class="fw-bold">
+            INSTEAD OF Trigger
+        </h1>
+
+        <p class="text-muted">
+            Learn how INSTEAD OF Triggers work in SQL Server,
+            when they are used and how they can control
+            INSERT, UPDATE and DELETE operations.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         INTRODUCTION
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            What is an INSTEAD OF Trigger?
+        </h2>
+
+        <p>
+            An <strong>INSTEAD OF Trigger</strong> is a special
+            SQL Server trigger that executes <strong>instead of</strong>
+            the original INSERT, UPDATE or DELETE operation.
+        </p>
+
+        <p>
+            In other words, when a user performs an operation on a
+            table or view, SQL Server executes the INSTEAD OF Trigger
+            rather than directly performing that operation.
+        </p>
+
+        <ul>
+
+            <li>
+                It can be created for INSERT operations.
+            </li>
+
+            <li>
+                It can be created for UPDATE operations.
+            </li>
+
+            <li>
+                It can be created for DELETE operations.
+            </li>
+
+            <li>
+                It is commonly useful with views.
+            </li>
+
+            <li>
+                It allows us to control what happens when
+                INSERT, UPDATE or DELETE is attempted.
+            </li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- =========================
+         AFTER vs INSTEAD OF
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            AFTER Trigger vs INSTEAD OF Trigger
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-light">
+
+                    <tr>
+
+                        <th>AFTER Trigger</th>
+
+                        <th>INSTEAD OF Trigger</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            Executes after the operation.
+                        </td>
+
+                        <td>
+                            Executes instead of the operation.
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            The original operation happens first.
+                        </td>
+
+                        <td>
+                            The original operation is replaced
+                            by the trigger logic.
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            Commonly used for auditing and logging.
+                        </td>
+
+                        <td>
+                            Commonly used to control or customize
+                            INSERT, UPDATE and DELETE operations.
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            Commonly used with tables.
+                        </td>
+
+                        <td>
+                            Very useful with views.
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         BASIC SYNTAX
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Basic Syntax
+        </h2>
+
+        <pre class="bg-dark text-light p-3 rounded"><code>CREATE TRIGGER TriggerName
+ON TableName
+INSTEAD OF INSERT
+AS
+BEGIN
+
+    -- Trigger logic
+
+END;</code></pre>
+
+    </section>
+
+
+    <!-- =========================
+         EXAMPLE TABLE
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Example Table
+        </h2>
+
+        <p>
+            Let's create a simple Students table.
+        </p>
+
+        <pre class="bg-dark text-light p-3 rounded"><code>CREATE TABLE Students
+(
+    StudentId INT PRIMARY KEY,
+    StudentName VARCHAR(100),
+    City VARCHAR(50),
+    Age INT
+);</code></pre>
+
+    </section>
+
+
+    <!-- =========================
+         SAMPLE DATA
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Insert Sample Data
+        </h2>
+
+        <pre class="bg-dark text-light p-3 rounded"><code>INSERT INTO Students
+(
+    StudentId,
+    StudentName,
+    City,
+    Age
+)
+VALUES
+(
+    101,
+    'Rahul',
+    'Pune',
+    21
+);</code></pre>
+
+    </section>
+
+
+    <!-- =========================
+         INSTEAD OF INSERT
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            INSTEAD OF INSERT Trigger
+        </h2>
+
+        <p>
+            An INSTEAD OF INSERT Trigger executes instead of
+            the normal INSERT operation.
+        </p>
+
+        <pre class="bg-dark text-light p-3 rounded"><code>CREATE TRIGGER trg_InsteadOfInsertStudent
+ON Students
+INSTEAD OF INSERT
+AS
+BEGIN
+
+    INSERT INTO Students
+    (
+        StudentId,
+        StudentName,
+        City,
+        Age
+    )
+    SELECT
+        StudentId,
+        StudentName,
+        City,
+        Age
+    FROM inserted;
+
+END;</code></pre>
+
+    </section>
+
+
+    <!-- =========================
+         INSERTED TABLE
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            The inserted Logical Table
+        </h2>
+
+        <p>
+            SQL Server provides a special logical table named
+            <strong>inserted</strong> inside an INSERT trigger.
+        </p>
+
+        <p>
+            It contains the records that were supplied by the
+            INSERT operation.
+        </p>
+
+        <pre class="bg-dark text-light p-3 rounded"><code>INSERT INTO Students
+(
+    StudentId,
+    StudentName,
+    City,
+    Age
+)
+VALUES
+(
+    102,
+    'Priya',
+    'Mumbai',
+    22
+);</code></pre>
+
+        <p class="mt-3">
+            The new row can be accessed inside the trigger
+            through the <strong>inserted</strong> logical table.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         INSTEAD OF UPDATE
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            INSTEAD OF UPDATE Trigger
+        </h2>
+
+        <p>
+            An INSTEAD OF UPDATE Trigger executes instead of the
+            normal UPDATE operation.
+        </p>
+
+        <pre class="bg-dark text-light p-3 rounded"><code>CREATE TRIGGER trg_InsteadOfUpdateStudent
+ON Students
+INSTEAD OF UPDATE
+AS
+BEGIN
+
+    UPDATE S
+    SET
+        S.StudentName = I.StudentName,
+        S.City = I.City,
+        S.Age = I.Age
+    FROM Students S
+    INNER JOIN inserted I
+        ON S.StudentId = I.StudentId;
+
+END;</code></pre>
+
+    </section>
+
+
+    <!-- =========================
+         UPDATE EXAMPLE
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            UPDATE Example
+        </h2>
+
+        <pre class="bg-dark text-light p-3 rounded"><code>UPDATE Students
+SET City = 'Pune'
+WHERE StudentId = 102;</code></pre>
+
+        <p class="mt-3">
+            Instead of directly processing the UPDATE,
+            SQL Server executes the INSTEAD OF UPDATE Trigger.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         INSTEAD OF DELETE
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            INSTEAD OF DELETE Trigger
+        </h2>
+
+        <p>
+            An INSTEAD OF DELETE Trigger executes instead of
+            the normal DELETE operation.
+        </p>
+
+        <pre class="bg-dark text-light p-3 rounded"><code>CREATE TRIGGER trg_InsteadOfDeleteStudent
+ON Students
+INSTEAD OF DELETE
+AS
+BEGIN
+
+    DELETE S
+    FROM Students S
+    INNER JOIN deleted D
+        ON S.StudentId = D.StudentId;
+
+END;</code></pre>
+
+    </section>
+
+
+    <!-- =========================
+         DELETE EXAMPLE
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            DELETE Example
+        </h2>
+
+        <pre class="bg-dark text-light p-3 rounded"><code>DELETE FROM Students
+WHERE StudentId = 102;</code></pre>
+
+        <p class="mt-3">
+            The INSTEAD OF DELETE Trigger executes and controls
+            how the deletion should happen.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         INSTEAD OF TRIGGER WITH VIEW
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            INSTEAD OF Trigger with a View
+        </h2>
+
+        <p>
+            One of the important uses of INSTEAD OF Triggers is
+            working with views.
+        </p>
+
+        <p>
+            A view may contain data from multiple tables.
+            In such situations, SQL Server may not allow a direct
+            INSERT, UPDATE or DELETE operation on the view.
+        </p>
+
+        <p>
+            An INSTEAD OF Trigger can be used to control the
+            operation and perform the required changes on the
+            underlying tables.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         CREATE VIEW
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Example View
+        </h2>
+
+        <pre class="bg-dark text-light p-3 rounded"><code>CREATE VIEW StudentView
+AS
+SELECT
+    StudentId,
+    StudentName,
+    City,
+    Age
+FROM Students;</code></pre>
+
+    </section>
+
+
+    <!-- =========================
+         INSTEAD OF DELETE ON VIEW
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            INSTEAD OF DELETE on a View
+        </h2>
+
+        <pre class="bg-dark text-light p-3 rounded"><code>CREATE TRIGGER trg_DeleteStudentView
+ON StudentView
+INSTEAD OF DELETE
+AS
+BEGIN
+
+    DELETE S
+    FROM Students S
+    INNER JOIN deleted D
+        ON S.StudentId = D.StudentId;
+
+END;</code></pre>
+
+        <p class="mt-3">
+            Now a DELETE operation performed on the view can
+            be controlled by the trigger.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         INSERTED AND DELETED
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            inserted and deleted Logical Tables
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-light">
+
+                    <tr>
+
+                        <th>Logical Table</th>
+
+                        <th>Used For</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            <strong>inserted</strong>
+                        </td>
+
+                        <td>
+                            New rows involved in INSERT or UPDATE.
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            <strong>deleted</strong>
+                        </td>
+
+                        <td>
+                            Old rows involved in DELETE or UPDATE.
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         IMPORTANT POINTS
+    ========================== -->
+
+    <section class="mb-5">
+
+        <div class="alert alert-warning border-0">
+
+            <h5 class="fw-bold">
+                Important Points
+            </h5>
+
+            <ul class="mb-0">
+
+                <li>
+                    INSTEAD OF means the trigger executes
+                    instead of the original operation.
+                </li>
+
+                <li>
+                    It can be used with INSERT, UPDATE and DELETE.
+                </li>
+
+                <li>
+                    It is particularly useful with views.
+                </li>
+
+                <li>
+                    The <strong>inserted</strong> and
+                    <strong>deleted</strong> logical tables can
+                    be used inside the trigger.
+                </li>
+
+                <li>
+                    The trigger can contain custom logic before
+                    performing the actual database operation.
+                </li>
+
+                <li>
+                    The original operation does not automatically
+                    happen; the trigger must perform the required
+                    operation when appropriate.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         PRACTICAL USE CASES
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Practical Uses
+        </h2>
+
+        <ul>
+
+            <li>
+                Controlling INSERT operations.
+            </li>
+
+            <li>
+                Controlling UPDATE operations.
+            </li>
+
+            <li>
+                Controlling DELETE operations.
+            </li>
+
+            <li>
+                Handling modifications on complex views.
+            </li>
+
+            <li>
+                Applying custom business rules.
+            </li>
+
+            <li>
+                Redirecting operations to underlying tables.
+            </li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- =========================
+         SUMMARY
+    ========================== -->
+
+    <section class="mb-4">
+
+        <div class="alert alert-primary border-0">
+
+            <h5 class="fw-bold">
+                Summary
+            </h5>
+
+            <p class="mb-0">
+
+                An <strong>INSTEAD OF Trigger</strong> executes
+                instead of the original INSERT, UPDATE or DELETE
+                operation. It gives developers control over how
+                database operations are processed and is especially
+                useful when working with views. The
+                <strong>inserted</strong> and
+                <strong>deleted</strong> logical tables provide
+                access to the affected records.
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         PREVIOUS / NEXT
+    ========================== -->
+
+    <div class="d-flex justify-content-between align-items-center
+        mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/Triggers/AfterDeleteTrigger"
+           class="btn btn-outline-primary">
+
+            ← Previous: AFTER DELETE Trigger
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/Transactions/Index"
+           class="btn btn-primary">
+
+            Next: Transactions Introduction →
+
+        </a>
+
+    </div>
+
+</div>

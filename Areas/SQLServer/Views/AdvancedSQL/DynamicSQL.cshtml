@@ -1,0 +1,365 @@
+﻿@{
+    ViewData["Title"] = "Dynamic SQL";
+}
+
+<div class="container-fluid">
+
+    <!-- =========================
+         PAGE HEADER
+    ========================== -->
+
+    <div class="mb-4">
+
+        <h1 class="fw-bold">
+            Dynamic SQL
+        </h1>
+
+        <p class="text-muted">
+            Dynamic SQL allows you to construct and execute SQL statements
+            dynamically at runtime.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         INTRODUCTION
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                What is Dynamic SQL?
+            </h2>
+
+            <p>
+                Dynamic SQL is a technique where SQL statements are created
+                dynamically as strings and executed at runtime.
+            </p>
+
+            <p>
+                It is useful when table names, column names, filtering
+                conditions, or other parts of a SQL statement need to be
+                determined dynamically.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         BASIC SYNTAX
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Basic Syntax
+            </h2>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>DECLARE @@SQL NVARCHAR(MAX);
+
+SET @@SQL = 'SELECT * FROM Employees';
+
+EXEC sp_executesql @@SQL;</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         EXAMPLE 1
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Example 1: Simple Dynamic SQL
+            </h2>
+
+            <p>
+                In this example, a SQL query is stored inside a variable
+                and executed using <strong>sp_executesql</strong>.
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>DECLARE @@SQL NVARCHAR(MAX);
+
+SET @@SQL = 'SELECT * FROM Employees';
+
+EXEC sp_executesql @@SQL;</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         EXAMPLE 2
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Example 2: Dynamic WHERE Condition
+            </h2>
+
+            <p>
+                A condition can also be passed dynamically to a SQL query.
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>DECLARE @@SQL NVARCHAR(MAX);
+DECLARE @@Department NVARCHAR(50);
+
+SET @@Department = 'IT';
+
+SET @@SQL =
+    'SELECT * FROM Employees
+     WHERE Department = @@Dept';
+
+EXEC sp_executesql
+    @@SQL,
+    N'@@Dept NVARCHAR(50)',
+    @@Dept = @@Department;</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         PARAMETERIZED SQL
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Parameterized Dynamic SQL
+            </h2>
+
+            <p>
+                Parameters should be used whenever possible instead of
+                directly concatenating user input into a SQL string.
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>DECLARE @@SQL NVARCHAR(MAX);
+
+SET @@SQL =
+    'SELECT *
+     FROM Employees
+     WHERE Salary &gt; @@Salary';
+
+EXEC sp_executesql
+    @@SQL,
+    N'@@Salary DECIMAL(10,2)',
+    @@Salary = 50000;</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         EXEC VS SP_EXECUTESQL
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                EXEC vs sp_executesql
+            </h2>
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-striped">
+
+                    <thead class="table-primary">
+
+                        <tr>
+                            <th>EXEC</th>
+                            <th>sp_executesql</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>Can execute dynamic SQL</td>
+                            <td>Can execute dynamic SQL</td>
+                        </tr>
+
+                        <tr>
+                            <td>Parameter handling is limited</td>
+                            <td>Supports parameters</td>
+                        </tr>
+
+                        <tr>
+                            <td>String concatenation is commonly used</td>
+                            <td>Parameterized queries are supported</td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                Less suitable when parameters are required
+                            </td>
+
+                            <td>
+                                Preferred for parameterized dynamic SQL
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         ADVANTAGES
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Advantages of Dynamic SQL
+            </h2>
+
+            <ul>
+
+                <li class="mb-2">
+                    Allows SQL statements to be generated dynamically.
+                </li>
+
+                <li class="mb-2">
+                    Useful when table or column names are determined
+                    at runtime.
+                </li>
+
+                <li class="mb-2">
+                    Can be useful for dynamic filtering and reporting.
+                </li>
+
+                <li class="mb-2">
+                    Parameterized dynamic SQL can improve security and
+                    maintainability.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         IMPORTANT POINTS
+    ========================== -->
+
+    <div class="alert alert-warning shadow-sm mb-4">
+
+        <h4 class="fw-bold">
+            Important Points
+        </h4>
+
+        <ul class="mb-0">
+
+            <li>
+                Avoid directly concatenating untrusted user input.
+            </li>
+
+            <li>
+                Prefer <strong>sp_executesql</strong> with parameters
+                when values are supplied dynamically.
+            </li>
+
+            <li>
+                Dynamic SQL should be used only when it provides a real
+                benefit over static SQL.
+            </li>
+
+        </ul>
+
+    </div>
+
+
+    <!-- =========================
+         SUMMARY
+    ========================== -->
+
+    <div class="card shadow-sm mb-4"
+         style="background-color:#cfe2ff;">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold">
+                Summary
+            </h2>
+
+            <p class="mb-2">
+                Dynamic SQL allows SQL statements to be constructed and
+                executed at runtime.
+            </p>
+
+            <p class="mb-0">
+                It is useful for dynamic queries, filtering, reporting,
+                and situations where parts of the SQL statement are
+                determined at runtime. Parameterized
+                <strong>sp_executesql</strong> is preferred when
+                dynamic values are required.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         PREVIOUS / NEXT
+    ========================== -->
+
+    <div class="d-flex justify-content-between align-items-center
+        mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/AdvancedSQL/TableVariables"
+           class="btn btn-outline-primary">
+
+            ← Previous: Table Variables
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/AdvancedSQL/ErrorHandling"
+           class="btn btn-primary">
+
+            Next: Error Handling →
+
+        </a>
+
+    </div>
+
+</div>

@@ -1,0 +1,193 @@
+@{
+    Layout = "~/Areas/Jenkins/Views/Shared/JenkinsLayout.cshtml";
+    ViewData["Title"] = "Parameterized Builds";
+}
+
+<style>
+    #parameterized-builds-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #parameterized-builds-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #parameterized-builds-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #parameterized-builds-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #parameterized-builds-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+    #parameterized-builds-page .example-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+    }
+</style>
+
+<main id="parameterized-builds-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/Jenkins/Views/Shared/JenkinsTopics.cshtml")
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+                <h1 class="fw-bold">Parameterized Builds</h1>
+                <p class="lead">
+                    Learn the concepts, syntax formats, dynamic inputs, and variable scoping workflows required to create flexible, re-usable pipelines that accept custom arguments at runtime.
+                </p>
+            </div>
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">What is a Parameterized Build?</h2>
+                <p>
+                    A <strong>Parameterized Build</strong> allows you to pass custom values, flags, or configuration details directly into a Jenkins pipeline when executing a new build run. Instead of writing separate, hardcoded jobs for every distinct deployment environment or application branch, a single job can adapt dynamically using runtime inputs.
+                </p>
+
+                <div class="alert alert-info my-3">
+                    <strong>Simple Definition:</strong> Parameterized Builds are pipeline jobs configured to accept user-defined variables (like environment names, branch tags, or toggle checkboxes) right before execution begins.
+                </div>
+
+                <h3 class="h4 fw-bold mt-4">Common Parameter Variable Types</h3>
+                <p class="mb-2">Jenkins natively supports several input parameter shapes inside the dashboard UI and declarative code blocks:</p>
+                <ul class="mb-3">
+                    <li class="mb-1"><strong>String Parameters (`string`):</strong> Free-form text fields ideal for capturing dynamic variables such as git branch references, commit hashes, or custom release version tags.</li>
+                    <li class="mb-1"><strong>Choice Parameters (`choice`):</strong> Pre-configured drop-down list collections that restrict user selections to explicitly approved safety values (e.g., forcing a choice between `staging`, `testing`, or `production`).</li>
+                    <li><strong>Boolean Parameters (`booleanParam`):</strong> Simple true/false checkbox toggles used to turn operational sub-actions on or off (e.g., checking a box to trigger an optional `RUN_SONAR_ANALYSIS` sequence).</li>
+                </ul>
+            </div>
+
+            <!-- KEY CONCEPTS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Key Concepts</h2>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>The `params` Object Scope</h5>
+                            <p class="mb-0">Understanding how Jenkins exposes chosen runtime parameter options inside a global environment variable namespace, accessed using standard dot-notation logic like `params.ENVIRONMENT_NAME`.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Default Value Cleanbacks</h5>
+                            <p class="mb-0">Learning to assign strict default parameter baselines so automated cron tasks or repository webhooks can still execute smoothly without requiring manual form interactions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXAMPLE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Practical Jenkins Example</h2>
+                <p>The following declarative pipeline code shows how to declare multiple parameter input fields at the root layer and reference their active selections within pipeline execution stages:</p>
+                <pre><code>pipeline {
+    agent any
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // Declaring the parameterized input options
+    parameters {
+        choice(name: 'DEPLOY_ENV', choices: ['Development', 'Staging', 'Production'], description: 'Select the target hosting server environment.')
+        string(name: 'RELEASE_TAG', defaultValue: 'v1.0.0', description: 'Enter the application release version format tag.')
+        booleanParam(name: 'RUN_TESTS', defaultValue: true, description: 'Check to execute comprehensive automated regression tests.')
+    }
+
+    stages {
+        stage('Initialize Deployment Configuration') {
+            steps {
+                echo "Target deployment environment mapped: \${params.DEPLOY_ENV}"
+                echo "Target version release artifact tag selected: \${params.RELEASE_TAG}"
+            }
+        }
+        stage('Conditional Test Verification') {
+            when {
+                expression { return params.RUN_TESTS }
+            }
+            steps {
+                echo 'Executing unit and integration testing pipelines across workspace...'
+            }
+        }
+        stage('Deploy to Server Hub') {
+            steps {
+                echo "Pushing software binaries out to the verified \${params.DEPLOY_ENV} clusters..."
+            }
+        }
+    }
+}</code></pre>
+        </div>
+
+    <!-- PRACTICE -->
+            <div class="mb-4">
+<h2 class="h3 fw-bold">Practice Exercise: Build an Environment Deployment Selector</h2>
+                <div class="concept-box">
+                    <h5 class="fw-bold">Step-by-Step Task Sequence:</h5>
+<ol class="ps-3 mb-0">
+<li class="mb-2">Open the script block dashboard configuration for an active pipeline or initialize a new Pipeline item wrapper.</li>
+<li class="mb-2">Copy-paste the complete practical declarative sample code provided above inside your script editing area and hit **Save**.</li>
+<li class="mb-2">Note that the traditional **Build Now** sidebar link instantly changes to read **Build with Parameters** once the save finishes.</li>
+<li class="mb-2">Click **Build with Parameters**, modify the dropdown targets and checkbox toggle choices inside the generated UI menu, and click the blue **Build** button.</li>
+<li>Navigate into the current build iteration's **Console Output** screen to verify that the terminal outputs match your custom input settings exactly.</li>
+</ol>
+</div>
+</div>
+
+<!-- SUMMARY -->
+<div class="alert alert-info mt-4">
+                <h2 class="h4 fw-bold">Summary</h2>
+                <p class="mb-0">You have completed the <strong>Parameterized Builds</strong> lesson. Continue through the syllabus to see how to bundle and manage cross-pipeline execution tools securely inside the Global Tool Configuration menu.</p>
+            </div>
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+                <a class="btn btn-outline-primary" href="@Url.Action("BuildTriggers", "CoreCICD", new { area = "Jenkins" })">← Previous: Build Triggers</a>
+                <a class="btn btn-primary" href="@Url.Action("GlobalTools", "CoreCICD", new { area = "Jenkins" })">Next: Global Tool Configuration →</a>
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

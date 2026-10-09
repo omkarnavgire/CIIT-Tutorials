@@ -1,0 +1,739 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Parameters & Arguments";
+}
+
+<style>
+    #python-parameters-arguments-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 0.5rem;
+        padding: 1rem !important;
+        overflow-x: auto;
+    }
+
+        #python-parameters-arguments-page pre code {
+            background-color: transparent !important;
+            color: #ffffff !important;
+        }
+</style>
+
+<main id="python-parameters-arguments-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- =========================
+             LEFT SIDEBAR - PYTHON SYLLABUS
+        ========================== -->
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+
+        </aside>
+
+
+        <!-- =========================
+             RIGHT CONTENT
+        ========================== -->
+        <section class="col-lg-9">
+
+            <!-- Page Heading -->
+            <h1 class="display-6 fw-bold mb-3">
+                Parameters & Arguments in Python
+            </h1>
+
+            <p class="lead">
+                Parameters and arguments are used to provide data to a function. This allows us to use the same function multiple times with different values.
+            </p>
+
+            <div class="alert alert-light border">
+
+                <strong>CIIT Tip:</strong>
+
+                A parameter is defined in the function definition, while an argument is the actual value passed when calling the function.
+
+            </div>
+
+
+            <!-- =========================
+                 1. WHAT IS A PARAMETER?
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                1. What is a Parameter?
+            </h2>
+
+            <p>
+                A parameter is a variable used inside the function definition to receive input.
+            </p>
+
+            <pre><code>def greet(name):
+    print("Hello", name)</code></pre>
+
+            <p>
+                In this example, <strong>name</strong> is a parameter.
+            </p>
+
+
+            <!-- =========================
+                 2. WHAT IS AN ARGUMENT?
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                2. What is an Argument?
+            </h2>
+
+            <p>
+                The actual value passed when calling a function is called an argument.
+            </p>
+
+            <pre><code>def greet(name):
+    print("Hello", name)
+
+greet("Rahul")</code></pre>
+
+            <p>
+                Here, <strong>name</strong> is the parameter and <strong>"Rahul"</strong> is the argument.
+            </p>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>Hello Rahul</code></pre>
+
+
+            <!-- =========================
+                 3. PARAMETER VS ARGUMENT
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                3. Parameter vs Argument
+            </h2>
+
+            <table class="table table-bordered">
+
+                <thead class="table-light">
+
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Argument</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>Present in the function definition</td>
+                        <td>Present in the function call</td>
+                    </tr>
+
+                    <tr>
+                        <td>Receives input</td>
+                        <td>Provides the actual value</td>
+                    </tr>
+
+                    <tr>
+                        <td>Example: <code>name</code></td>
+                        <td>Example: <code>"Rahul"</code></td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+
+            <!-- =========================
+                 4. SINGLE PARAMETER
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                4. Single Parameter
+            </h2>
+
+            <pre><code>def square(number):
+    return number * number
+
+result = square(5)
+
+print(result)</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>25</code></pre>
+
+
+            <!-- =========================
+                 5. MULTIPLE PARAMETERS
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                5. Multiple Parameters
+            </h2>
+
+            <p>
+                You can also define multiple parameters in a function.
+            </p>
+
+            <pre><code>def add(a, b):
+    return a + b
+
+result = add(10, 20)
+
+print(result)</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>30</code></pre>
+
+
+            <!-- =========================
+                 6. POSITIONAL ARGUMENTS
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                6. Positional Arguments
+            </h2>
+
+            <p>
+                In positional arguments, the order of values matches the order of the parameters.
+            </p>
+
+            <pre><code>def student(name, course):
+    print("Name:", name)
+    print("Course:", course)
+
+student("Amit", "Python")</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>Name: Amit
+Course: Python</code></pre>
+
+            <div class="alert alert-warning">
+
+                <strong>Important:</strong>
+
+                Changing the order of positional arguments can cause values to be
+                assigned to the wrong parameter.
+
+            </div>
+
+
+            <!-- =========================
+                 7. KEYWORD ARGUMENTS
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                7. Keyword Arguments
+            </h2>
+
+            <p>
+                In keyword arguments, we explicitly specify the parameter name.
+            </p>
+
+            <pre><code>def student(name, course):
+    print("Name:", name)
+    print("Course:", course)
+
+student(
+    course="Python",
+    name="Amit"
+)</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>Name: Amit
+Course: Python</code></pre>
+
+            <p>
+                The benefit of keyword arguments is that even if the order of values changes, the correct value is assigned to the corresponding parameter.
+            </p>
+
+
+            <!-- =========================
+                 8. DEFAULT PARAMETERS
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                8. Default Parameters
+            </h2>
+
+            <p>
+                A parameter can be given a default value. If a value is not provided when calling the function, the default value is used.
+            </p>
+
+            <pre><code>def greet(name="Student"):
+    print("Hello", name)
+
+greet()
+greet("Rahul")</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>Hello Student
+Hello Rahul</code></pre>
+
+
+            <!-- =========================
+                 9. MULTIPLE DEFAULT PARAMETERS
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                9. Multiple Default Parameters
+            </h2>
+
+            <pre><code>def student_info(
+    name="Student",
+    course="Python"
+):
+    print("Name:", name)
+    print("Course:", course)
+
+student_info()
+
+student_info(
+    "Amit",
+    "Python Full Stack"
+)</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>Name: Student
+Course: Python
+
+Name: Amit
+Course: Python Full Stack</code></pre>
+
+
+            <!-- =========================
+                 10. POSITIONAL + KEYWORD
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                10. Positional + Keyword Arguments
+            </h2>
+
+            <p>
+                Positional and keyword arguments can be used together.
+            </p>
+
+            <pre><code>def student(name, course, city):
+    print(name)
+    print(course)
+    print(city)
+
+student(
+    "Rahul",
+    course="Python",
+    city="Pune"
+)</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>Rahul
+Python
+Pune</code></pre>
+
+            <div class="alert alert-warning">
+
+                <strong>Rule:</strong>
+
+                A positional argument must generally come before
+                a keyword argument.
+
+            </div>
+
+
+            <!-- =========================
+                 11. ARBITRARY ARGUMENTS
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                11. Arbitrary Positional Arguments (*args)
+            </h2>
+
+            <p>
+                When we do not know how many arguments a function will receive, we can use <strong>*args</strong>.
+            </p>
+
+            <pre><code>def total(*numbers):
+
+    total = 0
+
+    for number in numbers:
+        total += number
+
+    return total
+
+
+print(total(10, 20))
+print(total(10, 20, 30, 40))</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>30
+100</code></pre>
+
+
+            <!-- =========================
+                 12. ARBITRARY KEYWORD
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                12. Arbitrary Keyword Arguments (**kwargs)
+            </h2>
+
+            <p>
+                <strong>**kwargs</strong> can be used to accept multiple keyword arguments.
+            </p>
+
+            <pre><code>def student_info(**details):
+
+    for key, value in details.items():
+        print(key, ":", value)
+
+
+student_info(
+    name="Amit",
+    course="Python",
+    city="Pune"
+)</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>name : Amit
+course : Python
+city : Pune</code></pre>
+
+
+            <!-- =========================
+                 13. *ARGS VS **KWARGS
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                13. *args vs **kwargs
+            </h2>
+
+            <table class="table table-bordered">
+
+                <thead class="table-light">
+
+                    <tr>
+                        <th>*args</th>
+                        <th>**kwargs</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>Multiple positional arguments</td>
+                        <td>Multiple keyword arguments</td>
+                    </tr>
+
+                    <tr>
+                        <td>Received in the form of a tuple</td>
+                        <td>Received in the form of a dictionary</td>
+                    </tr>
+
+                    <tr>
+                        <td>Example: <code>add(10, 20, 30)</code></td>
+                        <td>Example: <code>student(name="Amit")</code></td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+
+            <!-- =========================
+                 14. REAL WORLD CIIT EXAMPLE
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                14. CIIT Example 👀🤓
+            </h2>
+
+            <p>
+                We create a function for student enrollment at CIIT.
+            </p>
+
+            <pre><code>def enroll_student(name, course, city="Pune"):
+
+    print("Student:", name)
+    print("Course:", course)
+    print("City:", city)
+
+
+enroll_student(
+    "Sneha",
+    "Python Full Stack"
+)</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>Student: Sneha
+Course: Python Full Stack
+City: Pune</code></pre>
+
+
+            <!-- =========================
+                 15. FUNCTION WITH CALCULATION
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                15. Calculation Example 👀🤓
+            </h2>
+
+            <pre><code>def calculate_fee(fee, discount):
+
+    final_fee = fee - (fee * discount / 100)
+
+    return final_fee
+
+
+amount = calculate_fee(35000, 10)
+
+print("Final Fee:", amount)</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>Final Fee: 31500.0</code></pre>
+
+
+            <!-- =========================
+                 16. COMMON MISTAKES
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                16. Common Mistakes
+            </h2>
+
+            <pre><code># Wrong
+def add(a, b):
+    return a + b
+
+add(10)</code></pre>
+
+            <p>
+                Here, the value for <strong>b</strong> is missing, so an error will occur.
+            </p>
+
+            <pre><code># Correct
+def add(a, b):
+    return a + b
+
+add(10, 20)</code></pre>
+
+
+            <!-- =========================
+                 17. IMPORTANT RULES
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                17. Important Rules
+            </h2>
+
+            <ul>
+
+                <li>
+                    Give function parameters meaningful names.
+                </li>
+
+                <li>
+                    The order of positional arguments is important.
+                </li>
+
+                <li>
+                    Keyword arguments are passed with the parameter name.
+                </li>
+
+                <li>
+                    A default parameter provides optional input.
+                </li>
+
+                <li>
+                    <strong>*args</strong> handles multiple positional arguments.
+                </li>
+
+                <li>
+                    <strong>**kwargs</strong> handles multiple keyword arguments.
+                </li>
+
+            </ul>
+
+
+            <!-- =========================
+                 CIIT LEARNING POINT
+            ========================== -->
+
+            <div class="alert alert-success mt-4">
+
+                <h2 class="h4 fw-bold">
+                    CIIT Learning Point
+                </h2>
+
+                <p class="mb-0">
+
+                    Parameters and arguments make functions flexible and reusable. Positional, keyword, and default arguments, along with <strong>*args</strong> and <strong>**kwargs</strong>, are very useful in real-world Python applications.
+
+                </p>
+
+            </div>
+
+
+            <!-- =========================
+                 CIIT PRACTICE TASKS
+            ========================== -->
+
+            <div class="alert alert-warning mt-4">
+
+                <h2 class="h4 fw-bold">
+                    CIIT Practice Tasks
+                </h2>
+
+                <ol class="mb-0">
+
+                    <li class="mb-2">
+
+                        <strong>Student Function:</strong>
+
+                        <br>
+
+                        Create a <code>student(name, course)</code> function that prints student details.
+
+                    </li>
+
+                    <li class="mb-2">
+
+                        <strong>Calculator:</strong>
+
+                        <br>
+
+                        Create a <code>calculate(a, b, operation)</code> function that performs addition, subtraction, multiplication, and division.
+
+                    </li>
+
+                    <li class="mb-2">
+
+                        <strong>Default City:</strong>
+
+                        <br>
+
+                        Create a <code>student(name, city="Pune")</code> function. If the city is not provided, it should display Pune.
+
+                    </li>
+
+                    <li class="mb-2">
+
+                        <strong>*args Practice:</strong>
+
+                        <br>
+
+                        Create a <code>find_total(*numbers)</code> function that returns the total of any number of values.
+
+                    </li>
+
+                    <li class="mb-2">
+
+                        <strong>**kwargs Practice:</strong>
+
+                        <br>
+
+                        Create a <code>display_student(**details)</code> function that displays multiple student details.
+
+                    </li>
+
+                    <li>
+
+                        <strong>CIIT Fee Calculator:</strong>
+
+                        <br>
+
+                        Create a <code>calculate_fee(fee, discount)</code> function that applies the discount and returns the final course fee.
+
+                    </li>
+
+                </ol>
+
+            </div>
+
+
+            <!-- =========================
+                 SUMMARY
+            ========================== -->
+
+            <div class="alert alert-info mt-4 mb-0"
+                 style="background-color:#cfe2ff; border:0; color:#123c73;">
+
+                <h2 class="h3 fw-bold mt-0 mb-3"
+                    style="color:#123c73;">
+
+                    Summary :
+
+                </h2>
+
+                <p class="mb-0"
+                   style="color:#123c73;">
+
+                    Parameters receive input in the function definition, while arguments are the actual values passed during a function call. In Python, flexible and reusable functions can be created using positional arguments, keyword arguments, default parameters, <strong>*args</strong>, and <strong>**kwargs</strong>.
+
+                </p>
+
+            </div>
+
+
+            <!-- =========================
+                 PREVIOUS / NEXT
+            ========================== -->
+
+            <div class="d-flex justify-content-between mt-5">
+
+                <a class="btn btn-outline-secondary"
+                   href="@Url.Action("DefiningCallingFunctions", "Functions", new { area = "Python" })">
+
+                    ← Previous : Topic
+
+                </a>
+
+                <a class="btn btn-primary"
+                   href="@Url.Action("ReturnValues", "Functions", new { area = "Python" })">
+
+                    Next : Topic →
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

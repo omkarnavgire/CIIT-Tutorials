@@ -1,0 +1,63 @@
+@{
+    ViewData["Title"] = "Querying using Azure SQL Database";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+                <div class="azure-notes-content">
+                    <pre class="azure-notes-text">Querying using Azure SQL Database
+
+Step 1: Go to the Azure SQL database resource that was deployed.
+
+
+
+
+Step 2: In the pane on the left side of the page, select the Query editor and then sign in using the
+administrator login and password we had specified for our server.
+Note: If you receive an error message stating that the client IP address isn&#x27;t allowed, select the Allow
+list IP link at the end of the message to allow access and try to sign in again.
+
+Step 3: Expand the Tables folder to see the tables in the database.
+
+Step 4: In the Query 1 pane that appears, enter the following SQL code:
+
+SELECT * FROM [SalesLT].[SalesOrderHeader]
+
+Step 5: Select the Run option above the query to run it and view the results, which will include all
+the columns for all rows in the table as shown below:
+
+Step 6: This way we can run all our SQL queries. Close the query editor pane which will discard our
+edits.
+This is how we can create Azure SQL database resources and use them in our cloud applications.</pre>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_8_-_Microsoft_Azure_-_Database_Availability_and_Consistency_For_Azure_SQL/p15-000.jpg" class="img-fluid rounded shadow-sm" alt="Querying using Azure SQL Database - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_8_-_Microsoft_Azure_-_Database_Availability_and_Consistency_For_Azure_SQL/p15-001.jpg" class="img-fluid rounded shadow-sm" alt="Querying using Azure SQL Database - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_8_-_Microsoft_Azure_-_Database_Availability_and_Consistency_For_Azure_SQL/p16-000.jpg" class="img-fluid rounded shadow-sm" alt="Querying using Azure SQL Database - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_8_-_Microsoft_Azure_-_Database_Availability_and_Consistency_For_Azure_SQL/p17-000.jpg" class="img-fluid rounded shadow-sm" alt="Querying using Azure SQL Database - source image" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+            @await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureLessonNavigation.cshtml")
+</section>
+</div>
+<style>
+.azure-notes-text{white-space:pre-wrap;word-break:normal;font-family:inherit;font-size:1rem;line-height:1.7;background:#fff;border:0;padding:0;margin:0;color:#212529;}
+.azure-notes-content img{max-height:720px;}
+</style>

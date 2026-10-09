@@ -1,0 +1,802 @@
+﻿@{
+    ViewData["Title"] = "MIN() & MAX() Functions - SQL Server";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- =========================
+         PAGE HEADER
+    ========================== -->
+
+    <div class="mb-5">
+
+        <h1 class="fw-bold">
+            MIN() &amp; MAX() Functions
+        </h1>
+
+        <p class="lead text-muted">
+            Learn how to find the smallest and largest values
+            from a column using MIN() and MAX() in SQL Server.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         1. INTRODUCTION
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            What are MIN() and MAX()?
+        </h2>
+
+        <p>
+            <strong>MIN()</strong> and <strong>MAX()</strong> are
+            aggregate functions in SQL Server.
+        </p>
+
+        <p>
+            The <strong>MIN()</strong> function returns the smallest
+            value from a column, while the <strong>MAX()</strong>
+            function returns the largest value.
+        </p>
+
+        <div class="alert alert-info">
+
+            <strong>In simple words:</strong>
+
+            <p class="mb-2 mt-2">
+                MIN() → Finds the <strong>lowest</strong> value.
+            </p>
+
+            <p class="mb-0">
+                MAX() → Finds the <strong>highest</strong> value.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         2. SYNTAX
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Syntax
+        </h2>
+
+        <h5 class="fw-bold">
+            MIN() Syntax
+        </h5>
+
+        <pre class="bg-light p-4 rounded border"><code>SELECT MIN(column_name)
+FROM table_name;</code></pre>
+
+        <h5 class="fw-bold mt-4">
+            MAX() Syntax
+        </h5>
+
+        <pre class="bg-light p-4 rounded border"><code>SELECT MAX(column_name)
+FROM table_name;</code></pre>
+
+    </section>
+
+
+    <!-- =========================
+         3. SAMPLE TABLE
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Example Table
+        </h2>
+
+        <p>
+            Consider the following <strong>Employees</strong> table:
+        </p>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>EmployeeId</th>
+                        <th>EmployeeName</th>
+                        <th>Department</th>
+                        <th>Salary</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>1</td>
+                        <td>Rahul</td>
+                        <td>IT</td>
+                        <td>50000</td>
+                    </tr>
+
+                    <tr>
+                        <td>2</td>
+                        <td>Priya</td>
+                        <td>HR</td>
+                        <td>40000</td>
+                    </tr>
+
+                    <tr>
+                        <td>3</td>
+                        <td>Amit</td>
+                        <td>IT</td>
+                        <td>60000</td>
+                    </tr>
+
+                    <tr>
+                        <td>4</td>
+                        <td>Neha</td>
+                        <td>HR</td>
+                        <td>45000</td>
+                    </tr>
+
+                    <tr>
+                        <td>5</td>
+                        <td>Rohit</td>
+                        <td>Sales</td>
+                        <td>35000</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         4. MIN FUNCTION
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            MIN() Function
+        </h2>
+
+        <p>
+            The <strong>MIN()</strong> function returns the smallest
+            value from the specified column.
+        </p>
+
+        <p>
+            For example, to find the lowest salary:
+        </p>
+
+        <pre class="bg-light p-4 rounded border"><code>SELECT MIN(Salary) AS MinimumSalary
+FROM Employees;</code></pre>
+
+        <h4 class="fw-bold mt-4">
+            Output
+        </h4>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered">
+
+                <thead class="table-primary">
+
+                    <tr>
+                        <th>MinimumSalary</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>35000</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <p class="mt-3">
+            Therefore, <strong>35000</strong> is the lowest salary
+            in the Employees table.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         5. MAX FUNCTION
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            MAX() Function
+        </h2>
+
+        <p>
+            The <strong>MAX()</strong> function returns the largest
+            value from the specified column.
+        </p>
+
+        <p>
+            For example, to find the highest salary:
+        </p>
+
+        <pre class="bg-light p-4 rounded border"><code>SELECT MAX(Salary) AS MaximumSalary
+FROM Employees;</code></pre>
+
+        <h4 class="fw-bold mt-4">
+            Output
+        </h4>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered">
+
+                <thead class="table-success">
+
+                    <tr>
+                        <th>MaximumSalary</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>60000</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <p class="mt-3">
+            Therefore, <strong>60000</strong> is the highest salary
+            in the Employees table.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         6. MIN AND MAX TOGETHER
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            MIN() and MAX() Together
+        </h2>
+
+        <p>
+            We can use MIN() and MAX() in the same query.
+        </p>
+
+        <pre class="bg-light p-4 rounded border"><code>SELECT
+    MIN(Salary) AS MinimumSalary,
+    MAX(Salary) AS MaximumSalary
+FROM Employees;</code></pre>
+
+        <h4 class="fw-bold mt-4">
+            Output
+        </h4>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>MinimumSalary</th>
+                        <th>MaximumSalary</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>35000</td>
+                        <td>60000</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         7. MIN WITH WHERE
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            MIN() with WHERE
+        </h2>
+
+        <p>
+            WHERE can be used to find the minimum value from
+            records that satisfy a condition.
+        </p>
+
+        <p>
+            For example, find the lowest salary in the IT department:
+        </p>
+
+        <pre class="bg-light p-4 rounded border"><code>SELECT MIN(Salary) AS MinimumSalary
+FROM Employees
+WHERE Department = 'IT';</code></pre>
+
+        <p class="mt-3">
+            The IT department has salaries of 50000 and 60000,
+            so the minimum salary is <strong>50000</strong>.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         8. MAX WITH WHERE
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            MAX() with WHERE
+        </h2>
+
+        <p>
+            WHERE can also be used with MAX() to find the highest
+            value for specific records.
+        </p>
+
+        <pre class="bg-light p-4 rounded border"><code>SELECT MAX(Salary) AS MaximumSalary
+FROM Employees
+WHERE Department = 'IT';</code></pre>
+
+        <p class="mt-3">
+            The highest salary in the IT department is
+            <strong>60000</strong>.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         9. MIN WITH GROUP BY
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            MIN() with GROUP BY
+        </h2>
+
+        <p>
+            MIN() can be used with GROUP BY to find the minimum
+            value for every group.
+        </p>
+
+        <pre class="bg-light p-4 rounded border"><code>SELECT Department,
+       MIN(Salary) AS MinimumSalary
+FROM Employees
+GROUP BY Department;</code></pre>
+
+        <h4 class="fw-bold mt-4">
+            Output
+        </h4>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered">
+
+                <thead class="table-primary">
+
+                    <tr>
+                        <th>Department</th>
+                        <th>MinimumSalary</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>HR</td>
+                        <td>40000</td>
+                    </tr>
+
+                    <tr>
+                        <td>IT</td>
+                        <td>50000</td>
+                    </tr>
+
+                    <tr>
+                        <td>Sales</td>
+                        <td>35000</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         10. MAX WITH GROUP BY
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            MAX() with GROUP BY
+        </h2>
+
+        <p>
+            MAX() can be used with GROUP BY to find the maximum
+            value for every group.
+        </p>
+
+        <pre class="bg-light p-4 rounded border"><code>SELECT Department,
+       MAX(Salary) AS MaximumSalary
+FROM Employees
+GROUP BY Department;</code></pre>
+
+        <h4 class="fw-bold mt-4">
+            Output
+        </h4>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered">
+
+                <thead class="table-success">
+
+                    <tr>
+                        <th>Department</th>
+                        <th>MaximumSalary</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>HR</td>
+                        <td>45000</td>
+                    </tr>
+
+                    <tr>
+                        <td>IT</td>
+                        <td>60000</td>
+                    </tr>
+
+                    <tr>
+                        <td>Sales</td>
+                        <td>35000</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         11. MIN MAX WITH GROUP BY
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            MIN() and MAX() with GROUP BY
+        </h2>
+
+        <p>
+            We can use both functions together to see the lowest
+            and highest value in every group.
+        </p>
+
+        <pre class="bg-light p-4 rounded border"><code>SELECT
+    Department,
+    MIN(Salary) AS MinimumSalary,
+    MAX(Salary) AS MaximumSalary
+FROM Employees
+GROUP BY Department;</code></pre>
+
+        <h4 class="fw-bold mt-4">
+            Output
+        </h4>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>Department</th>
+                        <th>MinimumSalary</th>
+                        <th>MaximumSalary</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>HR</td>
+                        <td>40000</td>
+                        <td>45000</td>
+                    </tr>
+
+                    <tr>
+                        <td>IT</td>
+                        <td>50000</td>
+                        <td>60000</td>
+                    </tr>
+
+                    <tr>
+                        <td>Sales</td>
+                        <td>35000</td>
+                        <td>35000</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         12. NULL VALUES
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            MIN(), MAX() and NULL Values
+        </h2>
+
+        <p>
+            MIN() and MAX() ignore NULL values when calculating
+            the minimum or maximum value.
+        </p>
+
+        <pre class="bg-light p-4 rounded border"><code>Salary
+------
+50000
+NULL
+60000
+40000</code></pre>
+
+        <p>
+            MIN() returns <strong>40000</strong> and MAX() returns
+            <strong>60000</strong>.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         13. REAL WORLD USE
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Real-World Uses
+        </h2>
+
+        <ul>
+
+            <li class="mb-2">
+                Find the lowest employee salary.
+            </li>
+
+            <li class="mb-2">
+                Find the highest employee salary.
+            </li>
+
+            <li class="mb-2">
+                Find the minimum product price.
+            </li>
+
+            <li class="mb-2">
+                Find the maximum product price.
+            </li>
+
+            <li class="mb-2">
+                Find the lowest student marks.
+            </li>
+
+            <li>
+                Find the highest student marks.
+            </li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- =========================
+         14. MIN VS MAX
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            MIN() vs MAX()
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>MIN()</th>
+                        <th>MAX()</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>Returns the smallest value.</td>
+                        <td>Returns the largest value.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Used to find minimum values.</td>
+                        <td>Used to find maximum values.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Ignores NULL values.</td>
+                        <td>Ignores NULL values.</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         15. IMPORTANT POINTS
+    ========================== -->
+
+    <section class="mb-5">
+
+        <div class="alert alert-warning">
+
+            <h3 class="fw-bold">
+                Important Points
+            </h3>
+
+            <ul class="mb-0">
+
+                <li class="mb-2">
+                    MIN() returns the smallest value.
+                </li>
+
+                <li class="mb-2">
+                    MAX() returns the largest value.
+                </li>
+
+                <li class="mb-2">
+                    Both are aggregate functions.
+                </li>
+
+                <li class="mb-2">
+                    Both can be used with WHERE.
+                </li>
+
+                <li class="mb-2">
+                    Both can be used with GROUP BY.
+                </li>
+
+                <li>
+                    Both ignore NULL values.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         16. SUMMARY
+    ========================== -->
+
+    <section class="mb-5">
+
+        <div class="alert alert-success">
+
+            <h3 class="fw-bold">
+                Summary
+            </h3>
+
+            <p class="mb-0">
+                MIN() is used to find the smallest value and MAX()
+                is used to find the largest value. Both functions
+                are useful for analyzing numeric data and can be
+                combined with WHERE and GROUP BY for more specific
+                results.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         PREVIOUS / NEXT
+    ========================== -->
+
+    <div class="d-flex justify-content-between align-items-center
+        mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/GroupingAndAggregate/AvgFunction"
+           class="btn btn-outline-primary">
+
+            ← Previous: AVG()
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/Subqueries/Index"
+           class="btn btn-primary">
+
+            Next: Subqueries Introduction →
+
+        </a>
+
+    </div>

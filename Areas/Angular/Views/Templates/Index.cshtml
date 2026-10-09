@@ -1,0 +1,1051 @@
+﻿@{
+    ViewData["Title"] = "Angular Templates";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- Header -->
+    <section class="mb-4">
+        <h1 class="fw-bold text-dark">Angular Templates</h1>
+
+        <p class="lead text-muted">
+            Angular Templates define the user interface of a component. They
+            combine HTML with Angular template features such as interpolation,
+            property binding, event binding, directives and control flow.
+        </p>
+    </section>
+
+    <!-- What is Template -->
+    <section class="mb-4">
+        <h2 class="fw-bold">What is an Angular Template?</h2>
+
+        <p>
+            An Angular template is HTML that Angular uses to display data and
+            respond to user actions.
+        </p>
+
+        <p>
+            A component class contains the application data and logic, while
+            the template controls how that data is displayed to the user.
+        </p>
+
+        <div class="info-card">
+            <h5>Simple Definition</h5>
+            <p>
+                <strong>Component Class + Angular Template = Interactive UI</strong>
+            </p>
+        </div>
+    </section>
+
+    <!-- Template Flow -->
+    <section class="mb-4">
+        <h2 class="fw-bold mb-3">Angular Template Flow</h2>
+
+        <div class="template-flow">
+
+            <div class="template-box">
+                <i class="bi bi-code-square"></i>
+                <h5>Component Class</h5>
+                <p>Data &amp; Logic</p>
+            </div>
+
+            <div class="template-arrow">→</div>
+
+            <div class="template-box">
+                <i class="bi bi-filetype-html"></i>
+                <h5>Template</h5>
+                <p>HTML + Angular Syntax</p>
+            </div>
+
+            <div class="template-arrow">→</div>
+
+            <div class="template-box">
+                <i class="bi bi-gear-fill"></i>
+                <h5>Angular</h5>
+                <p>Processes Template</p>
+            </div>
+
+            <div class="template-arrow">→</div>
+
+            <div class="template-box">
+                <i class="bi bi-window"></i>
+                <h5>Browser</h5>
+                <p>Rendered UI</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Basic Template -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Basic Angular Template</h2>
+
+        <p>
+            A simple Angular template can contain normal HTML elements.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                student.component.html
+            </div>
+
+            <pre><code>&lt;h2&gt;Student Details&lt;/h2&gt;
+&lt;p&gt;Welcome to Angular Training&lt;/p&gt;</code></pre>
+
+        </div>
+
+        <div class="output-box">
+
+            <strong>Expected Output:</strong>
+
+            <div class="output-preview">
+                <h3>Student Details</h3>
+                <p>Welcome to Angular Training</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Component Data -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Template with Component Data</h2>
+
+        <p>
+            Angular templates can display values stored inside the component
+            class.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                student.component.ts
+            </div>
+
+            <pre><code>export class StudentComponent &#123;
+
+    studentName = 'Sam';
+    courseName = 'Angular Full Stack';
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                student.component.html
+            </div>
+
+            <pre><code>&lt;h2&gt;Student Information&lt;/h2&gt;
+
+&lt;p&gt;Student Name: &#123;&#123; studentName &#125;&#125;&lt;/p&gt;
+
+&lt;p&gt;Course: &#123;&#123; courseName &#125;&#125;&lt;/p&gt;</code></pre>
+
+        </div>
+
+        <div class="output-box">
+
+            <strong>Expected Output:</strong>
+
+            <div class="output-preview">
+                <h3>Student Information</h3>
+                <p>Student Name: Sam</p>
+                <p>Course: Angular Full Stack</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Template Features -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Important Angular Template Features</h2>
+
+        <div class="feature-grid">
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="bi bi-braces"></i>
+                </div>
+
+                <h5>Interpolation</h5>
+
+                <p>
+                    Displays component values inside HTML.
+                </p>
+
+                <code>&#123;&#123; studentName &#125;&#125;</code>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="bi bi-link-45deg"></i>
+                </div>
+
+                <h5>Property Binding</h5>
+
+                <p>
+                    Binds a component value to an element property.
+                </p>
+
+                <code>[value]="studentName"</code>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="bi bi-mouse-fill"></i>
+                </div>
+
+                <h5>Event Binding</h5>
+
+                <p>
+                    Responds to user-generated events.
+                </p>
+
+                <code>(click)="save()"</code>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="bi bi-arrow-left-right"></i>
+                </div>
+
+                <h5>Two-Way Binding</h5>
+
+                <p>
+                    Synchronizes data between component and UI.
+                </p>
+
+                <code>[(ngModel)]="name"</code>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Interpolation -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Interpolation</h2>
+
+        <p>
+            Interpolation is used to display component data in the template.
+            It uses double curly braces.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Interpolation Example
+            </div>
+
+            <pre><code>export class StudentComponent &#123;
+
+    name = 'Pradnya';
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Template
+            </div>
+
+            <pre><code>&lt;h2&gt;Welcome &#123;&#123; name &#125;&#125;&lt;/h2&gt;</code></pre>
+
+        </div>
+
+        <div class="output-box">
+
+            <strong>Expected Output:</strong>
+
+            <div class="output-preview">
+                <h3>Welcome Pradnya</h3>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Property Binding -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Property Binding</h2>
+
+        <p>
+            Property binding connects an HTML element property with a component
+            property.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Property Binding Example
+            </div>
+
+            <pre><code>export class StudentComponent &#123;
+
+    imageUrl = 'assets/student.jpg';
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Template
+            </div>
+
+            <pre><code>&lt;img [src]="imageUrl" alt="Student"&gt;</code></pre>
+
+        </div>
+
+        <div class="binding-flow">
+
+            <div class="binding-item">
+                <strong>Component</strong>
+                <span>imageUrl</span>
+            </div>
+
+            <div class="binding-arrow">→</div>
+
+            <div class="binding-item">
+                <strong>Property Binding</strong>
+                <span>[src]</span>
+            </div>
+
+            <div class="binding-arrow">→</div>
+
+            <div class="binding-item">
+                <strong>HTML</strong>
+                <span>img element</span>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Event Binding -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Event Binding</h2>
+
+        <p>
+            Event binding allows the template to respond to user actions such
+            as clicks.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Component
+            </div>
+
+            <pre><code>export class StudentComponent &#123;
+
+    message = '';
+
+    showMessage() &#123;
+        this.message = 'Welcome Sam!';
+    &#125;
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Template
+            </div>
+
+            <pre><code>&lt;button (click)="showMessage()"&gt;
+    Show Message
+&lt;/button&gt;
+
+&lt;p&gt;&#123;&#123; message &#125;&#125;&lt;/p&gt;</code></pre>
+
+        </div>
+
+        <div class="output-box">
+
+            <strong>Expected Behavior:</strong>
+
+            <p class="mt-2 mb-0">
+                When the user clicks <strong>Show Message</strong>, the message
+                <strong>Welcome Sam!</strong> is displayed.
+            </p>
+
+        </div>
+    </section>
+
+    <!-- Two Way Binding -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Two-Way Data Binding</h2>
+
+        <p>
+            Two-way binding keeps the component property and input control
+            synchronized.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>export class StudentComponent &#123;
+
+    studentName = '';
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Template
+            </div>
+
+            <pre><code>&lt;input
+    [(ngModel)]="studentName"
+    placeholder="Enter student name"&gt;
+
+&lt;p&gt;Student: &#123;&#123; studentName &#125;&#125;&lt;/p&gt;</code></pre>
+
+        </div>
+
+        <div class="binding-flow">
+
+            <div class="binding-item">
+                <strong>Component</strong>
+                <span>studentName</span>
+            </div>
+
+            <div class="binding-arrow">↔</div>
+
+            <div class="binding-item">
+                <strong>Two-Way Binding</strong>
+                <span>[(ngModel)]</span>
+            </div>
+
+            <div class="binding-arrow">↔</div>
+
+            <div class="binding-item">
+                <strong>Input</strong>
+                <span>User Value</span>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Directives -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Directives in Templates</h2>
+
+        <p>
+            Angular directives can change the behavior, appearance or structure
+            of elements in a template.
+        </p>
+
+        <div class="directive-grid">
+
+            <div class="directive-card">
+                <h5>Attribute Directives</h5>
+                <p>Modify the appearance or behavior of elements.</p>
+                <code>ngClass</code>
+            </div>
+
+            <div class="directive-card">
+                <h5>Structural Concepts</h5>
+                <p>Control which content appears in the UI.</p>
+                <code>if / for</code>
+            </div>
+
+            <div class="directive-card">
+                <h5>Custom Directives</h5>
+                <p>Develop application-specific behavior.</p>
+                <code>appHighlight</code>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Template Expressions -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Template Expressions</h2>
+
+        <p>
+            Angular templates can evaluate expressions to display calculated
+            values.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>export class StudentComponent &#123;
+
+    marks = 85;
+    total = 100;
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Template
+            </div>
+
+            <pre><code>&lt;p&gt;Marks: &#123;&#123; marks &#125;&#125; / &#123;&#123; total &#125;&#125;&lt;/p&gt;
+
+&lt;p&gt;Percentage: &#123;&#123; (marks / total) * 100 &#125;&#125;%&lt;/p&gt;</code></pre>
+
+        </div>
+
+        <div class="output-box">
+
+            <strong>Expected Output:</strong>
+
+            <div class="output-preview">
+                <p>Marks: 85 / 100</p>
+                <p>Percentage: 85%</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Template Reference -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Template Reference Variables</h2>
+
+        <p>
+            A template reference variable can provide a convenient reference
+            to an element or directive instance within the template.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>&lt;input #studentInput placeholder="Enter name"&gt;
+
+&lt;button (click)="showName(studentInput.value)"&gt;
+    Show Name
+&lt;/button&gt;</code></pre>
+
+        </div>
+
+        <div class="info-card">
+            <h5>How it works</h5>
+            <p>
+                The <code>#studentInput</code> variable references the input
+                element so its current value can be used in the template.
+            </p>
+        </div>
+    </section>
+
+    <!-- Template Architecture -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Template Architecture</h2>
+
+        <div class="architecture-grid">
+
+            <div class="architecture-card">
+                <i class="bi bi-database"></i>
+                <h5>Component Data</h5>
+                <p>
+                    Properties and methods defined in the component class.
+                </p>
+            </div>
+
+            <div class="architecture-arrow">→</div>
+
+            <div class="architecture-card">
+                <i class="bi bi-filetype-html"></i>
+                <h5>Angular Template</h5>
+                <p>
+                    HTML combined with Angular template syntax.
+                </p>
+            </div>
+
+            <div class="architecture-arrow">→</div>
+
+            <div class="architecture-card">
+                <i class="bi bi-display"></i>
+                <h5>User Interface</h5>
+                <p>
+                    Angular renders the final interface in the browser.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Best Practices -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Template Best Practices</h2>
+
+        <ul class="best-practice-list">
+
+            <li>
+                Keep templates simple and easy to read.
+            </li>
+
+            <li>
+                Avoid putting complex business logic directly in templates.
+            </li>
+
+            <li>
+                Use meaningful component property names.
+            </li>
+
+            <li>
+                Break large interfaces into reusable components.
+            </li>
+
+            <li>
+                Use Angular binding features instead of manually manipulating
+                the DOM.
+            </li>
+
+            <li>
+                Keep repeated UI logic reusable through components and directives.
+            </li>
+
+        </ul>
+    </section>
+
+    <!-- Summary -->
+    <section class="summary-box">
+
+        <h3>Summary</h3>
+
+        <p>
+            Angular Templates define the visual structure and interaction of
+            an Angular component.
+        </p>
+
+        <p>
+            Important template features include
+            <strong>Interpolation</strong>,
+            <strong>Property Binding</strong>,
+            <strong>Event Binding</strong>,
+            <strong>Two-Way Binding</strong>,
+            <strong>Directives</strong> and
+            <strong>Template Reference Variables</strong>.
+        </p>
+
+        <p>
+            A good Angular template should be readable, maintainable and focused
+            mainly on presenting and interacting with application data.
+        </p>
+
+    </section>
+
+    <!-- Navigation -->
+    <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+
+        <a class="btn btn-outline-secondary"
+           href="@Url.Action("ReusableComponents", "Components", new { area = "Angular" })">
+            ← Reusable Components
+        </a>
+
+        <a class="btn btn-primary"
+           href="@Url.Action("TemplateSyntax", "Templates", new { area = "Angular" })">
+            Template Syntax →
+        </a>
+
+    </div>
+
+</div>
+
+<style>
+
+    .info-card {
+        background: #f8fafc;
+        border-left: 5px solid #4c1d95;
+        padding: 18px 20px;
+        border-radius: 7px;
+        margin-top: 15px;
+    }
+
+        .info-card h5 {
+            color: #4c1d95;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .info-card p {
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+
+    .template-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        padding: 25px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+    }
+
+    .template-box {
+        width: 175px;
+        min-height: 125px;
+        padding: 18px;
+        text-align: center;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 9px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+        .template-box i {
+            display: block;
+            font-size: 28px;
+            color: #4c1d95;
+            margin-bottom: 8px;
+        }
+
+        .template-box h5 {
+            color: #2e1065;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .template-box p {
+            color: #64748b;
+            font-size: 14px;
+            margin: 0;
+        }
+
+    .template-arrow {
+        color: #4c1d95;
+        font-size: 25px;
+        font-weight: 700;
+    }
+
+    .code-card {
+        margin-top: 15px;
+        margin-bottom: 18px;
+        border-radius: 8px;
+        overflow: hidden;
+        background: #0f172a;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .code-title {
+        background: #1e293b;
+        color: #d8c9f5;
+        padding: 10px 15px;
+        font-weight: 600;
+        border-bottom: 1px solid #334155;
+    }
+
+    .code-card pre {
+        margin: 0;
+        padding: 18px;
+        overflow-x: auto;
+    }
+
+    .code-card code {
+        color: #e2e8f0;
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    .output-box {
+        margin-top: 15px;
+        padding: 18px;
+        background: #f1f5f9;
+        border-left: 5px solid #4c1d95;
+        border-radius: 6px;
+    }
+
+    .output-preview {
+        margin-top: 12px;
+        padding: 18px;
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 7px;
+    }
+
+        .output-preview h3 {
+            color: #2e1065;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .output-preview p {
+            margin-bottom: 7px;
+        }
+
+            .output-preview p:last-child {
+                margin-bottom: 0;
+            }
+
+    .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+    }
+
+    .feature-card {
+        padding: 20px;
+        text-align: center;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 9px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    }
+
+    .feature-icon {
+        width: 55px;
+        height: 55px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 12px;
+        background: #ede9fe;
+        color: #4c1d95;
+        border-radius: 50%;
+        font-size: 24px;
+    }
+
+    .feature-card h5 {
+        color: #2e1065;
+        font-weight: 700;
+    }
+
+    .feature-card p {
+        color: #64748b;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .feature-card code {
+        color: #4c1d95;
+        font-weight: 600;
+    }
+
+    .binding-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        padding: 20px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+    }
+
+    .binding-item {
+        min-width: 170px;
+        padding: 15px;
+        text-align: center;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 8px;
+    }
+
+        .binding-item strong {
+            display: block;
+            color: #4c1d95;
+            font-weight: 700;
+        }
+
+        .binding-item span {
+            display: block;
+            color: #64748b;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+    .binding-arrow {
+        color: #4c1d95;
+        font-size: 25px;
+        font-weight: 700;
+    }
+
+    .directive-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+    }
+
+    .directive-card {
+        padding: 20px;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 8px;
+    }
+
+        .directive-card h5 {
+            color: #4c1d95;
+            font-weight: 700;
+        }
+
+        .directive-card p {
+            color: #64748b;
+            line-height: 1.5;
+        }
+
+        .directive-card code {
+            color: #4c1d95;
+            font-weight: 600;
+        }
+
+    .architecture-grid {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+        padding: 25px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+    }
+
+    .architecture-card {
+        width: 210px;
+        min-height: 135px;
+        padding: 20px;
+        text-align: center;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 9px;
+    }
+
+        .architecture-card i {
+            display: block;
+            color: #4c1d95;
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .architecture-card h5 {
+            color: #2e1065;
+            font-weight: 700;
+        }
+
+        .architecture-card p {
+            color: #64748b;
+            font-size: 14px;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+    .architecture-arrow {
+        color: #4c1d95;
+        font-size: 25px;
+        font-weight: 700;
+    }
+
+    .best-practice-list {
+        padding: 20px 20px 20px 40px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+    }
+
+        .best-practice-list li {
+            margin-bottom: 11px;
+            line-height: 1.6;
+        }
+
+            .best-practice-list li:last-child {
+                margin-bottom: 0;
+            }
+
+    .summary-box {
+        background: #cfe2ff;
+        border-radius: 6px;
+        padding: 18px 22px;
+        margin-top: 20px;
+    }
+
+        .summary-box h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #084298;
+            margin-bottom: 10px;
+        }
+
+        .summary-box p {
+            font-size: 16px !important;
+            line-height: 1.6 !important;
+            color: #084298 !important;
+            margin-bottom: 8px;
+        }
+
+            .summary-box p:last-child {
+                margin-bottom: 0;
+            }
+
+    @@media (max-width: 991px) {
+
+        .feature-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .directive-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @@media (max-width: 576px) {
+
+        .feature-grid,
+        .directive-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .template-flow,
+        .architecture-grid,
+        .binding-flow {
+            flex-direction: column;
+        }
+
+        .template-arrow,
+        .architecture-arrow,
+        .binding-arrow {
+            transform: rotate(90deg);
+        }
+
+        .template-box,
+        .architecture-card {
+            width: 100%;
+            max-width: 280px;
+        }
+
+        .binding-item {
+            width: 100%;
+            max-width: 250px;
+        }
+
+        .code-card code {
+            font-size: 13px;
+        }
+
+        .d-flex.justify-content-between {
+            gap: 10px;
+        }
+
+            .d-flex.justify-content-between .btn {
+                font-size: 13px;
+                padding: 8px 12px;
+            }
+    }
+
+</style>

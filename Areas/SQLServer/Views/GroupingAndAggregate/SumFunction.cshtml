@@ -1,0 +1,590 @@
+﻿@{
+    ViewData["Title"] = "SUM() Function - SQL Server";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- =========================
+         PAGE HEADER
+    ========================== -->
+
+    <div class="mb-5">
+
+        <h1 class="fw-bold">
+            SUM() Function
+        </h1>
+
+        <p class="lead text-muted">
+            Learn how to calculate the total of numeric values
+            using the SUM() aggregate function in SQL Server.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         1. INTRODUCTION
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            What is SUM()?
+        </h2>
+
+        <p>
+            The <strong>SUM()</strong> function is an aggregate function
+            in SQL Server used to calculate the total of numeric values
+            from multiple rows.
+        </p>
+
+        <p>
+            It is commonly used for calculating total salary, total sales,
+            total marks, total quantity, total price and other numerical
+            values.
+        </p>
+
+        <div class="alert alert-info">
+
+            <strong>In simple words:</strong>
+
+            <p class="mb-0 mt-2">
+                SUM() adds the numeric values together and returns
+                their total.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         2. SYNTAX
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            SUM() Syntax
+        </h2>
+
+        <pre class="bg-light p-4 rounded border"><code>SELECT SUM(column_name)
+FROM table_name;</code></pre>
+
+        <p class="mt-3">
+            We provide the numeric column inside the SUM() function.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         3. SAMPLE TABLE
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Example Table
+        </h2>
+
+        <p>
+            Consider the following <strong>Employees</strong> table:
+        </p>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>EmployeeId</th>
+                        <th>EmployeeName</th>
+                        <th>Department</th>
+                        <th>Salary</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>1</td>
+                        <td>Rahul</td>
+                        <td>IT</td>
+                        <td>50000</td>
+                    </tr>
+
+                    <tr>
+                        <td>2</td>
+                        <td>Priya</td>
+                        <td>HR</td>
+                        <td>40000</td>
+                    </tr>
+
+                    <tr>
+                        <td>3</td>
+                        <td>Amit</td>
+                        <td>IT</td>
+                        <td>60000</td>
+                    </tr>
+
+                    <tr>
+                        <td>4</td>
+                        <td>Neha</td>
+                        <td>HR</td>
+                        <td>45000</td>
+                    </tr>
+
+                    <tr>
+                        <td>5</td>
+                        <td>Rohit</td>
+                        <td>Sales</td>
+                        <td>35000</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         4. BASIC SUM
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Basic SUM() Example
+        </h2>
+
+        <p>
+            To calculate the total salary of all employees:
+        </p>
+
+        <pre class="bg-light p-4 rounded border"><code>SELECT SUM(Salary) AS TotalSalary
+FROM Employees;</code></pre>
+
+        <h4 class="fw-bold mt-4">
+            Calculation
+        </h4>
+
+        <pre class="bg-light p-4 rounded border"><code>50000 + 40000 + 60000 + 45000 + 35000
+= 230000</code></pre>
+
+        <h4 class="fw-bold mt-4">
+            Output
+        </h4>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered">
+
+                <thead class="table-primary">
+
+                    <tr>
+                        <th>TotalSalary</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>230000</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         5. SUM WITH WHERE
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            SUM() with WHERE
+        </h2>
+
+        <p>
+            SUM() can be combined with WHERE when we want to calculate
+            the total only for records satisfying a particular condition.
+        </p>
+
+        <p>
+            For example, calculate the total salary of employees
+            whose salary is greater than 40000:
+        </p>
+
+        <pre class="bg-light p-4 rounded border"><code>SELECT SUM(Salary) AS TotalSalary
+FROM Employees
+WHERE Salary &gt; 40000;</code></pre>
+
+        <h4 class="fw-bold mt-4">
+            Calculation
+        </h4>
+
+        <pre class="bg-light p-4 rounded border"><code>50000 + 60000 + 45000
+= 155000</code></pre>
+
+        <p class="mt-3">
+            The result is <strong>155000</strong>.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         6. SUM WITH GROUP BY
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            SUM() with GROUP BY
+        </h2>
+
+        <p>
+            SUM() is commonly used with GROUP BY to calculate
+            totals for each group.
+        </p>
+
+        <p>
+            For example, calculate the total salary for each department:
+        </p>
+
+        <pre class="bg-light p-4 rounded border"><code>SELECT Department,
+       SUM(Salary) AS TotalSalary
+FROM Employees
+GROUP BY Department;</code></pre>
+
+        <h4 class="fw-bold mt-4">
+            Output
+        </h4>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered">
+
+                <thead class="table-success">
+
+                    <tr>
+                        <th>Department</th>
+                        <th>TotalSalary</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>HR</td>
+                        <td>85000</td>
+                    </tr>
+
+                    <tr>
+                        <td>IT</td>
+                        <td>110000</td>
+                    </tr>
+
+                    <tr>
+                        <td>Sales</td>
+                        <td>35000</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         7. SUM WITH HAVING
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            SUM() with HAVING
+        </h2>
+
+        <p>
+            HAVING can be used to filter groups based on their
+            calculated SUM() value.
+        </p>
+
+        <p>
+            For example, display only departments whose total salary
+            is greater than 80000:
+        </p>
+
+        <pre class="bg-light p-4 rounded border"><code>SELECT Department,
+       SUM(Salary) AS TotalSalary
+FROM Employees
+GROUP BY Department
+HAVING SUM(Salary) &gt; 80000;</code></pre>
+
+        <h4 class="fw-bold mt-4">
+            Output
+        </h4>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered">
+
+                <thead class="table-warning">
+
+                    <tr>
+                        <th>Department</th>
+                        <th>TotalSalary</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>HR</td>
+                        <td>85000</td>
+                    </tr>
+
+                    <tr>
+                        <td>IT</td>
+                        <td>110000</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         8. SUM AND NULL VALUES
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            SUM() and NULL Values
+        </h2>
+
+        <p>
+            SUM() ignores NULL values when calculating the total.
+        </p>
+
+        <p>
+            For example, if a Salary column contains:
+        </p>
+
+        <pre class="bg-light p-4 rounded border"><code>50000
+60000
+NULL
+40000</code></pre>
+
+        <p>
+            SUM() calculates the total using the available numeric values:
+        </p>
+
+        <pre class="bg-light p-4 rounded border"><code>50000 + 60000 + 40000
+= 150000</code></pre>
+
+    </section>
+
+
+    <!-- =========================
+         9. SUM DISTINCT
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            SUM(DISTINCT)
+        </h2>
+
+        <p>
+            <strong>SUM(DISTINCT column)</strong> calculates the total
+            using only unique values.
+        </p>
+
+        <pre class="bg-light p-4 rounded border"><code>SELECT SUM(DISTINCT Salary) AS TotalSalary
+FROM Employees;</code></pre>
+
+        <div class="alert alert-secondary mt-3">
+
+            <strong>Note:</strong>
+
+            <p class="mb-0 mt-2">
+                DISTINCT removes duplicate values before calculating
+                the total.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         10. SUM WITH MULTIPLE COLUMNS
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            SUM() in Reports
+        </h2>
+
+        <p>
+            SUM() is frequently used in reports to calculate
+            business totals such as:
+        </p>
+
+        <ul>
+
+            <li class="mb-2">
+                Total sales
+            </li>
+
+            <li class="mb-2">
+                Total salary
+            </li>
+
+            <li class="mb-2">
+                Total product quantity
+            </li>
+
+            <li class="mb-2">
+                Total order amount
+            </li>
+
+            <li>
+                Total revenue
+            </li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- =========================
+         11. IMPORTANT POINTS
+    ========================== -->
+
+    <section class="mb-5">
+
+        <div class="alert alert-warning">
+
+            <h3 class="fw-bold">
+                Important Points
+            </h3>
+
+            <ul class="mb-0">
+
+                <li class="mb-2">
+                    SUM() works with numeric values.
+                </li>
+
+                <li class="mb-2">
+                    SUM() calculates the total of values.
+                </li>
+
+                <li class="mb-2">
+                    SUM() ignores NULL values.
+                </li>
+
+                <li class="mb-2">
+                    SUM() can be combined with WHERE.
+                </li>
+
+                <li class="mb-2">
+                    SUM() can be combined with GROUP BY.
+                </li>
+
+                <li class="mb-2">
+                    HAVING can filter grouped SUM() results.
+                </li>
+
+                <li>
+                    SUM(DISTINCT column) calculates the total
+                    of unique values.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         12. SUMMARY
+    ========================== -->
+
+    <section class="mb-5">
+
+        <div class="alert alert-success">
+
+            <h3 class="fw-bold">
+                Summary
+            </h3>
+
+            <p class="mb-0">
+                SUM() is an aggregate function used to calculate
+                the total of numeric values. It is commonly used
+                with WHERE, GROUP BY and HAVING clauses to perform
+                detailed calculations and generate meaningful
+                summary reports.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         PREVIOUS / NEXT
+    ========================== -->
+
+    <div class="d-flex justify-content-between align-items-center
+        mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/GroupingAndAggregate/CountFunction"
+           class="btn btn-outline-primary">
+
+            ← Previous: COUNT()
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/GroupingAndAggregate/AvgFunction"
+           class="btn btn-primary">
+
+            Next: AVG() →
+
+        </a>
+
+    </div>
+
+</div>

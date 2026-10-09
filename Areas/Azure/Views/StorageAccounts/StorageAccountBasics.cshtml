@@ -1,0 +1,47 @@
+@{
+    ViewData["Title"] = "Step 5: In the basics tab, enter the following values :";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+                <div class="azure-notes-content">
+                    <pre class="azure-notes-text">Step 5: In the basics tab, enter the following values :
+
+    •   Subscription: Choose the subscription where you wish to create the resource.
+
+    •   Resource group: Choose the resource group where you wish to create the resource. If you
+        wish to create a new group click on create a new option.
+
+    •   Storage account name: Enter a globally unique storage account.
+
+    •   Region: Select the location where we wish to create the account.
+
+    •   Performance: Choose from standard or premium based on your requirements.
+    •   Redundancy: Choose the replication method for your data stored in the storage services. For
+        now, choose Locally-redundant storage (LRS).</pre>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_4_-_Microsoft_Azure_-_Storage_Accounts/p04-000.jpg" class="img-fluid rounded shadow-sm" alt="Step 5: In the basics tab, enter the following values : - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_4_-_Microsoft_Azure_-_Storage_Accounts/p05-000.jpg" class="img-fluid rounded shadow-sm" alt="Step 5: In the basics tab, enter the following values : - source image" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+            @await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureLessonNavigation.cshtml")
+</section>
+</div>
+<style>
+.azure-notes-text{white-space:pre-wrap;word-break:normal;font-family:inherit;font-size:1rem;line-height:1.7;background:#fff;border:0;padding:0;margin:0;color:#212529;}
+.azure-notes-content img{max-height:720px;}
+</style>

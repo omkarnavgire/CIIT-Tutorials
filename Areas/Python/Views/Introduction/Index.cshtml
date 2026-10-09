@@ -1,0 +1,707 @@
+﻿@{
+    // Use the Python tutorial layout.
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+
+    // Page title shown in the browser.
+    ViewData["Title"] = "Introduction to Python";
+}
+
+
+<main id="tutorials" class="container py-5">
+
+    <div class="row g-4">
+
+
+        <!-- ===================================================== -->
+        <!-- LEFT SIDEBAR -->
+        <!-- ===================================================== -->
+
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+
+        </aside>
+
+
+        <!-- ===================================================== -->
+        <!-- MAIN TUTORIAL CONTENT -->
+        <!-- ===================================================== -->
+
+        <section class="col-lg-9">
+
+            <div class="card shadow-sm p-4 p-md-5 mb-4">
+
+
+                <!-- ================================================= -->
+                <!-- PAGE TITLE -->
+                <!-- ================================================= -->
+
+                <h1 class="fw-bold text-dark mt-1 mb-4">
+
+                    Introduction to Python
+
+                </h1>
+
+
+                <!-- ================================================= -->
+                <!-- INTRODUCTION -->
+                <!-- ================================================= -->
+
+                <p class="text-muted mb-4">
+
+                    Python is a high-level, general-purpose programming language
+                    known for its simple syntax, readability, and wide range of
+                    applications. It is one of the most popular programming
+                    languages used by beginners, developers, data professionals,
+                    automation engineers, and AI/ML developers.
+
+                </p>
+
+
+                <p class="text-muted mb-4">
+
+                    In this tutorial, you will learn Python step-by-step,
+                    starting from the fundamentals and gradually moving toward
+                    real-world programming concepts and projects.
+
+                </p>
+
+
+                <!-- ================================================= -->
+                <!-- WHAT IS PYTHON? -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+
+                    What is Python?
+
+                </h2>
+
+
+                <p class="mb-4">
+
+                    Python is a high-level, interpreted, general-purpose
+                    programming language. It was designed with a strong focus
+                    on code readability and developer productivity.
+
+                </p>
+
+
+                <p class="mb-4">
+
+                    Python allows developers to write programs using a clean
+                    and easy-to-understand syntax. Because of this, Python is
+                    often recommended as one of the best programming languages
+                    for beginners.
+
+                </p>
+
+
+                <!-- ================================================= -->
+                <!-- SIMPLE PYTHON EXAMPLE -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+
+                    Your First Look at Python
+
+                </h2>
+
+
+                <p class="mb-3">
+
+                    A simple Python program can be written using the
+                    <code>print()</code> function.
+
+                </p>
+
+
+                <!-- Code Block -->
+
+                <div class="code-block mb-3">
+
+                    <span class="code-lang-tag">
+                        Python
+                    </span>
+
+                    <pre class="mb-0"><code>print("Hello, CIIT Institute 🤓❤️..!")</code></pre>
+
+                </div>
+
+
+                <!-- Output -->
+
+                <div class="alert alert-light border mb-4">
+
+                    <strong>Output:</strong>
+
+                    <pre class="mb-0 mt-2">Hello, CIIT Institute 🤓❤️..!</pre>
+
+                </div>
+
+
+                <p class="text-muted mb-4">
+
+                    The <code>print()</code> function displays information on
+                    the screen. Here, the text inside quotation marks is
+                    displayed as the output.
+
+                </p>
+
+
+                <!-- ================================================= -->
+                <!-- WHY LEARN PYTHON? -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+
+                    Why Learn Python?
+
+                </h2>
+
+
+                <p class="mb-3">
+
+                    Python is widely used because it combines simple syntax
+                    with powerful programming capabilities.
+
+                </p>
+
+
+                <ul class="mb-4">
+
+                    <li class="mb-2">
+                        Easy-to-read and beginner-friendly syntax
+                    </li>
+
+                    <li class="mb-2">
+                        Large collection of libraries and frameworks
+                    </li>
+
+                    <li class="mb-2">
+                        Useful for web development and backend development
+                    </li>
+
+                    <li class="mb-2">
+                        Widely used in data analysis and data science
+                    </li>
+
+                    <li class="mb-2">
+                        Popular for Artificial Intelligence and Machine Learning
+                    </li>
+
+                    <li class="mb-2">
+                        Useful for automation and scripting
+                    </li>
+
+                    <li class="mb-2">
+                        Supports object-oriented and other programming styles
+                    </li>
+
+                </ul>
+
+
+                <!-- ================================================= -->
+                <!-- KEY FEATURES -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+
+                    Key Features of Python
+
+                </h2>
+
+
+                <div class="table-responsive mb-4">
+
+                    <table class="table table-bordered align-middle">
+
+                        <thead class="table-light">
+
+                            <tr>
+
+                                <th>
+                                    Feature
+                                </th>
+
+                                <th>
+                                    Description
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+                            <tr>
+
+                                <td>
+                                    Simple Syntax
+                                </td>
+
+                                <td>
+                                    Python syntax is clean and easy to read.
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    Interpreted
+                                </td>
+
+                                <td>
+                                    Python programs are executed by the
+                                    Python interpreter.
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    Dynamically Typed
+                                </td>
+
+                                <td>
+                                    You do not need to declare the data type
+                                    of a variable explicitly.
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    Object-Oriented
+                                </td>
+
+                                <td>
+                                    Python supports classes and objects for
+                                    building structured applications.
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    Cross-Platform
+                                </td>
+
+                                <td>
+                                    Python programs can run on different
+                                    operating systems with the appropriate
+                                    Python environment.
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    Large Ecosystem
+                                </td>
+
+                                <td>
+                                    Python provides a large ecosystem of
+                                    libraries and frameworks.
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- WHERE PYTHON IS USED -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+
+                    Where is Python Used?
+
+                </h2>
+
+
+                <p class="mb-3">
+
+                    Python is used in many different areas of software
+                    development and technology.
+
+                </p>
+
+
+                <div class="row g-3 mb-4">
+
+
+                    <div class="col-md-6">
+
+                        <div class="border rounded p-3 h-100">
+
+                            <h3 class="h5 fw-bold">
+                                Web Development
+                            </h3>
+
+                            <p class="text-muted mb-0">
+
+                                Python can be used to build web applications
+                                and APIs using frameworks such as Flask
+                                and FastAPI.
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-6">
+
+                        <div class="border rounded p-3 h-100">
+
+                            <h3 class="h5 fw-bold">
+                                Data Science
+                            </h3>
+
+                            <p class="text-muted mb-0">
+
+                                Python is widely used for data analysis,
+                                visualization, and data science workflows.
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-6">
+
+                        <div class="border rounded p-3 h-100">
+
+                            <h3 class="h5 fw-bold">
+                                Artificial Intelligence
+                            </h3>
+
+                            <p class="text-muted mb-0">
+
+                                Python is widely used for Artificial
+                                Intelligence and Machine Learning development.
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-6">
+
+                        <div class="border rounded p-3 h-100">
+
+                            <h3 class="h5 fw-bold">
+                                Automation
+                            </h3>
+
+                            <p class="text-muted mb-0">
+
+                                Python can be used to automate repetitive
+                                tasks and create useful scripts.
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-6">
+
+                        <div class="border rounded p-3 h-100">
+
+                            <h3 class="h5 fw-bold">
+                                Software Development
+                            </h3>
+
+                            <p class="text-muted mb-0">
+
+                                Python can be used to develop applications,
+                                utilities, tools, and backend services.
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-6">
+
+                        <div class="border rounded p-3 h-100">
+
+                            <h3 class="h5 fw-bold">
+                                Testing
+                            </h3>
+
+                            <p class="text-muted mb-0">
+
+                                Python provides tools and frameworks for
+                                automated software testing.
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- SIMPLE PYTHON SYNTAX -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+
+                    Understanding Python Syntax
+
+                </h2>
+
+
+                <p class="mb-3">
+
+                    Python uses indentation to define blocks of code.
+                    Unlike some programming languages, Python does not use
+                    curly braces to define these blocks.
+
+                </p>
+
+
+                <div class="code-block mb-4">
+
+                    <span class="code-lang-tag">
+                        Python
+                    </span>
+
+                    <pre class="mb-0"><code>name = "Yuvraj"
+
+if name == "Yuvraj":
+    print("Welcome to Python🤓..!")</code></pre>
+
+                </div>
+
+
+                <div class="alert alert-warning mb-4">
+
+                    <strong>Important:</strong>
+
+                    Python indentation is part of the language syntax.
+                    Consistent indentation is required when writing
+                    blocks of Python code.
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- DYNAMIC TYPING -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+
+                    Python and Dynamic Typing
+
+                </h2>
+
+
+                <p class="mb-3">
+
+                    Python is dynamically typed. This means that you can
+                    create a variable without explicitly specifying its
+                    data type.
+
+                </p>
+
+
+                <div class="code-block mb-4">
+
+                    <span class="code-lang-tag">
+                        Python
+                    </span>
+
+                    <pre class="mb-0"><code>age = 25
+name = "Amit"
+salary = 45000.50</code></pre>
+
+                </div>
+
+
+                <p class="text-muted mb-4">
+
+                    Python determines the type of the value assigned to
+                    each variable at runtime.
+
+                </p>
+
+
+                <!-- ================================================= -->
+                <!-- CIIT LEARNING POINT -->
+                <!-- ================================================= -->
+
+                <div class="alert alert-success mb-4">
+
+                    <strong>CIIT Learning Point:</strong>
+
+                    Do not focus only on memorizing Python syntax.
+                    Understand what each line of code does and practice
+                    writing the examples yourself.
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- WHAT YOU WILL LEARN -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+
+                    What You Will Learn in This Python Tutorial
+
+                </h2>
+
+
+                <p class="mb-3">
+
+                    This tutorial will take you from Python fundamentals
+                    toward practical development concepts.
+
+                </p>
+
+
+                <ol class="mb-4">
+
+                    <li class="mb-2">
+                        Python fundamentals and environment setup
+                    </li>
+
+                    <li class="mb-2">
+                        Variables, data types, operators, and strings
+                    </li>
+
+                    <li class="mb-2">
+                        Conditional statements and loops
+                    </li>
+
+                    <li class="mb-2">
+                        Functions and recursion
+                    </li>
+
+                    <li class="mb-2">
+                        Lists, tuples, sets, dictionaries, and comprehensions
+                    </li>
+
+                    <li class="mb-2">
+                        Object-oriented programming
+                    </li>
+
+                    <li class="mb-2">
+                        Modules, packages, and virtual environments
+                    </li>
+
+                    <li class="mb-2">
+                        File handling and exception handling
+                    </li>
+
+                    <li class="mb-2">
+                        Advanced Python concepts
+                    </li>
+
+                    <li class="mb-2">
+                        Database programming
+                    </li>
+
+                    <li class="mb-2">
+                        Web development and REST APIs
+                    </li>
+
+                    <li class="mb-2">
+                        Testing concepts
+                    </li>
+
+                    <li class="mb-2">
+                        Practical Python projects
+                    </li>
+
+                </ol>
+
+
+                <!-- ================================================= -->
+                <!-- SUMMARY -->
+                <!-- ================================================= -->
+
+                <div class="alert alert-info mt-4 mb-0"
+                     style="background-color:#cfe2ff; border:0; color:#123c73;">
+
+                    <h2 class="h3 fw-bold mt-0 mb-3"
+                        style="color:#123c73;">
+
+                        Summary :
+
+                    </h2>
+
+                    <p class="mb-0"
+                       style="color:#123c73;">
+
+                        Python is a readable and versatile programming language
+                        that can be used across many areas of software development.
+                        In this tutorial, you will build your knowledge step-by-step,
+                        starting with the basics and progressing toward practical
+                        Python development.
+
+                    </p>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- NEXT TOPIC -->
+                <!-- ================================================= -->
+
+                <div class="d-flex justify-content-end mt-4">
+
+                    <a href="@Url.Action(
+                                                       "Installation",
+                                                       "Introduction",
+                                                       new { area = "Python" }
+                                                   )"
+                       class="btn btn-primary">
+
+                        Next: Topic
+
+                    </a>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

@@ -1,0 +1,193 @@
+@{
+    ViewData["Title"] = "Authentication vs Authorization";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+
+                <h1>Authentication vs Authorization</h1>
+
+                <p>
+                    In Microsoft Azure, the distinction remains exactly the same:
+                    <b>Authentication (AuthN)</b> verifies who the user or service is,
+                    while <b>Authorization (AuthZ)</b> determines what resources they
+                    are allowed to access and modify.
+                </p>
+
+                <p>
+                    Azure handles these two stages using different underlying services
+                    and mechanisms: <b>Microsoft Entra ID</b> acts as the primary engine
+                    for Authentication, while <b>Azure Role-Based Access Control (RBAC)</b>
+                    handles Authorization.
+                </p>
+
+
+                <h2 class="mt-5">Azure Comparison Matrix</h2>
+
+                <div class="table-responsive my-4">
+                    <table class="table table-bordered align-middle">
+
+                        <thead class="table-light">
+                            <tr>
+                                <th>Feature</th>
+                                <th>Azure Authentication (AuthN)</th>
+                                <th>Azure Authorization (AuthZ)</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td><b>The Primary Tool</b></td>
+                                <td>Microsoft Entra ID</td>
+                                <td>Azure RBAC (Role-Based Access Control) &amp; ABAC</td>
+                            </tr>
+
+                            <tr>
+                                <td><b>What it Checks</b></td>
+                                <td>
+                                    Credentials, passwords, MFA tokens, device compliance,
+                                    and sign-in risk.
+                                </td>
+                                <td>
+                                    Assigned roles, permissions, scopes, and resource attributes.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td><b>Common Identities</b></td>
+                                <td>
+                                    Users, Groups, Service Principals, and Managed Identities.
+                                </td>
+                                <td>
+                                    Built-in roles (Owner, Contributor, Reader) or Custom roles.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td><b>Typical Scenario</b></td>
+                                <td>
+                                    Logging into the Azure Portal or running
+                                    <code>az login</code> via CLI.
+                                </td>
+                                <td>
+                                    Attempting to delete a Virtual Machine or read data
+                                    from a Storage Account.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td><b>Tokens Issued</b></td>
+                                <td>
+                                    ID Token (validates identity).
+                                </td>
+                                <td>
+                                    Access Token (contains a list of permitted scopes).
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+                </div>
+
+
+                <h2 class="mt-5">How They Work Together in Azure (Step-by-Step)</h2>
+
+                <p>
+                    When an IT Administrator attempts to manage a cloud resource,
+                    Azure processes the request in a specific sequence:
+                </p>
+
+
+                <h3 class="mt-4">1. Step 1: Authentication (Entra ID)</h3>
+
+                <p>
+                    The admin enters their username and password in the Azure Portal.
+                    Entra ID challenges them with a Multi-Factor Authentication (MFA)
+                    prompt on their phone.
+                </p>
+
+                <p>
+                    Once completed, Entra ID confirms their identity and issues an
+                    ID token. Azure now knows exactly who is making the request.
+                </p>
+
+
+                <h3 class="mt-4">2. Step 2: Authorization (Azure RBAC)</h3>
+
+                <p>
+                    The admin clicks <b>"Delete"</b> on a production Virtual Machine.
+                    Before execution, Azure Resource Manager (ARM) intercepts the request
+                    and evaluates the user's RBAC role assignment.
+                </p>
+
+                <div class="alert alert-success mt-4">
+                    <b>If they hold the Contributor role</b> for that resource group,
+                    the action is Authorized and the VM is deleted.
+                </div>
+
+                <div class="alert alert-danger mt-3">
+                    <b>If they only hold the Reader role</b>, the action is Denied
+                    with an "Unauthorized" error message.
+                </div>
+
+
+                <h2 class="mt-5">Identity Types Handled in Azure AuthN &amp; AuthZ</h2>
+
+                <p>
+                    Azure doesn't just authenticate humans; it also authenticates
+                    applications and services:
+                </p>
+
+                <ul>
+
+                    <li class="mb-3">
+                        <b>Service Principals:</b>
+                        An identity created for an application or automated tool
+                        (like a CI/CD pipeline) to log in and access Azure resources.
+                    </li>
+
+                    <li class="mb-3">
+                        <b>Managed Identities:</b>
+                        A highly secure feature that eliminates the need for developers
+                        to manage credentials. Azure automatically provides an identity
+                        to a cloud resource (like an Azure Function), authenticates it
+                        natively via Entra ID, and authorizes it to access other resources
+                        (like a Key Vault).
+                    </li>
+
+                </ul>
+
+
+                <div style="min-height:80px;"></div>
+
+                <div class="mt-4 d-flex justify-content-between align-items-center">
+
+                    <a class="btn btn-outline-primary fw-semibold"
+                       href="@Url.Action("MicrosoftEntraIDFundamentals", "IdentityGovernance", new { area = "Azure" })">
+                        ← Previous
+                    </a>
+
+                    <a class="btn btn-primary fw-semibold"
+                       href="@Url.Action("MicrosoftEntraIDFundamentals", "IdentityGovernance", new { area = "Azure" })">
+                        Next →
+                    </a>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</div>

@@ -1,0 +1,80 @@
+@{
+    ViewData["Title"] = "Azure Quickstart Center provides popular services";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+                <div class="azure-notes-content">
+                    <pre class="azure-notes-text">Azure Quickstart Center provides popular services, tutorials, and guides to get started in your Azure
+journey. To find Azure Quickstart Center, you can find it in the default list of services on the Azure
+Portal homepage. If you don&#x27;t see Azure Quickstart Center in the Azure services section of the portal
+home page, you can also navigate to the search tab and find the Azure Quickstart Center by typing in
+Quickstart Center.
+
+
+
+
+The Azure Quickstart Center aims to make it easy to start a project. It provides services and goals,
+setup guides, as well as online courses to help us get started on our Azure journey
+
+
+
+
+Let&#x27;s start with creating a project. Click on deploy a virtual machine. You can see two types of virtual
+machines shown—a Windows virtual machine and a Linux virtual machine.
+If you know which virtual machine you want, you can click the create button.
+
+However, if you want more information about the service, click the learn more tab on each service
+found at the bottom of the card. The card will expand to reveal more information. Here you&#x27;ll find
+some relevant information, such as an expanded explanation and reference architecture which will
+help understand a typical scenario of how a service will work with other services in Azure. It’ll also
+provide you with a five-minute Quickstart tutorial, as well as recommended SKUs and pricing options
+to get you started and use your free trial credit.
+After learning the given information on the page to create your service, you can click the create
+button. The button will take you to a prefilled template for the service. You may also need to fill in
+the required information to create the service. Here, you can see a bunch of different options to help
+you customize and create the virtual machine that&#x27;s perfectly fit for you and your organization.
+You do have recommended items, such as the size. So, click on see all sizes. If you&#x27;ll recall, the Azure
+Quickstart Center provides B1S as a recommended size to select for your free trial, select that.
+
+Next, fill out all the required information from the resource group, the virtual machine, region, so on
+and so forth. If you want, you can continue to customize by clicking on the different tabs or you can
+also, go through a walkthrough menu by clicking next.
+
+Once you are ready with all of your customization and options that are right for you, you can hit
+review and create. You&#x27;ve created your first service using Azure Quickstart Center.</pre>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_3_-_Microsoft_Azure_-_Using_the_Azure_Quickstart_Centre/p04-000.jpg" class="img-fluid rounded shadow-sm" alt="Azure Quickstart Center provides popular services - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_3_-_Microsoft_Azure_-_Using_the_Azure_Quickstart_Centre/p04-001.jpg" class="img-fluid rounded shadow-sm" alt="Azure Quickstart Center provides popular services - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_3_-_Microsoft_Azure_-_Using_the_Azure_Quickstart_Centre/p05-000.jpg" class="img-fluid rounded shadow-sm" alt="Azure Quickstart Center provides popular services - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_3_-_Microsoft_Azure_-_Using_the_Azure_Quickstart_Centre/p06-000.jpg" class="img-fluid rounded shadow-sm" alt="Azure Quickstart Center provides popular services - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_3_-_Microsoft_Azure_-_Using_the_Azure_Quickstart_Centre/p07-000.jpg" class="img-fluid rounded shadow-sm" alt="Azure Quickstart Center provides popular services - source image" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+            @await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureLessonNavigation.cshtml")
+</section>
+</div>
+<style>
+.azure-notes-text{white-space:pre-wrap;word-break:normal;font-family:inherit;font-size:1rem;line-height:1.7;background:#fff;border:0;padding:0;margin:0;color:#212529;}
+.azure-notes-content img{max-height:720px;}
+</style>

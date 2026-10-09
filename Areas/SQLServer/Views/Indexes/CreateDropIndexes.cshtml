@@ -1,0 +1,560 @@
+﻿@{
+    ViewData["Title"] = "Creating & Dropping Indexes";
+}
+
+<div class="container-fluid px-4 py-4">
+
+    <!-- =========================
+         PAGE HEADER
+    ========================== -->
+
+    <div class="mb-4">
+
+        <h1 class="fw-bold">
+            Creating &amp; Dropping Indexes
+        </h1>
+
+        <p class="text-muted">
+            Learn how to create, view and remove indexes in SQL Server.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         INTRODUCTION
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Introduction
+            </h2>
+
+            <p>
+                Indexes are database objects used to improve the performance
+                of data retrieval operations.
+            </p>
+
+            <p>
+                SQL Server provides the
+                <strong>CREATE INDEX</strong> statement to create indexes
+                and the <strong>DROP INDEX</strong> statement to remove
+                indexes that are no longer required.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         CREATE TABLE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Example Table
+            </h2>
+
+            <p>
+                First, create a Students table:
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>CREATE TABLE Students
+(
+    StudentId INT,
+    StudentName VARCHAR(100),
+    Course VARCHAR(100),
+    City VARCHAR(50),
+    Age INT
+);</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         CREATE NON-CLUSTERED INDEX
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Creating a Non-Clustered Index
+            </h2>
+
+            <p>
+                We can create a non-clustered index on the
+                <strong>City</strong> column.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>CREATE NONCLUSTERED INDEX IX_Students_City
+ON Students(City);</code></pre>
+
+            <p class="mt-3">
+                Here,
+                <strong>IX_Students_City</strong> is the name of the index
+                and <strong>City</strong> is the indexed column.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         CREATE INDEX SHORT SYNTAX
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                CREATE INDEX Syntax
+            </h2>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>CREATE INDEX index_name
+ON table_name(column_name);</code></pre>
+
+            <p class="mt-3">
+                If the index type is not specified, SQL Server creates
+                a non-clustered index by default.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         CREATE CLUSTERED INDEX
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Creating a Clustered Index
+            </h2>
+
+            <p>
+                A clustered index can be created using:
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>CREATE CLUSTERED INDEX IX_Students_StudentId
+ON Students(StudentId);</code></pre>
+
+            <div class="alert alert-warning mt-3 mb-0">
+
+                <strong>Note:</strong>
+                A table can have only one clustered index.
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         UNIQUE INDEX
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Creating a Unique Index
+            </h2>
+
+            <p>
+                A unique index prevents duplicate values in the indexed
+                column or combination of columns.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>CREATE UNIQUE INDEX IX_Students_UniqueId
+ON Students(StudentId);</code></pre>
+
+            <p class="mt-3">
+                This ensures that duplicate StudentId values are not
+                allowed through this unique index.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         MULTIPLE COLUMN INDEX
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Creating an Index on Multiple Columns
+            </h2>
+
+            <p>
+                We can create an index using more than one column.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>CREATE INDEX IX_Students_City_Course
+ON Students(City, Course);</code></pre>
+
+            <p class="mt-3">
+                This is called a composite or multi-column index.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         VIEW INDEXES
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Viewing Indexes
+            </h2>
+
+            <p>
+                SQL Server provides system catalog views that can be
+                used to view information about indexes.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>SELECT
+    name AS IndexName,
+    type_desc AS IndexType
+FROM sys.indexes
+WHERE object_id = OBJECT_ID('Students');</code></pre>
+
+            <p class="mt-3">
+                This query displays the indexes associated with the
+                Students table.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         DROP INDEX
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Dropping an Index
+            </h2>
+
+            <p>
+                When an index is no longer required, it can be removed
+                using the <strong>DROP INDEX</strong> statement.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>DROP INDEX IX_Students_City
+ON Students;</code></pre>
+
+            <p class="mt-3">
+                Here,
+                <strong>IX_Students_City</strong> is the index that
+                will be removed from the Students table.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         DROP MULTIPLE INDEXES
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Removing Unused Indexes
+            </h2>
+
+            <p>
+                Unused indexes can consume storage and require maintenance
+                when table data changes.
+            </p>
+
+            <p>
+                Therefore, indexes that are no longer useful should be
+                reviewed and removed carefully.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>DROP INDEX IX_Students_City
+ON Students;</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         DROP INDEX USING IF EXISTS
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Checking Before Dropping
+            </h2>
+
+            <p>
+                Before dropping an index, it is useful to verify that
+                the index exists.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>IF EXISTS
+(
+    SELECT 1
+    FROM sys.indexes
+    WHERE name = 'IX_Students_City'
+      AND object_id = OBJECT_ID('Students')
+)
+BEGIN
+
+    DROP INDEX IX_Students_City
+    ON Students;
+
+END;</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         INDEX MAINTENANCE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Why Should Indexes Be Managed Carefully?
+            </h2>
+
+            <p>
+                Although indexes improve SELECT query performance,
+                every index also requires storage and maintenance.
+            </p>
+
+            <ul>
+
+                <li class="mb-2">
+                    Indexes consume additional storage.
+                </li>
+
+                <li class="mb-2">
+                    INSERT operations may require index updates.
+                </li>
+
+                <li class="mb-2">
+                    UPDATE operations may require index maintenance.
+                </li>
+
+                <li class="mb-2">
+                    DELETE operations may require index maintenance.
+                </li>
+
+                <li class="mb-2">
+                    Too many unnecessary indexes can affect write performance.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         COMPLETE EXAMPLE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Complete Example
+            </h2>
+
+            <p>
+                Create the table:
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>CREATE TABLE Students
+(
+    StudentId INT,
+    StudentName VARCHAR(100),
+    Course VARCHAR(100),
+    City VARCHAR(50)
+);</code></pre>
+
+            <p class="mt-3">
+                Create an index:
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>CREATE INDEX IX_Students_City
+ON Students(City);</code></pre>
+
+            <p class="mt-3">
+                Use the table:
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>SELECT *
+FROM Students
+WHERE City = 'Pune';</code></pre>
+
+            <p class="mt-3">
+                Remove the index when it is no longer required:
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>DROP INDEX IX_Students_City
+ON Students;</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         IMPORTANT POINTS
+    ========================== -->
+
+    <div class="alert alert-warning mb-4">
+
+        <h4 class="fw-bold">
+            Important Points
+        </h4>
+
+        <ul class="mb-0">
+
+            <li>
+                Use <strong>CREATE INDEX</strong> to create an index.
+            </li>
+
+            <li>
+                Use <strong>CREATE CLUSTERED INDEX</strong> for a clustered index.
+            </li>
+
+            <li>
+                Use <strong>CREATE NONCLUSTERED INDEX</strong> for a
+                non-clustered index.
+            </li>
+
+            <li>
+                A table can have only one clustered index.
+            </li>
+
+            <li>
+                A table can have multiple non-clustered indexes.
+            </li>
+
+            <li>
+                Use <strong>DROP INDEX</strong> to remove an index.
+            </li>
+
+            <li>
+                Unnecessary indexes should be removed carefully.
+            </li>
+
+        </ul>
+
+    </div>
+
+
+    <!-- =========================
+         SUMMARY
+    ========================== -->
+
+    <div class="p-4 rounded shadow-sm mb-4"
+         style="background-color:#cfe2ff;">
+
+        <h2 class="fw-bold mb-3">
+            Summary
+        </h2>
+
+        <p>
+            SQL Server provides commands for creating and removing
+            indexes. The <strong>CREATE INDEX</strong> statement is
+            used to create an index, while the
+            <strong>DROP INDEX</strong> statement is used to remove it.
+        </p>
+
+        <p>
+            Indexes can significantly improve data retrieval performance,
+            but they also require storage and maintenance.
+        </p>
+
+        <p class="mb-0">
+            Therefore, indexes should be created based on actual query
+            requirements and unnecessary indexes should be avoided.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         PREVIOUS / NEXT
+    ========================== -->
+
+    <div class="d-flex justify-content-between align-items-center
+        mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/Indexes/NonClusteredIndex"
+           class="btn btn-outline-primary">
+
+            ← Previous: Non-Clustered Index
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/Indexes/IndexPerformance"
+           class="btn btn-primary">
+
+            Next: Index Performance →
+
+        </a>
+
+    </div>
+
+</div>

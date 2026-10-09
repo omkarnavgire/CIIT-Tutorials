@@ -1,0 +1,485 @@
+﻿@{
+    ViewData["Title"] = "PRIMARY KEY";
+}
+
+<section>
+
+    <!-- PAGE INTRODUCTION -->
+    <div class="mb-5">
+
+        <h1 class="fw-bold mb-3">
+            PRIMARY KEY
+        </h1>
+
+        <p class="lead text-muted">
+            A PRIMARY KEY is a constraint used to uniquely identify
+            each record in a SQL Server table. A primary key does not
+            allow duplicate values and does not allow NULL values.
+        </p>
+
+    </div>
+
+
+    <!-- WHAT IS PRIMARY KEY -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            What is a PRIMARY KEY?
+        </h2>
+
+        <p>
+            A PRIMARY KEY is one of the most important constraints in
+            SQL Server. It identifies each row in a table uniquely.
+        </p>
+
+        <p>
+            A table can have only one PRIMARY KEY constraint, but the
+            primary key can contain one column or multiple columns.
+        </p>
+
+        <div class="alert alert-primary border-0">
+
+            <h5 class="fw-bold">
+                Example
+            </h5>
+
+            <p class="mb-0">
+                In a Students table, StudentId can be used as the
+                PRIMARY KEY because every student should have a
+                unique StudentId.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- PRIMARY KEY RULES -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            PRIMARY KEY Rules
+        </h2>
+
+        <ul>
+
+            <li class="mb-2">
+                A PRIMARY KEY uniquely identifies each record.
+            </li>
+
+            <li class="mb-2">
+                Duplicate values are not allowed.
+            </li>
+
+            <li class="mb-2">
+                NULL values are not allowed.
+            </li>
+
+            <li class="mb-2">
+                A table can have only one PRIMARY KEY constraint.
+            </li>
+
+            <li>
+                A PRIMARY KEY can contain one or multiple columns.
+            </li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- CREATE TABLE WITH PRIMARY KEY -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Creating a PRIMARY KEY
+        </h2>
+
+        <p>
+            A PRIMARY KEY can be defined while creating a table.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>CREATE TABLE Students
+(
+    StudentId INT PRIMARY KEY,
+    StudentName VARCHAR(100),
+    Age INT
+);</code></pre>
+
+        </div>
+
+        <p>
+            Here, <strong>StudentId</strong> is the PRIMARY KEY of the
+            Students table.
+        </p>
+
+    </section>
+
+
+    <!-- OUTPUT -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Output
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>StudentId</th>
+                        <th>StudentName</th>
+                        <th>Age</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>101</td>
+                        <td>Rahul</td>
+                        <td>22</td>
+                    </tr>
+
+                    <tr>
+                        <td>102</td>
+                        <td>Priya</td>
+                        <td>21</td>
+                    </tr>
+
+                    <tr>
+                        <td>103</td>
+                        <td>Amit</td>
+                        <td>23</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <p class="text-muted">
+            Each StudentId is unique, so it can identify a student
+            without ambiguity.
+        </p>
+
+    </section>
+
+
+    <!-- DUPLICATE VALUE -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Duplicate Values are Not Allowed
+        </h2>
+
+        <p>
+            Because StudentId is a PRIMARY KEY, the same StudentId
+            cannot be inserted twice.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>INSERT INTO Students
+VALUES (101, 'Amit', 24);</code></pre>
+
+        </div>
+
+        <div class="alert alert-danger border-0">
+
+            <strong>Error:</strong>
+            The INSERT operation fails because StudentId 101 already
+            exists as a PRIMARY KEY value.
+            
+        </div>
+
+    </section>
+
+
+    <!-- NULL VALUE -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            NULL Values are Not Allowed
+        </h2>
+
+        <p>
+            A PRIMARY KEY column cannot contain NULL values.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>INSERT INTO Students
+VALUES (NULL, 'Rahul', 22);</code></pre>
+
+        </div>
+
+        <div class="alert alert-danger border-0">
+
+            <strong>Error:</strong>
+            A NULL value cannot be inserted into a PRIMARY KEY column.
+
+        </div>
+
+    </section>
+
+
+    <!-- NAMED PRIMARY KEY -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Named PRIMARY KEY Constraint
+        </h2>
+
+        <p>
+            We can give a specific name to the PRIMARY KEY constraint.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>CREATE TABLE Students
+(
+    StudentId INT,
+    StudentName VARCHAR(100),
+    Age INT,
+
+    CONSTRAINT PK_Students
+    PRIMARY KEY (StudentId)
+);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- ADD PRIMARY KEY -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Add PRIMARY KEY to Existing Table
+        </h2>
+
+        <p>
+            If a table already exists, a PRIMARY KEY can be added
+            using ALTER TABLE.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>ALTER TABLE Students
+ADD CONSTRAINT PK_Students
+PRIMARY KEY (StudentId);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- COMPOSITE PRIMARY KEY -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Composite PRIMARY KEY
+        </h2>
+
+        <p>
+            A composite primary key uses two or more columns together
+            to uniquely identify a record.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>CREATE TABLE StudentCourses
+(
+    StudentId INT,
+    CourseId INT,
+
+    CONSTRAINT PK_StudentCourses
+    PRIMARY KEY (StudentId, CourseId)
+);</code></pre>
+
+        </div>
+
+        <p>
+            In this example, the combination of StudentId and CourseId
+            must be unique.
+        </p>
+
+    </section>
+
+
+    <!-- PRIMARY KEY DIAGRAM -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            PRIMARY KEY Structure
+        </h2>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL Server
+            </div>
+
+            <pre class="mb-0"><code>
+                                                     Students Table
+                                                          |
+                                                          ↓
+                                                      StudentId
+                                                          |
+                                                          ↓
+                                                     PRIMARY KEY
+                                                          |
+                                                          ├── Unique
+                                                          |
+                                                          └── NOT NULL
+                                                          |
+                                                          ↓
+                                               Uniquely Identifies Student</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- VERIFY PRIMARY KEY -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Verify PRIMARY KEY
+        </h2>
+
+        <p>
+            The following query can be used to view the primary key
+            information of a table.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>EXEC sp_help 'Students';</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- IMPORTANT POINTS -->
+    <section class="mb-5">
+
+        <div class="alert alert-info border-0">
+
+            <h5 class="fw-bold">
+                Important Points
+            </h5>
+
+            <ul class="mb-0">
+
+                <li class="mb-2">
+                    PRIMARY KEY uniquely identifies a row.
+                </li>
+
+                <li class="mb-2">
+                    Duplicate PRIMARY KEY values are not allowed.
+                </li>
+
+                <li class="mb-2">
+                    PRIMARY KEY cannot contain NULL values.
+                </li>
+
+                <li class="mb-2">
+                    Only one PRIMARY KEY constraint can exist per table.
+                </li>
+
+                <li>
+                    A PRIMARY KEY can contain multiple columns.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </section>
+
+
+    <!-- SUMMARY -->
+    <section class="mb-4">
+
+        <div class="alert alert-primary border-0">
+
+            <h2 class="fw-bold mb-3">
+                Summary
+            </h2>
+
+            <p class="mb-0">
+                In this section, we learned about PRIMARY KEY,
+                its rules, how to create it, how to add it to an
+                existing table and how composite primary keys work.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- PREVIOUS / NEXT -->
+
+    <div class="d-flex justify-content-between align-items-center
+                mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/Constraints/Index"
+           class="btn btn-outline-primary">
+
+            ← Previous: Constraints Introduction
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/Constraints/ForeignKey"
+           class="btn btn-primary">
+
+            Next: FOREIGN KEY →
+
+        </a>
+
+    </div>
+
+</section>

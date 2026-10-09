@@ -1,0 +1,655 @@
+﻿@{
+    ViewData["Title"] = "Conversion Functions";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- =========================
+         PAGE HEADER
+    ========================== -->
+
+    <div class="mb-5">
+
+        <h1 class="fw-bold">
+            SQL Server Conversion Functions
+        </h1>
+
+        <p class="lead text-muted">
+            Conversion Functions in SQL Server are used to convert
+            a value from one data type to another data type.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         INTRODUCTION
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            What are Conversion Functions?
+        </h2>
+
+        <p>
+            SQL Server stores different types of data such as
+            integers, strings, decimal values and dates.
+            Sometimes we need to convert one data type into another
+            data type.
+        </p>
+
+        <p>
+            SQL Server provides conversion functions such as
+            <strong>CAST()</strong>, <strong>CONVERT()</strong> and
+            <strong>TRY_CAST()</strong> to perform these conversions.
+        </p>
+
+        <div class="alert alert-info mt-4">
+
+            <strong>Example:</strong>
+
+            <p class="mb-0 mt-2">
+                Suppose the value <strong>'100'</strong> is stored
+                as text. If we want to perform mathematical operations
+                on it, we can convert it into an integer.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         COMMON FUNCTIONS
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Common Conversion Functions
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped align-middle">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>Function</th>
+                        <th>Purpose</th>
+                        <th>Example</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td><strong>CAST()</strong></td>
+
+                        <td>
+                            Converts an expression from one data type
+                            to another.
+                        </td>
+
+                        <td>
+                            <code>CAST('100' AS INT)</code>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td><strong>CONVERT()</strong></td>
+
+                        <td>
+                            Converts an expression into another data type
+                            and supports style formatting.
+                        </td>
+
+                        <td>
+                            <code>CONVERT(INT, '100')</code>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td><strong>TRY_CAST()</strong></td>
+
+                        <td>
+                            Attempts to convert a value and returns NULL
+                            if conversion fails.
+                        </td>
+
+                        <td>
+                            <code>TRY_CAST('ABC' AS INT)</code>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td><strong>TRY_CONVERT()</strong></td>
+
+                        <td>
+                            Attempts conversion and returns NULL when
+                            conversion is unsuccessful.
+                        </td>
+
+                        <td>
+                            <code>TRY_CONVERT(INT, 'ABC')</code>
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         1. CAST()
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            1. CAST() Function
+        </h2>
+
+        <p>
+            The <strong>CAST()</strong> function is used to convert
+            an expression from one data type to another data type.
+        </p>
+
+        <h5 class="fw-bold mt-4">
+            Syntax
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>CAST(expression AS data_type)</code></pre>
+
+        <h5 class="fw-bold mt-4">
+            Example 1: VARCHAR to INT
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT CAST('100' AS INT);</code></pre>
+
+        <div class="alert alert-success mt-3">
+            <strong>Output:</strong> 100
+        </div>
+
+
+        <h5 class="fw-bold mt-4">
+            Example 2: INT to VARCHAR
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT CAST(500 AS VARCHAR(10));</code></pre>
+
+        <div class="alert alert-success mt-3">
+            <strong>Output:</strong> 500
+        </div>
+
+
+        <h5 class="fw-bold mt-4">
+            Example 3: DECIMAL to INT
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT CAST(125.75 AS INT);</code></pre>
+
+        <div class="alert alert-success mt-3">
+            <strong>Output:</strong> 125
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         2. CONVERT()
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            2. CONVERT() Function
+        </h2>
+
+        <p>
+            The <strong>CONVERT()</strong> function is also used
+            to convert one data type into another.
+        </p>
+
+        <p>
+            One important feature of CONVERT() is that it can use
+            a <strong>style</strong> parameter for formatting
+            date and time values.
+        </p>
+
+        <h5 class="fw-bold mt-4">
+            Syntax
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>CONVERT(data_type, expression)</code></pre>
+
+        <h5 class="fw-bold mt-4">
+            Example
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT CONVERT(INT, '250');</code></pre>
+
+        <div class="alert alert-success mt-3">
+            <strong>Output:</strong> 250
+        </div>
+
+
+        <h5 class="fw-bold mt-4">
+            Date Conversion Example
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT CONVERT(VARCHAR(10), GETDATE(), 103);</code></pre>
+
+        <p class="mt-3">
+            Style <strong>103</strong> formats the date in
+            <strong>dd/mm/yyyy</strong> format.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         3. TRY_CAST()
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            3. TRY_CAST() Function
+        </h2>
+
+        <p>
+            The <strong>TRY_CAST()</strong> function attempts to
+            convert a value into the specified data type.
+        </p>
+
+        <p>
+            If the conversion is successful, the converted value
+            is returned. If the conversion fails, SQL Server returns
+            <strong>NULL</strong> instead of raising a conversion error.
+        </p>
+
+        <h5 class="fw-bold mt-4">
+            Syntax
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>TRY_CAST(expression AS data_type)</code></pre>
+
+        <h5 class="fw-bold mt-4">
+            Successful Conversion
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT TRY_CAST('500' AS INT);</code></pre>
+
+        <div class="alert alert-success mt-3">
+            <strong>Output:</strong> 500
+        </div>
+
+
+        <h5 class="fw-bold mt-4">
+            Failed Conversion
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT TRY_CAST('ABC' AS INT);</code></pre>
+
+        <div class="alert alert-warning mt-3">
+            <strong>Output:</strong> NULL
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         4. TRY_CONVERT()
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            4. TRY_CONVERT() Function
+        </h2>
+
+        <p>
+            The <strong>TRY_CONVERT()</strong> function attempts
+            to convert an expression into the specified data type.
+        </p>
+
+        <p>
+            If conversion cannot be performed, it returns
+            <strong>NULL</strong>.
+        </p>
+
+        <h5 class="fw-bold mt-4">
+            Syntax
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>TRY_CONVERT(data_type, expression)</code></pre>
+
+        <h5 class="fw-bold mt-4">
+            Example
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT TRY_CONVERT(INT, 'ABC');</code></pre>
+
+        <div class="alert alert-warning mt-3">
+            <strong>Output:</strong> NULL
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         CAST VS CONVERT
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            CAST() vs CONVERT()
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>CAST()</th>
+                        <th>CONVERT()</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>
+                            Standard SQL conversion function.
+                        </td>
+
+                        <td>
+                            SQL Server-specific conversion function.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            Syntax is simple and readable.
+                        </td>
+
+                        <td>
+                            Supports style formatting.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <code>CAST(value AS INT)</code>
+                        </td>
+
+                        <td>
+                            <code>CONVERT(INT, value)</code>
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         PRACTICAL TABLE EXAMPLE
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Practical Example with Student Table
+        </h2>
+
+        <p>
+            Suppose we have a Students table where Marks are stored
+            as VARCHAR values.
+        </p>
+
+        <pre class="bg-light p-3 rounded"><code>CREATE TABLE Students
+(
+    StudentId INT,
+    StudentName VARCHAR(100),
+    Marks VARCHAR(10)
+);</code></pre>
+
+
+        <h5 class="fw-bold mt-4">
+            Insert Sample Data
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>INSERT INTO Students
+VALUES
+(1, 'Rahul', '85'),
+(2, 'Priya', '92'),
+(3, 'Amit', '76');</code></pre>
+
+
+        <h5 class="fw-bold mt-4">
+            Convert Marks into INT
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT
+    StudentName,
+    Marks,
+    CAST(Marks AS INT) AS NumericMarks
+FROM Students;</code></pre>
+
+
+        <h5 class="fw-bold mt-4">
+            Calculate Total Marks
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT
+    SUM(CAST(Marks AS INT)) AS TotalMarks
+FROM Students;</code></pre>
+
+
+        <h5 class="fw-bold mt-4">
+            Calculate Average Marks
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT
+    AVG(CAST(Marks AS INT)) AS AverageMarks
+FROM Students;</code></pre>
+
+    </section>
+
+
+    <!-- =========================
+         PRACTICAL DATE EXAMPLE
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Practical Date Conversion
+        </h2>
+
+        <p>
+            We can convert a date into a formatted string using
+            CONVERT().
+        </p>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT CONVERT(VARCHAR(10), GETDATE(), 103)
+AS FormattedDate;</code></pre>
+
+        <div class="alert alert-info mt-3">
+
+            <strong>Example format:</strong>
+
+            <br />
+
+            05/10/2026
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         WHEN TO USE
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            When Do We Use Conversion Functions?
+        </h2>
+
+        <ul>
+
+            <li class="mb-2">
+                When numeric data is stored as text.
+            </li>
+
+            <li class="mb-2">
+                When text needs to be converted into numeric values.
+            </li>
+
+            <li class="mb-2">
+                When dates need to be displayed in a particular format.
+            </li>
+
+            <li class="mb-2">
+                When data from different sources has different data types.
+            </li>
+
+            <li class="mb-2">
+                When performing calculations on converted values.
+            </li>
+
+            <li>
+                When invalid conversion should return NULL instead
+                of causing an error.
+            </li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- =========================
+         IMPORTANT POINTS
+    ========================== -->
+
+    <section class="mb-5">
+
+        <div class="alert alert-warning">
+
+            <h4 class="fw-bold">
+                Important Points
+            </h4>
+
+            <ul class="mb-0">
+
+                <li class="mb-2">
+                    CAST() converts an expression to another data type.
+                </li>
+
+                <li class="mb-2">
+                    CONVERT() also converts data types and supports
+                    style formatting.
+                </li>
+
+                <li class="mb-2">
+                    TRY_CAST() returns NULL when conversion fails.
+                </li>
+
+                <li class="mb-2">
+                    TRY_CONVERT() returns NULL when conversion fails.
+                </li>
+
+                <li class="mb-2">
+                    Conversion is useful when different data types
+                    need to work together.
+                </li>
+
+                <li>
+                    Always make sure that the source value can be
+                    safely converted to the target data type.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         SUMMARY
+    ========================== -->
+
+    <section class="mb-5">
+
+        <div class="alert alert-primary">
+
+            <h2 class="fw-bold">
+                Summary
+            </h2>
+
+            <p class="mb-0">
+                SQL Server Conversion Functions are used to convert
+                values from one data type to another. In this topic,
+                we learned CAST(), CONVERT(), TRY_CAST() and
+                TRY_CONVERT(). These functions are very useful when
+                working with numeric values, text values, dates and
+                data received from different sources.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         PREVIOUS / NEXT
+    ========================== -->
+
+    <div class="d-flex justify-content-between align-items-center
+        mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/Functions/DateTimeFunctions"
+           class="btn btn-outline-primary">
+
+            ← Previous: Date &amp; Time Functions
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/Functions/NullFunctions"
+           class="btn btn-primary">
+
+            Next: NULL Functions →
+
+        </a>
+
+    </div>
+
+</div>

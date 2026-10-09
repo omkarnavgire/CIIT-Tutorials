@@ -1,0 +1,1087 @@
+﻿@{
+    ViewData["Title"] = "Angular Route Parameters";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- Header -->
+    <section class="mb-4">
+        <h1 class="fw-bold text-dark">Angular Route Parameters</h1>
+
+        <p class="lead text-muted">
+            Learn how to pass dynamic values through Angular routes and
+            retrieve them inside components using <strong>ActivatedRoute</strong>.
+        </p>
+    </section>
+
+
+    <!-- Introduction -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">What are Route Parameters?</h2>
+
+        <div class="info-card">
+
+            <p>
+                Route parameters are dynamic values that can be included
+                inside a route URL.
+            </p>
+
+            <p>
+                They are commonly used when the application needs to open
+                a specific record, course, product or other resource.
+            </p>
+
+            <p class="mb-0">
+                For example, a route such as
+                <strong>/courses/101</strong> can use
+                <strong>101</strong> as a course identifier.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Flow -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Route Parameter Flow</h2>
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+                <strong>Route</strong>
+                <span>/courses/:id</span>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+                <strong>URL</strong>
+                <span>/courses/101</span>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+                <strong>ActivatedRoute</strong>
+                <span>Reads id</span>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+                <strong>Component</strong>
+                <span>Uses value</span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Main Concepts -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Important Concepts</h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">1</div>
+
+                <h5>Dynamic Segment</h5>
+
+                <p>
+                    A route can contain a dynamic segment such as
+                    <code>:id</code>.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">2</div>
+
+                <h5>Route URL</h5>
+
+                <p>
+                    The actual URL contains the value for the dynamic segment.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">3</div>
+
+                <h5>ActivatedRoute</h5>
+
+                <p>
+                    Angular provides ActivatedRoute to access route information.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">4</div>
+
+                <h5>Parameter Value</h5>
+
+                <p>
+                    The component can use the received value in its logic.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Route Configuration -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Defining a Route Parameter</h2>
+
+        <div class="info-card">
+
+            <p>
+                A dynamic route parameter is defined using a colon
+                followed by the parameter name.
+            </p>
+
+            <p class="mb-0">
+                In the following example, <strong>:id</strong> represents
+                a dynamic route parameter.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Route Configuration
+            </div>
+
+            <pre><code>const routes: Routes = [
+
+    {
+        path: 'courses/:id',
+        component: CourseDetailsComponent
+    }
+
+];</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Example -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Example URL</h2>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Dynamic URLs
+            </div>
+
+            <pre><code>/courses/101
+
+/courses/205
+
+/courses/501</code></pre>
+
+        </div>
+
+
+        <div class="output-box mt-3">
+
+            <div class="student-preview">
+
+                <h4>Route Parameter Example</h4>
+
+                <p>
+                    Route:
+                    <strong>/courses/:id</strong>
+                </p>
+
+                <p>
+                    Current URL:
+                    <strong>/courses/101</strong>
+                </p>
+
+                <p class="mb-0">
+                    Parameter value:
+                    <strong>101</strong>
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- routerLink -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Passing Parameter using routerLink</h2>
+
+        <div class="info-card">
+
+            <p>
+                Route parameters can be passed from an Angular template
+                using <strong>routerLink</strong>.
+            </p>
+
+            <p class="mb-0">
+                The parameter value is placed after the route path.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Template Example
+            </div>
+
+            <pre><code>&lt;a
+    [routerLink]="['/courses', 101]"&gt;
+
+    View Course
+
+&lt;/a&gt;</code></pre>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Another Example
+            </div>
+
+            <pre><code>&lt;a
+    [routerLink]="['/courses', course.id]"&gt;
+
+    View Course Details
+
+&lt;/a&gt;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- ActivatedRoute -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Reading Route Parameters</h2>
+
+        <div class="info-card">
+
+            <p>
+                Angular provides the <strong>ActivatedRoute</strong> service
+                to read parameters from the current route.
+            </p>
+
+            <p class="mb-0">
+                The parameter can be accessed through
+                <strong>paramMap</strong>.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Component Example
+            </div>
+
+            <pre><code>import { Component } from '@@angular/core';
+import { ActivatedRoute } from '@@angular/router';
+
+@@Component({
+    selector: 'app-course-details',
+    templateUrl: './course-details.component.html'
+})
+export class CourseDetailsComponent {
+
+    courseId = '';
+
+    constructor(
+        private route: ActivatedRoute
+    ) {
+    }
+
+    ngOnInit() {
+
+        this.courseId =
+            this.route.snapshot.paramMap.get('id') ?? '';
+
+    }
+
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- snapshot -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Using snapshot</h2>
+
+        <div class="info-card">
+
+            <p>
+                The <strong>snapshot</strong> property provides the current
+                route information at the time the component is created.
+            </p>
+
+            <p class="mb-0">
+                It can be used when the component does not need to react
+                to future changes of the same route parameter.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>const id =
+    this.route.snapshot.paramMap.get('id');</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- paramMap -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Using paramMap</h2>
+
+        <div class="info-card">
+
+            <p>
+                <strong>paramMap</strong> provides access to route parameters
+                using their parameter names.
+            </p>
+
+            <p class="mb-0">
+                For example, the <strong>id</strong> parameter can be accessed
+                using <strong>get('id')</strong>.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>const courseId =
+    this.route.snapshot.paramMap.get('id');
+
+console.log(courseId);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Dynamic Course Example -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">CIIT Training Institute Example</h2>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Course Route
+            </div>
+
+            <pre><code>const routes: Routes = [
+
+    {
+        path: 'course/:id',
+        component: CourseDetailsComponent
+    }
+
+];</code></pre>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Course Navigation
+            </div>
+
+            <pre><code>&lt;a
+    [routerLink]="['/course', 25]"&gt;
+
+    .NET Full Stack
+
+&lt;/a&gt;
+
+&lt;a
+    [routerLink]="['/course', 30]"&gt;
+
+    Java Full Stack
+
+&lt;/a&gt;</code></pre>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Reading Course ID
+            </div>
+
+            <pre><code>courseId = '';
+
+constructor(
+    private route: ActivatedRoute
+) {
+}
+
+ngOnInit() {
+
+    this.courseId =
+        this.route.snapshot.paramMap.get('id') ?? '';
+
+}</code></pre>
+
+        </div>
+
+
+        <div class="output-box mt-3">
+
+            <div class="student-preview">
+
+                <h4>CIIT Training Institute</h4>
+
+                <p>
+                    Selected Course ID:
+                    <strong>25</strong>
+                </p>
+
+                <p class="mb-0">
+                    The same component can display different course
+                    details based on the route parameter.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Multiple Parameters -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Multiple Route Parameters</h2>
+
+        <div class="info-card">
+
+            <p>
+                A route can contain more than one dynamic parameter.
+            </p>
+
+            <p class="mb-0">
+                Each parameter is defined using its own
+                <strong>:parameterName</strong> syntax.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Route Configuration
+            </div>
+
+            <pre><code>const routes: Routes = [
+
+    {
+        path: 'course/:courseId/topic/:topicId',
+        component: TopicComponent
+    }
+
+];</code></pre>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Example URL
+            </div>
+
+            <pre><code>/course/25/topic/4</code></pre>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Reading Parameters
+            </div>
+
+            <pre><code>const courseId =
+    this.route.snapshot.paramMap.get('courseId');
+
+const topicId =
+    this.route.snapshot.paramMap.get('topicId');</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Navigation with navigate -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Passing Parameters using navigate()</h2>
+
+        <div class="info-card">
+
+            <p>
+                Parameters can also be supplied when performing
+                programmatic navigation with <strong>navigate()</strong>.
+            </p>
+
+            <p class="mb-0">
+                The parameter value is added as another route segment.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>openCourse(courseId: number) {
+
+    this.router.navigate([
+        '/courses',
+        courseId
+    ]);
+
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Route Parameter vs Query Parameter -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Route Parameter vs Query Parameter</h2>
+
+        <div class="table-responsive">
+
+            <table class="table syntax-table">
+
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Route Parameter</th>
+                        <th>Query Parameter</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>Example</td>
+                        <td>
+                            <code>/courses/101</code>
+                        </td>
+                        <td>
+                            <code>/courses?id=101</code>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Definition</td>
+                        <td>
+                            Defined inside route path
+                        </td>
+                        <td>
+                            Passed after <code>?</code>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Typical Use</td>
+                        <td>
+                            Identify a specific resource
+                        </td>
+                        <td>
+                            Filtering, sorting or optional information
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Angular Access</td>
+                        <td>
+                            <code>paramMap</code>
+                        </td>
+                        <td>
+                            <code>queryParamMap</code>
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- Important Points -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Important Points</h2>
+
+        <div class="best-practice-list">
+
+            <div class="info-card mb-3">
+
+                <strong>1. Use :parameterName</strong>
+
+                <p class="mb-0">
+                    A dynamic route parameter is defined using a colon,
+                    such as <strong>:id</strong>.
+                </p>
+
+            </div>
+
+
+            <div class="info-card mb-3">
+
+                <strong>2. Use ActivatedRoute</strong>
+
+                <p class="mb-0">
+                    Use <strong>ActivatedRoute</strong> to access values
+                    from the current route.
+                </p>
+
+            </div>
+
+
+            <div class="info-card mb-3">
+
+                <strong>3. Use Meaningful Parameter Names</strong>
+
+                <p class="mb-0">
+                    Names such as <strong>courseId</strong> and
+                    <strong>topicId</strong> make the route easier to understand.
+                </p>
+
+            </div>
+
+
+            <div class="info-card">
+
+                <strong>4. Keep Route Structure Clear</strong>
+
+                <p class="mb-0">
+                    Use a meaningful URL structure when designing
+                    dynamic routes.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Best Practices -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Route Parameter Best Practices</h2>
+
+        <ul class="best-practice-list">
+
+            <li>
+                Use descriptive names for route parameters.
+            </li>
+
+            <li>
+                Use route parameters when a value identifies a specific resource.
+            </li>
+
+            <li>
+                Use <code>ActivatedRoute</code> to access current route information.
+            </li>
+
+            <li>
+                Keep dynamic route structures simple and meaningful.
+            </li>
+
+            <li>
+                Use query parameters for optional filtering or additional values.
+            </li>
+
+            <li>
+                Validate route values before using them in application logic.
+            </li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- Summary -->
+    <section class="mb-4">
+
+        <div class="summary-box">
+
+            <h4 class="fw-bold">
+                Summary
+            </h4>
+
+            <p>
+                Angular route parameters allow dynamic values to be included
+                in application URLs.
+            </p>
+
+            <p>
+                A parameter such as <strong>:id</strong> is defined in the route,
+                while <strong>ActivatedRoute</strong> can be used to read the
+                value inside the component.
+            </p>
+
+            <p class="mb-0">
+                Route parameters are especially useful when opening specific
+                course, topic or resource details.
+                In the next topic, we will learn about
+                <strong>Child Routes</strong>.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Navigation -->
+    <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+
+        <a class="btn btn-outline-secondary"
+           href="@Url.Action("Navigation", "Routing", new { area = "Angular" })">
+            ← Navigation
+        </a>
+
+        <a class="btn btn-primary"
+           href="@Url.Action("ChildRoutes", "Routing", new { area = "Angular" })">
+            Child Routes →
+        </a>
+
+    </div>
+
+</div>
+
+
+<style>
+
+    .info-card {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-left: 5px solid #4c1d95;
+        border-radius: 10px;
+        padding: 20px;
+        line-height: 1.7;
+        color: #334155;
+    }
+
+
+    .syntax-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        flex-wrap: wrap;
+        margin: 25px 0;
+    }
+
+
+    .syntax-box {
+        background: linear-gradient(135deg, #2e1065, #4c1d95);
+        color: white;
+        padding: 18px 25px;
+        border-radius: 12px;
+        text-align: center;
+        min-width: 180px;
+        box-shadow: 0 5px 15px rgba(76, 29, 149, 0.15);
+    }
+
+
+        .syntax-box strong {
+            display: block;
+            font-size: 16px;
+        }
+
+
+        .syntax-box span {
+            display: block;
+            margin-top: 5px;
+            color: #d8c9f5;
+            font-size: 14px;
+        }
+
+
+    .syntax-arrow {
+        font-size: 28px;
+        font-weight: bold;
+        color: #4c1d95;
+    }
+
+
+    .syntax-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+
+
+    .syntax-card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 22px;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+    }
+
+
+        .syntax-card h5 {
+            margin-top: 15px;
+            font-weight: 700;
+            color: #2e1065;
+        }
+
+
+        .syntax-card p {
+            color: #64748b;
+            margin-bottom: 0;
+        }
+
+
+    .syntax-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: #ede9fe;
+        color: #4c1d95;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 18px;
+        margin: 0 auto;
+    }
+
+
+    .code-card {
+        background: #0f172a;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(15, 23, 42, 0.10);
+    }
+
+
+    .code-title {
+        background: #1e293b;
+        color: #ffffff;
+        padding: 12px 18px;
+        font-weight: 700;
+        font-size: 14px;
+    }
+
+
+    .code-card pre {
+        margin: 0;
+        padding: 20px;
+        overflow-x: auto;
+    }
+
+
+    .code-card code {
+        color: #f8fafc;
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+
+    .output-box {
+        background: #f8fafc;
+        border: 1px solid #ddd6fe;
+        border-radius: 12px;
+        padding: 20px;
+    }
+
+
+    .student-preview {
+        background: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        padding: 20px;
+    }
+
+
+        .student-preview h4 {
+            color: #2e1065;
+            font-weight: 700;
+        }
+
+
+        .student-preview p {
+            color: #64748b;
+        }
+
+
+    .syntax-table {
+        width: 100%;
+        margin-bottom: 0;
+        border: 1px solid #e2e8f0;
+    }
+
+
+        .syntax-table thead th {
+            background: #2e1065;
+            color: white;
+            padding: 14px;
+            border-color: #4c1d95;
+        }
+
+
+        .syntax-table tbody td {
+            padding: 14px;
+            vertical-align: middle;
+            color: #334155;
+            border-color: #e2e8f0;
+        }
+
+
+        .syntax-table tbody tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+
+        .syntax-table code {
+            color: #4c1d95;
+            font-weight: 600;
+        }
+
+
+    .best-practice-list {
+        margin: 0;
+        padding-left: 20px;
+    }
+
+
+        .best-practice-list li {
+            margin-bottom: 10px;
+            color: #334155;
+            line-height: 1.6;
+        }
+
+
+    .summary-box {
+        background: #cfe2ff;
+        color: #084298;
+        border-radius: 10px;
+        padding: 22px;
+        border: 1px solid #b6d4fe;
+    }
+
+
+        .summary-box h4 {
+            margin-bottom: 12px;
+        }
+
+
+    @@media (max-width: 991px) {
+
+        .syntax-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .syntax-flow {
+            gap: 12px;
+        }
+
+        .syntax-box {
+            min-width: 160px;
+        }
+    }
+
+
+    @@media (max-width: 576px) {
+
+        .syntax-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .syntax-flow {
+            flex-direction: column;
+        }
+
+        .syntax-arrow {
+            transform: rotate(90deg);
+        }
+
+        .syntax-box {
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .code-card pre {
+            padding: 15px;
+        }
+
+        .code-card code {
+            font-size: 13px;
+        }
+    }
+
+</style>

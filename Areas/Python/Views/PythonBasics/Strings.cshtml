@@ -1,0 +1,966 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Python Strings";
+}
+
+<main id="tutorials" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- ================================================= -->
+        <!-- LEFT SIDEBAR -->
+        <!-- ================================================= -->
+
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+
+        </aside>
+
+
+        <!-- ================================================= -->
+        <!-- MAIN CONTENT -->
+        <!-- ================================================= -->
+
+        <section class="col-lg-9">
+
+            <div class="card shadow-sm border-0 p-4 p-md-5 mb-4">
+
+                <!-- ================================================= -->
+                <!-- PAGE TITLE -->
+                <!-- ================================================= -->
+
+                <h1 class="h1 fw-bold text-dark mt-1 mb-4">
+                    Strings
+                </h1>
+
+                <p class="text-muted mb-4">
+                    A string is a sequence of characters used to represent
+                    text in Python. Strings are commonly used for names,
+                    messages, addresses, course names, user input, and
+                    other text-based information.
+                </p>
+
+
+                <!-- ================================================= -->
+                <!-- CIIT INTRO -->
+                <!-- ================================================= -->
+
+                <div class="alert alert-info mb-4"
+                     style="background-color:#cfe2ff; border:0; color:#123c73;">
+
+                    <strong style="color:#123c73;">
+                        CIIT Training Institute :
+                    </strong>
+
+                    <span style="color:#123c73;">
+                        Strings are used in almost every application.
+                        From student names and course information to API
+                        responses and database records, handling text
+                        correctly is an essential Python skill.
+                    </span>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- WHAT IS STRING -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    What is a String?
+                </h2>
+
+                <p class="text-muted mb-3">
+                    A string is text enclosed inside quotes. Python supports
+                    both single quotes and double quotes.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>name = "Samadhan"
+course = 'Python'
+
+print(name)
+print(course)</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>Samadhan
+Python</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- STRING FLOW -->
+                <!-- ================================================= -->
+
+                <div class="border rounded p-4 mb-4 bg-light">
+
+                    <h3 class="h5 fw-bold text-dark text-center mb-4">
+                        String Concept
+                    </h3>
+
+                    <div class="d-flex flex-column align-items-center gap-2">
+
+                        <div class="px-4 py-3 border rounded bg-white shadow-sm text-center"
+                             style="max-width:420px; width:100%;">
+
+                            <strong>Text</strong>
+
+                            <br />
+
+                            <small class="text-muted">
+                                Samadhan
+                            </small>
+
+                        </div>
+
+                        <div class="fw-bold text-primary fs-4">
+                            ↓
+                        </div>
+
+                        <div class="px-4 py-3 border rounded bg-white shadow-sm text-center"
+                             style="max-width:420px; width:100%;">
+
+                            <strong>Quotes</strong>
+
+                            <br />
+
+                            <small class="text-muted">
+                                " "
+                            </small>
+
+                        </div>
+
+                        <div class="fw-bold text-primary fs-4">
+                            ↓
+                        </div>
+
+                        <div class="px-4 py-3 border rounded bg-white shadow-sm text-center"
+                             style="max-width:420px; width:100%;">
+
+                            <strong>Python String</strong>
+
+                            <br />
+
+                            <small class="text-muted">
+                                "Samadhan"
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- SINGLE DOUBLE QUOTES -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Single and Double Quotes
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Python allows strings to be created using either
+                    single quotes or double quotes.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>name1 = 'Samadhan'
+name2 = "Samadhan"
+
+print(name1)
+print(name2)</code></pre>
+
+                </div>
+
+                <p class="text-muted mb-4">
+                    Both variables contain string values.
+                </p>
+
+
+                <!-- ================================================= -->
+                <!-- MULTILINE -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Multiline Strings
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Triple quotes can be used when a string needs to
+                    span multiple lines.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>message = """Welcome to
+CIIT Training Institute.
+Learn Python step by step."""
+
+print(message)</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>Welcome to
+CIIT Training Institute.
+Learn Python step by step.</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- INDEXING -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    String Indexing
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Each character in a string has a position called an
+                    index. Python string indexing starts from
+                    <strong>0</strong>.
+                </p>
+
+                <div class="border rounded p-3 mb-4 bg-light text-center">
+
+                    <div class="row g-2">
+
+                        <div class="col">
+                            <strong>Index</strong>
+                        </div>
+
+                        <div class="col">0</div>
+                        <div class="col">1</div>
+                        <div class="col">2</div>
+                        <div class="col">3</div>
+                        <div class="col">4</div>
+
+                    </div>
+
+                    <hr />
+
+                    <div class="row g-2">
+
+                        <div class="col">
+                            <strong>Character</strong>
+                        </div>
+
+                        <div class="col">S</div>
+                        <div class="col">A</div>
+                        <div class="col">M</div>
+                        <div class="col">!</div>
+                        <div class="col">😊</div>
+
+                    </div>
+
+                </div>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>name = "SAM!"
+
+print(name[0])
+print(name[1])
+print(name[2])
+print(name[3])</code></pre>
+
+                </div>
+                <h3 class="h5 fw-bold text-dark mb-3">
+    Output:
+</h3>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="code-lang-tag">
+        Output
+    </div>
+
+    <pre class="mb-0"><code>S
+A
+M
+!</code></pre>
+</div>
+
+                <!-- ================================================= -->
+                <!-- NEGATIVE INDEXING -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Negative Indexing
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Python also supports negative indexing. The last
+                    character has index <strong>-1</strong>.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>name = "Python"
+
+print(name[-1])
+print(name[-2])</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>n
+o</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- SLICING -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    String Slicing
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Slicing is used to extract a portion of a string.
+                    The syntax is:
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>string[start:end]</code></pre>
+
+                </div>
+
+                <p class="text-muted mb-3">
+                    The start index is included, while the end index
+                    is excluded.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>text = "Python"
+
+print(text[0:3])
+print(text[2:6])</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>Pyt
+thon</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- STRING LENGTH -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Finding String Length
+                </h2>
+
+                <p class="text-muted mb-3">
+                    The <strong>len()</strong> function returns the number
+                    of characters in a string.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>name = "Samadhan"
+
+print(len(name))</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>8</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- STRING CONCATENATION -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    String Concatenation
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Concatenation means joining two or more strings.
+                    The <strong>+</strong> operator can be used to join
+                    strings.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>first_name = "Samadhan"
+last_name = "Patole"
+
+full_name = first_name + " " + last_name
+
+print(full_name)</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>Samadhan Patil</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- REPETITION -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    String Repetition
+                </h2>
+
+                <p class="text-muted mb-3">
+                    The <strong>*</strong> operator can repeat a string
+                    multiple times.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>message = "Hi "
+
+print(message * 3)</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>Hi Hi Hi </code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- UPPER LOWER -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Changing String Case
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Python provides methods such as
+                    <strong>upper()</strong> and <strong>lower()</strong>
+                    to change the case of a string.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>text = "Python Programming"
+
+print(text.upper())
+print(text.lower())</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>PYTHON PROGRAMMING
+python programming</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- STRIP -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Removing Extra Spaces
+                </h2>
+
+                <p class="text-muted mb-3">
+                    The <strong>strip()</strong> method removes leading
+                    and trailing whitespace from a string.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>name = "   Samadhan   "
+
+print(name.strip())</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>Samadhan</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- REPLACE -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Replacing Text
+                </h2>
+
+                <p class="text-muted mb-3">
+                    The <strong>replace()</strong> method replaces one
+                    piece of text with another.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>course = "Learn Java"
+
+new_course = course.replace("Java", "Python")
+
+print(new_course)</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>Learn Python</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- FIND -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Finding Text
+                </h2>
+
+                <p class="text-muted mb-3">
+                    The <strong>find()</strong> method returns the index
+                    of the first occurrence of a substring.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>text = "Python Programming"
+
+position = text.find("Program")
+
+print(position)</code></pre>
+
+                </div>
+                <h3 class="h5 fw-bold text-dark mb-3">
+    Output:
+</h3>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="code-lang-tag">
+        Output
+    </div>
+
+    <pre class="mb-0"><code>7</code></pre>
+</div>
+
+                <!-- ================================================= -->
+                <!-- IN OPERATOR -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Checking Text using in
+                </h2>
+
+                <p class="text-muted mb-3">
+                    The <strong>in</strong> operator can check whether
+                    a particular text exists inside another string.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>course = "Python Full Stack"
+
+print("Python" in course)
+print("Java" in course)</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>True
+False</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- SPLIT -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Splitting a String
+                </h2>
+
+                <p class="text-muted mb-3">
+                    The <strong>split()</strong> method divides a string
+                    into a list based on a separator.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>courses = "Python,Java,C#"
+
+result = courses.split(",")
+
+print(result)</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>['Python', 'Java', 'C#']</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- JOIN -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Joining Strings
+                </h2>
+
+                <p class="text-muted mb-3">
+                    The <strong>join()</strong> method combines multiple
+                    strings into one string.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>courses = ["Python", "Java", "C#"]
+
+result = ", ".join(courses)
+
+print(result)</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>Python, Java, C#</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- F STRING -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    String Formatting using f-Strings
+                </h2>
+
+                <p class="text-muted mb-3">
+                    f-strings provide a simple way to insert variables
+                    directly into a string.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>name = "Samadhan"
+course = "Python"
+
+message = f"{name} is learning {course}"
+
+print(message)</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>Samadhan is learning Python</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- STRING IMMUTABILITY -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Strings are Immutable
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Python strings are immutable. This means individual
+                    characters of an existing string cannot be changed
+                    directly.
+                </p>
+
+                <p class="text-muted mb-4">
+                    Instead, a new string is created when a modified
+                    value is required.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>name = "Python"
+
+name = "Python Programming"
+
+print(name)</code></pre>
+
+                </div>
+                <h3 class="h5 fw-bold text-dark mb-3">
+    Output:
+</h3>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="code-lang-tag">
+        Output
+    </div>
+
+    <pre class="mb-0"><code>Python Programming</code></pre>
+</div>
+
+                <!-- ================================================= -->
+                <!-- REAL WORLD EXAMPLE -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Example 🌍🤓
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Let's create a simple student profile using strings
+                    at <strong>CIIT Training Institute 📩👨‍🏫...!</strong>.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>student_name = "Pradnya"
+course = "Python Full Stack"
+institute = "CIIT Training Institute📩👨‍🏫..."
+
+message = (
+    f"Student: {student_name}\n"
+    f"Course: {course}\n"
+    f"Institute: {institute}"
+)
+
+print(message)</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>Student: Pradnya
+Course: Python Full Stack
+Institute: CIIT Training Institute📩👨‍🏫...</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- CIIT LEARNING POINT -->
+                <!-- ================================================= -->
+
+                <div class="alert alert-success mt-4">
+
+                    <h5 class="fw-bold">
+                        CIIT Learning Point
+                    </h5>
+
+                    <p class="mb-0">
+                        Practice string indexing, slicing, concatenation,
+                        formatting, and commonly used methods such as
+                        <strong>upper()</strong>, <strong>lower()</strong>,
+                        <strong>strip()</strong>, <strong>replace()</strong>,
+                        <strong>split()</strong>, and <strong>join()</strong>.
+                        These skills are frequently used while processing
+                        real-world application data.
+                    </p>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- SAM PRACTICE -->
+                <!-- ================================================= -->
+
+                <div class="border rounded p-4 mt-4 mb-4">
+
+                    <h3 class="h5 fw-bold text-dark mb-3">
+                        CIIT Practice Task
+                    </h3>
+
+                    <p class="text-muted mb-3">
+                        Create a Python program that stores your name,
+                        city, course, and institute name. Display them
+                        using an f-string.
+                    </p>
+
+                    <div class="bg-dark text-light rounded p-3 mb-3">
+
+                        <pre class="mb-0"><code>name = "Om"
+city = "Pune"
+course = "Python"
+institute = "CIIT Training Institute 📩👨‍🏫..."
+
+print(
+    f"My name is {name}. "
+    f"I live in {city}. "
+    f"I am learning {course} at {institute}."
+)</code></pre>
+
+                    </div>
+
+                    <h3 class="h5 fw-bold text-dark mb-3">
+    Output:
+</h3>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="code-lang-tag">
+        Output
+    </div>
+
+    <pre class="mb-0"><code>My name is Om. I live in Pune. I am learning Python at CIIT Training Institute 📩👨‍🏫....</code></pre>
+</div>
+                    <p class="text-muted mb-0">
+                        Try changing the values and observe the output.
+                    </p>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- SUMMARY -->
+                <!-- ================================================= -->
+
+                <div class="alert alert-info mt-4 mb-0"
+                     style="background-color:#cfe2ff; border:0; color:#123c73;">
+
+                    <h2 class="h3 fw-bold mt-0 mb-3"
+                        style="color:#123c73;">
+
+                        Summary :
+
+                    </h2>
+
+                    <p class="mb-0"
+                       style="color:#123c73;">
+
+                        Strings are used to store and process text in
+                        Python. You learned how to create strings, access
+                        characters using indexing, extract text using
+                        slicing, combine strings, search and replace text,
+                        split and join strings, and format dynamic text
+                        using f-strings.
+
+                    </p>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- NAVIGATION -->
+                <!-- ================================================= -->
+
+                <div class="d-flex justify-content-between align-items-center mt-5 pt-4 border-top">
+
+                    <a href="@Url.Action("Operators", "PythonBasics", new { area = "Python" })"
+                       class="btn btn-outline-secondary">
+
+                        ← Previous: Topic
+
+                    </a>
+
+                    <a href="@Url.Action("InputOutput", "PythonBasics", new { area = "Python" })"
+                       class="btn btn-primary">
+
+                        Next: Topic →
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

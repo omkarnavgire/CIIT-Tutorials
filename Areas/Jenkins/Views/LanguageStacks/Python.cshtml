@@ -1,0 +1,269 @@
+@{
+    Layout = "~/Areas/Jenkins/Views/Shared/JenkinsLayout.cshtml";
+    ViewData["Title"] = "Python Pipeline";
+}
+
+<style>
+    #python-pipeline-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+    #python-pipeline-page pre code {
+        background: transparent !important;
+        color: #ffffff !important;
+    }
+
+    #python-pipeline-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #python-pipeline-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+    #python-pipeline-page .info-card h5 {
+        color: #5b21b6;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+
+    #python-pipeline-page .example-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+    }
+</style>
+
+<main id="python-pipeline-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Jenkins/Views/Shared/JenkinsTopics.cshtml"
+            )
+
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+
+                <h1 class="fw-bold">
+                    Python Pipeline
+                </h1>
+
+                <p class="lead">
+                    Learn how to design stable, automated workflows for Python environments, focusing on dependency management, virtual environments (venv), static analysis, and packaging configurations.
+                </p>
+
+            </div>
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    What is Python Pipeline?
+                </h2>
+
+                <p>
+                    Python is a widely adopted language for web services, machine learning, data engineering, and scripting. Managing a **Python Pipeline** inside an enterprise Jenkins environment introduces distinct challenges compared to compiled stacks—mainly ensuring dependency versioning control and isolating background runtime binaries across execution nodes.
+                </p>
+                <p>
+                    Because Python code relies on modules installed globally or locally, production-ready Jenkins pipelines avoid altering the system's baseline environment. Instead, automated stages utilize virtualization engines to establish clean workspaces, test application changes natively, audit library patches, and assemble transportable deployable distributions.
+                </p>
+
+                <!-- PIPELINE STAGE FLOW VISUALIZER -->
+                <div class="concept-box my-4 shadow-sm">
+                    <h5 class="fw-bold text-dark mb-3">Python CI Pipeline Lifecyle Flow</h5>
+                    <p class="small text-muted mb-3">The chronological execution structure required to test and package Python code securely:</p>
+                    <div class="row g-2">
+                        <div class="col-md-3">
+                            <div class="py-flow-step border shadow-sm h-100">
+                                <strong>1. Isolate Runtime</strong><br>
+                                <small class="text-muted">Bootstrap an explicit, local virtual environment wrapper.</small>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="py-flow-step border shadow-sm h-100">
+                                <strong>2. Pull Lockfiles</strong><br>
+                                <small class="text-muted">Install explicit pinned packages via pip package manager.</small>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="py-flow-step border shadow-sm h-100">
+                                <strong>3. Static Quality</strong><br>
+                                <small class="text-muted">Scan code blocks using linters like Flake8 or Black.</small>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="py-flow-step border shadow-sm h-100">
+                                <strong>4. Build Wheels</strong><br>
+                                <small class="text-muted">Compile source elements into reusable distribution archives.</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="alert alert-info">
+                    <strong>Simple Definition:</strong> A specialized Jenkins pipeline strategy that configures isolated virtual execution layers, reviews script structures against stylistic quality rules, and outputs verifiable application distribution packages.
+                </div>
+
+            </div>
+
+            <!-- KEY CONCEPTS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Key Concepts</h2>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Virtual Environments (venv)</h5>
+                            <p class="mb-0">Creating isolated runtime subdirectories to ensure dependencies from concurrent pipeline processes don't leak or conflict with global agent execution paths.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Dependency Lock Files</h5>
+                            <p class="mb-0">Utilizing frozen manifests like <code>requirements.txt</code> or strict poetry configurations to pin predictable package dependencies across stages.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Static Code Analysis</h5>
+                            <p class="mb-0">Integrating tools such as Flake8, Radon, or Bandit directly within pipeline logic to catch structural typos, code-smells, and syntax flaws early.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Distribution Formats</h5>
+                            <p class="mb-0">Assembling confirmed scripts into standard source distributions or Wheel archives (<code>.whl</code>) for smooth orchestration downstream.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXAMPLE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Practical Jenkins Example</h2>
+                <p>This declarative pipeline block initializes a local Python environment workspace shell, downloads required packages, audits source lint errors, and stores packaged source distributions:</p>
+                <pre><code>pipeline {
+    agent any
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    stages {
+        stage('Initialize & Isolate') {
+            steps {
+                echo 'Provisioning localized Python context environment...'
+                // Sets up an isolated shell workspace context directory on the execution agent
+                sh '''
+                    python3 -m venv venv
+                    . venv/bin/activate
+                    pip install --upgrade pip
+                    pip install -r requirements.txt
+                '''
+            }
+        }
+
+        stage('Static Quality Check') {
+            steps {
+                echo 'Analyzing code semantics and stylistic compliance...'
+                // Executes lint evaluations inside the active context scope layer
+                sh '''
+                    . venv/bin/activate
+                    flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+                '''
+            }
+        }
+
+        stage('Assemble Wheel Packages') {
+            steps {
+                echo 'Compiling standard python distribution package binaries...'
+                sh '''
+                    . venv/bin/activate
+                    pip install wheel
+                    python3 setup.py bdist_wheel sdist
+                '''
+            }
+        }
+    }
+
+
+    post {
+        success {
+            echo 'Pipeline completed successfully. Archiving distribution packages...'
+            // Persists generated target Wheels and source packages safely on the controller
+            archiveArtifacts artifacts: 'dist/*.whl, dist/*.tar.gz', fingerprint: true, allowEmptyArchive: false
+        }
+    }
+}</code></pre>
+            </div>
+
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Practice Exercise
+                </h2>
+
+                <ol>
+                    <li class="mb-2">Open Jenkins and identify the relevant configuration area.</li>
+                    <li class="mb-2">Create or update a small test job or pipeline for this lesson.</li>
+                    <li class="mb-2">Run the job and inspect the Console Output.</li>
+                    <li>Record what changed and verify the result.</li>
+                </ol>
+
+            </div>
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+                <h2 class="h4 fw-bold">Summary</h2>
+                <p class="mb-0">You have completed the <strong>Python Pipeline</strong> lesson. Continue through the syllabus to build the Jenkins skills required for real CI/CD automation.</p>
+            </div>
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+                <a class="btn btn-outline-primary" href="@Url.Action("NpmTesting", "LanguageStacks", new { area = "Jenkins" })">← Previous: npm Testing and Packaging</a>
+                <a class="btn btn-primary" href="@Url.Action("Pytest", "LanguageStacks", new { area = "Jenkins" })">Next: pytest Testing →</a>
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

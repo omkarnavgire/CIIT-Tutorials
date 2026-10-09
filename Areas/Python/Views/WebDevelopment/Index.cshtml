@@ -1,0 +1,701 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Python Web Development";
+}
+
+<style>
+    #python-web-development-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #python-web-development-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #python-web-development-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #python-web-development-page .diagram-box {
+        background: #ffffff;
+        border: 2px solid #6f42c1;
+        border-radius: 10px;
+        padding: 18px;
+        text-align: center;
+        height: 100%;
+    }
+
+        #python-web-development-page .diagram-box h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        #python-web-development-page .diagram-box p {
+            margin-bottom: 0;
+            font-size: 14px;
+            color: #495057;
+        }
+
+    #python-web-development-page .diagram-arrow {
+        text-align: center;
+        font-size: 28px;
+        font-weight: 700;
+        color: #6f42c1;
+        padding: 8px 0;
+    }
+
+    #python-web-development-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #python-web-development-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+        }
+</style>
+
+<main id="python-web-development-page" class="container py-5">
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+                <h1 class="fw-bold">Web Development in Python</h1>
+
+                <p class="lead">
+                    Python can be used to build websites, web applications,
+                    backend systems, APIs, and database-driven applications.
+                </p>
+            </div>
+
+            <!-- WHAT IS WEB DEVELOPMENT -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">What is Web Development?</h2>
+
+                <p>
+                    Web development is the process of creating websites and
+                    web applications that work through a web browser.
+                </p>
+
+                <p>
+                    Python is commonly used for backend development. It can
+                    receive requests from users, process data, communicate
+                    with databases, apply business logic, and return a
+                    response to the browser.
+                </p>
+
+                <div class="concept-box mt-3">
+                    <h5 class="fw-bold">Simple Definition</h5>
+
+                    <p class="mb-0">
+                        <strong>Web Development with Python</strong> means
+                        using Python to build the server-side part of a
+                        website or web application.
+                    </p>
+                </div>
+            </div>
+
+            <!-- WEB DEVELOPMENT FLOW -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Python Web Development Flow</h2>
+
+                <p>
+                    A basic Python web application receives a request,
+                    processes it on the server, and sends a response back
+                    to the client.
+                </p>
+
+                <div class="row g-3 mt-3">
+
+                    <div class="col-md-3">
+                        <div class="diagram-box">
+                            <h5>1. Browser</h5>
+                            <p>
+                                User opens a web page or sends a request.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-1 d-flex align-items-center justify-content-center">
+                        <div class="diagram-arrow">→</div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="diagram-box">
+                            <h5>2. Python Server</h5>
+                            <p>
+                                Python receives and processes the request.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-1 d-flex align-items-center justify-content-center">
+                        <div class="diagram-arrow">→</div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="diagram-box">
+                            <h5>3. Response</h5>
+                            <p>
+                                The server sends HTML, JSON, or other data
+                                back to the browser.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="diagram-arrow">↓</div>
+
+                <div class="row justify-content-center">
+                    <div class="col-md-5">
+                        <div class="diagram-box">
+                            <h5>Database</h5>
+
+                            <p>
+                                The Python application can read or store
+                                data in a database when required.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FRONTEND AND BACKEND -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Frontend and Backend</h2>
+
+                <div class="row g-3 mt-2">
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+
+                            <h5>Frontend</h5>
+
+                            <p>
+                                The frontend is the part of the application
+                                that the user sees and interacts with.
+                            </p>
+
+                            <ul>
+                                <li>HTML</li>
+                                <li>CSS</li>
+                                <li>JavaScript</li>
+                                <li>Buttons and Forms</li>
+                                <li>Web Page Layout</li>
+                            </ul>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+
+                            <h5>Backend</h5>
+
+                            <p>
+                                The backend processes requests and performs
+                                application logic.
+                            </p>
+
+                            <ul>
+                                <li>Python</li>
+                                <li>Business Logic</li>
+                                <li>Database Operations</li>
+                                <li>Authentication</li>
+                                <li>API Development</li>
+                            </ul>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- PYTHON WEB FRAMEWORKS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Python Web Frameworks</h2>
+
+                <p>
+                    A web framework provides ready-made tools and structures
+                    for building web applications.
+                </p>
+
+                <div class="row g-3 mt-2">
+
+                    <div class="col-md-4">
+                        <div class="info-card">
+
+                            <h5>Flask</h5>
+
+                            <p>
+                                Flask is a lightweight Python web framework.
+                                It is simple and suitable for beginners and
+                                many small to medium applications.
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="info-card">
+
+                            <h5>FastAPI</h5>
+
+                            <p>
+                                FastAPI is commonly used for building
+                                modern APIs and backend services.
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="info-card">
+
+                            <h5>Django</h5>
+
+                            <p>
+                                Django is a full-featured Python web framework
+                                that provides many built-in tools for larger
+                                applications.
+                            </p>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- SIMPLE FLASK EXAMPLE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Simple Python Web Application</h2>
+
+                <p>
+                    Flask is a common starting point for learning Python
+                    web development. The following example creates a
+                    simple web server.
+                </p>
+
+                <pre><code>from flask import Flask
+
+app = Flask(__name__)
+
+&#64;app.route("/")
+def home():
+    return "Welcome to Python Web Development"
+
+if __name__ == "__main__":
+    app.run(debug=True)</code></pre>
+            </div>
+
+            <!-- EXPLANATION -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Understanding the Example</h2>
+
+                <div class="row g-3 mt-2">
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+
+                            <h5>Flask()</h5>
+
+                            <p class="mb-0">
+                                Creates the Flask application object.
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+
+                            <h5>app.route()</h5>
+
+                            <p class="mb-0">
+                                Connects a URL path with a Python function.
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+
+                            <h5>home()</h5>
+
+                            <p class="mb-0">
+                                This function runs when the root URL is requested.
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+
+                            <h5>app.run()</h5>
+
+                            <p class="mb-0">
+                                Starts the development web server.
+                            </p>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- INSTALL FLASK -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Installing Flask</h2>
+
+                <p>
+                    Flask can be installed using Python's package manager,
+                    <strong>pip</strong>.
+                </p>
+
+                <pre><code>pip install flask</code></pre>
+
+                <div class="alert alert-info mt-3">
+
+                    <strong>Note:</strong>
+                    It is recommended to install Flask inside a virtual
+                    environment for project-based development.
+
+                </div>
+            </div>
+
+            <!-- RUN APPLICATION -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Running the Application</h2>
+
+                <p>
+                    Save the Python file and run it from the terminal.
+                </p>
+
+                <pre><code>python app.py</code></pre>
+
+                <p class="mt-3">
+                    After starting the application, the browser can be
+                    used to access the local web server.
+                </p>
+
+                <pre><code>http://127.0.0.1:5000/</code></pre>
+            </div>
+
+            <!-- PRACTICAL EXAMPLE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">
+                    Practical Example: Student Welcome Page
+                </h2>
+
+                <p>
+                    Suppose a training institute wants to display a simple
+                    welcome message on a web page.
+                </p>
+
+                <pre><code>from flask import Flask
+
+app = Flask(__name__)
+
+&#64;app.route("/")
+def welcome():
+    return "Welcome to CIIT Training Institute"
+
+if __name__ == "__main__":
+    app.run(debug=True)</code></pre>
+
+                <div class="alert alert-success mt-3">
+
+                    <strong>Result:</strong>
+                    When the root URL is opened, the browser receives
+                    the welcome message from the Python backend.
+
+                </div>
+            </div>
+
+            <!-- WEB COMPONENTS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">
+                    Main Components of a Web Application
+                </h2>
+
+                <div class="row g-3 mt-2">
+
+                    <div class="col-md-4">
+                        <div class="info-card">
+
+                            <h5>Routes</h5>
+
+                            <p class="mb-0">
+                                Routes define which URL should execute
+                                which function.
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="info-card">
+
+                            <h5>Logic</h5>
+
+                            <p class="mb-0">
+                                Python performs calculations and
+                                application processing.
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="info-card">
+
+                            <h5>Database</h5>
+
+                            <p class="mb-0">
+                                Application data can be stored and
+                                retrieved from a database.
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="info-card">
+
+                            <h5>Templates</h5>
+
+                            <p class="mb-0">
+                                Templates can be used to generate
+                                dynamic HTML pages.
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="info-card">
+
+                            <h5>APIs</h5>
+
+                            <p class="mb-0">
+                                APIs allow applications to exchange data.
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="info-card">
+
+                            <h5>Authentication</h5>
+
+                            <p class="mb-0">
+                                Web applications can provide user login
+                                and access control.
+                            </p>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- BASIC PROJECT STRUCTURE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">
+                    Basic Web Project Structure
+                </h2>
+
+                <p>
+                    A simple Python web project can be organized like this:
+                </p>
+
+                <pre><code>project/
+│
+├── app.py
+├── templates/
+│   └── index.html
+├── static/
+│   ├── css/
+│   ├── js/
+│   └── images/
+└── requirements.txt</code></pre>
+
+                <p class="mt-3">
+                    The exact structure can change depending on the framework
+                    and project requirements.
+                </p>
+            </div>
+
+            <!-- BEST PRACTICES -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Best Practices</h2>
+
+                <div class="concept-box">
+
+                    <ul class="mb-0">
+                        <li>
+                            Use a virtual environment for each project.
+                        </li>
+
+                        <li>
+                            Keep application code organized into separate
+                            files and modules.
+                        </li>
+
+                        <li>
+                            Use meaningful names for routes and functions.
+                        </li>
+
+                        <li>
+                            Keep database code separate from presentation logic.
+                        </li>
+
+                        <li>
+                            Validate user input before processing it.
+                        </li>
+
+                        <li>
+                            Do not store passwords or secret keys directly
+                            in source code.
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+
+            <!-- COMMON MISTAKES -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Common Mistakes</h2>
+
+                <div class="alert alert-warning">
+
+                    <ul class="mb-0">
+
+                        <li>
+                            Forgetting to install the required framework.
+                        </li>
+
+                        <li>
+                            Running the application outside the correct
+                            virtual environment.
+                        </li>
+
+                        <li>
+                            Using incorrect URL routes.
+                        </li>
+
+                        <li>
+                            Writing all application logic in one large file.
+                        </li>
+
+                        <li>
+                            Ignoring validation and error handling.
+                        </li>
+
+                        <li>
+                            Hard-coding sensitive information in the application.
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div>
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Practice Exercise</h2>
+
+                <div class="concept-box">
+
+                    <p>
+                        Create a simple Flask application with the following routes:
+                    </p>
+
+                    <ol>
+
+                        <li>
+                            <strong>/</strong> → Display "Welcome"
+                        </li>
+
+                        <li>
+                            <strong>/about</strong> → Display "About Python"
+                        </li>
+
+                        <li>
+                            <strong>/contact</strong> → Display "Contact Us"
+                        </li>
+
+                    </ol>
+
+                    <p class="mb-0">
+                        Create all three routes using separate Python functions.
+                    </p>
+
+                </div>
+            </div>
+<!-- SUMMARY -->
+<div class="alert alert-info mt-4">
+
+    <h2 class="h4 fw-bold">
+        Summary
+    </h2>
+
+    <p class="mb-0">
+
+        Python can be used for server-side web development to build websites,
+        web applications and backend services. Web applications receive requests
+        from clients and return responses through Python-based frameworks such as
+        Flask and FastAPI. Python can also communicate with databases and APIs,
+        while web routes connect URLs with backend functions. A well-organized
+        project structure and proper development practices help make web
+        applications easier to build and maintain.
+
+    </p>
+
+</div>
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+
+                <a class="btn btn-outline-secondary"
+                   href="@Url.Action("SQLWithPython", "DatabaseProgramming", new { area = "Python" })">
+                    ← Previous: Topic
+                </a>
+
+                <a class="btn btn-primary"
+                   href="@Url.Action("FlaskBasics", "WebDevelopment", new { area = "Python" })">
+                    Next: Topic →
+                </a>
+
+            </div>
+
+        </section>
+    </div>
+</main>

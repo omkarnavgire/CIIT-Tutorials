@@ -1,0 +1,211 @@
+@{
+    Layout = "~/Areas/Jenkins/Views/Shared/JenkinsLayout.cshtml";
+    ViewData["Title"] = "Performance optimization and Troubleshooting";
+}
+
+<style>
+    #performance-and-troubleshooting-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #performance-and-troubleshooting-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #performance-and-troubleshooting-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #performance-and-troubleshooting-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #performance-and-troubleshooting-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+    #performance-and-troubleshooting-page .example-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+    }
+</style>
+
+<main id="performance-and-troubleshooting-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/Jenkins/Views/Shared/JenkinsTopics.cshtml")
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+                <h1 class="fw-bold">Performance Tuning & Troubleshooting</h1>
+                <p class="lead">
+                    Diagnose execution bottlenecks, resolve severe JVM memory constraints, analyze thread thread locks, and profile telemetry streams to maintain a resilient enterprise build engine.
+                </p>
+            </div>
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">What is Performance & Troubleshooting?</h2>
+                <p>
+                    As continuous delivery workloads expand, an unoptimized Jenkins controller will experience performance challenges. These range from long <strong>Garbage Collection (GC) freezes</strong> and high CPU consumption to sluggish UI rendering and full disk bottlenecks caused by bloated historical console logs.
+                </p>
+                <p>
+                    <strong>Performance and Troubleshooting</strong> involves proactive runtime configuration (such as tuning Java Virtual Machine arguments), setting up log rotations, and interpreting diagnostic outputs like thread stack dumps and heap snapshots to isolate crashing plugins or deadlocked build pipelines before they halt development teams.
+                </p>
+                <div class="alert alert-info">
+                    <strong>Simple Definition:</strong> Performance and Troubleshooting is the continuous engineering process of monitoring JVM vitals, managing disk storage profiles, analyzing system logging targets, and debugging system errors to ensure high reliability.
+                </div>
+            </div>
+
+            <!-- KEY CONCEPTS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Key Optimization Pillars</h2>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>JVM Memory Allocation Tuning</h5>
+                            <p class="mb-0">Prevent `java.lang.OutOfMemoryError` failures by configuring custom `-Xms` and `-Xmx` heap sizes. Pair these setups with modern, low-latency garbage collectors like G1GC (`-XX:+UseG1GC`) to keep background execution pauses minimal.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Disk I/O and Build Discards</h5>
+                            <p class="mb-0">Heavy builds create massive disk I/O demands. Prevent disk full crashes by enforcing strict global build discarding rules (`LogRotator`) and moving active workspace paths away from standard spinning platters to fast SSD or NVMe storage blocks.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Thread Dump & Deadlock Analysis</h5>
+                            <p class="mb-0">When the web user interface freezes completely, a thread dump reveals exact programmatic blockages. By examining execution stack traces, administrators can isolate which integration plugins are consuming threads or causing deadlocks.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Targeted Log Recorders</h5>
+                            <p class="mb-0">Avoid parsing massive global log streams. Create isolated, custom log recorders for specific sub-systems (such as `jenkins.security` or `hudson.plugins.git`) to debug connection failures without flooding the system with irrelevant logs.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXAMPLE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Production Telemetry and Diagnostics Snippet</h2>
+                <p>
+                    Below is a pipeline example showing how to query the live API nodes of your controller to gather thread usage and trigger early warnings when executor resources cross high threshold levels:
+                </p>
+                <pre><code>pipeline {
+    agent { label 'built-in' } // Executed directly on the controller to query system metrics
+    stages {
+        stage('JVM Resource Diagnostics') {
+            steps {
+                echo 'Gathering system operational telemetry metrics...'
+                script {
+                    // Extracting memory performance stats from the JVM runtime context instance
+                    double freeMemory = Runtime.getRuntime().freeMemory() / (1024 * 1024 * 1024)
+                    double totalMemory = Runtime.getRuntime().totalMemory() / (1024 * 1024 * 1024)
+                    double maxMemory = Runtime.getRuntime().maxMemory() / (1024 * 1024 * 1024)
+                    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    echo "Allocated Free Heap space: \${freeMemory} GB"
+                    echo "Total Active Heap space: \${totalMemory} GB"
+                    echo "Max Capable JVM Heap limit: \${maxMemory} GB"
+                }
+            }
+        }
+        stage('Pipeline Executor Health Audit') {
+            steps {
+                echo 'Checking active queue performance stats...'
+                script {
+                    def computerSide = jenkins.model.Jenkins.instance.toComputer()
+                    int totalExecutors = 0
+                    int busyExecutors = 0
+                    
+                    for (c in computerSide) {
+                        totalExecutors += c.numExecutors
+                        busyExecutors += c.countBusy()
+                    }
+                    
+                    echo "Current Cluster Load Status: \${busyExecutors} out of \${totalExecutors} executors are actively working."
+                    if (totalExecutors > 0 && (busyExecutors / totalExecutors) > 0.85) {
+                        echo '[WARNING] Executor utilization is above 85%! Consider autoscaling node pools.'
+                    }
+                }
+            }
+        }
+    }
+}</code></pre>
+                </div>
+
+                <!-- PRACTICE -->
+                <div class="mb-4">
+                <h2 class="h3 fw-bold">Troubleshooting Practice Exercise</h2>
+                <ol>
+                <li class="mb-2"><strong>Examine Live System Information:</strong> Navigate to <em>Manage Jenkins &rarr; System Information</em> and analyze the full listing of active environment paths, system properties, and JVM flags.</li>
+                <li class="mb-2"><strong>Generate a Diagnostic Thread Dump:</strong> Open <em>Manage Jenkins &rarr; System Thread Dumps</em> to review every executing thread trace running across your controller engine.</li>
+                <li class="mb-2"><strong>Configure a Custom Log Recorder:</strong> Go to <em>Manage Jenkins &rarr; System Logs &rarr; New Log Recorder</em>. Name it `git-logger`, add the logger path `hudson.plugins.git`, and set the threshold log level monitoring to <strong>FINE</strong>.</li>
+                    <li><strong>Set Global Retention Limits:</strong> Apply an explicit layout retention rule on a test pipeline using the `options { buildDiscarder(logRotator(numToKeepStr: '10')) }` method to keep storage disk spaces pristine.</li>
+                </ol>
+            </div>
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+                <h2 class="h4 fw-bold">Summary</h2>
+                <p class="mb-0">You have completed the <strong>Performance and Troubleshooting</strong> lesson. You now possess the specialized diagnostic skills required to debug memory leaks, analyze process deadlocks, and apply proper performance flags to safeguard major production environments. Get ready to put your skills to the test in the comprehensive enterprise capstone challenge.</p>
+            </div>
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+                <a class="btn btn-outline-primary" href="@Url.Action("BackupRecovery", "Master", new { area = "Jenkins" })">← Previous: Backup and Disaster Recovery</a>
+                <a class="btn btn-primary" href="@Url.Action("FinalProject", "Master", new { area = "Jenkins" })">Next: Enterprise Jenkins Capstone Project →</a>

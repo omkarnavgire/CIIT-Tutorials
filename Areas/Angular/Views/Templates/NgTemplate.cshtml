@@ -1,0 +1,790 @@
+﻿@{
+    ViewData["Title"] = "ng-template";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- Header -->
+    <section class="mb-4">
+        <h1 class="fw-bold text-dark">ng-template</h1>
+        <p class="lead text-muted">
+            Learn how Angular uses <code>ng-template</code> to define template fragments
+            that are rendered only when Angular explicitly creates them.
+        </p>
+    </section>
+
+    <!-- What is ng-template -->
+    <section class="mb-4">
+        <h2 class="fw-bold">What is ng-template?</h2>
+
+        <div class="info-card">
+            <p>
+                <code>ng-template</code> is an Angular element used to define a
+                template fragment. The content inside an <code>ng-template</code>
+                is not displayed immediately when the page loads.
+            </p>
+
+            <p class="mb-0">
+                Angular creates and renders the template only when it is required,
+                such as during conditional rendering or dynamic template operations.
+            </p>
+        </div>
+    </section>
+
+    <!-- Flow -->
+    <section class="mb-4">
+        <h2 class="fw-bold">ng-template Flow</h2>
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+                <div class="syntax-icon">1</div>
+                <h5>Template Definition</h5>
+                <p>Define reusable HTML inside <code>ng-template</code>.</p>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+                <div class="syntax-icon">2</div>
+                <h5>Angular Stores</h5>
+                <p>Angular keeps the template as a template fragment.</p>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+                <div class="syntax-icon">3</div>
+                <h5>Condition / Context</h5>
+                <p>Angular determines when the template is required.</p>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+                <div class="syntax-icon">4</div>
+                <h5>Rendered UI</h5>
+                <p>The template is created and displayed in the page.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Main Concepts -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Main Concepts</h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+                <div class="syntax-icon">T</div>
+                <h5>Template Definition</h5>
+                <p>
+                    Defines a block of HTML that Angular can render later.
+                </p>
+            </div>
+
+            <div class="syntax-card">
+                <div class="syntax-icon">C</div>
+                <h5>Conditional Rendering</h5>
+                <p>
+                    A template can be displayed based on a condition.
+                </p>
+            </div>
+
+            <div class="syntax-card">
+                <div class="syntax-icon">R</div>
+                <h5>Template Reference</h5>
+                <p>
+                    A reference variable can identify a particular template.
+                </p>
+            </div>
+
+            <div class="syntax-card">
+                <div class="syntax-icon">D</div>
+                <h5>Dynamic Rendering</h5>
+                <p>
+                    Angular can create template content when it is required.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Basic ng-template -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Basic ng-template</h2>
+
+        <p>
+            The following example defines a template containing a welcome message.
+        </p>
+
+        <div class="code-card">
+            <div class="code-title">HTML Template</div>
+
+            <pre><code>&lt;ng-template&gt;
+    &lt;p&gt;Welcome Sam!&lt;/p&gt;
+&lt;/ng-template&gt;</code></pre>
+        </div>
+
+        <div class="output-box">
+            <strong>Important:</strong>
+
+            <div class="output-preview">
+                The paragraph is not displayed automatically.
+                The <code>ng-template</code> only defines the template content.
+            </div>
+        </div>
+    </section>
+
+    <!-- Template Reference -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Template Reference Variable</h2>
+
+        <p>
+            A template reference variable can be used to identify an
+            <code>ng-template</code>.
+        </p>
+
+        <div class="code-card">
+            <div class="code-title">Template Reference</div>
+
+            <pre><code>&lt;ng-template #welcomeTemplate&gt;
+    &lt;p&gt;Welcome to CIIT Training Institute!&lt;/p&gt;
+&lt;/ng-template&gt;</code></pre>
+        </div>
+
+        <div class="info-card">
+            <p class="mb-0">
+                Here <code>#welcomeTemplate</code> creates a reference to the
+                template. Angular can use this reference when the template needs
+                to be rendered.
+            </p>
+        </div>
+    </section>
+
+    <!-- Conditional Rendering -->
+    <section class="mb-4">
+        <h2 class="fw-bold">ng-template with Conditional Rendering</h2>
+
+        <p>
+            One of the common uses of <code>ng-template</code> is providing an
+            alternative template for conditional rendering.
+        </p>
+
+        <div class="code-card">
+            <div class="code-title">Conditional Template</div>
+
+            <pre><code>&lt;div *ngIf="isLoggedIn; else loginTemplate"&gt;
+    Welcome Sam
+&lt;/div&gt;
+
+&lt;ng-template #loginTemplate&gt;
+    &lt;p&gt;Please login to continue.&lt;/p&gt;
+&lt;/ng-template&gt;</code></pre>
+        </div>
+
+        <div class="output-box">
+            <strong>Example Output:</strong>
+
+            <div class="output-preview">
+                <p class="mb-1"><strong>If isLoggedIn = true</strong></p>
+                <p>Welcome Sam</p>
+
+                <hr />
+
+                <p class="mb-1"><strong>If isLoggedIn = false</strong></p>
+                <p class="mb-0">Please login to continue.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Else Template -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Using an Else Template</h2>
+
+        <p>
+            The <code>else</code> syntax allows Angular to render an
+            <code>ng-template</code> when the main condition is false.
+        </p>
+
+        <div class="binding-flow">
+
+            <div class="binding-item">
+                <h5>Condition</h5>
+                <code>isLoggedIn</code>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="binding-item">
+                <h5>True</h5>
+                <code>Welcome Sam</code>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="binding-item">
+                <h5>False</h5>
+                <code>loginTemplate</code>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Template with Reference -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Template with Reference</h2>
+
+        <p>
+            The reference variable identifies the template that Angular should
+            use when required.
+        </p>
+
+        <div class="code-card">
+            <div class="code-title">Example</div>
+
+            <pre><code>&lt;ng-template #studentMessage&gt;
+    &lt;p&gt;Student is not available.&lt;/p&gt;
+&lt;/ng-template&gt;</code></pre>
+        </div>
+
+        <div class="info-card">
+            <p class="mb-0">
+                The name <code>studentMessage</code> becomes a reference to this
+                template fragment.
+            </p>
+        </div>
+    </section>
+
+    <!-- Template Context -->
+    <section class="mb-4">
+        <h2 class="fw-bold">ng-template with Template Context</h2>
+
+        <p>
+            A template can also be designed to receive contextual information.
+            This allows the same template structure to display different values.
+        </p>
+
+        <div class="code-card">
+            <div class="code-title">Template Context Example</div>
+
+            <pre><code>&lt;ng-template #studentTemplate let-name="studentName"&gt;
+    &lt;p&gt;Student: &#123;&#123; name &#125;&#125;&lt;/p&gt;
+&lt;/ng-template&gt;</code></pre>
+        </div>
+
+        <div class="output-box">
+            <strong>Concept:</strong>
+
+            <div class="output-preview">
+                <p class="mb-0">
+                    The template receives a contextual value and displays it
+                    through the local variable <code>name</code>.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ng-template vs normal HTML -->
+    <section class="mb-4">
+        <h2 class="fw-bold">ng-template vs Normal HTML Element</h2>
+
+        <div class="syntax-table">
+            <table class="table table-bordered mb-0">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>ng-template</th>
+                        <th>Normal HTML Element</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Rendered immediately</td>
+                        <td>No</td>
+                        <td>Yes</td>
+                    </tr>
+
+                    <tr>
+                        <td>Template fragment</td>
+                        <td>Yes</td>
+                        <td>No</td>
+                    </tr>
+
+                    <tr>
+                        <td>Reference variable</td>
+                        <td>Supported</td>
+                        <td>Supported</td>
+                    </tr>
+
+                    <tr>
+                        <td>Conditional rendering</td>
+                        <td>Commonly used</td>
+                        <td>Can contain conditional content</td>
+                    </tr>
+
+                    <tr>
+                        <td>Dynamic template usage</td>
+                        <td>Yes</td>
+                        <td>Not directly</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Common Uses -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Common Uses of ng-template</h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+                <div class="syntax-icon">1</div>
+                <h5>Fallback Content</h5>
+                <p>
+                    Display alternative content when a condition is false.
+                </p>
+            </div>
+
+            <div class="syntax-card">
+                <div class="syntax-icon">2</div>
+                <h5>Conditional UI</h5>
+                <p>
+                    Create template fragments for different UI states.
+                </p>
+            </div>
+
+            <div class="syntax-card">
+                <div class="syntax-icon">3</div>
+                <h5>Reusable Templates</h5>
+                <p>
+                    Define a template once and use it where Angular needs it.
+                </p>
+            </div>
+
+            <div class="syntax-card">
+                <div class="syntax-icon">4</div>
+                <h5>Dynamic Content</h5>
+                <p>
+                    Support scenarios where template content is created dynamically.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Complete Example -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Complete ng-template Example</h2>
+
+        <div class="code-card">
+            <div class="code-title">Student Example</div>
+
+            <pre><code>&lt;h3&gt;Student Status&lt;/h3&gt;
+
+&lt;div *ngIf="isStudentAvailable; else noStudent"&gt;
+    &lt;p&gt;Student: Sam&lt;/p&gt;
+    &lt;p&gt;Course: Angular Full Stack&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;ng-template #noStudent&gt;
+    &lt;p&gt;No student record found.&lt;/p&gt;
+&lt;/ng-template&gt;</code></pre>
+        </div>
+
+        <div class="student-preview">
+            <h5>Student Status</h5>
+
+            <p>
+                <strong>Student:</strong> Sam
+            </p>
+
+            <p>
+                <strong>Course:</strong> Angular Full Stack
+            </p>
+
+            <hr />
+
+            <p class="mb-0">
+                If the student is unavailable, Angular can render the
+                <code>noStudent</code> template instead.
+            </p>
+        </div>
+    </section>
+
+    <!-- Best Practices -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Best Practices</h2>
+
+        <div class="best-practice-list">
+
+            <div>
+                <strong>1. Use meaningful template references</strong>
+                <p>
+                    Choose descriptive names such as
+                    <code>#loginTemplate</code> or
+                    <code>#noStudent</code>.
+                </p>
+            </div>
+
+            <div>
+                <strong>2. Keep templates focused</strong>
+                <p>
+                    Keep each template fragment focused on a specific UI purpose.
+                </p>
+            </div>
+
+            <div>
+                <strong>3. Use ng-template when deferred rendering is needed</strong>
+                <p>
+                    Do not use <code>ng-template</code> simply as a replacement
+                    for normal HTML elements.
+                </p>
+            </div>
+
+            <div>
+                <strong>4. Keep template logic simple</strong>
+                <p>
+                    Complex application logic should remain in the component class
+                    or services.
+                </p>
+            </div>
+
+            <div>
+                <strong>5. Understand related template APIs</strong>
+                <p>
+                    Learn <code>ng-container</code> and
+                    <code>ngTemplateOutlet</code> when working with advanced
+                    template rendering.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Summary -->
+    <section class="mb-4">
+        <div class="summary-box">
+            <h4 class="fw-bold">Summary</h4>
+
+            <ul class="mb-0">
+                <li><code>ng-template</code> defines a template fragment.</li>
+                <li>Its content is not rendered immediately.</li>
+                <li>Angular creates the template when it is required.</li>
+                <li>Template reference variables identify template fragments.</li>
+                <li>It is commonly used with conditional rendering.</li>
+                <li>It can support contextual and dynamic template scenarios.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Navigation -->
+    <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+
+        <a class="btn btn-outline-secondary"
+           href="@Url.Action("TemplateReferenceVariables", "Templates", new { area = "Angular" })">
+            ← Template Reference Variables
+        </a>
+
+        <a class="btn btn-primary"
+           href="@Url.Action("NgContainer", "Templates", new { area = "Angular" })">
+            NgContainer →
+        </a>
+
+    </div>
+
+</div>
+
+<style>
+    .info-card {
+        background: #f8fafc;
+        border-left: 5px solid #4c1d95;
+        border-radius: 10px;
+        padding: 20px;
+        color: #334155;
+    }
+
+    .syntax-flow {
+        display: flex;
+        align-items: stretch;
+        justify-content: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 20px;
+    }
+
+    .syntax-box {
+        background: #f8fafc;
+        border: 1px solid #ddd6fe;
+        border-radius: 12px;
+        padding: 20px;
+        text-align: center;
+        width: 190px;
+    }
+
+        .syntax-box h5 {
+            color: #2e1065;
+            font-weight: 700;
+            margin-top: 12px;
+        }
+
+        .syntax-box p {
+            color: #64748b;
+            margin-bottom: 0;
+            font-size: 14px;
+        }
+
+    .syntax-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: #ede9fe;
+        color: #4c1d95;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 18px;
+        margin: 0 auto 12px;
+    }
+
+    .syntax-arrow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #4c1d95;
+        font-size: 28px;
+        font-weight: 700;
+    }
+
+    .syntax-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .syntax-card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 22px;
+        text-align: center;
+        transition: all 0.2s ease;
+    }
+
+        .syntax-card:hover {
+            transform: translateY(-3px);
+            border-color: #c4b5fd;
+            box-shadow: 0 8px 20px rgba(76, 29, 149, 0.08);
+        }
+
+        .syntax-card h5 {
+            color: #2e1065;
+            font-weight: 700;
+        }
+
+        .syntax-card p {
+            color: #64748b;
+            margin-bottom: 0;
+        }
+
+    .code-card {
+        margin-top: 20px;
+        border-radius: 12px;
+        overflow: hidden;
+        background: #0f172a;
+        box-shadow: 0 5px 15px rgba(15, 23, 42, 0.12);
+    }
+
+    .code-title {
+        background: #1e293b;
+        color: #ffffff;
+        padding: 12px 18px;
+        font-weight: 600;
+        border-bottom: 1px solid #334155;
+    }
+
+    .code-card pre {
+        margin: 0;
+        padding: 20px;
+        overflow-x: auto;
+    }
+
+    .code-card code {
+        color: #e2e8f0;
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    .output-box {
+        background: #f8fafc;
+        border: 1px solid #ddd6fe;
+        border-radius: 10px;
+        padding: 18px;
+        margin-top: 20px;
+        color: #334155;
+    }
+
+    .output-preview {
+        background: #ffffff;
+        border: 1px dashed #c4b5fd;
+        border-radius: 8px;
+        padding: 16px;
+        margin-top: 12px;
+    }
+
+    .binding-flow {
+        display: flex;
+        justify-content: center;
+        align-items: stretch;
+        gap: 15px;
+        flex-wrap: wrap;
+        margin-top: 20px;
+    }
+
+    .binding-item {
+        min-width: 180px;
+        padding: 18px;
+        border: 1px solid #ddd6fe;
+        background: #f8fafc;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+        .binding-item h5 {
+            color: #2e1065;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .binding-item code {
+            color: #4c1d95;
+            font-weight: 600;
+        }
+
+    .syntax-table {
+        margin-top: 20px;
+        overflow-x: auto;
+    }
+
+        .syntax-table table {
+            min-width: 700px;
+        }
+
+        .syntax-table th {
+            background: #4c1d95;
+            color: #ffffff;
+            font-weight: 600;
+            padding: 14px;
+        }
+
+        .syntax-table td {
+            padding: 13px;
+            vertical-align: middle;
+            color: #334155;
+        }
+
+        .syntax-table tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+    .student-preview {
+        margin-top: 20px;
+        padding: 22px;
+        border-radius: 12px;
+        background: #f8fafc;
+        border: 1px solid #ddd6fe;
+    }
+
+        .student-preview h5 {
+            color: #2e1065;
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+
+        .student-preview strong {
+            color: #4c1d95;
+        }
+
+    .best-practice-list {
+        display: grid;
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+        .best-practice-list > div {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 18px 20px;
+        }
+
+        .best-practice-list strong {
+            color: #2e1065;
+        }
+
+        .best-practice-list p {
+            color: #64748b;
+            margin: 8px 0 0;
+        }
+
+    .summary-box {
+        background: #cfe2ff;
+        color: #084298;
+        border-radius: 10px;
+        padding: 22px;
+    }
+
+        .summary-box h4 {
+            color: #084298;
+        }
+
+        .summary-box li {
+            margin-bottom: 8px;
+        }
+
+    @@media (max-width: 991px) {
+        .syntax-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .syntax-flow {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .syntax-arrow {
+            transform: rotate(90deg);
+        }
+    }
+
+    @@media (max-width: 576px) {
+        .syntax-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .syntax-box {
+            width: 100%;
+        }
+
+        .binding-flow {
+            flex-direction: column;
+        }
+
+        .binding-item {
+            width: 100%;
+        }
+
+        .syntax-table {
+            font-size: 14px;
+        }
+
+        .code-card code {
+            font-size: 13px;
+        }
+    }
+</style>

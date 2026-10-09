@@ -1,0 +1,66 @@
+@{
+    ViewData["Title"] = "Step 6: Select the Next: Advanced tab";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+                <div class="azure-notes-content">
+                    <pre class="azure-notes-text">Step 6: Select the Next: Advanced tab and enter the following details as follows:
+
+    •   Require secure transfer for REST API operations: This controls whether HTTP can be used for
+        the REST APIs that access data in the storage account. If we enable it then all clients have to
+        use SSL (HTTPS). Click on Enable for now.
+
+    •   Enable blob public access: Helps us choose whether to allow clients to read data in the blob
+        contained without any authorization. For now select check.
+
+    •   Enable storage account key access: Helps us choose whether to allow clients to access data
+        via SAS or not. For now, check.
+
+    •   Default to Azure Active Directory authorization in the Azure portal: For now uncheck.
+•   Minimum TLS version: Select the TLS version which is used by Azure storage on public HTTPS
+    endpoints. Select version 1.2 which is the most secure version of TLS.
+
+
+
+
+•   Enable hierarchical namespace: It is used for big-data applications. For now, uncheck.
+
+•   Enable SFTP: Keep the default setting which is unchecked.
+
+•   Enable network file share: Keep the default setting which is unchecked.
+
+•   Allow cross-tenant replication: For now, uncheck.
+
+•   Access tier: Helps us choose between Hot and cold access tiers. The hot tier is ideal for
+    frequently accessed data.
+
+•   Enable large file shares: It helps us store up to 100 TiB of files in Azure files. But this can&#x27;t be
+    converted to a Geo-redundant storage offering, and the upgrades are permanent. For now,
+    uncheck it.</pre>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_4_-_Microsoft_Azure_-_Storage_Accounts/p05-000.jpg" class="img-fluid rounded shadow-sm" alt="Step 6: Select the Next: Advanced tab - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_4_-_Microsoft_Azure_-_Storage_Accounts/p06-000.jpg" class="img-fluid rounded shadow-sm" alt="Step 6: Select the Next: Advanced tab - source image" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+            @await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureLessonNavigation.cshtml")
+</section>
+</div>
+<style>
+.azure-notes-text{white-space:pre-wrap;word-break:normal;font-family:inherit;font-size:1rem;line-height:1.7;background:#fff;border:0;padding:0;margin:0;color:#212529;}
+.azure-notes-content img{max-height:720px;}
+</style>

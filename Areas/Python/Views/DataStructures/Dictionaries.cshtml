@@ -1,0 +1,1318 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Python Dictionaries";
+}
+
+<style>
+
+    /* =========================================================
+           PAGE-SPECIFIC CODE / OUTPUT BLOCKS
+           ========================================================= */
+
+    #python-dictionaries-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 0.5rem;
+        padding: 1rem !important;
+        overflow-x: auto;
+    }
+
+        #python-dictionaries-page pre code {
+            background-color: transparent !important;
+            color: #ffffff !important;
+        }
+
+</style>
+
+
+<main id="python-dictionaries-page" class="container py-5">
+
+    <div class="row g-4">
+
+
+        <!-- =====================================================
+             LEFT SIDE - COURSE SYLLABUS
+             ===================================================== -->
+
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+
+        </aside>
+
+
+        <!-- =====================================================
+             RIGHT SIDE - TUTORIAL CONTENT
+             ===================================================== -->
+
+        <section class="col-lg-9">
+
+
+            <!-- =================================================
+                 PAGE TITLE
+                 ================================================= -->
+
+            <div class="mb-4">
+
+                <h1 class="display-6 fw-bold">
+                    Dictionaries
+                </h1>
+
+                <p class="lead text-muted mb-0">
+                    Learn how to store and manage data using
+                    key-value pairs with Python Dictionaries.
+                </p>
+
+            </div>
+
+
+            <!-- =================================================
+                 INTRODUCTION
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        What is a Dictionary?
+                    </h2>
+
+                    <p>
+                        A Dictionary is a built-in Python data
+                        structure used to store data in the form of
+                        <strong>key-value pairs</strong>.
+                    </p>
+
+                    <p>
+                        Instead of accessing data using numeric
+                        indexes like a List, we access Dictionary
+                        values using their keys.
+                    </p>
+
+                    <p>
+                        Dictionaries are widely used in real-world
+                        applications for storing structured data
+                        such as student details, employee records,
+                        product information and API responses.
+                    </p>
+
+                    <ul>
+
+                        <li>Stores key-value pairs</li>
+
+                        <li>Mutable</li>
+
+                        <li>Keys must be unique</li>
+
+                        <li>Values can be duplicated</li>
+
+                        <li>Keys are used to access values</li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 BASIC STRUCTURE
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Dictionary Structure
+                    </h2>
+
+                    <pre><code>student = {
+    "name": "Rahul",
+    "age": 22,
+    "course": "Python"
+}</code></pre>
+
+                    <p>
+                        Here:
+                    </p>
+
+                    <ul>
+
+                        <li>
+                            <code>"name"</code> is a key and
+                            <code>"Rahul"</code> is its value.
+                        </li>
+
+                        <li>
+                            <code>"age"</code> is a key and
+                            <code>22</code> is its value.
+                        </li>
+
+                        <li>
+                            <code>"course"</code> is a key and
+                            <code>"Python"</code> is its value.
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 CREATING DICTIONARY
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Creating a Dictionary
+                    </h2>
+
+                    <p>
+                        Dictionaries are commonly created using
+                        curly braces <code>{}</code>.
+                    </p>
+
+                    <pre><code>student = {
+    "name": "Rahul",
+    "age": 22,
+    "course": "Python",
+    "city": "Pune"
+}
+
+print(student)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>{'name': 'Rahul', 'age': 22, 'course': 'Python', 'city': 'Pune'}</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 ACCESS VALUES
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Accessing Dictionary Values
+                    </h2>
+
+                    <p>
+                        We can access a Dictionary value by using
+                        its key inside square brackets.
+                    </p>
+
+                    <pre><code>student = {
+    "name": "Rahul",
+    "age": 22,
+    "course": "Python"
+}
+
+print(student["name"])
+print(student["course"])</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>Rahul
+Python</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 GET METHOD
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Using get()
+                    </h2>
+
+                    <p>
+                        The <code>get()</code> method is useful for
+                        safely accessing a Dictionary value.
+                    </p>
+
+                    <pre><code>student = {
+    "name": "Rahul",
+    "course": "Python"
+}
+
+print(student.get("name"))
+print(student.get("course"))</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>Rahul
+Python</code></pre>
+
+
+                    <h3 class="h5 fw-bold mt-4">
+                        Missing Key
+                    </h3>
+
+                    <pre><code>print(student.get("email"))</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>None</code></pre>
+
+                    <p class="mb-0">
+                        Unlike direct bracket access, using
+                        <code>get()</code> returns <code>None</code>
+                        when the key is not found unless a default
+                        value is provided.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 ADD NEW ITEM
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Adding a New Key-Value Pair
+                    </h2>
+
+                    <p>
+                        A new key-value pair can be added by assigning
+                        a value to a new key.
+                    </p>
+
+                    <pre><code>student = {
+    "name": "Rahul",
+    "course": "Python"
+}
+
+student["city"] = "Pune"
+
+print(student)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>{'name': 'Rahul', 'course': 'Python', 'city': 'Pune'}</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 UPDATE VALUE
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Updating a Dictionary Value
+                    </h2>
+
+                    <p>
+                        Since Dictionaries are mutable, existing
+                        values can be changed.
+                    </p>
+
+                    <pre><code>student = {
+    "name": "Rahul",
+    "age": 22,
+    "course": "Python"
+}
+
+student["age"] = 23
+
+print(student)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>{'name': 'Rahul', 'age': 23, 'course': 'Python'}</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 UPDATE METHOD
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Updating using update()
+                    </h2>
+
+                    <p>
+                        The <code>update()</code> method can update
+                        existing values and add new key-value pairs.
+                    </p>
+
+                    <pre><code>student = {
+    "name": "Rahul",
+    "course": "Python"
+}
+
+student.update({
+    "course": "Python Full Stack",
+    "city": "Pune"
+})
+
+print(student)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>{
+    'name': 'Rahul',
+    'course': 'Python Full Stack',
+    'city': 'Pune'
+}</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 REMOVE ITEMS
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Removing Dictionary Items
+                    </h2>
+
+
+                    <h3 class="h5 fw-bold mt-3">
+                        pop()
+                    </h3>
+
+                    <p>
+                        The <code>pop()</code> method removes a
+                        specified key and returns its value.
+                    </p>
+
+                    <pre><code>student = {
+    "name": "Rahul",
+    "age": 22,
+    "course": "Python"
+}
+
+removed_value = student.pop("age")
+
+print(removed_value)
+print(student)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>22
+{'name': 'Rahul', 'course': 'Python'}</code></pre>
+
+
+                    <h3 class="h5 fw-bold mt-4">
+                        popitem()
+                    </h3>
+
+                    <p>
+                        The <code>popitem()</code> method removes and
+                        returns the last inserted key-value pair.
+                    </p>
+
+                    <pre><code>student = {
+    "name": "Rahul",
+    "course": "Python",
+    "city": "Pune"
+}
+
+item = student.popitem()
+
+print(item)
+print(student)</code></pre>
+
+
+                    <h3 class="h5 fw-bold mt-4">
+                        del
+                    </h3>
+
+                    <p>
+                        The <code>del</code> statement can remove a
+                        specific key.
+                    </p>
+
+                    <pre><code>student = {
+    "name": "Rahul",
+    "age": 22,
+    "course": "Python"
+}
+
+del student["age"]
+
+print(student)</code></pre>
+
+
+                    <h3 class="h5 fw-bold mt-4">
+                        clear()
+                    </h3>
+
+                    <p>
+                        The <code>clear()</code> method removes all
+                        key-value pairs.
+                    </p>
+
+                    <pre><code>student = {
+    "name": "Rahul",
+    "course": "Python"
+}
+
+student.clear()
+
+print(student)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>{}</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 KEYS
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Dictionary keys()
+                    </h2>
+
+                    <p>
+                        The <code>keys()</code> method returns the
+                        Dictionary's keys.
+                    </p>
+
+                    <pre><code>student = {
+    "name": "Rahul",
+    "age": 22,
+    "course": "Python"
+}
+
+print(student.keys())</code></pre>
+
+                    <p>
+                        We can also loop through the keys:
+                    </p>
+
+                    <pre><code>for key in student.keys():
+    print(key)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>name
+age
+course</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 VALUES
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Dictionary values()
+                    </h2>
+
+                    <p>
+                        The <code>values()</code> method returns the
+                        Dictionary's values.
+                    </p>
+
+                    <pre><code>student = {
+    "name": "Rahul",
+    "age": 22,
+    "course": "Python"
+}
+
+for value in student.values():
+    print(value)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>Rahul
+22
+Python</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 ITEMS
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Dictionary items()
+                    </h2>
+
+                    <p>
+                        The <code>items()</code> method returns
+                        key-value pairs.
+                    </p>
+
+                    <pre><code>student = {
+    "name": "Rahul",
+    "age": 22,
+    "course": "Python"
+}
+
+for key, value in student.items():
+
+    print(key, ":", value)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>name : Rahul
+age : 22
+course : Python</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 MEMBERSHIP
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Checking if a Key Exists
+                    </h2>
+
+                    <p>
+                        The <code>in</code> operator can check whether
+                        a key exists in a Dictionary.
+                    </p>
+
+                    <pre><code>student = {
+    "name": "Rahul",
+    "course": "Python"
+}
+
+print("name" in student)
+print("email" in student)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>True
+False</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 DICTIONARY LENGTH
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Finding Dictionary Length
+                    </h2>
+
+                    <p>
+                        The <code>len()</code> function returns the
+                        number of key-value pairs.
+                    </p>
+
+                    <pre><code>student = {
+    "name": "Rahul",
+    "age": 22,
+    "course": "Python"
+}
+
+print(len(student))</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>3</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 DIFFERENT DATA TYPES
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Different Types of Values
+                    </h2>
+
+                    <p>
+                        Dictionary values can contain different
+                        Python data types.
+                    </p>
+
+                    <pre><code>student = {
+    "name": "Rahul",
+    "age": 22,
+    "marks": 85.5,
+    "passed": True,
+    "skills": ["Python", "SQL"]
+}
+
+print(student)</code></pre>
+
+                    <p>
+                        A Dictionary can therefore represent
+                        structuredz real-world information.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 LIST AS VALUE
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        List inside a Dictionary
+                    </h2>
+
+                    <p>
+                        A Dictionary value can itself be a List.
+                    </p>
+
+                    <pre><code>student = {
+    "name": "Rahul",
+    "skills": [
+        "Python",
+        "SQL",
+        "Git"
+    ]
+}
+
+print(student["skills"])
+print(student["skills"][0])</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>['Python', 'SQL', 'Git']
+Python</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 NESTED DICTIONARY
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Nested Dictionary
+                    </h2>
+
+                    <p>
+                        A Dictionary can contain another Dictionary
+                        as a value.
+                    </p>
+
+                    <pre><code>student = {
+    "name": "Rahul",
+
+    "address": {
+        "city": "Pune",
+        "state": "Maharashtra"
+    }
+}
+
+print(student["address"]["city"])</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>Pune</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 LIST OF DICTIONARIES
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        List of Dictionaries
+                    </h2>
+
+                    <p>
+                        A List can contain multiple Dictionaries.
+                        This structure is very common in API and
+                        database-related applications.
+                    </p>
+
+                    <pre><code>students = [
+
+    {
+        "name": "Rahul",
+        "course": "Python"
+    },
+
+    {
+        "name": "Sneha",
+        "course": ".NET"
+    },
+
+    {
+        "name": "Amit",
+        "course": "Java"
+    }
+
+]
+
+for student in students:
+
+    print(
+        student["name"],
+        "-",
+        student["course"]
+    )</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>Rahul - Python
+Sneha - .NET
+Amit - Java</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 PRACTICAL CIIT EXAMPLE
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        CIIT Example 🤓📩
+                    </h2>
+
+                    <p>
+                        Suppose CIIT wants to maintain student
+                        information including name, course, fees
+                        and placement status.
+                    </p>
+
+                    <pre><code>students = [
+
+    {
+        "name": "Rahul",
+        "course": "Python",
+        "fees": 35000,
+        "placed": True
+    },
+
+    {
+        "name": "Sneha",
+        "course": ".NET",
+        "fees": 35000,
+        "placed": False
+    },
+
+    {
+        "name": "Amit",
+        "course": "Java",
+        "fees": 30000,
+        "placed": True
+    }
+
+]
+
+for student in students:
+
+    print("Name:", student["name"])
+    print("Course:", student["course"])
+    print("Fees:", student["fees"])
+    print("Placed:", student["placed"])
+    print("----------------------")</code></pre>
+
+                    <p>
+                        This type of List + Dictionary structure
+                        is commonly used while working with
+                        structured application data.
+                    </p>
+
+                </div>
+                <div class="px-2">
+    <h4 class="h3 fw-bold">
+                       Output:
+                    </h4>
+
+<pre class="mb-4 mx-4"><code>Name: Rahul
+Course: Python
+Fees: 35000
+Placed: True
+----------------------
+Name: Sneha
+Course: .NET
+Fees: 35000
+Placed: False
+----------------------
+Name: Amit
+Course: Java
+Fees: 30000
+Placed: True
+----------------------</code></pre>
+</div>
+            </div>
+
+
+            <!-- =================================================
+                 DICTIONARY COMPREHENSION PREVIEW
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Dictionary Comprehension Preview
+                    </h2>
+
+                    <p>
+                        Python also provides a shorter way to create
+                        Dictionaries using Dictionary Comprehension.
+                    </p>
+
+                    <pre><code>numbers = [1, 2, 3, 4, 5]
+
+squares = {
+    number: number * number
+    for number in numbers
+}
+
+print(squares)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>{1: 1, 2: 4, 3: 9, 4: 16, 5: 25}</code></pre>
+
+                    <p class="mb-0">
+                        Dictionary Comprehension will be covered in
+                        detail in the <strong>Comprehensions</strong>
+                        topic.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 IMPORTANT METHODS
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Important Dictionary Methods
+                    </h2>
+
+                    <div class="table-responsive">
+
+                        <table class="table table-bordered align-middle">
+
+                            <thead class="table-dark">
+
+                                <tr>
+                                    <th>Method</th>
+                                    <th>Purpose</th>
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                                <tr>
+                                    <td><code>get()</code></td>
+                                    <td>Safely access a value</td>
+                                </tr>
+
+                                <tr>
+                                    <td><code>keys()</code></td>
+                                    <td>Returns keys</td>
+                                </tr>
+
+                                <tr>
+                                    <td><code>values()</code></td>
+                                    <td>Returns values</td>
+                                </tr>
+
+                                <tr>
+                                    <td><code>items()</code></td>
+                                    <td>Returns key-value pairs</td>
+                                </tr>
+
+                                <tr>
+                                    <td><code>update()</code></td>
+                                    <td>Updates or adds values</td>
+                                </tr>
+
+                                <tr>
+                                    <td><code>pop()</code></td>
+                                    <td>Removes a specified key</td>
+                                </tr>
+
+                                <tr>
+                                    <td><code>popitem()</code></td>
+                                    <td>Removes the last inserted pair</td>
+                                </tr>
+
+                                <tr>
+                                    <td><code>clear()</code></td>
+                                    <td>Removes all items</td>
+                                </tr>
+
+                                <tr>
+                                    <td><code>copy()</code></td>
+                                    <td>Creates a shallow copy</td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 COMMON MISTAKES
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Common Mistakes
+                    </h2>
+
+                    <ol>
+
+                        <li class="mb-2">
+                            Trying to access a Dictionary using a
+                            numeric index like a List.
+                        </li>
+
+                        <li class="mb-2">
+                            Using duplicate keys and expecting
+                            multiple separate values for the same key.
+                        </li>
+
+                        <li class="mb-2">
+                            Accessing a missing key directly with
+                            square brackets.
+                        </li>
+
+                        <li class="mb-2">
+                            Confusing Dictionary keys with values.
+                        </li>
+
+                        <li>
+                            Forgetting that Dictionary values can
+                            themselves contain Lists or Dictionaries.
+                        </li>
+
+                    </ol>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 INTERVIEW POINTS
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Interview Points
+                    </h2>
+
+                    <ul>
+
+                        <li class="mb-2">
+                            What is a Dictionary in Python?
+                        </li>
+
+                        <li class="mb-2">
+                            What is a key-value pair?
+                        </li>
+
+                        <li class="mb-2">
+                            Can Dictionary keys be duplicated?
+                        </li>
+
+                        <li class="mb-2">
+                            What is the difference between
+                            <code>get()</code> and
+                            square bracket access?
+                        </li>
+
+                        <li class="mb-2">
+                            What is the difference between
+                            <code>keys()</code>,
+                            <code>values()</code> and
+                            <code>items()</code>?
+                        </li>
+
+                        <li class="mb-2">
+                            How do you add and update Dictionary values?
+                        </li>
+
+                        <li class="mb-2">
+                            How do you remove a key from a Dictionary?
+                        </li>
+
+                        <li>
+                            What is a nested Dictionary?
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 CIIT LEARNING POINT
+                 ================================================= -->
+
+            <div class="alert alert-success mt-4">
+
+                <h2 class="h4 fw-bold">
+                    CIIT Learning Point
+                </h2>
+
+                <p class="mb-0">
+                    Dictionaries are one of the most important
+                    Python data structures for representing
+                    structured information. They are heavily used
+                    in APIs, JSON data, databases and real-world
+                    applications. Master keys, values, items,
+                    nested structures and List-of-Dictionaries
+                    patterns before moving to advanced Python.
+                </p>
+
+            </div>
+
+
+            <!-- =================================================
+                 PRACTICE TASKS
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        CIIT Practice Tasks
+                    </h2>
+
+                    <ol>
+
+                        <li class="mb-2">
+                            Create a Dictionary containing student
+                            name, age, course and city.
+                        </li>
+
+                        <li class="mb-2">
+                            Add a new email key to the Dictionary.
+                        </li>
+
+                        <li class="mb-2">
+                            Update the student's course.
+                        </li>
+
+                        <li class="mb-2">
+                            Remove one key using <code>pop()</code>.
+                        </li>
+
+                        <li class="mb-2">
+                            Print all keys, values and key-value
+                            pairs.
+                        </li>
+
+                        <li class="mb-2">
+                            Create a nested Dictionary for student
+                            address details.
+                        </li>
+
+                        <li class="mb-2">
+                            Create a List containing five student
+                            Dictionaries and display their names.
+                        </li>
+
+                        <li>
+                            From a List of student Dictionaries,
+                            display only students whose course is
+                            Python.
+                        </li>
+
+                    </ol>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 SUMMARY
+                 ================================================= -->
+
+            <div class="alert alert-info mt-4 mb-0"
+                 style="background-color:#cfe2ff; border:0; color:#123c73;">
+
+                <h2 class="h3 fw-bold mt-0 mb-3"
+                    style="color:#123c73;">
+
+                    Summary :
+
+                </h2>
+
+                <p class="mb-0"
+                   style="color:#123c73;">
+
+                    Python Dictionaries store data using unique
+                    keys and their corresponding values. They are
+                    mutable and support adding, updating, removing
+                    and accessing data efficiently. Important
+                    methods include get(), keys(), values(),
+                    items(), update(), pop(), popitem() and clear().
+                    Dictionaries can also contain Lists and other
+                    Dictionaries, making them extremely useful for
+                    structured data, JSON, APIs and real-world
+                    applications.
+
+                </p>
+
+            </div>
+
+
+            <!-- =================================================
+                 PREVIOUS / NEXT NAVIGATION
+                 ================================================= -->
+
+            <div class="d-flex justify-content-between align-items-center mt-5 pt-3 border-top">
+
+                <a href="@Url.Action("Sets", "DataStructures", new { area = "Python" })"
+                   class="btn btn-outline-secondary">
+
+                    ← Previous: Topic
+
+                </a>
+
+
+                <a href="@Url.Action("Comprehensions", "DataStructures", new { area = "Python" })"
+                   class="btn btn-primary">
+
+                    Next: Topic →
+
+                </a>
+
+            </div>
+
+
+        </section>
+
+    </div>
+
+</main>

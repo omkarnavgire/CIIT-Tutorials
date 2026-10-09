@@ -1,0 +1,1021 @@
+﻿@{
+    ViewData["Title"] = "Standalone Components";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- Header -->
+    <section class="mb-4">
+        <h1 class="fw-bold text-dark">Standalone Components</h1>
+
+        <p class="lead text-muted">
+            Standalone Components are Angular components that can work without
+            being declared inside an NgModule. They provide a simpler and more
+            direct way to organize modern Angular applications.
+        </p>
+    </section>
+
+    <!-- What is Standalone Component -->
+    <section class="mb-4">
+        <h2 class="fw-bold">What is a Standalone Component?</h2>
+
+        <p>
+            A standalone component is a component configured with
+            <code>standalone: true</code>. Its required dependencies can be
+            imported directly through the component's <code>imports</code>
+            property.
+        </p>
+
+        <div class="info-card">
+            <h5>Simple Definition</h5>
+            <p>
+                A standalone component can manage its own template dependencies
+                without requiring the component to be declared in an NgModule.
+            </p>
+        </div>
+    </section>
+
+    <!-- Traditional vs Standalone -->
+    <section class="mb-4">
+        <h2 class="fw-bold mb-3">Traditional vs Standalone Components</h2>
+
+        <div class="comparison-grid">
+
+            <div class="comparison-card">
+                <div class="comparison-header">
+                    Traditional Approach
+                </div>
+
+                <ul>
+                    <li>Uses NgModules.</li>
+                    <li>Components are declared in modules.</li>
+                    <li>Dependencies are commonly configured at module level.</li>
+                    <li>More configuration may be required.</li>
+                </ul>
+            </div>
+
+            <div class="comparison-card">
+                <div class="comparison-header">
+                    Standalone Approach
+                </div>
+
+                <ul>
+                    <li>Uses <code>standalone: true</code>.</li>
+                    <li>No component declaration in an NgModule is required.</li>
+                    <li>Dependencies can be imported directly.</li>
+                    <li>Provides a simpler component structure.</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Architecture Diagram -->
+    <section class="mb-4">
+        <h2 class="fw-bold mb-3">Standalone Component Flow</h2>
+
+        <div class="architecture-flow">
+
+            <div class="architecture-box">
+                <i class="bi bi-person-fill"></i>
+                <h5>User</h5>
+                <p>Interacts with application</p>
+            </div>
+
+            <div class="architecture-arrow">→</div>
+
+            <div class="architecture-box">
+                <i class="bi bi-box"></i>
+                <h5>Standalone Component</h5>
+                <p>Own configuration</p>
+            </div>
+
+            <div class="architecture-arrow">→</div>
+
+            <div class="architecture-box">
+                <i class="bi bi-code-slash"></i>
+                <h5>Template</h5>
+                <p>Displays UI</p>
+            </div>
+
+            <div class="architecture-arrow">→</div>
+
+            <div class="architecture-box">
+                <i class="bi bi-window"></i>
+                <h5>Browser</h5>
+                <p>Rendered interface</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Basic Example -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Creating a Standalone Component</h2>
+
+        <p>
+            The following example creates a simple standalone component for
+            displaying student information.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                student.component.ts
+            </div>
+
+            <pre><code>import &#123; Component &#125; from '@@angular/core';
+
+@@Component(&#123;
+    selector: 'app-student',
+    standalone: true,
+    template: `
+        &lt;h2&gt;Student Details&lt;/h2&gt;
+        &lt;p&gt;Student Name: Sam&lt;/p&gt;
+    `
+&#125;)
+export class StudentComponent &#123;
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="output-box">
+
+            <strong>Expected Output:</strong>
+
+            <div class="output-preview">
+                <h4>Student Details</h4>
+                <p>Student Name: Sam</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Standalone Property -->
+    <section class="mb-4">
+        <h2 class="fw-bold">The standalone Property</h2>
+
+        <p>
+            The <code>standalone</code> metadata property tells Angular that the
+            component is standalone.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                standalone: true
+            </div>
+
+            <pre><code>@@Component(&#123;
+    selector: 'app-student',
+    standalone: true
+&#125;)</code></pre>
+
+        </div>
+
+        <div class="info-card">
+
+            <h5>Important</h5>
+
+            <p>
+                Standalone components manage their template dependencies directly
+                instead of requiring component declaration through an NgModule.
+            </p>
+
+        </div>
+    </section>
+
+    <!-- Imports -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Using the imports Property</h2>
+
+        <p>
+            Standalone components can specify the dependencies needed by their
+            templates through the <code>imports</code> property.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Component imports
+            </div>
+
+            <pre><code>@@Component(&#123;
+    selector: 'app-student',
+    standalone: true,
+    imports: [],
+    template: `
+        &lt;h2&gt;Student Details&lt;/h2&gt;
+    `
+&#125;)
+export class StudentComponent &#123;
+
+&#125;</code></pre>
+
+        </div>
+
+        <p>
+            When the template requires a standalone component, directive or pipe,
+            the required item can be added to the <code>imports</code> array.
+        </p>
+    </section>
+
+    <!-- External Template -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Standalone Component with External Template</h2>
+
+        <p>
+            A standalone component can also use an external HTML template.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                student.component.ts
+            </div>
+
+            <pre><code>import &#123; Component &#125; from '@@angular/core';
+
+@@Component(&#123;
+    selector: 'app-student',
+    standalone: true,
+    templateUrl: './student.component.html',
+    styleUrl: './student.component.css'
+&#125;)
+export class StudentComponent &#123;
+
+    studentName = 'Pradnya';
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                student.component.html
+            </div>
+
+            <pre><code>&lt;h2&gt;Student Details&lt;/h2&gt;
+&lt;p&gt;Student Name: &#123;&#123; studentName &#125;&#125;&lt;/p&gt;</code></pre>
+
+        </div>
+
+        <div class="output-box">
+
+            <strong>Expected Output:</strong>
+
+            <div class="output-preview">
+                <h4>Student Details</h4>
+                <p>Student Name: Pradnya</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CLI -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Creating a Standalone Component Using CLI</h2>
+
+        <p>
+            Angular CLI can be used to generate components.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Angular CLI Command
+            </div>
+
+            <pre><code>ng generate component student</code></pre>
+
+        </div>
+
+        <p>
+            Short form:
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Short CLI Command
+            </div>
+
+            <pre><code>ng g c student</code></pre>
+
+        </div>
+
+        <div class="command-flow">
+
+            <div class="command-step">
+                <strong>ng</strong>
+                <span>Angular CLI</span>
+            </div>
+
+            <div class="command-arrow">→</div>
+
+            <div class="command-step">
+                <strong>generate</strong>
+                <span>Create item</span>
+            </div>
+
+            <div class="command-arrow">→</div>
+
+            <div class="command-step">
+                <strong>component</strong>
+                <span>Component type</span>
+            </div>
+
+            <div class="command-arrow">→</div>
+
+            <div class="command-step">
+                <strong>student</strong>
+                <span>Component name</span>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- File Structure -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Standalone Component File Structure</h2>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Example Structure
+            </div>
+
+            <pre><code>student/
+│
+├── student.component.ts
+├── student.component.html
+├── student.component.css
+└── student.component.spec.ts</code></pre>
+
+        </div>
+
+        <div class="file-grid">
+
+            <div class="file-card">
+                <h5>student.component.ts</h5>
+                <p>Contains component class and metadata.</p>
+            </div>
+
+            <div class="file-card">
+                <h5>student.component.html</h5>
+                <p>Contains the component template.</p>
+            </div>
+
+            <div class="file-card">
+                <h5>student.component.css</h5>
+                <p>Contains component-specific styles.</p>
+            </div>
+
+            <div class="file-card">
+                <h5>student.component.spec.ts</h5>
+                <p>Contains component testing code.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Benefits -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Benefits of Standalone Components</h2>
+
+        <div class="benefit-grid">
+
+            <div class="benefit-card">
+                <i class="bi bi-check-circle-fill"></i>
+                <h5>Simpler Structure</h5>
+                <p>
+                    Components can manage their own dependencies directly.
+                </p>
+            </div>
+
+            <div class="benefit-card">
+                <i class="bi bi-lightning-charge-fill"></i>
+                <h5>Less Configuration</h5>
+                <p>
+                    Reduces the need for module-level component declarations.
+                </p>
+            </div>
+
+            <div class="benefit-card">
+                <i class="bi bi-boxes"></i>
+                <h5>Reusable</h5>
+                <p>
+                    Standalone components can be imported where they are needed.
+                </p>
+            </div>
+
+            <div class="benefit-card">
+                <i class="bi bi-diagram-3-fill"></i>
+                <h5>Clear Dependencies</h5>
+                <p>
+                    Template dependencies can be visible in the component.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Complete Example -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Complete Standalone Component Example</h2>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                student.component.ts
+            </div>
+
+            <pre><code>import &#123; Component &#125; from '@@angular/core';
+
+@@Component(&#123;
+    selector: 'app-student',
+    standalone: true,
+    template: `
+        &lt;div class="student-card"&gt;
+            &lt;h2&gt;Student Profile&lt;/h2&gt;
+            &lt;p&gt;Name: Sam&lt;/p&gt;
+            &lt;p&gt;Course: Angular Full Stack&lt;/p&gt;
+        &lt;/div&gt;
+    `,
+    styles: [`
+        .student-card &#123;
+            padding: 20px;
+            border-radius: 8px;
+        &#125;
+
+        h2 &#123;
+            margin-bottom: 10px;
+        &#125;
+    `]
+&#125;)
+export class StudentComponent &#123;
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="output-box">
+
+            <strong>Expected Output:</strong>
+
+            <div class="student-output">
+                <h4>Student Profile</h4>
+                <p><strong>Name:</strong> Sam</p>
+                <p><strong>Course:</strong> Angular Full Stack</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Standalone Flow -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Complete Standalone Component Flow</h2>
+
+        <div class="standalone-flow">
+
+            <div class="flow-item">
+                <span>@@Component</span>
+                <small>Component Metadata</small>
+            </div>
+
+            <div class="flow-arrow">↓</div>
+
+            <div class="flow-item">
+                <span>standalone: true</span>
+                <small>Standalone Configuration</small>
+            </div>
+
+            <div class="flow-arrow">↓</div>
+
+            <div class="flow-item">
+                <span>imports</span>
+                <small>Template Dependencies</small>
+            </div>
+
+            <div class="flow-arrow">↓</div>
+
+            <div class="flow-item">
+                <span>template</span>
+                <small>User Interface</small>
+            </div>
+
+            <div class="flow-arrow">↓</div>
+
+            <div class="flow-item">
+                <span>Browser</span>
+                <small>Rendered Component</small>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Common Mistakes -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Common Mistakes</h2>
+
+        <div class="mistake-card">
+
+            <h5>❌ Forgetting standalone configuration</h5>
+
+            <p>
+                When creating a standalone component explicitly, make sure its
+                configuration is correct.
+            </p>
+
+            <h5>❌ Missing template dependencies</h5>
+
+            <p>
+                If a template uses a standalone component, directive or pipe,
+                the required dependency needs to be available to the component.
+            </p>
+
+            <h5>❌ Confusing component metadata with component logic</h5>
+
+            <p>
+                Metadata configures the component, while the component class
+                contains its application logic.
+            </p>
+
+        </div>
+    </section>
+
+    <!-- Best Practices -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Best Practices</h2>
+
+        <ul class="best-practice-list">
+            <li>Keep standalone components focused on a specific responsibility.</li>
+            <li>Keep component dependencies clear through the imports property.</li>
+            <li>Use meaningful selectors.</li>
+            <li>Keep templates readable and maintainable.</li>
+            <li>Keep component-specific styling close to the component.</li>
+            <li>Use reusable standalone components for common UI functionality.</li>
+        </ul>
+    </section>
+
+    <!-- Summary -->
+    <section class="summary-box">
+
+        <h3>Summary</h3>
+
+        <p>
+            Standalone Components are Angular components that can be configured
+            independently without requiring component declaration inside an
+            NgModule.
+        </p>
+
+        <p>
+            The <strong>standalone</strong> property enables standalone behavior,
+            while the <strong>imports</strong> property provides dependencies
+            required by the component template.
+        </p>
+
+        <p>
+            Standalone components help create a simpler, clearer and more
+            modular Angular application structure.
+        </p>
+
+    </section>
+
+    <!-- Navigation -->
+    <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+
+        <a class="btn btn-outline-secondary"
+           href="@Url.Action("ComponentMetadata", "Components", new { area = "Angular" })">
+            ← Component Metadata
+        </a>
+
+        <a class="btn btn-primary"
+           href="@Url.Action("ParentChildComponents", "Components", new { area = "Angular" })">
+            Parent-Child Components →
+        </a>
+
+    </div>
+
+</div>
+
+<style>
+
+    .info-card {
+        background: #f8fafc;
+        border-left: 5px solid #4c1d95;
+        padding: 18px 20px;
+        border-radius: 7px;
+        margin-top: 15px;
+    }
+
+        .info-card h5 {
+            color: #4c1d95;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .info-card p {
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+
+    .comparison-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .comparison-card {
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 9px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .comparison-header {
+        background: #4c1d95;
+        color: #ffffff;
+        padding: 13px 18px;
+        font-weight: 700;
+    }
+
+    .comparison-card ul {
+        margin: 0;
+        padding: 20px 20px 20px 38px;
+    }
+
+    .comparison-card li {
+        margin-bottom: 10px;
+        line-height: 1.5;
+    }
+
+    .architecture-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 14px;
+        padding: 25px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+    }
+
+    .architecture-box {
+        width: 180px;
+        min-height: 125px;
+        padding: 18px;
+        text-align: center;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 9px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
+
+        .architecture-box i {
+            display: block;
+            font-size: 28px;
+            color: #4c1d95;
+            margin-bottom: 8px;
+        }
+
+        .architecture-box h5 {
+            color: #2e1065;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .architecture-box p {
+            margin: 0;
+            color: #64748b;
+            font-size: 14px;
+        }
+
+    .architecture-arrow {
+        font-size: 28px;
+        color: #4c1d95;
+        font-weight: 700;
+    }
+
+    .code-card {
+        margin-top: 15px;
+        margin-bottom: 18px;
+        border-radius: 8px;
+        overflow: hidden;
+        background: #0f172a;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .code-title {
+        background: #1e293b;
+        color: #d8c9f5;
+        padding: 10px 15px;
+        font-weight: 600;
+        border-bottom: 1px solid #334155;
+    }
+
+    .code-card pre {
+        margin: 0;
+        padding: 18px;
+        overflow-x: auto;
+    }
+
+    .code-card code {
+        color: #e2e8f0;
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    .output-box {
+        margin-top: 15px;
+        padding: 18px;
+        background: #f1f5f9;
+        border-left: 5px solid #4c1d95;
+        border-radius: 6px;
+    }
+
+    .output-preview,
+    .student-output {
+        margin-top: 12px;
+        padding: 18px;
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 7px;
+    }
+
+        .output-preview h4,
+        .student-output h4 {
+            color: #2e1065;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .output-preview p,
+        .student-output p {
+            margin-bottom: 7px;
+        }
+
+    .command-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 20px;
+        padding: 20px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+    }
+
+    .command-step {
+        min-width: 130px;
+        text-align: center;
+        padding: 14px;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 7px;
+    }
+
+        .command-step strong {
+            display: block;
+            color: #4c1d95;
+            font-weight: 700;
+        }
+
+        .command-step span {
+            color: #64748b;
+            font-size: 13px;
+        }
+
+    .command-arrow {
+        color: #4c1d95;
+        font-size: 22px;
+        font-weight: 700;
+    }
+
+    .file-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+        margin-top: 18px;
+    }
+
+    .file-card {
+        padding: 18px;
+        background: #f8fafc;
+        border: 1px solid #ddd6fe;
+        border-radius: 8px;
+    }
+
+        .file-card h5 {
+            color: #4c1d95;
+            font-weight: 700;
+            font-size: 15px;
+        }
+
+        .file-card p {
+            color: #64748b;
+            font-size: 14px;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+    .benefit-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+    }
+
+    .benefit-card {
+        padding: 20px;
+        text-align: center;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 9px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    }
+
+        .benefit-card i {
+            display: block;
+            font-size: 28px;
+            color: #4c1d95;
+            margin-bottom: 10px;
+        }
+
+        .benefit-card h5 {
+            color: #2e1065;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .benefit-card p {
+            color: #64748b;
+            font-size: 14px;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+    .standalone-flow {
+        max-width: 650px;
+        margin: 20px auto;
+        padding: 25px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    .flow-item {
+        padding: 14px 20px;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 8px;
+        box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+    }
+
+        .flow-item span {
+            display: block;
+            color: #4c1d95;
+            font-weight: 700;
+        }
+
+        .flow-item small {
+            color: #64748b;
+        }
+
+    .flow-arrow {
+        color: #4c1d95;
+        font-size: 24px;
+        font-weight: 700;
+        margin: 5px 0;
+    }
+
+    .mistake-card {
+        padding: 20px;
+        background: #fff7ed;
+        border-left: 5px solid #c2410c;
+        border-radius: 7px;
+    }
+
+        .mistake-card h5 {
+            color: #9a3412;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .mistake-card p {
+            line-height: 1.6;
+            margin-bottom: 18px;
+        }
+
+            .mistake-card p:last-child {
+                margin-bottom: 0;
+            }
+
+    .best-practice-list {
+        padding: 20px 20px 20px 40px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+    }
+
+        .best-practice-list li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+            .best-practice-list li:last-child {
+                margin-bottom: 0;
+            }
+
+    .summary-box {
+        background: #cfe2ff;
+        border-radius: 6px;
+        padding: 18px 22px;
+        margin-top: 20px;
+    }
+
+        .summary-box h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #084298;
+            margin-bottom: 10px;
+        }
+
+        .summary-box p {
+            font-size: 16px !important;
+            line-height: 1.6 !important;
+            color: #084298 !important;
+            margin-bottom: 8px;
+        }
+
+            .summary-box p:last-child {
+                margin-bottom: 0;
+            }
+
+    @@media (max-width: 991px) {
+
+        .file-grid,
+        .benefit-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .architecture-arrow {
+            transform: rotate(90deg);
+        }
+    }
+
+    @@media (max-width: 576px) {
+
+        .comparison-grid,
+        .file-grid,
+        .benefit-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .architecture-flow {
+            flex-direction: column;
+        }
+
+        .architecture-arrow {
+            transform: rotate(90deg);
+        }
+
+        .architecture-box {
+            width: 100%;
+            max-width: 280px;
+        }
+
+        .command-flow {
+            flex-direction: column;
+        }
+
+        .command-arrow {
+            transform: rotate(90deg);
+        }
+
+        .command-step {
+            width: 100%;
+            max-width: 250px;
+        }
+
+        .code-card code {
+            font-size: 13px;
+        }
+
+        .d-flex.justify-content-between {
+            gap: 10px;
+        }
+
+            .d-flex.justify-content-between .btn {
+                font-size: 13px;
+                padding: 8px 12px;
+            }
+    }
+
+</style>

@@ -1,0 +1,176 @@
+@{
+    Layout = "~/Areas/Jenkins/Views/Shared/JenkinsLayout.cshtml";
+    ViewData["Title"] = "Jenkins with Docker";
+}
+
+<style>
+    #jenkins-with-docker-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #jenkins-with-docker-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #jenkins-with-docker-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #jenkins-with-docker-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #jenkins-with-docker-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+    #jenkins-with-docker-page .example-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+    }
+</style>
+
+<main id="jenkins-with-docker-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/Jenkins/Views/Shared/JenkinsTopics.cshtml")
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+                <h1 class="fw-bold">Jenkins with Docker</h1>
+                <p class="lead">
+                    Learn how to containerize your automation infrastructure by deploying Jenkins inside Docker, managing configuration data via volumes, and executing pipeline builds in isolated containers.
+                </p>
+            </div>
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">What is Jenkins with Docker?</h2>
+                <p>
+                    Running Jenkins with Docker involves spinning up the Jenkins controller inside an isolated software container rather than installing dependencies directly onto a host OS. This guarantees that your CI/CD server remains fully decoupled from host environments, enabling rapid updates, consistent states, and seamless scaling.
+                </p>
+
+                <div class="alert alert-info">
+                    <strong>Critical Guardrail:</strong> Containers are inherently ephemeral. To avoid losing your build jobs, configurations, and plugin data when a container stops, you must attach an external **Docker Volume** to persist the <code>/var/jenkins_home</code> directory.
+                </div>
+            </div>
+
+            <!-- KEY CONCEPTS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Key Concepts</h2>
+                <div class="row g-3">
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>1. Official Container Registry</h5>
+                            <p class="mb-0">Always pull from the official <code>jenkins/jenkins:lts</code> image on Docker Hub. Avoid deprecated community tags like <code>jenkins</code> or <code>jenkinsci</code>.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>2. Port Mapping Strategy</h5>
+                            <p class="mb-0">Map host ports to the container: port <strong>8080</strong> provides browser access to the web GUI, while port <strong>50000</strong> coordinates communication for inbound build agents.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>3. Data Persistence Volume</h5>
+                            <p class="mb-0">Using the <code>-v jenkins_home:/var/jenkins_home</code> flag redirects Jenkins internal configuration mutations cleanly onto the host filesystem storage.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>4. Docker-in-Docker (DinD)</h5>
+                            <p class="mb-0">Allows the Jenkins controller to spin up isolated container worker slots dynamically to isolate and run specialized project compile steps.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- EXAMPLE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Docker Setup and Startup Scripts</h2>
+                <p>Use this CLI initialization layout step to download the official image, map network ports, name the container daemon block, and safely link a data-backed storage configuration path:</p>
+                <pre><code># 1. Pull down the highly stable, officially supported Long-Term Support image tag
+docker pull jenkins/jenkins:lts
+
+
+
+
+
+
+
+
+
+
+
+
+# 2. Run the container instance detached in the background with port and volume mapping
+docker run -d \
+  --name my-jenkins-server \
+  -p 8080:8080 \
+  -p 50000:50000 \
+  -v jenkins_data:/var/jenkins_home \
+  --restart=on-failure \
+  jenkins/jenkins:lts
+
+# 3. Stream and inspect the running initialization logs to retrieve your initial setup password
+docker logs my-jenkins-server</code></pre>
+            </div>
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Practice Exercise</h2>
+                <ol>
+            <li class="mb-2">Ensure the Docker engine is running on your computer terminal.</li>
+                    <li class="mb-2">Execute the <code>docker run</code> orchestration script provided in the example workspace above.</li>
+            <li class="mb-2">Open your web browser and navigate to <code>http://localhost:8080</code> to view the unlock validation view page.</li>
+            <li>Fetch your unique setup token without logging into the file system directly by typing: <br /><code>docker exec my-jenkins-server cat /var/jenkins_home/secrets/initialAdminPassword</code>.</li>
+                </ol>
+                </div>
+
+            <!-- SUMMARY -->
+        <div class="alert alert-info mt-4">
+                <h2 class="h4 fw-bold">Summary</h2>
+    <p class="mb-0">You have completed the <strong>Jenkins with Docker</strong> lesson. You are now prepared to launch sandboxed automation controllers, control baseline configuration instances via volume binding hooks, and handle container runtime flags.</p>
+            </div>
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+<a class="btn btn-outline-primary" href="@Url.Action("InstallationPrerequisites", "Foundations", new { area = "Jenkins" })">← Previous: Installation Prerequisites</a>
+<a class="btn btn-primary" href="@Url.Action("NativeInstallation", "Foundations", new { area = "Jenkins" })">Next: Native OS Installation →</a>
+</div>
+
+</section>
+
+</div>
+
+</main>

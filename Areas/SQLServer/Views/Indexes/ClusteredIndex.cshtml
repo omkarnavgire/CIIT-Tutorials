@@ -1,0 +1,426 @@
+﻿@{
+    ViewData["Title"] = "Clustered Index";
+}
+
+<div class="container-fluid">
+    <div class="row">
+
+        <!-- =========================
+             MAIN CONTENT
+        ========================== -->
+
+        <div class="col-lg-12">
+
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body p-4">
+
+                    <!-- =========================
+                         TITLE
+                    ========================== -->
+
+                    <h1 class="fw-bold mb-4">
+                        Clustered Index
+                    </h1>
+
+
+                    <!-- =========================
+                         INTRODUCTION
+                    ========================== -->
+
+                    <h2 class="fw-bold mt-4 mb-3">
+                        What is a Clustered Index?
+                    </h2>
+
+                    <p>
+                        A <strong>Clustered Index</strong> determines the physical
+                        order in which data rows are stored in a table.
+                    </p>
+
+                    <p>
+                        The data rows of the table are stored according to the
+                        clustered index key. Because the actual table data is
+                        arranged according to the clustered index, a table can
+                        have only <strong>one clustered index</strong>.
+                    </p>
+
+
+                    <!-- =========================
+                         HOW CLUSTERED INDEX WORKS
+                    ========================== -->
+
+                    <h2 class="fw-bold mt-5 mb-3">
+                        How Does a Clustered Index Work?
+                    </h2>
+
+                    <p>
+                        Suppose we have a Students table containing the following
+                        records:
+                    </p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>StudentId    StudentName    City
+--------------------------------
+103          Rahul          Pune
+101          Amit           Mumbai
+105          Neha           Pune
+102          Priya          Delhi
+104          Rohit          Nashik</code></pre>
+
+                    <p class="mt-3">
+                        If we create a clustered index on
+                        <strong>StudentId</strong>, SQL Server organizes the
+                        table data according to the StudentId values.
+                    </p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>StudentId    StudentName    City
+--------------------------------
+101          Amit           Mumbai
+102          Priya          Delhi
+103          Rahul          Pune
+104          Rohit          Nashik
+105          Neha           Pune</code></pre>
+
+
+                    <!-- =========================
+                         CREATE CLUSTERED INDEX
+                    ========================== -->
+
+                    <h2 class="fw-bold mt-5 mb-3">
+                        Creating a Clustered Index
+                    </h2>
+
+                    <p>
+                        A clustered index can be created using the
+                        <strong>CREATE CLUSTERED INDEX</strong> statement.
+                    </p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>CREATE CLUSTERED INDEX IX_Students_StudentId
+ON Students(StudentId);</code></pre>
+
+                    <p class="mt-3">
+                        Here:
+                    </p>
+
+                    <ul>
+                        <li>
+                            <strong>IX_Students_StudentId</strong> is the index name.
+                        </li>
+                        <li>
+                            <strong>Students</strong> is the table name.
+                        </li>
+                        <li>
+                            <strong>StudentId</strong> is the indexed column.
+                        </li>
+                    </ul>
+
+
+                    <!-- =========================
+                         PRIMARY KEY AND CLUSTERED
+                    ========================== -->
+
+                    <h2 class="fw-bold mt-5 mb-3">
+                        Clustered Index with Primary Key
+                    </h2>
+
+                    <p>
+                        When a primary key is created, SQL Server generally
+                        creates a clustered index for the primary key by default,
+                        unless another index option is specified.
+                    </p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>CREATE TABLE Students
+(
+    StudentId INT PRIMARY KEY,
+    StudentName VARCHAR(100),
+    City VARCHAR(50),
+    Age INT
+);</code></pre>
+
+                    <p class="mt-3">
+                        In this example, the primary key on
+                        <strong>StudentId</strong> can have a clustered index
+                        associated with it.
+                    </p>
+
+
+                    <!-- =========================
+                         ONE CLUSTERED INDEX
+                    ========================== -->
+
+                    <h2 class="fw-bold mt-5 mb-3">
+                        Only One Clustered Index
+                    </h2>
+
+                    <p>
+                        A table can have only one clustered index because the
+                        actual data rows can be physically ordered in only one
+                        way.
+                    </p>
+
+                    <p>
+                        For example, we can create a clustered index on
+                        <strong>StudentId</strong>:
+                    </p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>CREATE CLUSTERED INDEX IX_Students_StudentId
+ON Students(StudentId);</code></pre>
+
+                    <p class="mt-3">
+                        We cannot create another clustered index on the same table
+                        while the existing clustered index is present.
+                    </p>
+
+
+                    <!-- =========================
+                         QUERY EXAMPLE
+                    ========================== -->
+
+                    <h2 class="fw-bold mt-5 mb-3">
+                        Example Query
+                    </h2>
+
+                    <p>
+                        Consider the following query:
+                    </p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>SELECT *
+FROM Students
+WHERE StudentId = 103;</code></pre>
+
+                    <p class="mt-3">
+                        If StudentId is the clustered index key, SQL Server can
+                        efficiently locate the required row using the index
+                        structure.
+                    </p>
+
+
+                    <!-- =========================
+                         CLUSTERED INDEX ADVANTAGES
+                    ========================== -->
+
+                    <h2 class="fw-bold mt-5 mb-3">
+                        Advantages of Clustered Index
+                    </h2>
+
+                    <ul>
+                        <li>
+                            Improves data retrieval performance.
+                        </li>
+
+                        <li>
+                            Data is physically organized according to the
+                            clustered index key.
+                        </li>
+
+                        <li>
+                            Useful for range-based queries.
+                        </li>
+
+                        <li>
+                            Can improve ORDER BY operations on the indexed key.
+                        </li>
+
+                        <li>
+                            Useful when records are frequently searched using
+                            the indexed column.
+                        </li>
+                    </ul>
+
+
+                    <!-- =========================
+                         DISADVANTAGES
+                    ========================== -->
+
+                    <h2 class="fw-bold mt-5 mb-3">
+                        Disadvantages of Clustered Index
+                    </h2>
+
+                    <ul>
+                        <li>
+                            A table can have only one clustered index.
+                        </li>
+
+                        <li>
+                            Insert and update operations may require data
+                            reorganization.
+                        </li>
+
+                        <li>
+                            Creating and maintaining indexes requires additional
+                            database resources.
+                        </li>
+                    </ul>
+
+
+                    <!-- =========================
+                         CLUSTERED INDEX EXAMPLE
+                    ========================== -->
+
+                    <h2 class="fw-bold mt-5 mb-3">
+                        Complete Example
+                    </h2>
+
+                    <p>
+                        Create a Students table:
+                    </p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>CREATE TABLE Students
+(
+    StudentId INT,
+    StudentName VARCHAR(100),
+    City VARCHAR(50),
+    Age INT
+);</code></pre>
+
+                    <p class="mt-3">
+                        Insert sample records:
+                    </p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>INSERT INTO Students
+VALUES
+(103, 'Rahul', 'Pune', 22),
+(101, 'Amit', 'Mumbai', 21),
+(105, 'Neha', 'Pune', 23),
+(102, 'Priya', 'Delhi', 22),
+(104, 'Rohit', 'Nashik', 24);</code></pre>
+
+                    <p class="mt-3">
+                        Create a clustered index:
+                    </p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>CREATE CLUSTERED INDEX IX_Students_StudentId
+ON Students(StudentId);</code></pre>
+
+                    <p class="mt-3">
+                        Now SQL Server can organize the table data according to
+                        StudentId.
+                    </p>
+
+
+                    <!-- =========================
+                         CLUSTERED INDEX VS NORMAL
+                    ========================== -->
+
+                    <div class="alert alert-info mt-5">
+
+                        <h4 class="fw-bold">
+                            Important
+                        </h4>
+
+                        <p class="mb-0">
+                            A clustered index is closely related to the physical
+                            organization of table data. Since the actual data
+                            rows can have only one physical order, a table can
+                            have only one clustered index.
+                        </p>
+
+                    </div>
+
+
+                    <!-- =========================
+                         IMPORTANT POINTS
+                    ========================== -->
+
+                    <div class="alert alert-warning mt-4">
+
+                        <h4 class="fw-bold">
+                            Important Points
+                        </h4>
+
+                        <ul class="mb-0">
+
+                            <li>
+                                A clustered index determines the physical order
+                                of data rows.
+                            </li>
+
+                            <li>
+                                A table can have only one clustered index.
+                            </li>
+
+                            <li>
+                                Clustered indexes are useful for fast data
+                                retrieval.
+                            </li>
+
+                            <li>
+                                Primary keys are commonly associated with
+                                clustered indexes by default.
+                            </li>
+
+                            <li>
+                                Clustered indexes are useful for range queries.
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+
+                    <!-- =========================
+                         SUMMARY
+                    ========================== -->
+
+                    <div class="alert alert-primary mt-5">
+
+                        <h2 class="fw-bold mb-3">
+                            Summary
+                        </h2>
+
+                        <p>
+                            A <strong>Clustered Index</strong> determines the
+                            physical order of data rows in a SQL Server table.
+                            The data is organized according to the clustered
+                            index key.
+                        </p>
+
+                        <p>
+                            A table can have only one clustered index because
+                            the table data can have only one physical order.
+                        </p>
+
+                        <p class="mb-0">
+                            Clustered indexes are useful for improving data
+                            retrieval performance, especially when searching
+                            and retrieving data using the indexed key.
+                        </p>
+
+                    </div>
+
+
+                    <!-- =========================
+                         PREVIOUS / NEXT
+                    ========================== -->
+
+                    <div class="d-flex justify-content-between align-items-center
+                        mt-5 pt-4 border-top">
+
+                        <!-- PREVIOUS -->
+
+                        <a href="/SQLServer/Indexes/Index"
+                           class="btn btn-outline-primary">
+
+                            ← Previous: Indexes Introduction
+
+                        </a>
+
+
+                        <!-- NEXT -->
+
+                        <a href="/SQLServer/Indexes/NonClusteredIndex"
+                           class="btn btn-primary">
+
+                            Next: Non-Clustered Index →
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>

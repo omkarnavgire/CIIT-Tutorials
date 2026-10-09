@@ -1,0 +1,535 @@
+﻿@{
+    ViewData["Title"] = "FOREIGN KEY";
+}
+
+<section>
+
+    <!-- PAGE INTRODUCTION -->
+    <div class="mb-5">
+
+        <h1 class="fw-bold mb-3">
+            FOREIGN KEY
+        </h1>
+
+        <p class="lead text-muted">
+            A FOREIGN KEY is a SQL Server constraint used to create
+            a relationship between two tables. It ensures that a
+            value in one table refers to a valid record in another
+            table.
+        </p>
+
+    </div>
+
+
+    <!-- WHAT IS FOREIGN KEY -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            What is a FOREIGN KEY?
+        </h2>
+
+        <p>
+            A FOREIGN KEY is a column or combination of columns that
+            refers to the PRIMARY KEY or a UNIQUE key of another table.
+        </p>
+
+        <p>
+            It is mainly used to maintain relationships and referential
+            integrity between tables.
+        </p>
+
+        <div class="alert alert-primary border-0">
+
+            <h5 class="fw-bold">
+                Simple Example
+            </h5>
+
+            <p class="mb-0">
+                A Courses table can have CourseId as its PRIMARY KEY.
+                The Students table can use CourseId as a FOREIGN KEY
+                to connect students with courses.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- WHY FOREIGN KEY -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Why Do We Need a FOREIGN KEY?
+        </h2>
+
+        <ul>
+
+            <li class="mb-2">
+                Creates a relationship between two tables.
+            </li>
+
+            <li class="mb-2">
+                Maintains referential integrity.
+            </li>
+
+            <li class="mb-2">
+                Prevents invalid references between related tables.
+            </li>
+
+            <li class="mb-2">
+                Helps organize related data.
+            </li>
+
+            <li>
+                Represents relationships in a relational database.
+            </li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- PARENT CHILD -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Parent Table and Child Table
+        </h2>
+
+        <p>
+            A FOREIGN KEY relationship normally consists of a parent
+            table and a child table.
+        </p>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>Table</th>
+                        <th>Key</th>
+                        <th>Role</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>Courses</td>
+                        <td>CourseId</td>
+                        <td>PRIMARY KEY</td>
+                    </tr>
+
+                    <tr>
+                        <td>Students</td>
+                        <td>CourseId</td>
+                        <td>FOREIGN KEY</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- CREATE PARENT TABLE -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Step 1: Create Parent Table
+        </h2>
+
+        <p>
+            First, create the table that contains the referenced key.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>CREATE TABLE Courses
+(
+    CourseId INT PRIMARY KEY,
+    CourseName VARCHAR(100)
+);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- CREATE CHILD TABLE -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Step 2: Create Child Table
+        </h2>
+
+        <p>
+            The Students table can then reference CourseId from the
+            Courses table.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>CREATE TABLE Students
+(
+    StudentId INT PRIMARY KEY,
+    StudentName VARCHAR(100),
+    CourseId INT,
+
+    CONSTRAINT FK_Students_Courses
+    FOREIGN KEY (CourseId)
+    REFERENCES Courses(CourseId)
+);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- RELATIONSHIP DIAGRAM -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            FOREIGN KEY Relationship
+        </h2>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL Server
+            </div>
+
+            <pre class="mb-0"><code>
+                                                    Courses
+                                                       |
+                                                       | CourseId
+                                                       | PRIMARY KEY
+                                                       ↓
+                                                    Students
+                                                       |
+                                                       | CourseId
+                                                       | FOREIGN KEY
+                                                       ↓
+                                           References Courses.CourseId</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- INSERT DATA -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Insert Valid Data
+        </h2>
+
+        <p>
+            A foreign key value should refer to an existing value in
+            the parent table.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>INSERT INTO Courses
+VALUES (1, 'Java');
+
+INSERT INTO Students
+VALUES (101, 'Rahul', 1);</code></pre>
+
+        </div>
+
+        <div class="alert alert-success border-0">
+
+            <strong>Result:</strong>
+            The insert is successful because CourseId 1 exists in
+            the Courses table.
+
+        </div>
+
+    </section>
+
+
+    <!-- INVALID DATA -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Invalid FOREIGN KEY Value
+        </h2>
+
+        <p>
+            Suppose CourseId 10 does not exist in the Courses table.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>INSERT INTO Students
+VALUES (102, 'Priya', 10);</code></pre>
+
+        </div>
+
+        <div class="alert alert-danger border-0">
+
+            <strong>Error:</strong>
+            The insert fails because CourseId 10 does not exist in
+            the parent Courses table.
+
+        </div>
+
+    </section>
+
+
+    <!-- ADD FOREIGN KEY -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Add FOREIGN KEY to Existing Table
+        </h2>
+
+        <p>
+            A FOREIGN KEY can also be added after creating the table.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>ALTER TABLE Students
+ADD CONSTRAINT FK_Students_Courses
+FOREIGN KEY (CourseId)
+REFERENCES Courses(CourseId);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- CASCADE -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            ON DELETE CASCADE
+        </h2>
+
+        <p>
+            ON DELETE CASCADE automatically removes related child
+            records when the corresponding parent record is deleted.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>CREATE TABLE Students
+(
+    StudentId INT PRIMARY KEY,
+    StudentName VARCHAR(100),
+    CourseId INT,
+
+    CONSTRAINT FK_Students_Courses
+    FOREIGN KEY (CourseId)
+    REFERENCES Courses(CourseId)
+    ON DELETE CASCADE
+);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOREIGN KEY OUTPUT -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Example Output
+        </h2>
+
+        <h5 class="fw-bold mt-4">
+            Courses Table
+        </h5>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>CourseId</th>
+                        <th>CourseName</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>1</td>
+                        <td>Java</td>
+                    </tr>
+
+                    <tr>
+                        <td>2</td>
+                        <td>.NET</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <h5 class="fw-bold mt-4">
+            Students Table
+        </h5>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>StudentId</th>
+                        <th>StudentName</th>
+                        <th>CourseId</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>101</td>
+                        <td>Rahul</td>
+                        <td>1</td>
+                    </tr>
+
+                    <tr>
+                        <td>102</td>
+                        <td>Priya</td>
+                        <td>2</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- IMPORTANT POINTS -->
+    <section class="mb-5">
+
+        <div class="alert alert-info border-0">
+
+            <h5 class="fw-bold">
+                Important Points
+            </h5>
+
+            <ul class="mb-0">
+
+                <li class="mb-2">
+                    FOREIGN KEY creates a relationship between tables.
+                </li>
+
+                <li class="mb-2">
+                    It normally references a PRIMARY KEY or UNIQUE key.
+                </li>
+
+                <li class="mb-2">
+                    Invalid references are prevented.
+                </li>
+
+                <li class="mb-2">
+                    A table can have multiple FOREIGN KEY constraints.
+                </li>
+
+                <li>
+                    ON DELETE CASCADE can be used when appropriate.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </section>
+
+
+    <!-- SUMMARY -->
+    <section class="mb-4">
+
+        <div class="alert alert-primary border-0">
+
+            <h2 class="fw-bold mb-3">
+                Summary
+            </h2>
+
+            <p class="mb-0">
+                In this section, we learned how FOREIGN KEY creates a
+                relationship between tables, how to create and add a
+                FOREIGN KEY, and how referential integrity prevents
+                invalid references.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- PREVIOUS / NEXT -->
+
+    <div class="d-flex justify-content-between align-items-center
+                mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/Constraints/PrimaryKey"
+           class="btn btn-outline-primary">
+
+            ← Previous: PRIMARY KEY
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/Constraints/UniqueConstraint"
+           class="btn btn-primary">
+
+            Next: UNIQUE Constraint →
+
+        </a>
+
+    </div>
+
+</section>

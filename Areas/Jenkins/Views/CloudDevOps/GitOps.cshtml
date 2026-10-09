@@ -1,0 +1,209 @@
+@{
+    Layout = "~/Areas/Jenkins/Views/Shared/JenkinsLayout.cshtml";
+    ViewData["Title"] = "Jenkins and GitOps";
+}
+
+<style>
+    #jenkins-and-gitops-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #jenkins-and-gitops-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #jenkins-and-gitops-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #jenkins-and-gitops-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #jenkins-and-gitops-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+    #jenkins-and-gitops-page .example-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+    }
+</style>
+
+<main id="jenkins-and-gitops-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/Jenkins/Views/Shared/JenkinsTopics.cshtml")
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+                <h1 class="fw-bold">Jenkins and GitOps</h1>
+                <p class="lead">
+                    Learn how to bridge continuous integration with declarative infrastructure management, shifting your deployment pipelines away from manual commands to version-controlled repository updates.
+                </p>
+            </div>
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">What is the Jenkins and GitOps Pattern?</h2>
+                <p>
+                    In traditional application delivery workflows, a Jenkins pipeline uses direct shell tools (like <code>kubectl</code> or SSH commands) to push code updates straight into server environments. While this works well for basic systems, it can create operational visibility problems if external configurations change behind the scenes.
+                </p>
+                <p>
+                    <strong>GitOps</strong> solves this problem by turning your <strong>Git repository into the single source of truth</strong> for your environment setups. In a GitOps architecture, instead of Jenkins deploying your application directly to a live server, <strong>Jenkins handles the verification steps</strong> (linting, compiling, testing, and packaging images). Once the build passes, Jenkins automatically writes the new version tags down into a dedicated Git configuration repository. From there, automated sync tools pull the new state down to match your target environment.
+                </p>
+                <div class="alert alert-info">
+                    <strong>Simple Definition:</strong> An operational model where Git stores the absolute blueprint of your infrastructure, and Jenkins acts as the quality inspector that checks application stability before updating that blueprint automatically.
+                </div>
+            </div>
+
+            <!-- KEY CONCEPTS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Key Concepts (Explained Simply)</h2>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Separation of Concerns</h5>
+                            <p class="mb-0"><strong>In Simple Terms:</strong> Jenkins focuses purely on building and testing your app code, while a separate Git repository manages the deployment files. This separation protects your production access keys from app code bugs.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Declarative Target Environments</h5>
+                            <p class="mb-0"><strong>In Simple Terms:</strong> Storing infrastructure layouts as text blueprints (like Kubernetes YAML templates) instead of running manual server upgrade steps, making server environments easy to recreate from scratch.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Automated Pull Sync Hooks</h5>
+                            <p class="mb-0"><strong>In Simple Terms:</strong> Using background controller utilities (like ArgoCD or Flux) that watch your Git files and automatically pull modifications down to the server, fixing any unexpected manual changes instantly.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Immutable Audit Trails</h5>
+                            <p class="mb-0"><strong>In Simple Terms:</strong> Because every deployment step requires a standard Git commit, your version control tracking tools naturally build a permanent history of exactly who deployed what version, and when.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXAMPLE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Practical Jenkins Example</h2>
+                <p>This production blueprint validates application source tests, packages an asset image, pulls down an isolated environment configuration file, and safely pushes updated tag properties back to Git to complete a GitOps delivery:</p>
+                <pre><code>pipeline {
+    agent any
+
+
+
+
+
+
+
+
+
+
+
+    environment {
+        // App coordinates and configuration repo links
+        APP_NAME     = 'payment-api'
+        NEW_TAG      = "v${BUILD_NUMBER}"
+        CONFIG_REPO  = '://github.com'
+    }
+
+    stages {
+        stage('Validate & Package Application') {
+            steps {
+                echo 'Executing application tests and compiling runtime binaries...'
+                sh 'echo "Simulating application unit testing phases..."'
+                sh "echo 'Building image container tagged as: ${NEW_TAG}'"
+            }
+        }
+
+        stage('Update GitOps Manifest Blueprint') {
+            steps {
+                echo 'Checking out the central configuration repository...'
+                // Pulls down the environment tracking infrastructure maps safely
+                dir('env-manifests-workspace') {
+                    checkout scmGit(
+                        branches: [[name: '*/main']],
+                        userRemoteConfigs: [[
+                            credentialsId: 'github-gitops-token-id',
+                            url: "https://${CONFIG_REPO}"
+                        ]]
+                    )
+
+                    echo 'Updating production parameters with new application tracking tag...'
+                    // Updates the manifest description file to target the newly validated version tag
+                    sh "sed -i 's|image: .*|image: ${APP_NAME}:${NEW_TAG}|g' deployments/${APP_NAME}.yaml"
+
+                    echo 'Committing structural changes back to Git repo source of truth...'
+                    // Signs the update path safely right inside the version timeline records
+                    sh '''
+                        git config user.email "jenkins-ci@company.com"
+                        git config user.name "Jenkins Automation Bot"
+                        git add deployments/
+                        git commit -m "Automated environment deployment upgrade: ${APP_NAME} to version ${NEW_TAG}"
+                        git push origin main
+                    '''
+                }
+            }
+        }
+    }
+}</code></pre>
+            </div>
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Practice Exercise</h2>
+                <ol>
+                    <li class="mb-2">Create two separate target repositories on your GitHub account: one for application source files and one for cluster deployment manifests.</li>
+                    <li class="mb-2">Verify your Jenkins controller holds active push permissions for the manifest repository under a saved credential token labeled <code>github-gitops-token-id</code>.</li>
+                    <li class="mb-2">Set up a new **Pipeline** project automation slot in your catalog labeled <code>gitops-delivery-pipeline</code>.</li>
+                    <li class="mb-2">Paste the declarative script shared in the practical view example container above into the pipeline block workspace.</li>
+                    <li class="mb-2">Execute a manual execution run. Open your configuration repository on GitHub to confirm that the automated bot successfully committed the updated image tracking tags.</li>
+                </ol>
+            </div>
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+                <h2 class="h4 fw-bold">Summary</h2>
+                <p class="mb-0">You have completed the <strong>Jenkins and GitOps</strong> lesson. Shifting delivery workflows into version-controlled layout paths allows you to easily connect your build runs with secondary enterprise tracking mechanisms, such as **External Integrations**.</p>
+            </div>
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+                <a class="btn btn-outline-primary" href="@Url.Action("KubernetesDeployment", "CloudDevOps", new { area = "Jenkins" })">← Previous: Kubernetes Deployment</a>
+                <a class="btn btn-primary" href="@Url.Action("ExternalIntegrations", "CloudDevOps", new { area = "Jenkins" })">Next: External Integrations →</a>
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

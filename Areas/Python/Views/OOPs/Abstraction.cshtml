@@ -1,0 +1,951 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Python Abstraction";
+}
+
+<style>
+    #python-abstraction-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #python-abstraction-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #python-abstraction-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #python-abstraction-page .diagram-box {
+        background: #ffffff;
+        border: 2px solid #6f42c1;
+        border-radius: 10px;
+        padding: 18px;
+        text-align: center;
+        height: 100%;
+    }
+
+        #python-abstraction-page .diagram-box h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        #python-abstraction-page .diagram-box p {
+            margin-bottom: 0;
+            font-size: 14px;
+            color: #495057;
+        }
+
+    #python-abstraction-page .diagram-arrow {
+        text-align: center;
+        font-size: 28px;
+        font-weight: 700;
+        color: #6f42c1;
+        padding: 8px 0;
+    }
+
+    #python-abstraction-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #python-abstraction-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+        }
+</style>
+
+
+<main id="python-abstraction-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- Left Sidebar -->
+        <aside class="col-lg-3">
+
+            @Html.Partial("~/Areas/Python/Views/Shared/PythonTopics.cshtml")
+
+        </aside>
+
+
+        <!-- Main Content -->
+        <section class="col-lg-9">
+
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+
+                <h1 class="fw-bold">
+                    Abstraction in Python
+                </h1>
+
+                <p class="lead">
+                    Learn how abstraction hides unnecessary implementation
+                    details and shows only the important functionality.
+                </p>
+
+            </div>
+
+
+            <!-- WHAT IS ABSTRACTION -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    What is Abstraction?
+                </h2>
+
+                <p>
+                    Abstraction is an important concept of
+                    Object-Oriented Programming.
+                </p>
+
+                <p>
+                    Abstraction means hiding unnecessary implementation
+                    details and showing only the important functionality
+                    to the user.
+                </p>
+
+                <div class="alert alert-info">
+
+                    <strong>Simple Definition:</strong>
+
+                    Abstraction means
+                    <strong>"show what is necessary and hide what is not necessary."</strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- REAL WORLD EXAMPLE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Example 🌍📩
+                </h2>
+
+                <p>
+                    Think about using an ATM.
+                </p>
+
+                <p>
+                    You select:
+                    <strong>Withdraw Money</strong>.
+                </p>
+
+                <p>
+                    You do not need to know how the bank server checks
+                    your account, validates the transaction and processes
+                    the withdrawal internally.
+                </p>
+
+                <p>
+                    You only use the required functionality.
+                </p>
+
+                <div class="row g-3 mt-2">
+
+                    <div class="col-md-6">
+
+                        <div class="info-card">
+
+                            <h5>What User Sees</h5>
+
+                            <p class="mb-0">
+                                Insert card
+                                <br />
+                                Enter PIN
+                                <br />
+                                Select amount
+                                <br />
+                                Receive money
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-6">
+
+                        <div class="info-card">
+
+                            <h5>What System Hides</h5>
+
+                            <p class="mb-0">
+                                Account validation
+                                <br />
+                                Server processing
+                                <br />
+                                Transaction verification
+                                <br />
+                                Database operations
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- DIAGRAM -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Abstraction Diagram
+                </h2>
+
+                <p>
+                    The user sees only the required functionality while
+                    the internal implementation remains hidden.
+                </p>
+
+                <div class="concept-box">
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            User
+                        </h5>
+
+                        <p>
+                            Uses required functionality
+                        </p>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="row g-3">
+
+                        <div class="col-md-6">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    Visible Interface
+                                </h5>
+
+                                <p>
+                                    Methods or operations
+                                    available to the user
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-6">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    Hidden Implementation
+                                </h5>
+
+                                <p>
+                                    Internal logic and processing
+                                    remains hidden
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            Result
+                        </h5>
+
+                        <p>
+                            User gets the required output without
+                            knowing the internal implementation.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- WHY ABSTRACTION -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Why Do We Use Abstraction?
+                </h2>
+
+                <ul>
+
+                    <li>
+                        Hides unnecessary implementation details.
+                    </li>
+
+                    <li>
+                        Shows only important functionality.
+                    </li>
+
+                    <li>
+                        Makes large programs easier to understand.
+                    </li>
+
+                    <li>
+                        Reduces complexity.
+                    </li>
+
+                    <li>
+                        Makes code easier to maintain.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- SIMPLE IDEA -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Simple Python Example
+                </h2>
+
+                <p>
+                    First, let's understand the basic idea without
+                    using the abstract class module.
+                </p>
+
+                <pre><code>class Car:
+
+    def start(self):
+        print("Car started")
+
+
+car1 = Car()
+
+car1.start()</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Car started</code></pre>
+
+                <p>
+                    The user only calls <code>start()</code>.
+                    The internal process of starting the car can remain
+                    hidden inside the class.
+                </p>
+
+            </div>
+
+
+            <!-- ABSTRACT CLASS -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Abstract Class
+                </h2>
+
+                <p>
+                    Python provides the <code>abc</code> module for creating
+                    abstract classes.
+                </p>
+
+                <p>
+                    We commonly use:
+                </p>
+
+                <ul>
+
+                    <li>
+                        <code>ABC</code>
+                    </li>
+
+                    <li>
+                        <code>abstractmethod</code>
+                    </li>
+
+                </ul>
+
+                <pre><code>from abc import ABC, @@abstractmethod
+
+
+class Animal(ABC):
+
+    @@abstractmethod
+    def sound(self):
+        pass</code></pre>
+
+                <p class="mt-3">
+                    Here, <code>Animal</code> is an abstract class and
+                    <code>sound()</code> is an abstract method.
+                </p>
+
+            </div>
+
+
+            <!-- ABSTRACT METHOD -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    What is an Abstract Method?
+                </h2>
+
+                <p>
+                    An abstract method is a method that is declared in
+                    the parent abstract class but its implementation is
+                    provided by the child class.
+                </p>
+
+                <pre><code>from abc import ABC, @@abstractmethod
+
+
+class Animal(ABC):
+
+    @@abstractmethod
+    def sound(self):
+        pass
+
+
+class Dog(Animal):
+
+    def sound(self):
+        print("Dog barks")</code></pre>
+
+                <p>
+                    The parent class says that every animal should have
+                    a <code>sound()</code> method.
+                </p>
+
+                <p>
+                    The child class decides how that method will work.
+                </p>
+
+            </div>
+
+
+            <!-- COMPLETE EXAMPLE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Complete Abstraction Example
+                </h2>
+
+                <pre><code>from abc import ABC, @@abstractmethod
+
+
+class Animal(ABC):
+
+    @@abstractmethod
+    def sound(self):
+        pass
+
+
+class Dog(Animal):
+
+    def sound(self):
+        print("Dog barks")
+
+
+class Cat(Animal):
+
+    def sound(self):
+        print("Cat meows")
+
+
+dog1 = Dog()
+cat1 = Cat()
+
+dog1.sound()
+cat1.sound()</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Dog barks
+Cat meows</code></pre>
+
+                <p>
+                    Here the parent class provides the common structure,
+                    while each child class provides its own implementation.
+                </p>
+
+            </div>
+
+
+            <!-- ABSTRACT CLASS OBJECT -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Can We Create an Object of an Abstract Class?
+                </h2>
+
+                <p>
+                    No. We cannot normally create an object directly from
+                    an abstract class while it still contains unimplemented
+                    abstract methods.
+                </p>
+
+                <pre><code>from abc import ABC, @@abstractmethod
+
+
+class Animal(ABC):
+
+    @@abstractmethod
+    def sound(self):
+        pass
+
+
+animal1 = Animal()</code></pre>
+
+                <p class="mt-3">
+                    This produces an error because
+                    <code>Animal</code> contains an abstract method that
+                    has not been implemented.
+                </p>
+
+                <p>
+                    We should create objects from concrete child classes
+                    that implement all required abstract methods.
+                </p>
+
+            </div>
+
+
+            <!-- CHILD MUST IMPLEMENT -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Child Class Must Implement Abstract Methods
+                </h2>
+
+                <p>
+                    If a child class does not implement an abstract method,
+                    that child class also remains abstract.
+                </p>
+
+                <pre><code>from abc import ABC, @@abstractmethod
+
+
+class Vehicle(ABC):
+
+    @@abstractmethod
+    def start(self):
+        pass
+
+
+class Car(Vehicle):
+
+    def start(self):
+        print("Car started")
+
+
+car1 = Car()
+
+car1.start()</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Car started</code></pre>
+
+            </div>
+
+
+            <!-- MULTIPLE ABSTRACT METHODS -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Multiple Abstract Methods
+                </h2>
+
+                <p>
+                    An abstract class can contain more than one
+                    abstract method.
+                </p>
+
+                <pre><code>from abc import ABC, @@abstractmethod
+
+
+class Vehicle(ABC):
+
+    @@abstractmethod
+    def start(self):
+        pass
+
+    @@abstractmethod
+    def stop(self):
+        pass
+
+
+class Car(Vehicle):
+
+    def start(self):
+        print("Car started")
+
+    def stop(self):
+        print("Car stopped")
+
+
+car1 = Car()
+
+car1.start()
+car1.stop()</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Car started
+Car stopped</code></pre>
+
+                <p>
+                    The child class must implement both abstract methods.
+                </p>
+
+            </div>
+
+
+            <!-- PRACTICAL EXAMPLE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Example: Payment System 🖥️🔓
+                </h2>
+
+                <p>
+                    Imagine an application that supports different payment
+                    methods.
+                </p>
+
+                <p>
+                    Every payment method should provide a
+                    <code>pay()</code> operation, but the implementation
+                    can be different.
+                </p>
+
+                <pre><code>from abc import ABC, @@abstractmethod
+
+
+class Payment(ABC):
+
+    @@abstractmethod
+    def pay(self, amount):
+        pass
+
+
+class UPI(Payment):
+
+    def pay(self, amount):
+        print("Paid", amount, "using UPI")
+
+
+class Card(Payment):
+
+    def pay(self, amount):
+        print("Paid", amount, "using Card")
+
+
+upi1 = UPI()
+card1 = Card()
+
+upi1.pay(500)
+card1.pay(1000)</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Paid 500 using UPI
+Paid 1000 using Card</code></pre>
+
+                <p>
+                    The common rule is <code>pay()</code>, while each
+                    payment class provides its own implementation.
+                </p>
+
+            </div>
+
+
+            <!-- ABSTRACTION AND INHERITANCE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Abstraction and Inheritance
+                </h2>
+
+                <p>
+                    Abstraction is commonly implemented using inheritance.
+                </p>
+
+                <p>
+                    The abstract parent class defines the required
+                    methods, and the child class provides the actual
+                    implementation.
+                </p>
+
+                <pre><code>
+                                      Abstract Parent
+                                            |
+                                            v
+                                       Child Class
+                                            |
+                                            v
+                                   Actual Implementation</code></pre>
+
+            </div>
+
+
+            <!-- ABSTRACTION VS ENCAPSULATION -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Abstraction vs Encapsulation
+                </h2>
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered align-middle">
+
+                        <thead>
+
+                            <tr>
+                                <th>Abstraction</th>
+                                <th>Encapsulation</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+
+                                <td>
+                                    Hides unnecessary implementation details.
+                                </td>
+
+                                <td>
+                                    Controls access to data and methods.
+                                </td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>
+                                    Focuses on what an object does.
+                                </td>
+
+                                <td>
+                                    Focuses on how data is protected.
+                                </td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>
+                                    Commonly uses abstract classes and methods.
+                                </td>
+
+                                <td>
+                                    Commonly uses access conventions,
+                                    private attributes and controlled methods.
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <!-- BENEFITS -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Benefits of Abstraction
+                </h2>
+
+                <ul>
+
+                    <li>
+                        Hides unnecessary details.
+                    </li>
+
+                    <li>
+                        Reduces program complexity.
+                    </li>
+
+                    <li>
+                        Makes code easier to understand.
+                    </li>
+
+                    <li>
+                        Creates common rules for child classes.
+                    </li>
+
+                    <li>
+                        Makes large applications easier to maintain.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- COMMON MISTAKES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Common Mistakes
+                </h2>
+
+                <ul>
+
+                    <li>
+                        Forgetting to inherit from <code>ABC</code>.
+                    </li>
+
+                    <li>
+                        Forgetting the <code>@@abstractmethod</code>
+                        decorator in a code example.
+                    </li>
+
+                    <li>
+                        Trying to create an object of an incomplete
+                        abstract class.
+                    </li>
+
+                    <li>
+                        Forgetting to implement all abstract methods
+                        in the child class.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Practice Programs
+                </h2>
+
+                <ol>
+
+                    <li>
+                        Create an abstract <code>Animal</code> class with
+                        an abstract <code>sound()</code> method.
+                    </li>
+
+                    <li>
+                        Create <code>Dog</code> and <code>Cat</code>
+                        classes that implement <code>sound()</code>.
+                    </li>
+
+                    <li>
+                        Create an abstract <code>Vehicle</code> class with
+                        <code>start()</code> and <code>stop()</code>.
+                    </li>
+
+                    <li>
+                        Create <code>Car</code> and <code>Bike</code>
+                        classes.
+                    </li>
+
+                    <li>
+                        Create a payment system using an abstract
+                        <code>Payment</code> class.
+                    </li>
+
+                </ol>
+
+            </div>
+
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+
+                <h2 class="h4 fw-bold">
+                    Summary
+                </h2>
+
+                <p class="mb-0">
+
+                    Abstraction means hiding unnecessary implementation
+                    details and showing only the required functionality.
+                    Python supports abstraction using the
+                    <code>abc</code> module, abstract classes and
+                    abstract methods. An abstract class defines common
+                    rules, while child classes provide the actual
+                    implementation.
+
+                </p>
+
+            </div>
+
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+
+                <a class="btn btn-outline-secondary"
+                   href="@Url.Action("Polymorphism", "OOPs", new { area = "Python" })">
+
+                    ← Previous: Topic
+
+                </a>
+
+                <a class="btn btn-primary"
+                   href="@Url.Action("Index", "ModulesPackages", new { area = "Python" })">
+
+                    Next: Topic →
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

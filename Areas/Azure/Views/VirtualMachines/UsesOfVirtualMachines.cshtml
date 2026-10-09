@@ -1,0 +1,51 @@
+@{
+    ViewData["Title"] = "Uses Of Virtual Machines";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+                <div class="azure-notes-content">
+                    <pre class="azure-notes-text">Uses Of Virtual Machines
+   •   The virtual machine can back up our existing operating system. This is one of the
+       important use of VM that the existing O.S that we are using can be backed up by a
+       virtual machine.
+   •   The apps are built and deployed in a cloud and a virtual machine can be used in it for
+       building and deployment of apps in a cloud.
+   •   Virtual machines can be used to run various apps and software on operating systems
+       that are not made originally for them. There are many apps and software which are
+       not made for some operating systems but virtual machines are used in such cases to
+       overcome such problems.
+   •   Azure dev test labs use the virtual machine for testing and running various software
+       other than the existing OS. They actually set up a new environment which makes it a
+       simpler way for developers to deploy dev-test scenarios.
+   •   One more way the virtual machine is used is whenever any new operating system is
+       released, first, it was tried on the virtual machine for its proper testing and working.</pre>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_5_-_Azure_Virtual_Machines/p01-000.jpg" class="img-fluid rounded shadow-sm" alt="Uses Of Virtual Machines - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_5_-_Azure_Virtual_Machines/p01-001.jpg" class="img-fluid rounded shadow-sm" alt="Uses Of Virtual Machines - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_5_-_Azure_Virtual_Machines/p01-002.jpg" class="img-fluid rounded shadow-sm" alt="Uses Of Virtual Machines - source image" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+            @await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureLessonNavigation.cshtml")
+</section>
+</div>
+<style>
+.azure-notes-text{white-space:pre-wrap;word-break:normal;font-family:inherit;font-size:1rem;line-height:1.7;background:#fff;border:0;padding:0;margin:0;color:#212529;}
+.azure-notes-content img{max-height:720px;}
+</style>

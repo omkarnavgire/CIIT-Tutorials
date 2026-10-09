@@ -1,0 +1,819 @@
+﻿@{
+    ViewData["Title"] = "INSERT, UPDATE & DELETE";
+}
+
+<section>
+
+    <!-- PAGE INTRODUCTION -->
+    <div class="mb-5">
+
+        <h1 class="fw-bold mb-3">
+            INSERT, UPDATE &amp; DELETE
+        </h1>
+
+        <p class="lead text-muted">
+            INSERT, UPDATE and DELETE are important SQL commands used
+            to add, modify and remove records from database tables.
+        </p>
+
+        <p>
+            These commands are part of
+            <strong>Data Manipulation Language (DML)</strong>.
+            They allow applications and developers to work with the
+            actual data stored inside SQL Server tables.
+        </p>
+
+    </div>
+
+
+    <!-- DML INTRODUCTION -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            What is DML?
+        </h2>
+
+        <p>
+            DML stands for <strong>Data Manipulation Language</strong>.
+            It is used to manipulate the records stored inside database
+            tables.
+        </p>
+
+        <p>
+            The three commonly used DML commands covered in this section
+            are:
+        </p>
+
+        <ul>
+
+            <li class="mb-2">
+                <strong>INSERT</strong> – Used to add new records.
+            </li>
+
+            <li class="mb-2">
+                <strong>UPDATE</strong> – Used to modify existing records.
+            </li>
+
+            <li>
+                <strong>DELETE</strong> – Used to remove records.
+            </li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- SAMPLE TABLE -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Sample Students Table
+        </h2>
+
+        <p>
+            We will use the following Students table to understand
+            INSERT, UPDATE and DELETE operations.
+        </p>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>StudentId</th>
+                        <th>StudentName</th>
+                        <th>Age</th>
+                        <th>City</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>101</td>
+                        <td>Rahul</td>
+                        <td>22</td>
+                        <td>Pune</td>
+                    </tr>
+
+                    <tr>
+                        <td>102</td>
+                        <td>Priya</td>
+                        <td>23</td>
+                        <td>Mumbai</td>
+                    </tr>
+
+                    <tr>
+                        <td>103</td>
+                        <td>Amit</td>
+                        <td>21</td>
+                        <td>Pune</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- INSERT -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            1. INSERT Statement
+        </h2>
+
+        <p>
+            The <strong>INSERT</strong> statement is used to add new
+            records into a database table.
+        </p>
+
+        <p>
+            When a new student, employee, customer or product needs to
+            be stored in a table, we can use the INSERT statement.
+        </p>
+
+
+        <h4 class="fw-bold mt-4 mb-3">
+            INSERT Syntax
+        </h4>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>INSERT INTO table_name
+(
+    column1,
+    column2,
+    column3
+)
+VALUES
+(
+    value1,
+    value2,
+    value3
+);</code></pre>
+
+        </div>
+
+
+        <h4 class="fw-bold mt-4 mb-3">
+            INSERT Example
+        </h4>
+
+        <p>
+            Suppose we want to add a new student to the Students table.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>INSERT INTO Students
+(
+    StudentId,
+    StudentName,
+    Age,
+    City
+)
+VALUES
+(
+    104,
+    'Neha',
+    22,
+    'Nashik'
+);</code></pre>
+
+        </div>
+
+
+        <h4 class="fw-bold mt-4 mb-3">
+            Output
+        </h4>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>StudentId</th>
+                        <th>StudentName</th>
+                        <th>Age</th>
+                        <th>City</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>101</td>
+                        <td>Rahul</td>
+                        <td>22</td>
+                        <td>Pune</td>
+                    </tr>
+
+                    <tr>
+                        <td>102</td>
+                        <td>Priya</td>
+                        <td>23</td>
+                        <td>Mumbai</td>
+                    </tr>
+
+                    <tr>
+                        <td>103</td>
+                        <td>Amit</td>
+                        <td>21</td>
+                        <td>Pune</td>
+                    </tr>
+
+                    <tr>
+                        <td>104</td>
+                        <td>Neha</td>
+                        <td>22</td>
+                        <td>Nashik</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- INSERT MULTIPLE RECORDS -->
+    <section class="mb-5">
+
+        <h3 class="fw-bold mb-3">
+            Insert Multiple Records
+        </h3>
+
+        <p>
+            SQL Server also allows multiple records to be inserted using
+            a single INSERT statement.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>INSERT INTO Students
+(
+    StudentId,
+    StudentName,
+    Age,
+    City
+)
+VALUES
+(105, 'Kiran', 24, 'Pune'),
+(106, 'Sneha', 22, 'Mumbai'),
+(107, 'Aakash', 23, 'Nashik');</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- UPDATE -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            2. UPDATE Statement
+        </h2>
+
+        <p>
+            The <strong>UPDATE</strong> statement is used to modify
+            existing records in a table.
+        </p>
+
+        <p>
+            For example, if a student's city or age changes, we can
+            update the existing record instead of inserting a new one.
+        </p>
+
+
+        <h4 class="fw-bold mt-4 mb-3">
+            UPDATE Syntax
+        </h4>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>UPDATE table_name
+SET column_name = value
+WHERE condition;</code></pre>
+
+        </div>
+
+
+        <h4 class="fw-bold mt-4 mb-3">
+            UPDATE Example
+        </h4>
+
+        <p>
+            Suppose Rahul's age changes from 22 to 23.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>UPDATE Students
+SET Age = 23
+WHERE StudentId = 101;</code></pre>
+
+        </div>
+
+
+        <h4 class="fw-bold mt-4 mb-3">
+            Output
+        </h4>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>StudentId</th>
+                        <th>StudentName</th>
+                        <th>Age</th>
+                        <th>City</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>101</td>
+                        <td>Rahul</td>
+                        <td>23</td>
+                        <td>Pune</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- UPDATE MULTIPLE COLUMNS -->
+    <section class="mb-5">
+
+        <h3 class="fw-bold mb-3">
+            Update Multiple Columns
+        </h3>
+
+        <p>
+            Multiple columns can be modified using the same UPDATE
+            statement.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>UPDATE Students
+SET Age = 24,
+    City = 'Mumbai'
+WHERE StudentId = 101;</code></pre>
+
+        </div>
+
+        <p class="mt-3">
+            This query changes both the Age and City of the student
+            whose StudentId is 101.
+        </p>
+
+    </section>
+
+
+    <!-- UPDATE WITHOUT WHERE -->
+    <section class="mb-5">
+
+        <h3 class="fw-bold mb-3">
+            UPDATE Without WHERE
+        </h3>
+
+        <p>
+            If the WHERE clause is not specified, the UPDATE statement
+            can modify the selected column for every row in the table.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>UPDATE Students
+SET City = 'Pune';</code></pre>
+
+        </div>
+
+        <div class="alert alert-warning border-0 mt-4">
+
+            <strong>Important:</strong>
+            Always check the WHERE condition before executing an UPDATE
+            when only specific records should be changed.
+
+        </div>
+
+    </section>
+
+
+    <!-- DELETE -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            3. DELETE Statement
+        </h2>
+
+        <p>
+            The <strong>DELETE</strong> statement is used to remove
+            records from a database table.
+        </p>
+
+        <p>
+            We can delete a specific record by using a WHERE condition.
+        </p>
+
+
+        <h4 class="fw-bold mt-4 mb-3">
+            DELETE Syntax
+        </h4>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>DELETE FROM table_name
+WHERE condition;</code></pre>
+
+        </div>
+
+
+        <h4 class="fw-bold mt-4 mb-3">
+            DELETE Example
+        </h4>
+
+        <p>
+            Suppose we want to remove the student whose StudentId is
+            104.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>DELETE FROM Students
+WHERE StudentId = 104;</code></pre>
+
+        </div>
+
+
+        <h4 class="fw-bold mt-4 mb-3">
+            Output
+        </h4>
+
+        <p>
+            After executing the query, the record with StudentId 104
+            will no longer exist in the table.
+        </p>
+
+    </section>
+
+
+    <!-- DELETE WITHOUT WHERE -->
+    <section class="mb-5">
+
+        <h3 class="fw-bold mb-3">
+            DELETE Without WHERE
+        </h3>
+
+        <p>
+            If DELETE is executed without a WHERE condition, all rows
+            from the table are targeted for deletion.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>DELETE FROM Students;</code></pre>
+
+        </div>
+
+        <div class="alert alert-danger border-0 mt-4">
+
+            <strong>Warning:</strong>
+            This statement deletes all rows from the Students table.
+            Use it only when deleting all records is actually intended.
+
+        </div>
+
+    </section>
+
+
+    <!-- INSERT UPDATE DELETE COMPARISON -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            INSERT vs UPDATE vs DELETE
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>Command</th>
+                        <th>Purpose</th>
+                        <th>Operation</th>
+                        <th>Example</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            <strong>INSERT</strong>
+                        </td>
+
+                        <td>
+                            Adds new records.
+                        </td>
+
+                        <td>
+                            Creates rows.
+                        </td>
+
+                        <td>
+                            Add new student
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            <strong>UPDATE</strong>
+                        </td>
+
+                        <td>
+                            Modifies existing records.
+                        </td>
+
+                        <td>
+                            Changes rows.
+                        </td>
+
+                        <td>
+                            Change student age
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            <strong>DELETE</strong>
+                        </td>
+
+                        <td>
+                            Removes records.
+                        </td>
+
+                        <td>
+                            Deletes rows.
+                        </td>
+
+                        <td>
+                            Remove student
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- COMPLETE FLOW -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            INSERT, UPDATE &amp; DELETE Flow
+        </h2>
+
+        <p>
+            These three commands perform different operations on table
+            data.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>
+                    Table
+                      |
+          ------------------------
+          |          |           |
+        INSERT     UPDATE      DELETE
+          |          |           |
+         Add       Modify      Remove
+          |          |           |
+          ------------------------
+                      |
+                 Table Data
+            </code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- REAL WORLD EXAMPLE -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Example 🌍🤓
+        </h2>
+
+        <p>
+            Consider a Student Management System.
+        </p>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>Situation</th>
+                        <th>SQL Command</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>New student joins the institute</td>
+                        <td><strong>INSERT</strong></td>
+                    </tr>
+
+                    <tr>
+                        <td>Student changes city</td>
+                        <td><strong>UPDATE</strong></td>
+                    </tr>
+
+                    <tr>
+                        <td>Student record needs to be removed</td>
+                        <td><strong>DELETE</strong></td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- IMPORTANT POINTS -->
+    <section class="mb-5">
+
+        <div class="alert alert-info border-0">
+
+            <h5 class="fw-bold">
+                Important Points
+            </h5>
+
+            <ul class="mb-0">
+
+                <li class="mb-2">
+                    INSERT is used to add new records.
+                </li>
+
+                <li class="mb-2">
+                    UPDATE is used to modify existing records.
+                </li>
+
+                <li class="mb-2">
+                    DELETE is used to remove records.
+                </li>
+
+                <li class="mb-2">
+                    Use WHERE carefully with UPDATE.
+                </li>
+
+                <li>
+                    Use WHERE carefully with DELETE.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </section>
+
+
+    <!-- SUMMARY -->
+    <section class="mb-4">
+
+        <div class="alert alert-primary border-0">
+
+            <h2 class="fw-bold mb-3">
+                Summary
+            </h2>
+
+            <p class="mb-0">
+                In this section, we learned how INSERT is used to add
+                records, UPDATE is used to modify records and DELETE is
+                used to remove records. We also learned their syntax,
+                practical examples, output and important precautions
+                when using WHERE conditions.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- PREVIOUS / NEXT -->
+
+    <div class="d-flex justify-content-between align-items-center
+                mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/SQLBasics/SelectStatement"
+           class="btn btn-outline-primary">
+
+            ← Previous: SELECT Statement
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/CRUDOperations/Index"
+           class="btn btn-primary">
+
+            Next: CRUD Operations →
+
+        </a>
+
+    </div>
+
+</section>

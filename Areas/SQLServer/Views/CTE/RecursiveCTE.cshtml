@@ -1,0 +1,630 @@
+﻿@{
+    ViewData["Title"] = "Recursive CTE";
+}
+
+<div class="container-fluid px-4 py-4">
+
+    <!-- =========================
+         PAGE HEADER
+    ========================== -->
+
+    <div class="mb-4">
+
+        <h1 class="fw-bold">
+            Recursive CTE
+        </h1>
+
+        <p class="text-muted">
+            Learn how Recursive Common Table Expressions work in SQL Server
+            and how they can be used with hierarchical data.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         WHAT IS RECURSIVE CTE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                What is a Recursive CTE?
+            </h2>
+
+            <p>
+                A <strong>Recursive CTE</strong> is a Common Table Expression
+                that refers to itself.
+            </p>
+
+            <p>
+                Recursive CTEs are useful when data has a hierarchical
+                or parent-child relationship.
+            </p>
+
+            <p class="mb-0">
+                Common examples include employee-manager relationships,
+                organization structures, category hierarchies and
+                folder structures.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         BASIC STRUCTURE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Basic Structure of Recursive CTE
+            </h2>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>WITH CTE_Name AS
+(
+    -- Anchor Member
+
+    SELECT ...
+
+    UNION ALL
+
+    -- Recursive Member
+
+    SELECT ...
+    FROM CTE_Name
+    ...
+)
+SELECT *
+FROM CTE_Name;</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         TWO PARTS
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Two Important Parts
+            </h2>
+
+            <h4 class="fw-bold">
+                1. Anchor Member
+            </h4>
+
+            <p>
+                The anchor member is the initial query that provides
+                the starting rows for the recursive operation.
+            </p>
+
+            <h4 class="fw-bold mt-4">
+                2. Recursive Member
+            </h4>
+
+            <p class="mb-0">
+                The recursive member refers back to the CTE and retrieves
+                the next level of related records.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         EMPLOYEE TABLE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Example: Employee Hierarchy
+            </h2>
+
+            <p>
+                Consider an Employees table containing employees and
+                their managers.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>EmployeeId | EmployeeName | ManagerId
+-----------------------------------------
+1          | Amit          | NULL
+2          | Rahul         | 1
+3          | Priya         | 1
+4          | Sneha         | 2
+5          | Raj           | 2
+6          | Neha          | 3</code></pre>
+
+            <p class="mt-3">
+                Here, <strong>ManagerId</strong> represents the manager
+                of an employee.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         RECURSIVE CTE EXAMPLE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Recursive CTE Example
+            </h2>
+
+            <p>
+                The following query starts with the top-level employee
+                and then finds employees reporting to that employee.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>WITH EmployeeHierarchy AS
+(
+    -- Anchor Member
+    SELECT
+        EmployeeId,
+        EmployeeName,
+        ManagerId,
+        0 AS Level
+    FROM Employees
+    WHERE ManagerId IS NULL
+
+    UNION ALL
+
+    -- Recursive Member
+    SELECT
+        E.EmployeeId,
+        E.EmployeeName,
+        E.ManagerId,
+        EH.Level + 1
+    FROM Employees E
+    INNER JOIN EmployeeHierarchy EH
+        ON E.ManagerId = EH.EmployeeId
+)
+SELECT
+    EmployeeId,
+    EmployeeName,
+    ManagerId,
+    Level
+FROM EmployeeHierarchy
+ORDER BY Level, EmployeeId;</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         RESULT
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Result
+            </h2>
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-striped">
+
+                    <thead class="table-dark">
+
+                        <tr>
+                            <th>EmployeeId</th>
+                            <th>EmployeeName</th>
+                            <th>ManagerId</th>
+                            <th>Level</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>1</td>
+                            <td>Amit</td>
+                            <td>NULL</td>
+                            <td>0</td>
+                        </tr>
+
+                        <tr>
+                            <td>2</td>
+                            <td>Rahul</td>
+                            <td>1</td>
+                            <td>1</td>
+                        </tr>
+
+                        <tr>
+                            <td>3</td>
+                            <td>Priya</td>
+                            <td>1</td>
+                            <td>1</td>
+                        </tr>
+
+                        <tr>
+                            <td>4</td>
+                            <td>Sneha</td>
+                            <td>2</td>
+                            <td>2</td>
+                        </tr>
+
+                        <tr>
+                            <td>5</td>
+                            <td>Raj</td>
+                            <td>2</td>
+                            <td>2</td>
+                        </tr>
+
+                        <tr>
+                            <td>6</td>
+                            <td>Neha</td>
+                            <td>3</td>
+                            <td>2</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         HOW RECURSION WORKS
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                How Recursive CTE Works
+            </h2>
+
+            <ol>
+
+                <li class="mb-3">
+                    The anchor member identifies the starting records.
+                </li>
+
+                <li class="mb-3">
+                    The recursive member finds records related to the
+                    previous level.
+                </li>
+
+                <li class="mb-3">
+                    The process continues until no more matching records
+                    are found.
+                </li>
+
+                <li class="mb-3">
+                    Each recursion can represent another level in the
+                    hierarchy.
+                </li>
+
+                <li>
+                    The final query returns all generated rows.
+                </li>
+
+            </ol>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         LEVEL COLUMN
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Understanding the Level Column
+            </h2>
+
+            <p>
+                A level column can be added to a recursive CTE to
+                identify the depth of each record in the hierarchy.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>0 = Top Level
+1 = First Child Level
+2 = Second Child Level
+3 = Third Child Level
+...</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         UNION ALL
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Why UNION ALL is Used?
+            </h2>
+
+            <p>
+                Recursive CTEs commonly use
+                <strong>UNION ALL</strong> to combine the anchor member
+                and recursive member.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>WITH EmployeeHierarchy AS
+(
+    SELECT ...
+    
+    UNION ALL
+    
+    SELECT ...
+    FROM EmployeeHierarchy
+)
+SELECT *
+FROM EmployeeHierarchy;</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         MAXRECURSION
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                MAXRECURSION
+            </h2>
+
+            <p>
+                SQL Server provides the
+                <strong>MAXRECURSION</strong> query option to control
+                the maximum number of recursion levels.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>WITH EmployeeHierarchy AS
+(
+    SELECT
+        EmployeeId,
+        EmployeeName,
+        ManagerId,
+        0 AS Level
+    FROM Employees
+    WHERE ManagerId IS NULL
+
+    UNION ALL
+
+    SELECT
+        E.EmployeeId,
+        E.EmployeeName,
+        E.ManagerId,
+        EH.Level + 1
+    FROM Employees E
+    INNER JOIN EmployeeHierarchy EH
+        ON E.ManagerId = EH.EmployeeId
+)
+SELECT *
+FROM EmployeeHierarchy
+OPTION (MAXRECURSION 100);</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         USE CASES
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Common Use Cases
+            </h2>
+
+            <ul>
+
+                <li class="mb-2">
+                    Employee-manager hierarchies.
+                </li>
+
+                <li class="mb-2">
+                    Organization structures.
+                </li>
+
+                <li class="mb-2">
+                    Product category hierarchies.
+                </li>
+
+                <li class="mb-2">
+                    Folder and directory structures.
+                </li>
+
+                <li>
+                    Parent-child relationships.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         ADVANTAGES
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Advantages of Recursive CTE
+            </h2>
+
+            <ul>
+
+                <li class="mb-2">
+                    Useful for hierarchical data.
+                </li>
+
+                <li class="mb-2">
+                    Avoids writing multiple queries for different levels.
+                </li>
+
+                <li class="mb-2">
+                    Makes hierarchical queries easier to understand.
+                </li>
+
+                <li class="mb-2">
+                    Can dynamically process multiple hierarchy levels.
+                </li>
+
+                <li>
+                    Useful for parent-child relationships.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         IMPORTANT POINTS
+    ========================== -->
+
+    <div class="alert alert-warning shadow-sm mb-4">
+
+        <h4 class="fw-bold">
+            Important Points
+        </h4>
+
+        <ul class="mb-0">
+
+            <li class="mb-2">
+                A recursive CTE refers to itself.
+            </li>
+
+            <li class="mb-2">
+                It contains an anchor member and a recursive member.
+            </li>
+
+            <li class="mb-2">
+                UNION ALL is commonly used between the two members.
+            </li>
+
+            <li class="mb-2">
+                Recursive CTEs are useful for hierarchical data.
+            </li>
+
+            <li>
+                MAXRECURSION can be used to control recursion depth.
+            </li>
+
+        </ul>
+
+    </div>
+
+
+    <!-- =========================
+         SUMMARY
+    ========================== -->
+
+    <div class="card shadow-sm mb-5">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Summary
+            </h2>
+
+            <p>
+                A Recursive CTE is a CTE that refers to itself. It consists
+                of an anchor member that provides the starting records and
+                a recursive member that retrieves related records.
+            </p>
+
+            <p class="mb-0">
+                Recursive CTEs are especially useful for employee
+                hierarchies, organization structures, categories,
+                folders and other parent-child relationships.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================
+     PREVIOUS / NEXT
+========================== -->
+
+    <div class="d-flex justify-content-between align-items-center
+        mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/CTE/CTEWithAggregate"
+           class="btn btn-outline-primary">
+
+            ← Previous: CTE with Aggregate Functions
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/WindowFunctions/Index"
+           class="btn btn-primary">
+
+            Next: Window Functions Introduction →
+
+        </a>
+
+    </div>
+
+</div>

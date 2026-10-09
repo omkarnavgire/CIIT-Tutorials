@@ -1,0 +1,561 @@
+﻿@{
+    ViewData["Title"] = "AFTER INSERT Trigger";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- =========================
+         PAGE HEADER
+    ========================== -->
+
+    <div class="mb-4">
+
+        <h1 class="fw-bold text-primary">
+            AFTER INSERT Trigger
+        </h1>
+
+        <p class="text-muted fs-5">
+            Learn how to create and use an AFTER INSERT Trigger in SQL Server.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         INTRODUCTION
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                What is an AFTER INSERT Trigger?
+            </h2>
+
+            <p>
+                An <strong>AFTER INSERT Trigger</strong> is a special type of
+                SQL Server trigger that automatically executes after a new
+                record is successfully inserted into a table.
+            </p>
+
+            <p>
+                It is commonly used for auditing, logging, maintaining
+                related data and performing automatic actions after an
+                INSERT operation.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         HOW AFTER INSERT TRIGGER WORKS
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                How AFTER INSERT Trigger Works
+            </h2>
+
+            <p>
+                When an INSERT statement is executed, SQL Server first
+                inserts the new record into the table.
+            </p>
+
+            <p>
+                After the INSERT operation is completed successfully,
+                the AFTER INSERT Trigger automatically executes.
+            </p>
+
+            <div class="alert alert-info">
+
+                <strong>Flow:</strong>
+
+                <br />
+
+                INSERT Operation
+                &nbsp; → &nbsp;
+                Record Inserted
+                &nbsp; → &nbsp;
+                AFTER INSERT Trigger Executes
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         INSERTED TABLE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                The INSERTED Table
+            </h2>
+
+            <p>
+                SQL Server provides a special logical table called
+                <strong>inserted</strong> inside an INSERT Trigger.
+            </p>
+
+            <p>
+                The <strong>inserted</strong> table contains the newly
+                inserted records.
+            </p>
+
+            <div class="alert alert-warning">
+
+                <strong>Important:</strong>
+
+                The <strong>inserted</strong> table can be used inside
+                the trigger to access the newly inserted values.
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         EXAMPLE TABLE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Example: Students Table
+            </h2>
+
+            <p>
+                Let's create a simple Students table for understanding
+                the AFTER INSERT Trigger.
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>CREATE TABLE Students
+(
+    StudentId INT PRIMARY KEY,
+    StudentName VARCHAR(100),
+    City VARCHAR(50),
+    Age INT
+);</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         AUDIT TABLE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Create an Audit Table
+            </h2>
+
+            <p>
+                We can create another table to store information about
+                newly inserted students.
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>CREATE TABLE StudentAudit
+(
+    AuditId INT IDENTITY(1,1) PRIMARY KEY,
+    StudentId INT,
+    StudentName VARCHAR(100),
+    ActionDate DATETIME
+);</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         CREATE AFTER INSERT TRIGGER
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Creating an AFTER INSERT Trigger
+            </h2>
+
+            <p>
+                Now we will create a trigger that automatically stores
+                information in the StudentAudit table whenever a new
+                student is inserted.
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>CREATE TRIGGER trg_AfterInsertStudent
+ON Students
+AFTER INSERT
+AS
+BEGIN
+
+    INSERT INTO StudentAudit
+    (
+        StudentId,
+        StudentName,
+        ActionDate
+    )
+    SELECT
+        StudentId,
+        StudentName,
+        GETDATE()
+    FROM inserted;
+
+END;</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         EXPLANATION
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Explanation
+            </h2>
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-striped">
+
+                    <thead class="table-primary">
+
+                        <tr>
+                            <th>Statement</th>
+                            <th>Purpose</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td><code>CREATE TRIGGER</code></td>
+                            <td>
+                                Creates a new trigger.
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><code>ON Students</code></td>
+                            <td>
+                                Specifies the table on which the trigger
+                                is created.
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><code>AFTER INSERT</code></td>
+                            <td>
+                                Specifies that the trigger executes
+                                after an INSERT operation.
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><code>inserted</code></td>
+                            <td>
+                                Contains the newly inserted records.
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><code>GETDATE()</code></td>
+                            <td>
+                                Returns the current date and time.
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         INSERT RECORD
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Insert a New Student
+            </h2>
+
+            <p>
+                Now insert a new student into the Students table.
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>INSERT INTO Students
+(
+    StudentId,
+    StudentName,
+    City,
+    Age
+)
+VALUES
+(
+    101,
+    'Rahul',
+    'Pune',
+    22
+);</code></pre>
+
+            <div class="alert alert-success mt-3">
+
+                <strong>What happens?</strong>
+
+                <br />
+
+                The student is inserted into the
+                <strong>Students</strong> table.
+
+                <br />
+
+                After the INSERT operation,
+                <strong>trg_AfterInsertStudent</strong>
+                automatically executes.
+
+                <br />
+
+                The student's details are then stored in the
+                <strong>StudentAudit</strong> table.
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         CHECK AUDIT DATA
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Check the Audit Table
+            </h2>
+
+            <p>
+                Execute the following query to check the data inserted
+                by the trigger.
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>SELECT *
+FROM StudentAudit;</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         MULTIPLE INSERTS
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                AFTER INSERT Trigger with Multiple Rows
+            </h2>
+
+            <p>
+                The <strong>inserted</strong> table can contain multiple
+                rows when multiple records are inserted at once.
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>INSERT INTO Students
+(
+    StudentId,
+    StudentName,
+    City,
+    Age
+)
+VALUES
+(102, 'Priya', 'Mumbai', 23),
+(103, 'Amit', 'Pune', 24),
+(104, 'Sneha', 'Nashik', 22);</code></pre>
+
+            <p class="mt-3">
+                The trigger executes once for the INSERT statement and
+                processes the rows available in the
+                <strong>inserted</strong> table.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         IMPORTANT POINTS
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Important Points
+            </h2>
+
+            <ul>
+
+                <li class="mb-2">
+                    AFTER INSERT Trigger executes after an INSERT operation.
+                </li>
+
+                <li class="mb-2">
+                    It is automatically executed by SQL Server.
+                </li>
+
+                <li class="mb-2">
+                    The <strong>inserted</strong> logical table contains
+                    newly inserted rows.
+                </li>
+
+                <li class="mb-2">
+                    A trigger can be used for auditing and logging.
+                </li>
+
+                <li class="mb-2">
+                    A trigger should be designed carefully because it
+                    executes automatically.
+                </li>
+
+                <li class="mb-2">
+                    Triggers can process multiple inserted rows.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         SYNTAX
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                AFTER INSERT Trigger Syntax
+            </h2>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>CREATE TRIGGER TriggerName
+ON TableName
+AFTER INSERT
+AS
+BEGIN
+
+    -- Trigger statements
+
+END;</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         SUMMARY
+    ========================== -->
+
+    <div class="alert alert-primary shadow-sm mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Summary
+        </h2>
+
+        <p class="mb-2">
+            An <strong>AFTER INSERT Trigger</strong> automatically
+            executes after a successful INSERT operation.
+        </p>
+
+        <p class="mb-2">
+            It is useful for auditing, logging and performing
+            automatic operations after new records are inserted.
+        </p>
+
+        <p class="mb-0">
+            The <strong>inserted</strong> logical table provides access
+            to the newly inserted records inside the trigger.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+     PREVIOUS / NEXT
+========================== -->
+
+    <div class="d-flex justify-content-between align-items-center
+        mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/Triggers/Index"
+           class="btn btn-outline-primary">
+
+            ← Previous: Triggers Introduction
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/Triggers/AfterUpdateTrigger"
+           class="btn btn-primary">
+
+            Next: AFTER UPDATE Trigger →
+
+        </a>
+
+    </div>
+
+</div>

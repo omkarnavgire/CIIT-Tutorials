@@ -1,0 +1,38 @@
+@{
+    ViewData["Title"] = "Before Creating A Azure Virtual Machine";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+                <div class="azure-notes-content">
+                    <pre class="azure-notes-text">Before Creating A Azure Virtual Machine
+There are some important points we need to know before creating a virtual machine in
+Azure.
+   •   We should decide the name of the application resource on which we are working.
+       The application on which we are working and the name of the resource of that
+       should be properly mentioned.
+   •   The second step is we have to decide what is the location of our VM. It means the
+       location from where our resources are stored.
+   •   Then the size of the VM is decided depending on our workload.
+   •   The VM runs on which operating system should also be decided.
+   •   We should know all the configurations of the VM we are creating on Azure.</pre>
+                </div>
+            </div>
+        </div>
+    
+
+            @await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureLessonNavigation.cshtml")
+</section>
+</div>
+<style>
+.azure-notes-text{white-space:pre-wrap;word-break:normal;font-family:inherit;font-size:1rem;line-height:1.7;background:#fff;border:0;padding:0;margin:0;color:#212529;}
+.azure-notes-content img{max-height:720px;}
+</style>

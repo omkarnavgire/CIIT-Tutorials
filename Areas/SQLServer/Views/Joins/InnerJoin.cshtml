@@ -1,0 +1,590 @@
+﻿@{
+    ViewData["Title"] = "INNER JOIN";
+}
+
+<section>
+
+    <!-- PAGE INTRODUCTION -->
+
+    <div class="mb-5">
+
+        <h1 class="fw-bold mb-3">
+            INNER JOIN
+        </h1>
+
+        <p class="lead text-muted">
+            INNER JOIN is used to return only the records that have
+            matching values in both tables.
+        </p>
+
+        <p>
+            It is one of the most commonly used JOINs in SQL Server.
+            When two tables are related through a common column,
+            INNER JOIN can be used to retrieve matching information
+            from both tables.
+        </p>
+
+    </div>
+
+
+    <!-- WHAT IS INNER JOIN -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            What is INNER JOIN?
+        </h2>
+
+        <p>
+            An <strong>INNER JOIN</strong> returns rows when there is
+            a matching value in both the left table and the right
+            table.
+        </p>
+
+        <p>
+            If a record exists in one table but there is no matching
+            record in the other table, that record is not included
+            in the result.
+        </p>
+
+    </section>
+
+
+    <!-- BASIC SYNTAX -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            INNER JOIN Syntax
+        </h2>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT columns
+FROM Table1
+INNER JOIN Table2
+    ON Table1.CommonColumn = Table2.CommonColumn;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- SAMPLE TABLES -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Example Tables
+        </h2>
+
+        <h4 class="fw-bold mt-4 mb-3">
+            Students Table
+        </h4>
+
+        <div class="table-responsive mb-4">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>StudentId</th>
+                        <th>StudentName</th>
+                        <th>CourseId</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>101</td>
+                        <td>Rahul</td>
+                        <td>1</td>
+                    </tr>
+
+                    <tr>
+                        <td>102</td>
+                        <td>Priya</td>
+                        <td>2</td>
+                    </tr>
+
+                    <tr>
+                        <td>103</td>
+                        <td>Amit</td>
+                        <td>1</td>
+                    </tr>
+
+                    <tr>
+                        <td>104</td>
+                        <td>Neha</td>
+                        <td>3</td>
+                    </tr>
+
+                    <tr>
+                        <td>105</td>
+                        <td>Rohan</td>
+                        <td>5</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <h4 class="fw-bold mt-4 mb-3">
+            Courses Table
+        </h4>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>CourseId</th>
+                        <th>CourseName</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>1</td>
+                        <td>.NET Full Stack</td>
+                    </tr>
+
+                    <tr>
+                        <td>2</td>
+                        <td>Java Full Stack</td>
+                    </tr>
+
+                    <tr>
+                        <td>3</td>
+                        <td>Python Full Stack</td>
+                    </tr>
+
+                    <tr>
+                        <td>4</td>
+                        <td>Software Testing</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- COMMON COLUMN -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Common Column
+        </h2>
+
+        <p>
+            In this example, <strong>CourseId</strong> is the common
+            column between the Students and Courses tables.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>Students.CourseId = Courses.CourseId</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- BASIC EXAMPLE -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Basic INNER JOIN Example
+        </h2>
+
+        <p>
+            To display student names along with their course names,
+            we can use the following query:
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT
+    Students.StudentName,
+    Courses.CourseName
+FROM Students
+INNER JOIN Courses
+    ON Students.CourseId = Courses.CourseId;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- RESULT -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Result
+        </h2>
+
+        <p>
+            INNER JOIN returns only those students whose CourseId
+            exists in the Courses table.
+        </p>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>StudentName</th>
+                        <th>CourseName</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>Rahul</td>
+                        <td>.NET Full Stack</td>
+                    </tr>
+
+                    <tr>
+                        <td>Priya</td>
+                        <td>Java Full Stack</td>
+                    </tr>
+
+                    <tr>
+                        <td>Amit</td>
+                        <td>.NET Full Stack</td>
+                    </tr>
+
+                    <tr>
+                        <td>Neha</td>
+                        <td>Python Full Stack</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <div class="alert alert-info border-0 mt-4">
+
+            <strong>Notice:</strong>
+            Rohan has CourseId 5, but CourseId 5 does not exist in
+            the Courses table. Therefore, Rohan is not included in
+            the INNER JOIN result.
+
+        </div>
+
+    </section>
+
+
+    <!-- INNER JOIN WITH WHERE -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            INNER JOIN with WHERE
+        </h2>
+
+        <p>
+            INNER JOIN can be combined with a WHERE clause to filter
+            the matching records.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT
+    Students.StudentName,
+    Courses.CourseName
+FROM Students
+INNER JOIN Courses
+    ON Students.CourseId = Courses.CourseId
+WHERE Courses.CourseName = '.NET Full Stack';</code></pre>
+
+        </div>
+
+        <p class="mt-3">
+            This returns only students enrolled in the .NET Full
+            Stack course.
+        </p>
+
+    </section>
+
+
+    <!-- INNER JOIN WITH ALIAS -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            INNER JOIN using Table Aliases
+        </h2>
+
+        <p>
+            Table aliases can make JOIN queries shorter and easier
+            to read.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT
+    S.StudentName,
+    C.CourseName
+FROM Students AS S
+INNER JOIN Courses AS C
+    ON S.CourseId = C.CourseId;</code></pre>
+
+        </div>
+
+        <p class="mt-3">
+            Here, <strong>S</strong> represents Students and
+            <strong>C</strong> represents Courses.
+        </p>
+
+    </section>
+
+
+    <!-- SELECT SPECIFIC COLUMNS -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Selecting Specific Columns
+        </h2>
+
+        <p>
+            We do not always need to select every column from both
+            tables. We can select only the required columns.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT
+    S.StudentId,
+    S.StudentName,
+    C.CourseName
+FROM Students AS S
+INNER JOIN Courses AS C
+    ON S.CourseId = C.CourseId;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- MULTIPLE TABLES -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            INNER JOIN with Multiple Tables
+        </h2>
+
+        <p>
+            INNER JOIN can also be used to combine more than two
+            tables.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT
+    S.StudentName,
+    C.CourseName,
+    T.TrainerName
+FROM Students AS S
+INNER JOIN Courses AS C
+    ON S.CourseId = C.CourseId
+INNER JOIN Trainers AS T
+    ON C.TrainerId = T.TrainerId;</code></pre>
+
+        </div>
+
+        <p class="mt-3">
+            This example demonstrates how multiple related tables
+            can be combined using INNER JOIN.
+        </p>
+
+    </section>
+
+
+    <!-- INNER JOIN VS JOIN -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            INNER JOIN vs JOIN
+        </h2>
+
+        <p>
+            In SQL Server, <strong>JOIN</strong> without a specified
+            JOIN type is treated as an <strong>INNER JOIN</strong>.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT
+    S.StudentName,
+    C.CourseName
+FROM Students AS S
+JOIN Courses AS C
+    ON S.CourseId = C.CourseId;</code></pre>
+
+        </div>
+
+        <p class="mt-3">
+            The above query produces the same type of result as an
+            INNER JOIN.
+        </p>
+
+    </section>
+
+
+    <!-- IMPORTANT -->
+
+    <section class="mb-5">
+
+        <div class="alert alert-warning border-0">
+
+            <h4 class="fw-bold mb-3">
+                Important Points
+            </h4>
+
+            <ul class="mb-0">
+
+                <li class="mb-2">
+                    INNER JOIN returns matching records from both
+                    tables.
+                </li>
+
+                <li class="mb-2">
+                    Non-matching records are excluded.
+                </li>
+
+                <li class="mb-2">
+                    The ON clause defines the relationship between
+                    the tables.
+                </li>
+
+                <li class="mb-2">
+                    INNER JOIN can be combined with WHERE, ORDER BY
+                    and other SQL clauses.
+                </li>
+
+                <li class="mb-2">
+                    Table aliases make complex JOIN queries easier
+                    to read.
+                </li>
+
+                <li>
+                    JOIN without a specified type means INNER JOIN.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </section>
+
+
+    <!-- SUMMARY -->
+
+    <section class="mb-4">
+
+        <div class="alert alert-primary border-0">
+
+            <h2 class="fw-bold mb-3">
+                Summary
+            </h2>
+
+            <p class="mb-0">
+                INNER JOIN combines two or more related tables and
+                returns only the rows that have matching values in
+                both tables. The ON clause specifies the relationship
+                between the tables. INNER JOIN is commonly used to
+                retrieve related information from normalized
+                database tables.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- PREVIOUS / NEXT -->
+
+    <div class="d-flex justify-content-between align-items-center
+        mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/Joins/Index"
+           class="btn btn-outline-primary">
+
+            ← Previous: Joins Introduction
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/Joins/LeftJoin"
+           class="btn btn-primary">
+
+            Next: LEFT JOIN →
+
+        </a>
+
+    </div>
+
+</section>

@@ -1,0 +1,309 @@
+@{
+    Layout = "~/Areas/Jenkins/Views/Shared/JenkinsLayout.cshtml";
+    ViewData["Title"] = "Jenkins and AWS";
+}
+
+<style>
+    #jenkins-and-aws-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+    #jenkins-and-aws-page pre code {
+        background: transparent !important;
+        color: #ffffff !important;
+    }
+
+    #jenkins-and-aws-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #jenkins-and-aws-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+    #jenkins-and-aws-page .info-card h5 {
+        color: #5b21b6;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+
+    #jenkins-and-aws-page .example-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+    }
+</style>
+
+<main id="jenkins-and-aws-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Jenkins/Views/Shared/JenkinsTopics.cshtml"
+            )
+
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+
+                <h1 class="fw-bold">
+                    Jenkins and AWS
+                </h1>
+
+                <p class="lead">
+                    Learn the concepts, configuration, commands, and practical workflow required to integrate Jenkins with Amazon Web Services (AWS) in a real cloud environment.
+                </p>
+
+            </div>
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    What is Jenkins and AWS Integration?
+                </h2>
+
+                <p>
+                    Integrating Jenkins with <strong>Amazon Web Services (AWS)</strong> transitions your CI/CD setup from static local builds into an automated, highly available, and auto-scaling cloud environment.
+                </p>
+
+                <p>
+                    By combining the two platforms, Jenkins acts as the orchestration brain that securely provisions cloud infrastructure via code, triggers deployment pipelines, and manages ephemeral worker nodes directly inside your AWS Virtual Private Cloud (VPC).
+                </p>
+
+                <div class="alert alert-info">
+                    <strong>Simple Definition:</strong> Jenkins and AWS integration enables pipelines to securely communicate with cloud infrastructure, dynamically scaling compute resources on demand while safely orchestrating application deployments across services like Amazon ECR, ECS, and EKS.
+                </div>
+
+            </div>
+
+            <!-- DOCKER INTEGRATION IMAGE ATTACHMENT -->
+            <div class="my-4 text-center bg-light rounded shadow-sm border p-3">
+                <img src="~/Images/Jenkins/aws-jenkins-integration.jpg"
+                     asp-append-version="true"
+                     alt="Jenkins and AWS Cloud Automation Lifecycle Flow Diagram"
+                     class="img-fluid rounded"
+                     style="max-width: 100%; height: auto;" />
+                <div class="form-text mt-2 text-muted small">
+                    Visualizing the continuous delivery model showing secure authentication, dynamic spot instance provisioning, and automated container scaling on AWS.
+                </div>
+            </div>
+
+            <!-- KEY CONCEPTS -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Key Concepts
+                </h2>
+
+                <div class="row g-3">
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Dynamic Agent Scaling</h5>
+                            <p class="mb-0">Using the **Amazon EC2 Fleet Plugin**, Jenkins can boot up ephemeral **EC2 Spot Instances** when build queues spike and terminate them immediately upon completion to drastically cut compute infrastructure costs.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>IAM Roles & OIDC Security</h5>
+                            <p class="mb-0">Instead of storing risky, permanent <code>AWS_ACCESS_KEY_ID</code> credentials inside Jenkins, best practices assign **AWS IAM Instance Profiles** or **OpenID Connect (OIDC)** tokens directly to Jenkins nodes for secure, short-lived session access.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Amazon ECR & Service Push</h5>
+                            <p class="mb-0">Automate container storage by using Jenkins to log in, build, tag, and securely push Docker microservices into your **Amazon Elastic Container Registry (ECR)** before triggering rollouts on container tasks.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Infrastructure as Code (IaC)</h5>
+                            <p class="mb-0">Jenkins pipelines use step wrappers like the **AWS Steps Plugin** to trigger tool chains like **Terraform** or **Ansible**, creating repeatable, auditable architecture baselines directly out of your Git repository workflows.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- EXAMPLE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Practical Jenkins Example
+                </h2>
+
+                <p>The following production Declarative Pipeline demonstrates secure cloud authentication using the <code>withAWS</code> wrapper to build a container, push it to **Amazon ECR**, and update a running service on **Amazon ECS**:</p>
+
+                <pre><code>pipeline {
+    agent any
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    environment {
+        AWS_REGION     = 'us-east-1'
+        AWS_CREDS_ID   = 'aws-jenkins-service-account' // Defined securely in Jenkins Credentials Locker
+        ECR_REGISTRY   = '://amazonaws.com'
+        IMAGE_NAME     = 'production-web-app'
+        IMAGE_TAG      = "${BUILD_NUMBER}"
+        ECS_CLUSTER    = 'production-core-cluster'
+        ECS_SERVICE    = 'web-app-service'
+    }
+
+    stages {
+        stage('Checkout Source') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('AWS ECR Authenticate & Push') {
+            steps {
+                // withAWS abstracts away complex underlying AWS CLI configuration blocks safely
+                withAWS(region: "${AWS_REGION}", credentials: "${AWS_CREDS_ID}") {
+                    script {
+                        echo "Authenticating against Amazon ECR Registry..."
+                        sh "aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${ECR_REGISTRY}"
+                        
+                        echo "Compiling cloud production build: ${IMAGE_NAME}:${IMAGE_TAG}"
+                        sh "docker build -t ${ECR_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG} ."
+                        sh "docker push ${ECR_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}"
+                    }
+                }
+            }
+        }
+
+        stage('Trigger ECS Deployment') {
+            steps {
+                withAWS(region: "${AWS_REGION}", credentials: "${AWS_CREDS_ID}") {
+                    script {
+                        echo "Forcing a clean rolling deployment refresh across the cluster tasks..."
+                        sh "aws ecs update-service --cluster ${ECS_CLUSTER} --service ${ECS_SERVICE} --force-new-deployment"
+                    }
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            script {
+                echo "Wiping local pipeline runner workspace paths..."
+                cleanWs()
+            }
+        }
+    }
+}</code></pre>
+
+            </div>
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Practice Exercise
+                </h2>
+
+                <ol>
+                    <li class="mb-2">Log into your <strong>AWS Management Console</strong>, navigate to IAM, and create a service account policy granting limited permissions to access your targeted ECR and ECS instances.</li>
+                    <li class="mb-2">Open Jenkins and go to <strong>Manage Jenkins</strong> &gt; <strong>Credentials</strong> to map your access secrets to a `Username with password` or `Secret text` profile named <code>aws-jenkins-service-account</code>.</li>
+                    <li class="mb-2">Commit the sample <code>Jenkinsfile</code> pipeline into your repository and trigger a manual <strong>Build Now</strong> orchestration pass.</li>
+                    <li>Inspect the <strong>Console Output</strong> logs to confirm successful authorization tokens were returned, and verify your new build number image is sitting inside your AWS ECR console dashboard.</li>
+                </ol>
+
+            </div>
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+                <h2 class="h4 fw-bold">Summary</h2>
+                <p class="mb-0">You have completed the <strong>Jenkins and AWS</strong> integration overview. Continue through the syllabus to learn how to structure deep-dive configuration modules, write secure access templates, and manage single nodes running directly as dedicated cloud endpoints.</p>
+            </div>
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+                <a class="btn btn-outline-primary" href="@Url.Action("DockerRegistry", "CloudDevOps", new { area = "Jenkins" })">← Previous: Docker Registry Push</a>
+                <a class="btn btn-primary" href="@Url.Action("Ec2Deployment", "CloudDevOps", new { area = "Jenkins" })">Next: EC2 Deployment →</a>
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

@@ -1,0 +1,103 @@
+@{
+    ViewData["Title"] = "Azure Market Competition";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+    <!-- LEFT SIDEBAR -->
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+                <h1 class="fw-bold mb-3">Azure Market Competition</h1>
+                <p class="lead text-muted mb-4">
+                    Analyze the global cloud infrastructure landscape and understand the specialized strengths, market positioning, and core offerings of Microsoft Azure's major competitors.
+                </p>
+
+                <!-- INTRODUCTION SUMMARY -->
+                <div class="mb-4">
+                    <p>
+                        The cloud computing industry is a highly competitive space driven by continuous technological evolution. While Microsoft Azure commands a dominant position across enterprise markets, several other key hyper-scalers and enterprise technology providers offer alternative cloud infrastructure solutions.
+                    </p>
+                </div>
+
+                <!-- COMPETITORS MARKET MATRIX -->
+                <h3 class="fw-bold h4 text-dark mb-3">Major Hyperscale & Enterprise Competitors</h3>
+                <div class="row g-3 mb-4">
+                    <!-- AWS -->
+                    <div class="col-md-6">
+                        <div class="competitor-card p-4 border rounded bg-light h-100 border-start border-4 border-warning">
+                            <h5 class="fw-bold mb-2 text-dark">Amazon Web Services (AWS)</h5>
+                            <p class="mb-0 small text-muted">
+                                The historic market pioneer and current leader. AWS provides an expansive catalog of global cloud solutions with an incredibly broad geographical data centre infrastructure footprint, setting standard industry benchmarks for service variety.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- GCP -->
+                    <div class="col-md-6">
+                        <div class="competitor-card p-4 border rounded bg-light h-100 border-start border-4 border-danger">
+                            <h5 class="fw-bold mb-2 text-dark">Google Cloud Platform (GCP)</h5>
+                            <p class="mb-0 small text-muted">
+                                Highly regarded for cloud-native architectural solutions and container innovation. GCP stands out with premium data analytics warehouses (like BigQuery), specialized machine learning frameworks (TensorFlow), and native managed engineering systems.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- IBM CLOUD -->
+                    <div class="col-md-6">
+                        <div class="competitor-card p-4 border rounded bg-light h-100 border-start border-4 border-primary">
+                            <h5 class="fw-bold mb-2 text-dark">IBM Cloud</h5>
+                            <p class="mb-0 small text-muted">
+                                Focuses heavily on hybrid cloud migrations, cognitive consulting, and secure enterprise financial client domains. IBM offers robust technical configurations for advanced artificial intelligence frameworks, dedicated blockchain structures, and industrial IoT matrices.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- OCI -->
+                    <div class="col-md-6">
+                        <div class="competitor-card p-4 border rounded bg-light h-100 border-start border-4 border-info">
+                            <h5 class="fw-bold mb-2 text-dark">Oracle Cloud Infrastructure (OCI)</h5>
+                            <p class="mb-0 small text-muted">
+                                Optimised explicitly for high-performance enterprise application layers and heavy data management. OCI leverages Oracle's legacy database supremacy to offer deeply competitive pricing models for bare metal nodes and clustered database platforms.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MARKET STUDY TASK BOX -->
+                <div class="concept-box p-4 rounded border bg-white shadow-sm mt-5">
+                    <h4 class="fw-bold h5 mb-3 text-dark">Strategic Comparison Task</h4>
+                    <p class="small text-muted mb-0">
+                        When evaluating cloud providers for an enterprise migration strategy, consider factors beyond service count—such as cost predictability, current hybrid connectivity parameters, and tool compatibility. Use your sidebar topics navigation menu to review the direct feature comparison table between <strong>AWS, GCP, and Azure</strong> to see how their core storage and compute layers stack up.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+        @await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureLessonNavigation.cshtml")
+    </section>
+</div>
+
+<style>
+    .competitor-card {
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+        .competitor-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            background-color: #ffffff !important;
+        }
+
+    .concept-box {
+        border-left: 4px solid #5b21b6 !important;
+    }
+</style>

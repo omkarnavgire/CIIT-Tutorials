@@ -1,0 +1,249 @@
+@{
+    Layout = "~/Areas/GitHub/Views/Shared/GithubLayout.cshtml";
+    ViewData["Title"] = "Pulling Updates";
+}
+
+<main id="tutorials" class="container py-1">
+    <div class="row g-4">
+
+        <!-- Sidebar Navigation -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/GitHub/Views/Shared/GithubTopics.cshtml")
+        </aside>
+
+        <!-- Reading Content Area -->
+        <section class="col-lg-9">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4 p-lg-5">
+
+                    <h1 class="fw-bold mb-3">Pulling Updates</h1>
+
+                    <p>
+                        In Git, <strong>pulling updates</strong> means
+                        downloading the latest changes from a remote repository,
+                        such as GitHub, GitLab, or Bitbucket, and integrating
+                        them into your current local branch.
+                    </p>
+
+                    <p>
+                        Git is a distributed version control system, so each
+                        developer works with a separate local copy of the
+                        repository. Running <code>git pull</code> helps bring
+                        your local branch up to date with changes shared by
+                        your team.
+                    </p>
+
+                    <div class="alert alert-info">
+                        <strong>Remember:</strong>
+                        Pull regularly to reduce synchronization problems
+                        and discover conflicts earlier.
+                    </div>
+
+                    <hr class="my-4" />
+
+                    <!-- What Happens If You Don't Pull -->
+                    <h3 class="fw-bold mb-3">
+                        What Happens If You Don't Pull?
+                    </h3>
+
+                    <p>
+                        If you continue coding without integrating remote
+                        changes, you may face these three common problems.
+                    </p>
+
+                    <h5 class="fw-semibold mt-4">
+                        1. Rejected Pushes (Non-Fast-Forward)
+                    </h5>
+
+                    <p>
+                        When you try to push your work, Git may reject the
+                        push if the remote branch contains commits that your
+                        local branch does not have.
+                    </p>
+
+                    <p>
+                        This safety check prevents you from unintentionally
+                        overwriting changes already present on the remote.
+                    </p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git pull origin &lt;branch-name&gt;</code></pre>
+
+                    <p>
+                        Integrate the remote changes, resolve any conflicts
+                        if necessary, and then try pushing again.
+                    </p>
+
+                    <h5 class="fw-semibold mt-4">
+                        2. More Difficult Merge Conflicts
+                    </h5>
+
+                    <p>
+                        The longer your branch stays out of date, the more
+                        changes may accumulate between your branch and the
+                        remote branch.
+                    </p>
+
+                    <p>
+                        If different developers modify overlapping sections
+                        of a file, Git may require you to resolve conflicts
+                        manually before completing the integration.
+                    </p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git status</code></pre>
+
+                    <p>
+                        Use <code>git status</code> to identify files that
+                        require conflict resolution.
+                    </p>
+
+                    <h5 class="fw-semibold mt-4">
+                        3. Working with Outdated Code
+                    </h5>
+
+                    <p>
+                        Your team may change database structures, fix bugs,
+                        update functions, or replace existing files while
+                        you are working locally.
+                    </p>
+
+                    <p>
+                        Pulling updates helps you integrate these changes
+                        earlier and reduces the risk of building features
+                        on outdated code.
+                    </p>
+
+                    <hr class="my-4" />
+
+                    <!-- How to Pull -->
+                    <h3 class="fw-bold mb-3">How to Pull Updates</h3>
+
+                    <h5 class="fw-semibold mt-4">1. Check Your Current Branch</h5>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git branch</code></pre>
+
+                    <p>
+                        The asterisk (*) identifies your currently selected
+                        local branch.
+                    </p>
+
+                    <h5 class="fw-semibold mt-4">2. Check Your Working Directory</h5>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git status</code></pre>
+
+                    <p>
+                        Commit or safely stash your work if necessary before
+                        pulling. This helps prevent conflicts with local changes.
+                    </p>
+
+                    <h5 class="fw-semibold mt-4">3. Pull from the Remote Branch</h5>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git pull origin main</code></pre>
+
+                    <p>
+                        Fetches changes from the remote <code>main</code>
+                        branch and integrates them into your current branch.
+                        Make sure you are on the intended destination branch.
+                    </p>
+
+                    <h5 class="fw-semibold mt-4">4. Verify the Result</h5>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git status</code></pre>
+
+                    <p>
+                        Review the result and resolve any conflicts reported
+                        by Git before continuing your work.
+                    </p>
+
+                    <hr class="my-4" />
+
+                    <!-- Best Practices -->
+                    <h3 class="fw-bold mb-3">Best Practice: When Should You Pull?</h3>
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped align-middle">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>When</th>
+                                    <th>Why</th>
+                                    <th>Suggested Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>At the start of the day</td>
+                                    <td>Start with recent team changes</td>
+                                    <td><code>git pull</code></td>
+                                </tr>
+                                <tr>
+                                    <td>Before creating a feature branch</td>
+                                    <td>Base new work on an updated main branch</td>
+                                    <td><code>git switch main</code>, then pull</td>
+                                </tr>
+                                <tr>
+                                    <td>Before pushing your changes</td>
+                                    <td>Check for new remote commits</td>
+                                    <td>Pull or fetch and integrate as appropriate</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <hr class="my-4" />
+
+                    <!-- Pull vs Pull Rebase -->
+                    <h3 class="fw-bold mb-3">Bonus: Git Pull vs. Git Pull --Rebase</h3>
+
+                    <h5 class="fw-semibold mt-4">Standard Pull</h5>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git pull origin main</code></pre>
+
+                    <p>
+                        Fetches remote changes and integrates them using
+                        your configured pull strategy, commonly a merge.
+                    </p>
+
+                    <h5 class="fw-semibold mt-4">Pull with Rebase</h5>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git pull --rebase origin main</code></pre>
+
+                    <p>
+                        Fetches remote changes and rebases your local
+                        commits on top of the updated remote branch,
+                        helping maintain a linear history.
+                    </p>
+
+                    <div class="alert alert-warning">
+                        <strong>Important:</strong>
+                        Rebasing rewrites the commit IDs of the commits
+                        being replayed. Avoid rebasing shared commits unless
+                        your team understands and agrees with that workflow.
+                    </div>
+
+                    <div class="alert alert-success mt-4">
+                        <strong>Key Takeaway:</strong>
+                        Pulling updates helps keep your local branch
+                        synchronized with your team. Check your working
+                        directory, integrate remote changes regularly,
+                        and resolve conflicts before continuing.
+                    </div>
+
+                    <!-- Previous / Next Navigation -->
+                    <div class="d-flex justify-content-between align-items-center gap-3 flex-wrap mt-5 pt-4 border-top">
+
+                        <a class="btn btn-outline-primary"
+                           href="@Url.Action("PushingCode", "RemoteCollaboration", new { area = "GitHub" })">
+                            &larr; Previous: Pushing Code
+                        </a>
+
+                        <a class="btn btn-primary"
+                           href="@Url.Action("PullRequests", "RemoteCollaboration", new { area = "GitHub" })">
+                            Next: Pull Requests (PRs) &rarr;
+                        </a>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+</main>

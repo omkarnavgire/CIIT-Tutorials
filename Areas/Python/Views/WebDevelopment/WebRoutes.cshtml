@@ -1,0 +1,756 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Python Web Routes";
+}
+
+<style>
+    #python-web-routes-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #python-web-routes-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #python-web-routes-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #python-web-routes-page .diagram-box {
+        background: #ffffff;
+        border: 2px solid #6f42c1;
+        border-radius: 10px;
+        padding: 18px;
+        text-align: center;
+        height: 100%;
+    }
+
+        #python-web-routes-page .diagram-box h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        #python-web-routes-page .diagram-box p {
+            margin-bottom: 0;
+            font-size: 14px;
+            color: #495057;
+        }
+
+    #python-web-routes-page .diagram-arrow {
+        text-align: center;
+        font-size: 28px;
+        font-weight: 700;
+        color: #6f42c1;
+        padding: 8px 0;
+    }
+
+    #python-web-routes-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #python-web-routes-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+        }
+</style>
+
+<main id="python-web-routes-page" class="container py-5">
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+                <h1 class="fw-bold">Web Routes in Python</h1>
+
+                <p class="lead">
+                    Web routes connect URLs to Python functions and define
+                    how a web application responds to client requests.
+                </p>
+            </div>
+
+            <!-- WHAT ARE WEB ROUTES -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">What are Web Routes?</h2>
+
+                <p>
+                    A web route is a URL pattern that tells a web application
+                    which function should execute when a client requests that URL.
+                </p>
+
+                <p>
+                    For example, a website can have separate routes for the
+                    home page, about page, courses page, and contact page.
+                </p>
+
+                <div class="concept-box mt-3">
+                    <h5 class="fw-bold">Simple Definition</h5>
+
+                    <p class="mb-0">
+                        A <strong>web route</strong> maps a URL to a
+                        Python function or API endpoint.
+                    </p>
+                </div>
+            </div>
+
+            <!-- ROUTING FLOW -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Web Routing Flow</h2>
+
+                <div class="row g-3 mt-3">
+
+                    <div class="col-md-3">
+                        <div class="diagram-box">
+                            <h5>1. Client</h5>
+
+                            <p>
+                                Browser or application sends a request.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-1 d-flex align-items-center justify-content-center">
+                        <div class="diagram-arrow">→</div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="diagram-box">
+                            <h5>2. URL</h5>
+
+                            <p>
+                                Request contains a URL and HTTP method.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-1 d-flex align-items-center justify-content-center">
+                        <div class="diagram-arrow">→</div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="diagram-box">
+                            <h5>3. Python Route</h5>
+
+                            <p>
+                                Matching route executes a Python function
+                                and returns a response.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- BASIC FLASK ROUTE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Basic Flask Route</h2>
+
+                <p>
+                    Flask uses the route decorator to connect a URL with
+                    a Python function.
+                </p>
+
+                <pre><code>from flask import Flask
+
+app = Flask(__name__)
+
+&#64;app.route("/")
+def home():
+    return "Welcome to the Home Page"
+
+if __name__ == "__main__":
+    app.run(debug=True)</code></pre>
+
+                <p class="mt-3">
+                    When the browser requests <strong>/</strong>,
+                    Flask executes the <strong>home()</strong> function.
+                </p>
+            </div>
+
+            <!-- MULTIPLE ROUTES -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Creating Multiple Routes</h2>
+
+                <p>
+                    A Flask application can define multiple routes for
+                    different pages.
+                </p>
+
+                <pre><code>from flask import Flask
+
+app = Flask(__name__)
+
+&#64;app.route("/")
+def home():
+    return "Home Page"
+
+&#64;app.route("/about")
+def about():
+    return "About Page"
+
+&#64;app.route("/courses")
+def courses():
+    return "Courses Page"
+
+&#64;app.route("/contact")
+def contact():
+    return "Contact Page"
+
+if __name__ == "__main__":
+    app.run(debug=True)</code></pre>
+            </div>
+
+            <!-- ROUTE TABLE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Understanding Routes</h2>
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered">
+
+                        <thead class="table-light">
+                            <tr>
+                                <th>URL</th>
+                                <th>Function</th>
+                                <th>Purpose</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>/</td>
+                                <td>home()</td>
+                                <td>Displays the home page</td>
+                            </tr>
+
+                            <tr>
+                                <td>/about</td>
+                                <td>about()</td>
+                                <td>Displays the about page</td>
+                            </tr>
+
+                            <tr>
+                                <td>/courses</td>
+                                <td>courses()</td>
+                                <td>Displays the courses page</td>
+                            </tr>
+
+                            <tr>
+                                <td>/contact</td>
+                                <td>contact()</td>
+                                <td>Displays the contact page</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+            </div>
+
+            <!-- HTTP METHODS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Routes and HTTP Methods</h2>
+
+                <p>
+                    A route can be associated with one or more HTTP methods.
+                    The most common methods are GET and POST.
+                </p>
+
+                <div class="row g-3 mt-2">
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+
+                            <h5>GET</h5>
+
+                            <p>
+                                GET is commonly used to retrieve information
+                                from the server.
+                            </p>
+
+                            <pre><code>&#64;app.route("/courses", methods=["GET"])
+def get_courses():
+    return "Course List"</code></pre>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+
+                            <h5>POST</h5>
+
+                            <p>
+                                POST is commonly used to send data to the server.
+                            </p>
+
+                            <pre><code>&#64;app.route("/courses", methods=["POST"])
+def create_course():
+    return "Course Created"</code></pre>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- VARIABLE ROUTES -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Dynamic Routes</h2>
+
+                <p>
+                    A dynamic route allows a value to be included in the URL.
+                    This is useful when the application needs to work with
+                    different records.
+                </p>
+
+                <pre><code>from flask import Flask
+
+app = Flask(__name__)
+
+&#64;app.route("/student/&lt;name&gt;")
+def student(name):
+    return "Student: " + name
+
+if __name__ == "__main__":
+    app.run(debug=True)</code></pre>
+
+                <p class="mt-3">
+                    Example URL:
+                </p>
+
+                <pre><code>/student/Rahul</code></pre>
+
+                <p>
+                    The value <strong>Rahul</strong> is passed to the
+                    <strong>name</strong> parameter.
+                </p>
+            </div>
+
+            <!-- INTEGER ROUTES -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Integer Route Parameters</h2>
+
+                <p>
+                    Flask can also define routes that expect an integer value.
+                </p>
+
+                <pre><code>from flask import Flask
+
+app = Flask(__name__)
+
+&#64;app.route("/student/&lt;int:id&gt;")
+def student(id):
+    return "Student ID: " + str(id)
+
+if __name__ == "__main__":
+    app.run(debug=True)</code></pre>
+
+                <p class="mt-3">
+                    Example:
+                </p>
+
+                <pre><code>/student/101</code></pre>
+
+                <div class="alert alert-info mt-3">
+                    The value <strong>101</strong> is converted to an integer
+                    before it reaches the function.
+                </div>
+            </div>
+
+            <!-- QUERY PARAMETERS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Query Parameters</h2>
+
+                <p>
+                    Query parameters are sent after a question mark in a URL.
+                    Flask can read them using the request object.
+                </p>
+
+                <pre><code>from flask import Flask, request
+
+app = Flask(__name__)
+
+&#64;app.route("/search")
+def search():
+    name = request.args.get("name")
+    return "Search: " + str(name)
+
+if __name__ == "__main__":
+    app.run(debug=True)</code></pre>
+
+                <p class="mt-3">
+                    Example URL:
+                </p>
+
+                <pre><code>/search?name=Python</code></pre>
+            </div>
+
+            <!-- PRACTICAL EXAMPLE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">
+                    Example: CIIT Course Routes 📩🤓
+                </h2>
+
+                <p>
+                    A training institute website can use different routes
+                    for different resources.
+                </p>
+
+                <pre><code>from flask import Flask
+
+app = Flask(__name__)
+
+&#64;app.route("/")
+def home():
+    return "Welcome to CIIT Training Institute"
+
+&#64;app.route("/courses")
+def courses():
+    return "Python | .NET | Java"
+
+&#64;app.route("/course/&lt;name&gt;")
+def course(name):
+    return "Selected Course: " + name
+
+&#64;app.route("/contact")
+def contact():
+    return "Contact CIIT Training Institute"
+
+if __name__ == "__main__":
+    app.run(debug=True)</code></pre>
+            </div>
+            <div class="px-2">
+                <h5 class="fw-bold mb-2">
+                    Output
+                </h5>
+
+                <pre class="mb-4"><code>Welcome to CIIT Training Institute
+Python | .NET | Java
+Selected Course: Python
+Contact CIIT Training Institute</code></pre>
+            </div>
+            <!-- ROUTE PARAMETERS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Common Route Parameter Types</h2>
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered">
+
+                        <thead class="table-light">
+                            <tr>
+                                <th>Type</th>
+                                <th>Example</th>
+                                <th>Meaning</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>string</td>
+                                <td>&lt;name&gt;</td>
+                                <td>Text value</td>
+                            </tr>
+
+                            <tr>
+                                <td>int</td>
+                                <td>&lt;int:id&gt;</td>
+                                <td>Integer value</td>
+                            </tr>
+
+                            <tr>
+                                <td>float</td>
+                                <td>&lt;float:price&gt;</td>
+                                <td>Decimal value</td>
+                            </tr>
+
+                            <tr>
+                                <td>path</td>
+                                <td>&lt;path:file&gt;</td>
+                                <td>Value can contain slashes</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+            </div>
+
+            <!-- ROUTE ORGANIZATION -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Organizing Routes</h2>
+
+                <p>
+                    Small Flask applications can keep routes in one file.
+                    Larger applications should organize routes into
+                    separate modules or blueprints.
+                </p>
+
+                <div class="concept-box">
+
+                    <h5 class="fw-bold">Example Structure</h5>
+
+                    <pre><code>project/
+│
+├── app.py
+├── routes/
+│   ├── home.py
+│   ├── courses.py
+│   └── students.py
+└── templates/</code></pre>
+
+                </div>
+            </div>
+
+            <!-- ROUTE CONCEPTS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Important Routing Concepts</h2>
+
+                <div class="row g-3 mt-2">
+
+                    <div class="col-md-4">
+                        <div class="info-card">
+                            <h5>Static Route</h5>
+
+                            <p class="mb-0">
+                                A fixed URL such as <code>/about</code>.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="info-card">
+                            <h5>Dynamic Route</h5>
+
+                            <p class="mb-0">
+                                A URL containing a variable value.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="info-card">
+                            <h5>HTTP Method</h5>
+
+                            <p class="mb-0">
+                                Defines how the client interacts with
+                                a resource.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="info-card">
+                            <h5>Path Parameter</h5>
+
+                            <p class="mb-0">
+                                A value included directly in the URL path.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="info-card">
+                            <h5>Query Parameter</h5>
+
+                            <p class="mb-0">
+                                A value passed after the question mark.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="info-card">
+                            <h5>Response</h5>
+
+                            <p class="mb-0">
+                                Data returned by the route to the client.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- BEST PRACTICES -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Best Practices</h2>
+
+                <div class="concept-box">
+
+                    <ul class="mb-0">
+
+                        <li>
+                            Use clear and meaningful URL names.
+                        </li>
+
+                        <li>
+                            Use appropriate HTTP methods.
+                        </li>
+
+                        <li>
+                            Keep route functions simple.
+                        </li>
+
+                        <li>
+                            Use dynamic routes when working with specific records.
+                        </li>
+
+                        <li>
+                            Validate route parameters before using them.
+                        </li>
+
+                        <li>
+                            Organize routes when the project becomes large.
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div>
+
+            <!-- COMMON MISTAKES -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Common Mistakes</h2>
+
+                <div class="alert alert-warning">
+
+                    <ul class="mb-0">
+
+                        <li>
+                            Using an incorrect URL path.
+                        </li>
+
+                        <li>
+                            Using the wrong HTTP method.
+                        </li>
+
+                        <li>
+                            Forgetting to define a route.
+                        </li>
+
+                        <li>
+                            Using invalid route parameter syntax.
+                        </li>
+
+                        <li>
+                            Not validating dynamic values.
+                        </li>
+
+                        <li>
+                            Keeping too many routes in one large file.
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div>
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Practice Exercise</h2>
+
+                <div class="concept-box">
+
+                    <p>
+                        Create a Flask application with the following routes:
+                    </p>
+
+                    <ol>
+
+                        <li>
+                            <strong>/</strong> → Display a welcome message.
+                        </li>
+
+                        <li>
+                            <strong>/students</strong> → Display a student list.
+                        </li>
+
+                        <li>
+                            <strong>/student/&lt;id&gt;</strong> →
+                            Display a student ID.
+                        </li>
+
+                        <li>
+                            <strong>/courses</strong> → Display available courses.
+                        </li>
+
+                        <li>
+                            <strong>/course/&lt;name&gt;</strong> →
+                            Display the selected course.
+                        </li>
+
+                    </ol>
+
+                    <p class="mb-0">
+                        Test every route using a browser.
+                    </p>
+
+                </div>
+            </div>
+
+            <!-- SUMMARY -->
+<div class="alert alert-info mt-4">
+
+    <h2 class="h4 fw-bold">
+        Summary
+    </h2>
+
+    <p class="mb-0">
+
+        Web routes connect URLs with Python functions and define how a web
+        application responds to client requests. Flask uses routes to process
+        browser requests, and a single application can contain multiple routes.
+        Routes can use different HTTP methods, while dynamic routes allow values
+        to be included in URLs. Query parameters can be used to pass additional
+        data, and proper route organization helps keep web applications easier
+        to maintain.
+
+    </p>
+
+</div>
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+
+                <a class="btn btn-outline-secondary"
+                   href="@Url.Action("FastAPIBasics", "WebDevelopment", new { area = "Python" })">
+                    ← Previous: Topic
+                </a>
+
+                <a class="btn btn-primary"
+                   href="@Url.Action("RESTAPIs", "WebDevelopment", new { area = "Python" })">
+                    Next: Topic →
+                </a>
+
+            </div>
+
+        </section>
+    </div>
+</main>

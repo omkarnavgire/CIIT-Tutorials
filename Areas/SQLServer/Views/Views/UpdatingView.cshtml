@@ -1,0 +1,619 @@
+﻿@{
+    ViewData["Title"] = "Updating a View";
+}
+
+<div class="container-fluid">
+
+    <!-- =========================
+         PAGE HEADER
+    ========================== -->
+
+    <div class="mb-4">
+
+        <h1 class="fw-bold">
+            Updating a View
+        </h1>
+
+        <p class="text-muted">
+            Learn how to update and modify data through SQL Server Views,
+            understand the UPDATE statement, and learn the important
+            rules and limitations of updating Views.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         INTRODUCTION
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                What Does Updating a View Mean?
+            </h2>
+
+            <p>
+                A SQL Server View is a virtual table based on a SELECT query.
+                In many cases, data in the underlying table can be modified
+                through a View.
+            </p>
+
+            <p>
+                The <strong>UPDATE</strong> statement can be used with an
+                updatable View to modify data in the underlying table.
+            </p>
+
+            <p>
+                However, not every View is updatable. Views containing
+                certain SQL operations such as GROUP BY, aggregate functions,
+                DISTINCT, UNION, and some complex JOIN operations may not be
+                directly updateable.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         SAMPLE TABLE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Example Table
+            </h2>
+
+            <p>
+                Consider the following <strong>Employees</strong> table:
+            </p>
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-striped">
+
+                    <thead class="table-primary">
+
+                        <tr>
+                            <th>EmployeeId</th>
+                            <th>EmployeeName</th>
+                            <th>Department</th>
+                            <th>Salary</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>1</td>
+                            <td>Rahul</td>
+                            <td>IT</td>
+                            <td>45000</td>
+                        </tr>
+
+                        <tr>
+                            <td>2</td>
+                            <td>Priya</td>
+                            <td>HR</td>
+                            <td>40000</td>
+                        </tr>
+
+                        <tr>
+                            <td>3</td>
+                            <td>Amit</td>
+                            <td>IT</td>
+                            <td>55000</td>
+                        </tr>
+
+                        <tr>
+                            <td>4</td>
+                            <td>Sneha</td>
+                            <td>Finance</td>
+                            <td>50000</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         CREATE VIEW FIRST
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Step 1: Create an Updatable View
+            </h2>
+
+            <p>
+                First, create a simple View based on the Employees table.
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>CREATE VIEW EmployeeDetailsView
+AS
+SELECT
+    EmployeeId,
+    EmployeeName,
+    Department,
+    Salary
+FROM Employees;</code></pre>
+
+            <p class="mt-3">
+                This View directly represents columns from the
+                Employees table and can generally be updated.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         UPDATE VIEW DATA
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Step 2: Update Data Through the View
+            </h2>
+
+            <p>
+                We can use the UPDATE statement to modify a record
+                through the View.
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>UPDATE EmployeeDetailsView
+SET Salary = 50000
+WHERE EmployeeId = 1;</code></pre>
+
+            <p class="mt-3">
+                The salary of employee with EmployeeId 1 is updated.
+                Because the View is based on the Employees table,
+                the underlying Employees table is also modified.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         VERIFY UPDATE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Step 3: Verify the Updated Data
+            </h2>
+
+            <p>
+                We can use SELECT to verify the updated record.
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>SELECT *
+FROM EmployeeDetailsView
+WHERE EmployeeId = 1;</code></pre>
+
+            <p class="mt-3">
+                The updated salary will now be displayed in the result.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         UPDATE MULTIPLE COLUMNS
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Updating Multiple Columns
+            </h2>
+
+            <p>
+                Multiple columns can be updated at the same time through
+                an updatable View.
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>UPDATE EmployeeDetailsView
+SET
+    Department = 'Development',
+    Salary = 60000
+WHERE EmployeeId = 3;</code></pre>
+
+            <p class="mt-3">
+                This statement changes both the department and salary
+                of the employee.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         UPDATE WITH CONDITION
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Updating Data Using a Condition
+            </h2>
+
+            <p>
+                The WHERE clause should normally be used when updating
+                specific records.
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>UPDATE EmployeeDetailsView
+SET Salary = Salary + 5000
+WHERE Department = 'IT';</code></pre>
+
+            <p class="mt-3">
+                This increases the salary of employees belonging to
+                the IT department by 5000.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         UPDATE USING VIEW WITH WHERE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Updating Through a Filtered View
+            </h2>
+
+            <p>
+                Consider a View that contains only IT employees:
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>CREATE VIEW ITEmployeesView
+AS
+SELECT
+    EmployeeId,
+    EmployeeName,
+    Department,
+    Salary
+FROM Employees
+WHERE Department = 'IT';</code></pre>
+
+            <p class="mt-3">
+                We can update the salary through this View:
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>UPDATE ITEmployeesView
+SET Salary = 65000
+WHERE EmployeeId = 3;</code></pre>
+
+            <p class="mt-3">
+                The underlying Employees table will be updated.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         CHECK UNDERLYING TABLE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Checking the Underlying Table
+            </h2>
+
+            <p>
+                After updating through a View, we can check the original
+                table to verify that the data has changed.
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>SELECT *
+FROM Employees
+WHERE EmployeeId = 3;</code></pre>
+
+            <p class="mt-3">
+                The updated value will be visible in the Employees table.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         WHEN CAN A VIEW BE UPDATED?
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                When Can a View Be Updated?
+            </h2>
+
+            <p>
+                A simple View is generally updateable when the View
+                directly references columns from a single underlying
+                table and does not contain operations that prevent
+                direct modification.
+            </p>
+
+            <h5 class="fw-bold mt-4">
+                Example of a Simple Updatable View
+            </h5>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>CREATE VIEW SimpleEmployeeView
+AS
+SELECT
+    EmployeeId,
+    EmployeeName,
+    Salary
+FROM Employees;</code></pre>
+
+            <p class="mt-3">
+                This type of View can generally be used for updating
+                the underlying data.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         NON-UPDATABLE VIEW
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Views That May Not Be Directly Updateable
+            </h2>
+
+            <p>
+                Some Views are not directly updateable because they
+                contain operations that change or summarize the result
+                set.
+            </p>
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-striped">
+
+                    <thead class="table-primary">
+
+                        <tr>
+                            <th>SQL Feature</th>
+                            <th>Why It Can Prevent Direct Updates</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>
+                                GROUP BY
+                            </td>
+
+                            <td>
+                                Groups multiple rows into summarized results.
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                Aggregate Functions
+                            </td>
+
+                            <td>
+                                Functions such as SUM(), AVG(), COUNT(),
+                                MIN() and MAX() produce calculated results.
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                DISTINCT
+                            </td>
+
+                            <td>
+                                Removes duplicate rows from the result.
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                UNION
+                            </td>
+
+                            <td>
+                                Combines results from multiple queries.
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                Complex JOINs
+                            </td>
+
+                            <td>
+                                Some complex multi-table Views cannot be
+                                directly updated.
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         IMPORTANT WARNING
+    ========================== -->
+
+    <div class="alert alert-danger shadow-sm mb-4">
+
+        <h4 class="fw-bold">
+            Important Warning
+        </h4>
+
+        <p class="mb-0">
+            Always use a proper WHERE condition when updating data.
+            If the WHERE clause is omitted, all rows affected by the
+            View may be updated.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         BEST PRACTICES
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Best Practices
+            </h2>
+
+            <ul>
+
+                <li class="mb-2">
+                    Always test the SELECT query before performing UPDATE.
+                </li>
+
+                <li class="mb-2">
+                    Use a WHERE clause to target specific records.
+                </li>
+
+                <li class="mb-2">
+                    Understand whether the View is updateable before
+                    attempting an UPDATE.
+                </li>
+
+                <li class="mb-2">
+                    Avoid updating large numbers of records accidentally.
+                </li>
+
+                <li>
+                    Take appropriate backups before performing important
+                    database modifications.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         SUMMARY
+    ========================== -->
+
+    <div class="alert alert-primary shadow-sm mb-4">
+
+        <h2 class="fw-bold">
+            Summary
+        </h2>
+
+        <p>
+            An updatable SQL Server View can be used to modify data in
+            its underlying table. The UPDATE statement can be executed
+            against a suitable View just like a table.
+        </p>
+
+        <p class="mb-0">
+            However, Views containing operations such as GROUP BY,
+            aggregate functions, DISTINCT, UNION, or certain complex
+            JOINs may not be directly updateable. Always use a proper
+            WHERE clause when modifying data.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         PREVIOUS / NEXT
+    ========================== -->
+
+    <div class="d-flex justify-content-between align-items-center
+        mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/Views/CreatingView"
+           class="btn btn-outline-primary">
+
+            ← Previous: Creating a View
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/Views/AlteringView"
+           class="btn btn-primary">
+
+            Next: Altering a View →
+
+        </a>
+
+    </div>
+
+</div>

@@ -1,0 +1,54 @@
+@{
+    ViewData["Title"] = "Azure SQL Database Services";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+                <div class="azure-notes-content">
+                    <pre class="azure-notes-text">Azure SQL Database Services
+
+    •   Scalability: Easily adjust resources to match demand, ensuring optimal performance without
+        downtime.
+
+    •   High Availability: Benefit from built-in redundancy and automated backups to minimize the
+        risk of data loss.
+
+    •   Security: Utilize advanced security features like encryption, threat detection, and access
+        control to safeguard your data.
+    •   Intelligence: Leverage intelligent query processing and automated tuning for improved
+        performance and efficiency.
+
+    •   Compatibility: Seamlessly migrate existing SQL Server applications with minimal changes,
+        ensuring smooth transition to the cloud.
+
+    •   Cost-Effectiveness: Choose from flexible pricing models to pay for only what you use,
+        optimizing costs for varying workloads.
+
+    •   Advanced Analytics: Integrate with Azure services like Azure Machine Learning and Azure
+        Data Lake Storage for advanced analytics and insights.
+
+    •   Developer Productivity: Enjoy features like built-in monitoring, diagnostics, and
+        management tools to streamline database administration and development processes.</pre>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_8_-_Microsoft_Azure_-_Database_Availability_and_Consistency_For_Azure_SQL/p08-000.jpg" class="img-fluid rounded shadow-sm" alt="Azure SQL Database Services - source image" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+            @await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureLessonNavigation.cshtml")
+</section>
+</div>
+<style>
+.azure-notes-text{white-space:pre-wrap;word-break:normal;font-family:inherit;font-size:1rem;line-height:1.7;background:#fff;border:0;padding:0;margin:0;color:#212529;}
+.azure-notes-content img{max-height:720px;}
+</style>

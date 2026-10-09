@@ -1,0 +1,828 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Python Modules & Packages";
+}
+
+<style>
+
+    #python-modules-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #python-modules-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #python-modules-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #python-modules-page .diagram-box {
+        background: #ffffff;
+        border: 2px solid #6f42c1;
+        border-radius: 10px;
+        padding: 18px;
+        text-align: center;
+        height: 100%;
+    }
+
+        #python-modules-page .diagram-box h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        #python-modules-page .diagram-box p {
+            margin-bottom: 0;
+            font-size: 14px;
+            color: #495057;
+        }
+
+    #python-modules-page .diagram-arrow {
+        text-align: center;
+        font-size: 28px;
+        font-weight: 700;
+        color: #6f42c1;
+        padding: 8px 0;
+    }
+
+    #python-modules-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #python-modules-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+        }
+
+</style>
+
+
+<main id="python-modules-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- Left Sidebar -->
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+
+        </aside>
+
+
+        <!-- Main Content -->
+        <section class="col-lg-9">
+
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+
+                <h1 class="fw-bold">
+                    Modules &amp; Packages in Python
+                </h1>
+
+                <p class="lead">
+                    Learn how Python modules and packages help us organize
+                    and reuse code in different programs.
+                </p>
+
+            </div>
+
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    What is a Module?
+                </h2>
+
+                <p>
+                    A module is simply a Python file that contains
+                    Python code such as variables, functions and classes.
+                </p>
+
+                <p>
+                    A module usually has the <code>.py</code> extension.
+                </p>
+
+                <p>
+                    Instead of writing the same code again and again,
+                    we can place reusable code inside a module and use
+                    it in another Python program.
+                </p>
+
+                <div class="alert alert-info">
+
+                    <strong>Simple Definition:</strong>
+
+                    A module is a Python file containing reusable code.
+
+                </div>
+
+            </div>
+
+
+            <!-- REAL WORLD EXAMPLE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Example 📩🌍
+                </h2>
+
+                <p>
+                    Suppose we have a training institute application.
+                    We may keep student-related functions in one file,
+                    fee-related functions in another file and utility
+                    functions in another file.
+                </p>
+
+                <div class="row g-3 mt-2">
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                student.py
+                            </h5>
+
+                            <p class="mb-0">
+                                Student-related functions
+                                and classes.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                fees.py
+                            </h5>
+
+                            <p class="mb-0">
+                                Fee-related functions
+                                and calculations.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                utility.py
+                            </h5>
+
+                            <p class="mb-0">
+                                Common reusable utility
+                                functions.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- WHAT IS PACKAGE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    What is a Package?
+                </h2>
+
+                <p>
+                    A package is a collection of related Python modules
+                    organized inside a directory.
+                </p>
+
+                <p>
+                    Packages help us organize larger applications
+                    into meaningful sections.
+                </p>
+
+                <div class="alert alert-info">
+
+                    <strong>Simple Definition:</strong>
+
+                    A package is a directory that contains related
+                    Python modules.
+
+                </div>
+
+            </div>
+
+
+            <!-- MODULE VS PACKAGE DIAGRAM -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Module and Package Diagram
+                </h2>
+
+                <p>
+                    The following diagram shows the basic relationship
+                    between modules and packages.
+                </p>
+
+                <div class="concept-box">
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            Python Application
+                        </h5>
+
+                        <p>
+                            Large project containing reusable code
+                        </p>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="row g-3">
+
+                        <div class="col-md-6">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    Package
+                                </h5>
+
+                                <p>
+                                    Collection of related Python modules.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-6">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    Module
+                                </h5>
+
+                                <p>
+                                    A Python file containing reusable code.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            Reusable Code
+                        </h5>
+
+                        <p>
+                            Functions, classes, variables and other
+                            Python code can be reused.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- SIMPLE MODULE EXAMPLE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Creating a Simple Module
+                </h2>
+
+                <p>
+                    First, create a file named:
+                    <code>calculator.py</code>
+                </p>
+
+                <pre><code>def add(a, b):
+
+    return a + b
+
+
+def subtract(a, b):
+
+    return a - b</code></pre>
+
+                <p class="mt-3">
+                    Here, <code>calculator.py</code> is a module
+                    containing two reusable functions.
+                </p>
+
+            </div>
+
+
+            <!-- IMPORT MODULE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Using a Module
+                </h2>
+
+                <p>
+                    Now create another file named:
+                    <code>main.py</code>
+                </p>
+
+                <pre><code>import calculator
+
+print(calculator.add(10, 20))
+print(calculator.subtract(20, 5))</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>30
+15</code></pre>
+
+                <p>
+                    The <code>calculator</code> module is imported into
+                    <code>main.py</code> and its functions are reused.
+                </p>
+
+            </div>
+
+
+            <!-- WHY MODULES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Why Do We Use Modules?
+                </h2>
+
+                <ul>
+
+                    <li>
+                        Reuse existing code.
+                    </li>
+
+                    <li>
+                        Avoid writing duplicate code.
+                    </li>
+
+                    <li>
+                        Keep programs organized.
+                    </li>
+
+                    <li>
+                        Make large programs easier to manage.
+                    </li>
+
+                    <li>
+                        Separate related functionality.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- PACKAGE STRUCTURE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Basic Package Structure
+                </h2>
+
+                <p>
+                    A simple package structure can look like this:
+                </p>
+
+                <pre><code>myproject/
+|
+|-- main.py
+|
+|-- utilities/
+|   |
+|   |-- __init__.py
+|   |
+|   |-- calculator.py
+|   |
+|   |-- message.py</code></pre>
+
+                <p class="mt-3">
+                    Here:
+                </p>
+
+                <ul>
+
+                    <li>
+                        <code>myproject</code> is the project folder.
+                    </li>
+
+                    <li>
+                        <code>utilities</code> is the package.
+                    </li>
+
+                    <li>
+                        <code>calculator.py</code> and
+                        <code>message.py</code> are modules.
+                    </li>
+
+                    <li>
+                        <code>__init__.py</code> is traditionally used
+                        to mark and initialize the package.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- MODULES AND PACKAGES DIFFERENCE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Module vs Package
+                </h2>
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered align-middle">
+
+                        <thead>
+
+                            <tr>
+                                <th>Module</th>
+                                <th>Package</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+
+                                <td>
+                                    Usually a single Python file.
+                                </td>
+
+                                <td>
+                                    Usually a directory containing
+                                    related modules.
+                                </td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>
+                                    Has a <code>.py</code> file extension.
+                                </td>
+
+                                <td>
+                                    Organizes multiple modules.
+                                </td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>
+                                    Contains functions, classes and variables.
+                                </td>
+
+                                <td>
+                                    Groups related modules together.
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <!-- TYPES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Types of Python Modules
+                </h2>
+
+                <div class="row g-3">
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                User-Defined Modules
+                            </h5>
+
+                            <p class="mb-0">
+                                Modules created by the developer,
+                                such as <code>calculator.py</code>.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Built-in Modules
+                            </h5>
+
+                            <p class="mb-0">
+                                Modules provided by Python, such as
+                                <code>math</code> and <code>random</code>.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Third-Party Packages
+                            </h5>
+
+                            <p class="mb-0">
+                                Packages installed using tools such as
+                                <code>pip</code>.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- MODULE IMPORT PREVIEW -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Importing a Module
+                </h2>
+
+                <p>
+                    Python provides the <code>import</code> statement
+                    to use a module.
+                </p>
+
+                <pre><code>import math
+
+print(math.sqrt(25))</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>5.0</code></pre>
+
+                <p>
+                    We will learn different import styles in detail
+                    in the next topic:
+                    <strong>Import Statement</strong>.
+                </p>
+
+            </div>
+
+
+            <!-- PACKAGES BENEFITS -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Benefits of Packages
+                </h2>
+
+                <ul>
+
+                    <li>
+                        Organize large projects.
+                    </li>
+
+                    <li>
+                        Group related modules.
+                    </li>
+
+                    <li>
+                        Improve code maintainability.
+                    </li>
+
+                    <li>
+                        Make reusable components easier to manage.
+                    </li>
+
+                    <li>
+                        Help structure applications into logical sections.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- LEARNING FLOW -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Learning Flow
+                </h2>
+
+                <div class="concept-box">
+
+                    <p>
+                        <strong>Step 1:</strong>
+                        Understand Modules
+                    </p>
+
+                    <p>
+                        ↓
+                    </p>
+
+                    <p>
+                        <strong>Step 2:</strong>
+                        Learn Import Statement
+                    </p>
+
+                    <p>
+                        ↓
+                    </p>
+
+                    <p>
+                        <strong>Step 3:</strong>
+                        Learn Built-in Modules
+                    </p>
+
+                    <p>
+                        ↓
+                    </p>
+
+                    <p>
+                        <strong>Step 4:</strong>
+                        Learn pip &amp; Packages
+                    </p>
+
+                    <p>
+                        ↓
+                    </p>
+
+                    <p>
+                        <strong>Step 5:</strong>
+                        Create Your Own Packages
+                    </p>
+
+                    <p>
+                        ↓
+                    </p>
+
+                    <p class="mb-0">
+                        <strong>Step 6:</strong>
+                        Learn Virtual Environments
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Practice Programs
+                </h2>
+
+                <ol>
+
+                    <li>
+                        Create a <code>calculator.py</code> module
+                        containing addition and subtraction functions.
+                    </li>
+
+                    <li>
+                        Import the module into another Python file.
+                    </li>
+
+                    <li>
+                        Create a small package containing two modules.
+                    </li>
+
+                    <li>
+                        Use a built-in Python module such as
+                        <code>math</code>.
+                    </li>
+
+                    <li>
+                        Explore the structure of a Python package.
+                    </li>
+
+                </ol>
+
+            </div>
+
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+
+                <h2 class="h4 fw-bold">
+                    Summary :
+                </h2>
+
+                <p class="mb-0">
+
+                    A module is a Python file containing reusable code.
+                    A package is a collection of related modules organized
+                    inside a directory. Modules and packages help developers
+                    reuse code, organize projects and manage large Python
+                    applications more effectively.
+
+                </p>
+
+            </div>
+
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+
+                <a class="btn btn-outline-secondary"
+                   href="@Url.Action("Abstraction", "OOPs", new { area = "Python" })">
+
+                    ← Previous: Topic
+
+                </a>
+
+
+                <a class="btn btn-primary"
+                   href="@Url.Action("ImportStatement", "ModulesPackages", new { area = "Python" })">
+
+                    Next: Topic →
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

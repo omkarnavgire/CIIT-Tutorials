@@ -1,0 +1,62 @@
+@{
+    ViewData["Title"] = "For Single-Server Deployment";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+                <div class="azure-notes-content">
+                    <pre class="azure-notes-text">For Single-Server Deployment
+
+Planned downtime: As an example, suppose you start out with 4 virtual cores on your Azure
+Database instance. As you add more and more applications, your database load increases. To handle
+this, you might need to increase your virtual cores. This is an instance of planned downtime. As you
+can see in the architecture, Azure Database for MySQL is built out of separate components like
+
+    •   Gateway/proxy
+
+    •   Database server
+
+    •   Azure storage
+
+
+
+
+    •   If you need to scale up/down your compute instances, a new database server is provided.
+        This happens with minimal downtime.
+
+    •   Scaling up storage requires no downtime.
+
+    •   Upgrades, patch fixes, and bug fixes require minimal downtime, up to 60-120 seconds at
+        maximum. However, users are advised to eliminate heavy transactions running on their
+        database instances at planned downtimes.
+
+    •   Unplanned downtime: Whenever your server faces unexpected downtime, Azure
+        automatically deploys another server within a minute. For Azure storage failures, there is no
+        downtime. This is because data is replicated 3 times, and if one copy fails, the azure servers
+        switch to read data from the other 2 copies.
+
+    •   You can also configure Azure read replicas (backup database copies) in multiple Azure
+        regions to ensure Disaster Recovery (DR) in case of failures in an entire region.</pre>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_8_-_Microsoft_Azure_-_Database_Availability_and_Consistency_For_Azure_SQL/p02-000.jpg" class="img-fluid rounded shadow-sm" alt="For Single-Server Deployment - source image" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+            @await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureLessonNavigation.cshtml")
+</section>
+</div>
+<style>
+.azure-notes-text{white-space:pre-wrap;word-break:normal;font-family:inherit;font-size:1rem;line-height:1.7;background:#fff;border:0;padding:0;margin:0;color:#212529;}
+.azure-notes-content img{max-height:720px;}
+</style>

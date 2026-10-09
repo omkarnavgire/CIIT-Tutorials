@@ -1,0 +1,1166 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Python Files & Directories";
+}
+
+<style>
+
+    #python-file-directories-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #python-file-directories-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #python-file-directories-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #python-file-directories-page .diagram-box {
+        background: #ffffff;
+        border: 2px solid #6f42c1;
+        border-radius: 10px;
+        padding: 18px;
+        text-align: center;
+        height: 100%;
+    }
+
+        #python-file-directories-page .diagram-box h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        #python-file-directories-page .diagram-box p {
+            margin-bottom: 0;
+            font-size: 14px;
+            color: #495057;
+        }
+
+    #python-file-directories-page .diagram-arrow {
+        text-align: center;
+        font-size: 28px;
+        font-weight: 700;
+        color: #6f42c1;
+        padding: 8px 0;
+    }
+
+    #python-file-directories-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #python-file-directories-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+        }
+
+</style>
+
+
+<main id="python-file-directories-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+
+                <h1 class="fw-bold">
+                    Files &amp; Directories in Python
+                </h1>
+
+                <p class="lead">
+                    Learn how to create, check, rename, move and delete
+                    files and directories using Python.
+                </p>
+
+            </div>
+
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    What are Files and Directories?
+                </h2>
+
+                <p>
+                    A file stores data such as text, images, documents
+                    or other information.
+                </p>
+
+                <p>
+                    A directory, also called a folder, is used to organize
+                    files and other directories.
+                </p>
+
+                <div class="alert alert-info">
+
+                    <strong>Simple Definition:</strong>
+
+                    A file stores data, while a directory helps organize
+                    files and folders.
+
+                </div>
+
+            </div>
+
+
+            <!-- REAL WORLD -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Example 👀🌍
+                </h2>
+
+                <p>
+                    Imagine a training institute project.
+                </p>
+
+                <div class="row g-3 mt-2">
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Students Folder
+                            </h5>
+
+                            <p class="mb-0">
+                                Contains student information files.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Reports Folder
+                            </h5>
+
+                            <p class="mb-0">
+                                Contains generated reports.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Fees File
+                            </h5>
+
+                            <p class="mb-0">
+                                Stores fee-related information.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- DIAGRAM -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Files &amp; Directories Diagram
+                </h2>
+
+                <div class="concept-box">
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            Main Project Folder
+                        </h5>
+
+                        <p>
+                            Contains files and subdirectories.
+                        </p>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="row g-3">
+
+                        <div class="col-md-4">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    Directory
+                                </h5>
+
+                                <p>
+                                    students/
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-4">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    Directory
+                                </h5>
+
+                                <p>
+                                    reports/
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-4">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    File
+                                </h5>
+
+                                <p>
+                                    config.txt
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            File System Operations
+                        </h5>
+
+                        <p>
+                            Create, read, rename, move, list and delete.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- OS MODULE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    The <code>os</code> Module
+                </h2>
+
+                <p>
+                    Python provides the <code>os</code> module for
+                    interacting with the operating system.
+                </p>
+
+                <pre><code>import os</code></pre>
+
+                <p>
+                    The <code>os</code> module provides functions for
+                    working with files, directories and paths.
+                </p>
+
+            </div>
+
+
+            <!-- CURRENT DIRECTORY -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Get Current Working Directory
+                </h2>
+
+                <p>
+                    The <code>os.getcwd()</code> function returns the
+                    current working directory.
+                </p>
+
+                <pre><code>import os
+
+current_directory = os.getcwd()
+
+print(current_directory)</code></pre>
+
+                <p>
+                    This helps us understand where the Python program
+                    is currently working.
+                </p>
+
+            </div>
+
+
+            <!-- LIST DIRECTORY -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    List Files and Directories
+                </h2>
+
+                <p>
+                    The <code>os.listdir()</code> function returns the
+                    names of files and directories.
+                </p>
+
+                <pre><code>import os
+
+items = os.listdir()
+
+print(items)</code></pre>
+
+                <p>
+                    The result contains the items found in the specified
+                    directory.
+                </p>
+
+            </div>
+
+
+            <!-- LIST SPECIFIC DIRECTORY -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    List a Specific Directory
+                </h2>
+
+                <pre><code>import os
+
+items = os.listdir("students")
+
+print(items)</code></pre>
+
+                <p>
+                    This lists the contents of the <code>students</code>
+                    directory.
+                </p>
+
+            </div>
+
+
+            <!-- CHECK FILE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Check Whether a Path Exists
+                </h2>
+
+                <p>
+                    The <code>os.path.exists()</code> function checks
+                    whether a file or directory exists.
+                </p>
+
+                <pre><code>import os
+
+if os.path.exists("students.txt"):
+
+    print("File or directory exists")
+
+else:
+
+    print("Path does not exist")</code></pre>
+
+            </div>
+
+
+            <!-- IS FILE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Check Whether a Path is a File
+                </h2>
+
+                <p>
+                    Use <code>os.path.isfile()</code> to check whether
+                    a path points to a file.
+                </p>
+
+                <pre><code>import os
+
+if os.path.isfile("students.txt"):
+
+    print("This is a file")
+
+else:
+
+    print("This is not a file")</code></pre>
+
+            </div>
+
+
+            <!-- IS DIRECTORY -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Check Whether a Path is a Directory
+                </h2>
+
+                <p>
+                    Use <code>os.path.isdir()</code> to check whether
+                    a path points to a directory.
+                </p>
+
+                <pre><code>import os
+
+if os.path.isdir("students"):
+
+    print("This is a directory")
+
+else:
+
+    print("This is not a directory")</code></pre>
+
+            </div>
+
+
+            <!-- CREATE DIRECTORY -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Create a Directory
+                </h2>
+
+                <p>
+                    The <code>os.mkdir()</code> function creates
+                    a new directory.
+                </p>
+
+                <pre><code>import os
+
+os.mkdir("students")</code></pre>
+
+                <p>
+                    A new directory named <code>students</code>
+                    is created.
+                </p>
+
+            </div>
+
+
+            <!-- CREATE NESTED -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Create Nested Directories
+                </h2>
+
+                <p>
+                    The <code>os.makedirs()</code> function can create
+                    multiple directories in a path.
+                </p>
+
+                <pre><code>import os
+
+os.makedirs("training/python/beginners")</code></pre>
+
+                <p>
+                    The required directory structure is created.
+                </p>
+
+            </div>
+
+
+            <!-- RENAME DIRECTORY -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Rename a File or Directory
+                </h2>
+
+                <p>
+                    The <code>os.rename()</code> function can rename
+                    a file or directory.
+                </p>
+
+                <pre><code>import os
+
+os.rename(
+    "students.txt",
+    "student_list.txt"
+)</code></pre>
+
+                <p>
+                    The original name is changed to the new name.
+                </p>
+
+            </div>
+
+
+            <!-- DELETE FILE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Delete a File
+                </h2>
+
+                <p>
+                    The <code>os.remove()</code> function deletes
+                    a file.
+                </p>
+
+                <pre><code>import os
+
+os.remove("student_list.txt")</code></pre>
+
+                <div class="alert alert-warning">
+
+                    <strong>Important:</strong>
+
+                    Deleting a file removes it from the file system,
+                    so use this operation carefully.
+
+                </div>
+
+            </div>
+
+
+            <!-- DELETE DIRECTORY -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Delete an Empty Directory
+                </h2>
+
+                <p>
+                    The <code>os.rmdir()</code> function removes
+                    an empty directory.
+                </p>
+
+                <pre><code>import os
+
+os.rmdir("students")</code></pre>
+
+                <p>
+                    The directory must be empty before using
+                    <code>os.rmdir()</code>.
+                </p>
+
+            </div>
+
+
+            <!-- SHUTIL -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    The <code>shutil</code> Module
+                </h2>
+
+                <p>
+                    The <code>shutil</code> module provides higher-level
+                    operations for copying, moving and deleting files
+                    and directories.
+                </p>
+
+                <pre><code>import shutil</code></pre>
+
+            </div>
+
+
+            <!-- COPY FILE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Copy a File
+                </h2>
+
+                <p>
+                    Use <code>shutil.copy()</code> to copy a file.
+                </p>
+
+                <pre><code>import shutil
+
+shutil.copy(
+    "students.txt",
+    "students_backup.txt"
+)</code></pre>
+
+                <p>
+                    A copy of the file is created.
+                </p>
+
+            </div>
+
+
+            <!-- COPY DIRECTORY -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Copy a Directory
+                </h2>
+
+                <p>
+                    The <code>shutil.copytree()</code> function can
+                    copy a directory and its contents.
+                </p>
+
+                <pre><code>import shutil
+
+shutil.copytree(
+    "students",
+    "students_backup"
+)</code></pre>
+
+                <p>
+                    The directory and its contents are copied.
+                </p>
+
+            </div>
+
+
+            <!-- MOVE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Move a File or Directory
+                </h2>
+
+                <p>
+                    Use <code>shutil.move()</code> to move a file
+                    or directory to another location.
+                </p>
+
+                <pre><code>import shutil
+
+shutil.move(
+    "students.txt",
+    "reports/students.txt"
+)</code></pre>
+
+                <p>
+                    The file is moved to the specified destination.
+                </p>
+
+            </div>
+
+
+            <!-- PATHLIB -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Using <code>pathlib</code>
+                </h2>
+
+                <p>
+                    Python also provides the <code>pathlib</code> module,
+                    which offers an object-oriented way to work with paths.
+                </p>
+
+                <pre><code>from pathlib import Path
+
+path = Path("students.txt")
+
+print(path.exists())</code></pre>
+
+                <p>
+                    <code>pathlib</code> is useful for writing clear
+                    and readable file-system code.
+                </p>
+
+            </div>
+
+
+            <!-- PATH INFORMATION -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Path Information
+                </h2>
+
+                <pre><code>from pathlib import Path
+
+path = Path("reports/students.txt")
+
+print(path.name)
+print(path.parent)
+print(path.suffix)</code></pre>
+
+                <p>
+                    These properties provide information about the path.
+                </p>
+
+            </div>
+
+
+            <!-- CREATE DIRECTORY PATHLIB -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Creating a Directory with <code>pathlib</code>
+                </h2>
+
+                <pre><code>from pathlib import Path
+
+folder = Path("reports")
+
+folder.mkdir(exist_ok=True)</code></pre>
+
+                <p>
+                    The <code>exist_ok=True</code> option prevents an
+                    error when the directory already exists.
+                </p>
+
+            </div>
+
+
+            <!-- ITERATE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    List Directory Contents with <code>pathlib</code>
+                </h2>
+
+                <pre><code>from pathlib import Path
+
+folder = Path("reports")
+
+for item in folder.iterdir():
+
+    print(item)</code></pre>
+
+                <p>
+                    This loops through files and directories inside
+                    the selected folder.
+                </p>
+
+            </div>
+
+
+            <!-- PATH JOIN -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Joining Paths
+                </h2>
+
+                <p>
+                    <code>pathlib</code> can be used to build paths
+                    without manually joining strings.
+                </p>
+
+                <pre><code>from pathlib import Path
+
+folder = Path("reports")
+
+file_path = folder / "students.txt"
+
+print(file_path)</code></pre>
+
+            </div>
+
+
+            <!-- OS VS PATHLIB -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    os.path vs pathlib
+                </h2>
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered align-middle">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    os.path
+                                </th>
+
+                                <th>
+                                    pathlib
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+
+                                <td>
+                                    Traditional path-handling approach.
+                                </td>
+
+                                <td>
+                                    Object-oriented path handling.
+                                </td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>
+                                    Uses functions such as
+                                    <code>os.path.exists()</code>.
+                                </td>
+
+                                <td>
+                                    Uses Path objects.
+                                </td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>
+                                    Widely used in existing Python code.
+                                </td>
+
+                                <td>
+                                    Provides a modern, readable path API.
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRACTICAL STRUCTURE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Practical Project Structure
+                </h2>
+
+                <pre><code>myproject/
+|
+|-- students/
+|   |
+|   |-- student1.txt
+|   |-- student2.txt
+|
+|-- reports/
+|   |
+|   |-- report1.txt
+|
+|-- main.py</code></pre>
+
+                <p>
+                    Python can create, list, move, copy and remove
+                    these files and directories programmatically.
+                </p>
+
+            </div>
+
+
+            <!-- COMMON OPERATIONS -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Common File and Directory Operations
+                </h2>
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered align-middle">
+
+                        <thead>
+
+                            <tr>
+                                <th>Operation</th>
+                                <th>Python Tool</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>Get current directory</td>
+                                <td><code>os.getcwd()</code></td>
+                            </tr>
+
+                            <tr>
+                                <td>List directory</td>
+                                <td><code>os.listdir()</code></td>
+                            </tr>
+
+                            <tr>
+                                <td>Check path</td>
+                                <td><code>os.path.exists()</code></td>
+                            </tr>
+
+                            <tr>
+                                <td>Check file</td>
+                                <td><code>os.path.isfile()</code></td>
+                            </tr>
+
+                            <tr>
+                                <td>Check directory</td>
+                                <td><code>os.path.isdir()</code></td>
+                            </tr>
+
+                            <tr>
+                                <td>Create directory</td>
+                                <td><code>os.mkdir()</code></td>
+                            </tr>
+
+                            <tr>
+                                <td>Create nested directories</td>
+                                <td><code>os.makedirs()</code></td>
+                            </tr>
+
+                            <tr>
+                                <td>Rename</td>
+                                <td><code>os.rename()</code></td>
+                            </tr>
+
+                            <tr>
+                                <td>Delete file</td>
+                                <td><code>os.remove()</code></td>
+                            </tr>
+
+                            <tr>
+                                <td>Copy</td>
+                                <td><code>shutil.copy()</code></td>
+                            </tr>
+
+                            <tr>
+                                <td>Move</td>
+                                <td><code>shutil.move()</code></td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <!-- BEST PRACTICES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Best Practices
+                </h2>
+
+                <ul>
+
+                    <li>
+                        Use clear and meaningful file and directory names.
+                    </li>
+
+                    <li>
+                        Check whether a path exists before performing
+                        operations when appropriate.
+                    </li>
+
+                    <li>
+                        Be careful while deleting files and directories.
+                    </li>
+
+                    <li>
+                        Use <code>pathlib</code> when it makes path
+                        operations clearer.
+                    </li>
+
+                    <li>
+                        Handle possible operating-system errors.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- COMMON MISTAKES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Common Mistakes
+                </h2>
+
+                <ul>
+
+                    <li>
+                        Using an incorrect path.
+                    </li>
+
+                    <li>
+                        Trying to delete a directory that is not empty
+                        using <code>os.rmdir()</code>.
+                    </li>
+
+                    <li>
+                        Trying to open a file that does not exist.
+                    </li>
+
+                    <li>
+                        Accidentally deleting important files.
+                    </li>
+
+                    <li>
+                        Confusing a file path with a directory path.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Practice Programs
+                </h2>
+
+                <ol>
+
+                    <li>
+                        Display the current working directory.
+                    </li>
+
+                    <li>
+                        List all files and folders in the current directory.
+                    </li>
+
+                    <li>
+                        Create a directory named <code>students</code>.
+                    </li>
+
+                    <li>
+                        Check whether a file exists.
+                    </li>
+
+                    <li>
+                        Rename a file using Python.
+                    </li>
+
+                    <li>
+                        Copy a file using <code>shutil</code>.
+                    </li>
+
+                    <li>
+                        Move a file into another directory.
+                    </li>
+
+                    <li>
+                        Create a directory using <code>pathlib</code>.
+                    </li>
+
+                </ol>
+
+            </div>
+
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+
+                <h2 class="h4 fw-bold">
+                    Summary
+                </h2>
+
+                <p class="mb-0">
+
+                    Python provides several tools for working with files
+                    and directories. The <code>os</code> module is useful
+                    for common operating-system operations,
+                    <code>shutil</code> provides higher-level copy and
+                    move operations, and <code>pathlib</code> provides
+                    an object-oriented way to work with paths. Using these
+                    tools, Python programs can create, check, list, rename,
+                    copy, move and delete files and directories.
+
+                </p>
+
+            </div>
+
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+
+                <a class="btn btn-outline-secondary"
+                   href="@Url.Action("WritingFiles", "FileHandling", new { area = "Python" })">
+
+                    ← Previous: Topic
+
+                </a>
+
+
+                <a class="btn btn-primary"
+                   href="@Url.Action("CSVFiles", "FileHandling", new { area = "Python" })">
+
+                    Next: Topic →
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

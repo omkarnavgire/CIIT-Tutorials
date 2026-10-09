@@ -1,0 +1,806 @@
+﻿@{
+    var currentController =
+        ViewContext.RouteData.Values["controller"]?.ToString();
+
+    var currentAction =
+        ViewContext.RouteData.Values["action"]?.ToString();
+
+    bool IsActive(string controller, string action)
+    {
+        return string.Equals(
+                   currentController,
+                   controller,
+                   StringComparison.OrdinalIgnoreCase)
+               &&
+               string.Equals(
+                   currentAction,
+                   action,
+                   StringComparison.OrdinalIgnoreCase);
+    }
+}
+
+<style>
+
+    .sqlserver-syllabus-card {
+        border: 0;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        position: sticky;
+        top: 90px;
+        max-height: calc(100vh - 110px);
+        overflow-y: auto;
+        overflow-x: hidden;
+        background-color: #ffffff;
+    }
+
+    .sqlserver-syllabus-header {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        padding: 14px 18px !important;
+        font-size: 15px;
+        font-weight: 700;
+        display: block !important;
+        visibility: visible !important;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+
+    .sqlserver-module-title {
+        background-color: #f8f9fa !important;
+        font-weight: 700 !important;
+        color: #212529 !important;
+        padding: 12px 16px;
+        border-bottom: 1px solid #e9ecef;
+    }
+
+    .sqlserver-topic-link {
+        display: block;
+        padding: 10px 16px 10px 28px;
+        font-size: 14px;
+        color: #495057 !important;
+        text-decoration: none !important;
+        border: 0 !important;
+        border-bottom: 1px solid #f1f1f1 !important;
+        background-color: #ffffff !important;
+    }
+
+    .sqlserver-topic-link:hover {
+        background-color: #f1f3f5 !important;
+        color: #212529 !important;
+    }
+
+    .sqlserver-topic-link.active,
+    .sqlserver-topic-link.active:hover,
+    .sqlserver-topic-link.active:focus {
+        background-color: #ffffff !important;
+        color: #495057 !important;
+        font-weight: 400 !important;
+        border-top: 0 !important;
+        border-left: 0 !important;
+        border-right: 0 !important;
+        border-bottom: 2px solid #2563eb !important;
+        box-shadow: none !important;
+    }
+
+    .sqlserver-syllabus-card::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .sqlserver-syllabus-card::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    .sqlserver-syllabus-card::-webkit-scrollbar-thumb {
+        background: #c8c8c8;
+        border-radius: 10px;
+    }
+
+    .sqlserver-syllabus-card::-webkit-scrollbar-thumb:hover {
+        background: #aaaaaa;
+    }
+
+    @@media (max-width: 991px) {
+
+        .sqlserver-syllabus-card {
+            position: relative;
+            top: auto;
+            max-height: none;
+            overflow: hidden;
+        }
+
+        .sqlserver-syllabus-header {
+            position: relative;
+        }
+
+    }
+
+</style>
+
+
+<div class="card sqlserver-syllabus-card">
+
+    <!-- HEADER -->
+
+    <div class="card-header sqlserver-syllabus-header">
+        <span>COURSE SYLLABUS</span>
+    </div>
+
+
+    <div class="list-group list-group-flush">
+
+
+        <!-- =====================================================
+             MODULE 1
+             ===================================================== -->
+
+        <div class="list-group-item sqlserver-module-title">
+            1. Introduction to SQL Server
+        </div>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("Introduction", "Index") ? "active" : "")"
+           href="@Url.Action("Index", "Introduction", new { area = "SQLServer" })">
+            Introduction to SQL Server
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("Introduction", "Installation") ? "active" : "")"
+           href="@Url.Action("Installation", "Introduction", new { area = "SQLServer" })">
+            SQL Server Installation
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("Introduction", "Fundamentals") ? "active" : "")"
+           href="@Url.Action("Fundamentals", "Introduction", new { area = "SQLServer" })">
+            SQL Server Fundamentals
+        </a>
+
+
+        <!-- =====================================================
+             MODULE 2
+             ===================================================== -->
+
+        <div class="list-group-item sqlserver-module-title">
+            2. Data Types
+        </div>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("DataTypes", "Index") ? "active" : "")"
+           href="@Url.Action("Index", "DataTypes", new { area = "SQLServer" })">
+            Data Types
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("DataTypes", "NumericDataTypes") ? "active" : "")"
+           href="@Url.Action("NumericDataTypes", "DataTypes", new { area = "SQLServer" })">
+            Numeric Data Types
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("DataTypes", "CharacterStringDataTypes") ? "active" : "")"
+           href="@Url.Action("CharacterStringDataTypes", "DataTypes", new { area = "SQLServer" })">
+            Character & String Data Types
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("DataTypes", "DateTimeDataTypes") ? "active" : "")"
+           href="@Url.Action("DateTimeDataTypes", "DataTypes", new { area = "SQLServer" })">
+            Date & Time Data Types
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("DataTypes", "OtherDataTypes") ? "active" : "")"
+           href="@Url.Action("OtherDataTypes", "DataTypes", new { area = "SQLServer" })">
+            Other SQL Server Data Types
+        </a>
+
+
+        <!-- =====================================================
+             MODULE 3
+             ===================================================== -->
+
+        <div class="list-group-item sqlserver-module-title">
+            3. Database & Tables
+        </div>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("DatabaseAndTables", "Index") ? "active" : "")"
+           href="@Url.Action("Index", "DatabaseAndTables", new { area = "SQLServer" })">
+            Database & Tables Introduction
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("DatabaseAndTables", "CreatingDatabase") ? "active" : "")"
+           href="@Url.Action("CreatingDatabase", "DatabaseAndTables", new { area = "SQLServer" })">
+            Creating a Database
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("DatabaseAndTables", "CreatingTables") ? "active" : "")"
+           href="@Url.Action("CreatingTables", "DatabaseAndTables", new { area = "SQLServer" })">
+            Creating Tables
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("DatabaseAndTables", "TableStructure") ? "active" : "")"
+           href="@Url.Action("TableStructure", "DatabaseAndTables", new { area = "SQLServer" })">
+            Table Structure
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("DatabaseAndTables", "AlteringTables") ? "active" : "")"
+           href="@Url.Action("AlteringTables", "DatabaseAndTables", new { area = "SQLServer" })">
+            Altering Tables
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("DatabaseAndTables", "DroppingTables") ? "active" : "")"
+           href="@Url.Action("DroppingTables", "DatabaseAndTables", new { area = "SQLServer" })">
+            Dropping Tables
+        </a>
+
+
+        <!-- =====================================================
+             MODULE 4
+             ===================================================== -->
+
+        <div class="list-group-item sqlserver-module-title">
+            4. Constraints
+        </div>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("Constraints", "Index") ? "active" : "")"
+           href="@Url.Action("Index", "Constraints", new { area = "SQLServer" })">
+            Constraints Introduction
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("Constraints", "PrimaryKey") ? "active" : "")"
+           href="@Url.Action("PrimaryKey", "Constraints", new { area = "SQLServer" })">
+            PRIMARY KEY
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("Constraints", "ForeignKey") ? "active" : "")"
+           href="@Url.Action("ForeignKey", "Constraints", new { area = "SQLServer" })">
+            FOREIGN KEY
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("Constraints", "UniqueConstraint") ? "active" : "")"
+           href="@Url.Action("UniqueConstraint", "Constraints", new { area = "SQLServer" })">
+            UNIQUE Constraint
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("Constraints", "NotNullDefault") ? "active" : "")"
+           href="@Url.Action("NotNullDefault", "Constraints", new { area = "SQLServer" })">
+            NOT NULL & DEFAULT
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("Constraints", "CheckConstraint") ? "active" : "")"
+           href="@Url.Action("CheckConstraint", "Constraints", new { area = "SQLServer" })">
+            CHECK Constraint
+        </a>
+
+
+        <!-- =====================================================
+             MODULE 5
+             ===================================================== -->
+
+        <div class="list-group-item sqlserver-module-title">
+            5. SQL Basics
+        </div>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("SQLBasics", "Index") ? "active" : "")"
+           href="@Url.Action("Index", "SQLBasics", new { area = "SQLServer" })">
+            SQL Basics Introduction
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("SQLBasics", "SQLCommands") ? "active" : "")"
+           href="@Url.Action("SQLCommands", "SQLBasics", new { area = "SQLServer" })">
+            SQL Commands
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("SQLBasics", "SQLCommandCategories") ? "active" : "")"
+           href="@Url.Action("SQLCommandCategories", "SQLBasics", new { area = "SQLServer" })">
+            SQL Command Categories
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("SQLBasics", "SelectStatement") ? "active" : "")"
+           href="@Url.Action("SelectStatement", "SQLBasics", new { area = "SQLServer" })">
+            SELECT Statement
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("SQLBasics", "InsertUpdateDelete") ? "active" : "")"
+           href="@Url.Action("InsertUpdateDelete", "SQLBasics", new { area = "SQLServer" })">
+            INSERT, UPDATE & DELETE
+        </a>
+
+
+        <!-- =====================================================
+             MODULE 6
+             ===================================================== -->
+
+        <div class="list-group-item sqlserver-module-title">
+            6. CRUD Operations
+        </div>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("CRUDOperations", "Index") ? "active" : "")"
+           href="@Url.Action("Index", "CRUDOperations", new { area = "SQLServer" })">
+            CRUD Operations Introduction
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("CRUDOperations", "InsertOperation") ? "active" : "")"
+           href="@Url.Action("InsertOperation", "CRUDOperations", new { area = "SQLServer" })">
+            INSERT Operation
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("CRUDOperations", "SelectOperation") ? "active" : "")"
+           href="@Url.Action("SelectOperation", "CRUDOperations", new { area = "SQLServer" })">
+            SELECT Operation
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("CRUDOperations", "UpdateOperation") ? "active" : "")"
+           href="@Url.Action("UpdateOperation", "CRUDOperations", new { area = "SQLServer" })">
+            UPDATE Operation
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("CRUDOperations", "DeleteOperation") ? "active" : "")"
+           href="@Url.Action("DeleteOperation", "CRUDOperations", new { area = "SQLServer" })">
+            DELETE Operation
+        </a>
+
+
+        <!-- =====================================================
+             MODULE 7
+             ===================================================== -->
+
+        <div class="list-group-item sqlserver-module-title">
+            7. SQL Queries
+        </div>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("Queries", "Index") ? "active" : "")"
+           href="@Url.Action("Index", "Queries", new { area = "SQLServer" })">
+            Queries Introduction
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("Queries", "WhereClause") ? "active" : "")"
+           href="@Url.Action("WhereClause", "Queries", new { area = "SQLServer" })">
+            WHERE Clause
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("Queries", "OrderByClause") ? "active" : "")"
+           href="@Url.Action("OrderByClause", "Queries", new { area = "SQLServer" })">
+            ORDER BY Clause
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("Queries", "Distinct") ? "active" : "")"
+           href="@Url.Action("Distinct", "Queries", new { area = "SQLServer" })">
+            DISTINCT
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("Queries", "LikeOperator") ? "active" : "")"
+           href="@Url.Action("LikeOperator", "Queries", new { area = "SQLServer" })">
+            LIKE Operator
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("Queries", "InBetweenIsNull") ? "active" : "")"
+           href="@Url.Action("InBetweenIsNull", "Queries", new { area = "SQLServer" })">
+            IN, BETWEEN & IS NULL
+        </a>
+
+
+        <!-- =====================================================
+             MODULE 8
+             ===================================================== -->
+
+        <div class="list-group-item sqlserver-module-title">
+            8. Joins
+        </div>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("Joins", "Index") ? "active" : "")"
+           href="@Url.Action("Index", "Joins", new { area = "SQLServer" })">
+            Joins Introduction
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("Joins", "InnerJoin") ? "active" : "")"
+           href="@Url.Action("InnerJoin", "Joins", new { area = "SQLServer" })">
+            INNER JOIN
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("Joins", "LeftJoin") ? "active" : "")"
+           href="@Url.Action("LeftJoin", "Joins", new { area = "SQLServer" })">
+            LEFT JOIN
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("Joins", "RightJoin") ? "active" : "")"
+           href="@Url.Action("RightJoin", "Joins", new { area = "SQLServer" })">
+            RIGHT JOIN
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("Joins", "FullOuterJoin") ? "active" : "")"
+           href="@Url.Action("FullOuterJoin", "Joins", new { area = "SQLServer" })">
+            FULL OUTER JOIN
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("Joins", "CrossJoin") ? "active" : "")"
+           href="@Url.Action("CrossJoin", "Joins", new { area = "SQLServer" })">
+            CROSS JOIN
+        </a>
+
+
+        <!-- =====================================================
+             MODULE 9
+             ===================================================== -->
+
+        <div class="list-group-item sqlserver-module-title">
+            9. SQL Functions
+        </div>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("Functions", "Index") ? "active" : "")"
+           href="@Url.Action("Index", "Functions", new { area = "SQLServer" })">
+            SQL Functions Introduction
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("Functions", "StringFunctions") ? "active" : "")"
+           href="@Url.Action("StringFunctions", "Functions", new { area = "SQLServer" })">
+            String Functions
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("Functions", "NumericFunctions") ? "active" : "")"
+           href="@Url.Action("NumericFunctions", "Functions", new { area = "SQLServer" })">
+            Numeric Functions
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("Functions", "DateTimeFunctions") ? "active" : "")"
+           href="@Url.Action("DateTimeFunctions", "Functions", new { area = "SQLServer" })">
+            Date & Time Functions
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("Functions", "ConversionFunctions") ? "active" : "")"
+           href="@Url.Action("ConversionFunctions", "Functions", new { area = "SQLServer" })">
+            Conversion Functions
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("Functions", "NullFunctions") ? "active" : "")"
+           href="@Url.Action("NullFunctions", "Functions", new { area = "SQLServer" })">
+            NULL Functions
+        </a>
+
+
+        <!-- =====================================================
+             MODULE 10
+             ===================================================== -->
+
+        <div class="list-group-item sqlserver-module-title">
+            10. Grouping & Aggregate Functions
+        </div>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("GroupingAndAggregate", "Index") ? "active" : "")"
+           href="@Url.Action("Index", "GroupingAndAggregate", new { area = "SQLServer" })">
+            GROUP BY
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("GroupingAndAggregate", "AggregateFunctions") ? "active" : "")"
+           href="@Url.Action("AggregateFunctions", "GroupingAndAggregate", new { area = "SQLServer" })">
+            Aggregate Functions
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("GroupingAndAggregate", "CountFunction") ? "active" : "")"
+           href="@Url.Action("CountFunction", "GroupingAndAggregate", new { area = "SQLServer" })">
+            COUNT()
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("GroupingAndAggregate", "SumFunction") ? "active" : "")"
+           href="@Url.Action("SumFunction", "GroupingAndAggregate", new { area = "SQLServer" })">
+            SUM()
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("GroupingAndAggregate", "AvgFunction") ? "active" : "")"
+           href="@Url.Action("AvgFunction", "GroupingAndAggregate", new { area = "SQLServer" })">
+            AVG()
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("GroupingAndAggregate", "MinMaxFunctions") ? "active" : "")"
+           href="@Url.Action("MinMaxFunctions", "GroupingAndAggregate", new { area = "SQLServer" })">
+            MIN() & MAX()
+        </a>
+
+
+        <!-- =====================================================
+             MODULE 11
+             ===================================================== -->
+
+        <div class="list-group-item sqlserver-module-title">
+            11. Subqueries
+        </div>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("Subqueries", "Index") ? "active" : "")"
+           href="@Url.Action("Index", "Subqueries", new { area = "SQLServer" })">
+            Subqueries Introduction
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("Subqueries", "SingleRowSubquery") ? "active" : "")"
+           href="@Url.Action("SingleRowSubquery", "Subqueries", new { area = "SQLServer" })">
+            Single-Row Subquery
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("Subqueries", "MultipleRowSubquery") ? "active" : "")"
+           href="@Url.Action("MultipleRowSubquery", "Subqueries", new { area = "SQLServer" })">
+            Multiple-Row Subquery
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("Subqueries", "CorrelatedSubquery") ? "active" : "")"
+           href="@Url.Action("CorrelatedSubquery", "Subqueries", new { area = "SQLServer" })">
+            Correlated Subquery
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("Subqueries", "SubqueryWithDML") ? "active" : "")"
+           href="@Url.Action("SubqueryWithDML", "Subqueries", new { area = "SQLServer" })">
+            Subquery with DML
+        </a>
+
+
+        <!-- =====================================================
+             MODULE 12
+             ===================================================== -->
+
+        <div class="list-group-item sqlserver-module-title">
+            12. Views
+        </div>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("Views", "Index") ? "active" : "")"
+           href="@Url.Action("Index", "Views", new { area = "SQLServer" })">
+            SQL Views Introduction
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("Views", "CreatingView") ? "active" : "")"
+           href="@Url.Action("CreatingView", "Views", new { area = "SQLServer" })">
+            Creating a View
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("Views", "UpdatingView") ? "active" : "")"
+           href="@Url.Action("UpdatingView", "Views", new { area = "SQLServer" })">
+            Updating a View
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("Views", "AlteringView") ? "active" : "")"
+           href="@Url.Action("AlteringView", "Views", new { area = "SQLServer" })">
+            Altering a View
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("Views", "DroppingView") ? "active" : "")"
+           href="@Url.Action("DroppingView", "Views", new { area = "SQLServer" })">
+            Dropping a View
+        </a>
+
+
+        <!-- =====================================================
+             MODULE 13
+             ===================================================== -->
+
+        <div class="list-group-item sqlserver-module-title">
+            13. Stored Procedures
+        </div>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("StoredProcedures", "Index") ? "active" : "")"
+           href="@Url.Action("Index", "StoredProcedures", new { area = "SQLServer" })">
+            Stored Procedures Introduction
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("StoredProcedures", "CreatingStoredProcedure") ? "active" : "")"
+           href="@Url.Action("CreatingStoredProcedure", "StoredProcedures", new { area = "SQLServer" })">
+            Creating a Stored Procedure
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("StoredProcedures", "InputParameters") ? "active" : "")"
+           href="@Url.Action("InputParameters", "StoredProcedures", new { area = "SQLServer" })">
+            Input Parameters
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("StoredProcedures", "OutputParameters") ? "active" : "")"
+           href="@Url.Action("OutputParameters", "StoredProcedures", new { area = "SQLServer" })">
+            Output Parameters
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("StoredProcedures", "ExecuteModifyStoredProcedure") ? "active" : "")"
+           href="@Url.Action("ExecuteModifyStoredProcedure", "StoredProcedures", new { area = "SQLServer" })">
+            Executing & Modifying Stored Procedures
+        </a>
+
+
+        <!-- =====================================================
+             MODULE 14
+             ===================================================== -->
+
+        <div class="list-group-item sqlserver-module-title">
+            14. Triggers
+        </div>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("Triggers", "Index") ? "active" : "")"
+           href="@Url.Action("Index", "Triggers", new { area = "SQLServer" })">
+            Triggers Introduction
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("Triggers", "AfterInsertTrigger") ? "active" : "")"
+           href="@Url.Action("AfterInsertTrigger", "Triggers", new { area = "SQLServer" })">
+            AFTER INSERT Trigger
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("Triggers", "AfterUpdateTrigger") ? "active" : "")"
+           href="@Url.Action("AfterUpdateTrigger", "Triggers", new { area = "SQLServer" })">
+            AFTER UPDATE Trigger
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("Triggers", "AfterDeleteTrigger") ? "active" : "")"
+           href="@Url.Action("AfterDeleteTrigger", "Triggers", new { area = "SQLServer" })">
+            AFTER DELETE Trigger
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("Triggers", "InsteadOfTrigger") ? "active" : "")"
+           href="@Url.Action("InsteadOfTrigger", "Triggers", new { area = "SQLServer" })">
+            INSTEAD OF Trigger
+        </a>
+
+
+        <!-- =====================================================
+             MODULE 15
+             ===================================================== -->
+
+        <div class="list-group-item sqlserver-module-title">
+            15. Transactions
+        </div>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("Transactions", "Index") ? "active" : "")"
+           href="@Url.Action("Index", "Transactions", new { area = "SQLServer" })">
+            Transactions Introduction
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("Transactions", "Commit") ? "active" : "")"
+           href="@Url.Action("Commit", "Transactions", new { area = "SQLServer" })">
+            COMMIT
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("Transactions", "Rollback") ? "active" : "")"
+           href="@Url.Action("Rollback", "Transactions", new { area = "SQLServer" })">
+            ROLLBACK
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("Transactions", "Savepoint") ? "active" : "")"
+           href="@Url.Action("Savepoint", "Transactions", new { area = "SQLServer" })">
+            SAVEPOINT
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("Transactions", "TransactionTryCatch") ? "active" : "")"
+           href="@Url.Action("TransactionTryCatch", "Transactions", new { area = "SQLServer" })">
+            Transaction with TRY...CATCH
+        </a>
+
+
+        <!-- =====================================================
+             MODULE 16
+             ===================================================== -->
+
+        <div class="list-group-item sqlserver-module-title">
+            16. Indexes
+        </div>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("Indexes", "Index") ? "active" : "")"
+           href="@Url.Action("Index", "Indexes", new { area = "SQLServer" })">
+            Indexes Introduction
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("Indexes", "ClusteredIndex") ? "active" : "")"
+           href="@Url.Action("ClusteredIndex", "Indexes", new { area = "SQLServer" })">
+            Clustered Index
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("Indexes", "NonClusteredIndex") ? "active" : "")"
+           href="@Url.Action("NonClusteredIndex", "Indexes", new { area = "SQLServer" })">
+            Non-Clustered Index
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("Indexes", "CreateDropIndexes") ? "active" : "")"
+           href="@Url.Action("CreateDropIndexes", "Indexes", new { area = "SQLServer" })">
+            Creating & Dropping Indexes
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("Indexes", "IndexPerformance") ? "active" : "")"
+           href="@Url.Action("IndexPerformance", "Indexes", new { area = "SQLServer" })">
+            Index Performance
+        </a>
+
+
+        <!-- =====================================================
+             MODULE 17
+             ===================================================== -->
+
+        <div class="list-group-item sqlserver-module-title">
+            17. Common Table Expressions
+        </div>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("CTE", "Index") ? "active" : "")"
+           href="@Url.Action("Index", "CTE", new { area = "SQLServer" })">
+            CTE Introduction
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("CTE", "SimpleCTE") ? "active" : "")"
+           href="@Url.Action("SimpleCTE", "CTE", new { area = "SQLServer" })">
+            Simple CTE
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("CTE", "CTEWithJoin") ? "active" : "")"
+           href="@Url.Action("CTEWithJoin", "CTE", new { area = "SQLServer" })">
+            CTE with JOIN
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("CTE", "CTEWithAggregate") ? "active" : "")"
+           href="@Url.Action("CTEWithAggregate", "CTE", new { area = "SQLServer" })">
+            CTE with Aggregate Functions
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("CTE", "RecursiveCTE") ? "active" : "")"
+           href="@Url.Action("RecursiveCTE", "CTE", new { area = "SQLServer" })">
+            Recursive CTE
+        </a>
+
+
+        <!-- =====================================================
+             MODULE 18
+             ===================================================== -->
+
+        <div class="list-group-item sqlserver-module-title">
+            18. Window Functions
+        </div>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("WindowFunctions", "Index") ? "active" : "")"
+           href="@Url.Action("Index", "WindowFunctions", new { area = "SQLServer" })">
+            Window Functions Introduction
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("WindowFunctions", "RowNumber") ? "active" : "")"
+           href="@Url.Action("RowNumber", "WindowFunctions", new { area = "SQLServer" })">
+            ROW_NUMBER()
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("WindowFunctions", "RankDenseRank") ? "active" : "")"
+           href="@Url.Action("RankDenseRank", "WindowFunctions", new { area = "SQLServer" })">
+            RANK() and DENSE_RANK()
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("WindowFunctions", "LeadLag") ? "active" : "")"
+           href="@Url.Action("LeadLag", "WindowFunctions", new { area = "SQLServer" })">
+            LEAD() and LAG()
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("WindowFunctions", "PartitionBy") ? "active" : "")"
+           href="@Url.Action("PartitionBy", "WindowFunctions", new { area = "SQLServer" })">
+            PARTITION BY
+        </a>
+
+
+        <!-- =====================================================
+             MODULE 19
+             ===================================================== -->
+
+        <div class="list-group-item sqlserver-module-title">
+            19. Advanced SQL
+        </div>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("AdvancedSQL", "Index") ? "active" : "")"
+           href="@Url.Action("Index", "AdvancedSQL", new { area = "SQLServer" })">
+            Advanced SQL Introduction
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("AdvancedSQL", "TemporaryTables") ? "active" : "")"
+           href="@Url.Action("TemporaryTables", "AdvancedSQL", new { area = "SQLServer" })">
+            Temporary Tables
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("AdvancedSQL", "TableVariables") ? "active" : "")"
+           href="@Url.Action("TableVariables", "AdvancedSQL", new { area = "SQLServer" })">
+            Table Variables
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("AdvancedSQL", "DynamicSQL") ? "active" : "")"
+           href="@Url.Action("DynamicSQL", "AdvancedSQL", new { area = "SQLServer" })">
+            Dynamic SQL
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("AdvancedSQL", "ErrorHandling") ? "active" : "")"
+           href="@Url.Action("ErrorHandling", "AdvancedSQL", new { area = "SQLServer" })">
+            Error Handling
+        </a>
+
+        <a class="list-group-item list-group-item-action sqlserver-topic-link @(IsActive("AdvancedSQL", "PerformanceOptimization") ? "active" : "")"
+           href="@Url.Action("PerformanceOptimization", "AdvancedSQL", new { area = "SQLServer" })">
+            Performance Optimization
+        </a>
+
+
+    </div>
+
+</div>

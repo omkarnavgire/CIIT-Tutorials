@@ -1,0 +1,579 @@
+﻿@{
+    ViewData["Title"] = "LEFT JOIN";
+}
+
+<section>
+
+    <!-- PAGE INTRODUCTION -->
+
+    <div class="mb-5">
+
+        <h1 class="fw-bold mb-3">
+            LEFT JOIN
+        </h1>
+
+        <p class="lead text-muted">
+            LEFT JOIN returns all records from the left table and
+            the matching records from the right table.
+        </p>
+
+        <p>
+            If there is no matching record in the right table, the
+            columns from the right table contain NULL values.
+        </p>
+
+    </div>
+
+
+    <!-- WHAT IS LEFT JOIN -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            What is LEFT JOIN?
+        </h2>
+
+        <p>
+            A <strong>LEFT JOIN</strong> returns every row from the
+            left table, regardless of whether a matching row exists
+            in the right table.
+        </p>
+
+        <p>
+            When a matching record is found, information from both
+            tables is returned. When no match is found, the columns
+            from the right table contain <strong>NULL</strong>.
+        </p>
+
+    </section>
+
+
+    <!-- BASIC SYNTAX -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            LEFT JOIN Syntax
+        </h2>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT columns
+FROM Table1
+LEFT JOIN Table2
+    ON Table1.CommonColumn = Table2.CommonColumn;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- SAMPLE TABLES -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Example Tables
+        </h2>
+
+        <h4 class="fw-bold mt-4 mb-3">
+            Students Table — Left Table
+        </h4>
+
+        <div class="table-responsive mb-4">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>StudentId</th>
+                        <th>StudentName</th>
+                        <th>CourseId</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>101</td>
+                        <td>Rahul</td>
+                        <td>1</td>
+                    </tr>
+
+                    <tr>
+                        <td>102</td>
+                        <td>Priya</td>
+                        <td>2</td>
+                    </tr>
+
+                    <tr>
+                        <td>103</td>
+                        <td>Amit</td>
+                        <td>1</td>
+                    </tr>
+
+                    <tr>
+                        <td>104</td>
+                        <td>Neha</td>
+                        <td>3</td>
+                    </tr>
+
+                    <tr>
+                        <td>105</td>
+                        <td>Rohan</td>
+                        <td>5</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <h4 class="fw-bold mt-4 mb-3">
+            Courses Table — Right Table
+        </h4>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>CourseId</th>
+                        <th>CourseName</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>1</td>
+                        <td>.NET Full Stack</td>
+                    </tr>
+
+                    <tr>
+                        <td>2</td>
+                        <td>Java Full Stack</td>
+                    </tr>
+
+                    <tr>
+                        <td>3</td>
+                        <td>Python Full Stack</td>
+                    </tr>
+
+                    <tr>
+                        <td>4</td>
+                        <td>Software Testing</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- BASIC EXAMPLE -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Basic LEFT JOIN Example
+        </h2>
+
+        <p>
+            Here, Students is the left table and Courses is the
+            right table.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT
+    Students.StudentName,
+    Courses.CourseName
+FROM Students
+LEFT JOIN Courses
+    ON Students.CourseId = Courses.CourseId;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- RESULT -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Result
+        </h2>
+
+        <p>
+            Because Students is the left table, all students are
+            returned, including students whose CourseId does not
+            exist in the Courses table.
+        </p>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>StudentName</th>
+                        <th>CourseName</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>Rahul</td>
+                        <td>.NET Full Stack</td>
+                    </tr>
+
+                    <tr>
+                        <td>Priya</td>
+                        <td>Java Full Stack</td>
+                    </tr>
+
+                    <tr>
+                        <td>Amit</td>
+                        <td>.NET Full Stack</td>
+                    </tr>
+
+                    <tr>
+                        <td>Neha</td>
+                        <td>Python Full Stack</td>
+                    </tr>
+
+                    <tr>
+                        <td>Rohan</td>
+                        <td>NULL</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <div class="alert alert-info border-0 mt-4">
+
+            <strong>Notice:</strong>
+            Rohan is included because Students is the left table.
+            Since CourseId 5 does not exist in Courses, CourseName
+            becomes NULL.
+
+        </div>
+
+    </section>
+
+
+    <!-- LEFT JOIN WITH WHERE -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            LEFT JOIN with WHERE
+        </h2>
+
+        <p>
+            LEFT JOIN can be combined with a WHERE condition to
+            filter the result.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT
+    S.StudentName,
+    C.CourseName
+FROM Students AS S
+LEFT JOIN Courses AS C
+    ON S.CourseId = C.CourseId
+WHERE S.StudentName LIKE 'R%';</code></pre>
+
+        </div>
+
+        <p class="mt-3">
+            This returns students whose names start with R while
+            preserving the LEFT JOIN behavior.
+        </p>
+
+    </section>
+
+
+    <!-- FIND NON-MATCHING RECORDS -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Finding Records Without a Match
+        </h2>
+
+        <p>
+            LEFT JOIN can be used with IS NULL to find records in
+            the left table that do not have a matching record in
+            the right table.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT
+    S.StudentName,
+    S.CourseId
+FROM Students AS S
+LEFT JOIN Courses AS C
+    ON S.CourseId = C.CourseId
+WHERE C.CourseId IS NULL;</code></pre>
+
+        </div>
+
+        <p class="mt-3">
+            This returns students whose CourseId has no matching
+            course in the Courses table.
+        </p>
+
+    </section>
+
+
+    <!-- ALIAS -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            LEFT JOIN using Aliases
+        </h2>
+
+        <p>
+            Aliases make LEFT JOIN queries shorter and easier to
+            understand.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT
+    S.StudentName,
+    C.CourseName
+FROM Students AS S
+LEFT JOIN Courses AS C
+    ON S.CourseId = C.CourseId;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- LEFT JOIN WITH MULTIPLE COLUMNS -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Selecting Multiple Columns
+        </h2>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT
+    S.StudentId,
+    S.StudentName,
+    S.CourseId,
+    C.CourseName
+FROM Students AS S
+LEFT JOIN Courses AS C
+    ON S.CourseId = C.CourseId;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- LEFT JOIN VS INNER JOIN -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            LEFT JOIN vs INNER JOIN
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>LEFT JOIN</th>
+                        <th>INNER JOIN</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>
+                            Returns all records from the left table.
+                        </td>
+
+                        <td>
+                            Returns only matching records.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            Non-matching right-side values become NULL.
+                        </td>
+
+                        <td>
+                            Non-matching records are excluded.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            Useful when all left-table records are
+                            required.
+                        </td>
+
+                        <td>
+                            Useful when only matching records are
+                            required.
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- IMPORTANT POINTS -->
+
+    <section class="mb-5">
+
+        <div class="alert alert-warning border-0">
+
+            <h4 class="fw-bold mb-3">
+                Important Points
+            </h4>
+
+            <ul class="mb-0">
+
+                <li class="mb-2">
+                    LEFT JOIN returns every record from the left table.
+                </li>
+
+                <li class="mb-2">
+                    Matching records from the right table are included.
+                </li>
+
+                <li class="mb-2">
+                    If there is no match, right-table columns contain
+                    NULL.
+                </li>
+
+                <li class="mb-2">
+                    The ON clause defines the relationship between
+                    the tables.
+                </li>
+
+                <li>
+                    LEFT JOIN can be used to find unmatched records
+                    using IS NULL.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </section>
+
+
+    <!-- SUMMARY -->
+
+    <section class="mb-4">
+
+        <div class="alert alert-primary border-0">
+
+            <h2 class="fw-bold mb-3">
+                Summary
+            </h2>
+
+            <p class="mb-0">
+                LEFT JOIN returns all records from the left table
+                and matching records from the right table. When a
+                matching record is not available in the right table,
+                NULL values are returned for the right-table columns.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- PREVIOUS / NEXT -->
+
+    <div class="d-flex justify-content-between align-items-center
+        mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/Joins/InnerJoin"
+           class="btn btn-outline-primary">
+
+            ← Previous: INNER JOIN
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/Joins/RightJoin"
+           class="btn btn-primary">
+
+            Next: RIGHT JOIN →
+
+        </a>
+
+    </div>
+
+</section>

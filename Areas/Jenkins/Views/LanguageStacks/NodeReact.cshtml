@@ -1,0 +1,245 @@
+@{
+    Layout = "~/Areas/Jenkins/Views/Shared/JenkinsLayout.cshtml";
+    ViewData["Title"] = "Node.js and React Pipeline";
+}
+
+<style>
+    #node-js-and-react-pipeline-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+    #node-js-and-react-pipeline-page pre code {
+        background: transparent !important;
+        color: #ffffff !important;
+    }
+
+    #node-js-and-react-pipeline-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #node-js-and-react-pipeline-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+    #node-js-and-react-pipeline-page .info-card h5 {
+        color: #5b21b6;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+
+    #node-js-and-react-pipeline-page .example-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+    }
+</style>
+
+<main id="node-js-and-react-pipeline-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Jenkins/Views/Shared/JenkinsTopics.cshtml"
+            )
+
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+
+                <h1 class="fw-bold">
+                    Node.js and React Pipeline
+                </h1>
+
+                <p class="lead">
+                    Learn the concepts, configuration, commands, and practical workflow required to use Node.js and React Pipeline in a real Jenkins environment.
+                </p>
+
+            </div>
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">What is a Node.js and React Pipeline?</h2>
+                <p>
+                    Modern user interfaces built with React rely heavily on the Node.js ecosystem for dependency tracking, module bundling, optimization, and compilation. A dedicated <strong>Node.js and React Pipeline</strong> manages the automated pipeline execution flow required to fetch package source fragments, test component state logic, and run compilation optimization steps.
+                </p>
+                <p>
+                    Unlike traditional backend compilation runtimes, React deployment pipelines translate complex JavaScript syntax, JSX trees, and asset trees into optimized, static browser distribution packages. Orchestrating these steps properly within Jenkins protects live systems from broken client bundles, styling anomalies, or broken rendering experiences.
+                </p>
+
+
+                <!-- EMBEDDED UML WORKFLOW DIAGRAM CARD -->
+                <div class="concept-box my-4 shadow-sm">
+                    <h5 class="fw-bold text-dark mb-3">Polyglot CI/CD Execution Flow</h5>
+                    <p class="small text-muted mb-4">The structural workflow topology tracking runtime tool allocations, branch isolation patterns, and convergence aggregation:</p>
+
+                    <div class="row g-3">
+                        <!-- Commit Level -->
+                        <div class="col-12 text-center mb-2">
+                            <span class="badge bg-dark px-3 py-2 fs-6 rounded-pill">Source Code Change Trigger</span>
+                            <div class="text-muted mt-1">&darr;</div>
+                        </div>
+
+                        <!-- Forking Parallel Workflows -->
+                        <div class="col-md-6 border-end">
+                            <div class="p-2 fw-bold text-primary small text-uppercase tracking-wider">Frontend Node/React Stack</div>
+                            <div class="d-flex flex-column gap-2 mt-2">
+                                <div class="flow-node border shadow-sm"><strong>1. Package Isolation</strong><br><small class="text-muted">Executes deterministic module locks via <code>npm ci</code></small></div>
+                                <div class="flow-node border shadow-sm"><strong>2. UI Component Testing</strong><br><small class="text-muted">Launches framework tests via <code>CI=true npm test</code></small></div>
+                                <div class="flow-node border shadow-sm"><strong>3. Asset Compilation</strong><br><small class="text-muted">Transforms assets into optimized <code>/build</code> structures</small></div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="p-2 fw-bold text-success small text-uppercase tracking-wider">Backend Java/Maven Stack</div>
+                            <div class="d-flex flex-column gap-2 mt-2">
+                                <div class="flow-node border shadow-sm"><strong>1. Environment Injection</strong><br><small class="text-muted">Configures runtime profiles via <code>-Dspring.active</code></small></div>
+                                <div class="flow-node border shadow-sm"><strong>2. Context Verification</strong><br><small class="text-muted">Executes spring lifecycle verification test tasks</small></div>
+                                <div class="flow-node border shadow-sm"><strong>3. Fat-JAR Assembly</strong><br><small class="text-muted">Repackages byte class code into standalone archives</small></div>
+                            </div>
+                        </div>
+
+                        <!-- Pipeline Convergence Summary -->
+                        <div class="col-12 flow-branch mt-4 pt-3 text-center">
+                            <div class="text-muted mb-2">&darr;</div>
+                            <span class="badge bg-secondary px-3 py-2 mb-3">Post-Stage Convergence Layer</span>
+                            <div class="row g-2 justify-content-center">
+                                <div class="col-sm-5">
+                                    <div class="bg-white p-2 border rounded small shadow-sm">
+                                        <strong>JUnit Metrics Processing</strong><br><small class="text-muted">Aggregates test result XMLs to UI plots</small>
+                                    </div>
+                                </div>
+                                <div class="col-sm-5">
+                                    <div class="bg-white p-2 border rounded small shadow-sm">
+                                        <strong>Fingerprinted Archivals</strong><br><small class="text-muted">Saves distribution binaries safely to host</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="alert alert-info">
+                    <strong>Simple Definition:</strong> A specialized Jenkins build sequence that uses the Node.js environment engine to download frontend modules, run interface tests, and compile optimized static web bundles.
+                </div>
+            </div>
+
+
+
+            <!-- KEY CONCEPTS -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Key Concepts
+                </h2>
+
+            <!-- KEY CONCEPTS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Key Concepts</h2>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>NodeJS Tool Injector</h5>
+                            <p class="mb-0">Using the Jenkins NodeJS plugin tool block to dynamically allocate, switch, and initialize explicit global node binary environments across distributed runner agents.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Deterministic Package Locks</h5>
+                            <p class="mb-0">Utilizing explicit execution commands like <code>npm ci</code> instead of generic install scripts to match the absolute cryptographic signature states pinned inside <code>package-lock.json</code>.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Static Asset Compilations</h5>
+                            <p class="mb-0">Executing production bundlers via <code>npm run build</code> to compress code modules, run tree-shaking dead code elimination, and aggregate final asset static folders.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Node Modules Caching</h5>
+                            <p class="mb-0">Isolating or persisting local agent project directory paths like <code>~/.npm</code> to minimize network layer overhead on consecutive build runs.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- EXAMPLE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Practical Jenkins Example
+                </h2>
+
+                <pre><code>pipeline {
+    agent any
+    stages {
+        stage(&#x27;Learn Node.js and React Pipeline&#x27;) {
+            steps {
+                echo &#x27;Jenkins lesson: Node.js and React Pipeline &#x27; 
+            }
+        }
+    }
+}</code></pre>
+
+            </div>
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Practice Exercise
+                </h2>
+
+                <ol>
+                    <li class="mb-2">Open Jenkins and identify the relevant configuration area.</li>
+                    <li class="mb-2">Create or update a small test job or pipeline for this lesson.</li>
+                    <li class="mb-2">Run the job and inspect the Console Output.</li>
+                    <li>Record what changed and verify the result.</li>
+                </ol>
+
+            </div>
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+                <h2 class="h4 fw-bold">Summary</h2>
+                <p class="mb-0">You have completed the <strong>Node.js and React Pipeline</strong> lesson. Continue through the syllabus to build the Jenkins skills required for real CI/CD automation.</p>
+            </div>
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+                <a class="btn btn-outline-primary" href="@Url.Action("JarWarArtifacts", "LanguageStacks", new { area = "Jenkins" })">← Previous: JAR and WAR Artifacts</a>
+                <a class="btn btn-primary" href="@Url.Action("NpmTesting", "LanguageStacks", new { area = "Jenkins" })">Next: npm Testing and Packaging →</a>
+            </div>
+
+        </section>
+
+    </div>
+
+    </div>
+
+</main>

@@ -1,0 +1,607 @@
+﻿@{
+    ViewData["Title"] = "Chaining Pipes";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- Header -->
+    <section class="mb-4">
+        <h1 class="fw-bold text-dark">Chaining Pipes</h1>
+        <p class="lead text-muted">
+            Learn how Angular allows multiple Pipes to be combined together
+            to transform and format data step by step.
+        </p>
+    </section>
+
+    <!-- What is Chaining -->
+    <section class="mb-4">
+        <h2 class="fw-bold">What is Pipe Chaining?</h2>
+
+        <div class="info-card">
+            <p>
+                Pipe chaining means using more than one Pipe in the same
+                Angular template expression.
+            </p>
+
+            <p class="mb-0">
+                The output of one Pipe becomes the input for the next Pipe,
+                allowing multiple transformations to be performed
+                sequentially.
+            </p>
+        </div>
+    </section>
+
+    <!-- Flow -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Pipe Chaining Flow</h2>
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+                <div class="syntax-icon">1</div>
+                <h5>Original Data</h5>
+                <p>Component provides the original value.</p>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+                <div class="syntax-icon">2</div>
+                <h5>First Pipe</h5>
+                <p>The first transformation is applied.</p>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+                <div class="syntax-icon">3</div>
+                <h5>Second Pipe</h5>
+                <p>The transformed value passes to another Pipe.</p>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+                <div class="syntax-icon">4</div>
+                <h5>Final Output</h5>
+                <p>The final formatted value is displayed.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Basic Syntax -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Basic Chaining Syntax</h2>
+
+        <div class="code-card">
+            <div class="code-title">Syntax</div>
+
+            <pre><code>{{value | pipeOne | pipeTwo}}</code></pre>
+        </div>
+
+        <div class="output-box">
+            <strong>Important:</strong>
+
+            <div class="output-preview">
+                The Pipes are executed from left to right.
+            </div>
+        </div>
+    </section>
+
+    <!-- Uppercase + Slice -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Example 1: Uppercase and Slice</h2>
+
+        <p>
+            We can first convert a name to uppercase and then display
+            only a portion of the result.
+        </p>
+
+        <div class="code-card">
+            <div class="code-title">Component</div>
+
+            <pre><code>studentName = 'Samiksha';</code></pre>
+        </div>
+
+        <div class="code-card">
+            <div class="code-title">Template</div>
+
+            <pre><code>&lt;p&gt;
+    {{studentName | uppercase | slice:0:5}}
+&lt;/p&gt;</code></pre>
+        </div>
+
+        <div class="output-box">
+            <strong>Flow:</strong>
+
+            <div class="output-preview">
+                Samiksha → SAMIKSHA → SAMIK
+            </div>
+        </div>
+    </section>
+
+    <!-- Lowercase + Slice -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Example 2: Lowercase and Slice</h2>
+
+        <div class="code-card">
+            <div class="code-title">Component</div>
+
+            <pre><code>studentName = 'PRADNYA';</code></pre>
+        </div>
+
+        <div class="code-card">
+            <div class="code-title">Template</div>
+
+            <pre><code>&lt;p&gt;
+    {{studentName | lowercase | slice:0:4}}
+&lt;/p&gt;</code></pre>
+        </div>
+
+        <div class="output-box">
+            <strong>Flow:</strong>
+
+            <div class="output-preview">
+                PRADNYA → pradnya → prad
+            </div>
+        </div>
+    </section>
+
+    <!-- Date + Chaining -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Example 3: Date Formatting</h2>
+
+        <p>
+            Date formatting can also be customized using a Pipe parameter.
+        </p>
+
+        <div class="code-card">
+            <div class="code-title">Component</div>
+
+            <pre><code>joiningDate = new Date();</code></pre>
+        </div>
+
+        <div class="code-card">
+            <div class="code-title">Template</div>
+
+            <pre><code>&lt;p&gt;
+    {{joiningDate | date:'dd/MM/yyyy'}}
+&lt;/p&gt;</code></pre>
+        </div>
+
+        <div class="output-box">
+            <strong>Result:</strong>
+
+            <div class="output-preview">
+                The date is displayed in the required format.
+            </div>
+        </div>
+    </section>
+
+    <!-- Multiple Pipes -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Using Multiple Pipes</h2>
+
+        <p>
+            More than two Pipes can also be combined when the output
+            requires multiple transformations.
+        </p>
+
+        <div class="code-card">
+            <div class="code-title">Example</div>
+
+            <pre><code>{{studentName | uppercase | slice:0:6}}</code></pre>
+        </div>
+
+        <div class="output-box">
+            <strong>Flow:</strong>
+
+            <div class="output-preview">
+                Original Value → Uppercase → Slice → Final Value
+            </div>
+        </div>
+    </section>
+
+    <!-- Chaining with Parameters -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Chaining Pipes with Parameters</h2>
+
+        <p>
+            Pipes in a chain can also receive their own parameters.
+        </p>
+
+        <div class="code-card">
+            <div class="code-title">Example</div>
+
+            <pre><code>{{studentName | uppercase | slice:0:5}}</code></pre>
+        </div>
+
+        <div class="output-box">
+            <strong>Explanation:</strong>
+
+            <div class="output-preview">
+                <code>uppercase</code> performs the first transformation,
+                and <code>slice</code> receives its own parameters.
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Single Pipe vs Chained Pipes</h2>
+
+        <div class="table-responsive">
+
+            <table class="table syntax-table">
+
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Syntax</th>
+                        <th>Purpose</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>Single Pipe</td>
+                        <td><code>{{name | uppercase}}</code></td>
+                        <td>One transformation</td>
+                    </tr>
+
+                    <tr>
+                        <td>Two Pipes</td>
+                        <td><code>{{name | uppercase | slice:0:5}}</code></td>
+                        <td>Two transformations</td>
+                    </tr>
+
+                    <tr>
+                        <td>Parameterized Pipe</td>
+                        <td><code>{{date | date:'dd/MM/yyyy'}}</code></td>
+                        <td>Customized formatting</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+    </section>
+
+    <!-- Student Example -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Complete Student Example</h2>
+
+        <div class="code-card">
+            <div class="code-title">student.component.ts</div>
+
+            <pre><code>export class StudentComponent {
+
+    student1 = 'Sam';
+
+    student2 = 'Pradnya';
+
+    student3 = 'Samiksha';
+
+    joiningDate = new Date();
+
+}</code></pre>
+        </div>
+
+        <div class="code-card">
+            <div class="code-title">student.component.html</div>
+
+            <pre><code>&lt;h3&gt;
+    {{student1 | uppercase | slice:0:2}}
+&lt;/h3&gt;
+
+&lt;h3&gt;
+    {{student2 | uppercase | slice:0:5}}
+&lt;/h3&gt;
+
+&lt;h3&gt;
+    {{student3 | uppercase | slice:0:6}}
+&lt;/h3&gt;
+
+&lt;p&gt;
+    {{joiningDate | date:'dd/MM/yyyy'}}
+&lt;/p&gt;</code></pre>
+        </div>
+
+        <div class="student-preview">
+            <h4>SA</h4>
+            <h4>PRADN</h4>
+            <h4>SAMIKS</h4>
+
+            <hr />
+
+            <p class="mb-0">
+                Date displayed using the Date Pipe.
+            </p>
+        </div>
+    </section>
+
+    <!-- Chaining Flow -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Chaining Example Flow</h2>
+
+        <div class="binding-flow">
+
+            <div class="binding-item">
+                <strong>Samiksha</strong>
+                <span>Original Value</span>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="binding-item">
+                <strong>uppercase</strong>
+                <span>SAMIKSHA</span>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="binding-item">
+                <strong>slice:0:6</strong>
+                <span>SAMIKS</span>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Best Practices -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Best Practices</h2>
+
+        <ul class="best-practice-list">
+            <li>Use pipe chaining when multiple simple transformations are required.</li>
+            <li>Keep the chain short and readable.</li>
+            <li>Use parameters only when they are required.</li>
+            <li>Avoid very long and complex pipe chains.</li>
+            <li>Keep business logic outside template expressions.</li>
+            <li>Use custom Pipes when transformation logic becomes reusable and complex.</li>
+        </ul>
+    </section>
+
+    <!-- Summary -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Summary</h2>
+
+        <div class="summary-box">
+            <ul class="mb-0">
+                <li>Pipe chaining combines multiple Pipes in one expression.</li>
+                <li>The output of one Pipe becomes the input of the next Pipe.</li>
+                <li>Pipes are applied from left to right.</li>
+                <li>Each Pipe can have its own parameters.</li>
+                <li>Chaining is useful for simple sequential transformations.</li>
+                <li>Very complex chains should be avoided for better readability.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Navigation -->
+    <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+
+        <a class="btn btn-outline-secondary"
+           href="@Url.Action("ParameterizedPipes", "Pipes", new { area = "Angular" })">
+            ← Parameterized Pipes
+        </a>
+
+        <a class="btn btn-primary"
+           href="@Url.Action("CustomPipes", "Pipes", new { area = "Angular" })">
+            Custom Pipes →
+        </a>
+
+    </div>
+
+</div>
+
+<style>
+
+    .info-card {
+        background: #f8fafc;
+        border-left: 5px solid #4c1d95;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    .syntax-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .syntax-box {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 20px;
+        text-align: center;
+        width: 190px;
+        min-height: 160px;
+    }
+
+    .syntax-icon {
+        width: 45px;
+        height: 45px;
+        background: #4c1d95;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 12px;
+        font-weight: bold;
+    }
+
+    .syntax-arrow {
+        font-size: 28px;
+        font-weight: bold;
+        color: #4c1d95;
+    }
+
+    .syntax-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+
+    .syntax-card {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .code-card {
+        background: #0f172a;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-bottom: 20px;
+    }
+
+    .code-title {
+        background: #1e293b;
+        color: #ddd6fe;
+        padding: 10px 15px;
+        font-weight: 600;
+    }
+
+    .code-card pre {
+        margin: 0;
+        padding: 20px;
+        overflow-x: auto;
+    }
+
+    .code-card code {
+        color: #f8fafc;
+        font-family: Consolas, monospace;
+        line-height: 1.7;
+    }
+
+    .output-box {
+        background: #ede9fe;
+        border-left: 5px solid #4c1d95;
+        padding: 18px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+
+    .output-preview {
+        background: white;
+        border-radius: 8px;
+        padding: 15px;
+        margin-top: 10px;
+    }
+
+    .syntax-table {
+        border: 1px solid #e2e8f0;
+    }
+
+        .syntax-table th {
+            background: #4c1d95;
+            color: white;
+        }
+
+        .syntax-table td {
+            vertical-align: middle;
+        }
+
+    .student-preview {
+        background: #ede9fe;
+        border: 2px solid #4c1d95;
+        border-radius: 12px;
+        padding: 25px;
+        text-align: center;
+    }
+
+    .binding-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .binding-item {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        padding: 18px;
+        text-align: center;
+        min-width: 170px;
+    }
+
+        .binding-item strong {
+            display: block;
+            color: #4c1d95;
+            margin-bottom: 6px;
+        }
+
+        .binding-item span {
+            color: #334155;
+        }
+
+    .best-practice-list {
+        background: #f8fafc;
+        border-radius: 10px;
+        padding: 25px 40px;
+        border-left: 5px solid #4c1d95;
+    }
+
+        .best-practice-list li {
+            margin-bottom: 10px;
+        }
+
+    .summary-box {
+        background: #cfe2ff;
+        color: #084298;
+        border-radius: 10px;
+        padding: 20px;
+    }
+
+    @@media (max-width: 991px) {
+
+        .syntax-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .syntax-flow,
+        .binding-flow {
+            flex-direction: column;
+        }
+
+        .syntax-arrow {
+            transform: rotate(90deg);
+        }
+    }
+
+    @@media (max-width: 576px) {
+
+        .syntax-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .syntax-box {
+            width: 100%;
+        }
+
+        .binding-item {
+            width: 100%;
+        }
+
+        .best-practice-list {
+            padding: 20px 30px;
+        }
+
+        .code-card pre {
+            font-size: 13px;
+        }
+    }
+
+</style>

@@ -1,0 +1,1667 @@
+﻿@{
+    ViewData["Title"] = "RxJS Operators";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- Header -->
+    <section class="mb-4">
+
+        <h1 class="fw-bold text-dark">
+            RxJS Operators
+        </h1>
+
+        <p class="lead text-muted">
+            Learn how RxJS operators process Observable streams and how
+            operators can be combined using the pipe() method.
+        </p>
+
+    </section>
+
+
+    <!-- Introduction -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            What is an RxJS Operator?
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                An <strong>RxJS Operator</strong> is a function that works with
+                an Observable stream and returns another Observable representing
+                the processed stream.
+            </p>
+
+            <p>
+                Operators can be used for transformation, filtering,
+                combination, timing, error handling and other stream-processing
+                requirements.
+            </p>
+
+            <p class="mb-0">
+                RxJS operators are commonly combined inside the
+                <strong>pipe()</strong> method.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Operator Flow -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            RxJS Operator Flow
+        </h2>
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+
+                <strong>Source</strong>
+
+                <span>
+                    Observable
+                </span>
+
+            </div>
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+            <div class="syntax-box">
+
+                <strong>pipe()</strong>
+
+                <span>
+                    Processing Pipeline
+                </span>
+
+            </div>
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+            <div class="syntax-box">
+
+                <strong>Operators</strong>
+
+                <span>
+                    Process Stream
+                </span>
+
+            </div>
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+            <div class="syntax-box">
+
+                <strong>Result</strong>
+
+                <span>
+                    New Observable
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Why Operators -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Why Do We Use Operators?
+        </h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    T
+                </div>
+
+                <h5>
+                    Transform Data
+                </h5>
+
+                <p>
+                    Convert emitted values into the format required by
+                    the application.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    F
+                </div>
+
+                <h5>
+                    Filter Data
+                </h5>
+
+                <p>
+                    Allow only required values to continue through the stream.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    C
+                </div>
+
+                <h5>
+                    Combine Streams
+                </h5>
+
+                <p>
+                    Work with values from multiple Observable sources.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    E
+                </div>
+
+                <h5>
+                    Handle Errors
+                </h5>
+
+                <p>
+                    Build stream-processing logic for error scenarios.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- pipe -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Using pipe()
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                The <strong>pipe()</strong> method is used to connect
+                multiple RxJS operators together.
+            </p>
+
+            <p class="mb-0">
+                Operators are executed as part of the Observable processing
+                pipeline.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Basic Syntax
+            </div>
+
+            <pre><code>const result$ = source$.pipe(
+
+    operator1(),
+
+    operator2(),
+
+    operator3()
+
+);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Operator Categories -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Operator Categories
+        </h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    T
+                </div>
+
+                <h5>
+                    Transformation
+                </h5>
+
+                <p>
+                    Changes or converts emitted values.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    F
+                </div>
+
+                <h5>
+                    Filtering
+                </h5>
+
+                <p>
+                    Controls which values are allowed to continue.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    C
+                </div>
+
+                <h5>
+                    Combination
+                </h5>
+
+                <p>
+                    Works with multiple Observable streams.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    U
+                </div>
+
+                <h5>
+                    Utility
+                </h5>
+
+                <p>
+                    Supports timing, side effects and stream control.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Common Operators -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Common RxJS Operators
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table syntax-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Operator
+                        </th>
+
+                        <th>
+                            Category
+                        </th>
+
+                        <th>
+                            Purpose
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            <code>map()</code>
+                        </td>
+
+                        <td>
+                            Transformation
+                        </td>
+
+                        <td>
+                            Transforms each emitted value
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            <code>filter()</code>
+                        </td>
+
+                        <td>
+                            Filtering
+                        </td>
+
+                        <td>
+                            Keeps values matching a condition
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            <code>tap()</code>
+                        </td>
+
+                        <td>
+                            Utility
+                        </td>
+
+                        <td>
+                            Performs a side effect without changing the value
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            <code>take()</code>
+                        </td>
+
+                        <td>
+                            Filtering / Control
+                        </td>
+
+                        <td>
+                            Takes a specified number of emissions
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            <code>catchError()</code>
+                        </td>
+
+                        <td>
+                            Error Handling
+                        </td>
+
+                        <td>
+                            Handles an error in the stream
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            <code>debounceTime()</code>
+                        </td>
+
+                        <td>
+                            Timing
+                        </td>
+
+                        <td>
+                            Delays emission until the source remains quiet
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- Simple Example -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Simple Operator Example
+        </h2>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                TypeScript
+            </div>
+
+            <pre><code>const numbers$ = of(
+    10,
+    20,
+    30
+);
+
+const result$ = numbers$.pipe(
+
+    map(value =&gt; value * 2)
+
+);
+
+result$.subscribe({
+
+    next: value =&gt; {
+
+        console.log(value);
+
+    }
+
+});</code></pre>
+
+        </div>
+
+
+        <div class="output-box mt-3">
+
+            <div class="student-preview">
+
+                <h4>
+                    Output
+                </h4>
+
+                <p>
+                    20
+                </p>
+
+                <p>
+                    40
+                </p>
+
+                <p class="mb-0">
+                    60
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Operator Chain -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Chaining Operators
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                More than one operator can be placed inside a single
+                <strong>pipe()</strong>.
+            </p>
+
+            <p class="mb-0">
+                This creates a processing pipeline where the result of one
+                operator is passed to the next operator.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>const numbers$ = of(
+    1,
+    2,
+    3,
+    4,
+    5
+);
+
+const result$ = numbers$.pipe(
+
+    map(value =&gt; value * 10),
+
+    filter(value =&gt; value &gt; 20)
+
+);</code></pre>
+
+        </div>
+
+
+        <div class="syntax-flow mt-4">
+
+            <div class="syntax-box">
+
+                <strong>1 2 3 4 5</strong>
+
+                <span>
+                    Source
+                </span>
+
+            </div>
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+            <div class="syntax-box">
+
+                <strong>map()</strong>
+
+                <span>
+                    × 10
+                </span>
+
+            </div>
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+            <div class="syntax-box">
+
+                <strong>filter()</strong>
+
+                <span>
+                    &gt; 20
+                </span>
+
+            </div>
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+            <div class="syntax-box">
+
+                <strong>30 40 50</strong>
+
+                <span>
+                    Final Values
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Pure Processing -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Operators and Observable Immutability
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                RxJS operators generally create a new Observable representing
+                the processed stream rather than directly changing the
+                original Observable definition.
+            </p>
+
+            <p class="mb-0">
+                This makes stream-processing pipelines easier to compose
+                and reason about.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Transformation -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Transformation Operators
+        </h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    M
+                </div>
+
+                <h5>
+                    map()
+                </h5>
+
+                <p>
+                    Converts each value into another value.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    S
+                </div>
+
+                <h5>
+                    scan()
+                </h5>
+
+                <p>
+                    Accumulates state as values are emitted.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    B
+                </div>
+
+                <h5>
+                    buffer()
+                </h5>
+
+                <p>
+                    Collects emitted values into grouped outputs.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    F
+                </div>
+
+                <h5>
+                    format
+                </h5>
+
+                <p>
+                    Transformation logic can prepare data for application use.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="info-card mt-3">
+
+            <p class="mb-0">
+                Detailed transformation operators will be covered in the
+                next topic, <strong>Transformation and Filtering</strong>.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Filtering -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Filtering Operators
+        </h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    F
+                </div>
+
+                <h5>
+                    filter()
+                </h5>
+
+                <p>
+                    Keeps values satisfying a condition.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    T
+                </div>
+
+                <h5>
+                    take()
+                </h5>
+
+                <p>
+                    Takes a fixed number of emitted values.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    S
+                </div>
+
+                <h5>
+                    skip()
+                </h5>
+
+                <p>
+                    Ignores a specified number of initial values.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    D
+                </div>
+
+                <h5>
+                    distinct
+                </h5>
+
+                <p>
+                    Helps control repeated values in a stream.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Utility -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Utility Operators
+        </h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    T
+                </div>
+
+                <h5>
+                    tap()
+                </h5>
+
+                <p>
+                    Useful for logging and debugging side effects.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    D
+                </div>
+
+                <h5>
+                    debounceTime()
+                </h5>
+
+                <p>
+                    Controls rapid successive emissions using time.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    C
+                </div>
+
+                <h5>
+                    catchError()
+                </h5>
+
+                <p>
+                    Provides error-handling behavior for a stream.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    F
+                </div>
+
+                <h5>
+                    finalize()
+                </h5>
+
+                <p>
+                    Runs logic when an Observable terminates.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CIIT Example -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            CIIT Training Institute Example
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                Suppose CIIT Training Institute receives course enquiry
+                information through an Observable.
+            </p>
+
+            <p class="mb-0">
+                Operators can be placed in a pipeline to prepare the data
+                before the dashboard receives the final result.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Course Enquiry Stream
+            </div>
+
+            <pre><code>const enquiries$ = of(
+    'Java',
+    '.NET',
+    'Python'
+);
+
+const result$ = enquiries$.pipe(
+
+    map(course =&gt;
+        course + ' enquiry'
+    ),
+
+    tap(enquiry =&gt; {
+
+        console.log(
+            'Processing:',
+            enquiry
+        );
+
+    })
+
+);
+
+result$.subscribe({
+
+    next: enquiry =&gt; {
+
+        console.log(
+            'Dashboard:',
+            enquiry
+        );
+
+    }
+
+});</code></pre>
+
+        </div>
+
+
+        <div class="output-box mt-3">
+
+            <div class="student-preview">
+
+                <h4>
+                    CIIT Training Institute
+                </h4>
+
+                <p>
+                    Processing: Java enquiry
+                </p>
+
+                <p>
+                    Processing: .NET enquiry
+                </p>
+
+                <p>
+                    Processing: Python enquiry
+                </p>
+
+                <p class="mb-0">
+                    Dashboard receives processed enquiry data
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Operator Selection -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Choosing an Operator
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table syntax-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Requirement
+                        </th>
+
+                        <th>
+                            Suitable Operator
+                        </th>
+
+                        <th>
+                            Purpose
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            Change a value
+                        </td>
+
+                        <td>
+                            <code>map()</code>
+                        </td>
+
+                        <td>
+                            Transform each emission
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Keep matching values
+                        </td>
+
+                        <td>
+                            <code>filter()</code>
+                        </td>
+
+                        <td>
+                            Apply a condition
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Inspect values
+                        </td>
+
+                        <td>
+                            <code>tap()</code>
+                        </td>
+
+                        <td>
+                            Perform a side effect
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Limit emissions
+                        </td>
+
+                        <td>
+                            <code>take()</code>
+                        </td>
+
+                        <td>
+                            Take a fixed number of values
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Handle errors
+                        </td>
+
+                        <td>
+                            <code>catchError()</code>
+                        </td>
+
+                        <td>
+                            Handle stream failures
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Delay rapid events
+                        </td>
+
+                        <td>
+                            <code>debounceTime()</code>
+                        </td>
+
+                        <td>
+                            Control frequent emissions
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- Operator Pipeline Design -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Building a Good Operator Pipeline
+        </h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    1
+                </div>
+
+                <h5>
+                    Identify Source
+                </h5>
+
+                <p>
+                    Understand what values the Observable emits.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    2
+                </div>
+
+                <h5>
+                    Define Requirement
+                </h5>
+
+                <p>
+                    Decide whether data must be transformed or filtered.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    3
+                </div>
+
+                <h5>
+                    Select Operators
+                </h5>
+
+                <p>
+                    Choose operators that directly match the requirement.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    4
+                </div>
+
+                <h5>
+                    Build Pipeline
+                </h5>
+
+                <p>
+                    Combine the selected operators inside pipe().
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Important Points -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Important Points
+        </h2>
+
+        <div class="best-practice-list">
+
+            <div class="info-card mb-3">
+
+                <strong>
+                    1. Operators Process Streams
+                </strong>
+
+                <p class="mb-0">
+                    Operators are used to process values emitted by
+                    an Observable.
+                </p>
+
+            </div>
+
+
+            <div class="info-card mb-3">
+
+                <strong>
+                    2. Operators Work with pipe()
+                </strong>
+
+                <p class="mb-0">
+                    Multiple operators can be combined through the
+                    pipe() method.
+                </p>
+
+            </div>
+
+
+            <div class="info-card mb-3">
+
+                <strong>
+                    3. Different Operators Have Different Roles
+                </strong>
+
+                <p class="mb-0">
+                    Transformation, filtering, combination, timing and
+                    error-handling operators solve different problems.
+                </p>
+
+            </div>
+
+
+            <div class="info-card">
+
+                <strong>
+                    4. Keep Pipelines Understandable
+                </strong>
+
+                <p class="mb-0">
+                    Select operators based on the actual business or
+                    application requirement.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Best Practices -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            RxJS Operator Best Practices
+        </h2>
+
+        <ul class="best-practice-list">
+
+            <li>
+                Choose an operator based on the exact stream-processing
+                requirement.
+            </li>
+
+            <li>
+                Keep operator chains readable.
+            </li>
+
+            <li>
+                Avoid adding operators that do not contribute to the
+                required result.
+            </li>
+
+            <li>
+                Use tap() mainly for side effects such as logging or debugging.
+            </li>
+
+            <li>
+                Handle important errors with suitable RxJS error-handling
+                strategies.
+            </li>
+
+            <li>
+                Separate complex stream-processing logic into meaningful
+                services or reusable methods where appropriate.
+            </li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- Summary -->
+    <section class="mb-4">
+
+        <div class="summary-box">
+
+            <h4 class="fw-bold">
+                Summary
+            </h4>
+
+            <p>
+                RxJS operators are functions used to process Observable
+                streams.
+            </p>
+
+            <p>
+                Operators can transform, filter, combine, control and
+                handle errors in data streams.
+            </p>
+
+            <p class="mb-0">
+                The <strong>pipe()</strong> method is used to compose
+                operators into a processing pipeline. In the next topic,
+                we will study <strong>Transformation and Filtering</strong>
+                in detail.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Navigation -->
+    <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+
+        <a class="btn btn-outline-secondary"
+           href="@Url.Action("Index", "RxJS", new { area = "Angular" })">
+
+            ← RxJS
+
+        </a>
+
+
+        <a class="btn btn-primary"
+           href="@Url.Action("TransformationFiltering", "RxJS", new { area = "Angular" })">
+
+            Transformation &amp; Filtering →
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<style>
+
+    .info-card {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-left: 5px solid #4c1d95;
+        border-radius: 10px;
+        padding: 20px;
+        line-height: 1.7;
+        color: #334155;
+    }
+
+
+    .syntax-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        flex-wrap: wrap;
+        margin: 25px 0;
+    }
+
+
+    .syntax-box {
+        background: linear-gradient( 135deg, #2e1065, #4c1d95 );
+        color: white;
+        padding: 18px 25px;
+        border-radius: 12px;
+        text-align: center;
+        min-width: 180px;
+        box-shadow: 0 5px 15px rgba(76, 29, 149, 0.15);
+    }
+
+
+        .syntax-box strong {
+            display: block;
+            font-size: 16px;
+        }
+
+
+        .syntax-box span {
+            display: block;
+            margin-top: 5px;
+            color: #d8c9f5;
+            font-size: 14px;
+        }
+
+
+    .syntax-arrow {
+        font-size: 28px;
+        font-weight: bold;
+        color: #4c1d95;
+    }
+
+
+    .syntax-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+
+
+    .syntax-card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 22px;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+    }
+
+
+        .syntax-card h5 {
+            margin-top: 15px;
+            font-weight: 700;
+            color: #2e1065;
+        }
+
+
+        .syntax-card p {
+            color: #64748b;
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+
+
+    .syntax-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: #ede9fe;
+        color: #4c1d95;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 18px;
+        margin: 0 auto;
+    }
+
+
+    .code-card {
+        background: #0f172a;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(15, 23, 42, 0.10);
+    }
+
+
+    .code-title {
+        background: #1e293b;
+        color: #ffffff;
+        padding: 12px 18px;
+        font-weight: 700;
+        font-size: 14px;
+    }
+
+
+    .code-card pre {
+        margin: 0;
+        padding: 20px;
+        overflow-x: auto;
+    }
+
+
+    .code-card code {
+        color: #f8fafc;
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+
+    .output-box {
+        background: #f8fafc;
+        border: 1px solid #ddd6fe;
+        border-radius: 12px;
+        padding: 20px;
+    }
+
+
+    .student-preview {
+        background: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        padding: 20px;
+    }
+
+
+        .student-preview h4 {
+            color: #2e1065;
+            font-weight: 700;
+        }
+
+
+        .student-preview p {
+            color: #64748b;
+        }
+
+
+    .syntax-table {
+        width: 100%;
+        margin-bottom: 0;
+        border: 1px solid #e2e8f0;
+    }
+
+
+        .syntax-table thead th {
+            background: #2e1065;
+            color: white;
+            padding: 14px;
+            border-color: #4c1d95;
+        }
+
+
+        .syntax-table tbody td {
+            padding: 14px;
+            vertical-align: middle;
+            color: #334155;
+            border-color: #e2e8f0;
+        }
+
+
+        .syntax-table tbody tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+
+        .syntax-table code {
+            color: #4c1d95;
+            font-weight: 600;
+        }
+
+
+    .best-practice-list {
+        margin: 0;
+        padding-left: 20px;
+    }
+
+
+        .best-practice-list li {
+            margin-bottom: 10px;
+            color: #334155;
+            line-height: 1.6;
+        }
+
+
+    .summary-box {
+        background: #cfe2ff;
+        color: #084298;
+        border-radius: 10px;
+        padding: 22px;
+        border: 1px solid #b6d4fe;
+    }
+
+
+        .summary-box h4 {
+            margin-bottom: 12px;
+        }
+
+
+    @@media (max-width: 991px) {
+
+        .syntax-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .syntax-flow {
+            gap: 12px;
+        }
+
+        .syntax-box {
+            min-width: 160px;
+        }
+    }
+
+
+    @@media (max-width: 576px) {
+
+        .syntax-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .syntax-flow {
+            flex-direction: column;
+        }
+
+        .syntax-arrow {
+            transform: rotate(90deg);
+        }
+
+        .syntax-box {
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .code-card pre {
+            padding: 15px;
+        }
+
+        .code-card code {
+            font-size: 13px;
+        }
+    }
+
+</style>

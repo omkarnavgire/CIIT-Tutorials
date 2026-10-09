@@ -1,0 +1,179 @@
+@{
+    Layout = "~/Areas/Jenkins/Views/Shared/JenkinsLayout.cshtml";
+    ViewData["Title"] = "Jenkinsfile Foundations";
+}
+
+<style>
+    #jenkinsfile-foundations-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #jenkinsfile-foundations-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #jenkinsfile-foundations-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #jenkinsfile-foundations-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #jenkinsfile-foundations-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+    #jenkinsfile-foundations-page .example-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+    }
+</style>
+
+<main id="jenkinsfile-foundations-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/Jenkins/Views/Shared/JenkinsTopics.cshtml")
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+                <h1 class="fw-bold">Jenkinsfile Foundations</h1>
+                <p class="lead">
+                    Learn the concepts, syntax frameworks, storage practices, and workflow paradigms required to transition your automation infrastructure into version-controlled Pipeline as Code text configurations.
+                </p>
+            </div>
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">What is a Jenkinsfile?</h2>
+                <p>
+                    A <strong>Jenkinsfile</strong> is a text document that defines an entire continuous automation workflow using code logic. By authoring pipelines inside a dedicated file instead of manually saving options through interactive dashboard panels, development engineering teams can treat their delivery pipelines with the exact same rigorous version control tracking applied to operational application codebases.
+                </p>
+
+                <div class="alert alert-info my-3">
+                    <strong>Simple Definition:</strong> A Jenkinsfile is a text configuration script checked directly into your application's source repository that prescribes the exact collection of build stages, tests, and deployment commands Jenkins must execute.
+                </div>
+
+                <h3 class="h4 fw-bold mt-4">Core Structural Directives</h3>
+                <p class="mb-2">Every baseline declarative text configuration incorporates these fundamental block directives:</p>
+                <ul class="mb-3">
+                    <li class="mb-1"><strong>The `pipeline` Wrapper:</strong> The primary root block structure that wraps all executable code parameters and syntax configurations inside a uniform declarative schema.</li>
+                    <li class="mb-1"><strong>The `agent` Node Allocator:</strong> An architecture directive specifying exactly which worker machine system node resources to spin up and bind to perform operational execution tasks.</li>
+                    <li class="mb-1"><strong>The `stages` Sequence Holder:</strong> A chronological container layout housing the discrete step blocks (e.g., compile, verify, deliver) that compose your automated delivery chain.</li>
+                    <li><strong>The `steps` Execution Core:</strong> The final granular command blocks (such as `sh` or `echo`) that instruct the runner system to perform single physical actions inside an isolated stage.</li>
+                </ul>
+            </div>
+
+            <!-- KEY CONCEPTS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Key Concepts</h2>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Pipeline as Code Advantages</h5>
+                            <p class="mb-0">Shifting build infrastructure from fragile, un-tracked graphical interface fields to transparent text assets that can be easily peer-reviewed, auditable, and traceably rolled back through Git history logs.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Source Repository Location</h5>
+                            <p class="mb-0">Storing the tracking file directly inside the root application folder directory, ensuring that any fresh feature branch push carries along its own custom-tailored execution instructions natively.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXAMPLE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Practical Jenkins Example</h2>
+                <p>The following example showcases the structural baseline configuration syntax model representing a clean, standard declarative script blueprint:</p>
+                <pre><code>// Standard text configuration file placed at the root of a code repository
+pipeline {
+    agent any
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    stages {
+        stage('Initialize Repository Checkout') {
+            steps {
+                echo 'INFO: Pulling target project directory files into isolation sandbox...'
+            }
+        }
+        stage('Execute Compilation Check') {
+            steps {
+                echo 'INFO: Verifying language compiler binary configurations...'
+                sh 'echo "Simulating application build assembly pass..."'
+            }
+        }
+    }
+}</code></pre>
+                </div>
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+            <h2 class="h3 fw-bold">Practice Exercise: Deploy a Version-Controlled Script Asset</h2>
+                <div class="concept-box">
+                <h5 class="fw-bold">Step-by-Step Task Sequence:</h5>
+            <ol class="ps-3 mb-0">
+                        <li class="mb-2">Initialize or access a test repository on your host system or source management account (such as a GitHub playground repo).</li>
+            <li class="mb-2">Create a new plain text file named exactly <code>Jenkinsfile</code> (with no file extension suffix) right at the root folder level of that repository.</li>
+            <li class="mb-2">Copy-paste the complete multi-stage declarative syntax code provided in the practical example block above into your fresh file and commit the file to your branch.</li>
+                <li class="mb-2">Open your Jenkins interface portal, link a standard Pipeline item to point directly to that remote repository path, and choose **Pipeline script from SCM**.</li>
+                <li>Trigger the execution run path by selecting **Build Now** and inspect the **Console Output** to verify the server locating and parsing your script parameters successfully.</li>
+            </ol>
+                </div>
+        </div>
+
+    <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+<h2 class="h4 fw-bold">Summary</h2>
+                <p class="mb-0">You have completed the <strong>Jenkinsfile Foundations</strong> lesson. You have opened Phase 3 (Pipeline as Code). Continue through the syllabus to analyze the operational differences between Declarative vs Scripted Pipeline programming patterns.</p>
+            </div>
+
+<!-- NAVIGATION -->
+<div class="d-flex justify-content-between mt-4">
+<a class="btn btn-outline-primary" href="@Url.Action("BuildHistory", "CoreCICD", new { area = "Jenkins" })">← Previous: Build History and Console Output</a>
+<a class="btn btn-primary" href="@Url.Action("DeclarativeVsScripted", "Pipeline", new { area = "Jenkins" })">Next: Declarative vs Scripted Pipeline →</a>
+</div>
+
+</section>
+
+</div>
+
+</main>

@@ -1,0 +1,106 @@
+@{
+    ViewData["Title"] = "Microsoft Azure - Deploy a Static Web App";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+                <div class="azure-notes-content">
+                    <pre class="azure-notes-text">Microsoft Azure - Deploy a Static Web App
+
+
+This is a new offer in the app service family called static web apps. Static web apps is a tailored offer
+designed for static web apps full stack javascript web apps with static front-ends and optional
+dynamic back-ends powered by serverless APIs in our case implemented with azure functions. Static
+web apps are a preview offer.
+
+
+
+
+Azure makes it really easy to get started. Azure asks for minimal information to create this static web
+app resource right through the portal. Azure asks for a resource group and for the name of your app.
+Static web apps Ask for a region, and this is just to provision functions the actual Static content is
+geo-distributed.
+Static web apps have a very deep connection with GitHub because Azure wants to empower
+developers to use open-source tools.
+
+
+
+
+First, connect to your GitHub repo by signing into your GitHub account and selecting the repo for
+your demo. Also, select a branch that you want to associate with production deploy deployment. If
+you have the opportunity to inform static web apps of your app location, API location, or the location
+of your build artifacts, in this case, the default configuration is fine. So, you can move forward with
+the creation of your app and will get a notification when your resource is created. Connection with
+GitHub allows you for effortless transitions back and forth between the azure portal management
+experience And the actual development experience that is tied to Github. You can see that your
+resource features a URL for the web app that was provisioned but it also has deep links to GitHub
+and Azure generates a workflow file in Github that informs Github actions for ci/cd.
+If you follow that link you will see the work of the file that you generated actually matches the
+specific resource that was just provisioned within that workflow file. Azure provides you with
+complete transparency about the build and deployment and you also have the opportunity to
+customize and inform their platform about how you would like us to handle your code assets.
+
+Again, you notice that you have Multiple code assets. So this is a React-based app and also has the
+API that is powered by azure functions and follows the azure functions programming model. So you
+will see configuration elements that are specific to azure functions Now, GitHub actions show the
+status of your deployment. It shows you, how you are progressing through all of the build and
+deployment steps and because there is full transparency in your repo, you also have an audit log for
+all of the different steps that Azure has taken for your app.
+
+
+
+
+This is now completed so you can go back to the Azure portal and take a look at the resource. The
+same deep integration with GitHub is present If you create pre-production environments.
+You can do it simply by submitting a pull request if you send a pull request, you will automatically
+provision that pre-production environment for you and the pull request itself. Azure will tell you what
+you provisioned in this case. After going back to the connection between GitHub and the Azure
+portal. You can see Environments and you can see that you have direct access to both the branch
+that you deployed from in GitHub And the resources that you just provisioned to browse directly
+from the Azure portal.
+
+
+
+
+Finally, this is the process to deploy a static web app in the Azure portal series.</pre>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_6_-_Microsoft_Azure_-_Creating_an_App_Service_Plan/p07-000.jpg" class="img-fluid rounded shadow-sm" alt="Microsoft Azure - Deploy a Static Web App - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_6_-_Microsoft_Azure_-_Creating_an_App_Service_Plan/p08-000.jpg" class="img-fluid rounded shadow-sm" alt="Microsoft Azure - Deploy a Static Web App - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_6_-_Microsoft_Azure_-_Creating_an_App_Service_Plan/p08-001.jpg" class="img-fluid rounded shadow-sm" alt="Microsoft Azure - Deploy a Static Web App - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_6_-_Microsoft_Azure_-_Creating_an_App_Service_Plan/p09-000.jpg" class="img-fluid rounded shadow-sm" alt="Microsoft Azure - Deploy a Static Web App - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_6_-_Microsoft_Azure_-_Creating_an_App_Service_Plan/p09-001.jpg" class="img-fluid rounded shadow-sm" alt="Microsoft Azure - Deploy a Static Web App - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_6_-_Microsoft_Azure_-_Creating_an_App_Service_Plan/p10-000.jpg" class="img-fluid rounded shadow-sm" alt="Microsoft Azure - Deploy a Static Web App - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_6_-_Microsoft_Azure_-_Creating_an_App_Service_Plan/p10-001.jpg" class="img-fluid rounded shadow-sm" alt="Microsoft Azure - Deploy a Static Web App - source image" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+            @await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureLessonNavigation.cshtml")
+</section>
+</div>
+<style>
+.azure-notes-text{white-space:pre-wrap;word-break:normal;font-family:inherit;font-size:1rem;line-height:1.7;background:#fff;border:0;padding:0;margin:0;color:#212529;}
+.azure-notes-content img{max-height:720px;}
+</style>

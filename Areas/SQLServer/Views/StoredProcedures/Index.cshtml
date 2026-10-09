@@ -1,0 +1,512 @@
+﻿@{
+    ViewData["Title"] = "Stored Procedures Introduction";
+}
+
+<div class="container-fluid">
+
+    <!-- =========================
+         PAGE INTRODUCTION
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h1 class="fw-bold mb-3">
+            Stored Procedures Introduction
+        </h1>
+
+        <p class="lead text-muted">
+            A Stored Procedure is a precompiled collection of SQL statements
+            stored inside SQL Server. It can be executed whenever required
+            and is commonly used to perform database operations in a
+            structured and reusable way.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         WHAT IS A STORED PROCEDURE
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            What is a Stored Procedure?
+        </h2>
+
+        <p>
+            A Stored Procedure is a named group of one or more SQL statements
+            stored in the SQL Server database.
+        </p>
+
+        <p>
+            Instead of writing the same SQL query repeatedly, we can create
+            a stored procedure once and execute it whenever required.
+        </p>
+
+        <div class="alert alert-primary border-0">
+
+            <h5 class="fw-bold">
+                Simple Definition
+            </h5>
+
+            <p class="mb-0">
+                A Stored Procedure is a reusable set of SQL statements
+                stored in SQL Server and executed using its procedure name.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         WHY USE STORED PROCEDURES
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Why Use Stored Procedures?
+        </h2>
+
+        <p>
+            Stored Procedures provide several benefits when developing
+            database applications.
+        </p>
+
+        <ul class="mb-4">
+
+            <li class="mb-2">
+                <strong>Reusability:</strong>
+                The same procedure can be executed multiple times.
+            </li>
+
+            <li class="mb-2">
+                <strong>Maintainability:</strong>
+                Database logic can be maintained in one place.
+            </li>
+
+            <li class="mb-2">
+                <strong>Security:</strong>
+                Users can be given permission to execute procedures
+                without giving direct access to underlying tables.
+            </li>
+
+            <li class="mb-2">
+                <strong>Performance:</strong>
+                SQL Server can optimize and reuse execution plans for
+                stored procedures.
+            </li>
+
+            <li class="mb-2">
+                <strong>Reduced Repetition:</strong>
+                Common database operations do not need to be written again
+                and again.
+            </li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- =========================
+         BASIC SYNTAX
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Basic Syntax of a Stored Procedure
+        </h2>
+
+        <p>
+            The basic syntax for creating a stored procedure is:
+        </p>
+
+        <div class="code-block mb-4 shadow-sm">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>CREATE PROCEDURE ProcedureName
+AS
+BEGIN
+
+    -- SQL statements
+
+END;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         SIMPLE EXAMPLE
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Simple Stored Procedure Example
+        </h2>
+
+        <p>
+            Consider an <strong>Employees</strong> table. We can create a
+            stored procedure that retrieves all employees.
+        </p>
+
+        <div class="code-block mb-4 shadow-sm">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>CREATE PROCEDURE GetEmployees
+AS
+BEGIN
+
+    SELECT *
+    FROM Employees;
+
+END;</code></pre>
+
+        </div>
+
+        <p>
+            The procedure named <strong>GetEmployees</strong> contains a
+            SELECT statement that returns all records from the
+            <strong>Employees</strong> table.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         EXECUTING STORED PROCEDURE
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Executing a Stored Procedure
+        </h2>
+
+        <p>
+            After creating a stored procedure, we can execute it using
+            the <code>EXEC</code> statement.
+        </p>
+
+        <div class="code-block mb-4 shadow-sm">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>EXEC GetEmployees;</code></pre>
+
+        </div>
+
+        <div class="alert alert-success">
+
+            <strong>Output:</strong>
+
+            <p class="mb-0 mt-2">
+                The query returns all records from the
+                <strong>Employees</strong> table.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         STORED PROCEDURE WITH SELECT
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Stored Procedure for a Specific Query
+        </h2>
+
+        <p>
+            A stored procedure can contain any valid SQL statement.
+            For example, we can create a procedure to retrieve employees
+            from a specific department.
+        </p>
+
+        <div class="code-block mb-4 shadow-sm">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>CREATE PROCEDURE GetITEmployees
+AS
+BEGIN
+
+    SELECT *
+    FROM Employees
+    WHERE Department = 'IT';
+
+END;</code></pre>
+
+        </div>
+
+        <p>
+            Execute the procedure using:
+        </p>
+
+        <div class="code-block mb-4 shadow-sm">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>EXEC GetITEmployees;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         STORED PROCEDURE COMPONENTS
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Components of a Stored Procedure
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>Component</th>
+                        <th>Description</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>
+                            <strong>CREATE PROCEDURE</strong>
+                        </td>
+
+                        <td>
+                            Used to create a new stored procedure.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <strong>Procedure Name</strong>
+                        </td>
+
+                        <td>
+                            The unique name used to identify the procedure.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <strong>Parameters</strong>
+                        </td>
+
+                        <td>
+                            Optional values passed to the procedure.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <strong>AS</strong>
+                        </td>
+
+                        <td>
+                            Indicates the beginning of the procedure definition.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <strong>BEGIN ... END</strong>
+                        </td>
+
+                        <td>
+                            Contains the SQL statements executed by the procedure.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <strong>EXEC</strong>
+                        </td>
+
+                        <td>
+                            Used to execute a stored procedure.
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         ADVANTAGES
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Advantages of Stored Procedures
+        </h2>
+
+        <div class="alert alert-info">
+
+            <ul class="mb-0">
+
+                <li class="mb-2">
+                    Reusable database logic.
+                </li>
+
+                <li class="mb-2">
+                    Easier database maintenance.
+                </li>
+
+                <li class="mb-2">
+                    Better security through controlled permissions.
+                </li>
+
+                <li class="mb-2">
+                    Can accept input and output parameters.
+                </li>
+
+                <li class="mb-2">
+                    Can contain multiple SQL statements.
+                </li>
+
+                <li>
+                    Useful for implementing business logic at the database level.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         IMPORTANT POINTS
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Important Points
+        </h2>
+
+        <div class="alert alert-warning">
+
+            <ul class="mb-0">
+
+                <li class="mb-2">
+                    A stored procedure is stored inside the database.
+                </li>
+
+                <li class="mb-2">
+                    It can contain one or multiple SQL statements.
+                </li>
+
+                <li class="mb-2">
+                    Parameters can be used to make procedures dynamic.
+                </li>
+
+                <li class="mb-2">
+                    The <code>EXEC</code> command is commonly used to execute
+                    a stored procedure.
+                </li>
+
+                <li>
+                    Stored procedures can be created, modified and removed.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         SUMMARY
+    ========================== -->
+
+    <section class="mb-5">
+
+        <div class="alert alert-primary border-0 p-4">
+
+            <h2 class="fw-bold mb-3">
+                Summary
+            </h2>
+
+            <p class="mb-0">
+                Stored Procedures are reusable collections of SQL statements
+                stored inside SQL Server. They help organize database logic,
+                improve maintainability and security, and can accept
+                parameters to perform dynamic database operations.
+                In the next topic, we will learn how to create a stored
+                procedure in detail.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         PREVIOUS / NEXT
+    ========================== -->
+
+    <div class="d-flex justify-content-between align-items-center
+        mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/Views/DroppingView"
+           class="btn btn-outline-primary">
+
+            ← Previous: Dropping a View
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/StoredProcedures/CreatingStoredProcedure"
+           class="btn btn-primary">
+
+            Next: Creating a Stored Procedure →
+
+        </a>
+
+    </div>
+
+</div>

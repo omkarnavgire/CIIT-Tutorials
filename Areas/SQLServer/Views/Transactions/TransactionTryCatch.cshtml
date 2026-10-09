@@ -1,0 +1,673 @@
+﻿@{
+    ViewData["Title"] = "Transaction with TRY...CATCH";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- =========================
+         PAGE HEADER
+    ========================== -->
+
+    <div class="mb-4">
+
+        <h1 class="fw-bold text-primary">
+            Transaction with TRY...CATCH
+        </h1>
+
+        <p class="text-muted fs-5">
+            Learn how TRY...CATCH can be used with SQL Server
+            Transactions to handle errors and safely commit or
+            roll back database changes.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         WHAT IS TRY...CATCH?
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                What is TRY...CATCH?
+            </h2>
+
+            <p>
+                <strong>TRY...CATCH</strong> is used in SQL Server
+                to handle errors that occur while executing SQL statements.
+            </p>
+
+            <p>
+                The statements that may generate an error are placed
+                inside the <strong>TRY</strong> block. If an error occurs,
+                SQL Server transfers control to the <strong>CATCH</strong>
+                block.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         BASIC SYNTAX
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Basic TRY...CATCH Syntax
+            </h2>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>BEGIN TRY
+
+    -- SQL statements
+
+END TRY
+
+BEGIN CATCH
+
+    -- Error handling
+
+END CATCH;</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         TRANSACTION WITH TRY CATCH
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Transaction with TRY...CATCH
+            </h2>
+
+            <p>
+                A transaction can be combined with TRY...CATCH so that
+                successful operations are committed and failed operations
+                are rolled back.
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>BEGIN TRY
+
+    BEGIN TRANSACTION;
+
+    -- SQL statements
+
+    COMMIT TRANSACTION;
+
+END TRY
+
+BEGIN CATCH
+
+    ROLLBACK TRANSACTION;
+
+END CATCH;</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         SIMPLE EXAMPLE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Simple Example
+            </h2>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>BEGIN TRY
+
+    BEGIN TRANSACTION;
+
+    INSERT INTO Students
+    (
+        StudentId,
+        StudentName,
+        City,
+        Age
+    )
+    VALUES
+    (
+        501,
+        'Rahul',
+        'Pune',
+        22
+    );
+
+    COMMIT TRANSACTION;
+
+END TRY
+
+BEGIN CATCH
+
+    ROLLBACK TRANSACTION;
+
+END CATCH;</code></pre>
+
+            <p class="mt-3">
+                If the INSERT operation succeeds, the transaction
+                is committed. If an error occurs, the CATCH block
+                executes and the transaction is rolled back.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         ERROR MESSAGE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Handling the Error Message
+            </h2>
+
+            <p>
+                SQL Server provides functions that can be used inside
+                the CATCH block to retrieve information about an error.
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>BEGIN TRY
+
+    BEGIN TRANSACTION;
+
+    -- SQL statements
+
+    COMMIT TRANSACTION;
+
+END TRY
+
+BEGIN CATCH
+
+    IF @@TRANCOUNT &gt; 0
+        ROLLBACK TRANSACTION;
+
+    SELECT
+        ERROR_NUMBER() AS ErrorNumber,
+        ERROR_MESSAGE() AS ErrorMessage,
+        ERROR_LINE() AS ErrorLine;
+
+END CATCH;</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         IMPORTANT ERROR FUNCTIONS
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Important Error Functions
+            </h2>
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-striped">
+
+                    <thead class="table-primary">
+
+                        <tr>
+
+                            <th>Function</th>
+
+                            <th>Purpose</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+
+                            <td>
+                                <code>ERROR_NUMBER()</code>
+                            </td>
+
+                            <td>
+                                Returns the error number.
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>
+                                <code>ERROR_MESSAGE()</code>
+                            </td>
+
+                            <td>
+                                Returns the error message.
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>
+                                <code>ERROR_LINE()</code>
+                            </td>
+
+                            <td>
+                                Returns the line number where the error occurred.
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>
+                                <code>ERROR_PROCEDURE()</code>
+                            </td>
+
+                            <td>
+                                Returns the name of the stored procedure
+                                where the error occurred, when applicable.
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>
+                                <code>ERROR_SEVERITY()</code>
+                            </td>
+
+                            <td>
+                                Returns the severity level of the error.
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>
+                                <code>ERROR_STATE()</code>
+                            </td>
+
+                            <td>
+                                Returns the state number of the error.
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         WHY CHECK @@TRANCOUNT?
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Why Check @@TRANCOUNT?
+            </h2>
+
+            <p>
+                <strong>@@TRANCOUNT</strong> returns the number of
+                active transactions for the current session.
+            </p>
+
+            <p>
+                Before executing ROLLBACK TRANSACTION in the CATCH
+                block, it is useful to check whether a transaction
+                is currently active.
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>IF @@TRANCOUNT &gt; 0
+    ROLLBACK TRANSACTION;</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         COMPLETE EXAMPLE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Complete Transaction Example
+            </h2>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>BEGIN TRY
+
+    BEGIN TRANSACTION;
+
+    INSERT INTO Students
+    (
+        StudentId,
+        StudentName,
+        City,
+        Age
+    )
+    VALUES
+    (
+        502,
+        'Priya',
+        'Mumbai',
+        21
+    );
+
+    UPDATE Students
+    SET Age = Age + 1
+    WHERE StudentId = 502;
+
+    COMMIT TRANSACTION;
+
+    PRINT 'Transaction completed successfully.';
+
+END TRY
+
+BEGIN CATCH
+
+    IF @@TRANCOUNT &gt; 0
+        ROLLBACK TRANSACTION;
+
+    SELECT
+        ERROR_NUMBER() AS ErrorNumber,
+        ERROR_MESSAGE() AS ErrorMessage,
+        ERROR_LINE() AS ErrorLine;
+
+END CATCH;</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         TRANSACTION FLOW
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Transaction with TRY...CATCH Flow
+            </h2>
+
+            <div class="alert alert-primary">
+
+                <strong>Step 1:</strong>
+                Start TRY block.
+
+                <br /><br />
+
+                ↓
+
+                <br />
+
+                <strong>Step 2:</strong>
+                Begin Transaction.
+
+                <br /><br />
+
+                ↓
+
+                <br />
+
+                <strong>Step 3:</strong>
+                Execute SQL statements.
+
+                <br /><br />
+
+                ↓
+
+                <br />
+
+                <strong>Step 4:</strong>
+                Check result.
+
+                <br /><br />
+
+                ↓
+
+                <br />
+
+                <strong>If successful:</strong>
+                COMMIT Transaction.
+
+                <br /><br />
+
+                <strong>If error occurs:</strong>
+                Execute CATCH block.
+
+                <br /><br />
+
+                ↓
+
+                <br />
+
+                ROLLBACK Transaction.
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         COMMIT / ROLLBACK
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                COMMIT and ROLLBACK with TRY...CATCH
+            </h2>
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-striped">
+
+                    <thead class="table-primary">
+
+                        <tr>
+
+                            <th>Situation</th>
+
+                            <th>Action</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+
+                            <td>
+                                All operations succeed.
+                            </td>
+
+                            <td>
+                                <strong>COMMIT TRANSACTION</strong>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>
+                                An error occurs.
+                            </td>
+
+                            <td>
+                                <strong>ROLLBACK TRANSACTION</strong>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>
+                                Need error details.
+                            </td>
+
+                            <td>
+                                Use ERROR_* functions.
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         IMPORTANT POINTS
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Important Points
+            </h2>
+
+            <ul>
+
+                <li class="mb-2">
+                    TRY contains the statements that may generate an error.
+                </li>
+
+                <li class="mb-2">
+                    CATCH handles errors generated inside the TRY block.
+                </li>
+
+                <li class="mb-2">
+                    BEGIN TRANSACTION starts the transaction.
+                </li>
+
+                <li class="mb-2">
+                    COMMIT TRANSACTION saves successful changes.
+                </li>
+
+                <li class="mb-2">
+                    ROLLBACK TRANSACTION undoes uncommitted changes.
+                </li>
+
+                <li class="mb-2">
+                    @@TRANCOUNT can be checked before rolling back.
+                </li>
+
+                <li class="mb-2">
+                    ERROR_MESSAGE() and other ERROR_* functions can
+                    provide information about the error.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         SUMMARY
+    ========================== -->
+
+    <div class="alert alert-primary shadow-sm mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Summary
+        </h2>
+
+        <p>
+            Using <strong>TRY...CATCH</strong> with transactions
+            provides a structured way to handle database errors.
+        </p>
+
+        <p class="mb-0">
+            When all operations are successful, the transaction is
+            committed. If an error occurs, the CATCH block can roll
+            back the transaction and return useful error information.
+        </p>
+
+    </div>
+
+    <!-- =========================
+     PREVIOUS / NEXT
+========================== -->
+
+    <div class="d-flex justify-content-between align-items-center
+        mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/Transactions/Savepoint"
+           class="btn btn-outline-primary">
+
+            ← Previous: SAVEPOINT
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/Indexes/Index"
+           class="btn btn-primary">
+
+            Next: Indexes Introduction →
+
+        </a>
+
+    </div>
+
+</div>

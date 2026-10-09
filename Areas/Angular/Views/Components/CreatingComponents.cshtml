@@ -1,0 +1,1175 @@
+﻿@{
+    ViewData["Title"] = "Creating Components";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- ================= HEADER ================= -->
+
+    <section class="mb-4">
+
+        <h1 class="fw-bold text-dark">
+            Creating Angular Components
+        </h1>
+
+        <p class="text-muted fs-5">
+            Angular components can be created manually or by using Angular CLI.
+            Angular CLI is the recommended approach because it automatically
+            creates the required component files and configuration.
+        </p>
+
+    </section>
+
+
+    <!-- ================= WHAT IS CREATING COMPONENT ================= -->
+
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            What Does Creating a Component Mean?
+        </h2>
+
+        <p>
+            Creating a component means creating a reusable part of the
+            Angular user interface with its own logic, template and styling.
+        </p>
+
+        <p>
+            For example, in a Student Management application we can create
+            a separate component for displaying student information.
+        </p>
+
+        <div class="info-highlight">
+
+            <strong>Example:</strong>
+
+            <span>
+                Student Component → Displays Student Information
+            </span>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= COMPONENT CREATION FLOW ================= -->
+
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Component Creation Flow
+        </h2>
+
+        <div class="creation-flow">
+
+            <div class="flow-card">
+
+                <div class="flow-number">
+                    1
+                </div>
+
+                <h5>Angular Project</h5>
+
+                <p>
+                    Open the Angular application.
+                </p>
+
+            </div>
+
+            <div class="flow-arrow">
+                →
+            </div>
+
+            <div class="flow-card">
+
+                <div class="flow-number">
+                    2
+                </div>
+
+                <h5>Angular CLI</h5>
+
+                <p>
+                    Generate a component using CLI.
+                </p>
+
+            </div>
+
+            <div class="flow-arrow">
+                →
+            </div>
+
+            <div class="flow-card">
+
+                <div class="flow-number">
+                    3
+                </div>
+
+                <h5>Component Files</h5>
+
+                <p>
+                    Angular creates component files.
+                </p>
+
+            </div>
+
+            <div class="flow-arrow">
+                →
+            </div>
+
+            <div class="flow-card">
+
+                <div class="flow-number">
+                    4
+                </div>
+
+                <h5>Use Component</h5>
+
+                <p>
+                    Use the component in the application.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= PREREQUISITE ================= -->
+
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Prerequisite
+        </h2>
+
+        <p>
+            Before creating a component, make sure you have an Angular
+            application and Angular CLI available.
+        </p>
+
+        <div class="code-box">
+
+            <div class="code-header">
+                <span>Terminal</span>
+            </div>
+
+            <pre><code>ng version</code></pre>
+
+        </div>
+
+        <div class="info-card mt-3">
+
+            <h5>Check Your Project</h5>
+
+            <p class="mb-0">
+                Run Angular CLI commands from inside your Angular project
+                directory.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= GENERATE COMPONENT ================= -->
+
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Creating a Component Using Angular CLI
+        </h2>
+
+        <p>
+            The Angular CLI provides the
+            <strong>ng generate component</strong> command to create
+            a new component.
+        </p>
+
+        <div class="code-box">
+
+            <div class="code-header">
+                <span>Terminal Command</span>
+            </div>
+
+            <pre><code>ng generate component student</code></pre>
+
+        </div>
+
+        <p class="mt-4">
+            The short version of the same command is:
+        </p>
+
+        <div class="code-box">
+
+            <div class="code-header">
+                <span>Short Command</span>
+            </div>
+
+            <pre><code>ng g c student</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= COMMAND BREAKDOWN ================= -->
+
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Understanding the Command
+        </h2>
+
+        <div class="command-grid">
+
+            <div class="command-card">
+
+                <div class="command-code">
+                    ng
+                </div>
+
+                <h5>Angular CLI</h5>
+
+                <p>
+                    Angular CLI command-line interface.
+                </p>
+
+            </div>
+
+
+            <div class="command-card">
+
+                <div class="command-code">
+                    generate
+                </div>
+
+                <h5>Generate</h5>
+
+                <p>
+                    Tells Angular CLI to generate something.
+                </p>
+
+            </div>
+
+
+            <div class="command-card">
+
+                <div class="command-code">
+                    component
+                </div>
+
+                <h5>Component</h5>
+
+                <p>
+                    Specifies that a component should be created.
+                </p>
+
+            </div>
+
+
+            <div class="command-card">
+
+                <div class="command-code">
+                    student
+                </div>
+
+                <h5>Component Name</h5>
+
+                <p>
+                    Name of the component being created.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= GENERATED FILES ================= -->
+
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Files Generated by Angular CLI
+        </h2>
+
+        <p>
+            Depending on the Angular version and project configuration,
+            Angular CLI generates the required files for the component.
+        </p>
+
+        <div class="code-box">
+
+            <div class="code-header">
+                <span>Generated Component</span>
+            </div>
+
+            <pre><code>student/
+├── student.component.ts
+├── student.component.html
+├── student.component.css
+└── student.component.spec.ts</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= TYPESCRIPT ================= -->
+
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Component TypeScript File
+        </h2>
+
+        <p>
+            The TypeScript file contains the component class and its logic.
+        </p>
+
+        <div class="code-box">
+
+            <div class="code-header">
+                <span>student.component.ts</span>
+            </div>
+
+            <pre><code>import { Component } from '@@angular/core';
+
+@@Component({
+    selector: 'app-student',
+    templateUrl: './student.component.html',
+    styleUrl: './student.component.css'
+})
+export class StudentComponent {
+
+    studentName = 'Sam';
+
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= HTML ================= -->
+
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Component HTML Template
+        </h2>
+
+        <p>
+            The HTML template defines the user interface of the component.
+        </p>
+
+        <div class="code-box">
+
+            <div class="code-header">
+                <span>student.component.html</span>
+            </div>
+
+            <pre><code>&lt;h2&gt;Student Details&lt;/h2&gt;
+
+&lt;p&gt;
+    Student Name: &#123;&#123; studentName &#125;&#125;
+&lt;/p&gt;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= CSS ================= -->
+
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Component CSS
+        </h2>
+
+        <p>
+            The component stylesheet can be used to customize the appearance
+            of the component.
+        </p>
+
+        <div class="code-box">
+
+            <div class="code-header">
+                <span>student.component.css</span>
+            </div>
+
+            <pre><code>h2 {
+    color: #4c1d95;
+}
+
+p {
+    font-size: 18px;
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= USING COMPONENT ================= -->
+
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Using the Created Component
+        </h2>
+
+        <p>
+            After creating the component, its selector can be used in
+            another Angular template.
+        </p>
+
+        <div class="code-box">
+
+            <div class="code-header">
+                <span>app.component.html</span>
+            </div>
+
+            <pre><code>&lt;h1&gt;CIIT Student Management&lt;/h1&gt;
+
+&lt;app-student&gt;&lt;/app-student&gt;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= EXPECTED OUTPUT ================= -->
+
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Expected Output
+        </h2>
+
+        <div class="output-box">
+
+            <h3>
+                CIIT Student Management
+            </h3>
+
+            <hr />
+
+            <h4>
+                Student Details
+            </h4>
+
+            <p class="mb-0">
+                Student Name: Sam
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= ANOTHER EXAMPLE ================= -->
+
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Creating a Component for Pradnya
+        </h2>
+
+        <p>
+            We can create another component using the same Angular CLI
+            command with a different name.
+        </p>
+
+        <div class="code-box">
+
+            <div class="code-header">
+                <span>Terminal</span>
+            </div>
+
+            <pre><code>ng generate component student-profile</code></pre>
+
+        </div>
+
+        <p class="mt-3">
+            The component can then contain student profile information.
+        </p>
+
+    </section>
+
+
+    <!-- ================= COMPONENT REUSE ================= -->
+
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Reusing a Component
+        </h2>
+
+        <p>
+            A component can be used wherever its selector is available
+            in the Angular application.
+        </p>
+
+        <div class="reuse-flow">
+
+            <div class="reuse-box">
+                Student Component
+            </div>
+
+            <div class="reuse-arrow">
+                ↓
+            </div>
+
+            <div class="reuse-container">
+
+                <div>
+                    Student List
+                </div>
+
+                <div>
+                    Student Details
+                </div>
+
+                <div>
+                    Student Dashboard
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= COMMON MISTAKES ================= -->
+
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Common Mistakes
+        </h2>
+
+        <div class="issue-card">
+
+            <h5>
+                1. Running the command outside the project
+            </h5>
+
+            <p>
+                Make sure the terminal is opened inside the Angular project
+                directory.
+            </p>
+
+        </div>
+
+
+        <div class="issue-card">
+
+            <h5>
+                2. Using an incorrect selector
+            </h5>
+
+            <p>
+                Make sure the selector used in the HTML matches the selector
+                defined in the component metadata.
+            </p>
+
+        </div>
+
+
+        <div class="issue-card">
+
+            <h5>
+                3. Incorrect component name
+            </h5>
+
+            <p>
+                Use meaningful component names such as student,
+                student-profile or student-list.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= COMPLETE FLOW ================= -->
+
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Complete Component Creation Flow
+        </h2>
+
+        <div class="complete-flow">
+
+            <div class="complete-step">
+
+                <div class="complete-number">
+                    1
+                </div>
+
+                <strong>Open Project</strong>
+
+                <span>
+                    CIITStudentApp
+                </span>
+
+            </div>
+
+
+            <div class="complete-arrow">
+                →
+            </div>
+
+
+            <div class="complete-step">
+
+                <div class="complete-number">
+                    2
+                </div>
+
+                <strong>Run CLI</strong>
+
+                <span>
+                    ng generate component
+                </span>
+
+            </div>
+
+
+            <div class="complete-arrow">
+                →
+            </div>
+
+
+            <div class="complete-step">
+
+                <div class="complete-number">
+                    3
+                </div>
+
+                <strong>Files Created</strong>
+
+                <span>
+                    TS + HTML + CSS
+                </span>
+
+            </div>
+
+
+            <div class="complete-arrow">
+                →
+            </div>
+
+
+            <div class="complete-step">
+
+                <div class="complete-number">
+                    4
+                </div>
+
+                <strong>Use Component</strong>
+
+                <span>
+                    app-student
+                </span>
+
+            </div>
+
+
+            <div class="complete-arrow">
+                →
+            </div>
+
+
+            <div class="complete-step">
+
+                <div class="complete-number">
+                    5
+                </div>
+
+                <strong>Browser</strong>
+
+                <span>
+                    Displays UI
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= SUMMARY ================= -->
+
+    <section class="mb-5">
+
+        <div class="summary-box">
+
+            <h3>
+                Summary
+            </h3>
+
+            <p>
+                Angular components can be created easily using Angular CLI.
+                The command <strong>ng generate component</strong> creates
+                the required component files.
+            </p>
+
+            <p>
+                A component normally contains TypeScript logic, an HTML
+                template and styling.
+            </p>
+
+            <p class="mb-0">
+                After creating a component, its selector can be used inside
+                an Angular template to display the component.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= NAVIGATION ================= -->
+
+    <div class="topic-navigation">
+
+        <a class="btn btn-outline-secondary"
+           href="@Url.Action("ComponentAnatomy", "Components", new { area = "Angular" })">
+            ← Component Anatomy
+        </a>
+
+        <a class="btn btn-primary"
+           href="@Url.Action("ComponentSelector", "Components", new { area = "Angular" })">
+            Component Selector →
+        </a>
+
+    </div>
+
+</div>
+
+
+<style>
+
+    /* ================= SECTION TITLE ================= */
+
+    .section-title {
+        font-size: 25px;
+        font-weight: 700;
+        color: #2e1065;
+        margin-bottom: 18px;
+        border-left: 5px solid #4c1d95;
+        padding-left: 12px;
+    }
+
+
+    /* ================= INFO ================= */
+
+    .info-highlight {
+        background: #f3eefe;
+        border-left: 5px solid #4c1d95;
+        padding: 15px 18px;
+        border-radius: 7px;
+        margin-top: 20px;
+    }
+
+        .info-highlight strong {
+            color: #2e1065;
+            margin-right: 8px;
+        }
+
+        .info-highlight span {
+            color: #4c1d95;
+            font-weight: 600;
+        }
+
+
+    /* ================= CREATION FLOW ================= */
+
+    .creation-flow {
+        display: flex;
+        align-items: stretch;
+        justify-content: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        background: #f8f7fc;
+        border: 1px solid #e5e7eb;
+        border-radius: 10px;
+        padding: 25px;
+    }
+
+    .flow-card {
+        width: 190px;
+        min-height: 145px;
+        text-align: center;
+        padding: 18px;
+        background: white;
+        border: 1px solid #ddd6fe;
+        border-radius: 9px;
+    }
+
+    .flow-number {
+        width: 40px;
+        height: 40px;
+        margin: 0 auto 10px;
+        background: #4c1d95;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+    }
+
+    .flow-card h5 {
+        color: #2e1065;
+        font-weight: 700;
+    }
+
+    .flow-card p {
+        color: #64748b;
+        font-size: 14px;
+        margin-bottom: 0;
+    }
+
+    .flow-arrow {
+        align-self: center;
+        color: #4c1d95;
+        font-size: 25px;
+        font-weight: 700;
+    }
+
+
+    /* ================= CODE ================= */
+
+    .code-box {
+        background: #0f172a;
+        border-radius: 8px;
+        margin-top: 15px;
+        overflow: hidden;
+    }
+
+    .code-header {
+        background: #1e293b;
+        color: #cbd5e1;
+        padding: 8px 15px;
+        font-size: 13px;
+        font-weight: 600;
+        border-bottom: 1px solid #334155;
+    }
+
+    .code-box pre {
+        margin: 0;
+        padding: 18px 20px;
+        overflow-x: auto;
+    }
+
+    .code-box code {
+        color: #e2e8f0;
+        font-family: Consolas, "Courier New", monospace;
+        font-size: 15px;
+        line-height: 1.7;
+    }
+
+
+    /* ================= INFO CARD ================= */
+
+    .info-card {
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-left: 5px solid #4c1d95;
+        border-radius: 7px;
+        padding: 18px 20px;
+    }
+
+        .info-card h5 {
+            color: #4c1d95;
+            font-weight: 700;
+        }
+
+
+    /* ================= COMMAND ================= */
+
+    .command-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .command-card {
+        background: #f8f7fc;
+        border: 1px solid #ddd6fe;
+        border-radius: 9px;
+        padding: 18px;
+        text-align: center;
+    }
+
+    .command-code {
+        display: inline-block;
+        background: #4c1d95;
+        color: white;
+        padding: 7px 10px;
+        border-radius: 5px;
+        font-family: Consolas, "Courier New", monospace;
+        font-size: 13px;
+        margin-bottom: 12px;
+    }
+
+    .command-card h5 {
+        color: #2e1065;
+        font-weight: 700;
+    }
+
+    .command-card p {
+        color: #64748b;
+        font-size: 13px;
+        margin-bottom: 0;
+    }
+
+
+    /* ================= OUTPUT ================= */
+
+    .output-box {
+        background: #f1f5f9;
+        border-left: 5px solid #4c1d95;
+        border-radius: 7px;
+        padding: 20px;
+    }
+
+        .output-box h3,
+        .output-box h4 {
+            color: #4c1d95;
+            font-weight: 700;
+        }
+
+
+    /* ================= REUSE ================= */
+
+    .reuse-flow {
+        background: #f8f7fc;
+        border: 1px solid #e5e7eb;
+        border-radius: 10px;
+        padding: 25px;
+        text-align: center;
+    }
+
+    .reuse-box {
+        display: inline-block;
+        background: #4c1d95;
+        color: white;
+        padding: 14px 25px;
+        border-radius: 8px;
+        font-weight: 700;
+    }
+
+    .reuse-arrow {
+        color: #4c1d95;
+        font-size: 25px;
+        font-weight: 700;
+        margin: 8px;
+    }
+
+    .reuse-container {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+        .reuse-container div {
+            background: white;
+            border: 1px solid #ddd6fe;
+            color: #2e1065;
+            padding: 12px 18px;
+            border-radius: 7px;
+            font-weight: 600;
+        }
+
+
+    /* ================= ISSUE ================= */
+
+    .issue-card {
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-left: 5px solid #4c1d95;
+        border-radius: 7px;
+        padding: 17px 20px;
+        margin-bottom: 15px;
+    }
+
+        .issue-card h5 {
+            color: #4c1d95;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .issue-card p {
+            margin-bottom: 0;
+        }
+
+
+    /* ================= COMPLETE FLOW ================= */
+
+    .complete-flow {
+        display: flex;
+        align-items: stretch;
+        justify-content: center;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .complete-step {
+        width: 165px;
+        min-height: 130px;
+        text-align: center;
+        padding: 17px;
+        background: #f8f7fc;
+        border: 1px solid #ddd6fe;
+        border-radius: 9px;
+    }
+
+    .complete-number {
+        width: 38px;
+        height: 38px;
+        margin: 0 auto 10px;
+        background: #4c1d95;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+    }
+
+    .complete-step strong {
+        display: block;
+        color: #2e1065;
+        margin-bottom: 5px;
+    }
+
+    .complete-step span {
+        color: #64748b;
+        font-size: 12px;
+    }
+
+    .complete-arrow {
+        align-self: center;
+        color: #4c1d95;
+        font-size: 23px;
+        font-weight: 700;
+    }
+
+
+    /* ================= SUMMARY ================= */
+
+    .summary-box {
+        background: #cfe2ff;
+        border-radius: 6px;
+        padding: 18px 22px;
+        margin-top: 20px;
+    }
+
+        .summary-box h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #084298;
+            margin-bottom: 10px;
+        }
+
+        .summary-box p {
+            font-size: 16px !important;
+            line-height: 1.6 !important;
+            color: #084298 !important;
+            margin-bottom: 8px;
+        }
+
+
+    /* ================= NAVIGATION ================= */
+
+    .topic-navigation {
+        display: flex;
+        justify-content: space-between;
+        gap: 15px;
+        margin-top: 35px;
+        padding-top: 20px;
+        border-top: 1px solid #e5e7eb;
+    }
+
+        .topic-navigation .btn {
+            padding: 10px 18px;
+            font-weight: 600;
+        }
+
+        .topic-navigation .btn-primary {
+            background: #4c1d95;
+            border-color: #4c1d95;
+        }
+
+            .topic-navigation .btn-primary:hover {
+                background: #2e1065;
+                border-color: #2e1065;
+            }
+
+
+    /* ================= RESPONSIVE ================= */
+
+    @@media (max-width: 991px) {
+
+        .command-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .flow-arrow,
+        .complete-arrow {
+            display: none;
+        }
+    }
+
+
+    @@media (max-width: 576px) {
+
+        .section-title {
+            font-size: 22px;
+        }
+
+        .command-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .creation-flow,
+        .complete-flow {
+            flex-direction: column;
+        }
+
+        .flow-card,
+        .complete-step {
+            width: 100%;
+        }
+
+        .reuse-container {
+            flex-direction: column;
+        }
+
+        .topic-navigation {
+            flex-direction: column;
+        }
+
+            .topic-navigation .btn {
+                width: 100%;
+                text-align: center;
+            }
+
+        .code-box code {
+            font-size: 13px;
+        }
+    }
+
+</style>

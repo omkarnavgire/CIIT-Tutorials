@@ -1,0 +1,596 @@
+﻿@{
+    Layout = "~/Areas/CoreJava/Views/Shared/CoreJavaLayout.cshtml";
+}
+
+<div class="container mt-4">
+
+    <h1>Asynchronous Programming in Java</h1>
+
+    <p>
+        Asynchronous programming ka purpose ye hai ki application ek task ke
+        complete hone ka unnecessarily wait na kare. Isse independent tasks ko
+        efficiently execute karna possible hota hai.
+    </p>
+
+    <hr />
+
+    <h2>1. Synchronous vs Asynchronous Programming</h2>
+
+    <h3>Synchronous</h3>
+
+    <p>
+        Synchronous execution me tasks one-by-one execute hote hain.
+        Pehla task complete hone ke baad next task start hota hai.
+    </p>
+
+    <pre><code>task1();
+task2();
+task3();</code></pre>
+
+    <h3>Asynchronous</h3>
+
+    <p>
+        Asynchronous execution me ek task background me execute ho sakta hai
+        aur main program doosra work continue kar sakta hai.
+    </p>
+
+    <pre><code>startTask1();
+
+doOtherWork();
+
+waitForTask1();</code></pre>
+
+    <hr />
+
+    <h2>2. Why Asynchronous Programming?</h2>
+
+    <ul>
+        <li>Application responsiveness improve hoti hai.</li>
+        <li>Independent tasks efficiently execute ho sakte hain.</li>
+        <li>I/O operations ke dauran unnecessary waiting reduce hoti hai.</li>
+        <li>Server applications me scalability improve ho sakti hai.</li>
+        <li>Background processing ke liye useful hai.</li>
+    </ul>
+
+    <hr />
+
+    <h2>3. Thread and Asynchronous Execution</h2>
+
+    <p>
+        Java me asynchronous execution ko achieve karne ke liye threads,
+        Executor Framework aur CompletableFuture jaise mechanisms available hain.
+    </p>
+
+    <pre><code>Thread task = new Thread(() -&gt; {
+    System.out.println("Task is running");
+});
+
+task.start();</code></pre>
+
+    <p>
+        <code>start()</code> call karne par task separate thread par execute hota hai.
+    </p>
+
+    <hr />
+
+    <h2>4. Creating a Thread</h2>
+
+    <p>
+        Java me thread create karne ka simple way <code>Thread</code> class
+        use karna hai.
+    </p>
+
+    <pre><code>public class Main {
+
+    public static void main(String[] args) {
+
+        Thread thread = new Thread(() -&gt; {
+
+            System.out.println(
+                "Running in: " +
+                Thread.currentThread().getName()
+            );
+
+        });
+
+        thread.start();
+    }
+}</code></pre>
+
+    <p>
+        Lambda expression ki wajah se separate <code>Runnable</code> class
+        likhne ki zarurat nahi hai.
+    </p>
+
+    <hr />
+
+    <h2>5. Runnable Interface</h2>
+
+    <p>
+        <code>Runnable</code> ek functional interface hai jisme
+        <code>run()</code> method hota hai.
+    </p>
+
+    <pre><code>Runnable task = () -&gt; {
+
+    System.out.println(
+        "Task executed"
+    );
+
+};
+
+Thread thread =
+    new Thread(task);
+
+thread.start();</code></pre>
+
+    <hr />
+
+    <h2>6. Thread.sleep()</h2>
+
+    <p>
+        <code>Thread.sleep()</code> current thread ko specified duration ke
+        liye pause karta hai.
+    </p>
+
+    <pre><code>try {
+
+    Thread.sleep(2000);
+
+} catch (InterruptedException e) {
+
+    Thread.currentThread().interrupt();
+
+}</code></pre>
+
+    <p>
+        Yaha <code>2000</code> milliseconds = <strong>2 seconds</strong>.
+    </p>
+
+    <hr />
+
+    <h2>7. join()</h2>
+
+    <p>
+        <code>join()</code> ka use current thread ko kisi doosre thread ke
+        complete hone tak wait karane ke liye hota hai.
+    </p>
+
+    <pre><code>Thread worker = new Thread(() -&gt; {
+
+    System.out.println("Worker started");
+
+});
+
+worker.start();
+
+try {
+
+    worker.join();
+
+} catch (InterruptedException e) {
+
+    Thread.currentThread().interrupt();
+
+}
+
+System.out.println("Worker completed");</code></pre>
+
+    <hr />
+
+    <h2>8. Executor Framework</h2>
+
+    <p>
+        Directly bahut saare threads create karne ke bajay Java ka
+        <strong>Executor Framework</strong> thread management ko simplify karta hai.
+    </p>
+
+    <pre><code>import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        ExecutorService executor =
+            Executors.newFixedThreadPool(3);
+
+        executor.submit(() -&gt;
+            System.out.println("Task 1")
+        );
+
+        executor.submit(() -&gt;
+            System.out.println("Task 2")
+        );
+
+        executor.submit(() -&gt;
+            System.out.println("Task 3")
+        );
+
+        executor.shutdown();
+    }
+}</code></pre>
+
+    <hr />
+
+    <h2>9. ExecutorService</h2>
+
+    <p>
+        <code>ExecutorService</code> tasks ko execute aur manage karne ke
+        liye use hota hai.
+    </p>
+
+    <p>Common methods:</p>
+
+    <ul>
+        <li><code>submit()</code> - task submit karta hai.</li>
+        <li><code>execute()</code> - Runnable execute karta hai.</li>
+        <li><code>shutdown()</code> - new tasks accept karna stop karta hai.</li>
+        <li><code>shutdownNow()</code> - currently running tasks ko interrupt karne ki request karta hai.</li>
+    </ul>
+
+    <hr />
+
+    <h2>10. Callable</h2>
+
+    <p>
+        <code>Runnable</code> result return nahi karta. Agar asynchronous task
+        se result chahiye, to <code>Callable</code> use kar sakte hain.
+    </p>
+
+    <pre><code>import java.util.concurrent.Callable;
+
+Callable&lt;Integer&gt; task = () -&gt; {
+
+    return 10 + 20;
+
+};</code></pre>
+
+    <p>
+        Callable checked exception bhi throw kar sakta hai.
+    </p>
+
+    <hr />
+
+    <h2>11. Future</h2>
+
+    <p>
+        <code>Future</code> asynchronous task ke future result ko represent karta hai.
+    </p>
+
+    <pre><code>import java.util.concurrent.*;
+
+public class Main {
+
+    public static void main(String[] args)
+            throws Exception {
+
+        ExecutorService executor =
+            Executors.newSingleThreadExecutor();
+
+        Future&lt;Integer&gt; future =
+            executor.submit(() -&gt; {
+
+                return 100;
+
+            });
+
+        System.out.println(
+            future.get()
+        );
+
+        executor.shutdown();
+    }
+}</code></pre>
+
+    <p>
+        <code>get()</code> result available hone tak wait kar sakta hai.
+    </p>
+
+    <hr />
+
+    <h2>12. CompletableFuture</h2>
+
+    <p>
+        <code>CompletableFuture</code> Java me asynchronous programming ke
+        liye powerful API hai. Isse asynchronous tasks ko chain aur combine
+        karna easy hota hai.
+    </p>
+
+    <pre><code>import java.util.concurrent.CompletableFuture;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        CompletableFuture&lt;String&gt; future =
+            CompletableFuture.supplyAsync(
+                () -&gt; "Hello Java"
+            );
+
+        future.thenAccept(
+            result -&gt;
+                System.out.println(result)
+        );
+    }
+}</code></pre>
+
+    <p><strong>Output:</strong></p>
+
+    <pre><code>Hello Java</code></pre>
+
+    <hr />
+
+    <h2>13. supplyAsync()</h2>
+
+    <p>
+        <code>supplyAsync()</code> asynchronous task execute karta hai aur
+        result return karta hai.
+    </p>
+
+    <pre><code>CompletableFuture&lt;Integer&gt; future =
+    CompletableFuture.supplyAsync(
+        () -&gt; 10 + 20
+    );</code></pre>
+
+    <hr />
+
+    <h2>14. runAsync()</h2>
+
+    <p>
+        Agar asynchronous task ko result return nahi karna hai to
+        <code>runAsync()</code> use kar sakte hain.
+    </p>
+
+    <pre><code>CompletableFuture&lt;Void&gt; future =
+    CompletableFuture.runAsync(() -&gt; {
+
+        System.out.println(
+            "Background task"
+        );
+
+    });</code></pre>
+
+    <hr />
+
+    <h2>15. thenApply()</h2>
+
+    <p>
+        <code>thenApply()</code> previous asynchronous result ko transform
+        karne ke liye use hota hai.
+    </p>
+
+    <pre><code>CompletableFuture&lt;Integer&gt; future =
+    CompletableFuture.supplyAsync(
+        () -&gt; 10
+    );
+
+CompletableFuture&lt;Integer&gt; result =
+    future.thenApply(
+        value -&gt; value * 2
+    );
+
+result.thenAccept(
+    System.out::println
+);</code></pre>
+
+    <p><strong>Output:</strong></p>
+
+    <pre><code>20</code></pre>
+
+    <hr />
+
+    <h2>16. thenAccept()</h2>
+
+    <p>
+        <code>thenAccept()</code> result ko consume karta hai but new result
+        return nahi karta.
+    </p>
+
+    <pre><code>CompletableFuture
+    .supplyAsync(() -&gt; "Java")
+    .thenAccept(
+        value -&gt;
+            System.out.println(value)
+    );</code></pre>
+
+    <hr />
+
+    <h2>17. thenCompose()</h2>
+
+    <p>
+        Jab ek asynchronous operation ke result ke basis par another
+        asynchronous operation start karna ho, <code>thenCompose()</code>
+        useful hota hai.
+    </p>
+
+    <pre><code>CompletableFuture&lt;String&gt; result =
+    CompletableFuture
+        .supplyAsync(() -&gt; "User")
+        .thenCompose(
+            value -&gt;
+                CompletableFuture.supplyAsync(
+                    () -&gt; value + " Details"
+                )
+        );
+
+result.thenAccept(
+    System.out::println
+);</code></pre>
+
+    <hr />
+
+    <h2>18. Combining Async Tasks</h2>
+
+    <p>
+        Multiple independent asynchronous tasks ko combine bhi kar sakte hain.
+    </p>
+
+    <pre><code>CompletableFuture&lt;Integer&gt; first =
+    CompletableFuture.supplyAsync(
+        () -&gt; 10
+    );
+
+CompletableFuture&lt;Integer&gt; second =
+    CompletableFuture.supplyAsync(
+        () -&gt; 20
+    );
+
+CompletableFuture&lt;Integer&gt; result =
+    first.thenCombine(
+        second,
+        (a, b) -&gt; a + b
+    );
+
+result.thenAccept(
+    System.out::println
+);</code></pre>
+
+    <p><strong>Output:</strong></p>
+
+    <pre><code>30</code></pre>
+
+    <hr />
+
+    <h2>19. Exception Handling with CompletableFuture</h2>
+
+    <p>
+        Async pipeline me exceptions handle karne ke liye
+        <code>exceptionally()</code> use kar sakte hain.
+    </p>
+
+    <pre><code>CompletableFuture&lt;Integer&gt; future =
+    CompletableFuture
+        .supplyAsync(() -&gt; {
+
+            throw new RuntimeException(
+                "Something went wrong"
+            );
+
+        })
+        .exceptionally(
+            error -&gt; {
+                System.out.println(
+                    error.getMessage()
+                );
+                return 0;
+            }
+        );
+
+future.thenAccept(
+    System.out::println
+);</code></pre>
+
+    <hr />
+
+    <h2>20. Practical Example: Async Data Processing</h2>
+
+    <pre><code>import java.util.concurrent.CompletableFuture;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        CompletableFuture&lt;String&gt; user =
+            CompletableFuture.supplyAsync(
+                () -&gt; "Rahul"
+            );
+
+        CompletableFuture&lt;String&gt; result =
+            user.thenApply(
+                name -&gt;
+                    "Welcome " + name
+            );
+
+        result.thenAccept(
+            System.out::println
+        );
+    }
+}</code></pre>
+
+    <p><strong>Output:</strong></p>
+
+    <pre><code>Welcome Rahul</code></pre>
+
+    <hr />
+
+    <h2>21. Thread Pool</h2>
+
+    <p>
+        Thread pool pre-created threads ka group hota hai jo multiple tasks
+        execute kar sakta hai.
+    </p>
+
+    <pre><code>ExecutorService executor =
+    Executors.newFixedThreadPool(5);</code></pre>
+
+    <p>
+        Common thread pool types:
+    </p>
+
+    <ul>
+        <li><code>newFixedThreadPool()</code></li>
+        <li><code>newCachedThreadPool()</code></li>
+        <li><code>newSingleThreadExecutor()</code></li>
+        <li><code>newScheduledThreadPool()</code></li>
+    </ul>
+
+    <hr />
+
+    <h2>22. Asynchronous Programming Use Cases</h2>
+
+    <ul>
+        <li>Database operations</li>
+        <li>REST API calls</li>
+        <li>File processing</li>
+        <li>Background jobs</li>
+        <li>Email processing</li>
+        <li>Message processing</li>
+        <li>Multiple independent service calls</li>
+        <li>Large data processing</li>
+    </ul>
+
+    <hr />
+
+    <h2>23. Important Best Practices</h2>
+
+    <ul>
+        <li>Unnecessarily new Thread create na karein.</li>
+        <li>Thread pools ke liye Executor Framework prefer karein.</li>
+        <li>ExecutorService use karne ke baad shutdown karein.</li>
+        <li>Shared mutable data ko carefully handle karein.</li>
+        <li>Blocking <code>get()</code> ka unnecessary use avoid karein.</li>
+        <li>CompletableFuture chains me exceptions handle karein.</li>
+        <li>CPU-intensive aur I/O-intensive tasks ko appropriately manage karein.</li>
+    </ul>
+
+    <hr />
+
+    <h2>24. Important Interview Points</h2>
+
+    <ul>
+        <li>Runnable result return nahi karta.</li>
+        <li>Callable result return kar sakta hai aur checked exception throw kar sakta hai.</li>
+        <li>Future asynchronous task ka result represent karta hai.</li>
+        <li>CompletableFuture asynchronous task chaining support karta hai.</li>
+        <li><code>supplyAsync()</code> result return karta hai.</li>
+        <li><code>runAsync()</code> result return nahi karta.</li>
+        <li><code>thenApply()</code> result transform karta hai.</li>
+        <li><code>thenAccept()</code> result consume karta hai.</li>
+        <li><code>thenCompose()</code> dependent asynchronous operations ke liye useful hai.</li>
+        <li><code>thenCombine()</code> independent asynchronous results combine karta hai.</li>
+    </ul>
+
+    <hr />
+
+    <h2>25. Summary</h2>
+
+    <ul>
+        <li>Asynchronous programming waiting time ko efficiently manage karta hai.</li>
+        <li>Java me Thread, ExecutorService, Future aur CompletableFuture important tools hain.</li>
+        <li>Executor Framework thread management simplify karta hai.</li>
+        <li>CompletableFuture modern asynchronous programming ke liye powerful API hai.</li>
+        <li>Async tasks ko chain, combine aur error-handle kiya ja sakta hai.</li>
+    </ul>
+
+</div>

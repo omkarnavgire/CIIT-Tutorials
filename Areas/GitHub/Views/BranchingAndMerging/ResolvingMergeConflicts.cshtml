@@ -1,0 +1,214 @@
+@{
+    Layout = "~/Areas/GitHub/Views/Shared/GithubLayout.cshtml";
+    ViewData["Title"] = "Resolving Merge Conflicts";
+}
+
+<main id="tutorials" class="container py-1">
+    <div class="row g-4">
+
+        <!-- Sidebar Navigation -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/GitHub/Views/Shared/GithubTopics.cshtml")
+        </aside>
+
+        <!-- Reading Content Area -->
+        <section class="col-lg-9">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4 p-lg-5">
+
+                    <h1 class="fw-bold mb-3">Resolving Merge Conflicts</h1>
+
+                    <p>
+                        <strong>Merge conflicts</strong> happen when Git cannot
+                        automatically combine changes made to the same lines
+                        of a file on different branches, or when a file is
+                        deleted on one branch but modified on another.
+                        Git pauses the merge and lets you decide which changes
+                        to keep.
+                    </p>
+
+                    <p class="text-muted">
+                        Follow these steps to identify, resolve, and complete
+                        a merge safely.
+                    </p>
+
+                    <hr class="my-4" />
+
+                    <!-- Step 1 -->
+                    <h3 class="fw-bold mb-3">Step 1: Identify the Conflicts</h3>
+
+                    <p>
+                        When a merge encounters conflicts, run the following
+                        command to identify the affected files:
+                    </p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git status</code></pre>
+
+                    <p>
+                        Look under <strong>Unmerged paths</strong> to find
+                        the files that require conflict resolution.
+                    </p>
+
+                    <hr class="my-4" />
+
+                    <!-- Step 2 -->
+                    <h3 class="fw-bold mb-3">Step 2: Understand the Conflict Markers</h3>
+
+                    <p>
+                        Open a conflicted file in your code editor, such as
+                        Visual Studio Code. Git marks the competing changes
+                        with special lines.
+                    </p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+This is the code currently on your active branch (e.g., main).
+=======
+This is the incoming code from the branch you are merging.
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; feature-login</code></pre>
+
+                    <ul>
+                        <li>
+                            <strong><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</code>:</strong>
+                            Marks the beginning of the current branch's changes.
+                        </li>
+                        <li>
+                            <strong><code>=======</code>:</strong>
+                            Separates the two competing versions.
+                        </li>
+                        <li>
+                            <strong><code>&gt;&gt;&gt;&gt;&gt;&gt;&gt; feature-login</code>:</strong>
+                            Marks the end of the incoming branch's changes.
+                        </li>
+                    </ul>
+
+                    <div class="alert alert-info">
+                        <strong>Remember:</strong>
+                        In a typical merge conflict, <code>HEAD</code>
+                        represents the version from your currently checked-out
+                        branch, while the incoming section contains the
+                        changes being merged.
+                    </div>
+
+                    <hr class="my-4" />
+
+                    <!-- Step 3 -->
+                    <h3 class="fw-bold mb-3">Step 3: Resolve the Code</h3>
+
+                    <p>
+                        Edit the conflicted file to create the final version
+                        you want to keep.
+                    </p>
+
+                    <ol>
+                        <li>
+                            Review both blocks of code and choose the correct
+                            version, or combine the changes if both are needed.
+                        </li>
+                        <li>
+                            Remove the conflict-marker lines:
+                            <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>,
+                            <code>=======</code>, and
+                            <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code>.
+                        </li>
+                        <li>Save the file after resolving the conflict.</li>
+                    </ol>
+
+                    <div class="alert alert-secondary">
+                        <strong>VS Code tip:</strong>
+                        The editor may provide options such as
+                        <em>Accept Current Change</em>,
+                        <em>Accept Incoming Change</em>, and
+                        <em>Accept Both Changes</em>. Review the result
+                        carefully before saving.
+                    </div>
+
+                    <hr class="my-4" />
+
+                    <!-- Step 4 -->
+                    <h3 class="fw-bold mb-3">Step 4: Finalize the Merge</h3>
+
+                    <h5 class="fw-semibold mt-4">1. Stage the Resolved Files</h5>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git add &lt;filename&gt;</code></pre>
+
+                    <p>
+                        Replace <code>&lt;filename&gt;</code> with the name
+                        of the resolved file. If you have resolved all
+                        relevant files, you can stage them together:
+                    </p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git add .</code></pre>
+
+                    <h5 class="fw-semibold mt-4">2. Verify the Status</h5>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git status</code></pre>
+
+                    <p>
+                        Confirm that there are no remaining unmerged paths
+                        and that the resolved files are staged.
+                    </p>
+
+                    <h5 class="fw-semibold mt-4">3. Complete the Merge Commit</h5>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git commit -m "Merge branch 'feature-login' and resolve conflicts"</code></pre>
+
+                    <p>
+                        This completes the merge when Git requires a merge
+                        commit. If Git has already completed the merge
+                        automatically, a separate merge commit may not be needed.
+                    </p>
+
+                    <hr class="my-4" />
+
+                    <!-- Abort Merge -->
+                    <h3 class="fw-bold mb-3">The Panic Button: Abort the Merge</h3>
+
+                    <p>
+                        If you are not ready to resolve the conflicts or want
+                        to abandon the current merge attempt, you can try:
+                    </p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git merge --abort</code></pre>
+
+                    <p>
+                        This attempts to return the repository to its
+                        pre-merge state. If you had uncommitted changes
+                        before starting the merge, the recovery may not be
+                        perfect, so use caution.
+                    </p>
+
+                    <div class="alert alert-danger mt-4">
+                        <strong>Important:</strong>
+                        Before aborting or discarding changes, check your
+                        repository status and make sure you do not have
+                        valuable work that needs to be preserved.
+                    </div>
+
+                    <div class="alert alert-success mt-4">
+                        <strong>Key Takeaway:</strong>
+                        Check the conflicted files, review both versions,
+                        remove the markers, stage the resolved files, and
+                        complete the merge. If you need to cancel the merge,
+                        use <code>git merge --abort</code> carefully.
+                    </div>
+
+                    <!-- Previous / Next Navigation -->
+                    <div class="d-flex justify-content-between align-items-center gap-3 flex-wrap mt-5 pt-4 border-top">
+
+                        <a class="btn btn-outline-primary"
+                           href='@Url.Action("BasicMerging", "BranchingAndMerging", new { area = "GitHub" })'>
+                            &larr; Previous: Basic Merging
+                        </a>
+
+                        <a class="btn btn-primary"
+                           href='@Url.Action("ConnectingRemotes", "RemoteCollaboration", new { area = "GitHub" })'>
+                            Next: Connecting Remotes &rarr;
+                        </a>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+</main>

@@ -1,0 +1,23 @@
+@{
+    Layout = "~/Areas/GitHub/Views/Shared/GithubLayout.cshtml";
+}
+
+
+<main id="tutorials" class="container py-1">
+    <div class="row g-4">
+
+        <!-- Sidebar Navigation -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/GitHub/Views/Shared/GithubTopics.cshtml")
+        </aside>
+
+        <!-- Reading Content Area -->
+        <section class="col-lg-9">
+﻿@{
+    Layout = "~/Areas/GitHub/Views/Shared/GithubLayout.cshtml";
+    ViewData["Title"] = "Index";
+}
+<h2>Index</h2>
+        </section>
+    </div>
+</main>

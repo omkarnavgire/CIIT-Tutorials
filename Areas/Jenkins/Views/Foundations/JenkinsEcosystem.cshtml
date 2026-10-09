@@ -1,0 +1,182 @@
+@{
+    Layout = "~/Areas/Jenkins/Views/Shared/JenkinsLayout.cshtml";
+    ViewData["Title"] = "Jenkins Ecosystem";
+}
+
+<style>
+    #jenkins-ecosystem-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #jenkins-ecosystem-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #jenkins-ecosystem-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #jenkins-ecosystem-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #jenkins-ecosystem-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+    #jenkins-ecosystem-page .example-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+    }
+</style>
+
+<main id="jenkins-ecosystem-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/Jenkins/Views/Shared/JenkinsTopics.cshtml")
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+                <h1 class="fw-bold">Jenkins Ecosystem</h1>
+                <p class="lead">
+                    Learn the concepts, configuration, commands, and practical workflow required to use the Jenkins Ecosystem in a real Jenkins environment.
+                </p>
+            </div>
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">What is the Jenkins Ecosystem?</h2>
+                <p>
+                    The <strong>Jenkins Ecosystem</strong> encompasses the vast network of extensions, plugins, and third-party integrations that turn a basic automation server into a universal orchestrator. It allows Jenkins to interface with practically every tool in the modern DevOps continuous integration and continuous delivery lifecycle.
+                </p>
+
+                <div class="alert alert-info my-3">
+                    <strong>Simple Definition:</strong> The Jenkins Ecosystem is the collection of over 1,900 plugins and community integrations that allow Jenkins to blend seamlessly with any version control, testing tool, container, or cloud service.
+                </div>
+
+                <h3 class="h4 fw-bold mt-4">Source Code Management (SCM) Integrations</h3>
+                <p class="mb-2">Tools that act as entry hooks, allowing Jenkins to capture repository updates and manage branches automatically.</p>
+                <ul class="mb-3">
+                    <li class="mb-1"><strong>Git &amp; GitHub:</strong> Automatically tracks commits and pulls source files through specialized repo triggers.</li>
+                    <li class="mb-1"><strong>GitLab Integration:</strong> Handles inbound webhooks to coordinate complex multi-branch merge request pipelines.</li>
+                    <li><strong>Legacy Systems:</strong> Maintains continuous connection paths with Subversion (SVN), Bitbucket, and Perforce platforms.</li>
+                </ul>
+
+                <!-- DIAGRAM VISUAL -->
+                <div class="mb-4 text-center">
+                    <div class="diagram-container d-inline-block w-100">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPeDsrT4d8i8EOS911UM-sJyRB5fHpFq8xkwY9BmmuFQ&s=10" class="img-fluid rounded shadow-sm" alt="Jenkins Ecosystem - The Automation Hub" style="max-height: 480px; object-fit: contain;" />
+                        <div class="form-text mt-2 text-muted">Figure 1: High-level overview of the central Jenkins Controller orchestrating pipelines, agents, and 1800+ integrations.</div>
+                    </div>
+                </div>
+
+                <h3 class="h4 fw-bold mt-4">Build &amp; Quality Tools</h3>
+                <p class="mb-2">Compilation utilities that assemble raw files into verifiable application artifacts.</p>
+                <ul class="mb-3">
+                    <li class="mb-1"><strong>Java Compilers:</strong> Standard native processing steps using tools like Maven and Gradle.</li>
+                    <li class="mb-1"><strong>Frontend Environments:</strong> Native script orchestration for NodeJS, npm, and yarn packages.</li>
+                    <li><strong>Code Analysis:</strong> Integrates frameworks like SonarQube to test syntax rules and scan code quality metrics.</li>
+                </ul>
+
+                <h3 class="h4 fw-bold mt-4">Deployment &amp; Cloud Targets</h3>
+                <p class="mb-2">Target ecosystems that receive successfully bundled software containers and packages.</p>
+                <ul class="mb-3">
+                    <li class="mb-1"><strong>Containerization Engines:</strong> Standardized build tasks to package Docker images and run inside Kubernetes pods.</li>
+                    <li class="mb-1"><strong>Infrastructure as Code:</strong> Interfaces with provisioning toolsets like Terraform and Ansible.</li>
+                    <li><strong>Cloud Providers:</strong> Directly uploads finalized application bundles onto AWS, Azure, or Google Cloud targets.</li>
+                </ul>
+            </div>
+
+            <!-- KEY CONCEPTS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Key Concepts</h2>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Extensible Core Architecture</h5>
+                            <p class="mb-0">Using minimal baseline footprints that offload specialized functional tasks to modular, community-developed plugin nodes.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Shared Library Structures</h5>
+                            <p class="mb-0">Writing centralized Groovy helper libraries to bundle common, cross-project ecosystem workflows into reusable code macros.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXAMPLE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Practical Jenkins Example</h2>
+                <p>The following Jenkinsfile showcases how ecosystem tools are invoked sequentially inside declarative build stages:</p>
+                <pre><code>pipeline {
+    agent any
+    tools {
+        maven 'Maven_3.9.0'
+        nodejs 'Node_20'
+    }
+    stages {
+        stage('Ecosystem Setup') {
+            steps {
+                echo 'Ecosystem lesson: Jenkins Ecosystem'
+                sh 'mvn --version'
+                sh 'node --version'
+            }
+        }
+    }
+}</code></pre>
+            </div>
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Practice Exercise</h2>
+                <ol>
+                    <li class="mb-2">Open the Jenkins dashboard interface and choose <strong>Manage Jenkins &gt; Plugins</strong>.</li>
+                    <li class="mb-2">Browse the <strong>Available Plugins</strong> tab to view the size of the native tool extension ecosystem.</li>
+                    <li class="mb-2">Create a basic pipeline testing the tool verification commands specified in the sample script above.</li>
+                    <li>Examine the console log records to see how Jenkins locates and utilizes these configured tools.</li>
+                </ol>
+            </div>
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+                <h2 class="h4 fw-bold">Summary</h2>
+                <p class="mb-0">You have completed the <strong>Jenkins Ecosystem</strong> lesson. Continue through the syllabus to build the Jenkins skills required for real CI/CD automation.</p>
+            </div>
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+                <a class="btn btn-outline-primary" href="@Url.Action("ControllerAndAgents", "Foundations", new { area = "Jenkins" })">← Previous: Controller and Agents</a>
+                <a class="btn btn-primary" href="@Url.Action("ContinuousIntegration", "Foundations", new { area = "Jenkins" })">Next: Continuous Integration →</a>
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

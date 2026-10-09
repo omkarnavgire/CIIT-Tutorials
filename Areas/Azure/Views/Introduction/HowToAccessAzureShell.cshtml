@@ -1,0 +1,125 @@
+@{
+    ViewData["Title"] = "How to Access Azure Cloud Shell?";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+    <!-- LEFT SIDEBAR -->
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+                <h1 class="fw-bold mb-3">How to Access Azure Cloud Shell</h1>
+                <p class="lead text-muted mb-4">
+                    Learn how to launch, configure, and use the browser-based command-line interface provided by Microsoft Azure to manage resources efficiently.
+                </p>
+
+                <!-- OVERVIEW SECTION -->
+                <div class="mb-4">
+                    <p>
+                        <strong>Azure Cloud Shell</strong> is an interactive, authenticated, browser-accessible terminal designed to manage Azure infrastructure resources. It provides a flexible command-line experience without requiring local software installations or administrative privileges on your workspace machine.
+                    </p>
+                </div>
+
+                <!-- ALERT DEFINITION -->
+                <div class="alert alert-info border-0 shadow-sm mb-4">
+                    <strong>Key Features:</strong> Cloud Shell automatically provisions an ephemeral, secure container running either a <strong>Bash</strong> or <strong>PowerShell</strong> environment. It also comes pre-configured with popular command-line utilities (like the Azure CLI, `kubectl`, Terraform, and Git) and mounts a persistent file storage volume (`$HOME`) to preserve your custom scripts.
+                </div>
+
+                <!-- STEP-BY-STEP INSTRUCTIONS -->
+                <h3 class="fw-bold h4 mb-3">Steps to Launch Azure Cloud Shell</h3>
+                <div class="row g-3 mb-4">
+                    <div class="col-md-6">
+                        <div class="p-3 bg-light rounded border h-100">
+                            <h5 class="fw-bold text-primary">Method 1: Direct Link Access</h5>
+                            <p class="mb-0 small text-muted">
+                                Navigate directly to the standalone interface by visiting <a href="https://shell.azure.com" target="_blank" class="text-decoration-none fw-semibold">shell.azure.com</a>. Authenticate using your corporate or personal Azure tenant credentials.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-3 bg-light rounded border h-100">
+                            <h5 class="fw-bold text-primary">Method 2: Via the Azure Portal</h5>
+                            <p class="mb-0 small text-muted">
+                                Log into <a href="https://portal.azure.com" target="_blank" class="text-decoration-none fw-semibold">portal.azure.com</a>, locate the global header bar at the top-right of the screen, and click the <strong>Cloud Shell icon</strong> (<code class="bg-dark text-light px-1 rounded">&gt;_</code>).
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TERMINAL DISPLAY PREVIEW -->
+                <h3 class="fw-bold h4 mb-2">Simulated Shell Output</h3>
+                <p class="text-muted small">When you open the terminal environment for the first time, you will be prompted to assign or initialize an Azure Storage account to host your home file directories:</p>
+
+                <div class="terminal-mockup p-3 text-light rounded shadow mb-4">
+                    <div class="terminal-header d-flex align-items-center mb-2 pb-2 border-bottom border-secondary">
+                        <span class="dot bg-danger rounded-circle me-1" style="width:10px; height:10px;"></span>
+                        <span class="dot bg-warning rounded-circle me-1" style="width:10px; height:10px;"></span>
+                        <span class="dot bg-success rounded-circle me-3" style="width:10px; height:10px;"></span>
+                        <span class="small text-muted font-monospace">azure-user@cloudshell:~</span>
+                    </div>
+                    <pre class="mb-0 font-monospace text-success">Requesting a Cloud Shell...
+Connecting terminal...
+Welcome to Azure Cloud Shell
+
+
+
+
+
+
+
+
+Type "az" to use Azure CLI
+Type "help" to learn about Cloud Shell features
+
+azure-user@cloudshell:~ \$ <span class="text-light">az --version</span>
+azure-cli                         2.64.0 *
+
+azure-user@cloudshell:~ \$ </pre>
+                        </div>
+
+                        <!-- PRACTICE EXERCISE -->
+                    <div class="concept-box mt-4">
+                <h4 class="fw-bold h5 mb-3 text-dark">Practice Task</h4>
+                    <ol class="mb-0">
+            <li class="mb-2">Open a new browser tab, log in to the portal dashboard ecosystem, and launch a fresh shell instance.</li>
+        <li class="mb-2">Toggle the upper-left environment dropdown selector switch to compare the difference between <strong>Bash</strong> parameters and <strong>PowerShell</strong> modules.</li>
+                        <li class="mb-2">Run the default command <code class="bg-light text-danger px-1">az account show</code> to verify your target active subscription profile constraints.</li>
+        <li>Type <code class="bg-light text-danger px-1">code .</code> to load the built-in graphical code editor inside the dashboard panel.</li>
+    </ol>
+</div>
+
+</div>
+    </div>
+
+    @await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureLessonNavigation.cshtml")
+    </section>
+    </div>
+
+<style>
+    .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    .terminal-mockup {
+        background-color: #1e1e1e;
+        border: 1px solid #333;
+    }
+
+    .terminal-mockup pre {
+            white-space: pre-wrap;
+            word-break: break-all;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+</style>

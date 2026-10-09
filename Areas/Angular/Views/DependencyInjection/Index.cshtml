@@ -1,0 +1,1710 @@
+﻿@{
+    ViewData["Title"] = "Angular Dependency Injection";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- Header -->
+    <section class="mb-4">
+
+        <h1 class="fw-bold text-dark">Angular Dependency Injection</h1>
+
+        <p class="lead text-muted">
+            Angular Dependency Injection is a design pattern used to provide
+            required dependencies such as services to components and other
+            Angular classes without creating those objects manually.
+        </p>
+
+    </section>
+
+    <!-- What is DI -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">What is Dependency Injection?</h2>
+
+        <p>
+            Dependency Injection, commonly called <strong>DI</strong>, is a
+            mechanism through which Angular provides an object required by
+            another class.
+        </p>
+
+        <p>
+            Instead of creating a service manually using
+            <strong>new</strong>, a component asks Angular for that service
+            and Angular's injector resolves and provides it.
+        </p>
+
+        <div class="info-card">
+
+            <h5>Simple Definition</h5>
+
+            <p>
+                Dependency Injection means
+                <strong>
+                    Angular creates and provides the required dependency
+                    for the component.
+                </strong>
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- DI Flow -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold mb-3">Dependency Injection Flow</h2>
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+
+                <i class="bi bi-display"></i>
+
+                <strong>Component</strong>
+
+                <span>Requests dependency</span>
+
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+
+                <i class="bi bi-diagram-3"></i>
+
+                <strong>Injector</strong>
+
+                <span>Resolves dependency</span>
+
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+
+                <i class="bi bi-gear-fill"></i>
+
+                <strong>Service</strong>
+
+                <span>Provides functionality</span>
+
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+
+                <i class="bi bi-arrow-return-left"></i>
+
+                <strong>Component</strong>
+
+                <span>Uses service</span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Main Concepts -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Main Dependency Injection Concepts</h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-box"></i>
+                </div>
+
+                <h5>Dependency</h5>
+
+                <p>
+                    The service or object required by another class.
+                </p>
+
+                <code>CourseService</code>
+
+            </div>
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-diagram-3"></i>
+                </div>
+
+                <h5>Injector</h5>
+
+                <p>
+                    Responsible for resolving and providing dependencies.
+                </p>
+
+                <code>Injector</code>
+
+            </div>
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-gear-fill"></i>
+                </div>
+
+                <h5>Provider</h5>
+
+                <p>
+                    Defines how Angular should create or provide a dependency.
+                </p>
+
+                <code>Provider</code>
+
+            </div>
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-arrow-repeat"></i>
+                </div>
+
+                <h5>Reusable Services</h5>
+
+                <p>
+                    Services can be injected into multiple components.
+                </p>
+
+                <code>Reuse</code>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Basic Example -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">1. Basic Dependency Injection Example</h2>
+
+        <p>
+            A component can receive a service through constructor injection.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                course.service.ts
+            </div>
+
+            <pre><code>import &#123; Injectable &#125; from '@@angular/core';
+
+@@Injectable(&#123;
+    providedIn: 'root'
+&#125;)
+export class CourseService &#123;
+
+    getCourseName(): string &#123;
+
+        return 'Angular Full Stack';
+
+    &#125;
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                course.component.ts
+            </div>
+
+            <pre><code>import &#123; Component &#125; from '@@angular/core';
+import &#123; CourseService &#125; from './course.service';
+
+@@Component(&#123;
+    selector: 'app-course',
+    templateUrl: './course.component.html'
+&#125;)
+export class CourseComponent &#123;
+
+    constructor(
+        private courseService: CourseService
+    ) &#123;
+
+    &#125;
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="info-card">
+
+            <h5>How it works</h5>
+
+            <p>
+                The component declares <strong>CourseService</strong> as a
+                constructor dependency. Angular resolves the service and
+                provides it to the component.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- Constructor Injection -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">2. Constructor Injection</h2>
+
+        <p>
+            Constructor injection is a common way of receiving dependencies
+            inside Angular classes.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>constructor(
+    private trainingService: TrainingService
+) &#123;
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="binding-flow">
+
+            <div class="binding-item">
+
+                <strong>Component</strong>
+
+                <span>
+                    Requires Service
+                </span>
+
+            </div>
+
+            <div class="binding-arrow">→</div>
+
+            <div class="binding-item">
+
+                <strong>Constructor</strong>
+
+                <span>
+                    Declares Dependency
+                </span>
+
+            </div>
+
+            <div class="binding-arrow">→</div>
+
+            <div class="binding-item">
+
+                <strong>Injector</strong>
+
+                <span>
+                    Resolves Service
+                </span>
+
+            </div>
+
+            <div class="binding-arrow">→</div>
+
+            <div class="binding-item">
+
+                <strong>Component</strong>
+
+                <span>
+                    Receives Service
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Why DI -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">3. Why Use Dependency Injection?</h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-arrow-repeat"></i>
+                </div>
+
+                <h5>Reusability</h5>
+
+                <p>
+                    The same service can be used by different components.
+                </p>
+
+                <code>Reuse</code>
+
+            </div>
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-code-square"></i>
+                </div>
+
+                <h5>Loose Coupling</h5>
+
+                <p>
+                    Components depend on abstractions and provided services
+                    rather than creating objects themselves.
+                </p>
+
+                <code>Decoupled</code>
+
+            </div>
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-check2-square"></i>
+                </div>
+
+                <h5>Testability</h5>
+
+                <p>
+                    Dependencies can be replaced or mocked during testing.
+                </p>
+
+                <code>Testing</code>
+
+            </div>
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-diagram-3"></i>
+                </div>
+
+                <h5>Centralized Creation</h5>
+
+                <p>
+                    Angular manages dependency creation and resolution.
+                </p>
+
+                <code>Injector</code>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Manual vs DI -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">4. Manual Object Creation vs Dependency Injection</h2>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Without Dependency Injection
+            </div>
+
+            <pre><code>export class CourseComponent &#123;
+
+    courseService =
+        new CourseService();
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                With Dependency Injection
+            </div>
+
+            <pre><code>constructor(
+    private courseService: CourseService
+) &#123;
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="info-card">
+
+            <h5>Key Difference</h5>
+
+            <p>
+                With Dependency Injection, the component does not need to
+                create the service instance itself. Angular's injector
+                manages the dependency.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- Injectable -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">5. The @@Injectable Decorator</h2>
+
+        <p>
+            The <strong>@@Injectable()</strong> decorator marks a class as
+            available for Angular's dependency injection system.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Service
+            </div>
+
+            <pre><code>import &#123; Injectable &#125; from '@@angular/core';
+
+@@Injectable(&#123;
+    providedIn: 'root'
+&#125;)
+export class TrainingService &#123;
+
+    getInstituteName(): string &#123;
+
+        return 'CIIT Training Institute';
+
+    &#125;
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="output-box">
+
+            <strong>Service Information:</strong>
+
+            <div class="output-preview">
+
+                <p>
+                    <strong>Service:</strong>
+                    TrainingService
+                </p>
+
+                <p>
+                    <strong>Provider:</strong>
+                    Root Injector
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Provider -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">6. What is a Provider?</h2>
+
+        <p>
+            A provider tells Angular how a dependency should be created or
+            supplied when a class requests it.
+        </p>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-gear"></i>
+                </div>
+
+                <h5>Class Provider</h5>
+
+                <p>
+                    Provides an instance of a class.
+                </p>
+
+                <code>useClass</code>
+
+            </div>
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-box"></i>
+                </div>
+
+                <h5>Value Provider</h5>
+
+                <p>
+                    Provides a predefined value.
+                </p>
+
+                <code>useValue</code>
+
+            </div>
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-code"></i>
+                </div>
+
+                <h5>Factory Provider</h5>
+
+                <p>
+                    Uses a factory function to create a value.
+                </p>
+
+                <code>useFactory</code>
+
+            </div>
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-arrow-left-right"></i>
+                </div>
+
+                <h5>Existing Provider</h5>
+
+                <p>
+                    Reuses an existing dependency.
+                </p>
+
+                <code>useExisting</code>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Injector -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">7. What is an Injector?</h2>
+
+        <p>
+            The injector is responsible for resolving dependencies and
+            returning the appropriate object to the class that requested it.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Conceptual Flow
+            </div>
+
+            <pre><code>Component
+     |
+     ↓
+Requests CourseService
+     |
+     ↓
+Angular Injector
+     |
+     ↓
+Resolves Provider
+     |
+     ↓
+CourseService Instance
+     |
+     ↓
+Component Receives Service</code></pre>
+
+        </div>
+
+        <div class="info-card">
+
+            <h5>Simple Idea</h5>
+
+            <p>
+                The injector acts like a dependency manager between the
+                component and the services it needs.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- Multiple Dependencies -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">8. Injecting Multiple Dependencies</h2>
+
+        <p>
+            A component can request more than one dependency through its
+            constructor.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>constructor(
+
+    private courseService: CourseService,
+
+    private notificationService:
+        NotificationService,
+
+    private trainingService:
+        TrainingService
+
+) &#123;
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="binding-flow">
+
+            <div class="binding-item">
+
+                <strong>CourseService</strong>
+
+                <span>
+                    Course Data
+                </span>
+
+            </div>
+
+            <div class="binding-item">
+
+                <strong>NotificationService</strong>
+
+                <span>
+                    Notifications
+                </span>
+
+            </div>
+
+            <div class="binding-item">
+
+                <strong>TrainingService</strong>
+
+                <span>
+                    Training Data
+                </span>
+
+            </div>
+
+            <div class="binding-arrow">→</div>
+
+            <div class="binding-item">
+
+                <strong>Dashboard</strong>
+
+                <span>
+                    Uses Dependencies
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Root Dependency -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">9. Root Dependency Injection</h2>
+
+        <p>
+            Services configured with
+            <strong>providedIn: 'root'</strong> can be resolved through the
+            application's root injector.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Service
+            </div>
+
+            <pre><code>@@Injectable(&#123;
+    providedIn: 'root'
+&#125;)
+export class CourseService &#123;
+
+    getCourses(): string[] &#123;
+
+        return [
+            'Java Full Stack',
+            'Python Full Stack',
+            'Full Stack .NET'
+        ];
+
+    &#125;
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="binding-flow">
+
+            <div class="binding-item">
+
+                <strong>CourseService</strong>
+
+                <span>
+                    providedIn: 'root'
+                </span>
+
+            </div>
+
+            <div class="binding-arrow">→</div>
+
+            <div class="binding-item">
+
+                <strong>Root Injector</strong>
+
+                <span>
+                    Resolves Dependency
+                </span>
+
+            </div>
+
+            <div class="binding-arrow">→</div>
+
+            <div class="binding-item">
+
+                <strong>Components</strong>
+
+                <span>
+                    Receive Service
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Component Provider -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">10. Component-Level Provider</h2>
+
+        <p>
+            A service can also be provided inside a component's providers
+            configuration when a more localized scope is required.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                dashboard.component.ts
+            </div>
+
+            <pre><code>@@Component(&#123;
+
+    selector: 'app-dashboard',
+
+    providers: [
+        CourseStateService
+    ],
+
+    templateUrl: './dashboard.component.html'
+
+&#125;)
+export class DashboardComponent &#123;
+
+    constructor(
+        private courseStateService:
+            CourseStateService
+    ) &#123;
+
+    &#125;
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="info-card">
+
+            <h5>When to Use</h5>
+
+            <p>
+                Component-level providers are useful when service state should
+                be associated with a particular component hierarchy.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- Dependency Injection with OnInit -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">11. Dependency Injection with ngOnInit()</h2>
+
+        <p>
+            A component can inject a service through its constructor and then
+            use that service during initialization.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>constructor(
+    private trainingService: TrainingService
+) &#123;
+
+&#125;
+
+ngOnInit(): void &#123;
+
+    this.courses =
+        this.trainingService.getCourses();
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="output-box">
+
+            <strong>Expected Behavior:</strong>
+
+            <div class="output-preview">
+
+                The service is injected first, and the component uses it
+                during <strong>ngOnInit()</strong> to load initial data.
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- DI and Testing -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">12. Dependency Injection and Testing</h2>
+
+        <p>
+            Dependency Injection makes components easier to test because
+            dependencies can be replaced with test implementations or mocks.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Example Dependency
+            </div>
+
+            <pre><code>constructor(
+    private courseService: CourseService
+) &#123;
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="info-card">
+
+            <h5>Testing Benefit</h5>
+
+            <p>
+                During testing, the component can work with a controlled
+                replacement for <strong>CourseService</strong> instead of
+                depending on the real implementation.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- Complete CIIT Example -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Complete CIIT Training Institute Example</h2>
+
+        <p>
+            Suppose the CIIT Training Institute dashboard needs course data
+            and notification functionality. Both services can be injected
+            into the dashboard component.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                course.service.ts
+            </div>
+
+            <pre><code>import &#123; Injectable &#125; from '@@angular/core';
+
+@@Injectable(&#123;
+    providedIn: 'root'
+&#125;)
+export class CourseService &#123;
+
+    getCourses(): string[] &#123;
+
+        return [
+
+            'Java Full Stack',
+            'Python Full Stack',
+            'Full Stack .NET',
+            'Data Analytics'
+
+        ];
+
+    &#125;
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                notification.service.ts
+            </div>
+
+            <pre><code>import &#123; Injectable &#125; from '@@angular/core';
+
+@@Injectable(&#123;
+    providedIn: 'root'
+&#125;)
+export class NotificationService &#123;
+
+    showMessage(message: string): void &#123;
+
+        console.log(message);
+
+    &#125;
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                dashboard.component.ts
+            </div>
+
+            <pre><code>import &#123;
+    Component,
+    OnInit
+&#125; from '@@angular/core';
+
+@@Component(&#123;
+    selector: 'app-dashboard',
+    templateUrl: './dashboard.component.html'
+&#125;)
+export class DashboardComponent
+    implements OnInit &#123;
+
+    courses: string[] = [];
+
+    constructor(
+
+        private courseService:
+            CourseService,
+
+        private notificationService:
+            NotificationService
+
+    ) &#123;
+
+    &#125;
+
+    ngOnInit(): void &#123;
+
+        this.courses =
+            this.courseService.getCourses();
+
+        this.notificationService.showMessage(
+            'CIIT Dashboard Loaded'
+        );
+
+    &#125;
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                dashboard.component.html
+            </div>
+
+            <pre><code>&lt;h2&gt;
+    CIIT Training Institute
+&lt;/h2&gt;
+
+&lt;h4&gt;
+    Available Courses
+&lt;/h4&gt;
+
+&lt;ul&gt;
+
+    &lt;li *ngFor="let course of courses"&gt;
+        &#123;&#123; course &#125;&#125;
+    &lt;/li&gt;
+
+&lt;/ul&gt;</code></pre>
+
+        </div>
+
+        <div class="output-box">
+
+            <strong>Expected Output:</strong>
+
+            <div class="student-preview">
+
+                <h3>
+                    CIIT Training Institute
+                </h3>
+
+                <ul>
+
+                    <li>Java Full Stack</li>
+                    <li>Python Full Stack</li>
+                    <li>Full Stack .NET</li>
+                    <li>Data Analytics</li>
+
+                </ul>
+
+                <p>
+                    Notification:
+                    <strong>CIIT Dashboard Loaded</strong>
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- DI Quick Reference -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold mb-3">Dependency Injection Quick Reference</h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered syntax-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Concept</th>
+                        <th>Purpose</th>
+                        <th>Example</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            Dependency
+                        </td>
+
+                        <td>
+                            Object required by a class
+                        </td>
+
+                        <td>
+                            <code>CourseService</code>
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            Injector
+                        </td>
+
+                        <td>
+                            Resolves and provides dependencies
+                        </td>
+
+                        <td>
+                            <code>Injector</code>
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            Provider
+                        </td>
+
+                        <td>
+                            Defines how dependency is supplied
+                        </td>
+
+                        <td>
+                            <code>providedIn</code>
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            Injectable
+                        </td>
+
+                        <td>
+                            Marks service for dependency injection
+                        </td>
+
+                        <td>
+                            <code>@@Injectable()</code>
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            Constructor Injection
+                        </td>
+
+                        <td>
+                            Receives dependency in class constructor
+                        </td>
+
+                        <td>
+                            <code>constructor(...)</code>
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+    <!-- Advantages -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Advantages of Dependency Injection</h2>
+
+        <ul class="best-practice-list">
+
+            <li>
+                Makes application components easier to organize.
+            </li>
+
+            <li>
+                Encourages reusable service-based functionality.
+            </li>
+
+            <li>
+                Reduces direct object creation inside components.
+            </li>
+
+            <li>
+                Supports separation of responsibilities.
+            </li>
+
+            <li>
+                Makes dependencies explicit and easier to understand.
+            </li>
+
+            <li>
+                Helps improve testability through replaceable dependencies.
+            </li>
+
+        </ul>
+
+    </section>
+
+    <!-- Best Practices -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Dependency Injection Best Practices</h2>
+
+        <ul class="best-practice-list">
+
+            <li>
+                Prefer Angular Dependency Injection instead of manually
+                creating service instances.
+            </li>
+
+            <li>
+                Keep services focused on reusable responsibilities.
+            </li>
+
+            <li>
+                Use meaningful service names and constructor parameters.
+            </li>
+
+            <li>
+                Choose service scope based on the application's sharing needs.
+            </li>
+
+            <li>
+                Avoid injecting unnecessary dependencies into components.
+            </li>
+
+            <li>
+                Use dependency injection to keep components easier to test
+                and maintain.
+            </li>
+
+        </ul>
+
+    </section>
+
+    <!-- Summary -->
+    <section class="summary-box">
+
+        <h3>Summary</h3>
+
+        <p>
+            Angular Dependency Injection allows components and other classes
+            to receive required services from Angular's injector instead of
+            creating those services manually.
+        </p>
+
+        <p>
+            Important concepts include
+            <strong>Dependencies</strong>,
+            <strong>Injectors</strong>,
+            <strong>Providers</strong>,
+            <strong>@@Injectable()</strong> and
+            <strong>Constructor Injection</strong>.
+        </p>
+
+    </section>
+
+    <!-- Navigation -->
+    <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+
+        <a class="btn btn-outline-secondary"
+           href="@Url.Action("Index", "Services", new { area = "Angular" })">
+            ← Service Scope
+        </a>
+
+        <a class="btn btn-primary"
+           href="@Url.Action("InjectingDependencies", "DependencyInjection", new { area = "Angular" })">
+            Injecting Dependencies →
+        </a>
+
+    </div>
+
+</div>
+
+<style>
+
+    .info-card {
+        background: #f8fafc;
+        border-left: 5px solid #4c1d95;
+        padding: 18px 20px;
+        border-radius: 7px;
+        margin-top: 15px;
+    }
+
+        .info-card h5 {
+            color: #4c1d95;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .info-card p {
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+
+    .syntax-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        padding: 25px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+    }
+
+    .syntax-box {
+        width: 175px;
+        min-height: 125px;
+        padding: 18px;
+        text-align: center;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 9px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+        .syntax-box i {
+            display: block;
+            font-size: 28px;
+            color: #4c1d95;
+            margin-bottom: 8px;
+        }
+
+        .syntax-box strong {
+            display: block;
+            color: #2e1065;
+            font-weight: 700;
+        }
+
+        .syntax-box span {
+            display: block;
+            color: #64748b;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+    .syntax-arrow {
+        color: #4c1d95;
+        font-size: 25px;
+        font-weight: 700;
+    }
+
+    .syntax-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+    }
+
+    .syntax-card {
+        padding: 20px;
+        text-align: center;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 9px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    }
+
+    .syntax-icon {
+        width: 55px;
+        height: 55px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 12px;
+        background: #ede9fe;
+        color: #4c1d95;
+        border-radius: 50%;
+        font-size: 24px;
+    }
+
+    .syntax-card h5 {
+        color: #2e1065;
+        font-weight: 700;
+    }
+
+    .syntax-card p {
+        color: #64748b;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .syntax-card code {
+        color: #4c1d95;
+        font-weight: 600;
+    }
+
+    .code-card {
+        margin-top: 15px;
+        margin-bottom: 18px;
+        border-radius: 8px;
+        overflow: hidden;
+        background: #0f172a;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .code-title {
+        background: #1e293b;
+        color: #d8c9f5;
+        padding: 10px 15px;
+        font-weight: 600;
+        border-bottom: 1px solid #334155;
+    }
+
+    .code-card pre {
+        margin: 0;
+        padding: 18px;
+        overflow-x: auto;
+    }
+
+    .code-card code {
+        color: #e2e8f0;
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    .output-box {
+        margin-top: 15px;
+        padding: 18px;
+        background: #f1f5f9;
+        border-left: 5px solid #4c1d95;
+        border-radius: 6px;
+    }
+
+    .output-preview {
+        margin-top: 12px;
+        padding: 18px;
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 7px;
+    }
+
+        .output-preview h3 {
+            color: #2e1065;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .output-preview p {
+            margin-bottom: 7px;
+        }
+
+    .binding-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 20px;
+        padding: 20px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+    }
+
+    .binding-item {
+        min-width: 170px;
+        padding: 15px;
+        text-align: center;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 8px;
+    }
+
+        .binding-item strong {
+            display: block;
+            color: #4c1d95;
+            font-weight: 700;
+        }
+
+        .binding-item span {
+            display: block;
+            color: #64748b;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+    .binding-arrow {
+        color: #4c1d95;
+        font-size: 25px;
+        font-weight: 700;
+    }
+
+    .active-preview {
+        margin-top: 12px;
+        display: inline-block;
+        padding: 12px 20px;
+        background: #ede9fe;
+        border: 2px solid #4c1d95;
+        border-radius: 7px;
+        color: #2e1065;
+        font-weight: 700;
+    }
+
+    .style-preview {
+        margin-top: 12px;
+        font-size: 20px;
+        font-weight: 600;
+        color: #4c1d95;
+    }
+
+    .control-flow-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .control-card {
+        padding: 20px;
+        background: #f8fafc;
+        border: 1px solid #ddd6fe;
+        border-radius: 8px;
+    }
+
+        .control-card h5 {
+            color: #4c1d95;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+    .code-small {
+        background: #0f172a;
+        border-radius: 7px;
+        overflow: hidden;
+    }
+
+        .code-small pre {
+            margin: 0;
+            padding: 15px;
+            overflow-x: auto;
+        }
+
+        .code-small code {
+            color: #e2e8f0;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+    .syntax-table {
+        background: #ffffff;
+    }
+
+        .syntax-table thead th {
+            background: #4c1d95;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .syntax-table td {
+            vertical-align: middle;
+        }
+
+        .syntax-table code {
+            color: #4c1d95;
+            font-weight: 600;
+        }
+
+    .student-preview {
+        margin-top: 12px;
+        padding: 20px;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 8px;
+    }
+
+        .student-preview h3 {
+            color: #2e1065;
+            font-weight: 700;
+        }
+
+    .best-practice-list {
+        padding: 20px 20px 20px 40px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+    }
+
+        .best-practice-list li {
+            margin-bottom: 11px;
+            line-height: 1.6;
+        }
+
+            .best-practice-list li:last-child {
+                margin-bottom: 0;
+            }
+
+    .summary-box {
+        background: #cfe2ff;
+        border-radius: 6px;
+        padding: 18px 22px;
+        margin-top: 20px;
+    }
+
+        .summary-box h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #084298;
+            margin-bottom: 10px;
+        }
+
+        .summary-box p {
+            font-size: 16px !important;
+            line-height: 1.6 !important;
+            color: #084298 !important;
+            margin-bottom: 8px;
+        }
+
+            .summary-box p:last-child {
+                margin-bottom: 0;
+            }
+
+    @@media (max-width: 991px) {
+
+        .syntax-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .control-flow-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @@media (max-width: 576px) {
+
+        .syntax-grid,
+        .control-flow-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .syntax-flow,
+        .binding-flow {
+            flex-direction: column;
+        }
+
+        .syntax-arrow,
+        .binding-arrow {
+            transform: rotate(90deg);
+        }
+
+        .syntax-box {
+            width: 100%;
+            max-width: 280px;
+        }
+
+        .binding-item {
+            width: 100%;
+            max-width: 250px;
+        }
+
+        .code-card code,
+        .code-small code {
+            font-size: 13px;            
+        }
+
+        .d-flex.justify-content-between {
+            gap: 10px;
+        }
+
+            .d-flex.justify-content-between .btn {
+                font-size: 13px;
+                padding: 8px 12px;
+            }
+    }
+
+</style>

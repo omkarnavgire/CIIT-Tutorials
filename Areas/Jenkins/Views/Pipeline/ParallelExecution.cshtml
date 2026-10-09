@@ -1,0 +1,240 @@
+@{
+    Layout = "~/Areas/Jenkins/Views/Shared/JenkinsLayout.cshtml";
+    ViewData["Title"] = "Parallel Execution";
+}
+
+<style>
+    #parallel-execution-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #parallel-execution-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #parallel-execution-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #parallel-execution-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #parallel-execution-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+    #parallel-execution-page .example-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+    }
+</style>
+
+<main id="parallel-execution-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/Jenkins/Views/Shared/JenkinsTopics.cshtml")
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+                <h1 class="fw-bold">Parallel Execution</h1>
+                <p class="lead">
+                    Learn the concepts, syntax formats, block structures, and optimization rules required to run multiple automated pipeline stages simultaneously.
+                </p>
+            </div>
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">What is Parallel Execution?</h2>
+                <p>
+                    By default, steps inside a Jenkinsfile execute sequentially from top to bottom. However, independent operations—such as executing browser tests across three distinct operating systems or running isolated integration modules—do not need to wait for one another. The <code>parallel</code> directive allows you to branch your workflow out to run tasks simultaneously, significantly cutting down overall pipeline processing times.
+                </p>
+
+                <div class="alert alert-info my-3">
+                    <strong>Simple Definition:</strong> The parallel directive is a syntax container used to group multiple independent stages so they execute concurrently on separate agent nodes or threads instead of running one after another.
+                </div>
+
+                <h3 class="h4 fw-bold mt-4">Core Parallel Components</h3>
+                <p class="mb-2">Jenkins manages concurrent pipelines by nesting explicit structural parameters within the main execution thread:</p>
+                <ul class="mb-3">
+                    <li class="mb-1"><strong>The `parallel` Block Wrapper:</strong> The primary directive container placed inside a parent stage that shifts execution logic from linear sequencing to concurrent branching mode.</li>
+                    <li class="mb-1"><strong>Independent Nested Stages:</strong> Named sub-stages grouped inside the parallel block, each housing its own unique set of tools, environment controls, or steps.</li>
+                    <li class="mb-1"><strong>Multi-Agent Distribution:</strong> The ability for each branched stage to request its own distinct execution node (e.g., executing a Windows unit test and a Linux container pass concurrently).</li>
+                    <li><strong>The `failFast` Parameter Gate:</strong> A safety option flag that instructs Jenkins to instantly terminate all other active, running branches if any single parallel stage hits a fatal exception error.</li>
+                </ul>
+            </div>
+
+            <!-- KEY CONCEPTS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Key Concepts</h2>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Agent Executor Bottlenecks</h5>
+                            <p class="mb-0">Understanding that parallel execution demands multiple free execution paths. If your cluster grid runs short on available agent slots, branched stages will block and wait in the queue until resources free up.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Log Streaming Interleaving</h5>
+                            <p class="mb-0">Recognizing that concurrent branches print stdout text lines to the central dashboard simultaneously, making it critical to use the Pipeline Stage View or blue ocean interfaces to inspect segregated step log records.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXAMPLE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Practical Jenkins Example</h2>
+                <p>The following full declarative blueprint demonstrates how to structure simultaneous regression testing modules using the `parallel` and `failFast` block definitions:</p>
+                <pre><code>pipeline {
+    agent any
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    stages {
+        stage('Initialize and Compile') {
+            steps {
+                echo 'INFO: Pulling code repository updates and running build compilers...'
+                sh 'echo "Application binary compilation finished cleanly."'
+            }
+        }
+
+        // Parent stage hosting the parallel branching sub-matrix
+        stage('Run Parallel Test Matrix') {
+            failFast true // Instantly stops remaining tests if one fails
+            
+            parallel {
+                stage('Component Tests - Linux') {
+                    agent { label 'linux-node' }
+                    steps {
+                        echo 'INFO: Launching unit component validations inside a Linux environment...'
+                        sh 'sleep 3 && echo "Linux test module passed."'
+                    }
+                }
+
+                stage('Integration Tests - Windows') {
+                    agent { label 'windows-node' }
+                    steps {
+                        echo 'INFO: Launching integration workflows inside a Windows environment...'
+                        bat 'echo "Windows test module passed."'
+                    }
+                }
+
+                stage('Static Code Analysis') {
+                    steps {
+                        echo 'INFO: Executing standalone linting and SonarQube quality scans...'
+                        sh 'echo "Quality gate validation checks passed successfully."'
+                    }
+                }
+            }
+        }
+
+        stage('Finalize Distribution') {
+            steps {
+                echo 'INFO: Archiving successful metrics and preparing delivery packages...'
+            }
+        }
+    }
+}</code></pre>
+</div>
+
+<!-- PRACTICE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Practice Exercise: Deploy a Concurrent Multi-Branch Workflow</h2>
+                <div class="concept-box">
+                    <h5 class="fw-bold">Step-by-Step Task Sequence:</h5>
+                    <ol class="ps-3 mb-0">
+                        <li class="mb-2">Open the script block dashboard configuration for an active pipeline or initialize a new Pipeline item from your portal home screen.</li>
+                        <li class="mb-2">Copy-paste the complete practical declarative pipeline example provided above into your script editing workspace terminal panel.</li>
+                        <li class="mb-2">If your testing system lacks custom label agents (like `linux-node` or `windows-node`), clean up those specific lines to read simply <code>agent any</code> before clicking <strong>Save</strong>.</li>
+                        <li class="mb-2">Trigger a manual pipeline pass by selecting the <strong>Build Now</strong> action link located on the left-side option menu layout hierarchy.</li>
+                        <li>Return to the main status view landing page once the build starts to watch the grid matrix render parallel columns running simultaneously under the <strong>Stage View</strong> dashboard panel.</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+                <h2 class="h4 fw-bold">Summary</h2>
+                <p class="mb-0">You have completed the <strong>Parallel Execution</strong> lesson. Continue through the syllabus to learn how to capture final execution statuses and process pipeline notifications inside the Post Block and Build Results lesson.</p>
+            </div>
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+                <a class="btn btn-outline-primary" href="@Url.Action("WhenDirective", "Pipeline", new { area = "Jenkins" })">← Previous: Conditional Execution with when</a>
+                <a class="btn btn-primary" href="@Url.Action("PostBlock", "Pipeline", new { area = "Jenkins" })">Next: Post Block and Build Results →</a>
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

@@ -1,0 +1,889 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Python Multiple Exceptions";
+}
+
+<style>
+    #python-multiple-exceptions-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #python-multiple-exceptions-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #python-multiple-exceptions-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #python-multiple-exceptions-page .diagram-box {
+        background: #ffffff;
+        border: 2px solid #6f42c1;
+        border-radius: 10px;
+        padding: 18px;
+        text-align: center;
+        height: 100%;
+    }
+
+        #python-multiple-exceptions-page .diagram-box h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        #python-multiple-exceptions-page .diagram-box p {
+            margin-bottom: 0;
+            font-size: 14px;
+            color: #495057;
+        }
+
+    #python-multiple-exceptions-page .diagram-arrow {
+        text-align: center;
+        font-size: 28px;
+        font-weight: 700;
+        color: #6f42c1;
+        padding: 8px 0;
+    }
+
+    #python-multiple-exceptions-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #python-multiple-exceptions-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+        }
+</style>
+
+
+<main id="python-multiple-exceptions-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+
+                <h1 class="fw-bold">
+                    Multiple Exceptions in Python
+                </h1>
+
+                <p class="lead">
+                    Learn how to handle multiple types of exceptions in Python
+                    using multiple <code>except</code> blocks.
+                </p>
+
+            </div>
+
+
+            <!-- WHAT ARE MULTIPLE EXCEPTIONS -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    What are Multiple Exceptions?
+                </h2>
+
+                <p>
+                    A Python program can generate different types of exceptions
+                    during execution.
+                </p>
+
+                <p>
+                    For example, converting invalid text into a number can cause
+                    a <code>ValueError</code>, while dividing a number by zero
+                    can cause a <code>ZeroDivisionError</code>.
+                </p>
+
+                <p>
+                    Multiple exceptions allow us to handle different
+                    exceptions separately.
+                </p>
+
+                <div class="alert alert-info">
+
+                    <strong>Simple Definition:</strong>
+
+                    Multiple exception handling means handling different
+                    exception types using appropriate <code>except</code> blocks.
+
+                </div>
+
+            </div>
+
+
+            <!-- BASIC DIAGRAM -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Multiple Exception Flow
+                </h2>
+
+                <div class="concept-box">
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            try Block
+                        </h5>
+
+                        <p>
+                            Python executes the code that may
+                            cause an exception.
+                        </p>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="row g-3">
+
+                        <div class="col-md-6">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    ValueError
+                                </h5>
+
+                                <p>
+                                    Python moves to the
+                                    ValueError handler.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-6">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    ZeroDivisionError
+                                </h5>
+
+                                <p>
+                                    Python moves to the
+                                    ZeroDivisionError handler.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            Matching except Block
+                        </h5>
+
+                        <p>
+                            The matching exception handler
+                            executes.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- BASIC SYNTAX -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Basic Syntax
+                </h2>
+
+                <pre><code>try:
+
+    # code that may cause an exception
+
+except ValueError:
+
+    # handle ValueError
+
+except ZeroDivisionError:
+
+    # handle ZeroDivisionError</code></pre>
+
+                <p class="mt-3">
+                    Python checks the <code>except</code> blocks and executes
+                    the one that matches the exception.
+                </p>
+
+            </div>
+
+
+            <!-- SIMPLE EXAMPLE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Simple Example
+                </h2>
+
+                <pre><code>try:
+
+    number = int(input("Enter a number: "))
+
+    result = 100 / number
+
+    print(result)
+
+except ValueError:
+
+    print("Please enter a valid number")
+
+except ZeroDivisionError:
+
+    print("Cannot divide by zero")</code></pre>
+
+                <p class="mt-3">
+                    Example Output:
+                </p>
+
+                <pre><code>Enter a number: abc
+Please enter a valid number</code></pre>
+
+                <pre><code>Enter a number: 0
+Cannot divide by zero</code></pre>
+
+                <p>
+                    The program handles both exceptions separately.
+                </p>
+
+            </div>
+
+
+            <!-- VALUE ERROR -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Handling ValueError
+                </h2>
+
+                <p>
+                    A <code>ValueError</code> occurs when a value is not
+                    valid for the requested operation.
+                </p>
+
+                <pre><code>try:
+
+    number = int("abc")
+
+    print(number)
+
+except ValueError:
+
+    print("Invalid number")</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Invalid number</code></pre>
+
+            </div>
+
+
+            <!-- ZERO DIVISION -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Handling ZeroDivisionError
+                </h2>
+
+                <p>
+                    A <code>ZeroDivisionError</code> occurs when a number
+                    is divided by zero.
+                </p>
+
+                <pre><code>try:
+
+    result = 10 / 0
+
+    print(result)
+
+except ZeroDivisionError:
+
+    print("Cannot divide by zero")</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Cannot divide by zero</code></pre>
+
+            </div>
+
+
+            <!-- TYPE ERROR -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Handling TypeError
+                </h2>
+
+                <p>
+                    A <code>TypeError</code> can occur when an operation
+                    is performed between incompatible data types.
+                </p>
+
+                <pre><code>try:
+
+    result = "10" + 5
+
+    print(result)
+
+except TypeError:
+
+    print("Invalid data types")</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Invalid data types</code></pre>
+
+            </div>
+
+
+            <!-- INDEX ERROR -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Handling IndexError
+                </h2>
+
+                <p>
+                    An <code>IndexError</code> occurs when we try to access
+                    a list position that does not exist.
+                </p>
+
+                <pre><code>numbers = [10, 20, 30]
+
+try:
+
+    print(numbers[5])
+
+except IndexError:
+
+    print("Invalid index")</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Invalid index</code></pre>
+
+            </div>
+
+
+            <!-- KEY ERROR -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Handling KeyError
+                </h2>
+
+                <p>
+                    A <code>KeyError</code> occurs when a dictionary key
+                    does not exist.
+                </p>
+
+                <pre><code>student = {
+    "name": "Rahul",
+    "course": "Python"
+}
+
+try:
+
+    print(student["fees"])
+
+except KeyError:
+
+    print("Key not found")</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Key not found</code></pre>
+
+            </div>
+
+
+            <!-- MULTIPLE EXCEPTIONS WITH USER INPUT -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Multiple Exceptions with User Input
+                </h2>
+
+                <p>
+                    User input can produce different exceptions, so we can
+                    handle each one separately.
+                </p>
+
+                <pre><code>try:
+
+    first = int(
+        input("Enter first number: ")
+    )
+
+    second = int(
+        input("Enter second number: ")
+    )
+
+    result = first / second
+
+    print("Result:", result)
+
+except ValueError:
+
+    print("Please enter numbers only")
+
+except ZeroDivisionError:
+
+    print("Second number cannot be zero")</code></pre>
+
+                <p>
+                    This example handles both invalid input and division by zero.
+                </p>
+
+            </div>
+            <div class="px-2">
+                <h5 class="fw-bold mb-2">
+                    Output
+                </h5>
+
+                <pre class="mb-4"><code>Enter first number: 10
+Enter second number: 0
+Second number cannot be zero</code></pre>
+            </div>
+
+            <!-- MULTIPLE EXCEPTIONS WITH SAME HANDLING -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Multiple Exceptions with Same Handling
+                </h2>
+
+                <p>
+                    If different exceptions require the same response,
+                    we can handle them inside one <code>except</code> block.
+                </p>
+
+                <pre><code>try:
+
+    number = int(input("Enter a number: "))
+
+    result = 100 / number
+
+    print(result)
+
+except (ValueError, ZeroDivisionError):
+
+    print("Invalid input or division by zero")</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Invalid input or division by zero</code></pre>
+
+                <p>
+                    Parentheses are used to specify multiple exception types.
+                </p>
+
+            </div>
+
+
+            <!-- EXCEPTION AS -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Using <code>as</code> with Multiple Exceptions
+                </h2>
+
+                <p>
+                    We can store the exception object in a variable using
+                    the <code>as</code> keyword.
+                </p>
+
+                <pre><code>try:
+
+    number = int("abc")
+
+except ValueError as error:
+
+    print("Error:", error)</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Error: invalid literal for int() with base 10: 'abc'</code></pre>
+
+                <p>
+                    The variable <code>error</code> contains information
+                    about the exception.
+                </p>
+
+            </div>
+
+
+            <!-- ORDER OF EXCEPT -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Order of except Blocks
+                </h2>
+
+                <p>
+                    Python checks the <code>except</code> blocks from top
+                    to bottom.
+                </p>
+
+                <p>
+                    Specific exception handlers should be written before
+                    a general <code>Exception</code> handler.
+                </p>
+
+                <pre><code>try:
+
+    number = int("abc")
+
+except ValueError:
+
+    print("Invalid number")
+
+except Exception:
+
+    print("Some other error occurred")</code></pre>
+                <div class="px-2">
+                    <h5 class="fw-bold mb-2">
+                        Output
+                    </h5>
+
+                    <pre class="mb-4"><code>Invalid number</code></pre>
+                </div>
+
+                <p>
+                    Python first checks <code>ValueError</code>. If the
+                    exception matches, that block is executed.
+                </p>
+
+            </div>
+
+
+            <!-- GENERAL EXCEPTION -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Using the General Exception Class
+                </h2>
+
+                <p>
+                    We can use <code>Exception</code> to catch many
+                    standard exceptions.
+                </p>
+
+                <pre><code>try:
+
+    result = 10 / 0
+
+except Exception as error:
+
+    print("Error:", error)</code></pre>
+                <div class="px-2">
+                    <h5 class="fw-bold mb-2">
+                        Output
+                    </h5>
+
+                    <pre class="mb-4"><code>Error: division by zero</code></pre>
+                </div>
+
+                <p>
+                    Use specific exception types whenever practical so that
+                    the actual problem is clear.
+                </p>
+
+            </div>
+
+
+            <!-- PRACTICAL EXAMPLE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Example: Student Marks 👀🌍
+                </h2>
+
+                <pre><code>try:
+
+    marks = int(
+        input("Enter student marks: ")
+    )
+
+    if marks < 0 or marks > 100:
+
+        print("Marks must be between 0 and 100")
+
+    else:
+
+        print("Valid marks:", marks)
+
+except ValueError:
+
+    print("Please enter a valid number")</code></pre>
+
+                <p>
+                    This example handles invalid user input using
+                    <code>ValueError</code>.
+                </p>
+
+            </div>
+            <div class="px-2">
+                <h5 class="fw-bold mb-2">
+                    Output
+                </h5>
+
+                <pre class="mb-4"><code>Enter student marks: 85
+Valid marks: 85</code></pre>
+            </div>
+
+            <!-- BEST PRACTICES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Best Practices
+                </h2>
+
+                <div class="row g-3">
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Specific Exceptions
+                            </h5>
+
+                            <p class="mb-0">
+                                Catch the expected exception type whenever practical.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Clear Messages
+                            </h5>
+
+                            <p class="mb-0">
+                                Provide useful information about the problem.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Simple Handling
+                            </h5>
+
+                            <p class="mb-0">
+                                Keep exception handling clear and easy to understand.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- COMMON MISTAKES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Common Mistakes
+                </h2>
+
+                <ul>
+
+                    <li>
+                        Using the wrong exception type.
+                    </li>
+
+                    <li>
+                        Using a completely generic <code>except</code>
+                        without understanding the error.
+                    </li>
+
+                    <li>
+                        Putting too much code inside the
+                        <code>try</code> block.
+                    </li>
+
+                    <li>
+                        Not providing a useful error message.
+                    </li>
+
+                    <li>
+                        Placing a general exception handler before
+                        a specific exception handler.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Practice Programs
+                </h2>
+
+                <ol>
+
+                    <li>
+                        Handle <code>ValueError</code> and
+                        <code>ZeroDivisionError</code> separately.
+                    </li>
+
+                    <li>
+                        Create a calculator using multiple
+                        <code>except</code> blocks.
+                    </li>
+
+                    <li>
+                        Handle an invalid list index using
+                        <code>IndexError</code>.
+                    </li>
+
+                    <li>
+                        Handle a missing dictionary key using
+                        <code>KeyError</code>.
+                    </li>
+
+                    <li>
+                        Handle two exception types using one
+                        <code>except</code> block.
+                    </li>
+
+                    <li>
+                        Print the exception message using
+                        <code>as error</code>.
+                    </li>
+
+                </ol>
+
+            </div>
+
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+
+                <h2 class="h4 fw-bold">
+                    Summary
+                </h2>
+
+                <p class="mb-0">
+
+                    Multiple exception handling allows Python programs to
+                    handle different types of errors safely. We can use
+                    separate <code>except</code> blocks for different
+                    exceptions or handle multiple exception types in one
+                    block when the handling is the same. Common examples
+                    include <code>ValueError</code>,
+                    <code>ZeroDivisionError</code>,
+                    <code>TypeError</code>,
+                    <code>IndexError</code> and
+                    <code>KeyError</code>.
+
+                </p>
+
+            </div>
+
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+
+                <a class="btn btn-outline-secondary"
+                   href="@Url.Action("TryExcept", "ExceptionHandling", new { area = "Python" })">
+
+                    ← Topic
+
+                </a>
+
+
+                <a class="btn btn-primary"
+                   href="@Url.Action("Finally", "ExceptionHandling", new { area = "Python" })">
+
+                    Next: Topic →
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

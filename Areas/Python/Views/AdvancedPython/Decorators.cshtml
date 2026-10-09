@@ -1,0 +1,897 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Python Decorators";
+}
+
+<style>
+
+    #python-decorators-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+    #python-decorators-page pre code {
+        background: transparent !important;
+        color: #ffffff !important;
+    }
+
+    #python-decorators-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #python-decorators-page .diagram-box {
+        background: #ffffff;
+        border: 2px solid #6f42c1;
+        border-radius: 10px;
+        padding: 18px;
+        text-align: center;
+        height: 100%;
+    }
+
+    #python-decorators-page .diagram-box h5 {
+        color: #5b21b6;
+        font-weight: 700;
+        margin-bottom: 8px;
+    }
+
+    #python-decorators-page .diagram-box p {
+        margin-bottom: 0;
+        font-size: 14px;
+        color: #495057;
+    }
+
+    #python-decorators-page .diagram-arrow {
+        text-align: center;
+        font-size: 28px;
+        font-weight: 700;
+        color: #6f42c1;
+        padding: 8px 0;
+    }
+
+    #python-decorators-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+    #python-decorators-page .info-card h5 {
+        color: #5b21b6;
+        font-weight: 700;
+    }
+
+</style>
+
+
+<main id="python-decorators-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+
+                <h1 class="fw-bold">
+                    Decorators in Python
+                </h1>
+
+                <p class="lead">
+                    Learn how Python decorators can add extra functionality
+                    to an existing function without changing its original code.
+                </p>
+
+            </div>
+
+
+            <!-- WHAT IS DECORATOR -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    What is a Decorator?
+                </h2>
+
+                <p>
+                    A decorator is a function that adds extra behavior to
+                    another function.
+                </p>
+
+                <p>
+                    Decorators allow us to modify or extend the behavior
+                    of a function without changing the original function code.
+                </p>
+
+                <div class="alert alert-info">
+
+                    <strong>Simple Definition:</strong>
+
+                    A decorator is a function that takes another function
+                    and adds extra functionality to it.
+
+                </div>
+
+            </div>
+
+
+            <!-- BASIC DIAGRAM -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Decorator Flow
+                </h2>
+
+                <div class="concept-box">
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            Original Function
+                        </h5>
+
+                        <p>
+                            The function contains the main logic.
+                        </p>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            Decorator
+                        </h5>
+
+                        <p>
+                            Adds extra functionality around the function.
+                        </p>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            Modified Behavior
+                        </h5>
+
+                        <p>
+                            The function runs with the additional behavior.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- BASIC SYNTAX -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Basic Syntax
+                </h2>
+
+                <pre><code>def decorator(function):
+
+    def wrapper():
+
+        function()
+
+    return wrapper
+
+
+@@decorator
+def welcome():
+
+    print("Welcome to Python")</code></pre>
+
+                <p class="mt-3">
+                    The <code>@@decorator</code> syntax tells Python to apply
+                    the decorator to the function.
+                </p>
+
+            </div>
+
+
+            <!-- SIMPLE EXAMPLE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Simple Decorator Example
+                </h2>
+
+                <pre><code>def message_decorator(function):
+
+    def wrapper():
+
+        print("Before function")
+
+        function()
+
+        print("After function")
+
+    return wrapper
+
+
+@@message_decorator
+def welcome():
+
+    print("Welcome to Python")
+
+
+welcome()</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Before function
+Welcome to Python
+After function</code></pre>
+
+                <p>
+                    The decorator adds statements before and after the
+                    original function.
+                </p>
+
+            </div>
+
+
+            <!-- DECORATOR WITHOUT  -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Applying Decorator Without @@
+                </h2>
+
+                <p>
+                    A decorator can also be applied directly by assigning
+                    the decorated function.
+                </p>
+
+                <pre><code>def decorator(function):
+
+    def wrapper():
+
+        print("Before")
+
+        function()
+
+        print("After")
+
+    return wrapper
+
+
+def welcome():
+
+    print("Welcome")
+
+
+welcome = decorator(welcome)
+
+welcome()</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Before
+Welcome
+After</code></pre>
+
+            </div>
+
+
+            <!-- DECORATOR WITH PARAMETERS -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Decorator with Function Parameters
+                </h2>
+
+                <p>
+                    A decorator can also work with functions that receive
+                    parameters.
+                </p>
+
+                <pre><code>def decorator(function):
+
+    def wrapper(name):
+
+        print("Welcome message")
+
+        function(name)
+
+    return wrapper
+
+
+@@decorator
+def greet(name):
+
+    print("Hello", name)
+
+
+greet("Rahul")</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Welcome message
+Hello Rahul</code></pre>
+
+            </div>
+
+
+            <!-- *args -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Decorator with Multiple Arguments
+                </h2>
+
+                <p>
+                    We can use <code>*args</code> and <code>**kwargs</code>
+                    when the decorated function may receive different
+                    numbers of arguments.
+                </p>
+
+                <pre><code>def decorator(function):
+
+    def wrapper(*args, **kwargs):
+
+        print("Function started")
+
+        result = function(*args, **kwargs)
+
+        print("Function completed")
+
+        return result
+
+    return wrapper
+
+
+@@decorator
+def add(a, b):
+
+    return a + b
+
+
+print(add(10, 20))</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Function started
+Function completed
+30</code></pre>
+
+            </div>
+
+
+            <!-- RETURN VALUE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Decorator with Return Value
+                </h2>
+
+                <p>
+                    A decorator can return the result produced by the
+                    original function.
+                </p>
+
+                <pre><code>def decorator(function):
+
+    def wrapper(a, b):
+
+        result = function(a, b)
+
+        return result
+
+    return wrapper
+
+
+@@decorator
+def multiply(a, b):
+
+    return a * b
+
+
+print(multiply(5, 4))</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>20</code></pre>
+
+            </div>
+
+
+            <!-- PRACTICAL EXAMPLE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Practical Example: Login Check
+                </h2>
+
+                <p>
+                    Decorators can be used to perform a check before
+                    allowing a function to execute.
+                </p>
+
+                <pre><code>def login_required(function):
+
+    def wrapper(user):
+
+        if user == "admin":
+
+            return function(user)
+
+        else:
+
+            print("Access denied")
+
+    return wrapper
+
+
+@@login_required
+def dashboard(user):
+
+    print("Welcome to dashboard")
+
+
+dashboard("admin")</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Welcome to dashboard</code></pre>
+
+            </div>
+
+
+            <!-- MULTIPLE DECORATORS -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Multiple Decorators
+                </h2>
+
+                <p>
+                    More than one decorator can be applied to the same function.
+                </p>
+
+                <pre><code>def first(function):
+
+    def wrapper():
+
+        print("First decorator")
+
+        function()
+
+    return wrapper
+
+
+def second(function):
+
+    def wrapper():
+
+        print("Second decorator")
+
+        function()
+
+    return wrapper
+
+
+@@first
+@@second
+def welcome():
+
+    print("Welcome")
+
+
+welcome()</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>First decorator
+Second decorator
+Welcome</code></pre>
+
+            </div>
+
+
+            <!-- functools wraps -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Preserving Function Information
+                </h2>
+
+                <p>
+                    The <code>functools.wraps</code> function can be used
+                    when we want to preserve information about the original
+                    function.
+                </p>
+
+                <pre><code>from functools import wraps
+
+def decorator(function):
+
+    @@wraps(function)
+    def wrapper():
+
+        return function()
+
+    return wrapper
+
+
+@@decorator
+def welcome():
+
+    print("Welcome to Python")
+
+
+welcome()</code></pre>
+
+                <p>
+                    This is commonly used when creating reusable decorators.
+                </p>
+
+            </div>
+
+
+            <!-- COMMON USES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Common Uses of Decorators
+                </h2>
+
+                <div class="row g-3">
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Authentication
+                            </h5>
+
+                            <p class="mb-0">
+                                Check whether a user is allowed to access
+                                a function.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Logging
+                            </h5>
+
+                            <p class="mb-0">
+                                Record when functions are executed.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Validation
+                            </h5>
+
+                            <p class="mb-0">
+                                Validate conditions before executing
+                                a function.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ADVANTAGES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Advantages of Decorators
+                </h2>
+
+                <div class="row g-3">
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Code Reusability
+                            </h5>
+
+                            <p class="mb-0">
+                                The same decorator can be used with
+                                multiple functions.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Less Repetition
+                            </h5>
+
+                            <p class="mb-0">
+                                Common logic does not need to be repeated
+                                in every function.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Clean Code
+                            </h5>
+
+                            <p class="mb-0">
+                                Additional behavior can be separated
+                                from the main function logic.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- BEST PRACTICES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Best Practices
+                </h2>
+
+                <div class="row g-3">
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Keep Decorators Small
+                            </h5>
+
+                            <p class="mb-0">
+                                Keep the decorator focused on one
+                                responsibility.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Use Meaningful Names
+                            </h5>
+
+                            <p class="mb-0">
+                                Give decorators clear and descriptive names.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Use wraps
+                            </h5>
+
+                            <p class="mb-0">
+                                Use functools.wraps when the original
+                                function information should be preserved.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- COMMON MISTAKES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Common Mistakes
+                </h2>
+
+                <ul>
+
+                    <li>
+                        Forgetting to return the wrapper function.
+                    </li>
+
+                    <li>
+                        Forgetting to return the result of the original function.
+                    </li>
+
+                    <li>
+                        Not handling function arguments correctly.
+                    </li>
+
+                    <li>
+                        Creating very complicated decorators for simple tasks.
+                    </li>
+
+                    <li>
+                        Forgetting to use <code>functools.wraps</code> when
+                        function metadata needs to be preserved.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Practice Programs
+                </h2>
+
+                <ol>
+
+                    <li>
+                        Create a decorator that prints a message before
+                        a function runs.
+                    </li>
+
+                    <li>
+                        Create a decorator that prints a message after
+                        a function runs.
+                    </li>
+
+                    <li>
+                        Create a decorator that accepts function arguments.
+                    </li>
+
+                    <li>
+                        Create a decorator for checking user login.
+                    </li>
+
+                    <li>
+                        Create a decorator that calculates the execution
+                        time of a function.
+                    </li>
+
+                </ol>
+
+            </div>
+
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+
+                <h2 class="h4 fw-bold">
+                    Summary
+                </h2>
+
+                <p class="mb-0">
+
+                    A decorator is a function that adds extra functionality
+                    to another function without changing its original code.
+                    Decorators are useful for logging, authentication,
+                    validation and reusable common functionality.
+                    They can work with arguments, return values and multiple
+                    decorators can be applied to the same function.
+
+                </p>
+
+            </div>
+
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+
+                <a class="btn btn-outline-secondary"
+                   href="@Url.Action("Generators", "AdvancedPython", new { area = "Python" })">
+
+                    ← Previous: Topic
+
+                </a>
+
+
+                <a class="btn btn-primary"
+                   href="@Url.Action("ContextManagers", "AdvancedPython", new { area = "Python" })">
+
+                    Next: Topic →
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

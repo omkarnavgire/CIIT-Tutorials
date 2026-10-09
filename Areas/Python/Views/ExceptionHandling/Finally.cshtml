@@ -1,0 +1,783 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Python finally";
+}
+
+<style>
+
+    #python-finally-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #python-finally-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #python-finally-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #python-finally-page .diagram-box {
+        background: #ffffff;
+        border: 2px solid #6f42c1;
+        border-radius: 10px;
+        padding: 18px;
+        text-align: center;
+        height: 100%;
+    }
+
+        #python-finally-page .diagram-box h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        #python-finally-page .diagram-box p {
+            margin-bottom: 0;
+            font-size: 14px;
+            color: #495057;
+        }
+
+    #python-finally-page .diagram-arrow {
+        text-align: center;
+        font-size: 28px;
+        font-weight: 700;
+        color: #6f42c1;
+        padding: 8px 0;
+    }
+
+    #python-finally-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #python-finally-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+        }
+
+</style>
+
+
+<main id="python-finally-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+
+                <h1 class="fw-bold">
+                    finally in Python
+                </h1>
+
+                <p class="lead">
+                    Learn how to use the <code>finally</code> block to execute
+                    code whether an exception occurs or not.
+                </p>
+
+            </div>
+
+
+            <!-- WHAT IS FINALLY -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    What is finally?
+                </h2>
+
+                <p>
+                    The <code>finally</code> block is used with
+                    <code>try</code> and <code>except</code>.
+                </p>
+
+                <p>
+                    The code inside the <code>finally</code> block is executed
+                    whether an exception occurs or not.
+                </p>
+
+                <div class="alert alert-info">
+
+                    <strong>Simple Definition:</strong>
+
+                    The <code>finally</code> block always executes after the
+                    <code>try</code> and <code>except</code> blocks.
+
+                </div>
+
+            </div>
+
+
+            <!-- BASIC DIAGRAM -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    finally Flow
+                </h2>
+
+                <div class="concept-box">
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            try Block
+                        </h5>
+
+                        <p>
+                            Python executes the main code.
+                        </p>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="row g-3">
+
+                        <div class="col-md-6">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    No Exception
+                                </h5>
+
+                                <p>
+                                    Program continues normally.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-6">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    Exception Occurs
+                                </h5>
+
+                                <p>
+                                    Matching except block handles the error.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            finally Block
+                        </h5>
+
+                        <p>
+                            The finally block executes in both situations.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- BASIC SYNTAX -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Basic Syntax
+                </h2>
+
+                <pre><code>try:
+
+    # code
+
+except:
+
+    # handle exception
+
+finally:
+
+    # code that always executes</code></pre>
+
+                <p class="mt-3">
+                    The <code>finally</code> block is written after the
+                    <code>except</code> block.
+                </p>
+
+            </div>
+
+
+            <!-- SIMPLE EXAMPLE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Simple Example
+                </h2>
+
+                <pre><code>try:
+
+    number = 10 / 2
+
+    print(number)
+
+except ZeroDivisionError:
+
+    print("Cannot divide by zero")
+
+finally:
+
+    print("Finally block executed")</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>5.0
+Finally block executed</code></pre>
+
+                <p>
+                    No exception occurs, but the <code>finally</code> block
+                    still executes.
+                </p>
+
+            </div>
+
+
+            <!-- EXCEPTION EXAMPLE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    finally When Exception Occurs
+                </h2>
+
+                <pre><code>try:
+
+    number = 10 / 0
+
+    print(number)
+
+except ZeroDivisionError:
+
+    print("Cannot divide by zero")
+
+finally:
+
+    print("Finally block executed")</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Cannot divide by zero
+Finally block executed</code></pre>
+
+                <p>
+                    Even though an exception occurs, the
+                    <code>finally</code> block executes.
+                </p>
+
+            </div>
+
+
+            <!-- WITHOUT EXCEPTION -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    When No Exception Occurs
+                </h2>
+
+                <pre><code>try:
+
+    print("Program started")
+
+except Exception:
+
+    print("An error occurred")
+
+finally:
+
+    print("Program finished")</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Program started
+Program finished</code></pre>
+
+            </div>
+
+
+            <!-- WITH EXCEPTION -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    When an Exception Occurs
+                </h2>
+
+                <pre><code>try:
+
+    result = 10 / 0
+
+except ZeroDivisionError:
+
+    print("Division by zero")
+
+finally:
+
+    print("Execution completed")</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Division by zero
+Execution completed</code></pre>
+
+            </div>
+
+
+            <!-- FINALLY WITH USER INPUT -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    finally with User Input
+                </h2>
+
+                <pre><code>try:
+
+    number = int(
+        input("Enter a number: ")
+    )
+
+    print("Number:", number)
+
+except ValueError:
+
+    print("Invalid number")
+
+finally:
+
+    print("Input processing completed")</code></pre>
+
+                <p>
+                    The <code>finally</code> block runs whether the user
+                    enters a valid or invalid value.
+                </p>
+
+            </div>
+            <div class="px-2">
+                <h5 class="fw-bold mb-2">
+                    Output
+                </h5>
+
+                <pre class="mb-4"><code>Enter a number: 25
+Number: 25
+Input processing completed</code></pre>
+            </div>
+
+            <!-- PRACTICAL USE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Practical Use of finally
+                </h2>
+
+                <p>
+                    The <code>finally</code> block is commonly used when
+                    something must be completed after an operation.
+                </p>
+
+                <div class="row g-3">
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                File Handling
+                            </h5>
+
+                            <p class="mb-0">
+                                Used when a file operation must be completed
+                                or cleaned up.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Database
+                            </h5>
+
+                            <p class="mb-0">
+                                Useful for cleanup after database operations.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Resources
+                            </h5>
+
+                            <p class="mb-0">
+                                Useful when resources need to be released.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- FILE EXAMPLE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Example: File Handling
+                </h2>
+
+                <pre><code>try:
+
+    file = open("students.txt", "r")
+
+    data = file.read()
+
+    print(data)
+
+except FileNotFoundError:
+
+    print("File not found")
+
+finally:
+
+    print("File operation completed")</code></pre>
+
+                <p>
+                    The <code>finally</code> block executes after the
+                    file operation.
+                </p>
+
+            </div>
+            <div class="px-2">
+                <h5 class="fw-bold mb-2">
+                    Output
+                </h5>
+
+                <pre class="mb-4"><code>File not found
+File operation completed</code></pre>
+            </div>
+
+            <!-- FINALLY WITH EXCEPT -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    try, except and finally Together
+                </h2>
+
+                <pre><code>try:
+
+    number = int(
+        input("Enter a number: ")
+    )
+
+    result = 100 / number
+
+    print("Result:", result)
+
+except ValueError:
+
+    print("Invalid number")
+
+except ZeroDivisionError:
+
+    print("Cannot divide by zero")
+
+finally:
+
+    print("Program completed")</code></pre>
+
+                <p>
+                    Here, multiple exceptions can be handled and the
+                    <code>finally</code> block executes at the end.
+                </p>
+
+            </div>
+
+            <div class="px-2">
+                <h5 class="fw-bold mb-2">
+                    Output
+                </h5>
+
+                <pre class="mb-4"><code>Enter a number: 10
+Result: 10.0
+Program completed</code></pre>
+            </div>
+            <!-- IMPORTANT -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Important Points
+                </h2>
+
+                <ul>
+
+                    <li>
+                        The <code>finally</code> block executes whether
+                        an exception occurs or not.
+                    </li>
+
+                    <li>
+                        It is normally used with <code>try</code> and
+                        <code>except</code>.
+                    </li>
+
+                    <li>
+                        It is useful for cleanup operations.
+                    </li>
+
+                    <li>
+                        It executes after the <code>try</code> and
+                        <code>except</code> blocks.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- BEST PRACTICES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Best Practices
+                </h2>
+
+                <div class="row g-3">
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Cleanup Code
+                            </h5>
+
+                            <p class="mb-0">
+                                Use finally for code that should run after
+                                the operation.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Keep It Simple
+                            </h5>
+
+                            <p class="mb-0">
+                                Keep finally focused on cleanup or
+                                completion tasks.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Handle Errors
+                            </h5>
+
+                            <p class="mb-0">
+                                Use except blocks for specific errors
+                                before finally.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- COMMON MISTAKES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Common Mistakes
+                </h2>
+
+                <ul>
+
+                    <li>
+                        Forgetting that finally executes even when
+                        an exception occurs.
+                    </li>
+
+                    <li>
+                        Putting unrelated code inside the finally block.
+                    </li>
+
+                    <li>
+                        Using finally when simple sequential code is enough.
+                    </li>
+
+                    <li>
+                        Not understanding the order of try, except and finally.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Practice Programs
+                </h2>
+
+                <ol>
+
+                    <li>
+                        Create a program using try, except and finally.
+                    </li>
+
+                    <li>
+                        Handle division by zero and execute a finally block.
+                    </li>
+
+                    <li>
+                        Take user input and use finally after handling
+                        ValueError.
+                    </li>
+
+                    <li>
+                        Create a file handling example using finally.
+                    </li>
+
+                    <li>
+                        Create a calculator that uses multiple exceptions
+                        and a finally block.
+                    </li>
+
+                </ol>
+
+            </div>
+
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+
+                <h2 class="h4 fw-bold">
+                    Summary
+                </h2>
+
+                <p class="mb-0">
+
+                    The <code>finally</code> block is used to execute code
+                    after a <code>try</code> and <code>except</code> block.
+                    It executes whether an exception occurs or not. It is
+                    especially useful for cleanup operations and tasks that
+                    must be completed after an operation.
+
+                </p>
+
+            </div>
+
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+
+                <a class="btn btn-outline-secondary"
+                   href="@Url.Action("MultipleExceptions", "ExceptionHandling", new { area = "Python" })">
+
+                    ← Previous: Topic
+
+                </a>
+
+
+                <a class="btn btn-primary"
+                   href="@Url.Action("RaiseException", "ExceptionHandling", new { area = "Python" })">
+
+                    Next: Topic →
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

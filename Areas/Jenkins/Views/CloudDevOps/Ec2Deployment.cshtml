@@ -1,0 +1,254 @@
+@{
+    Layout = "~/Areas/Jenkins/Views/Shared/JenkinsLayout.cshtml";
+    ViewData["Title"] = "EC2 Deployment";
+}
+
+<style>
+    #ec2-deployment-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #ec2-deployment-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #ec2-deployment-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #ec2-deployment-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #ec2-deployment-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+    #ec2-deployment-page .example-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+    }
+</style>
+
+<main id="ec2-deployment-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Jenkins/Views/Shared/JenkinsTopics.cshtml"
+            )
+
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+
+                <h1 class="fw-bold">
+                    EC2 Deployment
+                </h1>
+
+                <p class="lead">
+                    Learn the concepts, configuration, commands, and practical workflow required to securely deploy applications to Amazon EC2 virtual servers using Jenkins.
+                </p>
+
+            </div>
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    What is EC2 Deployment?
+                </h2>
+
+                <p>
+                    <strong>EC2 Deployment</strong> is the process of taking a compiled application artifact (such as a JAR, ZIP, or Docker container image) and distributing it onto an **Amazon Elastic Compute Cloud (EC2)** instance.
+                </p>
+
+                <p>
+                    Within a modern Phase 5 CI/CD pipeline, this mechanism replaces manual server patching and interactive terminal updates with auditable, zero-downtime automation scripts that manage application process lifecycles.
+                </p>
+
+                <div class="alert alert-info">
+                    <strong>Simple Definition:</strong> EC2 Deployment automates the delivery, runtime staging, and configuration execution of software applications onto remote virtual servers in the AWS cloud.
+                </div>
+
+            </div>
+
+            <!-- DOCKER INTEGRATION IMAGE ATTACHMENT -->
+            <div class="my-4 text-center bg-light rounded shadow-sm border p-3">
+                <img src="~/Images/Jenkins/ec2-deployment-flow.jpg"
+                     asp-append-version="true"
+                     alt="Jenkins and AWS EC2 Deployment Lifecycle Flow Diagram"
+                     class="img-fluid rounded"
+                     style="max-width: 100%; height: auto;" />
+                <div class="form-text mt-2 text-muted small">
+                    Visualizing the automated pipeline containerization cycle from application packaging down to target virtual machine orchestration.
+                </div>
+            </div>
+
+            <!-- KEY CONCEPTS -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Key Concepts
+                </h2>
+
+                <div class="row g-3">
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>SSH Agent Authentication</h5>
+                            <p class="mb-0">Using tools like the **SSH Agent Plugin**, Jenkins opens temporary encrypted connections to remote EC2 targets via private SSH keys stored safely in the global credential vault.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Artifact Staging (SCP/SFTP)</h5>
+                            <p class="mb-0">Jenkins relies on **Secure Copy Protocol (SCP)** steps to copy fresh application builds over network subnets before triggering actual startup commands on the target host machine.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Remote Lifecycle Control</h5>
+                            <p class="mb-0">Pipelines issue direct shell execution commands (such as <code>systemctl restart</code> or <code>docker-compose up</code>) on the virtual machine to gracefully swap older runtimes without losing application state.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Deployment Security</h5>
+                            <p class="mb-0">Production instances remain tucked away inside a private VPC subnet. Jenkins uses secure security groups or **AWS Systems Manager (SSM) Run Command** interfaces to complete deployments without public endpoints.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- EXAMPLE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Practical Jenkins Example
+                </h2>
+
+                <p>The following Declarative Pipeline demonstrates how to pull compiled artifacts from a staging folder, securely authenticate via SSH, copy a target package, and restart an system service on an EC2 instance:</p>
+
+                <pre><code>pipeline {
+    agent any
+
+
+
+
+
+
+
+
+    environment {
+        SSH_KEY_ID      = 'ec2-prod-ssh-key' 
+        TARGET_HOST     = '10.0.1.45'        
+        REMOTE_USER     = 'ubuntu'
+        DOCKER_REGISTRY = 'docker.io/mycompany'
+        IMAGE_NAME      = 'web-application'
+        IMAGE_TAG       = "$${BUILD_NUMBER}"  
+    }
+
+    stages {
+        stage('Pull & Compile') {
+            steps {
+                checkout scm
+                echo "Packaging distribution application modules..."
+            }
+        }
+
+        stage('Secure Multi-Phase EC2 Deployment') {
+            steps {
+                sshagent(credentials: ["$${SSH_KEY_ID}"]) {
+                    script {
+                        echo "Opening secure tunnel channel to virtual node: $${TARGET_HOST}"
+                        
+                        sh """
+                            ssh -o StrictHostKeyChecking=no $${REMOTE_USER}@@$${TARGET_HOST} '
+                                docker stop $${IMAGE_NAME} || true &&
+                                docker rm $${IMAGE_NAME} || true
+                            '
+                        """
+
+                        sh """
+                            ssh -o StrictHostKeyChecking=no $${REMOTE_USER}@@$${TARGET_HOST} '
+                                docker login -u "\$$REGISTRY_USER" -p "\$$REGISTRY_PASS" &&
+                                docker run -d --name $${IMAGE_NAME} -p 80:8080 $${DOCKER_REGISTRY}/$${IMAGE_NAME}:$${IMAGE_TAG}
+                            '
+                        """
+                    }
+                }
+            }
+        }
+    }
+    post {
+        cleanup {
+            cleanWs()
+        }
+    }
+}</code></pre>
+
+            </div>
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Practice Exercise
+                </h2>
+
+                <ol>
+                    <li class="mb-2">Open Jenkins and identify the relevant configuration area.</li>
+                    <li class="mb-2">Create or update a small test job or pipeline for this lesson.</li>
+                    <li class="mb-2">Run the job and inspect the Console Output.</li>
+                    <li>Record what changed and verify the result.</li>
+                </ol>
+
+            </div>
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+                <h2 class="h4 fw-bold">Summary</h2>
+                <p class="mb-0">You have completed the <strong>EC2 Deployment</strong> lesson. Continue through the syllabus to build the Jenkins skills required for real CI/CD automation.</p>
+            </div>
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+                <a class="btn btn-outline-primary" href="@Url.Action("Aws", "CloudDevOps", new { area = "Jenkins" })">← Previous: Jenkins and AWS</a>
+                <a class="btn btn-primary" href="@Url.Action("S3Artifacts", "CloudDevOps", new { area = "Jenkins" })">Next: S3 Artifact Storage →</a>
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

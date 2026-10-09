@@ -1,0 +1,783 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Python Iterators";
+}
+
+<style>
+
+    #python-iterators-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #python-iterators-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #python-iterators-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #python-iterators-page .diagram-box {
+        background: #ffffff;
+        border: 2px solid #6f42c1;
+        border-radius: 10px;
+        padding: 18px;
+        text-align: center;
+        height: 100%;
+    }
+
+        #python-iterators-page .diagram-box h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        #python-iterators-page .diagram-box p {
+            margin-bottom: 0;
+            font-size: 14px;
+            color: #495057;
+        }
+
+    #python-iterators-page .diagram-arrow {
+        text-align: center;
+        font-size: 28px;
+        font-weight: 700;
+        color: #6f42c1;
+        padding: 8px 0;
+    }
+
+    #python-iterators-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #python-iterators-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+        }
+
+</style>
+
+
+<main id="python-iterators-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+
+                <h1 class="fw-bold">
+                    Iterators in Python
+                </h1>
+
+                <p class="lead">
+                    Learn how Python iterators allow us to access elements
+                    one at a time.
+                </p>
+
+            </div>
+
+
+            <!-- WHAT IS ITERATOR -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    What is an Iterator?
+                </h2>
+
+                <p>
+                    An iterator is an object that allows us to access
+                    elements of a collection one at a time.
+                </p>
+
+                <p>
+                    Python uses the <code>iter()</code> function to create
+                    an iterator and the <code>next()</code> function to
+                    retrieve the next value.
+                </p>
+
+                <div class="alert alert-info">
+
+                    <strong>Simple Definition:</strong>
+
+                    An iterator gives values one by one instead of
+                    returning all values at the same time.
+
+                </div>
+
+            </div>
+
+
+            <!-- BASIC DIAGRAM -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Iterator Flow
+                </h2>
+
+                <div class="concept-box">
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            Collection
+                        </h5>
+
+                        <p>
+                            List, tuple, string or another iterable object.
+                        </p>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            iter()
+                        </h5>
+
+                        <p>
+                            Creates an iterator object.
+                        </p>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            next()
+                        </h5>
+
+                        <p>
+                            Returns the next value from the iterator.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ITERABLE AND ITERATOR -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Iterable and Iterator
+                </h2>
+
+                <p>
+                    An iterable is an object whose elements can be accessed
+                    one by one.
+                </p>
+
+                <p>
+                    A list is an iterable. When we use <code>iter()</code>
+                    on the list, Python creates an iterator.
+                </p>
+
+                <pre><code>numbers = [10, 20, 30]
+
+iterator = iter(numbers)</code></pre>
+
+                <p>
+                    Here, <code>numbers</code> is an iterable and
+                    <code>iterator</code> is the iterator object.
+                </p>
+
+            </div>
+
+
+            <!-- BASIC EXAMPLE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Simple Iterator Example
+                </h2>
+
+                <pre><code>numbers = [10, 20, 30]
+
+iterator = iter(numbers)
+
+print(next(iterator))
+print(next(iterator))
+print(next(iterator))</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>10
+20
+30</code></pre>
+
+                <p>
+                    Each call to <code>next()</code> returns the next
+                    element from the iterator.
+                </p>
+
+            </div>
+
+
+            <!-- NEXT FUNCTION -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Using next()
+                </h2>
+
+                <p>
+                    The <code>next()</code> function retrieves the next
+                    available value from an iterator.
+                </p>
+
+                <pre><code>colors = ["Red", "Green", "Blue"]
+
+iterator = iter(colors)
+
+print(next(iterator))
+print(next(iterator))</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Red
+Green</code></pre>
+
+                <p>
+                    The next value can be retrieved by calling
+                    <code>next()</code> again.
+                </p>
+
+            </div>
+
+
+            <!-- STOPITERATION -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    StopIteration
+                </h2>
+
+                <p>
+                    When an iterator has no more values, Python raises
+                    the <code>StopIteration</code> exception.
+                </p>
+
+                <pre><code>numbers = [10, 20]
+
+iterator = iter(numbers)
+
+print(next(iterator))
+print(next(iterator))
+print(next(iterator))</code></pre>
+
+                <p class="mt-3">
+                    The first two calls return values, but the third call
+                    raises <code>StopIteration</code>.
+                </p>
+
+            </div>
+            <div class="px-2">
+                <h5 class="fw-bold mb-2">
+                    Output
+                </h5>
+
+                <pre class="mb-4"><code>10
+20
+StopIteration</code></pre>
+            </div>
+
+            <!-- DEFAULT VALUE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    next() with Default Value
+                </h2>
+
+                <p>
+                    We can provide a default value to <code>next()</code>
+                    so that it does not raise <code>StopIteration</code>
+                    when the iterator is exhausted.
+                </p>
+
+                <pre><code>numbers = [10, 20]
+
+iterator = iter(numbers)
+
+print(next(iterator, "No value"))
+print(next(iterator, "No value"))
+print(next(iterator, "No value"))</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>10
+20
+No value</code></pre>
+
+            </div>
+
+
+            <!-- FOR LOOP -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Iterators with for Loop
+                </h2>
+
+                <p>
+                    The <code>for</code> loop can automatically work with
+                    iterators.
+                </p>
+
+                <pre><code>numbers = [10, 20, 30]
+
+for number in numbers:
+
+    print(number)</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>10
+20
+30</code></pre>
+
+                <p>
+                    The <code>for</code> loop internally gets values from
+                    the iterable one by one.
+                </p>
+
+            </div>
+
+
+            <!-- STRING ITERATOR -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Iterator with String
+                </h2>
+
+                <p>
+                    Strings are also iterable objects.
+                </p>
+
+                <pre><code>text = "Python"
+
+iterator = iter(text)
+
+print(next(iterator))
+print(next(iterator))
+print(next(iterator))</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>P
+y
+t</code></pre>
+
+            </div>
+
+
+            <!-- TUPLE ITERATOR -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Iterator with Tuple
+                </h2>
+
+                <pre><code>courses = ("Python", ".NET", "Java")
+
+iterator = iter(courses)
+
+print(next(iterator))
+print(next(iterator))
+print(next(iterator))</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Python
+.NET
+Java</code></pre>
+
+            </div>
+
+
+            <!-- CUSTOM ITERATOR -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Creating a Custom Iterator
+                </h2>
+
+                <p>
+                    We can create our own iterator by defining
+                    <code>__iter__()</code> and <code>__next__()</code>
+                    methods.
+                </p>
+
+                <pre><code>class Numbers:
+
+    def __iter__(self):
+
+        self.number = 1
+
+        return self
+
+    def __next__(self):
+
+        if self.number &lt;= 3:
+
+            value = self.number
+
+            self.number += 1
+
+            return value
+
+        else:
+
+            raise StopIteration
+
+
+numbers = Numbers()
+
+for number in numbers:
+
+    print(number)</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>1
+2
+3</code></pre>
+
+            </div>
+
+
+            <!-- PRACTICAL EXAMPLE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Example 🤓👨‍🏫
+                </h2>
+
+                <p>
+                    The following example uses an iterator to process
+                    course names one at a time.
+                </p>
+
+                <pre><code>courses = [
+    "Python",
+    ".NET",
+    "Java"
+]
+
+iterator = iter(courses)
+
+print("Course:", next(iterator))
+print("Course:", next(iterator))
+print("Course:", next(iterator))</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Course: Python
+Course: .NET
+Course: Java</code></pre>
+
+            </div>
+
+
+            <!-- ADVANTAGES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Advantages of Iterators
+                </h2>
+
+                <div class="row g-3">
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                One at a Time
+                            </h5>
+
+                            <p class="mb-0">
+                                Values can be processed one at a time.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Memory Efficient
+                            </h5>
+
+                            <p class="mb-0">
+                                Large collections can be processed without
+                                creating another complete collection.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Easy to Use
+                            </h5>
+
+                            <p class="mb-0">
+                                Python loops can work directly with iterables
+                                and iterators.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- BEST PRACTICES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Best Practices
+                </h2>
+
+                <div class="row g-3">
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Use for Loop
+                            </h5>
+
+                            <p class="mb-0">
+                                Prefer a for loop when you simply need to
+                                process all values.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Use next Carefully
+                            </h5>
+
+                            <p class="mb-0">
+                                Remember that next() can raise
+                                StopIteration.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Keep Iterators Simple
+                            </h5>
+
+                            <p class="mb-0">
+                                Custom iterators should have clear and
+                                predictable behavior.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- COMMON MISTAKES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Common Mistakes
+                </h2>
+
+                <ul>
+
+                    <li>
+                        Calling <code>next()</code> after all values
+                        have been consumed.
+                    </li>
+
+                    <li>
+                        Forgetting that an iterator keeps its current position.
+                    </li>
+
+                    <li>
+                        Confusing an iterable with an iterator.
+                    </li>
+
+                    <li>
+                        Creating unnecessary custom iterators.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Practice Programs
+                </h2>
+
+                <ol>
+
+                    <li>
+                        Create an iterator from a list of numbers.
+                    </li>
+
+                    <li>
+                        Use <code>next()</code> to print each element.
+                    </li>
+
+                    <li>
+                        Create an iterator for a string.
+                    </li>
+
+                    <li>
+                        Create an iterator for a tuple.
+                    </li>
+
+                    <li>
+                        Create a custom iterator that generates numbers
+                        from 1 to 5.
+                    </li>
+
+                </ol>
+
+            </div>
+
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+
+                <h2 class="h4 fw-bold">
+                    Summary
+                </h2>
+
+                <p class="mb-0">
+
+                    An iterator allows Python to access collection elements
+                    one at a time. The <code>iter()</code> function creates
+                    an iterator and the <code>next()</code> function gets
+                    the next value. When no values remain,
+                    <code>StopIteration</code> is raised. Iterators are
+                    useful for processing collections efficiently.
+
+                </p>
+
+            </div>
+
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+
+                <a class="btn btn-outline-secondary"
+                   href="@Url.Action("Index", "AdvancedPython", new { area = "Python" })">
+
+                    ← Previous: Topic
+
+                </a>
+
+
+                <a class="btn btn-primary"
+                   href="@Url.Action("Generators", "AdvancedPython", new { area = "Python" })">
+
+                    Next: Topic →
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

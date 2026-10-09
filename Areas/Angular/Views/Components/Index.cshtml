@@ -1,0 +1,1140 @@
+﻿@{
+    ViewData["Title"] = "Angular Components";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- ================= HEADER ================= -->
+
+    <section class="mb-4">
+
+        <h1 class="fw-bold text-dark">
+            Angular Components
+        </h1>
+
+        <p class="text-muted fs-5">
+            Components are the basic building blocks of an Angular application.
+            A component controls a specific part of the user interface and
+            contains the logic, template and styling required for that part.
+        </p>
+
+    </section>
+
+
+    <!-- ================= WHAT IS COMPONENT ================= -->
+
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            What is an Angular Component?
+        </h2>
+
+        <p>
+            An Angular component is a TypeScript class connected to an HTML
+            template. It can also have styles that control the appearance
+            of the component.
+        </p>
+
+        <p>
+            Components help developers divide a large application into
+            smaller, manageable and reusable parts.
+        </p>
+
+        <div class="info-highlight">
+
+            <strong>Simple Definition:</strong>
+
+            <span>
+                Component = TypeScript Logic + HTML Template + Styling
+            </span>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= COMPONENT STRUCTURE ================= -->
+
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Basic Structure of a Component
+        </h2>
+
+        <div class="component-flow">
+
+            <div class="component-card">
+
+                <div class="component-number">
+                    1
+                </div>
+
+                <h4>TypeScript</h4>
+
+                <p>
+                    Contains component logic, properties and methods.
+                </p>
+
+            </div>
+
+
+            <div class="flow-arrow">
+                +
+            </div>
+
+
+            <div class="component-card">
+
+                <div class="component-number">
+                    2
+                </div>
+
+                <h4>HTML Template</h4>
+
+                <p>
+                    Defines what the user sees on the screen.
+                </p>
+
+            </div>
+
+
+            <div class="flow-arrow">
+                +
+            </div>
+
+
+            <div class="component-card">
+
+                <div class="component-number">
+                    3
+                </div>
+
+                <h4>CSS</h4>
+
+                <p>
+                    Defines the appearance and styling of the component.
+                </p>
+
+            </div>
+
+
+            <div class="flow-arrow">
+                =
+            </div>
+
+
+            <div class="component-result">
+
+                <div class="result-icon">
+                    ✓
+                </div>
+
+                <h4>Angular Component</h4>
+
+                <p>
+                    Complete reusable UI component.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= COMPONENT EXAMPLE ================= -->
+
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Simple Component Example
+        </h2>
+
+        <p>
+            Let's create a simple Student component that displays the
+            name of a student.
+        </p>
+
+
+        <!-- TYPESCRIPT -->
+
+        <div class="code-box">
+
+            <div class="code-header">
+                <span>student.component.ts</span>
+            </div>
+
+<pre><code>import { Component } from '@@angular/core';
+
+@@Component({
+    selector: 'app-student',
+    templateUrl: './student.component.html'
+})
+export class StudentComponent {
+
+    studentName = 'Sam';
+
+}</code></pre>
+
+        </div>
+
+
+        <!-- HTML -->
+
+        <p class="mt-4">
+            The component template can display the student name using
+            Angular interpolation.
+        </p>
+
+        <div class="code-box">
+
+            <div class="code-header">
+                <span>student.component.html</span>
+            </div>
+
+<pre><code>&lt;h2&gt;Student Details&lt;/h2&gt;
+
+&lt;p&gt;
+    Student Name: &#123;&#123; studentName &#125;&#125;
+&lt;/p&gt;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= EXPECTED OUTPUT ================= -->
+
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Expected Output
+        </h2>
+
+        <div class="output-box">
+
+            <h4>
+                Student Details
+            </h4>
+
+            <p class="mb-0">
+                Student Name: Sam
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= COMPONENT DECORATOR ================= -->
+
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            @@Component Decorator
+        </h2>
+
+        <p>
+            The <strong>@@Component</strong> decorator tells Angular that
+            a TypeScript class should be treated as a component.
+        </p>
+
+        <div class="code-box">
+
+            <div class="code-header">
+                <span>Component Decorator</span>
+            </div>
+
+<pre><code>@@Component({
+    selector: 'app-student',
+    templateUrl: './student.component.html'
+})</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= COMPONENT METADATA ================= -->
+
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Component Metadata
+        </h2>
+
+        <p>
+            Metadata inside the @@Component decorator tells Angular how
+            the component should behave and where its template is located.
+        </p>
+
+        <div class="metadata-grid">
+
+            <div class="metadata-card">
+
+                <h5>selector</h5>
+
+                <p>
+                    Defines the custom HTML element used to display
+                    the component.
+                </p>
+
+                <div class="small-code">
+                    app-student
+                </div>
+
+            </div>
+
+
+            <div class="metadata-card">
+
+                <h5>templateUrl</h5>
+
+                <p>
+                    Specifies the external HTML template file used
+                    by the component.
+                </p>
+
+                <div class="small-code">
+                    student.component.html
+                </div>
+
+            </div>
+
+
+            <div class="metadata-card">
+
+                <h5>styleUrl</h5>
+
+                <p>
+                    Specifies the stylesheet associated with the
+                    component.
+                </p>
+
+                <div class="small-code">
+                    student.component.css
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= SELECTOR ================= -->
+
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Component Selector
+        </h2>
+
+        <p>
+            The selector defines how the component is placed inside
+            another Angular template.
+        </p>
+
+        <div class="code-box">
+
+            <div class="code-header">
+                <span>student.component.ts</span>
+            </div>
+
+<pre><code>@@Component({
+    selector: 'app-student'
+})</code></pre>
+
+        </div>
+
+
+        <p class="mt-4">
+            The component can then be used in an HTML template like this:
+        </p>
+
+
+        <div class="code-box">
+
+            <div class="code-header">
+                <span>HTML Template</span>
+            </div>
+
+<pre><code>&lt;app-student&gt;&lt;/app-student&gt;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= COMPONENT TREE ================= -->
+
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Component Tree
+        </h2>
+
+        <p>
+            Angular applications can contain many components. These
+            components can be organized into parent and child components.
+        </p>
+
+        <div class="tree-container">
+
+            <div class="tree-root">
+                AppComponent
+            </div>
+
+            <div class="tree-connector">
+                │
+            </div>
+
+            <div class="tree-children">
+
+                <div class="tree-item">
+                    HeaderComponent
+                </div>
+
+                <div class="tree-item">
+                    StudentComponent
+                </div>
+
+                <div class="tree-item">
+                    FooterComponent
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= COMPONENT RESPONSIBILITIES ================= -->
+
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Responsibilities of a Component
+        </h2>
+
+        <div class="responsibility-grid">
+
+            <div class="responsibility-card">
+
+                <div class="responsibility-number">
+                    1
+                </div>
+
+                <h5>User Interface</h5>
+
+                <p>
+                    Displays the required part of the application.
+                </p>
+
+            </div>
+
+
+            <div class="responsibility-card">
+
+                <div class="responsibility-number">
+                    2
+                </div>
+
+                <h5>Application Logic</h5>
+
+                <p>
+                    Contains TypeScript properties and methods.
+                </p>
+
+            </div>
+
+
+            <div class="responsibility-card">
+
+                <div class="responsibility-number">
+                    3
+                </div>
+
+                <h5>User Interaction</h5>
+
+                <p>
+                    Handles user actions and events.
+                </p>
+
+            </div>
+
+
+            <div class="responsibility-card">
+
+                <div class="responsibility-number">
+                    4
+                </div>
+
+                <h5>Data Display</h5>
+
+                <p>
+                    Displays application data in the template.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= BENEFITS ================= -->
+
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Benefits of Angular Components
+        </h2>
+
+        <div class="benefit-box">
+
+            <div class="benefit-item">
+                <span>✓</span>
+                <p>
+                    Divide a large application into smaller sections.
+                </p>
+            </div>
+
+            <div class="benefit-item">
+                <span>✓</span>
+                <p>
+                    Make application code easier to maintain.
+                </p>
+            </div>
+
+            <div class="benefit-item">
+                <span>✓</span>
+                <p>
+                    Create reusable user interface elements.
+                </p>
+            </div>
+
+            <div class="benefit-item">
+                <span>✓</span>
+                <p>
+                    Improve application organization.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= COMPLETE FLOW ================= -->
+
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Complete Component Flow
+        </h2>
+
+        <div class="complete-flow">
+
+            <div class="complete-step">
+
+                <div class="complete-number">
+                    1
+                </div>
+
+                <strong>Component Class</strong>
+
+                <span>
+                    TypeScript logic
+                </span>
+
+            </div>
+
+
+            <div class="complete-arrow">
+                →
+            </div>
+
+
+            <div class="complete-step">
+
+                <div class="complete-number">
+                    2
+                </div>
+
+                <strong>Template</strong>
+
+                <span>
+                    HTML user interface
+                </span>
+
+            </div>
+
+
+            <div class="complete-arrow">
+                →
+            </div>
+
+
+            <div class="complete-step">
+
+                <div class="complete-number">
+                    3
+                </div>
+
+                <strong>Angular</strong>
+
+                <span>
+                    Connects component and template
+                </span>
+
+            </div>
+
+
+            <div class="complete-arrow">
+                →
+            </div>
+
+
+            <div class="complete-step">
+
+                <div class="complete-number">
+                    4
+                </div>
+
+                <strong>Browser</strong>
+
+                <span>
+                    Displays the component
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= SUMMARY ================= -->
+
+    <section class="mb-5">
+
+        <div class="summary-box">
+
+            <h3>
+                Summary
+            </h3>
+
+            <p>
+                Angular components are the basic building blocks of
+                Angular applications.
+            </p>
+
+            <p>
+                A component contains TypeScript logic and an HTML
+                template, along with optional styling.
+            </p>
+
+            <p class="mb-0">
+                Components make Angular applications modular, reusable
+                and easier to maintain.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= NAVIGATION ================= -->
+
+    <div class="topic-navigation">
+
+        <a class="btn btn-outline-secondary"
+           href="@Url.Action("ProjectStructure", "Setup", new { area = "Angular" })">
+            ← Angular Project Structure
+        </a>
+
+        <a class="btn btn-primary"
+           href="@Url.Action("ComponentAnatomy", "Components", new { area = "Angular" })">
+            Component Anatomy →
+        </a>
+
+    </div>
+
+</div>
+
+
+<style>
+
+    /* ================= SECTION TITLE ================= */
+
+    .section-title {
+        font-size: 25px;
+        font-weight: 700;
+        color: #2e1065;
+        margin-bottom: 18px;
+        border-left: 5px solid #4c1d95;
+        padding-left: 12px;
+    }
+
+
+    /* ================= INFO ================= */
+
+    .info-highlight {
+        background: #f3eefe;
+        border-left: 5px solid #4c1d95;
+        padding: 15px 18px;
+        border-radius: 7px;
+        margin-top: 20px;
+    }
+
+    .info-highlight strong {
+        color: #2e1065;
+        margin-right: 8px;
+    }
+
+    .info-highlight span {
+        color: #4c1d95;
+        font-weight: 600;
+    }
+
+
+    /* ================= COMPONENT FLOW ================= */
+
+    .component-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        padding: 25px;
+        background: #f8f7fc;
+        border-radius: 10px;
+        border: 1px solid #e5e7eb;
+    }
+
+    .component-card,
+    .component-result {
+        width: 175px;
+        min-height: 145px;
+        text-align: center;
+        padding: 18px;
+        background: white;
+        border-radius: 10px;
+        border: 1px solid #ddd6fe;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+    }
+
+    .component-result {
+        border: 2px solid #4c1d95;
+        background: #f3eefe;
+    }
+
+    .component-number,
+    .result-icon {
+        width: 42px;
+        height: 42px;
+        margin: 0 auto 10px;
+        border-radius: 50%;
+        background: #4c1d95;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+    }
+
+    .component-card h4,
+    .component-result h4 {
+        font-size: 17px;
+        font-weight: 700;
+        color: #2e1065;
+    }
+
+    .component-card p,
+    .component-result p {
+        font-size: 14px;
+        color: #64748b;
+        margin-bottom: 0;
+    }
+
+    .flow-arrow {
+        font-size: 26px;
+        color: #4c1d95;
+        font-weight: 700;
+    }
+
+
+    /* ================= CODE BOX ================= */
+
+    .code-box {
+        background: #0f172a;
+        border-radius: 8px;
+        margin-top: 15px;
+        overflow: hidden;
+    }
+
+    .code-header {
+        background: #1e293b;
+        color: #cbd5e1;
+        padding: 8px 15px;
+        font-size: 13px;
+        font-weight: 600;
+        border-bottom: 1px solid #334155;
+    }
+
+    .code-box pre {
+        margin: 0;
+        padding: 18px 20px;
+        overflow-x: auto;
+    }
+
+    .code-box code {
+        color: #e2e8f0;
+        font-family: Consolas, "Courier New", monospace;
+        font-size: 15px;
+        line-height: 1.7;
+    }
+
+
+    /* ================= OUTPUT ================= */
+
+    .output-box {
+        background: #f1f5f9;
+        border-left: 5px solid #4c1d95;
+        border-radius: 7px;
+        padding: 18px 20px;
+    }
+
+    .output-box h4 {
+        color: #4c1d95;
+        font-weight: 700;
+    }
+
+
+    /* ================= METADATA ================= */
+
+    .metadata-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+        margin-top: 20px;
+    }
+
+    .metadata-card {
+        background: #f8f7fc;
+        border: 1px solid #ddd6fe;
+        border-radius: 9px;
+        padding: 20px;
+    }
+
+    .metadata-card h5 {
+        color: #4c1d95;
+        font-weight: 700;
+    }
+
+    .metadata-card p {
+        color: #64748b;
+        font-size: 14px;
+    }
+
+    .small-code {
+        display: inline-block;
+        background: #ede9fe;
+        color: #4c1d95;
+        padding: 6px 9px;
+        border-radius: 5px;
+        font-family: Consolas, "Courier New", monospace;
+        font-size: 12px;
+    }
+
+
+    /* ================= TREE ================= */
+
+    .tree-container {
+        text-align: center;
+        background: #f8f7fc;
+        border: 1px solid #e5e7eb;
+        border-radius: 10px;
+        padding: 30px 20px;
+    }
+
+    .tree-root {
+        display: inline-block;
+        background: #4c1d95;
+        color: white;
+        padding: 13px 28px;
+        border-radius: 8px;
+        font-weight: 700;
+    }
+
+    .tree-connector {
+        color: #4c1d95;
+        font-size: 25px;
+        font-weight: 700;
+        margin: 5px;
+    }
+
+    .tree-children {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .tree-item {
+        background: white;
+        border: 1px solid #ddd6fe;
+        color: #2e1065;
+        padding: 12px 18px;
+        border-radius: 7px;
+        font-weight: 600;
+    }
+
+
+    /* ================= RESPONSIBILITY ================= */
+
+    .responsibility-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+    }
+
+    .responsibility-card {
+        background: white;
+        border: 1px solid #ddd6fe;
+        border-radius: 9px;
+        padding: 18px;
+    }
+
+    .responsibility-number {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        background: #4c1d95;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        margin-bottom: 12px;
+    }
+
+    .responsibility-card h5 {
+        color: #2e1065;
+        font-weight: 700;
+    }
+
+    .responsibility-card p {
+        color: #64748b;
+        font-size: 14px;
+        margin-bottom: 0;
+    }
+
+
+    /* ================= BENEFITS ================= */
+
+    .benefit-box {
+        background: #f8f7fc;
+        border: 1px solid #e5e7eb;
+        border-radius: 9px;
+        padding: 10px 20px;
+    }
+
+    .benefit-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 0;
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    .benefit-item:last-child {
+        border-bottom: none;
+    }
+
+    .benefit-item span {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: #4c1d95;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .benefit-item p {
+        margin: 0;
+    }
+
+
+    /* ================= COMPLETE FLOW ================= */
+
+    .complete-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .complete-step {
+        width: 180px;
+        min-height: 120px;
+        text-align: center;
+        padding: 18px;
+        background: #f8f7fc;
+        border: 1px solid #ddd6fe;
+        border-radius: 9px;
+    }
+
+    .complete-number {
+        width: 38px;
+        height: 38px;
+        margin: 0 auto 10px;
+        background: #4c1d95;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+    }
+
+    .complete-step strong {
+        display: block;
+        color: #2e1065;
+        margin-bottom: 5px;
+    }
+
+    .complete-step span {
+        color: #64748b;
+        font-size: 13px;
+    }
+
+    .complete-arrow {
+        color: #4c1d95;
+        font-size: 25px;
+        font-weight: 700;
+    }
+
+
+    /* ================= SUMMARY ================= */
+
+    .summary-box {
+        background: #cfe2ff;
+        border-radius: 6px;
+        padding: 18px 22px;
+        margin-top: 20px;
+    }
+
+    .summary-box h3 {
+        font-size: 20px;
+        font-weight: 700;
+        color: #084298;
+        margin-bottom: 10px;
+    }
+
+    .summary-box p {
+        font-size: 16px !important;
+        line-height: 1.6 !important;
+        color: #084298 !important;
+        margin-bottom: 8px;
+    }
+
+
+    /* ================= NAVIGATION ================= */
+
+    .topic-navigation {
+        display: flex;
+        justify-content: space-between;
+        gap: 15px;
+        margin-top: 35px;
+        padding-top: 20px;
+        border-top: 1px solid #e5e7eb;
+    }
+
+    .topic-navigation .btn {
+        padding: 10px 18px;
+        font-weight: 600;
+    }
+
+    .topic-navigation .btn-primary {
+        background: #4c1d95;
+        border-color: #4c1d95;
+    }
+
+    .topic-navigation .btn-primary:hover {
+        background: #2e1065;
+        border-color: #2e1065;
+    }
+
+
+    /* ================= RESPONSIVE ================= */
+
+    @@media (max-width: 991px) {
+
+        .metadata-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .responsibility-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .flow-arrow,
+        .complete-arrow {
+            display: none;
+        }
+
+    }
+
+
+    @@media (max-width: 576px) {
+
+        .section-title {
+            font-size: 22px;
+        }
+
+        .metadata-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .responsibility-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .component-flow,
+        .complete-flow {
+            flex-direction: column;
+        }
+
+        .component-card,
+        .component-result,
+        .complete-step {
+            width: 100%;
+        }
+
+        .tree-children {
+            flex-direction: column;
+        }
+
+        .topic-navigation {
+            flex-direction: column;
+        }
+
+        .topic-navigation .btn {
+            width: 100%;
+            text-align: center;
+        }
+
+        .code-box code {
+            font-size: 13px;
+        }
+
+    }
+
+</style>

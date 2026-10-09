@@ -1,0 +1,650 @@
+﻿@{
+    ViewData["Title"] = "PARTITION BY";
+}
+
+<div class="container-fluid">
+
+    <!-- =========================
+         PAGE HEADER
+    ========================== -->
+
+    <div class="mb-4">
+
+        <h1 class="fw-bold">
+            PARTITION BY
+        </h1>
+
+        <p class="text-muted">
+            Learn how to use PARTITION BY with SQL Server Window
+            Functions to perform calculations separately for
+            different groups.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         INTRODUCTION
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                What is PARTITION BY?
+            </h2>
+
+            <p>
+                <strong>PARTITION BY</strong> is used with SQL Server
+                Window Functions to divide the result set into
+                separate groups.
+            </p>
+
+            <p>
+                The Window Function then performs its calculation
+                separately within each group.
+            </p>
+
+            <p class="mb-0">
+                Unlike GROUP BY, PARTITION BY does not combine rows
+                into a single row. All original rows remain in the
+                result.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         SYNTAX
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Syntax
+            </h2>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>WindowFunction()
+OVER
+(
+    PARTITION BY column_name
+    ORDER BY column_name
+)</code></pre>
+
+            <p class="mt-3 mb-0">
+                PARTITION BY defines the groups, while ORDER BY
+                determines the order within each group.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         SAMPLE DATA
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Sample Employee Data
+            </h2>
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-striped">
+
+                    <thead class="table-dark">
+
+                        <tr>
+                            <th>EmployeeId</th>
+                            <th>EmployeeName</th>
+                            <th>Department</th>
+                            <th>Salary</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>101</td>
+                            <td>Amit</td>
+                            <td>IT</td>
+                            <td>70000</td>
+                        </tr>
+
+                        <tr>
+                            <td>102</td>
+                            <td>Rahul</td>
+                            <td>IT</td>
+                            <td>80000</td>
+                        </tr>
+
+                        <tr>
+                            <td>103</td>
+                            <td>Priya</td>
+                            <td>HR</td>
+                            <td>60000</td>
+                        </tr>
+
+                        <tr>
+                            <td>104</td>
+                            <td>Neha</td>
+                            <td>HR</td>
+                            <td>65000</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         ROW_NUMBER WITH PARTITION
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                ROW_NUMBER() with PARTITION BY
+            </h2>
+
+            <p>
+                We can use PARTITION BY with ROW_NUMBER() to assign
+                row numbers separately within each department.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>SELECT
+    EmployeeName,
+    Department,
+    Salary,
+
+    ROW_NUMBER() OVER
+    (
+        PARTITION BY Department
+        ORDER BY Salary DESC
+    ) AS RowNumber
+
+FROM Employees;</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         ROW_NUMBER OUTPUT
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                ROW_NUMBER() Output
+            </h2>
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-striped">
+
+                    <thead class="table-dark">
+
+                        <tr>
+                            <th>EmployeeName</th>
+                            <th>Department</th>
+                            <th>Salary</th>
+                            <th>RowNumber</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>Rahul</td>
+                            <td>IT</td>
+                            <td>80000</td>
+                            <td>1</td>
+                        </tr>
+
+                        <tr>
+                            <td>Amit</td>
+                            <td>IT</td>
+                            <td>70000</td>
+                            <td>2</td>
+                        </tr>
+
+                        <tr>
+                            <td>Neha</td>
+                            <td>HR</td>
+                            <td>65000</td>
+                            <td>1</td>
+                        </tr>
+
+                        <tr>
+                            <td>Priya</td>
+                            <td>HR</td>
+                            <td>60000</td>
+                            <td>2</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <p class="mt-3 mb-0">
+                Notice that numbering starts again from
+                <strong>1</strong> for each department.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         RANK WITH PARTITION
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                RANK() with PARTITION BY
+            </h2>
+
+            <p>
+                PARTITION BY can also be used with RANK() to rank
+                employees separately within each department.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>SELECT
+    EmployeeName,
+    Department,
+    Salary,
+
+    RANK() OVER
+    (
+        PARTITION BY Department
+        ORDER BY Salary DESC
+    ) AS DepartmentRank
+
+FROM Employees;</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         DENSE_RANK WITH PARTITION
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                DENSE_RANK() with PARTITION BY
+            </h2>
+
+            <p>
+                DENSE_RANK() can also calculate rankings separately
+                for each group.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>SELECT
+    EmployeeName,
+    Department,
+    Salary,
+
+    DENSE_RANK() OVER
+    (
+        PARTITION BY Department
+        ORDER BY Salary DESC
+    ) AS DepartmentRank
+
+FROM Employees;</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         SUM WITH PARTITION
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                SUM() with PARTITION BY
+            </h2>
+
+            <p>
+                PARTITION BY is not limited to ranking functions.
+                It can also be used with aggregate functions such
+                as SUM().
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>SELECT
+    EmployeeName,
+    Department,
+    Salary,
+
+    SUM(Salary) OVER
+    (
+        PARTITION BY Department
+    ) AS DepartmentTotalSalary
+
+FROM Employees;</code></pre>
+
+            <p class="mt-3 mb-0">
+                This calculates the total salary for each department
+                while keeping every employee row in the result.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         AVERAGE WITH PARTITION
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                AVG() with PARTITION BY
+            </h2>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>SELECT
+    EmployeeName,
+    Department,
+    Salary,
+
+    AVG(Salary) OVER
+    (
+        PARTITION BY Department
+    ) AS DepartmentAverageSalary
+
+FROM Employees;</code></pre>
+
+            <p class="mt-3 mb-0">
+                This calculates the average salary separately for
+                every department.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         LEAD LAG WITH PARTITION
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                LEAD() and LAG() with PARTITION BY
+            </h2>
+
+            <p>
+                PARTITION BY can also be combined with LEAD() and
+                LAG() to compare rows within each group.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>SELECT
+    EmployeeName,
+    Department,
+    Salary,
+
+    LAG(Salary) OVER
+    (
+        PARTITION BY Department
+        ORDER BY Salary
+    ) AS PreviousSalary
+
+FROM Employees;</code></pre>
+
+            <p class="mt-3 mb-0">
+                The previous salary is calculated separately within
+                each department.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         PARTITION BY VS GROUP BY
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                PARTITION BY vs GROUP BY
+            </h2>
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-striped">
+
+                    <thead class="table-dark">
+
+                        <tr>
+                            <th>Feature</th>
+                            <th>PARTITION BY</th>
+                            <th>GROUP BY</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>Groups data</td>
+                            <td>Yes</td>
+                            <td>Yes</td>
+                        </tr>
+
+                        <tr>
+                            <td>Original rows remain</td>
+                            <td>Yes</td>
+                            <td>No</td>
+                        </tr>
+
+                        <tr>
+                            <td>Used with Window Functions</td>
+                            <td>Yes</td>
+                            <td>No</td>
+                        </tr>
+
+                        <tr>
+                            <td>Returns one row per group</td>
+                            <td>No</td>
+                            <td>Usually yes</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         PRACTICAL USES
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Practical Uses of PARTITION BY
+            </h2>
+
+            <ul>
+
+                <li class="mb-2">
+                    Department-wise employee ranking.
+                </li>
+
+                <li class="mb-2">
+                    Department-wise salary calculations.
+                </li>
+
+                <li class="mb-2">
+                    Category-wise product ranking.
+                </li>
+
+                <li class="mb-2">
+                    Customer-wise transaction analysis.
+                </li>
+
+                <li class="mb-2">
+                    Group-wise running totals.
+                </li>
+
+                <li>
+                    Comparing rows within individual groups.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         IMPORTANT POINTS
+    ========================== -->
+
+    <div class="alert alert-warning mb-4">
+
+        <h4 class="fw-bold">
+            Important Points
+        </h4>
+
+        <ul class="mb-0">
+
+            <li class="mb-2">
+                PARTITION BY divides the result into groups.
+            </li>
+
+            <li class="mb-2">
+                Window calculations are performed separately
+                for each partition.
+            </li>
+
+            <li class="mb-2">
+                PARTITION BY does not remove or combine rows.
+            </li>
+
+            <li class="mb-2">
+                It can be used with ROW_NUMBER(), RANK(),
+                DENSE_RANK(), LEAD(), LAG() and aggregate functions.
+            </li>
+
+            <li>
+                ORDER BY can be used inside OVER() to define
+                the order within each partition.
+            </li>
+
+        </ul>
+
+    </div>
+
+
+    <!-- =========================
+         SUMMARY
+    ========================== -->
+
+    <div class="p-4 rounded mb-4"
+         style="background-color:#cfe2ff;">
+
+        <h2 class="fw-bold mb-3">
+            Summary
+        </h2>
+
+        <p>
+            <strong>PARTITION BY</strong> divides rows into logical
+            groups and allows Window Functions to perform calculations
+            separately for each group.
+        </p>
+
+        <p class="mb-0">
+            It is commonly used with ROW_NUMBER(), RANK(),
+            DENSE_RANK(), LEAD(), LAG(), SUM(), AVG() and other
+            Window Functions.
+        </p>
+
+    </div>
+
+    <!-- =========================
+     PREVIOUS / NEXT
+========================== -->
+
+    <div class="d-flex justify-content-between align-items-center
+        mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/WindowFunctions/LeadLag"
+           class="btn btn-outline-primary">
+
+            ← Previous: LEAD() and LAG()
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/AdvancedSQL/Index"
+           class="btn btn-primary">
+
+            Next: Advanced SQL Introduction →
+
+        </a>
+
+    </div>
+
+</div>

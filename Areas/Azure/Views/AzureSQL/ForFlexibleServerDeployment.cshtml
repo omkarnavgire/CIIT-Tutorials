@@ -1,0 +1,45 @@
+@{
+    ViewData["Title"] = "For Flexible Server Deployment:";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+                <div class="azure-notes-content">
+                    <pre class="azure-notes-text">For Flexible Server Deployment:
+
+There are 2 primary modes of design:
+
+    •   Zone Redundant Architecture: This design will create a primary database server in the
+        availability zone (like east us). Another server with the exact same configurations will be
+        placed in a different availability zone within the same region (like east us 2). This model
+        provides higher fault tolerance, but higher latency in transmitting traffic.
+    •   Same Zone Architecture: In this design, both your primary and secondary servers are placed
+        within the same availability zone. Data transmission is faster, latency is lower due to the
+        servers being physically close. However, fault tolerance is lower.
+
+    •   With both architectures, users can provision read replicas for backup and database
+        consistency. Read replicas is a read-only copy of your Azure database, designed to reduce the
+        load on your primary server.</pre>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_8_-_Microsoft_Azure_-_Database_Availability_and_Consistency_For_Azure_SQL/p02-000.jpg" class="img-fluid rounded shadow-sm" alt="For Flexible Server Deployment: - source image" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+            @await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureLessonNavigation.cshtml")
+</section>
+</div>
+<style>
+.azure-notes-text{white-space:pre-wrap;word-break:normal;font-family:inherit;font-size:1rem;line-height:1.7;background:#fff;border:0;padding:0;margin:0;color:#212529;}
+.azure-notes-content img{max-height:720px;}
+</style>

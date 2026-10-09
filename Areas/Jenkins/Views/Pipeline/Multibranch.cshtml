@@ -1,0 +1,212 @@
+@{
+    Layout = "~/Areas/Jenkins/Views/Shared/JenkinsLayout.cshtml";
+    ViewData["Title"] = "Multibranch Pipelines";
+}
+
+<style>
+    #multibranch-pipelines-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #multibranch-pipelines-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #multibranch-pipelines-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #multibranch-pipelines-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #multibranch-pipelines-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+    #multibranch-pipelines-page .example-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+    }
+</style>
+
+<main id="multibranch-pipelines-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/Jenkins/Views/Shared/JenkinsTopics.cshtml")
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+                <h1 class="fw-bold">Multibranch Pipelines</h1>
+                <p class="lead">
+                    Learn the concepts, branch discovery rules, repository scanning mechanisms, and dynamic staging patterns required to orchestrate automated scaling across multi-branch environments.
+                </p>
+            </div>
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">What is a Multibranch Pipeline?</h2>
+                <p>
+                    In an active modern development team, software engineers continuously create short-lived feature branches, hotfixes, and pull requests. Manually setting up a unique Jenkins tracking item for each individual branch creates massive administrative debt. A **Multibranch Pipeline** resolves this bottleneck by turning your master controller into an autonomous search engine that auto-discovers and sets up execution tracks on its own.
+                </p>
+
+                <div class="alert alert-info my-3">
+                    <strong>Simple Definition:</strong> A Multibranch Pipeline is a specialized Jenkins job type that scans a target Git repository, automatically creates individual nested pipeline tracks for every branch containing a `Jenkinsfile`, and automatically tears them down when those branches are deleted.
+                </div>
+
+                <h3 class="h4 fw-bold mt-4">Core Automation Mechanisms</h3>
+                <p class="mb-2">Jenkins manages multi-branch orchestration using explicit platform capabilities:</p>
+                <ul class="mb-3">
+                    <li class="mb-1"><strong>Repository Index Scanning:</strong> The discovery hook where Jenkins loops through your remote source control platform (GitHub, GitLab) to locate all active branch tracking paths.</li>
+                    <li class="mb-1"><strong>Dynamic Orphan Lifecycle Control:</strong> The automated housecleaning system that immediately purges or deactivates pipeline records inside the UI dashboard as soon as matching remote branch strings are merged and deleted.</li>
+                    <li class="mb-1"><strong>The `BRANCH_NAME` Variable:</strong> A built-in environmental macro populated automatically by the execution framework (e.g., matching `main`, `develop`, or `feature/login`), enabling branch-aware routing logic.</li>
+                    <li><strong>Pull Request Evaluation:</strong> The native capability to parse inbound pull/merge requests, spinning up isolated validation runs ahead of merging source layers into stable tracks.</li>
+                </ul>
+            </div>
+
+            <!-- KEY CONCEPTS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Key Concepts</h2>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Zero-UI Configuration Scaling</h5>
+                            <p class="mb-0">Understanding that developers can launch entirely fresh end-to-end continuous integration pipelines without ever opening the Jenkins dashboard web menu, simply by pushing a text code asset inside a fresh branch.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Branch-Targeted Environment Routing</h5>
+                            <p class="mb-0">Leveraging the structural `when` directive alongside branch keywords to selectively execute specific actions (like deploying to production servers) only when code commits run on specific branch tracks.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXAMPLE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Practical Jenkins Example</h2>
+                <p>The following full declarative pipeline configuration showcases how a single `Jenkinsfile` routes step paths dynamically based on the current branch context populated by a Multibranch Pipeline structure:</p>
+                <pre><code>pipeline {
+    agent any
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    stages {
+        stage('Initialize and Test Core') {
+            steps {
+                echo "INFO: Beginning validation pipeline pass on active branch track: \${env.BRANCH_NAME}"
+                sh 'echo "Running standardized test suites across workspace targets..."'
+            }
+        }
+
+        stage('Staging Deployment') {
+            // Evaluates the dynamic environment parameter to only deploy staging branches
+            when {
+                branch 'develop'
+            }
+            steps {
+                echo 'INFO: Branch matched [develop]. Transferring application deliverables to Staging nodes...'
+                sh 'echo "Staging environment update finalized clean."'
+            }
+        }
+
+        stage('Production Release Gate') {
+            // Enforces strict safety boundary parameters to lock production delivery targets
+            when {
+                branch 'main'
+            }
+            steps {
+                echo 'WARNING: Core branch matched [main]. Deploying validated build deliverables to Production servers...'
+                sh 'echo "Production deployment processing complete."'
+            }
+        }
+    }
+}</code></pre>
+    </div>
+
+<!-- PRACTICE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Practice Exercise: Deploy an Automated Repository Scan Job</h2>
+<div class="concept-box">
+<h5 class="fw-bold">Step-by-Step Task Sequence:</h5>
+<ol class="ps-3 mb-0">
+<li class="mb-2">Open the main portal home screen dashboard layout and select the **New Item** sidebar menu link option.</li>
+<li class="mb-2">Input the name string <code>Multi-Branch-App-Orchestration</code>, choose the card explicitly labeled **Multibranch Pipeline**, and click **OK**.</li>
+<li class="mb-2">Locate the **Branch Sources** property selector block, add **Git**, and paste a target repository path URL containing multiple operational branches and a root `Jenkinsfile`.</li>
+<li class="mb-2">Click the green **Save** button to write options down to disk storage. Jenkins immediately fires an initial automated repository scan pass.</li>
+<li>Open the job landing dashboard view area once the scan finishes to see Jenkins dynamically present a neat list layout showing independent nested pipeline folders for each active branch.</li>
+</ol>
+</div>
+</div>
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+                <h2 class="h4 fw-bold">Summary</h2>
+                <p class="mb-0">You have completed the <strong>Multibranch Pipelines</strong> lesson. Continue through the syllabus to learn how to connect these multi-branch scanning nodes to automatic instant updates by exploring the Git Webhooks lesson.</p>
+            </div>
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+                <a class="btn btn-outline-primary" href="@Url.Action("PostBlock", "Pipeline", new { area = "Jenkins" })">← Previous: Post Block and Build Results</a>
+                <a class="btn btn-primary" href="@Url.Action("Webhooks", "Pipeline", new { area = "Jenkins" })">Next: Git Webhooks →</a>
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

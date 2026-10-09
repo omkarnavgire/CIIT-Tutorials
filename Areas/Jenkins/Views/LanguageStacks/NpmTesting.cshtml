@@ -1,0 +1,218 @@
+@{
+    Layout = "~/Areas/Jenkins/Views/Shared/JenkinsLayout.cshtml";
+    ViewData["Title"] = "npm Testing and Packaging";
+}
+
+<style>
+    #npm-testing-and-packaging-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+    #npm-testing-and-packaging-page pre code {
+        background: transparent !important;
+        color: #ffffff !important;
+    }
+
+    #npm-testing-and-packaging-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #npm-testing-and-packaging-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+    #npm-testing-and-packaging-page .info-card h5 {
+        color: #5b21b6;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+
+    #npm-testing-and-packaging-page .example-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+    }
+</style>
+
+<main id="npm-testing-and-packaging-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Jenkins/Views/Shared/JenkinsTopics.cshtml"
+            )
+
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+
+                <h1 class="fw-bold">
+                    npm Testing and Packaging
+                </h1>
+
+                <p class="lead">
+                    Learn how to parse JavaScript test frameworks, convert test outputs to JUnit formats, establish strict artifact compliance, and distribute npm packages using Jenkins automation.
+                </p>
+
+            </div>
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    What is npm Testing and Packaging?
+                </h2>
+
+                <p>
+                    Automating JavaScript and TypeScript applications within a CI/CD environment requires standardized mechanics for running unit tests, checking syntax constraints, and assembling the final codebase for distribution. <strong>npm Testing and Packaging</strong> inside Jenkins bridges the gap between client-side source code execution and enterprise-wide tracking protocols.
+                </p>
+
+                <p>
+                    Rather than relying on local terminal execution loops, Jenkins isolates npm scripts to run assertions, parse test reporters, evaluate coverage ratios, and compress runtime directories. This standard production pattern outputs either standard static directory structures for production hosting or tarball archives (<code>.tgz</code>) for publication to private registry targets.
+                </p>
+
+                <!-- PIPELINE GRAPH FLOW VISUALIZER -->
+                <div class="concept-box my-4 shadow-sm">
+                    <h5 class="fw-bold text-dark mb-3">Frontend Test & Distribution Lifecycle</h5>
+                    <p class="small text-muted mb-3">The linear transition from checking raw code structure down to compiling distribution tarballs:</p>
+                    <div class="row g-2">
+                        <div class="col-md-3">
+                            <div class="npm-flow-step border shadow-sm h-100">
+                                <strong>1. Syntax Audit</strong><br>
+                                <small class="text-muted"><code>npm run lint</code> evaluates structural style rules.</small>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="npm-flow-step border shadow-sm h-100">
+                                <strong>2. Assert & Report</strong><br>
+                                <small class="text-muted">Parses framework assertions to output XML metrics.</small>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="npm-flow-step border shadow-sm h-100">
+                                <strong>3. Compress Build</strong><br>
+                                <small class="text-muted">Triggers <code>npm pack</code> to create distribution packages.</small>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="npm-flow-step border shadow-sm h-100">
+                                <strong>4. Secure Registry</strong><br>
+                                <small class="text-muted">Publishes fingerprinted tarballs to central targets.</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="alert alert-info">
+                    <strong>Simple Definition:</strong> A production sequence within Jenkins that runs validation engines (like Jest or Mocha), tracks test statistics via standard XML reporters, and compiles structural assets into transportable npm distribution archives.
+                </div>
+
+            </div>
+
+            <!-- KEY CONCEPTS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Key Concepts</h2>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Test Report Adaptation</h5>
+                            <p class="mb-0">Utilizing translation tools such as <code>jest-junit</code> to transform native JSON test structures into standard JUnit-compliant XML records so Jenkins can graph regressions.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>The npm Archive Pattern (npm pack)</h5>
+                            <p class="mb-0">Executing package compilation routines to clean system directories and pack project assets into compressed, version-controlled <code>.tgz</code> binaries.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Dynamic Registry Authentication</h5>
+                            <p class="mb-0">Leveraging runtime credential configurations inside a local <code>.npmrc</code> file to securely pass tokens without exposing passwords in version control system paths.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Strict Script Audits</h5>
+                            <p class="mb-0">Integrating lifecycle test assertions such as dependency audits (<code>npm audit</code>) directly within security review pipeline gates.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- EXAMPLE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Practical Jenkins Example
+                </h2>
+
+                <pre><code>pipeline {
+    agent any
+    stages {
+        stage(&#x27;Learn npm Testing and Packaging&#x27;) {
+            steps {
+                echo &#x27;Jenkins lesson: npm Testing and Packaging &#x27; 
+            }
+        }
+    }
+}</code></pre>
+
+            </div>
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Practice Exercise
+                </h2>
+
+                <ol>
+                    <li class="mb-2">Open Jenkins and identify the relevant configuration area.</li>
+                    <li class="mb-2">Create or update a small test job or pipeline for this lesson.</li>
+                    <li class="mb-2">Run the job and inspect the Console Output.</li>
+                    <li>Record what changed and verify the result.</li>
+                </ol>
+
+            </div>
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+                <h2 class="h4 fw-bold">Summary</h2>
+                <p class="mb-0">You have completed the <strong>npm Testing and Packaging</strong> lesson. Continue through the syllabus to build the Jenkins skills required for real CI/CD automation.</p>
+            </div>
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+                <a class="btn btn-outline-primary" href="@Url.Action("NodeReact", "LanguageStacks", new { area = "Jenkins" })">← Previous: Node.js and React Pipeline</a>
+                <a class="btn btn-primary" href="@Url.Action("Python", "LanguageStacks", new { area = "Jenkins" })">Next: Python Pipeline →</a>
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

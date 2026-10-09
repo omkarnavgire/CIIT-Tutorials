@@ -1,0 +1,191 @@
+@{
+    Layout = "~/Areas/Jenkins/Views/Shared/JenkinsLayout.cshtml";
+    ViewData["Title"] = "Git Webhooks";
+}
+
+<style>
+    #git-webhooks-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #git-webhooks-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #git-webhooks-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #git-webhooks-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #git-webhooks-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+    #git-webhooks-page .example-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+    }
+</style>
+
+<main id="git-webhooks-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/Jenkins/Views/Shared/JenkinsTopics.cshtml")
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+                <h1 class="fw-bold">Git Webhooks</h1>
+                <p class="lead">
+                    Learn the concepts, payload mapping configurations, network routing requirements, and event-driven automation rules needed to trigger automated build loops directly from git server repository updates.
+                </p>
+            </div>
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">What is a Git Webhook?</h2>
+                <p>
+                    Polling a git repository at fixed time thresholds looking for code modifications wastes valuable controller memory and introduces build delays. **Git Webhooks** fix this design challenge by moving the initiation burden away from Jenkins and onto the source code provider (GitHub, GitLab, Bitbucket). The second a developer commits code, the git environment instantly broadcasts an outbound HTTP POST message to fire the build tracking system.
+                </p>
+
+                <div class="alert alert-info my-3">
+                    <strong>Simple Definition:</strong> A Git Webhook is an automated communication signal configured on your remote repository hosting platform that sends a real-time HTTP notification packet directly to Jenkins whenever someone pushes fresh code, instantly triggering the corresponding build pipeline.
+                </div>
+
+                <h3 class="h4 fw-bold mt-4">Core Webhook Architecture Blocks</h3>
+                <p class="mb-2">An automated repository notification stream is constructed around four core components:</p>
+                <ul class="mb-3">
+                    <li class="mb-1"><strong>The Payload Payload:</strong> A structured data bundle (formatted in JSON) sent from the git host to Jenkins containing detailed event context metadata, including branch specifications, commit strings, and author profile details.</li>
+                    <li class="mb-1"><strong>The Target Endpoint Address:</strong> The explicit network connection routing address pattern hosted on the master server (e.g., matching the default format: <code>https://example.com</code>) that listens for incoming signals.</li>
+                    <li class="mb-1"><strong>Event Filter Subscriptions:</strong> Custom control parameter rules configured inside the git host interface to restrict webhook dispatches strictly to specific repository changes (such as push events, merge requests, or tag definitions).</li>
+                    <li><strong>Secret Secret Tokens:</strong> A cryptographic hashing key paired between the git repository host and Jenkins to validate the authenticity of inbound HTTP packets, shielding your pipeline from unauthorized trigger payloads.</li>
+                </ul>
+            </div>
+
+            <!-- KEY CONCEPTS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Key Concepts</h2>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Push-Driven Resource Efficiency</h5>
+                            <p class="mb-0">Shifting from legacy, heavy SCM checking mechanisms to an instant, event-driven pattern that wakes up agent executors only when actual source updates are committed to disk.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Public Network Ingress Mappings</h5>
+                            <p class="mb-0">Ensuring your internal Jenkins instance exposed pathway configuration parameters allow secured network calls from external SaaS git providers like GitHub to cross organizational firewalls safely.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXAMPLE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Practical Jenkins Example</h2>
+                <p>The following declarative script layout demonstrates how to explicitly embed webhook trigger intercept parameters within the root configurations block of a text pipeline script asset:</p>
+                <pre><code>pipeline {
+    agent any
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // 1. Enabling event-driven trigger hooks natively in code
+    triggers {
+        // Enforces automatic webhook registration parsing hooks via GitHub integrations plugin
+        githubPush()
+    }
+
+    stages {
+        stage('Event Intercept Diagnostics') {
+            steps {
+                echo 'INFO: Pipeline woke up automatically due to inbound HTTP payload webhook signal.'
+                sh 'echo "Compiling latest repository commit footprint..."'
+            }
+        }
+        stage('Execute Compilation Pass') {
+            steps {
+                sh 'echo "Running dynamic application builds..."'
+            }
+        }
+    }
+}</code></pre>
+                </div>
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+            <h2 class="h3 fw-bold">Practice Exercise: Bind an Outbound Git Webhook Target</h2>
+                <div class="concept-box">
+                <h5 class="fw-bold">Step-by-Step Task Sequence:</h5>
+            <ol class="ps-3 mb-0">
+                        <li class="mb-2">Open your hosted repository settings board on GitHub (or GitLab) and select the <strong>Webhooks</strong> navigation option link from the dashboard sidebar menu.</li>
+        <li class="mb-2">Click <strong>Add webhook</strong> and paste your Jenkins root proxy endpoint format into the <strong>Payload URL</strong> field slot: <code>http://&lt;your-jenkins-ip-or-domain&gt;/github-webhook/</code>.</li>
+        <li class="mb-2">Set the Content type dropdown to <strong>application/json</strong>, leave the event activation selection at <strong>Just the push event</strong>, and click the green <strong>Add webhook</strong> button.</li>
+    <li class="mb-2">Return to your Jenkins dashboard interface, open your target project Pipeline, check the box for <strong>GitHub hook trigger for GITScm polling</strong>, paste the example code block above inside your editor script field, and click <strong>Save</strong>.</li>
+                        <li>Commit a minor text file edit directly into your remote code branch repository, push it, and watch the Jenkins build timeline launch a fresh execution pass within seconds without any human clicks.</li>
+</ol>
+                </div>
+            </div>
+
+<!-- SUMMARY -->
+<div class="alert alert-info mt-4">
+<h2 class="h4 fw-bold">Summary</h2>
+<p class="mb-0">You have completed the <strong>Git Webhooks</strong> lesson. You have finished Phase 3 (Pipeline as Code). Continue through the syllabus to learn how to adapt these scripts to explicit tech stacks in Phase 4: Language Stack Pipelines.</p>
+</div>
+
+<!-- NAVIGATION -->
+<div class="d-flex justify-content-between mt-4">
+<a class="btn btn-outline-primary" href="@Url.Action("Multibranch", "Pipeline", new { area = "Jenkins" })">← Previous: Multibranch Pipelines</a>
+<a class="btn btn-primary" href="@Url.Action("Index", "LanguageStacks", new { area = "Jenkins" })">Next: Language Stack Pipelines →</a>
+</div>
+
+
+        </section>
+
+    </div>
+
+</main>

@@ -1,0 +1,1035 @@
+﻿@{
+    ViewData["Title"] = "Angular Fundamentals";
+}
+
+<div class="container-fluid">
+
+    <!-- ===================================================== -->
+    <!-- PAGE HEADER -->
+    <!-- ===================================================== -->
+
+    <div class="mb-4">
+
+        <h1 class="fw-bold">
+            Angular Fundamentals
+        </h1>
+
+        <p class="text-muted">
+            Learn the fundamental concepts that form the foundation
+            of Angular application development.
+        </p>
+
+    </div>
+
+
+    <!-- ===================================================== -->
+    <!-- WHAT ARE ANGULAR FUNDAMENTALS -->
+    <!-- ===================================================== -->
+
+    <section class="mb-5">
+
+        <h2>
+            What are Angular Fundamentals?
+        </h2>
+
+        <p>
+            Angular fundamentals are the basic concepts that developers
+            need to understand before building complete Angular
+            applications.
+        </p>
+
+        <p>
+            These concepts include components, templates, data binding,
+            directives, services, dependency injection, routing, forms,
+            and communication with backend APIs.
+        </p>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- CORE CONCEPTS DIAGRAM -->
+    <!-- ===================================================== -->
+
+    <section class="mb-5">
+
+        <h2>
+            Angular Core Concepts
+        </h2>
+
+        <p>
+            Angular applications are built by combining several
+            important concepts. The following diagram shows their
+            basic relationship.
+        </p>
+
+
+        <div class="fundamentals-diagram">
+
+            <div class="fundamentals-center">
+
+                Angular Application
+
+            </div>
+
+
+            <div class="fundamentals-line"></div>
+
+
+            <div class="fundamentals-grid">
+
+                <div class="fundamentals-box">
+
+                    <strong>
+                        Components
+                    </strong>
+
+                    <span>
+                        Build the user interface
+                    </span>
+
+                </div>
+
+
+                <div class="fundamentals-box">
+
+                    <strong>
+                        Templates
+                    </strong>
+
+                    <span>
+                        Define the UI structure
+                    </span>
+
+                </div>
+
+
+                <div class="fundamentals-box">
+
+                    <strong>
+                        Data Binding
+                    </strong>
+
+                    <span>
+                        Connect data with UI
+                    </span>
+
+                </div>
+
+
+                <div class="fundamentals-box">
+
+                    <strong>
+                        Services
+                    </strong>
+
+                    <span>
+                        Manage reusable logic
+                    </span>
+
+                </div>
+
+
+                <div class="fundamentals-box">
+
+                    <strong>
+                        Routing
+                    </strong>
+
+                    <span>
+                        Handle navigation
+                    </span>
+
+                </div>
+
+
+                <div class="fundamentals-box">
+
+                    <strong>
+                        Forms & HTTP
+                    </strong>
+
+                    <span>
+                        Handle user data and APIs
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- COMPONENTS -->
+    <!-- ===================================================== -->
+
+    <section class="mb-5">
+
+        <h2>
+            1. Components
+        </h2>
+
+        <p>
+            Components are the basic building blocks of an Angular
+            application. A component controls a specific part of the
+            application's user interface.
+        </p>
+
+        <p>
+            A component normally contains application logic,
+            a template, and styling information.
+        </p>
+
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                TypeScript
+            </div>
+
+<pre><code>import { Component } from '@@angular/core';
+
+@@Component({
+    selector: 'app-welcome',
+    template: '&lt;h1&gt;Welcome to Angular&lt;/h1&gt;'
+})
+export class WelcomeComponent {
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- TEMPLATES -->
+    <!-- ===================================================== -->
+
+    <section class="mb-5">
+
+        <h2>
+            2. Templates
+        </h2>
+
+        <p>
+            Templates define what Angular displays on the screen.
+            They use HTML together with Angular template syntax.
+        </p>
+
+        <p>
+            Templates can display component data, respond to user
+            events, and control how information is rendered.
+        </p>
+
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                HTML
+            </div>
+
+<pre><code>&lt;h1&gt;{{ title }}&lt;/h1&gt;
+
+&lt;button (click)="showMessage()"&gt;
+    Click Me
+&lt;/button&gt;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- DATA BINDING -->
+    <!-- ===================================================== -->
+
+    <section class="mb-5">
+
+        <h2>
+            3. Data Binding
+        </h2>
+
+        <p>
+            Data binding connects the component's data with the
+            template. It allows information to move between the
+            application logic and the user interface.
+        </p>
+
+        <p>
+            Angular provides different forms of data binding such as
+            interpolation, property binding, event binding, and
+            two-way data binding.
+        </p>
+
+
+        <div class="binding-flow">
+
+            <div class="binding-item">
+                Component Data
+            </div>
+
+            <div class="binding-arrow">
+                →
+            </div>
+
+            <div class="binding-item">
+                Angular Binding
+            </div>
+
+            <div class="binding-arrow">
+                →
+            </div>
+
+            <div class="binding-item">
+                Template / UI
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- DIRECTIVES -->
+    <!-- ===================================================== -->
+
+    <section class="mb-5">
+
+        <h2>
+            4. Directives
+        </h2>
+
+        <p>
+            Directives allow Angular to add behavior to HTML elements
+            and control how elements are displayed or behave.
+        </p>
+
+        <p>
+            Angular provides different types of directives, including
+            attribute directives and structural directives.
+        </p>
+
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                HTML
+            </div>
+
+<pre><code>&lt;div *ngIf="isLoggedIn"&gt;
+    Welcome User
+&lt;/div&gt;
+
+&lt;div [ngClass]="currentClass"&gt;
+    Angular Content
+&lt;/div&gt;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- SERVICES -->
+    <!-- ===================================================== -->
+
+    <section class="mb-5">
+
+        <h2>
+            5. Services
+        </h2>
+
+        <p>
+            Services are classes used to organize reusable application
+            logic. They can be shared by multiple components.
+        </p>
+
+        <p>
+            Services are commonly used for tasks such as data access,
+            business logic, and sharing data between components.
+        </p>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- DEPENDENCY INJECTION -->
+    <!-- ===================================================== -->
+
+    <section class="mb-5">
+
+        <h2>
+            6. Dependency Injection
+        </h2>
+
+        <p>
+            Dependency Injection is a mechanism used by Angular to
+            provide required dependencies to components and services.
+        </p>
+
+        <p>
+            Instead of creating every dependency manually, Angular's
+            dependency injection system can provide the required
+            service or object.
+        </p>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- ROUTING -->
+    <!-- ===================================================== -->
+
+    <section class="mb-5">
+
+        <h2>
+            7. Routing
+        </h2>
+
+        <p>
+            Angular routing allows an application to navigate between
+            different views or components without requiring a complete
+            page reload.
+        </p>
+
+        <div class="route-flow">
+
+            <div class="route-box">
+                Home
+            </div>
+
+            <div class="route-arrow">
+                →
+            </div>
+
+            <div class="route-box">
+                Products
+            </div>
+
+            <div class="route-arrow">
+                →
+            </div>
+
+            <div class="route-box">
+                Details
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- FORMS AND HTTP -->
+    <!-- ===================================================== -->
+
+    <section class="mb-5">
+
+        <h2>
+            8. Forms and HTTP Communication
+        </h2>
+
+        <p>
+            Angular provides features for collecting user input
+            through forms and communicating with backend applications
+            through HTTP requests.
+        </p>
+
+        <p>
+            Forms can be used for registration, login, data entry,
+            validation, and other user interactions.
+        </p>
+
+        <p>
+            HttpClient can be used to communicate with REST APIs and
+            exchange data between the frontend and backend.
+        </p>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- HOW CONCEPTS WORK TOGETHER -->
+    <!-- ===================================================== -->
+
+    <section class="mb-5">
+
+        <h2>
+            How Angular Concepts Work Together
+        </h2>
+
+        <div class="application-flow">
+
+            <div class="flow-box">
+                User
+            </div>
+
+            <div class="flow-arrow">
+                →
+            </div>
+
+            <div class="flow-box">
+                Component
+            </div>
+
+            <div class="flow-arrow">
+                →
+            </div>
+
+            <div class="flow-box">
+                Service
+            </div>
+
+            <div class="flow-arrow">
+                →
+            </div>
+
+            <div class="flow-box">
+                REST API
+            </div>
+
+        </div>
+
+        <div class="application-flow second-flow">
+
+            <div class="flow-box">
+                REST API
+            </div>
+
+            <div class="flow-arrow">
+                →
+            </div>
+
+            <div class="flow-box">
+                Service
+            </div>
+
+            <div class="flow-arrow">
+                →
+            </div>
+
+            <div class="flow-box">
+                Component
+            </div>
+
+            <div class="flow-arrow">
+                →
+            </div>
+
+            <div class="flow-box">
+                UI
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- SUMMARY -->
+    <!-- ===================================================== -->
+
+    <section class="mb-5">
+
+        <div class="summary-box">
+
+            <h3>
+                Summary
+            </h3>
+
+            <p>
+                Angular fundamentals include components, templates,
+                data binding, directives, services, dependency injection,
+                routing, forms, and HTTP communication.
+            </p>
+
+            <p class="mb-0">
+                Understanding these concepts provides a strong foundation
+                for building Angular applications. In the next topic,
+                we will learn about <strong>Angular Architecture</strong>.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- PREVIOUS / NEXT -->
+    <!-- ===================================================== -->
+
+    <div class="d-flex justify-content-between align-items-center
+                border-top pt-4 mt-5">
+
+        <!-- PREVIOUS -->
+
+        <a href="@Url.Action("History", "Introduction", new { area = "Angular" })"
+           class="btn btn-outline-secondary px-4">
+
+            ← Previous: History
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="@Url.Action("Architecture", "Introduction", new { area = "Angular" })"
+           class="btn btn-primary px-4">
+
+            Next: Architecture →
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- ========================================================= -->
+<!-- PAGE SPECIFIC CSS -->
+<!-- ========================================================= -->
+
+<style>
+
+    /* ===================================================== */
+    /* FUNDAMENTALS DIAGRAM */
+    /* ===================================================== */
+
+    .fundamentals-diagram {
+
+        padding: 30px 20px;
+
+        margin-top: 25px;
+
+        background: #f8f9fa;
+
+        border: 1px solid #e9ecef;
+
+        border-radius: 12px;
+
+        text-align: center;
+
+    }
+
+
+    .fundamentals-center {
+
+        display: inline-block;
+
+        padding: 15px 28px;
+
+        background: #ffffff;
+
+        border: 1px solid #dee2e6;
+
+        border-radius: 10px;
+
+        font-weight: 700;
+
+        font-size: 18px;
+
+        box-shadow:
+            0 3px 12px rgba(0, 0, 0, 0.05);
+
+    }
+
+
+    .fundamentals-line {
+
+        width: 2px;
+
+        height: 30px;
+
+        margin: 0 auto;
+
+        background: #adb5bd;
+
+    }
+
+
+    .fundamentals-grid {
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+
+        gap: 15px;
+
+    }
+
+
+    .fundamentals-box {
+
+        padding: 18px;
+
+        background: #ffffff;
+
+        border: 1px solid #dee2e6;
+
+        border-radius: 10px;
+
+        text-align: center;
+
+    }
+
+
+    .fundamentals-box strong {
+
+        display: block;
+
+        margin-bottom: 7px;
+
+        font-weight: 700;
+
+    }
+
+
+    .fundamentals-box span {
+
+        display: block;
+
+        font-size: 14px;
+
+        color: #6c757d;
+
+    }
+
+
+    /* ===================================================== */
+    /* BINDING FLOW */
+    /* ===================================================== */
+
+    .binding-flow {
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        flex-wrap: wrap;
+
+        gap: 15px;
+
+        margin-top: 25px;
+
+        padding: 25px;
+
+        background: #f8f9fa;
+
+        border: 1px solid #e9ecef;
+
+        border-radius: 10px;
+
+    }
+
+
+    .binding-item {
+
+        padding: 14px 20px;
+
+        background: #ffffff;
+
+        border: 1px solid #dee2e6;
+
+        border-radius: 8px;
+
+        font-weight: 600;
+
+    }
+
+
+    .binding-arrow {
+
+        font-size: 25px;
+
+        font-weight: 600;
+
+    }
+
+
+    /* ===================================================== */
+    /* ROUTING FLOW */
+    /* ===================================================== */
+
+    .route-flow {
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 15px;
+
+        flex-wrap: wrap;
+
+        margin-top: 25px;
+
+        padding: 25px;
+
+        background: #f8f9fa;
+
+        border: 1px solid #e9ecef;
+
+        border-radius: 10px;
+
+    }
+
+
+    .route-box {
+
+        padding: 13px 25px;
+
+        background: #ffffff;
+
+        border: 1px solid #dee2e6;
+
+        border-radius: 8px;
+
+        font-weight: 600;
+
+    }
+
+
+    .route-arrow {
+
+        font-size: 25px;
+
+        font-weight: 600;
+
+    }
+
+
+    /* ===================================================== */
+    /* APPLICATION FLOW */
+    /* ===================================================== */
+
+    .application-flow {
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        flex-wrap: wrap;
+
+        gap: 12px;
+
+        margin-top: 20px;
+
+        padding: 22px;
+
+        background: #f8f9fa;
+
+        border: 1px solid #e9ecef;
+
+        border-radius: 10px;
+
+    }
+
+
+    .second-flow {
+
+        margin-top: 10px;
+
+    }
+
+
+    .flow-box {
+
+        padding: 12px 18px;
+
+        background: #ffffff;
+
+        border: 1px solid #dee2e6;
+
+        border-radius: 8px;
+
+        font-weight: 600;
+
+    }
+
+
+    .flow-arrow {
+
+        font-size: 22px;
+
+        font-weight: 600;
+
+    }
+
+
+    /* ===================================================== */
+    /* CODE BLOCK */
+    /* ===================================================== */
+
+    .code-block {
+
+        margin-top: 18px;
+
+        background: #0f172a;
+
+        color: #f1f5f9;
+
+        padding: 22px;
+
+        border-radius: 8px;
+
+        position: relative;
+
+        overflow-x: auto;
+
+    }
+
+
+    .code-block pre {
+
+        margin: 0;
+
+    }
+
+
+    .code-block code {
+
+        color: #f1f5f9;
+
+        font-family:
+            SFMono-Regular,
+            Menlo,
+            Monaco,
+            Consolas,
+            monospace;
+
+        font-size: 14px;
+
+        line-height: 1.7;
+
+    }
+
+
+    .code-lang-tag {
+
+        position: absolute;
+
+        top: 8px;
+
+        right: 15px;
+
+        font-size: 12px;
+
+        color: #94a3b8;
+
+    }
+
+
+    /* ===================================================== */
+    /* SUMMARY */
+    /* ===================================================== */
+
+    .summary-box {
+
+        background: #cfe2ff;
+
+        border-radius: 6px;
+
+        padding: 18px 22px;
+
+        margin-top: 20px;
+
+    }
+
+
+    .summary-box h3 {
+
+        font-size: 20px;
+
+        font-weight: 700;
+
+        color: #084298;
+
+        margin-bottom: 10px;
+
+    }
+
+
+    .summary-box p {
+
+        font-size: 16px !important;
+
+        line-height: 1.6 !important;
+
+        color: #084298 !important;
+
+        margin-bottom: 8px;
+
+    }
+
+
+    /* ===================================================== */
+    /* MOBILE */
+    /* ===================================================== */
+
+    @@media (max-width: 768px) {
+
+        .fundamentals-grid {
+
+            grid-template-columns: 1fr;
+
+        }
+
+
+        .fundamentals-diagram {
+
+            padding: 25px 15px;
+
+        }
+
+
+        .binding-flow,
+        .route-flow,
+        .application-flow {
+
+            flex-direction: column;
+
+        }
+
+
+        .binding-arrow,
+        .route-arrow,
+        .flow-arrow {
+
+            transform: rotate(90deg);
+
+        }
+
+    }
+
+
+    @@media (max-width: 576px) {
+
+        .fundamentals-box {
+
+            padding: 16px;
+
+        }
+
+
+        .binding-item,
+        .route-box,
+        .flow-box {
+
+            width: 100%;
+
+            text-align: center;
+
+        }
+
+    }
+
+</style>

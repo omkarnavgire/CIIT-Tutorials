@@ -1,0 +1,1069 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Python Operators";
+}
+
+<main id="tutorials" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- ================================================= -->
+        <!-- LEFT SIDEBAR -->
+        <!-- ================================================= -->
+
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+
+        </aside>
+
+
+        <!-- ================================================= -->
+        <!-- MAIN CONTENT -->
+        <!-- ================================================= -->
+
+        <section class="col-lg-9">
+
+            <div class="card shadow-sm border-0 p-4 p-md-5 mb-4">
+
+                <!-- ================================================= -->
+                <!-- PAGE TITLE -->
+                <!-- ================================================= -->
+
+                <h1 class="h1 fw-bold text-dark mt-1 mb-4">
+                   Operators
+                </h1>
+
+                <p class="text-muted mb-4">
+                    Operators are special symbols and keywords used to
+                    perform operations on values and variables. Python
+                    provides operators for arithmetic, comparison,
+                    logical operations, assignment, membership, identity,
+                    and bitwise operations.
+                </p>
+
+
+                <!-- ================================================= -->
+                <!-- CIIT INTRO -->
+                <!-- ================================================= -->
+
+                <div class="alert alert-info mb-4"
+                     style="background-color:#cfe2ff; border:0; color:#123c73;">
+
+                    <strong style="color:#123c73;">
+                        CIIT Training Institute :
+                    </strong>
+
+                    <span style="color:#123c73;">
+                        Operators are used in almost every Python program,
+                        from simple calculations to conditions, loops,
+                        data processing, and application logic.
+                    </span>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- WHAT IS OPERATOR -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    What is an Operator?
+                </h2>
+
+                <p class="text-muted mb-3">
+                    An operator performs an operation on one or more
+                    values. The values on which an operator works are
+                    called <strong>operands</strong>.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>a = 10
+b = 5
+
+result = a + b
+
+print(result)</code></pre>
+
+                </div>
+
+                <p class="text-muted mb-4">
+                    Here, <strong>+</strong> is the operator and
+                    <strong>a</strong> and <strong>b</strong> are the
+                    operands.
+                </p>
+
+
+                <!-- ================================================= -->
+                <!-- OPERATOR FLOW -->
+                <!-- ================================================= -->
+
+                <div class="border rounded p-4 mb-4 bg-light">
+
+                    <h3 class="h5 fw-bold text-dark text-center mb-4">
+                        Operator Concept
+                    </h3>
+
+                    <div class="d-flex flex-column align-items-center gap-2">
+
+                        <div class="px-4 py-3 border rounded bg-white shadow-sm text-center"
+                             style="max-width:420px; width:100%;">
+
+                            <strong>Operand</strong>
+
+                            <br />
+
+                            <small class="text-muted">
+                                10
+                            </small>
+
+                        </div>
+
+                        <div class="fw-bold text-primary fs-4">
+                            ↓
+                        </div>
+
+                        <div class="px-4 py-3 border rounded bg-white shadow-sm text-center"
+                             style="max-width:420px; width:100%;">
+
+                            <strong>Operator</strong>
+
+                            <br />
+
+                            <small class="text-muted">
+                                +
+                            </small>
+
+                        </div>
+
+                        <div class="fw-bold text-primary fs-4">
+                            ↓
+                        </div>
+
+                        <div class="px-4 py-3 border rounded bg-white shadow-sm text-center"
+                             style="max-width:420px; width:100%;">
+
+                            <strong>Operand</strong>
+
+                            <br />
+
+                            <small class="text-muted">
+                                5
+                            </small>
+
+                        </div>
+
+                        <div class="fw-bold text-primary fs-4">
+                            ↓
+                        </div>
+
+                        <div class="px-4 py-3 border rounded bg-white shadow-sm text-center"
+                             style="max-width:420px; width:100%;">
+
+                            <strong>Result</strong>
+
+                            <br />
+
+                            <small class="text-muted">
+                                15
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- TYPES OF OPERATORS -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Types of Python Operators
+                </h2>
+
+                <div class="table-responsive mb-4">
+
+                    <table class="table table-bordered align-middle">
+
+                        <thead class="table-light">
+
+                            <tr>
+                                <th>Operator Type</th>
+                                <th>Common Operators</th>
+                                <th>Purpose</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>Arithmetic</td>
+                                <td>+, -, *, /, //, %, **</td>
+                                <td>Mathematical calculations</td>
+                            </tr>
+
+                            <tr>
+                                <td>Comparison</td>
+                                <td>==, !=, &gt;, &lt;, &gt;=, &lt;=</td>
+                                <td>Compare values</td>
+                            </tr>
+
+                            <tr>
+                                <td>Logical</td>
+                                <td>and, or, not</td>
+                                <td>Combine conditions</td>
+                            </tr>
+
+                            <tr>
+                                <td>Assignment</td>
+                                <td>=, +=, -=, *=, /=</td>
+                                <td>Assign and update values</td>
+                            </tr>
+
+                            <tr>
+                                <td>Membership</td>
+                                <td>in, not in</td>
+                                <td>Check whether a value exists</td>
+                            </tr>
+
+                            <tr>
+                                <td>Identity</td>
+                                <td>is, is not</td>
+                                <td>Check object identity</td>
+                            </tr>
+
+                            <tr>
+                                <td>Bitwise</td>
+                                <td>&amp;, |, ^, ~, &lt;&lt;, &gt;&gt;</td>
+                                <td>Perform bit-level operations</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- ARITHMETIC OPERATORS -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    1. Arithmetic Operators
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Arithmetic operators are used to perform mathematical
+                    calculations.
+                </p>
+
+                <div class="table-responsive mb-4">
+
+                    <table class="table table-bordered align-middle">
+
+                        <thead class="table-light">
+
+                            <tr>
+                                <th>Operator</th>
+                                <th>Name</th>
+                                <th>Example</th>
+                                <th>Result</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>+</td>
+                                <td>Addition</td>
+                                <td>10 + 5</td>
+                                <td>15</td>
+                            </tr>
+
+                            <tr>
+                                <td>-</td>
+                                <td>Subtraction</td>
+                                <td>10 - 5</td>
+                                <td>5</td>
+                            </tr>
+
+                            <tr>
+                                <td>*</td>
+                                <td>Multiplication</td>
+                                <td>10 * 5</td>
+                                <td>50</td>
+                            </tr>
+
+                            <tr>
+                                <td>/</td>
+                                <td>Division</td>
+                                <td>10 / 5</td>
+                                <td>2.0</td>
+                            </tr>
+
+                            <tr>
+                                <td>//</td>
+                                <td>Floor Division</td>
+                                <td>11 // 5</td>
+                                <td>2</td>
+                            </tr>
+
+                            <tr>
+                                <td>%</td>
+                                <td>Modulus</td>
+                                <td>11 % 5</td>
+                                <td>1</td>
+                            </tr>
+
+                            <tr>
+                                <td>**</td>
+                                <td>Exponent</td>
+                                <td>2 ** 3</td>
+                                <td>8</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>a = 10
+b = 3
+
+print(a + b)
+print(a - b)
+print(a * b)
+print(a / b)
+print(a // b)
+print(a % b)
+print(a ** b)</code></pre>
+
+                </div>
+                <h3 class="h5 fw-bold text-dark mb-3">
+    Output:
+</h3>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="code-lang-tag">
+        Output
+    </div>
+
+    <pre class="mb-0"><code>13
+7
+30
+3.3333333333333335
+3
+1
+1000</code></pre>
+</div>
+
+                <!-- ================================================= -->
+                <!-- COMPARISON -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    2. Comparison Operators
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Comparison operators compare two values and return
+                    either <strong>True</strong> or <strong>False</strong>.
+                </p>
+
+                <div class="table-responsive mb-4">
+
+                    <table class="table table-bordered align-middle">
+
+                        <thead class="table-light">
+
+                            <tr>
+                                <th>Operator</th>
+                                <th>Meaning</th>
+                                <th>Example</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>==</td>
+                                <td>Equal to</td>
+                                <td>10 == 10</td>
+                            </tr>
+
+                            <tr>
+                                <td>!=</td>
+                                <td>Not equal to</td>
+                                <td>10 != 5</td>
+                            </tr>
+
+                            <tr>
+                                <td>&gt;</td>
+                                <td>Greater than</td>
+                                <td>10 &gt; 5</td>
+                            </tr>
+
+                            <tr>
+                                <td>&lt;</td>
+                                <td>Less than</td>
+                                <td>5 &lt; 10</td>
+                            </tr>
+
+                            <tr>
+                                <td>&gt;=</td>
+                                <td>Greater than or equal to</td>
+                                <td>10 &gt;= 10</td>
+                            </tr>
+
+                            <tr>
+                                <td>&lt;=</td>
+                                <td>Less than or equal to</td>
+                                <td>5 &lt;= 10</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>age = 25
+
+print(age == 25)
+print(age &gt; 18)
+print(age &lt; 18)
+print(age != 30)</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>True
+True
+False
+True</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- LOGICAL -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    3. Logical Operators
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Logical operators are used to combine multiple
+                    conditions.
+                </p>
+
+                <div class="table-responsive mb-4">
+
+                    <table class="table table-bordered align-middle">
+
+                        <thead class="table-light">
+
+                            <tr>
+                                <th>Operator</th>
+                                <th>Description</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td><strong>and</strong></td>
+                                <td>Returns True when both conditions are True</td>
+                            </tr>
+
+                            <tr>
+                                <td><strong>or</strong></td>
+                                <td>Returns True when at least one condition is True</td>
+                            </tr>
+
+                            <tr>
+                                <td><strong>not</strong></td>
+                                <td>Reverses the boolean result</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>age = 25
+has_id = True
+
+print(age &gt;= 18 and has_id)
+print(age &lt; 18 or has_id)
+print(not has_id)</code></pre>
+
+                </div>
+                <h3 class="h5 fw-bold text-dark mb-3">
+    Output:
+</h3>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="code-lang-tag">
+        Output
+    </div>
+
+    <pre class="mb-0"><code>True
+True
+False</code></pre>
+</div>
+
+                <!-- ================================================= -->
+                <!-- ASSIGNMENT -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    4. Assignment Operators
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Assignment operators are used to assign values to
+                    variables and update existing values.
+                </p>
+
+                <div class="table-responsive mb-4">
+
+                    <table class="table table-bordered align-middle">
+
+                        <thead class="table-light">
+
+                            <tr>
+                                <th>Operator</th>
+                                <th>Example</th>
+                                <th>Equivalent To</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>=</td>
+                                <td>x = 10</td>
+                                <td>x = 10</td>
+                            </tr>
+
+                            <tr>
+                                <td>+=</td>
+                                <td>x += 5</td>
+                                <td>x = x + 5</td>
+                            </tr>
+
+                            <tr>
+                                <td>-=</td>
+                                <td>x -= 5</td>
+                                <td>x = x - 5</td>
+                            </tr>
+
+                            <tr>
+                                <td>*=</td>
+                                <td>x *= 5</td>
+                                <td>x = x * 5</td>
+                            </tr>
+
+                            <tr>
+                                <td>/=</td>
+                                <td>x /= 5</td>
+                                <td>x = x / 5</td>
+                            </tr>
+
+                            <tr>
+                                <td>//=</td>
+                                <td>x //= 5</td>
+                                <td>x = x // 5</td>
+                            </tr>
+
+                            <tr>
+                                <td>%=</td>
+                                <td>x %= 5</td>
+                                <td>x = x % 5</td>
+                            </tr>
+
+                            <tr>
+                                <td>**=</td>
+                                <td>x **= 2</td>
+                                <td>x = x ** 2</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>score = 100
+
+score += 20
+
+print(score)
+
+score -= 10
+
+print(score)</code></pre>
+
+                </div>
+                <h3 class="h5 fw-bold text-dark mb-3">
+    Output:
+</h3>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="code-lang-tag">
+        Output
+    </div>
+
+    <pre class="mb-0"><code>120
+110</code></pre>
+</div>
+
+                <!-- ================================================= -->
+                <!-- MEMBERSHIP -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    5. Membership Operators
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Membership operators check whether a value exists
+                    inside a sequence such as a string, list, tuple,
+                    or set.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>courses = ["Python", "Java", "C#"]
+
+print("Python" in courses)
+print("PHP" in courses)
+print("PHP" not in courses)</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>True
+False
+True</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- IDENTITY -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    6. Identity Operators
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Identity operators are used to check whether two
+                    variables refer to the same object.
+                </p>
+
+                <p class="text-muted mb-3">
+                    Python provides two identity operators:
+                    <strong>is</strong> and <strong>is not</strong>.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>a = None
+b = None
+
+print(a is b)
+print(a is not b)</code></pre>
+
+                </div>
+                <h3 class="h5 fw-bold text-dark mb-3">
+    Output:
+</h3>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="code-lang-tag">
+        Output
+    </div>
+
+    <pre class="mb-0"><code>True
+False</code></pre>
+</div>
+                <p class="text-muted mb-4">
+                    Identity operators are different from
+                    <strong>==</strong>. The <strong>==</strong> operator
+                    compares values, while <strong>is</strong> checks
+                    object identity.
+                </p>
+
+
+                <!-- ================================================= -->
+                <!-- BITWISE -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    7. Bitwise Operators
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Bitwise operators work with the binary representation
+                    of integer values.
+                </p>
+
+                <div class="table-responsive mb-4">
+
+                    <table class="table table-bordered align-middle">
+
+                        <thead class="table-light">
+
+                            <tr>
+                                <th>Operator</th>
+                                <th>Name</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>&amp;</td>
+                                <td>Bitwise AND</td>
+                            </tr>
+
+                            <tr>
+                                <td>|</td>
+                                <td>Bitwise OR</td>
+                            </tr>
+
+                            <tr>
+                                <td>^</td>
+                                <td>Bitwise XOR</td>
+                            </tr>
+
+                            <tr>
+                                <td>~</td>
+                                <td>Bitwise NOT</td>
+                            </tr>
+
+                            <tr>
+                                <td>&lt;&lt;</td>
+                                <td>Left Shift</td>
+                            </tr>
+
+                            <tr>
+                                <td>&gt;&gt;</td>
+                                <td>Right Shift</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>a = 5
+b = 3
+
+print(a &amp; b)
+print(a | b)
+print(a ^ b)</code></pre>
+
+                </div>
+                <h3 class="h5 fw-bold text-dark mb-3">
+    Output:
+</h3>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="code-lang-tag">
+        Output
+    </div>
+
+    <pre class="mb-0"><code>1
+7
+6</code></pre>
+</div>
+
+                <!-- ================================================= -->
+                <!-- OPERATOR PRECEDENCE -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Operator Precedence
+                </h2>
+
+                <p class="text-muted mb-3">
+                    When an expression contains multiple operators,
+                    Python follows a specific order to evaluate them.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>result = 10 + 5 * 2
+
+print(result)</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>20</code></pre>
+
+                </div>
+
+                <p class="text-muted mb-4">
+                    Multiplication is performed before addition, so
+                    <strong>5 * 2</strong> is evaluated first.
+                </p>
+
+
+                <!-- ================================================= -->
+                <!-- PARENTHESES -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Using Parentheses
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Parentheses can be used when you want to explicitly
+                    control the order of evaluation.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>result = (10 + 5) * 2
+
+print(result)</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>30</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- REAL WORLD EXAMPLE -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Example 🖥️🌍
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Let's calculate whether a student has passed based
+                    on marks.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>marks = 75
+attendance = 85
+
+passed = marks &gt;= 40 and attendance &gt;= 75
+
+print("Student Passed:", passed)</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>Student Passed: True</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- CIIT LEARNING POINT -->
+                <!-- ================================================= -->
+
+                <div class="alert alert-success mt-4">
+
+                    <h5 class="fw-bold">
+                        CIIT Learning Point
+                    </h5>
+
+                    <p class="mb-0">
+                        Operators are the building blocks of program logic.
+                        Practice arithmetic, comparison, logical, and
+                        assignment operators first. These operators will
+                        become especially important when you learn
+                        <strong>conditional statements</strong> and
+                        <strong>loops</strong>.
+                    </p>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- SAM PRACTICE -->
+                <!-- ================================================= -->
+
+                <div class="border rounded p-4 mt-4 mb-4">
+
+                    <h3 class="h5 fw-bold text-dark mb-3">
+                        CIIT Practice Task
+                    </h3>
+
+                    <p class="text-muted mb-3">
+                        Create a Python program that accepts two numbers
+                        and displays their:
+                    </p>
+
+                    <ul class="text-muted mb-3">
+
+                        <li>Addition</li>
+                        <li>Subtraction</li>
+                        <li>Multiplication</li>
+                        <li>Division</li>
+                        <li>Remainder</li>
+                        <li>Comparison result</li>
+
+                    </ul>
+
+                    <div class="bg-dark text-light rounded p-3">
+
+                        <pre class="mb-0"><code>number1 = int(input("Enter first number: "))
+number2 = int(input("Enter second number: "))
+
+print("Addition:", number1 + number2)
+print("Subtraction:", number1 - number2)
+print("Multiplication:", number1 * number2)
+print("Division:", number1 / number2)
+print("Remainder:", number1 % number2)
+print("First number is greater:", number1 &gt; number2)</code></pre>
+
+                    </div>
+                    <h3 class="h5 fw-bold text-dark mb-3">
+    Output:
+</h3>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="code-lang-tag">
+        Output
+    </div>
+
+    <pre class="mb-0"><code>Enter first number: 20
+Enter second number: 10
+Addition: 30
+Subtraction: 10
+Multiplication: 200
+Division: 2.0
+Remainder: 0
+First number is greater: True</code></pre>
+</div>
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- SUMMARY -->
+                <!-- ================================================= -->
+
+                <div class="alert alert-info mt-4 mb-0"
+                     style="background-color:#cfe2ff; border:0; color:#123c73;">
+
+                    <h2 class="h3 fw-bold mt-0 mb-3"
+                        style="color:#123c73;">
+
+                        Summary :
+
+                    </h2>
+
+                    <p class="mb-0"
+                       style="color:#123c73;">
+
+                        Python operators are used to perform calculations,
+                        compare values, combine conditions, assign values,
+                        check membership and identity, and perform
+                        bit-level operations. Arithmetic, comparison,
+                        logical, and assignment operators are especially
+                        important for building real-world Python program
+                        logic.
+
+                    </p>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- NAVIGATION -->
+                <!-- ================================================= -->
+
+                <div class="d-flex justify-content-between align-items-center mt-5 pt-4 border-top">
+
+                    <a href="@Url.Action("TypeConversion", "PythonBasics", new { area = "Python" })"
+                       class="btn btn-outline-secondary">
+
+                        ← Previous: Topic
+
+                    </a>
+
+                    <a href="@Url.Action("Strings", "PythonBasics", new { area = "Python" })"
+                       class="btn btn-primary">
+
+                        Next: Topic →
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

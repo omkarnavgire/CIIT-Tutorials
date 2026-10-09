@@ -1,0 +1,1043 @@
+﻿@{
+    ViewData["Title"] = "Angular Navigation";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- Header -->
+    <section class="mb-4">
+        <h1 class="fw-bold text-dark">Angular Navigation</h1>
+
+        <p class="lead text-muted">
+            Learn how to navigate between Angular routes using
+            <strong>routerLink</strong>, <strong>Router</strong>,
+            <strong>navigate()</strong> and <strong>navigateByUrl()</strong>.
+        </p>
+    </section>
+
+
+    <!-- Introduction -->
+    <section class="mb-4">
+        <h2 class="fw-bold">What is Navigation?</h2>
+
+        <div class="info-card">
+
+            <p>
+                In Angular, navigation means moving from one route or application
+                view to another without reloading the complete web page.
+            </p>
+
+            <p>
+                Angular provides routing features that allow users to open different
+                views such as courses, dashboard, contact and enquiry pages.
+            </p>
+
+            <p class="mb-0">
+                Navigation can be performed directly from the template using
+                <strong>routerLink</strong> or programmatically using the
+                Angular <strong>Router</strong> service.
+            </p>
+
+        </div>
+    </section>
+
+
+    <!-- Navigation Flow -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Angular Navigation Flow</h2>
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+                <strong>User Action</strong>
+                <span>Click Link / Button</span>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+                <strong>Router</strong>
+                <span>Checks Route</span>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+                <strong>Route</strong>
+                <span>Matches Path</span>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+                <strong>Component</strong>
+                <span>Displayed</span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Navigation Methods -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Common Navigation Methods</h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">1</div>
+
+                <h5>routerLink</h5>
+
+                <p>
+                    Used to navigate directly from an HTML template.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">2</div>
+
+                <h5>navigate()</h5>
+
+                <p>
+                    Used for programmatic navigation using route segments.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">3</div>
+
+                <h5>navigateByUrl()</h5>
+
+                <p>
+                    Navigates using a complete URL string.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">4</div>
+
+                <h5>Query Parameters</h5>
+
+                <p>
+                    Additional values can be passed through the URL.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- routerLink -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Using routerLink</h2>
+
+        <div class="info-card">
+
+            <p>
+                <strong>routerLink</strong> is the simplest way to navigate between
+                Angular routes from an HTML template.
+            </p>
+
+            <p class="mb-0">
+                Instead of manually changing the browser URL, Angular Router
+                handles the navigation.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Template Example
+            </div>
+
+            <pre><code>&lt;a routerLink="/courses"&gt;
+    Courses
+&lt;/a&gt;
+
+&lt;a routerLink="/contact"&gt;
+    Contact
+&lt;/a&gt;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- CIIT Example -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">CIIT Training Institute Example</h2>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Navigation Menu
+            </div>
+
+            <pre><code>&lt;nav&gt;
+
+    &lt;a routerLink="/home"&gt;
+        Home
+    &lt;/a&gt;
+
+    &lt;a routerLink="/courses"&gt;
+        Courses
+    &lt;/a&gt;
+
+    &lt;a routerLink="/enquiry"&gt;
+        Enquiry
+    &lt;/a&gt;
+
+    &lt;a routerLink="/contact"&gt;
+        Contact
+    &lt;/a&gt;
+
+&lt;/nav&gt;</code></pre>
+
+        </div>
+
+
+        <div class="output-box mt-3">
+
+            <div class="student-preview">
+
+                <h4>CIIT Training Institute</h4>
+
+                <p>
+                    Home → Courses → Enquiry → Contact
+                </p>
+
+                <p class="mb-0">
+                    Users can move between different application views
+                    without refreshing the complete page.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Programmatic Navigation -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Programmatic Navigation</h2>
+
+        <div class="info-card">
+
+            <p>
+                Sometimes navigation needs to happen after a button click,
+                form submission or another operation.
+            </p>
+
+            <p class="mb-0">
+                In such cases Angular's <strong>Router</strong> service can be used
+                to navigate programmatically.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Component
+            </div>
+
+            <pre><code>import { Component } from '@@angular/core';
+import { Router } from '@@angular/router';
+
+@@Component({
+    selector: 'app-course',
+    templateUrl: './course.component.html'
+})
+export class CourseComponent {
+
+    constructor(private router: Router) {
+    }
+
+    openCourses() {
+        this.router.navigate(['/courses']);
+    }
+
+}</code></pre>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                HTML Button
+            </div>
+
+            <pre><code>&lt;button
+    type="button"
+    (click)="openCourses()"&gt;
+
+    View Courses
+
+&lt;/button&gt;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- navigate -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Using navigate()</h2>
+
+        <div class="info-card">
+
+            <p>
+                The <strong>navigate()</strong> method accepts route segments
+                in the form of an array.
+            </p>
+
+            <p class="mb-0">
+                It is useful when the destination route is built dynamically.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>this.router.navigate(['/courses']);
+
+this.router.navigate(['/contact']);</code></pre>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Dynamic Navigation
+            </div>
+
+            <pre><code>openCourse(courseId: number) {
+
+    this.router.navigate([
+        '/courses',
+        courseId
+    ]);
+
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- navigateByUrl -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Using navigateByUrl()</h2>
+
+        <div class="info-card">
+
+            <p>
+                The <strong>navigateByUrl()</strong> method navigates using
+                a complete URL string.
+            </p>
+
+            <p class="mb-0">
+                This can be useful when the complete destination URL is already known.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>this.router.navigateByUrl('/courses');
+
+this.router.navigateByUrl('/contact');</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Query Parameters -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Navigation with Query Parameters</h2>
+
+        <div class="info-card">
+
+            <p>
+                Query parameters allow additional information to be included
+                in the URL.
+            </p>
+
+            <p class="mb-0">
+                For example, a course page can receive a category or filter
+                value through the query string.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                routerLink with Query Parameters
+            </div>
+
+            <pre><code>&lt;a
+    [routerLink]="['/courses']"
+    [queryParams]="{
+        category: 'dotnet'
+    }"&gt;
+
+    View .NET Courses
+
+&lt;/a&gt;</code></pre>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Programmatic Navigation
+            </div>
+
+            <pre><code>this.router.navigate(
+    ['/courses'],
+    {
+        queryParams: {
+            category: 'dotnet'
+        }
+    }
+);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Relative Navigation -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Relative Navigation</h2>
+
+        <div class="info-card">
+
+            <p>
+                Relative navigation is used when navigation should happen
+                from the current route instead of starting from the application root.
+            </p>
+
+            <p class="mb-0">
+                This is useful with nested or child routes.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>this.router.navigate(
+    ['details'],
+    {
+        relativeTo: this.route
+    }
+);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Navigation Comparison -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">routerLink vs navigate() vs navigateByUrl()</h2>
+
+        <div class="table-responsive">
+
+            <table class="table syntax-table">
+
+                <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th>Used From</th>
+                        <th>Purpose</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>
+                            <code>routerLink</code>
+                        </td>
+                        <td>HTML Template</td>
+                        <td>
+                            Navigate when the user clicks a link or element.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <code>navigate()</code>
+                        </td>
+                        <td>Component / TypeScript</td>
+                        <td>
+                            Programmatic navigation using route segments.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <code>navigateByUrl()</code>
+                        </td>
+                        <td>Component / TypeScript</td>
+                        <td>
+                            Navigate using a complete URL.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <code>queryParams</code>
+                        </td>
+                        <td>Template / TypeScript</td>
+                        <td>
+                            Pass additional values through the URL.
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- Navigation Example -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Complete Navigation Example</h2>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Component
+            </div>
+
+            <pre><code>import { Component } from '@@angular/core';
+import { Router } from '@@angular/router';
+
+@@Component({
+    selector: 'app-dashboard',
+    templateUrl: './dashboard.component.html'
+})
+export class DashboardComponent {
+
+    constructor(private router: Router) {
+    }
+
+    openCourses() {
+
+        this.router.navigate(['/courses']);
+
+    }
+
+    openContact() {
+
+        this.router.navigateByUrl('/contact');
+
+    }
+
+}</code></pre>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Template
+            </div>
+
+            <pre><code>&lt;div class="dashboard"&gt;
+
+    &lt;h2&gt;
+        CIIT Training Institute Dashboard
+    &lt;/h2&gt;
+
+    &lt;a routerLink="/courses"&gt;
+        Courses
+    &lt;/a&gt;
+
+    &lt;button
+        type="button"
+        (click)="openCourses()"&gt;
+
+        Open Courses
+
+    &lt;/button&gt;
+
+    &lt;button
+        type="button"
+        (click)="openContact()"&gt;
+
+        Contact Institute
+
+    &lt;/button&gt;
+
+&lt;/div&gt;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Important Points -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Important Points</h2>
+
+        <div class="best-practice-list">
+
+            <div class="info-card mb-3">
+
+                <strong>1. Use routerLink for Template Navigation</strong>
+
+                <p class="mb-0">
+                    Use <strong>routerLink</strong> when navigation is directly
+                    triggered from an HTML template.
+                </p>
+
+            </div>
+
+
+            <div class="info-card mb-3">
+
+                <strong>2. Use Router for Programmatic Navigation</strong>
+
+                <p class="mb-0">
+                    Use the Angular <strong>Router</strong> service when navigation
+                    needs to happen from TypeScript code.
+                </p>
+
+            </div>
+
+
+            <div class="info-card mb-3">
+
+                <strong>3. Use navigate() for Route Segments</strong>
+
+                <p class="mb-0">
+                    <strong>navigate()</strong> accepts route segments and is useful
+                    for dynamic routes.
+                </p>
+
+            </div>
+
+
+            <div class="info-card">
+
+                <strong>4. Keep Navigation Clear</strong>
+
+                <p class="mb-0">
+                    Use meaningful routes and avoid unnecessary navigation logic
+                    inside components.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Best Practices -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Navigation Best Practices</h2>
+
+        <ul class="best-practice-list">
+
+            <li>
+                Use <code>routerLink</code> for normal template-based navigation.
+            </li>
+
+            <li>
+                Use <code>navigate()</code> when navigation depends on application logic.
+            </li>
+
+            <li>
+                Use <code>navigateByUrl()</code> when the complete URL is already available.
+            </li>
+
+            <li>
+                Use query parameters only when additional URL information is required.
+            </li>
+
+            <li>
+                Keep route paths meaningful and consistent.
+            </li>
+
+            <li>
+                Avoid unnecessary full-page reloads in Angular applications.
+            </li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- Summary -->
+    <section class="mb-4">
+
+        <div class="summary-box">
+
+            <h4 class="fw-bold">
+                Summary
+            </h4>
+
+            <p>
+                Angular navigation allows users to move between different
+                application views without reloading the complete page.
+            </p>
+
+            <p>
+                <strong>routerLink</strong> is commonly used inside templates,
+                while the Angular <strong>Router</strong> service provides
+                programmatic navigation through methods such as
+                <strong>navigate()</strong> and <strong>navigateByUrl()</strong>.
+            </p>
+
+            <p class="mb-0">
+                In the next topic, we will learn how to work with
+                <strong>Route Parameters</strong>.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Navigation -->
+    <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+
+        <a class="btn btn-outline-secondary"
+           href="@Url.Action("RouteConfiguration", "Routing", new { area = "Angular" })">
+            ← Route Configuration
+        </a>
+
+        <a class="btn btn-primary"
+           href="@Url.Action("RouteParameters", "Routing", new { area = "Angular" })">
+            Route Parameters →
+        </a>
+
+    </div>
+
+</div>
+
+
+<style>
+
+    .info-card {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-left: 5px solid #4c1d95;
+        border-radius: 10px;
+        padding: 20px;
+        line-height: 1.7;
+        color: #334155;
+    }
+
+
+    .syntax-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        flex-wrap: wrap;
+        margin: 25px 0;
+    }
+
+
+    .syntax-box {
+        background: linear-gradient(135deg, #2e1065, #4c1d95);
+        color: white;
+        padding: 18px 25px;
+        border-radius: 12px;
+        text-align: center;
+        min-width: 180px;
+        box-shadow: 0 5px 15px rgba(76, 29, 149, 0.15);
+    }
+
+
+        .syntax-box strong {
+            display: block;
+            font-size: 16px;
+        }
+
+
+        .syntax-box span {
+            display: block;
+            margin-top: 5px;
+            color: #d8c9f5;
+            font-size: 14px;
+        }
+
+
+    .syntax-arrow {
+        font-size: 28px;
+        font-weight: bold;
+        color: #4c1d95;
+    }
+
+
+    .syntax-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+
+
+    .syntax-card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 22px;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+    }
+
+
+        .syntax-card h5 {
+            margin-top: 15px;
+            font-weight: 700;
+            color: #2e1065;
+        }
+
+
+        .syntax-card p {
+            color: #64748b;
+            margin-bottom: 0;
+        }
+
+
+    .syntax-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: #ede9fe;
+        color: #4c1d95;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 18px;
+        margin: 0 auto;
+    }
+
+
+    .code-card {
+        background: #0f172a;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(15, 23, 42, 0.10);
+    }
+
+
+    .code-title {
+        background: #1e293b;
+        color: #ffffff;
+        padding: 12px 18px;
+        font-weight: 700;
+        font-size: 14px;
+    }
+
+
+    .code-card pre {
+        margin: 0;
+        padding: 20px;
+        overflow-x: auto;
+    }
+
+
+    .code-card code {
+        color: #f8fafc;
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+
+    .output-box {
+        background: #f8fafc;
+        border: 1px solid #ddd6fe;
+        border-radius: 12px;
+        padding: 20px;
+    }
+
+
+    .student-preview {
+        background: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        padding: 20px;
+    }
+
+
+        .student-preview h4 {
+            color: #2e1065;
+            font-weight: 700;
+        }
+
+
+        .student-preview p {
+            color: #64748b;
+        }
+
+
+    .syntax-table {
+        width: 100%;
+        margin-bottom: 0;
+        border: 1px solid #e2e8f0;
+    }
+
+
+        .syntax-table thead th {
+            background: #2e1065;
+            color: white;
+            padding: 14px;
+            border-color: #4c1d95;
+        }
+
+
+        .syntax-table tbody td {
+            padding: 14px;
+            vertical-align: middle;
+            color: #334155;
+            border-color: #e2e8f0;
+        }
+
+
+        .syntax-table tbody tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+
+        .syntax-table code {
+            color: #4c1d95;
+            font-weight: 600;
+        }
+
+
+    .best-practice-list {
+        margin: 0;
+        padding-left: 20px;
+    }
+
+
+        .best-practice-list li {
+            margin-bottom: 10px;
+            color: #334155;
+            line-height: 1.6;
+        }
+
+
+    .summary-box {
+        background: #cfe2ff;
+        color: #084298;
+        border-radius: 10px;
+        padding: 22px;
+        border: 1px solid #b6d4fe;
+    }
+
+
+        .summary-box h4 {
+            margin-bottom: 12px;
+        }
+
+
+    @@media (max-width: 991px) {
+
+        .syntax-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .syntax-flow {
+            gap: 12px;
+        }
+
+        .syntax-box {
+            min-width: 160px;
+        }
+    }
+
+
+    @@media (max-width: 576px) {
+
+        .syntax-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .syntax-flow {
+            flex-direction: column;
+        }
+
+        .syntax-arrow {
+            transform: rotate(90deg);
+        }
+
+        .syntax-box {
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .code-card pre {
+            padding: 15px;
+        }
+
+        .code-card code {
+            font-size: 13px;
+        }
+    }
+
+</style>

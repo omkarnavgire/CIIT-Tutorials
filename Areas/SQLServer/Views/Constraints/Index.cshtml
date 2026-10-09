@@ -1,0 +1,555 @@
+﻿@{
+    ViewData["Title"] = "Constraints Introduction";
+}
+
+<section>
+
+    <!-- =====================================================
+         PAGE INTRODUCTION
+         ===================================================== -->
+
+    <div class="mb-5">
+
+        <h1 class="fw-bold mb-3">
+            Constraints Introduction
+        </h1>
+
+        <p class="lead text-muted">
+            SQL Server constraints are rules applied to table columns
+            to maintain data accuracy, consistency and integrity.
+            Constraints help control what type of data can be inserted
+            or stored in a table.
+        </p>
+
+    </div>
+
+
+    <!-- =====================================================
+         WHAT ARE CONSTRAINTS?
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            What are Constraints?
+        </h2>
+
+        <p>
+            A constraint is a rule that is applied to a column or
+            table to control the data that can be stored.
+        </p>
+
+        <p>
+            Constraints help ensure that invalid or unwanted data
+            is not inserted into the database.
+        </p>
+
+        <div class="alert alert-primary border-0">
+
+            <h5 class="fw-bold">
+                Simple Example
+            </h5>
+
+            <p class="mb-0">
+                If every student must have a unique StudentId,
+                we can use a <strong>PRIMARY KEY</strong> constraint
+                to enforce that rule.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         WHY CONSTRAINTS?
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Why Do We Need Constraints?
+        </h2>
+
+        <p>
+            Constraints help maintain the quality and integrity of
+            data stored in database tables.
+        </p>
+
+        <ul>
+
+            <li class="mb-2">
+                Prevent invalid data.
+            </li>
+
+            <li class="mb-2">
+                Maintain data integrity.
+            </li>
+
+            <li class="mb-2">
+                Prevent duplicate values where required.
+            </li>
+
+            <li class="mb-2">
+                Establish relationships between tables.
+            </li>
+
+            <li class="mb-2">
+                Apply rules to column values.
+            </li>
+
+            <li>
+                Provide consistency across the database.
+            </li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- =====================================================
+         TYPES OF CONSTRAINTS
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Types of SQL Server Constraints
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>Constraint</th>
+                        <th>Purpose</th>
+                        <th>Example</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            <strong>PRIMARY KEY</strong>
+                        </td>
+
+                        <td>
+                            Uniquely identifies each record in a table.
+                        </td>
+
+                        <td>
+                            StudentId
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            <strong>FOREIGN KEY</strong>
+                        </td>
+
+                        <td>
+                            Creates a relationship between tables.
+                        </td>
+
+                        <td>
+                            CourseId
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            <strong>UNIQUE</strong>
+                        </td>
+
+                        <td>
+                            Prevents duplicate values in a column.
+                        </td>
+
+                        <td>
+                            Email
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            <strong>NOT NULL</strong>
+                        </td>
+
+                        <td>
+                            Prevents NULL values in a column.
+                        </td>
+
+                        <td>
+                            StudentName
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            <strong>DEFAULT</strong>
+                        </td>
+
+                        <td>
+                            Provides a default value when no value is supplied.
+                        </td>
+
+                        <td>
+                            Status
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            <strong>CHECK</strong>
+                        </td>
+
+                        <td>
+                            Restricts values according to a condition.
+                        </td>
+
+                        <td>
+                            Age &gt;= 18
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         CONSTRAINT STRUCTURE
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Constraint Structure
+        </h2>
+
+        <p>
+            Constraints can be applied while creating a table or
+            added later to an existing table.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL Server
+            </div>
+
+            <pre class="mb-0"><code>
+                                                                Database
+                                                                   ↓
+                                                                 Table
+                                                                   ↓
+                                                                Columns
+                                                                   ↓
+                                                                Constraints
+                                                                   ↓
+                                                                Data Integrity</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         SIMPLE EXAMPLE
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Constraints Example
+        </h2>
+
+        <p>
+            The following example uses multiple constraints while
+            creating a Students table.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>CREATE TABLE Students
+(
+    StudentId INT PRIMARY KEY,
+
+    StudentName VARCHAR(100) NOT NULL,
+
+    Email VARCHAR(150) UNIQUE,
+
+    Age INT CHECK (Age >= 18),
+
+    Status VARCHAR(20) DEFAULT 'Active'
+);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         OUTPUT / STRUCTURE
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Example Table Structure
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>Column</th>
+                        <th>Data Type</th>
+                        <th>Constraint</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            StudentId
+                        </td>
+
+                        <td>
+                            INT
+                        </td>
+
+                        <td>
+                            PRIMARY KEY
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            StudentName
+                        </td>
+
+                        <td>
+                            VARCHAR(100)
+                        </td>
+
+                        <td>
+                            NOT NULL
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            Email
+                        </td>
+
+                        <td>
+                            VARCHAR(150)
+                        </td>
+
+                        <td>
+                            UNIQUE
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            Age
+                        </td>
+
+                        <td>
+                            INT
+                        </td>
+
+                        <td>
+                            CHECK
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            Status
+                        </td>
+
+                        <td>
+                            VARCHAR(20)
+                        </td>
+
+                        <td>
+                            DEFAULT
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         DATA INTEGRITY
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Constraints and Data Integrity
+        </h2>
+
+        <p>
+            Data integrity means maintaining accurate and consistent
+            data in the database.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL Server
+            </div>
+
+            <pre class="mb-0"><code>Valid Data
+    ↓
+Constraints
+    ↓
+Database Rules
+    ↓
+Accurate & Consistent Data</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         IMPORTANT POINTS
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <div class="alert alert-info border-0">
+
+            <h5 class="fw-bold">
+                Important Points
+            </h5>
+
+            <ul class="mb-0">
+
+                <li class="mb-2">
+                    Constraints enforce rules on table data.
+                </li>
+
+                <li class="mb-2">
+                    Different constraints solve different data
+                    integrity requirements.
+                </li>
+
+                <li class="mb-2">
+                    Constraints can be defined during table creation.
+                </li>
+
+                <li>
+                    Constraints can also be added to existing tables.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         SUMMARY
+         ===================================================== -->
+
+    <section class="mb-4">
+
+        <div class="alert alert-primary border-0">
+
+            <h2 class="fw-bold mb-3">
+                Summary
+            </h2>
+
+            <p class="mb-0">
+                In this section, we learned what SQL Server constraints
+                are, why they are required and the different types of
+                constraints used to maintain data integrity.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         PREVIOUS / NEXT
+         ===================================================== -->
+
+    <div class="d-flex justify-content-between align-items-center
+                mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/DatabaseAndTables/DroppingTables"
+           class="btn btn-outline-primary">
+
+            ← Previous: Dropping Tables
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/Constraints/PrimaryKey"
+           class="btn btn-primary">
+
+            Next: PRIMARY KEY →
+
+        </a>
+
+    </div>
+
+</section>

@@ -1,0 +1,262 @@
+@{
+    Layout = "~/Areas/GitHub/Views/Shared/GithubLayout.cshtml";
+    ViewData["Title"] = "Rebasing";
+}
+
+<main id="tutorials" class="container py-1">
+    <div class="row g-4">
+
+        <!-- Sidebar Navigation -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/GitHub/Views/Shared/GithubTopics.cshtml")
+        </aside>
+
+        <!-- Reading Content Area -->
+        <section class="col-lg-9">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4 p-lg-5">
+
+                    <h1 class="fw-bold mb-3">Git Rebasing</h1>
+
+                    <p>
+                        In Git, <strong>rebasing</strong> is the process of
+                        moving or replaying a sequence of commits onto a
+                        new base commit. It is commonly used as an
+                        alternative to merging when you want to maintain
+                        a linear project history.
+                    </p>
+
+                    <p>
+                        For example, if you created a feature branch from
+                        <code>main</code> and new commits were added to
+                        <code>main</code>, you can rebase your feature
+                        branch to replay your commits on top of the latest
+                        version of <code>main</code>.
+                    </p>
+
+                    <div class="alert alert-info">
+                        <strong>Remember:</strong>
+                        Rebasing rewrites commit history by creating new
+                        commits with new hashes. Use it carefully when
+                        working with shared branches.
+                    </div>
+
+                    <hr class="my-4" />
+
+                    <!-- Rebase Workflow -->
+                    <h3 class="fw-bold mb-3">1. How Rebasing Works</h3>
+
+                    <p>Imagine the repository has this commit history:</p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>main:           A---B---C
+                     \
+feature:              D---E</code></pre>
+
+                    <p>
+                        The <code>main</code> branch receives another
+                        commit, <code>F</code>. Rebasing the feature
+                        branch onto <code>main</code> replays commits
+                        <code>D</code> and <code>E</code> on top of
+                        <code>F</code>.
+                    </p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>main:           A---B---C---F
+                                 \
+feature:                         D'---E'</code></pre>
+
+                    <p>
+                        The commits <code>D'</code> and <code>E'</code>
+                        contain the replayed changes and have new commit
+                        identities.
+                    </p>
+
+                    <hr class="my-4" />
+
+                    <!-- Common Commands -->
+                    <h3 class="fw-bold mb-3">2. Common Rebase Commands</h3>
+
+                    <h5 class="fw-semibold mt-4">Standard Rebase</h5>
+
+                    <p>
+                        Switch to your feature branch and rebase it onto
+                        the latest local <code>main</code> branch.
+                    </p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git switch feature/login
+git fetch origin
+git rebase origin/main</code></pre>
+
+                    <p>
+                        <code>git fetch origin</code> downloads remote
+                        updates. The rebase then replays your feature
+                        commits on top of <code>origin/main</code>.
+                    </p>
+
+                    <h5 class="fw-semibold mt-4">Rebase During a Pull</h5>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git pull --rebase origin main</code></pre>
+
+                    <p>
+                        Fetches updates from the remote
+                        <code>main</code> branch and replays your local
+                        commits on top of the fetched history.
+                    </p>
+
+                    <p>
+                        This command is typically used when you are on
+                        a local branch that needs to incorporate changes
+                        from the specified remote branch.
+                    </p>
+
+                    <h5 class="fw-semibold mt-4">Interactive Rebase</h5>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git rebase -i HEAD~3</code></pre>
+
+                    <p>
+                        Opens an interactive editor for the last three
+                        commits. You can choose to reorder, squash,
+                        reword, or drop commits.
+                    </p>
+
+                    <ul>
+                        <li><strong>pick:</strong> Keep a commit.</li>
+                        <li><strong>reword:</strong> Change a commit message.</li>
+                        <li><strong>squash:</strong> Combine a commit with the previous commit.</li>
+                        <li><strong>drop:</strong> Remove a commit from the rebased history.</li>
+                    </ul>
+
+                    <div class="alert alert-warning">
+                        <strong>Important:</strong>
+                        Interactive rebase changes commit history.
+                        Avoid rewriting commits that others are already
+                        using unless the team has agreed on the procedure.
+                    </div>
+
+                    <hr class="my-4" />
+
+                    <!-- Rebase Conflicts -->
+                    <h3 class="fw-bold mb-3">3. Resolving Rebase Conflicts</h3>
+
+                    <p>
+                        A rebase may stop when Git cannot automatically
+                        apply a commit. Resolve the conflicts before
+                        continuing.
+                    </p>
+
+                    <h5 class="fw-semibold mt-4">Step 1: Identify Conflicts</h5>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git status</code></pre>
+
+                    <h5 class="fw-semibold mt-4">Step 2: Resolve the Files</h5>
+
+                    <p>
+                        Open each conflicted file, review the competing
+                        changes, remove the conflict markers, and save
+                        the correct code.
+                    </p>
+
+                    <h5 class="fw-semibold mt-4">Step 3: Stage the Resolved File</h5>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git add filename.ext</code></pre>
+
+                    <h5 class="fw-semibold mt-4">Step 4: Continue Rebasing</h5>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git rebase --continue</code></pre>
+
+                    <p>
+                        Repeat these steps if another commit causes a
+                        conflict during the rebase.
+                    </p>
+
+                    <h5 class="fw-semibold mt-4">Cancel the Rebase</h5>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git rebase --abort</code></pre>
+
+                    <p>
+                        Use this command to abandon the current rebase
+                        and return the branch to its pre-rebase state,
+                        provided the rebase is still in progress.
+                    </p>
+
+                    <hr class="my-4" />
+
+                    <!-- Merge vs Rebase -->
+                    <h3 class="fw-bold mb-3">4. Merge vs. Rebase</h3>
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped align-middle">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Feature</th>
+                                    <th>Merge</th>
+                                    <th>Rebase</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Purpose</td>
+                                    <td>Combines branch histories.</td>
+                                    <td>Replays commits onto another base.</td>
+                                </tr>
+                                <tr>
+                                    <td>History</td>
+                                    <td>Preserves existing commits; may create a merge commit.</td>
+                                    <td>Creates new commits for the replayed changes.</td>
+                                </tr>
+                                <tr>
+                                    <td>Conflict handling</td>
+                                    <td>Resolve conflicts, then complete the merge.</td>
+                                    <td>Resolve conflicts and continue the rebase.</td>
+                                </tr>
+                                <tr>
+                                    <td>Common use</td>
+                                    <td>Integrating branches while preserving branch history.</td>
+                                    <td>Updating a feature branch with a linear history.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <hr class="my-4" />
+
+                    <!-- Best Practices -->
+                    <h3 class="fw-bold mb-3">5. Rebasing Best Practices</h3>
+
+                    <ul>
+                        <li>Commit or stash unfinished work before rebasing.</li>
+                        <li>Use <code>git status</code> to check your repository state.</li>
+                        <li>Rebase your own feature branches when appropriate.</li>
+                        <li>Avoid rewriting shared commits without team coordination.</li>
+                        <li>Test your code after the rebase completes.</li>
+                    </ul>
+
+                    <div class="alert alert-success mt-4">
+                        <strong>Key Takeaway:</strong>
+                        Use <code>git rebase</code> to replay commits onto
+                        a new base and maintain a linear history. Use
+                        <code>git rebase -i</code> to organize local commits,
+                        <code>git rebase --continue</code> after resolving
+                        conflicts, and <code>git rebase --abort</code>
+                        to cancel an in-progress rebase.
+                    </div>
+
+                    <!-- Previous / Next Navigation -->
+                    <div class="d-flex justify-content-between align-items-center gap-3 flex-wrap mt-5 pt-4 border-top">
+
+                        <a class="btn btn-outline-primary"
+                           href="@Url.Action("UndoingMistakes", "AdvancedGitAndHistory", new { area = "GitHub" })">
+                            &larr; Previous: Undoing Mistakes
+                        </a>
+
+                        <a class="btn btn-primary"
+                           href="@Url.Action("BlamingAuditing", "AdvancedGitAndHistory", new { area = "GitHub" })">
+                            Next: Git Blame &amp; Auditing &rarr;
+                        </a>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+</main>

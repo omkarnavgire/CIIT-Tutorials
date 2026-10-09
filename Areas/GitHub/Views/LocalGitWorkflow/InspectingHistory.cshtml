@@ -1,0 +1,450 @@
+@{
+    Layout = "~/Areas/GitHub/Views/Shared/GithubLayout.cshtml";
+}
+
+
+<main id="tutorials" class="container py-1">
+    <div class="row g-4">
+
+        <!-- Sidebar Navigation -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/GitHub/Views/Shared/GithubTopics.cshtml")
+        </aside>
+
+        <!-- Reading Content Area -->
+        <section class="col-lg-9">
+﻿@{
+    Layout = "~/Areas/GitHub/Views/Shared/GithubLayout.cshtml";
+    ViewData["Title"] = "Inspecting Git History";
+}
+
+<div class="card border-0 shadow-sm">
+    <div class="card-body p-4 p-lg-5">
+
+        <!-- HEADER -->
+        <header class="mb-4">
+            <h2 class="fw-bold mb-3">Inspecting Git History</h2>
+
+            <p class="mb-2 lead text-muted">
+                As your project grows, your Git repository will contain many commits.
+                Git provides powerful commands that help you review what changed,
+                understand when changes were made, and identify who made them.
+            </p>
+
+            <p class="text-muted">
+                In this lesson, you will learn how to view your commit history,
+                customize the output of <code>git log</code>, and inspect the
+                changes introduced by a specific commit.
+            </p>
+        </header>
+
+
+        <!-- SECTION 1 -->
+        <section class="mb-4">
+            <h4 class="fw-semibold mb-3">
+                1. View the Commit History
+            </h4>
+
+            <p>
+                The <code>git log</code> command is one of the most useful commands
+                for exploring the history of a Git repository.
+                It displays commits in reverse chronological order, with the
+                newest commit appearing first.
+            </p>
+
+            <p>
+                A standard commit entry includes the commit hash, author,
+                date, and commit message.
+            </p>
+
+            <div class="code-block mb-3 shadow-sm p-3 bg-dark text-white rounded font-monospace">
+                <span class="text-secondary">$</span> git log
+            </div>
+
+            <div class="alert alert-light border">
+                <strong>Tip:</strong>
+                If your repository does not contain any commits yet,
+                <code>git log</code> will not display a commit history.
+                Create your first commit before using this command.
+            </div>
+        </section>
+
+        <!-- SECTION 2 -->
+        <section class="mb-4">
+            <h4 class="fw-semibold mb-3">
+                2. Understanding the Git Log Output
+            </h4>
+
+            <p>
+                When you run <code>git log</code>, Git displays information about
+                each commit. Understanding this information makes it easier to
+                track changes and troubleshoot your project.
+            </p>
+
+            <div class="table-responsive mb-3">
+                <table class="table table-bordered align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Information</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Commit Hash</strong></td>
+                            <td>
+                                A unique identifier for the commit.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Author</strong></td>
+                            <td>
+                                The person who created the commit.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Date</strong></td>
+                            <td>
+                                The date and time when the commit was created.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Commit Message</strong></td>
+                            <td>
+                                A short description explaining what changed.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- SECTION 3 -->
+        <section class="mb-4">
+            <h4 class="fw-semibold mb-3">
+                3. Useful Options for <code>git log</code>
+            </h4>
+
+            <p>
+                Large projects can contain hundreds or thousands of commits.
+                Instead of viewing everything, you can use options to customize
+                the output and quickly find the information you need.
+            </p>
+
+            <ul>
+                <li class="mb-3">
+                    <strong>Show changes with <code>-p</code></strong><br />
+                    Displays the actual line-by-line changes introduced by each commit.
+                    This is useful when reviewing code changes.
+                </li>
+
+                <li class="mb-3">
+                    <strong>Limit commits with <code>-n</code></strong><br />
+                    Displays only the specified number of recent commits.
+                    For example, <code>git log -2</code> shows the latest two commits.
+                </li>
+
+                <li class="mb-3">
+                    <strong>Compact output with <code>--oneline</code></strong><br />
+                    Displays each commit on a single line using a shortened commit hash
+                    and commit message.
+                </li>
+
+                <li class="mb-3">
+                    <strong>Display file statistics with <code>--stat</code></strong><br />
+                    Shows which files were changed and summarizes the number of
+                    lines added and deleted.
+                </li>
+
+                <li class="mb-3">
+                    <strong>Visualize branches with <code>--graph</code></strong><br />
+                    Displays an ASCII graph that helps you understand branches,
+                    merges, and the relationship between commits.
+                </li>
+            </ul>
+        </section>
+
+        <!-- TERMINAL SIMULATION -->
+        <section class="mb-4">
+            <h4 class="fw-semibold mb-3">
+                4. Try It in the Terminal
+            </h4>
+
+            <p>
+                The following example shows how a repository's history might look
+                when using the compact <code>--oneline</code> format.
+            </p>
+
+            <div class="card bg-dark text-white font-monospace mb-3 shadow">
+                <div class="card-header bg-secondary text-light d-flex justify-content-between align-items-center py-2">
+                    <div class="d-flex align-items-center">
+                        <span class="bg-danger rounded-circle me-1"
+                              style="width:12px;height:12px;display:inline-block;"></span>
+
+                        <span class="bg-warning rounded-circle me-1"
+                              style="width:12px;height:12px;display:inline-block;"></span>
+
+                        <span class="bg-success rounded-circle me-3"
+                              style="width:12px;height:12px;display:inline-block;"></span>
+
+                        <span>Terminal — Git History</span>
+                    </div>
+
+                    <span class="badge bg-dark border border-light text-uppercase">
+                        Bash
+                    </span>
+                </div>
+
+                <div class="card-body">
+                    <div class="mb-2">
+                        <span class="text-secondary">$</span>
+                        <span>git log --oneline</span>
+                    </div>
+
+                    <div class="text-light">
+                        a84f21c Update student registration API<br />
+                        7c91de4 Add payment validation<br />
+                        35ab821 Create student module<br />
+                        18f5d90 Initial project setup
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert alert-info border-0">
+                <strong>What does this mean?</strong><br />
+                Each line represents one commit. The value on the left is the
+                shortened commit hash, followed by the commit message.
+            </div>
+        </section>
+
+        <!-- SECTION 5 -->
+        <section class="mb-4">
+            <h4 class="fw-semibold mb-3">
+                5. Git Log Quick Reference
+            </h4>
+
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th scope="col" style="width: 27%;">Command</th>
+                            <th scope="col" style="width: 43%;">What It Shows</th>
+                            <th scope="col" style="width: 30%;">Best Use</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>
+                                <code>git log</code>
+                            </td>
+                            <td>
+                                Complete commit information including hash,
+                                author, date, and message.
+                            </td>
+                            <td>
+                                <span class="badge bg-primary">
+                                    Detailed History
+                                </span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <code>git log --oneline</code>
+                            </td>
+                            <td>
+                                A compact, one-line summary of each commit.
+                            </td>
+                            <td>
+                                <span class="badge bg-info text-dark">
+                                    Quick Overview
+                                </span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <code>git log -p</code>
+                            </td>
+                            <td>
+                                Shows the actual line-by-line changes introduced
+                                by each commit.
+                            </td>
+                            <td>
+                                <span class="badge bg-warning text-dark">
+                                    Code Review
+                                </span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <code>git log --stat</code>
+                            </td>
+                            <td>
+                                Shows changed files and the number of lines
+                                added or removed.
+                            </td>
+                            <td>
+                                <span class="badge bg-success">
+                                    Change Summary
+                                </span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <code>git log --graph</code>
+                            </td>
+                            <td>
+                                Displays a visual text-based representation
+                                of branches and merges.
+                            </td>
+                            <td>
+                                <span class="badge bg-primary">
+                                    Branch Visualization
+                                </span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <code>git log -5</code>
+                            </td>
+                            <td>
+                                Displays only the five most recent commits.
+                            </td>
+                            <td>
+                                <span class="badge bg-secondary">
+                                    Recent Changes
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- SECTION 6 -->
+        <section class="mb-4">
+            <h4 class="fw-semibold mb-3">
+                6. Inspect a Specific Commit
+            </h4>
+
+            <p>
+                Sometimes you already know which commit you want to investigate.
+                Instead of reviewing the entire history, you can use
+                <code>git show</code> with the commit hash.
+            </p>
+
+            <div class="code-block mb-3 shadow-sm p-3 bg-dark text-white rounded font-monospace">
+                <span class="text-secondary">$</span> git show [commit-hash]
+            </div>
+
+            <p>
+                This command displays detailed information about the selected
+                commit, including the commit message and the changes made to files.
+            </p>
+
+            <div class="alert alert-success border-0">
+                <strong>Example:</strong>
+
+                <div class="mt-2 font-monospace">
+                    git show a84f21c
+                </div>
+
+                <div class="mt-2">
+                    Here, <code>a84f21c</code> represents the commit you want
+                    to inspect.
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 7 -->
+        <section class="mb-3">
+            <h4 class="fw-semibold mb-3">
+                7. Practical Workflow
+            </h4>
+
+            <p>
+                A simple workflow for inspecting project history is:
+            </p>
+
+            <ol>
+                <li class="mb-2">
+                    Run <code>git log --oneline</code> to get a quick overview.
+                </li>
+
+                <li class="mb-2">
+                    Identify the commit you want to investigate.
+                </li>
+
+                <li class="mb-2">
+                    Run <code>git show [commit-hash]</code> to inspect its changes.
+                </li>
+
+                <li class="mb-2">
+                    Use <code>git log -p</code> when you need to review changes
+                    across multiple commits.
+                </li>
+
+                <li>
+                    Use <code>git log --graph</code> when you need to understand
+                    branches and merges.
+                </li>
+            </ol>
+        </section>
+
+        <!-- KEY TAKEAWAY -->
+        <section>
+            <div class="alert alert-dark border-0 shadow-sm mb-0">
+                <h5 class="fw-bold mb-2">
+                    <i class="bi bi-lightbulb me-2"></i>Key Takeaway
+                </h5>
+
+                <p class="mb-0">
+                    Git history is more than a list of commits. By combining
+                    <code>git log</code>, its useful options, and
+                    <code>git show</code>, you can understand how your project
+                    evolved, investigate previous changes, and quickly find
+                    the source of a problem.
+                </p>
+            </div>
+        </section>
+                    <!-- PREVIOUS / NEXT NAVIGATION -->
+                    <div class="d-flex justify-content-between align-items-center border-top pt-4 mt-4">
+
+                        <!-- PREVIOUS TOPIC -->
+                        <a href="@Url.Action(
+                                    "CheckingStatus",
+                                    "LocalGitWorkflow",
+                                    new { area = "GitHub" }
+                                 )"
+                           class="btn btn-outline-secondary px-4">
+
+                            <span class="me-2">←</span>
+                            Previous: Checking Git Status
+
+                        </a>
+
+
+                        <!-- NEXT TOPIC -->
+                        <a href="@Url.Action(
+                                    "IgnoringFiles",
+                                    "LocalGitWorkflow",
+                                    new { area = "GitHub" }
+                                 )"
+                           class="btn btn-primary px-4">
+
+                            Next: .gitignore
+                            <span class="ms-2">→</span>
+
+                        </a>
+
+                    </div>
+    </div>
+</div>
+        </section>
+    </div>
+</main>

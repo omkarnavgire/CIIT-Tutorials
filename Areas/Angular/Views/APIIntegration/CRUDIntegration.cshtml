@@ -1,0 +1,2293 @@
+﻿@{
+    ViewData["Title"] = "Angular CRUD Integration";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- Header -->
+    <section class="mb-4">
+
+        <h1 class="fw-bold text-dark">
+            Angular CRUD Integration
+        </h1>
+
+        <p class="lead text-muted">
+            Learn how Angular applications implement Create, Read, Update
+            and Delete operations by communicating with backend REST APIs.
+        </p>
+
+    </section>
+
+
+    <!-- Introduction -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            What is CRUD?
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                <strong>CRUD</strong> stands for
+                <strong>Create, Read, Update and Delete</strong>.
+            </p>
+
+            <p>
+                These four operations represent the basic actions commonly
+                performed on application data.
+            </p>
+
+            <p class="mb-0">
+                In Angular, CRUD operations are commonly implemented by
+                using <strong>HttpClient</strong> to communicate with
+                backend REST APIs.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- CRUD Flow -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            CRUD Flow
+        </h2>
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+
+                <strong>Create</strong>
+
+                <span>
+                    POST
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>Read</strong>
+
+                <span>
+                    GET
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>Update</strong>
+
+                <span>
+                    PUT
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>Delete</strong>
+
+                <span>
+                    DELETE
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CRUD Concepts -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Four CRUD Operations
+        </h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    C
+                </div>
+
+                <h5>
+                    Create
+                </h5>
+
+                <p>
+                    Add a new record through the backend API.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    R
+                </div>
+
+                <h5>
+                    Read
+                </h5>
+
+                <p>
+                    Retrieve existing records from the backend.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    U
+                </div>
+
+                <h5>
+                    Update
+                </h5>
+
+                <p>
+                    Modify an existing record.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    D
+                </div>
+
+                <h5>
+                    Delete
+                </h5>
+
+                <p>
+                    Remove an existing record.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- API Mapping -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            CRUD to HTTP Method Mapping
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table syntax-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            CRUD Operation
+                        </th>
+
+                        <th>
+                            HTTP Method
+                        </th>
+
+                        <th>
+                            HttpClient
+                        </th>
+
+                        <th>
+                            Purpose
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            Create
+                        </td>
+
+                        <td>
+                            POST
+                        </td>
+
+                        <td>
+                            <code>http.post()</code>
+                        </td>
+
+                        <td>
+                            Add new resource
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Read
+                        </td>
+
+                        <td>
+                            GET
+                        </td>
+
+                        <td>
+                            <code>http.get()</code>
+                        </td>
+
+                        <td>
+                            Retrieve resource
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Update
+                        </td>
+
+                        <td>
+                            PUT
+                        </td>
+
+                        <td>
+                            <code>http.put()</code>
+                        </td>
+
+                        <td>
+                            Update resource
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Delete
+                        </td>
+
+                        <td>
+                            DELETE
+                        </td>
+
+                        <td>
+                            <code>http.delete()</code>
+                        </td>
+
+                        <td>
+                            Remove resource
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- Model -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Step 1: Create a Data Model
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                A TypeScript interface can describe the structure of the
+                resource used by the CRUD operations.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                course.model.ts
+            </div>
+
+            <pre><code>export interface Course {
+
+    id: number;
+
+    name: string;
+
+    duration: string;
+
+    fees: number;
+
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Service Setup -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Step 2: Create CRUD Service
+        </h2>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                course.service.ts
+            </div>
+
+            <pre><code>import {
+    Injectable
+} from '@@angular/core';
+
+import {
+    HttpClient
+} from '@@angular/common/http';
+
+
+@@Injectable({
+    providedIn: 'root'
+})
+export class CourseService {
+
+    private apiUrl =
+        '/api/courses';
+
+
+    constructor(
+        private http: HttpClient
+    ) {
+    }
+
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Create -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            1. Create Operation
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                The Create operation adds a new record to the backend.
+            </p>
+
+            <p class="mb-0">
+                Angular commonly sends the new resource using an HTTP
+                <strong>POST</strong> request.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Service Method
+            </div>
+
+            <pre><code>addCourse(course: Course) {
+
+    return this.http.post&lt;Course&gt;(
+        this.apiUrl,
+        course
+    );
+
+}</code></pre>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Component
+            </div>
+
+            <pre><code>course: Course = {
+
+    id: 0,
+
+    name: 'Java Full Stack',
+
+    duration: '6 Months',
+
+    fees: 35000
+
+};
+
+
+addCourse() {
+
+    this.courseService
+        .addCourse(this.course)
+        .subscribe({
+
+            next: response =&gt; {
+
+                console.log(
+                    'Course created:',
+                    response
+                );
+
+            },
+
+            error: error =&gt; {
+
+                console.error(error);
+
+            }
+
+        });
+
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Create Flow -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Create Operation Flow
+        </h2>
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+
+                <strong>Form</strong>
+
+                <span>
+                    User Enters Data
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>Component</strong>
+
+                <span>
+                    addCourse()
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>Service</strong>
+
+                <span>
+                    POST
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>API</strong>
+
+                <span>
+                    Creates Record
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Read -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            2. Read Operation
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                The Read operation retrieves existing records from the backend.
+            </p>
+
+            <p class="mb-0">
+                Angular commonly uses an HTTP <strong>GET</strong> request
+                for this operation.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Service Method
+            </div>
+
+            <pre><code>getCourses() {
+
+    return this.http.get&lt;Course[]&gt;(
+        this.apiUrl
+    );
+
+}</code></pre>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Component
+            </div>
+
+            <pre><code>courses: Course[] = [];
+
+
+loadCourses() {
+
+    this.courseService
+        .getCourses()
+        .subscribe({
+
+            next: courses =&gt; {
+
+                this.courses = courses;
+
+            },
+
+            error: error =&gt; {
+
+                console.error(error);
+
+            }
+
+        });
+
+}</code></pre>
+
+        </div>
+
+
+        <div class="output-box mt-3">
+
+            <div class="student-preview">
+
+                <h4>
+                    Courses Loaded
+                </h4>
+
+                <p>
+                    Java Full Stack
+                </p>
+
+                <p>
+                    .NET Full Stack
+                </p>
+
+                <p class="mb-0">
+                    Python Full Stack
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Read Single -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Read a Single Record
+        </h2>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Service Method
+            </div>
+
+            <pre><code>getCourse(id: number) {
+
+    return this.http.get&lt;Course&gt;(
+        this.apiUrl + '/' + id
+    );
+
+}</code></pre>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Component
+            </div>
+
+            <pre><code>loadCourse(id: number) {
+
+    this.courseService
+        .getCourse(id)
+        .subscribe({
+
+            next: course =&gt; {
+
+                console.log(course);
+
+            },
+
+            error: error =&gt; {
+
+                console.error(error);
+
+            }
+
+        });
+
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Update -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            3. Update Operation
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                The Update operation modifies an existing backend resource.
+            </p>
+
+            <p class="mb-0">
+                Angular can send the updated resource using an HTTP
+                <strong>PUT</strong> request.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Service Method
+            </div>
+
+            <pre><code>updateCourse(
+    id: number,
+    course: Course
+) {
+
+    return this.http.put&lt;Course&gt;(
+        this.apiUrl + '/' + id,
+        course
+    );
+
+}</code></pre>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Component
+            </div>
+
+            <pre><code>updateCourse(course: Course) {
+
+    this.courseService
+        .updateCourse(
+            course.id,
+            course
+        )
+        .subscribe({
+
+            next: updatedCourse =&gt; {
+
+                console.log(
+                    'Updated:',
+                    updatedCourse
+                );
+
+            },
+
+            error: error =&gt; {
+
+                console.error(error);
+
+            }
+
+        });
+
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Update Flow -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Update Operation Flow
+        </h2>
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+
+                <strong>Edit Form</strong>
+
+                <span>
+                    Modify Data
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>Component</strong>
+
+                <span>
+                    updateCourse()
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>Service</strong>
+
+                <span>
+                    PUT
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>API</strong>
+
+                <span>
+                    Updates Record
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Delete -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            4. Delete Operation
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                The Delete operation removes an existing backend resource.
+            </p>
+
+            <p class="mb-0">
+                Angular can send the resource identifier through an HTTP
+                <strong>DELETE</strong> request.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Service Method
+            </div>
+
+            <pre><code>deleteCourse(id: number) {
+
+    return this.http.delete(
+        this.apiUrl + '/' + id
+    );
+
+}</code></pre>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Component
+            </div>
+
+            <pre><code>deleteCourse(id: number) {
+
+    this.courseService
+        .deleteCourse(id)
+        .subscribe({
+
+            next: () =&gt; {
+
+                console.log(
+                    'Course deleted'
+                );
+
+            },
+
+            error: error =&gt; {
+
+                console.error(error);
+
+            }
+
+        });
+
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Delete Flow -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Delete Operation Flow
+        </h2>
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+
+                <strong>Delete Button</strong>
+
+                <span>
+                    User Action
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>Component</strong>
+
+                <span>
+                    deleteCourse()
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>Service</strong>
+
+                <span>
+                    DELETE
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>API</strong>
+
+                <span>
+                    Removes Record
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Complete Service -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Complete CRUD Service
+        </h2>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                course.service.ts
+            </div>
+
+            <pre><code>import {
+    Injectable
+} from '@@angular/core';
+
+import {
+    HttpClient
+} from '@@angular/common/http';
+
+
+@@Injectable({
+    providedIn: 'root'
+})
+export class CourseService {
+
+    private apiUrl =
+        '/api/courses';
+
+
+    constructor(
+        private http: HttpClient
+    ) {
+    }
+
+
+    // CREATE
+
+    addCourse(course: Course) {
+
+        return this.http.post&lt;Course&gt;(
+            this.apiUrl,
+            course
+        );
+
+    }
+
+
+    // READ
+
+    getCourses() {
+
+        return this.http.get&lt;Course[]&gt;(
+            this.apiUrl
+        );
+
+    }
+
+
+    // READ SINGLE
+
+    getCourse(id: number) {
+
+        return this.http.get&lt;Course&gt;(
+            this.apiUrl + '/' + id
+        );
+
+    }
+
+
+    // UPDATE
+
+    updateCourse(
+        id: number,
+        course: Course
+    ) {
+
+        return this.http.put&lt;Course&gt;(
+            this.apiUrl + '/' + id,
+            course
+        );
+
+    }
+
+
+    // DELETE
+
+    deleteCourse(id: number) {
+
+        return this.http.delete(
+            this.apiUrl + '/' + id
+        );
+
+    }
+
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Complete CRUD Flow -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Complete CRUD Architecture
+        </h2>
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+
+                <strong>Angular UI</strong>
+
+                <span>
+                    User Interaction
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>Component</strong>
+
+                <span>
+                    Calls Service
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>Service</strong>
+
+                <span>
+                    HttpClient
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>REST API</strong>
+
+                <span>
+                    Backend
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>Database</strong>
+
+                <span>
+                    Persistent Data
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CRUD Component -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            CRUD Component Example
+        </h2>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                courses.component.ts
+            </div>
+
+            <pre><code>export class CoursesComponent {
+
+    courses: Course[] = [];
+
+    loading = false;
+
+    errorMessage = '';
+
+
+    loadCourses() {
+
+        this.loading = true;
+        this.errorMessage = '';
+
+        this.courseService
+            .getCourses()
+            .subscribe({
+
+                next: courses =&gt; {
+
+                    this.courses = courses;
+                    this.loading = false;
+
+                },
+
+                error: error =&gt; {
+
+                    console.error(error);
+
+                    this.errorMessage =
+                        'Unable to load courses.';
+
+                    this.loading = false;
+
+                }
+
+            });
+
+    }
+
+
+    addCourse(course: Course) {
+
+        this.courseService
+            .addCourse(course)
+            .subscribe({
+
+                next: createdCourse =&gt; {
+
+                    this.courses = [
+                        ...this.courses,
+                        createdCourse
+                    ];
+
+                },
+
+                error: error =&gt; {
+
+                    console.error(error);
+
+                }
+
+            });
+
+    }
+
+
+    updateCourse(course: Course) {
+
+        this.courseService
+            .updateCourse(
+                course.id,
+                course
+            )
+            .subscribe({
+
+                next: updatedCourse =&gt; {
+
+                    this.courses =
+                        this.courses.map(
+                            item =&gt;
+                                item.id ===
+                                updatedCourse.id
+                                    ? updatedCourse
+                                    : item
+                        );
+
+                },
+
+                error: error =&gt; {
+
+                    console.error(error);
+
+                }
+
+            });
+
+    }
+
+
+    deleteCourse(id: number) {
+
+        this.courseService
+            .deleteCourse(id)
+            .subscribe({
+
+                next: () =&gt; {
+
+                    this.courses =
+                        this.courses.filter(
+                            course =&gt;
+                                course.id !== id
+                        );
+
+                },
+
+                error: error =&gt; {
+
+                    console.error(error);
+
+                }
+
+            });
+
+    }
+
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- UI Example -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            CRUD Template Example
+        </h2>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                courses.component.html
+            </div>
+
+            <pre><code>&lt;button
+    class="btn btn-primary"
+    (click)="loadCourses()"&gt;
+
+    Load Courses
+
+&lt;/button&gt;
+
+
+@@if (loading) {
+
+    &lt;p&gt;
+        Loading...
+    &lt;/p&gt;
+
+}
+
+
+@@if (errorMessage) {
+
+    &lt;div class="alert alert-danger"&gt;
+
+        &#123;&#123; errorMessage &#125;&#125;
+
+    &lt;/div&gt;
+
+}
+
+
+@@for (course of courses; track course.id) {
+
+    &lt;div class="course-card"&gt;
+
+        &lt;h3&gt;
+            &#123;&#123; course.name &#125;&#125;
+        &lt;/h3&gt;
+
+        &lt;p&gt;
+            Duration:
+            &#123;&#123; course.duration &#125;&#125;
+        &lt;/p&gt;
+
+        &lt;p&gt;
+            Fees:
+            ₹&#123;&#123; course.fees &#125;&#125;
+        &lt;/p&gt;
+
+        &lt;button
+            class="btn btn-outline-primary"
+            (click)="updateCourse(course)"&gt;
+
+            Edit
+
+        &lt;/button&gt;
+
+        &lt;button
+            class="btn btn-outline-danger"
+            (click)="deleteCourse(course.id)"&gt;
+
+            Delete
+
+        &lt;/button&gt;
+
+    &lt;/div&gt;
+
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- CIIT Example -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            CIIT Training Institute CRUD Example
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                Suppose the CIIT Training Institute has an admin dashboard
+                where authorized staff can manage training course information.
+            </p>
+
+            <p class="mb-0">
+                The Angular frontend can use CRUD operations to create new
+                courses, load existing courses, update course details and
+                delete records through the backend API.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Create Course
+            </div>
+
+            <pre><code>const newCourse: Course = {
+
+    id: 0,
+
+    name: '.NET Full Stack',
+
+    duration: '6 Months',
+
+    fees: 35000
+
+};
+
+
+this.courseService
+    .addCourse(newCourse)
+    .subscribe({
+
+        next: course =&gt; {
+
+            console.log(
+                'Created:',
+                course
+            );
+
+        }
+
+    });</code></pre>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Read Courses
+            </div>
+
+            <pre><code>this.courseService
+    .getCourses()
+    .subscribe({
+
+        next: courses =&gt; {
+
+            this.courses = courses;
+
+        }
+
+    });</code></pre>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Update Course
+            </div>
+
+            <pre><code>const updatedCourse:
+    Course = {
+
+        id: 101,
+
+        name: 'Java Full Stack',
+
+        duration: '8 Months',
+
+        fees: 40000
+
+    };
+
+
+this.courseService
+    .updateCourse(
+        updatedCourse.id,
+        updatedCourse
+    )
+    .subscribe({
+
+        next: course =&gt; {
+
+            console.log(
+                'Updated:',
+                course
+            );
+
+        }
+
+    });</code></pre>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Delete Course
+            </div>
+
+            <pre><code>this.courseService
+    .deleteCourse(101)
+    .subscribe({
+
+        next: () =&gt; {
+
+            console.log(
+                'Course deleted'
+            );
+
+        }
+
+    });</code></pre>
+
+        </div>
+
+
+        <div class="output-box mt-3">
+
+            <div class="student-preview">
+
+                <h4>
+                    CIIT Training Institute Admin
+                </h4>
+
+                <p>
+                    <strong>Create:</strong>
+                    Add new training course
+                </p>
+
+                <p>
+                    <strong>Read:</strong>
+                    View available courses
+                </p>
+
+                <p>
+                    <strong>Update:</strong>
+                    Modify course details
+                </p>
+
+                <p class="mb-0">
+                    <strong>Delete:</strong>
+                    Remove a course record
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CRUD State -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            CRUD Operation States
+        </h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    L
+                </div>
+
+                <h5>
+                    Loading
+                </h5>
+
+                <p>
+                    Indicates that an API operation is currently running.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    S
+                </div>
+
+                <h5>
+                    Success
+                </h5>
+
+                <p>
+                    The requested CRUD operation completed successfully.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    E
+                </div>
+
+                <h5>
+                    Error
+                </h5>
+
+                <p>
+                    The application handles a failed API operation.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    R
+                </div>
+
+                <h5>
+                    Refresh
+                </h5>
+
+                <p>
+                    The UI can reflect the latest backend data after changes.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CRUD Table -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Complete CRUD Reference
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table syntax-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Operation
+                        </th>
+
+                        <th>
+                            Method
+                        </th>
+
+                        <th>
+                            Example Endpoint
+                        </th>
+
+                        <th>
+                            Angular Method
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            Create
+                        </td>
+
+                        <td>
+                            POST
+                        </td>
+
+                        <td>
+                            /api/courses
+                        </td>
+
+                        <td>
+                            <code>http.post()</code>
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Read All
+                        </td>
+
+                        <td>
+                            GET
+                        </td>
+
+                        <td>
+                            /api/courses
+                        </td>
+
+                        <td>
+                            <code>http.get()</code>
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Read One
+                        </td>
+
+                        <td>
+                            GET
+                        </td>
+
+                        <td>
+                            /api/courses/101
+                        </td>
+
+                        <td>
+                            <code>http.get()</code>
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Update
+                        </td>
+
+                        <td>
+                            PUT
+                        </td>
+
+                        <td>
+                            /api/courses/101
+                        </td>
+
+                        <td>
+                            <code>http.put()</code>
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Delete
+                        </td>
+
+                        <td>
+                            DELETE
+                        </td>
+
+                        <td>
+                            /api/courses/101
+                        </td>
+
+                        <td>
+                            <code>http.delete()</code>
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- Best Practices -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            CRUD Integration Best Practices
+        </h2>
+
+        <ul class="best-practice-list">
+
+            <li>
+                Keep CRUD API calls inside dedicated Angular services.
+            </li>
+
+            <li>
+                Use TypeScript interfaces or types for request and response data.
+            </li>
+
+            <li>
+                Handle loading, success and error states appropriately.
+            </li>
+
+            <li>
+                Update the UI after successful create, update or delete
+                operations.
+            </li>
+
+            <li>
+                Keep API endpoints centralized instead of duplicating URLs.
+            </li>
+
+            <li>
+                Validate user input before sending create or update requests.
+            </li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- Important Points -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Important Points
+        </h2>
+
+        <div class="best-practice-list">
+
+            <div class="info-card mb-3">
+
+                <strong>
+                    1. Create Uses POST
+                </strong>
+
+                <p class="mb-0">
+                    POST is commonly used to send a new resource to the API.
+                </p>
+
+            </div>
+
+
+            <div class="info-card mb-3">
+
+                <strong>
+                    2. Read Uses GET
+                </strong>
+
+                <p class="mb-0">
+                    GET retrieves existing resources from the backend.
+                </p>
+
+            </div>
+
+
+            <div class="info-card mb-3">
+
+                <strong>
+                    3. Update Uses PUT
+                </strong>
+
+                <p class="mb-0">
+                    PUT can send updated information for an existing resource.
+                </p>
+
+            </div>
+
+
+            <div class="info-card">
+
+                <strong>
+                    4. Delete Uses DELETE
+                </strong>
+
+                <p class="mb-0">
+                    DELETE requests remove a resource identified by its API
+                    endpoint.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Summary -->
+    <section class="mb-4">
+
+        <div class="summary-box">
+
+            <h4 class="fw-bold">
+                Summary
+            </h4>
+
+            <p>
+                CRUD represents <strong>Create, Read, Update and Delete</strong>
+                operations commonly required for managing application data.
+            </p>
+
+            <p>
+                Angular can implement CRUD through a service using
+                <strong>HttpClient</strong> and the HTTP methods
+                <strong>POST, GET, PUT and DELETE</strong>.
+            </p>
+
+            <p class="mb-0">
+                A typical flow is
+                <strong>
+                    Angular UI → Component → Service → HttpClient →
+                    REST API → Database
+                </strong>.
+                In the next topic, we will learn how to handle
+                <strong>API Responses</strong> properly.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Navigation -->
+    <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+
+        <a class="btn btn-outline-secondary"
+           href="@Url.Action("ConsumingAPI", "APIIntegration", new { area = "Angular" })">
+
+            ← Consuming API
+
+        </a>
+
+
+        <a class="btn btn-primary"
+           href="@Url.Action("ResponseHandling", "APIIntegration", new { area = "Angular" })">
+
+            Response Handling →
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<style>
+
+    .info-card {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-left: 5px solid #4c1d95;
+        border-radius: 10px;
+        padding: 20px;
+        line-height: 1.7;
+        color: #334155;
+    }
+
+
+    .syntax-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        flex-wrap: wrap;
+        margin: 25px 0;
+    }
+
+
+    .syntax-box {
+        background: linear-gradient( 135deg, #2e1065, #4c1d95 );
+        color: white;
+        padding: 18px 25px;
+        border-radius: 12px;
+        text-align: center;
+        min-width: 180px;
+        box-shadow: 0 5px 15px rgba(76, 29, 149, 0.15);
+    }
+
+
+        .syntax-box strong {
+            display: block;
+            font-size: 16px;
+        }
+
+
+        .syntax-box span {
+            display: block;
+            margin-top: 5px;
+            color: #d8c9f5;
+            font-size: 14px;
+        }
+
+
+    .syntax-arrow {
+        font-size: 28px;
+        font-weight: bold;
+        color: #4c1d95;
+    }
+
+
+    .syntax-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+
+
+    .syntax-card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 22px;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+    }
+
+
+        .syntax-card h5 {
+            margin-top: 15px;
+            font-weight: 700;
+            color: #2e1065;
+        }
+
+
+        .syntax-card p {
+            color: #64748b;
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+
+
+    .syntax-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: #ede9fe;
+        color: #4c1d95;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 18px;
+        margin: 0 auto;
+    }
+
+
+    .code-card {
+        background: #0f172a;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(15, 23, 42, 0.10);
+    }
+
+
+    .code-title {
+        background: #1e293b;
+        color: #ffffff;
+        padding: 12px 18px;
+        font-weight: 700;
+        font-size: 14px;
+    }
+
+
+    .code-card pre {
+        margin: 0;
+        padding: 20px;
+        overflow-x: auto;
+    }
+
+
+    .code-card code {
+        color: #f8fafc;
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+
+    .output-box {
+        background: #f8fafc;
+        border: 1px solid #ddd6fe;
+        border-radius: 12px;
+        padding: 20px;
+    }
+
+
+    .student-preview {
+        background: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        padding: 20px;
+    }
+
+
+        .student-preview h4 {
+            color: #2e1065;
+            font-weight: 700;
+        }
+
+
+        .student-preview p {
+            color: #64748b;
+        }
+
+
+    .syntax-table {
+        width: 100%;
+        margin-bottom: 0;
+        border: 1px solid #e2e8f0;
+    }
+
+
+        .syntax-table thead th {
+            background: #2e1065;
+            color: white;
+            padding: 14px;
+            border-color: #4c1d95;
+        }
+
+
+        .syntax-table tbody td {
+            padding: 14px;
+            vertical-align: middle;
+            color: #334155;
+            border-color: #e2e8f0;
+        }
+
+
+        .syntax-table tbody tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+
+        .syntax-table code {
+            color: #4c1d95;
+            font-weight: 600;
+        }
+
+
+    .best-practice-list {
+        margin: 0;
+        padding-left: 20px;
+    }
+
+
+        .best-practice-list li {
+            margin-bottom: 10px;
+            color: #334155;
+            line-height: 1.6;
+        }
+
+
+    .summary-box {
+        background: #cfe2ff;
+        color: #084298;
+        border-radius: 10px;
+        padding: 22px;
+        border: 1px solid #b6d4fe;
+    }
+
+
+        .summary-box h4 {
+            margin-bottom: 12px;
+        }
+
+
+    @@media (max-width: 991px) {
+
+        .syntax-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .syntax-flow {
+            gap: 12px;
+        }
+
+        .syntax-box {
+            min-width: 160px;
+        }
+    }
+
+
+    @@media (max-width: 576px) {
+
+        .syntax-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .syntax-flow {
+            flex-direction: column;
+        }
+
+        .syntax-arrow {
+            transform: rotate(90deg);
+        }
+
+        .syntax-box {
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .code-card pre {
+            padding: 15px;
+        }
+
+        .code-card code {
+            font-size: 13px;
+        }
+    }
+
+</style>

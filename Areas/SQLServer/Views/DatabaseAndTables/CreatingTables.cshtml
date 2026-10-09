@@ -1,0 +1,493 @@
+﻿@{
+    ViewData["Title"] = "Creating Tables";
+}
+
+<section>
+
+    <!-- PAGE INTRODUCTION -->
+    <div class="mb-5">
+
+        <h1 class="fw-bold mb-3">
+            Creating Tables
+        </h1>
+
+        <p class="lead text-muted">
+            A table is used to store data in rows and columns inside a
+            SQL Server database. In this section, we will learn how to
+            create tables, define columns, select data types and insert
+            records.
+        </p>
+
+    </div>
+
+
+    <!-- WHAT IS A TABLE -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            What is a Table?
+        </h2>
+
+        <p>
+            A table is a database object that stores related information
+            in the form of rows and columns.
+        </p>
+
+        <p>
+            Each column defines a particular type of information, while
+            each row represents one complete record.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL Server
+            </div>
+
+            <pre class="mb-0"><code>Students
+------------------------------------------------
+StudentId | StudentName | Age | Course
+------------------------------------------------
+1         | Rahul       | 22  | Java
+2         | Priya       | 21  | .NET
+3         | Amit        | 23  | Python</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- CREATE TABLE SYNTAX -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            CREATE TABLE Syntax
+        </h2>
+
+        <p>
+            The <strong>CREATE TABLE</strong> statement is used to
+            create a new table.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>CREATE TABLE TableName
+(
+    Column1 DataType,
+    Column2 DataType,
+    Column3 DataType
+);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- SIMPLE TABLE -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Create a Simple Table
+        </h2>
+
+        <p>
+            First select the database in which you want to create
+            the table.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>USE StudentDB;
+
+CREATE TABLE Students
+(
+    StudentId INT,
+    StudentName VARCHAR(100),
+    Age INT,
+    Course VARCHAR(50)
+);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- COLUMN DATA TYPES -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Defining Columns and Data Types
+        </h2>
+
+        <p>
+            Every column should have an appropriate data type according
+            to the kind of data it will store.
+        </p>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>Column</th>
+                        <th>Data Type</th>
+                        <th>Purpose</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>StudentId</td>
+                        <td>INT</td>
+                        <td>Stores student number.</td>
+                    </tr>
+
+                    <tr>
+                        <td>StudentName</td>
+                        <td>VARCHAR(100)</td>
+                        <td>Stores student name.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Age</td>
+                        <td>INT</td>
+                        <td>Stores student's age.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Course</td>
+                        <td>VARCHAR(50)</td>
+                        <td>Stores course name.</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- INSERT DATA -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Insert Data into the Table
+        </h2>
+
+        <p>
+            After creating a table, the <strong>INSERT INTO</strong>
+            statement can be used to add records.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>INSERT INTO Students
+(
+    StudentId,
+    StudentName,
+    Age,
+    Course
+)
+VALUES
+(
+    1,
+    'Rahul',
+    22,
+    'Java'
+);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- INSERT MULTIPLE RECORDS -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Insert Multiple Records
+        </h2>
+
+        <p>
+            Multiple records can also be inserted using a single
+            INSERT statement.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>INSERT INTO Students
+(
+    StudentId,
+    StudentName,
+    Age,
+    Course
+)
+VALUES
+(1, 'Rahul', 22, 'Java'),
+(2, 'Priya', 21, '.NET'),
+(3, 'Amit', 23, 'Python');</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- SELECT DATA -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Display Table Data
+        </h2>
+
+        <p>
+            The <strong>SELECT</strong> statement is used to retrieve
+            records from the table.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT *
+FROM Students;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- OUTPUT -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Output
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>StudentId</th>
+                        <th>StudentName</th>
+                        <th>Age</th>
+                        <th>Course</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>1</td>
+                        <td>Rahul</td>
+                        <td>22</td>
+                        <td>Java</td>
+                    </tr>
+
+                    <tr>
+                        <td>2</td>
+                        <td>Priya</td>
+                        <td>21</td>
+                        <td>.NET</td>
+                    </tr>
+
+                    <tr>
+                        <td>3</td>
+                        <td>Amit</td>
+                        <td>23</td>
+                        <td>Python</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- CREATE TABLE WITH MORE COLUMNS -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Practical Example
+        </h2>
+
+        <p>
+            The following example creates an Employee table with
+            commonly used columns.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>CREATE TABLE Employees
+(
+    EmployeeId INT,
+    EmployeeName VARCHAR(100),
+    Email VARCHAR(150),
+    Age INT,
+    Salary DECIMAL(10,2),
+    JoiningDate DATE
+);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- VERIFY TABLE -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Verify the Table
+        </h2>
+
+        <p>
+            The following query can be used to view the columns and
+            structure of a table.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT *
+FROM INFORMATION_SCHEMA.COLUMNS
+WHERE TABLE_NAME = 'Students';</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- TABLE CREATION FLOW -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Table Creation Flow
+        </h2>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL Server
+            </div>
+
+            <pre class="mb-0"><code>Select Database
+       ↓
+CREATE TABLE
+       ↓
+Define Columns
+       ↓
+Choose Data Types
+       ↓
+Insert Records
+       ↓
+SELECT Data</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- IMPORTANT -->
+    <section class="mb-5">
+
+        <div class="alert alert-warning border-0">
+
+            <h5 class="fw-bold">
+                Important
+            </h5>
+
+            <p class="mb-0">
+                Always choose appropriate data types for columns.
+                A good table structure makes data easier to store,
+                retrieve and maintain.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- SUMMARY -->
+    <section class="mb-4">
+
+        <div class="alert alert-primary border-0">
+
+            <h2 class="fw-bold mb-3">
+                Summary
+            </h2>
+
+            <p class="mb-0">
+                In this section, we learned how to create a table using
+                CREATE TABLE, define columns and data types, insert
+                records and retrieve table data using SELECT.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- PREVIOUS / NEXT -->
+
+    <div class="d-flex justify-content-between align-items-center
+                mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/DatabaseAndTables/CreatingDatabase"
+           class="btn btn-outline-primary">
+
+            ← Previous: Creating a Database
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/DatabaseAndTables/TableStructure"
+           class="btn btn-primary">
+
+            Next: Table Structure →
+
+        </a>
+
+    </div>
+
+</section>

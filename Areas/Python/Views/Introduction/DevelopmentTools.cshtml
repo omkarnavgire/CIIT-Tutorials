@@ -1,0 +1,391 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Python Development Tools";
+}
+
+<main id="tutorials" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- ================================================= -->
+        <!-- LEFT SIDEBAR -->
+        <!-- ================================================= -->
+
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+
+        </aside>
+
+
+        <!-- ================================================= -->
+        <!-- MAIN CONTENT -->
+        <!-- ================================================= -->
+
+        <section class="col-lg-9">
+
+            <div class="card shadow-sm border-0 p-4 p-md-5 mb-4">
+
+                <!-- ================================================= -->
+                <!-- PAGE TITLE -->
+                <!-- ================================================= -->
+
+                <h1 class="h1 fw-bold text-dark mt-1 mb-4">
+                    Development Tools
+                </h1>
+
+                <p class="text-muted mb-4">
+                    Python provides several development tools that make it
+                    easier to write, run, debug, and manage Python programs.
+                    Choosing the right tool depends on your project and
+                    development requirements.
+                </p>
+
+
+                <!-- ================================================= -->
+                <!-- WHAT YOU WILL LEARN -->
+                <!-- ================================================= -->
+
+                <div class="alert alert-info mb-4">
+
+                    <strong>What You Will Learn:</strong>
+
+                    <ul class="mb-0 mt-2">
+
+                        <li>Python IDLE</li>
+
+                        <li>Visual Studio Code</li>
+
+                        <li>PyCharm</li>
+
+                        <li>Jupyter Notebook</li>
+
+                        <li>Command Prompt / Terminal</li>
+
+                    </ul>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- WHAT ARE DEVELOPMENT TOOLS -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    What are Python Development Tools?
+                </h2>
+
+                <p class="text-muted mb-4">
+                    Development tools are software applications or command-line
+                    utilities that help developers create and manage Python
+                    programs. They can provide features such as code editing,
+                    debugging, code completion, project management, and
+                    program execution.
+                </p>
+
+
+                <!-- ================================================= -->
+                <!-- PYTHON IDLE -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    1. Python IDLE
+                </h2>
+
+                <p class="text-muted mb-3">
+                    IDLE stands for
+                    <strong>Integrated Development and Learning Environment</strong>.
+                    It is included with the standard Python installation and
+                    is useful for beginners who are learning Python.
+                </p>
+
+                <p class="text-muted mb-3">
+                    IDLE provides a simple code editor and an interactive
+                    Python shell.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>print("Hello from IDLE")</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- VISUAL STUDIO CODE -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    2. Visual Studio Code
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Visual Studio Code is a lightweight and powerful source
+                    code editor. With the Python extension, it provides
+                    features such as syntax highlighting, code completion,
+                    debugging, and Python environment support.
+                </p>
+
+                <p class="text-muted mb-3">
+                    VS Code is commonly used for Python application
+                    development and real-world projects.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>name = "CIIT"
+
+print("Welcome to", name)</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- PYCHARM -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    3. PyCharm
+                </h2>
+
+                <p class="text-muted mb-3">
+                    PyCharm is an Integrated Development Environment designed
+                    specifically for Python development.
+                </p>
+
+                <p class="text-muted mb-4">
+                    It provides features such as intelligent code completion,
+                    debugging, project management, testing support, and
+                    virtual environment management.
+                </p>
+
+
+                <!-- ================================================= -->
+                <!-- JUPYTER NOTEBOOK -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    4. Jupyter Notebook
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Jupyter Notebook is an interactive environment where you
+                    can write Python code, execute it, and see the output
+                    immediately.
+                </p>
+
+                <p class="text-muted mb-3">
+                    It is especially useful for learning, data analysis,
+                    visualization, and experimentation.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>x = 10
+y = 20
+
+x + y</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- COMMAND PROMPT -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    5. Command Prompt / Terminal
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Python programs can also be executed directly from the
+                    command line. On Windows, you can use Command Prompt or
+                    PowerShell.
+                </p>
+
+                <p class="text-muted mb-3">
+                    To check the installed Python version, use:
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>python --version</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- RUN PYTHON FILE -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Running a Python File
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Suppose you have a Python file named
+                    <strong>hello.py</strong>.
+                    You can run it from the terminal using:
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>python hello.py</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- COMPARISON -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Choosing the Right Tool
+                </h2>
+
+                <div class="table-responsive mb-4">
+
+                    <table class="table table-bordered align-middle">
+
+                        <thead class="table-light">
+
+                            <tr>
+
+                                <th>Tool</th>
+
+                                <th>Best For</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+
+                                <td><strong>IDLE</strong></td>
+
+                                <td>Beginners and basic Python programs</td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td><strong>Visual Studio Code</strong></td>
+
+                                <td>Application development and projects</td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td><strong>PyCharm</strong></td>
+
+                                <td>Professional Python development</td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td><strong>Jupyter Notebook</strong></td>
+
+                                <td>Learning, data analysis and experimentation</td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td><strong>Command Prompt / Terminal</strong></td>
+
+                                <td>Running scripts and Python commands</td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- CIIT LEARNING POINT -->
+                <!-- ================================================= -->
+
+                <div class="alert alert-success mt-4">
+
+                    <h5 class="fw-bold">
+                        CIIT Learning Point
+                    </h5>
+
+                    <p class="mb-0">
+                        Beginners can start with IDLE or Visual Studio Code.
+                        As you work on larger projects, learning how to use
+                        an IDE, terminal, debugger, and Python environments
+                        will become very important.
+                    </p>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- SUMMARY -->
+                <!-- ================================================= -->
+
+                <div class="alert alert-info mt-4 mb-0"
+                     style="background-color:#cfe2ff; border:0; color:#123c73;">
+
+                    <h2 class="h3 fw-bold mt-0 mb-3"
+                        style="color:#123c73;">
+
+                        Summary :
+
+                    </h2>
+
+                    <p class="mb-0"
+                       style="color:#123c73;">
+
+                        Python development tools help developers write,
+                        execute, debug, and manage Python programs.
+                        IDLE, Visual Studio Code, PyCharm, Jupyter Notebook,
+                        and the command line are commonly used tools for
+                        Python development.
+
+                    </p>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- NAVIGATION -->
+                <!-- ================================================= -->
+
+                <div class="d-flex justify-content-between align-items-center mt-5 pt-4 border-top">
+
+                    <a href="@Url.Action("Installation", "Introduction", new { area = "Python" })"
+                       class="btn btn-outline-secondary">
+
+                        ← Previous: Topic
+
+                    </a>
+
+
+                    <a href="@Url.Action("FirstProgram", "Introduction", new { area = "Python" })"
+                       class="btn btn-primary">
+
+                        Next: Topic →
+
+                    </a>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

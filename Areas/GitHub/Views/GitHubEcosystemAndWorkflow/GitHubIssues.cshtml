@@ -1,0 +1,250 @@
+@{
+    Layout = "~/Areas/GitHub/Views/Shared/GithubLayout.cshtml";
+    ViewData["Title"] = "GitHub Issues";
+}
+
+<main id="tutorials" class="container py-1">
+    <div class="row g-4">
+
+        <!-- Sidebar Navigation -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/GitHub/Views/Shared/GithubTopics.cshtml")
+        </aside>
+
+        <!-- Reading Content Area -->
+        <section class="col-lg-9">
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-body p-4 p-lg-5">
+
+                    <h2 class="mb-3">GitHub Issues</h2>
+
+                    <p class="lead">
+                        <strong>GitHub Issues</strong> is a built-in tool for
+                        tracking bugs, requesting features, assigning tasks,
+                        and discussing project updates directly within a
+                        GitHub repository.
+                    </p>
+
+                    <p>
+                        Developers, project managers, and contributors can use
+                        issues to organize work, assign responsibilities, and
+                        track progress throughout the software development
+                        process.
+                    </p>
+
+                    <hr />
+
+                    <h4>1. Core Features of a GitHub Issue</h4>
+
+                    <p>Each issue provides several tools to help teams manage their work.</p>
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped align-middle">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Feature</th>
+                                    <th>Purpose</th>
+                                    <th>Example</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Title and Description</strong></td>
+                                    <td>Describe the problem or task. Markdown supports headings, lists, code, and checklists.</td>
+                                    <td>Fix login validation</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Assignees</strong></td>
+                                    <td>Identify the team members responsible for resolving an issue.</td>
+                                    <td>Assign to a backend developer</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Labels</strong></td>
+                                    <td>Categorize issues so they can be filtered and prioritized.</td>
+                                    <td><code>bug</code>, <code>enhancement</code></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Milestones</strong></td>
+                                    <td>Group issues around a release or project goal.</td>
+                                    <td><code>v1.0.0 Release</code></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="alert alert-info">
+                        <strong>Example:</strong> If a user reports that the login
+                        button is not working, create an issue, add the
+                        <code>bug</code> label, assign a developer, and track
+                        the fix until completion.
+                    </div>
+
+                    <hr />
+
+                    <h4>2. Creating an Issue</h4>
+
+                    <ol>
+                        <li>Open your repository on GitHub.</li>
+                        <li>Select the <strong>Issues</strong> tab.</li>
+                        <li>Click <strong>New issue</strong>.</li>
+                        <li>Enter a clear title and detailed description.</li>
+                        <li>Add labels, assignees, or a milestone if needed.</li>
+                        <li>Click <strong>Create</strong> to submit the issue.</li>
+                    </ol>
+
+                    <p>
+                        A good issue description explains the problem, steps to
+                        reproduce it, expected behavior, actual behavior, and
+                        any relevant error messages.
+                    </p>
+
+                    <hr />
+
+                    <h4>3. Connecting Issues to Branches</h4>
+
+                    <p>
+                        GitHub can connect issues to development branches and
+                        pull requests. When available, use the issue's
+                        <strong>Create a branch</strong> option to create a
+                        branch associated with the task.
+                    </p>
+
+                    <p>For example, a branch for issue number 12 might be named:</p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>12-fix-login-bug</code></pre>
+
+                    <p>
+                        Developers can make changes on this branch and then
+                        open a pull request to review and merge those changes.
+                    </p>
+
+                    <hr />
+
+                    <h4>4. Automatically Closing Issues</h4>
+
+                    <p>
+                        GitHub recognizes special keywords in commit messages
+                        and pull request descriptions. When the associated
+                        change is merged into the repository's default branch,
+                        these keywords can automatically close the issue.
+                    </p>
+
+                    <p>Example commit message:</p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>Fixes #12 - Correct the login button styling</code></pre>
+
+                    <p>Common closing keywords include:</p>
+
+                    <ul>
+                        <li><code>close</code>, <code>closes</code>, <code>closed</code></li>
+                        <li><code>fix</code>, <code>fixes</code>, <code>fixed</code></li>
+                        <li><code>resolve</code>, <code>resolves</code>, <code>resolved</code></li>
+                    </ul>
+
+                    <div class="alert alert-warning">
+                        <strong>Remember:</strong> The closing keyword must
+                        reference the correct issue number. Automatic closure
+                        depends on where and how the commit or pull request
+                        is merged.
+                    </div>
+
+                    <hr />
+
+                    <h4>5. Using Issue Templates</h4>
+
+                    <p>
+                        Issue templates help contributors submit consistent,
+                        useful bug reports and feature requests instead of
+                        vague descriptions.
+                    </p>
+
+                    <p>
+                        Create templates inside the following repository folder:
+                    </p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>.github/ISSUE_TEMPLATE/</code></pre>
+
+                    <p>For example, a bug report template can ask for:</p>
+
+                    <ul>
+                        <li>Bug summary</li>
+                        <li>Steps to reproduce the problem</li>
+                        <li>Expected behavior</li>
+                        <li>Actual behavior</li>
+                        <li>Operating system and browser details</li>
+                        <li>Error messages or logs</li>
+                    </ul>
+
+                    <p>
+                        GitHub supports Markdown issue templates and YAML-based
+                        issue forms, which can collect structured information
+                        from contributors.
+                    </p>
+
+                    <hr />
+
+                    <h4>6. GitHub Issues vs. GitHub Projects</h4>
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered align-middle">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>GitHub Issues</th>
+                                    <th>GitHub Projects</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Tracks individual bugs, tasks, and feature requests.</td>
+                                    <td>Organizes and tracks work across multiple issues and pull requests.</td>
+                                </tr>
+                                <tr>
+                                    <td>Provides descriptions, labels, assignees, and discussions.</td>
+                                    <td>Provides views such as tables, boards, and roadmaps.</td>
+                                </tr>
+                                <tr>
+                                    <td>Best for recording and managing individual work items.</td>
+                                    <td>Best for visualizing progress across a project.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <hr />
+
+                    <h4>7. Best Practices</h4>
+
+                    <ul>
+                        <li>Use clear and descriptive issue titles.</li>
+                        <li>Include steps to reproduce bugs.</li>
+                        <li>Use labels consistently across the team.</li>
+                        <li>Assign an owner when responsibility is clear.</li>
+                        <li>Link related branches and pull requests.</li>
+                        <li>Close completed issues and keep project status updated.</li>
+                    </ul>
+
+                    <div class="alert alert-success mt-4">
+                        <h5 class="alert-heading">Key Takeaway</h5>
+                        GitHub Issues help teams track and discuss work alongside
+                        their source code. Linking issues with branches and pull
+                        requests makes development work easier to organize and review.
+                    </div>
+
+                    <!-- Previous / Next Navigation -->
+                    <div class="d-flex justify-content-between align-items-center gap-3 mt-4 pt-3 border-top">
+                        <a class="btn btn-outline-secondary"
+                           href="@Url.Action("GitHubActions", "GitHubEcosystemAndWorkflow", new { area = "GitHub" })">
+                            &larr; Previous: GitHub Actions
+                        </a>
+
+                        <a class="btn btn-primary"
+                           href="@Url.Action("GitHubPages", "GitHubEcosystemAndWorkflow", new { area = "GitHub" })">  
+                            Next: GitHub Pages  &rarr;
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+</main>

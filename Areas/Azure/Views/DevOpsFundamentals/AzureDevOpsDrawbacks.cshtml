@@ -1,0 +1,39 @@
+@{
+    ViewData["Title"] = "Azure DevOps Drawbacks";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+                <div class="azure-notes-content">
+                    <pre class="azure-notes-text">Azure DevOps Drawbacks
+   •   Cost: The main drawback of Azure DevOps has cost in DevOps you can use open-
+       source tools like Jenkins, and GitHub for free but if you use Azure DevOps after
+       certain usage you will be charged for the usage.
+   •   Complex to Learn: Learning Azure DevOps is not easy as DevOps. You need to read
+       thoroughly the documentation to learn Azure DevOps in depth.
+   •   Complex to Integrate: You can integrate the tools which are not included in Azure
+       DevOps but while configuring you should be very careful you need to check each and
+       every step twice to integrate perfectly.
+   •   Suitable for Large Projects: The projects which are very large it is very easy to deploy
+       those applications then easily when compared to small projects. It will be complex
+       for small projects.</pre>
+                </div>
+            </div>
+        </div>
+    
+
+            @await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureLessonNavigation.cshtml")
+</section>
+</div>
+<style>
+.azure-notes-text{white-space:pre-wrap;word-break:normal;font-family:inherit;font-size:1rem;line-height:1.7;background:#fff;border:0;padding:0;margin:0;color:#212529;}
+.azure-notes-content img{max-height:720px;}
+</style>

@@ -1,0 +1,1657 @@
+﻿@{
+    ViewData["Title"] = "Angular Routing";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- Header -->
+    <section class="mb-4">
+
+        <h1 class="fw-bold text-dark">Angular Routing</h1>
+
+        <p class="lead text-muted">
+            Angular Routing allows an application to display different
+            components based on the current URL. It helps build multi-page-like
+            navigation experiences inside a single-page Angular application.
+        </p>
+
+    </section>
+
+    <!-- What is Routing -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">What is Angular Routing?</h2>
+
+        <p>
+            Angular Routing is the mechanism used to navigate between different
+            views or components in an Angular application.
+        </p>
+
+        <p>
+            Instead of loading a completely new web page for every URL,
+            Angular changes the displayed component while keeping the
+            application running.
+        </p>
+
+        <div class="info-card">
+
+            <h5>Simple Definition</h5>
+
+            <p>
+                Angular Routing connects
+                <strong>URLs with Angular components</strong> and controls
+                which component should be displayed for a particular route.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- Routing Flow -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold mb-3">Angular Routing Flow</h2>
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+
+                <i class="bi bi-link-45deg"></i>
+
+                <strong>URL</strong>
+
+                <span>User navigates</span>
+
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+
+                <i class="bi bi-signpost-2"></i>
+
+                <strong>Router</strong>
+
+                <span>Matches route</span>
+
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+
+                <i class="bi bi-diagram-3"></i>
+
+                <strong>Route</strong>
+
+                <span>Selects component</span>
+
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+
+                <i class="bi bi-display"></i>
+
+                <strong>Component</strong>
+
+                <span>Displays view</span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Main Concepts -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Main Angular Routing Concepts</h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-signpost"></i>
+                </div>
+
+                <h5>Routes</h5>
+
+                <p>
+                    Define the URL path and the component associated with it.
+                </p>
+
+                <code>path: 'courses'</code>
+
+            </div>
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-router"></i>
+                </div>
+
+                <h5>Router</h5>
+
+                <p>
+                    Performs navigation between routes.
+                </p>
+
+                <code>Router</code>
+
+            </div>
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-link-45deg"></i>
+                </div>
+
+                <h5>RouterLink</h5>
+
+                <p>
+                    Creates navigation links inside Angular templates.
+                </p>
+
+                <code>routerLink</code>
+
+            </div>
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-window"></i>
+                </div>
+
+                <h5>RouterOutlet</h5>
+
+                <p>
+                    Displays the component associated with the current route.
+                </p>
+
+                <code>router-outlet</code>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Basic Route -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">1. Basic Route Configuration</h2>
+
+        <p>
+            Angular routes are defined using a route configuration array.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                app.routes.ts
+            </div>
+
+            <pre><code>import &#123; Routes &#125; from '@@angular/router';
+
+export const routes: Routes = [
+
+    &#123;
+        path: 'courses',
+        component: CoursesComponent
+    &#125;
+
+];</code></pre>
+
+        </div>
+
+        <div class="info-card">
+
+            <h5>How it works</h5>
+
+            <p>
+                When the user navigates to the
+                <strong>/courses</strong> URL, Angular can display the
+                <strong>CoursesComponent</strong>.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- Router Outlet -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">2. Router Outlet</h2>
+
+        <p>
+            The <strong>router-outlet</strong> directive acts as a placeholder
+            where Angular renders the component matched by the current route.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                app.component.html
+            </div>
+
+            <pre><code>&lt;nav&gt;
+
+    &lt;a routerLink="/courses"&gt;
+        Courses
+    &lt;/a&gt;
+
+&lt;/nav&gt;
+
+&lt;router-outlet&gt;
+&lt;/router-outlet&gt;</code></pre>
+
+        </div>
+
+        <div class="binding-flow">
+
+            <div class="binding-item">
+
+                <strong>URL</strong>
+
+                <span>
+                    /courses
+                </span>
+
+            </div>
+
+            <div class="binding-arrow">→</div>
+
+            <div class="binding-item">
+
+                <strong>Router</strong>
+
+                <span>
+                    Matches Route
+                </span>
+
+            </div>
+
+            <div class="binding-arrow">→</div>
+
+            <div class="binding-item">
+
+                <strong>RouterOutlet</strong>
+
+                <span>
+                    Displays Component
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- RouterLink -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">3. RouterLink Navigation</h2>
+
+        <p>
+            The <strong>routerLink</strong> directive is commonly used to
+            navigate between routes from an Angular template.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Template
+            </div>
+
+            <pre><code>&lt;a routerLink="/courses"&gt;
+    Courses
+&lt;/a&gt;
+
+&lt;a routerLink="/contact"&gt;
+    Contact
+&lt;/a&gt;</code></pre>
+
+        </div>
+
+        <div class="output-box">
+
+            <strong>Navigation Example:</strong>
+
+            <div class="output-preview">
+
+                <a class="btn btn-primary btn-sm me-2">
+                    Courses
+                </a>
+
+                <a class="btn btn-primary btn-sm">
+                    Contact
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Router -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">4. Programmatic Navigation</h2>
+
+        <p>
+            The Angular <strong>Router</strong> can be used when navigation
+            needs to happen from component code.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Component
+            </div>
+
+            <pre><code>import &#123; Component &#125; from '@@angular/core';
+import &#123; Router &#125; from '@@angular/router';
+
+@@Component(&#123;
+    selector: 'app-dashboard',
+    templateUrl: './dashboard.component.html'
+&#125;)
+export class DashboardComponent &#123;
+
+    constructor(
+        private router: Router
+    ) &#123;
+
+    &#125;
+
+    openCourses(): void &#123;
+
+        this.router.navigate([
+            '/courses'
+        ]);
+
+    &#125;
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Template
+            </div>
+
+            <pre><code>&lt;button
+    class="btn btn-primary"
+    (click)="openCourses()"&gt;
+
+    Open Courses
+
+&lt;/button&gt;</code></pre>
+
+        </div>
+
+        <div class="info-card">
+
+            <h5>Use Case</h5>
+
+            <p>
+                Programmatic navigation is useful when navigation should happen
+                after an operation such as login, form submission, or saving data.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- Route Types -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">5. Common Route Types</h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-house"></i>
+                </div>
+
+                <h5>Root Route</h5>
+
+                <p>
+                    Represents the default application route.
+                </p>
+
+                <code>path: ''</code>
+
+            </div>
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-link"></i>
+                </div>
+
+                <h5>Static Route</h5>
+
+                <p>
+                    Uses a fixed URL path.
+                </p>
+
+                <code>path: 'courses'</code>
+
+            </div>
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-braces"></i>
+                </div>
+
+                <h5>Parameterized Route</h5>
+
+                <p>
+                    Includes a dynamic route parameter.
+                </p>
+
+                <code>path: 'course/:id'</code>
+
+            </div>
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-diagram-3"></i>
+                </div>
+
+                <h5>Child Route</h5>
+
+                <p>
+                    Defines routes inside another route.
+                </p>
+
+                <code>children</code>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Default Route -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">6. Default Route</h2>
+
+        <p>
+            An empty path can be configured as the default route for an
+            application.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                app.routes.ts
+            </div>
+
+            <pre><code>export const routes: Routes = [
+
+    &#123;
+        path: '',
+        component: HomeComponent
+    &#125;
+
+];</code></pre>
+
+        </div>
+
+        <div class="info-card">
+
+            <h5>Meaning</h5>
+
+            <p>
+                When the application is opened without another route path,
+                Angular can display the <strong>HomeComponent</strong>.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- Wildcard Route -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">7. Wildcard Route</h2>
+
+        <p>
+            A wildcard route can be used to handle URLs that do not match
+            any configured route.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                app.routes.ts
+            </div>
+
+            <pre><code>export const routes: Routes = [
+
+    &#123;
+        path: 'courses',
+        component: CoursesComponent
+    &#125;,
+
+    &#123;
+        path: '**',
+        component: NotFoundComponent
+    &#125;
+
+];</code></pre>
+
+        </div>
+
+        <div class="output-box">
+
+            <strong>Example:</strong>
+
+            <div class="output-preview">
+
+                <p class="mb-0">
+                    Unknown URL →
+                    <strong>Not Found Page</strong>
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Route Order -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">8. Route Matching</h2>
+
+        <p>
+            Angular evaluates the configured routes and selects the route that
+            matches the current URL according to the router configuration.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>export const routes: Routes = [
+
+    &#123;
+        path: 'courses',
+        component: CoursesComponent
+    &#125;,
+
+    &#123;
+        path: 'course/:id',
+        component: CourseDetailsComponent
+    &#125;,
+
+    &#123;
+        path: '**',
+        component: NotFoundComponent
+    &#125;
+
+];</code></pre>
+
+        </div>
+
+        <div class="info-card">
+
+            <h5>Important</h5>
+
+            <p>
+                Keep route configuration organized so that specific
+                application routes are defined before a catch-all wildcard
+                route.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- Route Parameters Preview -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">9. Route Parameters Preview</h2>
+
+        <p>
+            Angular routes can contain dynamic parameters when a component
+            needs to display information based on an identifier.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Route
+            </div>
+
+            <pre><code>&#123;
+    path: 'course/:id',
+    component: CourseDetailsComponent
+&#125;</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Example URL
+            </div>
+
+            <pre><code>/course/101</code></pre>
+
+        </div>
+
+        <div class="info-card">
+
+            <h5>What is Next?</h5>
+
+            <p>
+                Route parameters are covered in detail in the
+                <strong>Route Parameters</strong> topic.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- Child Routes Preview -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">10. Child Routes Preview</h2>
+
+        <p>
+            Child routes allow a feature area to contain routes nested under
+            a parent route.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>&#123;
+
+    path: 'courses',
+
+    component: CoursesComponent,
+
+    children: [
+
+        &#123;
+            path: 'details',
+            component: CourseDetailsComponent
+        &#125;
+
+    ]
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="binding-flow">
+
+            <div class="binding-item">
+
+                <strong>Parent Route</strong>
+
+                <span>
+                    /courses
+                </span>
+
+            </div>
+
+            <div class="binding-arrow">→</div>
+
+            <div class="binding-item">
+
+                <strong>Child Route</strong>
+
+                <span>
+                    /details
+                </span>
+
+            </div>
+
+            <div class="binding-arrow">→</div>
+
+            <div class="binding-item">
+
+                <strong>Nested View</strong>
+
+                <span>
+                    Course Details
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Route Guards Preview -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">11. Route Guards Preview</h2>
+
+        <p>
+            Route guards can control whether navigation to a route should be
+            allowed based on application conditions.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>&#123;
+
+    path: 'admin',
+
+    component: AdminComponent,
+
+    canActivate: [
+        authGuard
+    ]
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="info-card">
+
+            <h5>Use Case</h5>
+
+            <p>
+                Route guards are commonly used for protected areas such as
+                dashboards, admin pages, and authenticated features.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- Navigation Concepts -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">12. Navigation Methods</h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-link"></i>
+                </div>
+
+                <h5>routerLink</h5>
+
+                <p>
+                    Navigate directly from an Angular template.
+                </p>
+
+                <code>routerLink="/courses"</code>
+
+            </div>
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-cursor"></i>
+                </div>
+
+                <h5>navigate()</h5>
+
+                <p>
+                    Navigate programmatically using route segments.
+                </p>
+
+                <code>router.navigate()</code>
+
+            </div>
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-link-45deg"></i>
+                </div>
+
+                <h5>navigateByUrl()</h5>
+
+                <p>
+                    Navigate using a URL string.
+                </p>
+
+                <code>navigateByUrl()</code>
+
+            </div>
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-arrow-return-left"></i>
+                </div>
+
+                <h5>Back Navigation</h5>
+
+                <p>
+                    Application logic can navigate back when required.
+                </p>
+
+                <code>Location</code>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Complete Routing Example -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Complete CIIT Training Institute Routing Example</h2>
+
+        <p>
+            Suppose CIIT Training Institute has separate pages for the
+            home page, course list, and course details. Angular Routing can
+            connect these views with clean URLs.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                app.routes.ts
+            </div>
+
+            <pre><code>import &#123; Routes &#125; from '@@angular/router';
+
+export const routes: Routes = [
+
+    &#123;
+        path: '',
+        component: HomeComponent
+    &#125;,
+
+    &#123;
+        path: 'courses',
+        component: CoursesComponent
+    &#125;,
+
+    &#123;
+        path: 'course/:id',
+        component: CourseDetailsComponent
+    &#125;,
+
+    &#123;
+        path: '**',
+        component: NotFoundComponent
+    &#125;
+
+];</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                app.component.html
+            </div>
+
+            <pre><code>&lt;nav&gt;
+
+    &lt;a routerLink="/"&gt;
+        Home
+    &lt;/a&gt;
+
+    &lt;a routerLink="/courses"&gt;
+        Courses
+    &lt;/a&gt;
+
+&lt;/nav&gt;
+
+&lt;router-outlet&gt;
+&lt;/router-outlet&gt;</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                course-details.component.ts
+            </div>
+
+            <pre><code>import &#123;
+    Component,
+    OnInit
+&#125; from '@@angular/core';
+
+import &#123; ActivatedRoute &#125;
+from '@@angular/router';
+
+@@Component(&#123;
+    selector: 'app-course-details',
+    templateUrl:
+        './course-details.component.html'
+&#125;)
+export class CourseDetailsComponent
+    implements OnInit &#123;
+
+    courseId = '';
+
+    constructor(
+        private route: ActivatedRoute
+    ) &#123;
+
+    &#125;
+
+    ngOnInit(): void &#123;
+
+        this.courseId =
+            this.route.snapshot
+                .paramMap
+                .get('id') ?? '';
+
+    &#125;
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="output-box">
+
+            <strong>Example URLs:</strong>
+
+            <div class="student-preview">
+
+                <p>
+                    <strong>Home:</strong>
+                    /
+                </p>
+
+                <p>
+                    <strong>Courses:</strong>
+                    /courses
+                </p>
+
+                <p>
+                    <strong>Course Details:</strong>
+                    /course/101
+                </p>
+
+                <p>
+                    <strong>Example Course:</strong>
+                    Java Full Stack
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Routing Quick Reference -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold mb-3">Angular Routing Quick Reference</h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered syntax-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Concept</th>
+                        <th>Purpose</th>
+                        <th>Example</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            Route
+                        </td>
+
+                        <td>
+                            Maps URL path to component
+                        </td>
+
+                        <td>
+                            <code>path: 'courses'</code>
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            routerLink
+                        </td>
+
+                        <td>
+                            Template navigation
+                        </td>
+
+                        <td>
+                            <code>routerLink="/courses"</code>
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            Router
+                        </td>
+
+                        <td>
+                            Programmatic navigation
+                        </td>
+
+                        <td>
+                            <code>router.navigate()</code>
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            RouterOutlet
+                        </td>
+
+                        <td>
+                            Displays routed component
+                        </td>
+
+                        <td>
+                            <code>&lt;router-outlet&gt;</code>
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            Route Parameter
+                        </td>
+
+                        <td>
+                            Pass dynamic URL information
+                        </td>
+
+                        <td>
+                            <code>:id</code>
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            Child Route
+                        </td>
+
+                        <td>
+                            Create nested routes
+                        </td>
+
+                        <td>
+                            <code>children</code>
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            Route Guard
+                        </td>
+
+                        <td>
+                            Control route access
+                        </td>
+
+                        <td>
+                            <code>canActivate</code>
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+    <!-- Important Points -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Important Points About Angular Routing</h2>
+
+        <ul class="best-practice-list">
+
+            <li>
+                Routes connect URL paths with Angular components.
+            </li>
+
+            <li>
+                <strong>RouterLink</strong> is commonly used for template
+                navigation.
+            </li>
+
+            <li>
+                <strong>Router</strong> can be used for programmatic navigation.
+            </li>
+
+            <li>
+                <strong>RouterOutlet</strong> displays the currently matched
+                component.
+            </li>
+
+            <li>
+                Route parameters allow dynamic information to be represented
+                in a URL.
+            </li>
+
+            <li>
+                Child routes and route guards support larger application
+                navigation structures.
+            </li>
+
+        </ul>
+
+    </section>
+
+    <!-- Best Practices -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Angular Routing Best Practices</h2>
+
+        <ul class="best-practice-list">
+
+            <li>
+                Keep route paths meaningful and easy to understand.
+            </li>
+
+            <li>
+                Use consistent route naming throughout the application.
+            </li>
+
+            <li>
+                Use routerLink for normal template navigation.
+            </li>
+
+            <li>
+                Use programmatic navigation when navigation depends on
+                application logic.
+            </li>
+
+            <li>
+                Organize child routes logically for larger features.
+            </li>
+
+            <li>
+                Use route guards for protected application areas when required.
+            </li>
+
+        </ul>
+
+    </section>
+
+    <!-- Summary -->
+    <section class="summary-box">
+
+        <h3>Summary</h3>
+
+        <p>
+            Angular Routing connects URLs with components and allows users
+            to navigate between different views inside an Angular application.
+        </p>
+
+        <p>
+            Important routing features include
+            <strong>Routes</strong>,
+            <strong>Router</strong>,
+            <strong>RouterLink</strong>,
+            <strong>RouterOutlet</strong>,
+            <strong>Route Parameters</strong>,
+            <strong>Child Routes</strong> and
+            <strong>Route Guards</strong>.
+        </p>
+
+    </section>
+
+    <!-- Navigation -->
+    <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+
+        <a class="btn btn-outline-secondary"
+           href="@Url.Action("Index", "DependencyInjection", new { area = "Angular" })">
+            ← Dependency Injection
+        </a>
+
+        <a class="btn btn-primary"
+           href="@Url.Action("RouteConfiguration", "Routing", new { area = "Angular" })">
+            Route Configuration →
+        </a>
+
+    </div>
+
+</div>
+
+<style>
+
+    .info-card {
+        background: #f8fafc;
+        border-left: 5px solid #4c1d95;
+        padding: 18px 20px;
+        border-radius: 7px;
+        margin-top: 15px;
+    }
+
+        .info-card h5 {
+            color: #4c1d95;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .info-card p {
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+
+    .syntax-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        padding: 25px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+    }
+
+    .syntax-box {
+        width: 175px;
+        min-height: 125px;
+        padding: 18px;
+        text-align: center;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 9px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+        .syntax-box i {
+            display: block;
+            font-size: 28px;
+            color: #4c1d95;
+            margin-bottom: 8px;
+        }
+
+        .syntax-box strong {
+            display: block;
+            color: #2e1065;
+            font-weight: 700;
+        }
+
+        .syntax-box span {
+            display: block;
+            color: #64748b;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+    .syntax-arrow {
+        color: #4c1d95;
+        font-size: 25px;
+        font-weight: 700;
+    }
+
+    .syntax-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+    }
+
+    .syntax-card {
+        padding: 20px;
+        text-align: center;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 9px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    }
+
+    .syntax-icon {
+        width: 55px;
+        height: 55px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 12px;
+        background: #ede9fe;
+        color: #4c1d95;
+        border-radius: 50%;
+        font-size: 24px;
+    }
+
+    .syntax-card h5 {
+        color: #2e1065;
+        font-weight: 700;
+    }
+
+    .syntax-card p {
+        color: #64748b;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .syntax-card code {
+        color: #4c1d95;
+        font-weight: 600;
+    }
+
+    .code-card {
+        margin-top: 15px;
+        margin-bottom: 18px;
+        border-radius: 8px;
+        overflow: hidden;
+        background: #0f172a;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .code-title {
+        background: #1e293b;
+        color: #d8c9f5;
+        padding: 10px 15px;
+        font-weight: 600;
+        border-bottom: 1px solid #334155;
+    }
+
+    .code-card pre {
+        margin: 0;
+        padding: 18px;
+        overflow-x: auto;
+    }
+
+    .code-card code {
+        color: #e2e8f0;
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    .output-box {
+        margin-top: 15px;
+        padding: 18px;
+        background: #f1f5f9;
+        border-left: 5px solid #4c1d95;
+        border-radius: 6px;
+    }
+
+    .output-preview {
+        margin-top: 12px;
+        padding: 18px;
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 7px;
+    }
+
+        .output-preview h3 {
+            color: #2e1065;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .output-preview p {
+            margin-bottom: 7px;
+        }
+
+    .binding-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 20px;
+        padding: 20px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+    }
+
+    .binding-item {
+        min-width: 170px;
+        padding: 15px;
+        text-align: center;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 8px;
+    }
+
+        .binding-item strong {
+            display: block;
+            color: #4c1d95;
+            font-weight: 700;
+        }
+
+        .binding-item span {
+            display: block;
+            color: #64748b;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+    .binding-arrow {
+        color: #4c1d95;
+        font-size: 25px;
+        font-weight: 700;
+    }
+
+    .active-preview {
+        margin-top: 12px;
+        display: inline-block;
+        padding: 12px 20px;
+        background: #ede9fe;
+        border: 2px solid #4c1d95;
+        border-radius: 7px;
+        color: #2e1065;
+        font-weight: 700;
+    }
+
+    .style-preview {
+        margin-top: 12px;
+        font-size: 20px;
+        font-weight: 600;
+        color: #4c1d95;
+    }
+
+    .control-flow-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .control-card {
+        padding: 20px;
+        background: #f8fafc;
+        border: 1px solid #ddd6fe;
+        border-radius: 8px;
+    }
+
+        .control-card h5 {
+            color: #4c1d95;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+    .code-small {
+        background: #0f172a;
+        border-radius: 7px;
+        overflow: hidden;
+    }
+
+        .code-small pre {
+            margin: 0;
+            padding: 15px;
+            overflow-x: auto;
+        }
+
+        .code-small code {
+            color: #e2e8f0;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+    .syntax-table {
+        background: #ffffff;
+    }
+
+        .syntax-table thead th {
+            background: #4c1d95;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .syntax-table td {
+            vertical-align: middle;
+        }
+
+        .syntax-table code {
+            color: #4c1d95;
+            font-weight: 600;
+        }
+
+    .student-preview {
+        margin-top: 12px;
+        padding: 20px;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 8px;
+    }
+
+        .student-preview h3 {
+            color: #2e1065;
+            font-weight: 700;
+        }
+
+    .best-practice-list {
+        padding: 20px 20px 20px 40px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+    }
+
+        .best-practice-list li {
+            margin-bottom: 11px;
+            line-height: 1.6;
+        }
+
+            .best-practice-list li:last-child {
+                margin-bottom: 0;
+            }
+
+    .summary-box {
+        background: #cfe2ff;
+        border-radius: 6px;
+        padding: 18px 22px;
+        margin-top: 20px;
+    }
+
+        .summary-box h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #084298;
+            margin-bottom: 10px;
+        }
+
+        .summary-box p {
+            font-size: 16px !important;
+            line-height: 1.6 !important;
+            color: #084298 !important;
+            margin-bottom: 8px;
+        }
+
+            .summary-box p:last-child {
+                margin-bottom: 0;
+            }
+
+    @@media (max-width: 991px) {
+
+        .syntax-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .control-flow-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @@media (max-width: 576px) {
+
+        .syntax-grid,
+        .control-flow-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .syntax-flow,
+        .binding-flow {
+            flex-direction: column;
+        }
+
+        .syntax-arrow,
+        .binding-arrow {
+            transform: rotate(90deg);
+        }
+
+        .syntax-box {
+            width: 100%;
+            max-width: 280px;
+        }
+
+        .binding-item {
+            width: 100%;
+            max-width: 250px;
+        }
+
+        .code-card code,
+        .code-small code {
+            font-size: 13px;
+        }
+
+        .d-flex.justify-content-between {
+            gap: 10px;
+        }
+
+            .d-flex.justify-content-between .btn {
+                font-size: 13px;
+                padding: 8px 12px;
+            }
+    }
+
+</style>

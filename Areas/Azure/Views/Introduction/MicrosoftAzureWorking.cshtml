@@ -1,0 +1,41 @@
+@{
+    ViewData["Title"] = "Microsoft Azure Working";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+                <h2 class="fw-bold mb-4">Microsoft Azure Working</h2>
+                <div class="azure-notes-content">
+                    <pre class="azure-notes-text">Microsoft Azure Working
+Microsoft Azure is a public and private cloud platform that enables developers and IT
+professionals to build, deploy, and manage applications. It relies on virtualization, where a
+hypervisor abstracts hardware to run multiple virtual machines with different operating
+systems.
+   •   Uses hypervisors to run multiple virtual machines on a single physical server.
+   •   Supports operating systems like Windows and Linux within virtual environments.
+   •   Operates massive data centers with interconnected servers to ensure scalability and
+       performance.
+Microsoft Azure Architecture</pre>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_1_-_Introduction_to_Microsoft_Azure/p02-000.jpg" class="img-fluid rounded shadow-sm" alt="Microsoft Azure Working - source image" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+            @await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureLessonNavigation.cshtml")
+</section>
+</div>
+<style>
+.azure-notes-text{white-space:pre-wrap;word-break:normal;font-family:inherit;font-size:1rem;line-height:1.7;background:#fff;border:0;padding:0;margin:0;color:#212529;}
+.azure-notes-content img{max-height:720px;}
+</style>

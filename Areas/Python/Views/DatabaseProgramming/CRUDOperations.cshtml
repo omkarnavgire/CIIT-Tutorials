@@ -1,0 +1,932 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Python CRUD Operations";
+}
+
+<style>
+
+    #python-crud-operations-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #python-crud-operations-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #python-crud-operations-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #python-crud-operations-page .diagram-box {
+        background: #ffffff;
+        border: 2px solid #6f42c1;
+        border-radius: 10px;
+        padding: 18px;
+        text-align: center;
+        height: 100%;
+    }
+
+        #python-crud-operations-page .diagram-box h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        #python-crud-operations-page .diagram-box p {
+            margin-bottom: 0;
+            font-size: 14px;
+            color: #495057;
+        }
+
+    #python-crud-operations-page .diagram-arrow {
+        text-align: center;
+        font-size: 28px;
+        font-weight: 700;
+        color: #6f42c1;
+        padding: 8px 0;
+    }
+
+    #python-crud-operations-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #python-crud-operations-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+        }
+
+</style>
+
+
+<main id="python-crud-operations-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+
+                <h1 class="fw-bold">
+                    CRUD Operations in Python
+                </h1>
+
+                <p class="lead">
+                    Learn how to create, read, update and delete database
+                    records using Python and SQLite.
+                </p>
+
+            </div>
+
+
+            <!-- WHAT IS CRUD -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    What are CRUD Operations?
+                </h2>
+
+                <p>
+                    CRUD is a common term used for the four basic operations
+                    performed on data in a database.
+                </p>
+
+                <p>
+                    CRUD stands for Create, Read, Update and Delete.
+                </p>
+
+                <div class="alert alert-info">
+
+                    <strong>Simple Definition:</strong>
+
+                    CRUD operations allow a Python application to add,
+                    view, modify and remove database records.
+
+                </div>
+
+            </div>
+
+
+            <!-- BASIC DIAGRAM -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    CRUD Flow
+                </h2>
+
+                <div class="concept-box">
+
+                    <div class="row g-3">
+
+                        <div class="col-md-6">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    Create
+                                </h5>
+
+                                <p>
+                                    Add new records to the database.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-6">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    Read
+                                </h5>
+
+                                <p>
+                                    Retrieve existing records.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-6">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    Update
+                                </h5>
+
+                                <p>
+                                    Modify existing records.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-6">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    Delete
+                                </h5>
+
+                                <p>
+                                    Remove records from the database.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CREATE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    1. Create
+                </h2>
+
+                <p>
+                    The Create operation is used to add new records
+                    to the database.
+                </p>
+
+                <p>
+                    In SQL, the <code>INSERT</code> statement is used
+                    for creating new records.
+                </p>
+
+                <pre><code>import sqlite3
+
+connection = sqlite3.connect("students.db")
+
+cursor = connection.cursor()
+
+cursor.execute(
+    "INSERT INTO students (name, course) VALUES (?, ?)",
+    ("Rahul", "Python")
+)
+
+connection.commit()
+
+connection.close()
+
+print("Student created")</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Student created</code></pre>
+
+            </div>
+
+
+            <!-- READ -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    2. Read
+                </h2>
+
+                <p>
+                    The Read operation is used to retrieve records
+                    from the database.
+                </p>
+
+                <p>
+                    The SQL <code>SELECT</code> statement is used
+                    for reading data.
+                </p>
+
+                <pre><code>import sqlite3
+
+connection = sqlite3.connect("students.db")
+
+cursor = connection.cursor()
+
+cursor.execute("SELECT * FROM students")
+
+students = cursor.fetchall()
+
+for student in students:
+
+    print(student)
+
+connection.close()</code></pre>
+
+                <p class="mt-3">
+                    Example Output:
+                </p>
+
+                <pre><code>(1, 'Rahul', 'Python')
+(2, 'Priya', '.NET')</code></pre>
+
+            </div>
+
+
+            <!-- READ ONE RECORD -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Reading One Record
+                </h2>
+
+                <p>
+                    The <code>fetchone()</code> method can be used to
+                    retrieve one record.
+                </p>
+
+                <pre><code>cursor.execute(
+    "SELECT * FROM students WHERE id = ?",
+    (1,)
+)
+
+student = cursor.fetchone()
+
+print(student)</code></pre>
+
+                <p class="mt-3">
+                    Example Output:
+                </p>
+
+                <pre><code>(1, 'Rahul', 'Python')</code></pre>
+
+            </div>
+
+
+            <!-- UPDATE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    3. Update
+                </h2>
+
+                <p>
+                    The Update operation is used to modify existing
+                    records in the database.
+                </p>
+
+                <p>
+                    The SQL <code>UPDATE</code> statement is used
+                    for changing data.
+                </p>
+
+                <pre><code>import sqlite3
+
+connection = sqlite3.connect("students.db")
+
+cursor = connection.cursor()
+
+cursor.execute(
+    "UPDATE students SET course = ? WHERE id = ?",
+    ("Python Full Stack", 1)
+)
+
+connection.commit()
+
+connection.close()
+
+print("Student updated")</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Student updated</code></pre>
+
+            </div>
+
+
+            <!-- DELETE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    4. Delete
+                </h2>
+
+                <p>
+                    The Delete operation is used to remove a record
+                    from the database.
+                </p>
+
+                <p>
+                    The SQL <code>DELETE</code> statement is used
+                    for deleting data.
+                </p>
+
+                <pre><code>import sqlite3
+
+connection = sqlite3.connect("students.db")
+
+cursor = connection.cursor()
+
+cursor.execute(
+    "DELETE FROM students WHERE id = ?",
+    (1,)
+)
+
+connection.commit()
+
+connection.close()
+
+print("Student deleted")</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Student deleted</code></pre>
+
+            </div>
+
+
+            <!-- CREATE TABLE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Creating a Table for CRUD
+                </h2>
+
+                <p>
+                    Before performing CRUD operations, a table must exist.
+                </p>
+
+                <pre><code>import sqlite3
+
+connection = sqlite3.connect("students.db")
+
+cursor = connection.cursor()
+
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS students
+(
+    id INTEGER PRIMARY KEY,
+    name TEXT,
+    course TEXT
+)
+""")
+
+connection.commit()
+
+connection.close()
+
+print("Table ready")</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Table ready</code></pre>
+
+            </div>
+
+
+            <!-- PARAMETERIZED QUERIES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Parameterized Queries in CRUD
+                </h2>
+
+                <p>
+                    Parameterized queries allow values to be passed separately
+                    from the SQL statement.
+                </p>
+
+                <pre><code>name = "Amit"
+course = "Java"
+
+cursor.execute(
+    "INSERT INTO students (name, course) VALUES (?, ?)",
+    (name, course)
+)
+
+connection.commit()</code></pre>
+
+                <p>
+                    Parameterized queries are preferred when working with
+                    user-provided values.
+                </p>
+
+            </div>
+
+
+            <!-- CRUD WITH USER INPUT -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    CRUD with User Input
+                </h2>
+
+                <pre><code>import sqlite3
+
+connection = sqlite3.connect("students.db")
+
+cursor = connection.cursor()
+
+name = input("Enter student name: ")
+course = input("Enter course: ")
+
+cursor.execute(
+    "INSERT INTO students (name, course) VALUES (?, ?)",
+    (name, course)
+)
+
+connection.commit()
+
+print("Student added successfully")
+
+connection.close()</code></pre>
+
+                <p class="mt-3">
+                    Example Output:
+                </p>
+
+                <pre><code>Enter student name: Pridnya
+Enter course: Python
+Student added successfully</code></pre>
+
+            </div>
+
+
+            <!-- PRACTICAL CRUD -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    CRUD Example 👀📩
+                </h2>
+
+                <p>
+                    The following example performs Create, Read, Update
+                    and Delete operations on a students table.
+                </p>
+
+                <pre><code>import sqlite3
+
+connection = sqlite3.connect("college.db")
+
+cursor = connection.cursor()
+
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS students
+(
+    id INTEGER PRIMARY KEY,
+    name TEXT,
+    course TEXT
+)
+""")
+
+cursor.execute(
+    "INSERT INTO students (name, course) VALUES (?, ?)",
+    ("Samiksha", "Python")
+)
+
+connection.commit()
+
+cursor.execute("SELECT * FROM students")
+
+students = cursor.fetchall()
+
+for student in students:
+
+    print(student)
+
+cursor.execute(
+    "UPDATE students SET course = ? WHERE name = ?",
+    ("Python Full Stack", "Samiksha")
+)
+
+connection.commit()
+
+cursor.execute(
+    "DELETE FROM students WHERE name = ?",
+    ("Samiksha",)
+)
+
+connection.commit()
+
+connection.close()
+
+print("CRUD operations completed")</code></pre>
+
+                <p class="mt-3">
+                    Example Output:
+                </p>
+
+                <pre><code>(1, 'Samiksha', 'Python')
+CRUD operations completed</code></pre>
+
+            </div>
+
+
+            <!-- CRUD METHODS -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    CRUD and SQL Statements
+                </h2>
+
+                <div class="row g-3">
+
+                    <div class="col-md-3">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Create
+                            </h5>
+
+                            <p class="mb-0">
+                                SQL: <code>INSERT</code>
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-3">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Read
+                            </h5>
+
+                            <p class="mb-0">
+                                SQL: <code>SELECT</code>
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-3">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Update
+                            </h5>
+
+                            <p class="mb-0">
+                                SQL: <code>UPDATE</code>
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-3">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Delete
+                            </h5>
+
+                            <p class="mb-0">
+                                SQL: <code>DELETE</code>
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ADVANTAGES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Advantages of CRUD Operations
+                </h2>
+
+                <div class="row g-3">
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Complete Data Management
+                            </h5>
+
+                            <p class="mb-0">
+                                CRUD provides the basic operations needed
+                                to manage database records.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Application Development
+                            </h5>
+
+                            <p class="mb-0">
+                                CRUD is commonly used in application
+                                database functionality.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Easy to Understand
+                            </h5>
+
+                            <p class="mb-0">
+                                The four operations provide a simple
+                                structure for data management.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- BEST PRACTICES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Best Practices
+                </h2>
+
+                <div class="row g-3">
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Use Parameters
+                            </h5>
+
+                            <p class="mb-0">
+                                Use parameterized queries for values.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Commit Changes
+                            </h5>
+
+                            <p class="mb-0">
+                                Commit changes after INSERT, UPDATE
+                                and DELETE operations.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Close Connection
+                            </h5>
+
+                            <p class="mb-0">
+                                Close the database connection after use.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- COMMON MISTAKES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Common Mistakes
+                </h2>
+
+                <ul>
+
+                    <li>
+                        Forgetting to call <code>commit()</code>.
+                    </li>
+
+                    <li>
+                        Using the wrong SQL statement.
+                    </li>
+
+                    <li>
+                        Forgetting to close the database connection.
+                    </li>
+
+                    <li>
+                        Not using parameterized queries.
+                    </li>
+
+                    <li>
+                        Updating or deleting records without a proper condition.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Practice Programs
+                </h2>
+
+                <ol>
+
+                    <li>
+                        Create a students table.
+                    </li>
+
+                    <li>
+                        Insert five student records.
+                    </li>
+
+                    <li>
+                        Display all student records.
+                    </li>
+
+                    <li>
+                        Update the course of one student.
+                    </li>
+
+                    <li>
+                        Delete one student record.
+                    </li>
+
+                    <li>
+                        Create a simple CRUD program using user input.
+                    </li>
+
+                </ol>
+
+            </div>
+
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+
+                <h2 class="h4 fw-bold">
+                    Summary
+                </h2>
+
+                <p class="mb-0">
+
+                    CRUD stands for Create, Read, Update and Delete.
+                    These four operations provide the basic functionality
+                    required to manage records in a database. In Python,
+                    CRUD operations can be performed using SQLite and the
+                    <code>sqlite3</code> module together with SQL statements
+                    such as <code>INSERT</code>, <code>SELECT</code>,
+                    <code>UPDATE</code> and <code>DELETE</code>.
+
+                </p>
+
+            </div>
+
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+
+                <a class="btn btn-outline-secondary"
+                   href="@Url.Action("DatabaseConnectivity", "DatabaseProgramming", new { area = "Python" })">
+
+                    ← Previous: Topic
+
+                </a>
+
+
+                <a class="btn btn-primary"
+                   href="@Url.Action("SQLWithPython", "DatabaseProgramming", new { area = "Python" })">
+
+                    Next: Topic →
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

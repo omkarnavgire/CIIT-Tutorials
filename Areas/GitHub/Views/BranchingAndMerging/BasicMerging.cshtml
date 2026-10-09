@@ -1,0 +1,202 @@
+@{
+    Layout = "~/Areas/GitHub/Views/Shared/GithubLayout.cshtml";
+    ViewData["Title"] = "Basic Merging";
+}
+
+<main id="tutorials" class="container py-1">
+    <div class="row g-4">
+
+        <!-- Sidebar Navigation -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/GitHub/Views/Shared/GithubTopics.cshtml")
+        </aside>
+
+        <!-- Reading Content Area -->
+        <section class="col-lg-9">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4 p-lg-5">
+
+                    <h1 class="fw-bold mb-3">Basic Merging</h1>
+
+                    <p>
+                        <strong>Basic merging</strong> combines the history and
+                        changes from one Git branch into another. Before you run
+                        a merge command, always remember the golden rule of Git
+                        merging:
+                        <strong>Move to the branch that you want to receive the changes.</strong>
+                    </p>
+
+                    <p class="text-muted">
+                        Here is the step-by-step workflow for a basic merge.
+                    </p>
+
+                    <hr class="my-4" />
+
+                    <!-- Standard Merge Workflow -->
+                    <h3 class="fw-bold mb-3">The Standard Merge Workflow</h3>
+
+                    <p>
+                        Assume you want to merge a feature branch named
+                        <code>feature-login</code> into your
+                        <code>main</code> branch.
+                    </p>
+
+                    <h5 class="fw-semibold mt-4">1. Switch to the Receiving Branch</h5>
+
+                    <p>
+                        Move to the branch you want to update, usually
+                        <code>main</code> or <code>master</code>.
+                    </p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git switch main</code></pre>
+
+                    <h5 class="fw-semibold mt-4">2. Pull the Latest Updates</h5>
+
+                    <p>
+                        Update your local branch with the latest changes
+                        from the remote repository before merging.
+                    </p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git pull origin main</code></pre>
+
+                    <div class="alert alert-info">
+                        <strong>Note:</strong>
+                        Make sure your local changes are committed or safely
+                        stored before pulling updates.
+                    </div>
+
+                    <h5 class="fw-semibold mt-4">3. Merge the Target Branch</h5>
+
+                    <p>
+                        Bring the changes from
+                        <code>feature-login</code> into your currently
+                        active <code>main</code> branch.
+                    </p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git merge feature-login</code></pre>
+
+                    <h5 class="fw-semibold mt-4">4. Push the Merged Changes</h5>
+
+                    <p>
+                        Upload the merged changes to the remote repository.
+                    </p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git push origin main</code></pre>
+
+                    <hr class="my-4" />
+
+                    <!-- Types of Merges -->
+                    <h3 class="fw-bold mb-3">The Two Types of Merges</h3>
+
+                    <p>
+                        When you run <code>git merge</code>, Git determines
+                        how to combine the branches based on their commit history.
+                    </p>
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped align-middle">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Merge Type</th>
+                                    <th>What It Means</th>
+                                    <th>What Happens</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <strong>Fast-Forward</strong>
+                                    </td>
+                                    <td>
+                                        The receiving branch has no new
+                                        commits since the feature branch
+                                        was created.
+                                    </td>
+                                    <td>
+                                        Git moves the receiving branch
+                                        pointer forward. No new merge
+                                        commit is created.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Three-Way Merge</strong>
+                                    </td>
+                                    <td>
+                                        Both branches have independent
+                                        commits after they diverged.
+                                    </td>
+                                    <td>
+                                        Git combines the histories using
+                                        their common ancestor. A merge
+                                        commit is normally created when
+                                        the merge succeeds and is not
+                                        fast-forwarded.
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <hr class="my-4" />
+
+                    <!-- Cleanup -->
+                    <h3 class="fw-bold mb-3">Cleaning Up After the Merge</h3>
+
+                    <p>
+                        After the feature has been successfully merged and
+                        pushed, delete the old feature branch if it is no
+                        longer needed.
+                    </p>
+
+                    <h5 class="fw-semibold mt-4">1. Delete the Local Branch</h5>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git branch -d feature-login</code></pre>
+
+                    <p>
+                        Deletes the local feature branch after Git confirms
+                        its changes have been merged appropriately.
+                    </p>
+
+                    <h5 class="fw-semibold mt-4">2. Delete the Remote Branch</h5>
+
+                    <p>
+                        If the feature branch was pushed to GitHub, you can
+                        also delete it from the remote repository.
+                    </p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git push origin --delete feature-login</code></pre>
+
+                    <div class="alert alert-warning mt-4">
+                        <strong>Important:</strong>
+                        Confirm that the feature changes are merged and
+                        pushed successfully before deleting the branch.
+                    </div>
+
+                    <div class="alert alert-success mt-4">
+                        <strong>Key Takeaway:</strong>
+                        Switch to the receiving branch, update it if needed,
+                        merge the feature branch, push the result, and clean
+                        up branches that are no longer required.
+                    </div>
+
+                    <!-- Previous / Next Navigation -->
+                    <div class="d-flex justify-content-between align-items-center gap-3 flex-wrap mt-5 pt-4 border-top">
+
+                        <a class="btn btn-outline-primary"
+                           href='@Url.Action("SwitchingContexts", "BranchingAndMerging", new { area = "GitHub" })'>
+                            &larr; Previous: Switching Context
+                        </a>
+
+                        <a class="btn btn-primary"
+                           href='@Url.Action("ResolvingMergeConflicts", "BranchingAndMerging", new { area = "GitHub" })'>
+                            Next: Resolving Merge Conflicts &rarr;
+                        </a>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+</main>

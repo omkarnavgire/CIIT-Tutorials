@@ -1,0 +1,182 @@
+@{
+    ViewData["Title"] = "What is Microsoft Entra ID";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+
+                <h1>What is Microsoft Entra ID?</h1>
+
+                <p>
+                    Microsoft Entra ID is Microsoft’s cloud-based identity and access
+                    management (IAM) service. If you have ever logged into Microsoft 365,
+                    Azure, or Dynamics 365 for work or school, you are already using it.
+                </p>
+
+                <p>
+                    It acts as the digital gatekeeper for an organization, making sure
+                    the right people (and devices) get access to the right resources
+                    while keeping hackers out.
+                </p>
+
+                <div class="alert alert-info mt-4">
+                    <h4 class="alert-heading">💡 The Big Rebrand</h4>
+
+                    <p class="mb-0">
+                        If you have heard of <b>Azure Active Directory (Azure AD)</b>,
+                        you already know what Entra ID is. Microsoft officially
+                        rebranded Azure AD to <b>Microsoft Entra ID</b> to group it
+                        under their broader "Entra" security product family.
+                        The core technology stayed the same; only the name changed.
+                    </p>
+                </div>
+
+                <div class="text-center my-4">
+                    <img src="https://cdn-dynmedia-1.microsoft.com/is/image/microsoftcorp/126400-hero-video-thumbnail?resMode=sharp2&op_usm=1.5,0.65,15,0&wid=2000&hei=1125&qlt=100&fit=constrain"
+                         alt="Microsoft Entra ID"
+                         class="img-fluid rounded shadow-sm"
+                         style="max-width:100%;height:auto;" />
+                </div>
+
+
+                <h2 class="mt-5">Core Features &amp; Capabilities</h2>
+
+                <p>
+                    Microsoft Entra ID does a lot more than just store usernames and
+                    passwords. Its main jobs include:
+                </p>
+
+                <ul>
+
+                    <li class="mb-3">
+                        <b>Single Sign-On (SSO):</b>
+                        Users log in just once with their "work or school account"
+                        to access thousands of different cloud apps (like Slack,
+                        Zoom, and Microsoft 365) without constantly re-entering
+                        passwords.
+                    </li>
+
+                    <li class="mb-3">
+                        <b>Multi-Factor Authentication (MFA):</b>
+                        Adds extra layers of security by prompting users for a
+                        fingerprint, phone notification, or code alongside their
+                        password.
+                    </li>
+
+                    <li class="mb-3">
+                        <b>Conditional Access Policies:</b>
+                        Allows IT admins to create smart security rules.
+                        For example: "Allow access to financial data only if the
+                        employee is logging in from a company-owned laptop and is
+                        located inside the home country."
+                    </li>
+
+                    <li class="mb-3">
+                        <b>Identity Governance:</b>
+                        Automatically manages the user lifecycle. It creates accounts
+                        when employees are hired, updates permissions if they change
+                        roles, and revokes access instantly when they leave the company.
+                    </li>
+
+                </ul>
+
+
+                <h2 class="mt-5">
+                    Microsoft Entra ID vs. Traditional Active Directory (AD)
+                </h2>
+
+                <p>
+                    They sound almost identical, but they are built for entirely
+                    different eras of tech:
+                </p>
+
+                <div class="table-responsive my-4">
+                    <table class="table table-bordered align-middle">
+
+                        <thead class="table-light">
+                            <tr>
+                                <th>Feature</th>
+                                <th>On-Premises Active Directory (AD)</th>
+                                <th>Microsoft Entra ID</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td><b>Environment</b></td>
+                                <td>
+                                    Built for local networks (on-premise servers).
+                                </td>
+                                <td>
+                                    Built natively for the cloud.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td><b>Primary Focus</b></td>
+                                <td>
+                                    Managing physical desktops, local file shares,
+                                    and office printers.
+                                </td>
+                                <td>
+                                    Managing access to SaaS applications, web portals,
+                                    and cloud resources.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td><b>Protocols Used</b></td>
+                                <td>
+                                    Traditional network protocols like Kerberos and LDAP.
+                                </td>
+                                <td>
+                                    Modern web protocols like SAML, OpenID Connect,
+                                    and OAuth.
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+                </div>
+
+
+                <p>
+                    Many businesses use a hybrid environment, employing a tool called
+                    <b>Entra Connect</b> to sync their traditional, on-premise AD with
+                    Microsoft Entra ID in the cloud.
+                </p>
+
+
+                <div style="min-height:80px;"></div>
+
+                <div class="mt-4 d-flex justify-content-between align-items-center">
+
+                    <a class="btn btn-outline-primary fw-semibold"
+                       href="@Url.Action("FirstAzureResource", "Introduction", new { area = "Azure" })">
+                        ← Previous
+                    </a>
+
+                    <a class="btn btn-primary fw-semibold"
+                       href="@Url.Action("MicrosoftEntraIDFundamentals", "IdentityGovernance", new { area = "Azure" })">
+                        Next →
+                    </a>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</div>

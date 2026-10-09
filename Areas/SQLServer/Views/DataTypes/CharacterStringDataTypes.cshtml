@@ -1,0 +1,580 @@
+﻿@{
+    ViewData["Title"] = "Character & String Data Types";
+}
+
+<section>
+
+    <!-- =====================================================
+         PAGE INTRODUCTION
+         ===================================================== -->
+
+    <div class="mb-5">
+
+        <h1 class="fw-bold mb-3">
+            Character & String Data Types
+        </h1>
+
+        <p class="lead text-muted">
+            SQL Server provides character and string data types to store
+            text, names, addresses, descriptions, codes and other
+            character-based information.
+        </p>
+
+    </div>
+
+
+    <!-- =====================================================
+         WHAT ARE CHARACTER & STRING DATA TYPES?
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h3 class="fw-bold mb-3">
+            What are Character & String Data Types?
+        </h3>
+
+        <p>
+            Character and string data types are used to store text values
+            in SQL Server. These values can contain letters, numbers,
+            spaces and special characters.
+        </p>
+
+        <p>
+            SQL Server provides different string data types depending on
+            the maximum length of the text and whether Unicode characters
+            are required.
+        </p>
+
+    </section>
+
+
+    <!-- =====================================================
+         COMMON STRING DATA TYPES
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h3 class="fw-bold mb-3">
+            Common Character & String Data Types
+        </h3>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped align-middle">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>Data Type</th>
+                        <th>Description</th>
+                        <th>Example</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            <strong>CHAR(n)</strong>
+                        </td>
+
+                        <td>
+                            Stores fixed-length non-Unicode character data.
+                        </td>
+
+                        <td>
+                            CHAR(10)
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            <strong>VARCHAR(n)</strong>
+                        </td>
+
+                        <td>
+                            Stores variable-length non-Unicode character data.
+                        </td>
+
+                        <td>
+                            VARCHAR(100)
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            <strong>VARCHAR(MAX)</strong>
+                        </td>
+
+                        <td>
+                            Stores variable-length character data with
+                            very large size.
+                        </td>
+
+                        <td>
+                            VARCHAR(MAX)
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            <strong>NCHAR(n)</strong>
+                        </td>
+
+                        <td>
+                            Stores fixed-length Unicode character data.
+                        </td>
+
+                        <td>
+                            NCHAR(10)
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            <strong>NVARCHAR(n)</strong>
+                        </td>
+
+                        <td>
+                            Stores variable-length Unicode character data.
+                        </td>
+
+                        <td>
+                            NVARCHAR(100)
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            <strong>NVARCHAR(MAX)</strong>
+                        </td>
+
+                        <td>
+                            Stores large variable-length Unicode text.
+                        </td>
+
+                        <td>
+                            NVARCHAR(MAX)
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         CHAR
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h3 class="fw-bold mb-3">
+            CHAR
+        </h3>
+
+        <p>
+            The <strong>CHAR</strong> data type is used to store
+            fixed-length character data.
+        </p>
+
+        <p>
+            If the defined length is 10 characters, SQL Server allocates
+            space for 10 characters even when the stored value is shorter.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>CREATE TABLE Employees
+(
+    EmployeeCode CHAR(10),
+    EmployeeName VARCHAR(100)
+);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         VARCHAR
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h3 class="fw-bold mb-3">
+            VARCHAR
+        </h3>
+
+        <p>
+            The <strong>VARCHAR</strong> data type stores variable-length
+            non-Unicode character data.
+        </p>
+
+        <p>
+            It is commonly used for names, email addresses, cities,
+            addresses and other normal text values.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>CREATE TABLE Students
+(
+    StudentId INT,
+    StudentName VARCHAR(100),
+    City VARCHAR(50),
+    Email VARCHAR(150)
+);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         NCHAR & NVARCHAR
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h3 class="fw-bold mb-3">
+            NCHAR and NVARCHAR
+        </h3>
+
+        <p>
+            <strong>NCHAR</strong> and <strong>NVARCHAR</strong> are used
+            to store Unicode character data.
+        </p>
+
+        <p>
+            They are useful when applications need to store text from
+            multiple languages and character sets.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>CREATE TABLE Customers
+(
+    CustomerId INT,
+    CustomerName NVARCHAR(100),
+    Address NVARCHAR(250)
+);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         CHAR VS VARCHAR
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h3 class="fw-bold mb-3">
+            CHAR vs VARCHAR
+        </h3>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>CHAR</th>
+                        <th>VARCHAR</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            Fixed-length data
+                        </td>
+
+                        <td>
+                            Variable-length data
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            Suitable when values have a fixed size
+                        </td>
+
+                        <td>
+                            Suitable when values have different lengths
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            Example: Country Code
+                        </td>
+
+                        <td>
+                            Example: Student Name
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         NVARCHAR EXAMPLE
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h3 class="fw-bold mb-3">
+            Example: Using String Data Types
+        </h3>
+
+        <p>
+            The following example creates a Students table using
+            different character and string data types.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>CREATE TABLE Students
+(
+    StudentId INT,
+    StudentName VARCHAR(100),
+    Gender CHAR(1),
+    City VARCHAR(50),
+    Address NVARCHAR(250)
+);</code></pre>
+
+        </div>
+
+        <p>
+            Here, different string data types are selected according to
+            the type of text and storage requirement.
+        </p>
+
+    </section>
+
+
+    <!-- =====================================================
+         INSERT EXAMPLE
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h3 class="fw-bold mb-3">
+            Insert String Values
+        </h3>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>INSERT INTO Students
+(
+    StudentId,
+    StudentName,
+    Gender,
+    City,
+    Address
+)
+VALUES
+(
+    1,
+    'Rahul',
+    'M',
+    'Pune',
+    N'Pune, Maharashtra'
+);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         OUTPUT
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h3 class="fw-bold mb-3">
+            Output
+        </h3>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL Output
+            </div>
+
+            <pre class="mb-0"><code>StudentId    StudentName    Gender    City    Address
+-------------------------------------------------------
+1            Rahul          M         Pune    Pune, Maharashtra</code></pre>
+
+        </div>
+
+        <p>
+            The output shows how SQL Server stores character and string
+            values in the respective columns.
+        </p>
+
+    </section>
+
+
+    <!-- =====================================================
+         CHOOSING CORRECT STRING DATA TYPE
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h3 class="fw-bold mb-3">
+            Choosing the Correct String Data Type
+        </h3>
+
+        <p>
+            Select the string data type according to the length,
+            structure and character requirements of the data.
+        </p>
+
+        <ul>
+
+            <li class="mb-2">
+                Use <strong>CHAR</strong> for fixed-length values.
+            </li>
+
+            <li class="mb-2">
+                Use <strong>VARCHAR</strong> for variable-length
+                non-Unicode text.
+            </li>
+
+            <li class="mb-2">
+                Use <strong>NCHAR</strong> for fixed-length Unicode text.
+            </li>
+
+            <li class="mb-2">
+                Use <strong>NVARCHAR</strong> for variable-length
+                Unicode text.
+            </li>
+
+            <li class="mb-2">
+                Use <strong>VARCHAR(MAX)</strong> or
+                <strong>NVARCHAR(MAX)</strong> when very large text
+                needs to be stored.
+            </li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- =====================================================
+         SUMMARY
+         ===================================================== -->
+
+    <section class="mb-4">
+
+        <div class="alert alert-primary border-0">
+
+            <h5 class="fw-bold">
+                Summary
+            </h5>
+
+            <p class="mb-0">
+                In this section, we learned about character and string
+                data types in SQL Server, including CHAR, VARCHAR,
+                VARCHAR(MAX), NCHAR, NVARCHAR and NVARCHAR(MAX).
+                We also learned the difference between fixed-length,
+                variable-length and Unicode string data types.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         PREVIOUS / NEXT
+         ===================================================== -->
+
+    <div class="d-flex justify-content-between align-items-center
+                mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="@Url.Action(
+                    "NumericDataTypes",
+                    "DataTypes",
+                    new { area = "SQLServer" })"
+           class="btn btn-outline-primary">
+
+            ← Previous: Numeric Data Types
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="@Url.Action(
+                    "DateTimeDataTypes",
+                    "DataTypes",
+                    new { area = "SQLServer" })"
+           class="btn btn-primary">
+
+            Next: Date & Time Data Types →
+
+        </a>
+
+    </div>
+
+</section>

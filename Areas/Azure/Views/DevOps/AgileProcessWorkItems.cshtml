@@ -1,0 +1,78 @@
+@{
+    ViewData["Title"] = "Step 4: Overview of work item types available in the Agile process";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+                <div class="azure-notes-content">
+                    <pre class="azure-notes-text">Step 4: Overview of work item types available in the Agile process
+
+    •   Below is the list of work item types available in the Agile process
+
+            o   Bug : Bug is something that is missed or implemented in the wrong way.
+
+            o   Epic : Epic is something that represents the business initiative to be accomplished.
+
+            o   Feature : A feature typically represents a shippable component of the software.
+                Suppose we have an application working fine on the server and we want to improve
+                its user experience (epic) so things required to improve the user experience comes
+                under (feature).
+
+            o   Issue: Any custom type (to implement something not listed under the given work
+                item)
+
+            o   Task: Task is the smallest unit of work. We can create multiple tasks under one User
+                story or Bug.
+
+            o   Test Case: It is used when we want to write the test case for a particular feature.
+
+            o   User story: User story is the implementation of new work.
+•   Work items relationship in Agile process:
+
+        o   On the top we have Epic, we can create multiple features under one epic.
+
+        o   Under each feature, we can create multiple user stories.
+
+        o   Under each User Story, we can create multiple tasks.
+
+        o   Under each Bug, we can create multiple tasks.
+
+        o   The issue is something that is very independent.
+
+
+
+
+•   The Test plan is something that is used by the QA and these test plans are used to write
+    proper test steps on a particular feature.</pre>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_9_-_Microsoft_Azure_-_Create_Project_in_Azure_Devops_using_Basic_Process/p12-000.jpg" class="img-fluid rounded shadow-sm" alt="Step 4: Overview of work item types available in the Agile process - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_9_-_Microsoft_Azure_-_Create_Project_in_Azure_Devops_using_Basic_Process/p13-000.jpg" class="img-fluid rounded shadow-sm" alt="Step 4: Overview of work item types available in the Agile process - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_9_-_Microsoft_Azure_-_Create_Project_in_Azure_Devops_using_Basic_Process/p13-001.jpg" class="img-fluid rounded shadow-sm" alt="Step 4: Overview of work item types available in the Agile process - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_9_-_Microsoft_Azure_-_Create_Project_in_Azure_Devops_using_Basic_Process/p14-000.jpg" class="img-fluid rounded shadow-sm" alt="Step 4: Overview of work item types available in the Agile process - source image" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+            @await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureLessonNavigation.cshtml")
+</section>
+</div>
+<style>
+.azure-notes-text{white-space:pre-wrap;word-break:normal;font-family:inherit;font-size:1rem;line-height:1.7;background:#fff;border:0;padding:0;margin:0;color:#212529;}
+.azure-notes-content img{max-height:720px;}
+</style>

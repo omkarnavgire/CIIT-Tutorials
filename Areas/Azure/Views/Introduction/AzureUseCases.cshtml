@@ -1,0 +1,125 @@
+@{
+    ViewData["Title"] = "Microsoft Azure Use Cases";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+    <!-- LEFT SIDEBAR -->
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+                <h1 class="fw-bold mb-3">Microsoft Azure Use Cases</h1>
+                <p class="lead text-muted mb-4">
+                    Explore how modern industries solve complex operational challenges, optimize global scalability, and execute digital transformations using cloud architectures.
+                </p>
+
+                <!-- INTRODUCTION OVERVIEW -->
+                <div class="mb-5">
+                    <p>
+                        <strong>Microsoft Azure</strong> supports diverse business and technical goals through its vast suite of cloud services. Organizations across the globe leverage Azure for everything from foundational IT infrastructure to cutting-edge artificial intelligence, shifting from expensive capital expenditure (CapEx) models to flexible operational expenditure (OpEx) strategies.
+                    </p>
+                </div>
+
+                <!-- CATEGORIZED USE CASES GRID -->
+                <div class="row g-4">
+
+                    <!-- CATEGORY 1: MODERNIZATION & INFRASTRUCTURE -->
+                    <div class="col-md-12">
+                        <div class="p-4 bg-light rounded border mb-2">
+                            <h3 class="fw-bold h5 text-primary mb-3">
+                                🌐 Modernization &amp; Infrastructure
+                            </h3>
+                            <ul class="list-unstyled mb-0">
+                                <li class="mb-3">
+                                    <strong>Cloud Migration &amp; Hybrid IT:</strong> Move physical, on-premises server instances to Azure Virtual Machines to reduce ongoing hardware footprints while maintaining secure hybrid infrastructure back to local data centres using Azure ExpressRoute.
+                                </li>
+                                <li class="mb-3">
+                                    <strong>Backup &amp; Disaster Recovery:</strong> Protect business-critical data from localized hardware failures or ransomware threats by replicating files, volumes, and running workloads across remote geographical regions using Azure Backup.
+                                </li>
+                                <li class="mb-0">
+                                    <strong>DevOps &amp; App Development:</strong> Accelerate continuous integration and delivery (CI/CD) cycles by creating automated code deployment pipelines and project management structures through Azure DevOps.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- CATEGORY 2: DATA & ARTIFICIAL INTELLIGENCE -->
+                    <div class="col-md-12">
+                        <div class="p-4 bg-light rounded border mb-2">
+                            <h3 class="fw-bold h5 text-success mb-3">
+                                📊 Data &amp; Artificial Intelligence
+                            </h3>
+                            <ul class="list-unstyled mb-0">
+                                <li class="mb-3">
+                                    <strong>Data Analytics &amp; Warehousing:</strong> Gather massive volumes of structured and unstructured business data into centralized warehouses to analyze patterns and generate real-time reports using Azure Synapse Analytics.
+                                </li>
+                                <li class="mb-3">
+                                    <strong>Generative AI &amp; Machine Learning:</strong> Build, optimize, and scale domain-specific machine learning models or integrate enterprise-grade large language models (LLMs) into customer-facing software using Azure OpenAI Service.
+                                </li>
+                                <li class="mb-0">
+                                    <strong>Internet of Things (IoT):</strong> Ingest, monitor, and analyze real-time performance and health metrics from millions of remote edge devices or industrial sensors using Azure IoT Hub.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- CATEGORY 3: DIGITAL WORKSPACES & WEB APPLICATIONS -->
+                    <div class="col-md-12">
+                        <div class="p-4 bg-light rounded border">
+                            <h3 class="fw-bold h5 text-warning text-dark mb-3">
+                                💻 Digital Workspaces &amp; Web Applications
+                            </h3>
+                            <ul class="list-unstyled mb-0">
+                                <li class="mb-3">
+                                    <strong>E-commerce &amp; Web Hosting:</strong> Host highly available web applications and online retail platforms that automatically scale compute capacity up or down to handle high traffic spikes seamlessly via Azure App Service.
+                                </li>
+                                <li class="mb-0">
+                                    <strong>Remote Desktops:</strong> Provision and stream secure virtualized desktop profiles for remote employees to securely access internal corporate tools from any user device using Azure Virtual Desktop.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- PRACTICAL ENGAGEMENT EXERCISE -->
+                <div class="concept-box p-4 rounded border bg-white shadow-sm mt-5">
+                    <h4 class="fw-bold h5 mb-3 text-dark">Architecture Exploration Task</h4>
+                    <p class="small text-muted mb-0">
+                        Review the categories above and pick a use case relevant to your current business model. Use your sidebar topics navigation menu to drill down into the underlying components (such as pricing schemas or Cloud Shell commands) required to map out a proof of concept (PoC).
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+        @await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureLessonNavigation.cshtml")
+    </section>
+</div>
+
+<style>
+    .concept-box {
+        border-left: 4px solid #5b21b6 !important;
+    }
+
+    ul.list-unstyled li {
+        position: relative;
+        padding-left: 1.25rem;
+    }
+
+        ul.list-unstyled li::before {
+            content: "•";
+            color: #6c757d;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+</style>

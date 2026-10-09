@@ -1,0 +1,213 @@
+@{
+    Layout = "~/Areas/Jenkins/Views/Shared/JenkinsLayout.cshtml";
+    ViewData["Title"] = "Kubernetes Deployment";
+}
+
+<style>
+    #kubernetes-deployment-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #kubernetes-deployment-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #kubernetes-deployment-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #kubernetes-deployment-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #kubernetes-deployment-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+    #kubernetes-deployment-page .example-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+    }
+</style>
+
+<main id="kubernetes-deployment-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/Jenkins/Views/Shared/JenkinsTopics.cshtml")
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+                <h1 class="fw-bold">Kubernetes Deployment</h1>
+                <p class="lead">
+                    Learn how to securely configure, orchestrate, and execute zero-downtime application updates to a live Kubernetes cluster using automated Jenkins pipelines.
+                </p>
+            </div>
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">What is a Kubernetes Deployment Stage in Jenkins?</h2>
+                <p>
+                    Once an application is successfully containerized and pushed to a remote registry, the final step in a continuous delivery lifecycle is updating the target runtime infrastructure. A <strong>Kubernetes Deployment</strong> stage within a Jenkins pipeline automates this step by interacting directly with the cluster API to roll out fresh image versions securely.
+                </p>
+                <p>
+                    Rather than forcing operators to manually modify runtime clusters using a terminal, Jenkins authenticates as a trusted deployment service account. It takes the newly built image version, injects it into standardized manifest specifications, applies configurations dynamically, and tracks cluster rollouts until the workload stabilizes across public load balancers.
+                </p>
+                <div class="alert alert-info">
+                    <strong>Simple Definition:</strong> The automated execution phase where Jenkins authenticates with a Kubernetes cluster and modifies deployment descriptors to transition running microservices to new container versions without manual intervention.
+                </div>
+            </div>
+
+            <!-- KEY CONCEPTS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Key Concepts</h2>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Kubeconfig Encapsulation</h5>
+                            <p class="mb-0">Using the Jenkins <code>withKubeConfig</code> or <code>withKubeConfigFile</code> credentials wrapper to cleanly inject API server endpoints and authentication tokens exclusively during the deployment block.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Dynamic Manifest Patching</h5>
+                            <p class="mb-0">Utilizing Linux token-replacement tools (like <code>envsubst</code> or sed filters) to modify standard image references inside raw <code>deployment.yaml</code> configurations dynamically per build.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Rollout Status Verification</h5>
+                            <p class="mb-0">Invoking explicit validation commands like <code>kubectl rollout status</code> to halt pipeline progression until container replicas successfully pass their internal cluster health checks.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Automated Rolling Updates</h5>
+                            <p class="mb-0">Leveraging Kubernetes' native upgrade loop to spin up fresh application pods before terminating old ones, ensuring zero-downtime service availability.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXAMPLE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Practical Jenkins Example</h2>
+                <p>The following declarative pipeline establishes a secure API endpoint context, substitutes the current tracking tag into a target Kubernetes resource file, and triggers a monitored deployment update:</p>
+                <pre><code>pipeline {
+    agent any
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    environment {
+        // Defines image coordinate patterns mapped to the project container registry
+        REGISTRY_USER = 'yourdockerhubusername'
+        APP_NAME      = 'microservice-core'
+        IMAGE_TAG     = "${REGISTRY_USER}/${APP_NAME}:${BUILD_NUMBER}"
+    }
+
+    stages {
+        stage('Deploy to Kubernetes Cluster') {
+            steps {
+                echo 'Initializing secure cluster API configuration context...'
+                // Restricts API tokens to this scoped block using the Jenkins Kubernetes CLI credentials context
+                withKubeConfig([credentialsId: 'k8s-cluster-credentials-id', serverUrl: 'https://your-k8s-api-endpoint.com']) {
+                    
+                    echo 'Injecting dynamic build tags into targeted manifest templates...'
+                    // Updates the generic manifest placeholder with the explicit current image version string
+                    sh "sed -i 's|IMAGE_PLACEHOLDER|${IMAGE_TAG}|g' k8s/deployment.yaml"
+                    
+                    echo 'Applying state definitions to the active namespace...'
+                    sh 'kubectl apply -f k8s/deployment.yaml'
+                    sh 'kubectl apply -f k8s/service.yaml'
+                    
+                    echo 'Monitoring update progression flags...'
+                    // Blocks pipeline execution until the rollout completely succeeds or timeouts out
+                    sh "kubectl rollout status deployment/${APP_NAME} --timeout=120s"
+                }
+            }
+        }
+    }
+}</code></pre>
+</div>
+
+
+<!-- PRACTICE -->
+<div class="mb-4">
+<h2 class="h3 fw-bold">Practice Exercise</h2>
+<ol>
+<li class="mb-2">Go to <strong>Manage Jenkins &rarr; Credentials</strong> and add your cluster configuration details as a <em>Secret file</em> or <em>Kubernetes service account token</em> named <code>k8s-cluster-credentials-id</code>.</li>
+<li class="mb-2">Ensure your repository code structures include a valid <code>k8s/deployment.yaml</code> configuration tracking a dummy image string like <code>IMAGE_PLACEHOLDER</code>.</li>
+<li class="mb-2">Create a new <strong>Pipeline</strong> build job target inside your Jenkins environment folder titled <code>k8s-cluster-deployment</code>.</li>
+<li class="mb-2">Paste the declarative execution example shared in the configuration section above into your pipeline editor.</li>
+<li class="mb-2">Execute a manual execution run, verify that the manifest substitutes parameters accurately via the **Console Output**, and inspect the cluster layout directly using your local terminal.</li>
+</ol>
+</div>
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+                <h2 class="h4 fw-bold">Summary</h2>
+                <p class="mb-0">You have completed the <strong>Kubernetes Deployment</strong> lesson. Shifting production states via imperative CLI commands highlights the need for declarative consistency, setting up a natural progression toward full **Jenkins and GitOps** patterns.</p>
+            </div>
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+                <a class="btn btn-outline-primary" href="@Url.Action("KubernetesAgents", "CloudDevOps", new { area = "Jenkins" })">&larr; Previous: Kubernetes Pod Agents</a>
+                <a class="btn btn-primary" href="@Url.Action("GitOps", "CloudDevOps", new { area = "Jenkins" })">Next: Jenkins and GitOps &rarr;</a>
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

@@ -1,0 +1,76 @@
+@{
+    ViewData["Title"] = "Microsoft Azure - Create Web Apps in Azure";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+                <div class="azure-notes-content">
+                    <pre class="azure-notes-text">Microsoft Azure - Create Web Apps in Azure
+We&#x27;ll see how we can create an App Service Web App which lets you quickly build, deploy, and scale
+enterprise-grade web, mobile, and API apps running on any platform. App Service allows you to
+select your runtime stack (available stacks: Python, .Net, Java, PHP, Node, Ruby) while creating a web
+app. Azure Web App provides great benefits like high performance, scalability, high security, and
+compliance requirements while using a fully managed platform to perform infrastructure
+maintenance.
+
+Prerequisites:
+
+    •   App Service Plan should be created first before creating a Web App.
+
+    •   Before getting started please do check out this article.
+
+Implementation:
+
+Follow the below steps to create a Web App in Azure:
+
+Step 1: Log in to Azure Portal.
+
+Step 2: Access App Service from azure global search and Click Create.
+
+Step 3: Select Basic &gt;&gt; under Project Details select your active azure subscription and resource
+group.
+
+Step 4: Under Instance Details:
+
+    •   App Name: Enter unique https://&lt;app_name&gt;.azurewebsites.net app name.
+
+    •   publish type: Select your type either code or Docker Container.
+
+    •   Select your runtime stack (available stacks: Python, .Net, Java, PHP, Node, Ruby).
+
+    •   Region: Select your app deployment region (Note: Select your region where your Azure
+        Service Plan deployed.).
+
+    •   Select the App Service Plan you have already deployed.
+Step 5: Click on Review + create then verify all your deployment details and Click Create
+Once the deployment is done, you can open the deployment section from there you can click on
+browse to view the default home page.</pre>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_6_-_Microsoft_Azure_-_Creating_an_App_Service_Plan/p04-000.jpg" class="img-fluid rounded shadow-sm" alt="Microsoft Azure - Create Web Apps in Azure - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_6_-_Microsoft_Azure_-_Creating_an_App_Service_Plan/p05-000.jpg" class="img-fluid rounded shadow-sm" alt="Microsoft Azure - Create Web Apps in Azure - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_6_-_Microsoft_Azure_-_Creating_an_App_Service_Plan/p06-000.jpg" class="img-fluid rounded shadow-sm" alt="Microsoft Azure - Create Web Apps in Azure - source image" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+            @await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureLessonNavigation.cshtml")
+</section>
+</div>
+<style>
+.azure-notes-text{white-space:pre-wrap;word-break:normal;font-family:inherit;font-size:1rem;line-height:1.7;background:#fff;border:0;padding:0;margin:0;color:#212529;}
+.azure-notes-content img{max-height:720px;}
+</style>

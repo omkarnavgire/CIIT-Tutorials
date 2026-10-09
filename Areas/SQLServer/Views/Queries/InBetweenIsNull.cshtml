@@ -1,0 +1,665 @@
+﻿@{
+    ViewData["Title"] = "IN, BETWEEN & IS NULL";
+}
+
+<section>
+
+    <!-- PAGE INTRODUCTION -->
+
+    <div class="mb-5">
+
+        <h1 class="fw-bold mb-3">
+            IN, BETWEEN &amp; IS NULL
+        </h1>
+
+        <p class="lead text-muted">
+            IN, BETWEEN and IS NULL are commonly used SQL operators
+            for filtering and checking data in SQL Server.
+        </p>
+
+        <p>
+            These operators make it easier to write conditions when
+            working with multiple values, ranges and NULL values.
+        </p>
+
+    </div>
+
+
+    <!-- IN OPERATOR -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            IN Operator
+        </h2>
+
+        <p>
+            The <strong>IN</strong> operator is used to check whether
+            a value matches any value from a specified list.
+        </p>
+
+        <p>
+            It is useful when we want to check multiple possible
+            values without writing several OR conditions.
+        </p>
+
+    </section>
+
+
+    <!-- IN SYNTAX -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            IN Syntax
+        </h2>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT column_name
+FROM table_name
+WHERE column_name IN (value1, value2, value3);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- SAMPLE TABLE -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Example Table
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>StudentId</th>
+                        <th>StudentName</th>
+                        <th>Age</th>
+                        <th>City</th>
+                        <th>Fees</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>101</td>
+                        <td>Rahul</td>
+                        <td>22</td>
+                        <td>Pune</td>
+                        <td>35000</td>
+                    </tr>
+
+                    <tr>
+                        <td>102</td>
+                        <td>Priya</td>
+                        <td>23</td>
+                        <td>Mumbai</td>
+                        <td>40000</td>
+                    </tr>
+
+                    <tr>
+                        <td>103</td>
+                        <td>Amit</td>
+                        <td>21</td>
+                        <td>Nashik</td>
+                        <td>30000</td>
+                    </tr>
+
+                    <tr>
+                        <td>104</td>
+                        <td>Neha</td>
+                        <td>24</td>
+                        <td>Pune</td>
+                        <td>45000</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- IN EXAMPLE -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Example – IN
+        </h2>
+
+        <p>
+            Suppose we want students from Pune, Mumbai or Nashik.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT *
+FROM Students
+WHERE City IN ('Pune', 'Mumbai', 'Nashik');</code></pre>
+
+        </div>
+
+        <p class="mt-3">
+            This returns records where City matches any of the
+            specified values.
+        </p>
+
+    </section>
+
+
+    <!-- IN VS OR -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            IN vs OR
+        </h2>
+
+        <p>
+            The following two queries can be used to check the same
+            set of city values.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT *
+FROM Students
+WHERE City = 'Pune'
+   OR City = 'Mumbai'
+   OR City = 'Nashik';</code></pre>
+
+        </div>
+
+        <p class="mt-3">
+            Using IN can make this type of condition shorter and
+            easier to read.
+        </p>
+
+    </section>
+
+
+    <!-- NOT IN -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            NOT IN
+        </h2>
+
+        <p>
+            The <strong>NOT IN</strong> operator returns records
+            whose value does not match any value in the specified
+            list.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT *
+FROM Students
+WHERE City NOT IN ('Pune', 'Mumbai');</code></pre>
+
+        </div>
+
+        <p class="mt-3">
+            This excludes students from Pune and Mumbai.
+        </p>
+
+    </section>
+
+
+    <!-- BETWEEN -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            BETWEEN Operator
+        </h2>
+
+        <p>
+            The <strong>BETWEEN</strong> operator is used to select
+            values within a specified range.
+        </p>
+
+        <p>
+            BETWEEN includes both the starting and ending values.
+        </p>
+
+    </section>
+
+
+    <!-- BETWEEN SYNTAX -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            BETWEEN Syntax
+        </h2>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT column_name
+FROM table_name
+WHERE column_name BETWEEN value1 AND value2;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- BETWEEN NUMERIC -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            BETWEEN with Numbers
+        </h2>
+
+        <p>
+            Suppose we want students whose age is between 21 and 23.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT *
+FROM Students
+WHERE Age BETWEEN 21 AND 23;</code></pre>
+
+        </div>
+
+        <p class="mt-3">
+            This includes students with ages 21, 22 and 23.
+        </p>
+
+    </section>
+
+
+    <!-- BETWEEN FEES -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            BETWEEN with Fees
+        </h2>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT *
+FROM Students
+WHERE Fees BETWEEN 30000 AND 40000;</code></pre>
+
+        </div>
+
+        <p class="mt-3">
+            This returns students whose fees are between 30000 and
+            40000, including both boundary values.
+        </p>
+
+    </section>
+
+
+    <!-- NOT BETWEEN -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            NOT BETWEEN
+        </h2>
+
+        <p>
+            The <strong>NOT BETWEEN</strong> operator returns values
+            outside the specified range.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT *
+FROM Students
+WHERE Age NOT BETWEEN 21 AND 23;</code></pre>
+
+        </div>
+
+        <p class="mt-3">
+            This returns students whose age is outside the range
+            21 to 23.
+        </p>
+
+    </section>
+
+
+    <!-- IS NULL -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            IS NULL
+        </h2>
+
+        <p>
+            <strong>NULL</strong> represents a missing, unknown or
+            unavailable value.
+        </p>
+
+        <p>
+            To check whether a column contains NULL, we use
+            <strong>IS NULL</strong>.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT *
+FROM Students
+WHERE City IS NULL;</code></pre>
+
+        </div>
+
+        <p class="mt-3">
+            This returns records where City does not contain a value.
+        </p>
+
+    </section>
+
+
+    <!-- IS NOT NULL -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            IS NOT NULL
+        </h2>
+
+        <p>
+            The <strong>IS NOT NULL</strong> condition returns
+            records where a column contains a value.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT *
+FROM Students
+WHERE City IS NOT NULL;</code></pre>
+
+        </div>
+
+        <p class="mt-3">
+            This returns records where City has a value.
+        </p>
+
+    </section>
+
+
+    <!-- NULL IMPORTANT -->
+
+    <section class="mb-5">
+
+        <div class="alert alert-warning border-0">
+
+            <h4 class="fw-bold mb-3">
+                Important About NULL
+            </h4>
+
+            <ul class="mb-0">
+
+                <li class="mb-2">
+                    NULL means the value is missing or unknown.
+                </li>
+
+                <li class="mb-2">
+                    NULL is not the same as zero.
+                </li>
+
+                <li class="mb-2">
+                    NULL is not the same as an empty string.
+                </li>
+
+                <li class="mb-2">
+                    Use IS NULL to check for NULL values.
+                </li>
+
+                <li>
+                    Use IS NOT NULL to check for non-NULL values.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </section>
+
+
+    <!-- COMBINING OPERATORS -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Combining IN and BETWEEN
+        </h2>
+
+        <p>
+            IN and BETWEEN can be combined with other conditions
+            using AND or OR.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT *
+FROM Students
+WHERE City IN ('Pune', 'Mumbai')
+AND Age BETWEEN 21 AND 24;</code></pre>
+
+        </div>
+
+        <p class="mt-3">
+            This returns students from Pune or Mumbai whose age is
+            between 21 and 24.
+        </p>
+
+    </section>
+
+
+    <!-- COMPARISON TABLE -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            IN vs BETWEEN vs IS NULL
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>Operator</th>
+                        <th>Purpose</th>
+                        <th>Example</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td><strong>IN</strong></td>
+                        <td>Checks multiple specific values.</td>
+                        <td>City IN ('Pune', 'Mumbai')</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>BETWEEN</strong></td>
+                        <td>Checks values within a range.</td>
+                        <td>Age BETWEEN 21 AND 24</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>IS NULL</strong></td>
+                        <td>Checks for missing NULL values.</td>
+                        <td>City IS NULL</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>IS NOT NULL</strong></td>
+                        <td>Checks for values that are not NULL.</td>
+                        <td>City IS NOT NULL</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- IMPORTANT POINTS -->
+
+    <section class="mb-5">
+
+        <div class="alert alert-info border-0">
+
+            <h4 class="fw-bold mb-3">
+                Important Points
+            </h4>
+
+            <ul class="mb-0">
+
+                <li class="mb-2">
+                    IN checks a value against multiple values.
+                </li>
+
+                <li class="mb-2">
+                    NOT IN excludes specified values.
+                </li>
+
+                <li class="mb-2">
+                    BETWEEN checks a range and includes both boundary
+                    values.
+                </li>
+
+                <li class="mb-2">
+                    NOT BETWEEN checks values outside a range.
+                </li>
+
+                <li class="mb-2">
+                    IS NULL checks for NULL values.
+                </li>
+
+                <li>
+                    IS NOT NULL checks for non-NULL values.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </section>
+
+
+    <!-- SUMMARY -->
+
+    <section class="mb-4">
+
+        <div class="alert alert-primary border-0">
+
+            <h2 class="fw-bold mb-3">
+                Summary
+            </h2>
+
+            <p class="mb-0">
+                In this section, we learned the IN, NOT IN, BETWEEN,
+                NOT BETWEEN, IS NULL and IS NOT NULL operators.
+                These operators are useful for filtering SQL Server
+                data using multiple values, ranges and NULL checks.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- PREVIOUS / NEXT -->
+
+    <div class="d-flex justify-content-between align-items-center
+        mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/Queries/LikeOperator"
+           class="btn btn-outline-primary">
+
+            ← Previous: LIKE Operator
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/Joins/Index"
+           class="btn btn-primary">
+
+            Next: Joins Introduction →
+
+        </a>
+
+    </div>
+
+</section>

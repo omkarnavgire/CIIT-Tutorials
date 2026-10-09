@@ -1,0 +1,99 @@
+@{
+    ViewData["Title"] = "Exploring Azure DevOps Project Features After Creation";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+                <div class="azure-notes-content">
+                    <pre class="azure-notes-text">Exploring Azure DevOps Project Features After Creation
+
+Once the project is set up, you will see various options on the welcome screen. Here’s what each
+option
+
+1. Invite Team Members
+
+    •   Using this option you can add others to your project.
+
+    •   You can only invite users who are already part of your organization.
+
+
+
+
+2. Boards: Manage Work Items
+
+    •   Using this Option you can add work items.
+3. Repos: Set Up Version Control
+
+   •   Using this option we can clone or import a repository also initialize a README file for project
+       summary page.
+
+
+
+
+4. Pipelines: Automate CI/CD
+
+   •   Using this option we can connect to any git provider and deploy continuously in any
+       language and platform to the cloud.
+5. Test Plans: Perform Testing
+
+    •   Using this option we can perform testing solutions using the explanatory testing toolkit.
+
+
+
+
+6. Artifacts: Manage Packages
+
+    •   Using this option we can create, discover, host, install and publish NuGet, npm,
+        and Maven packages.
+
+
+
+
+7. Manage your services: Control Project Visibility
+
+    •   Using this option we can disable the visibility of services.
+At this stage, you have successfully created a project on Azure DevOps using the Basic Process.</pre>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_9_-_Microsoft_Azure_-_Create_Project_in_Azure_Devops_using_Basic_Process/p05-000.jpg" class="img-fluid rounded shadow-sm" alt="Exploring Azure DevOps Project Features After Creation - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_9_-_Microsoft_Azure_-_Create_Project_in_Azure_Devops_using_Basic_Process/p05-001.jpg" class="img-fluid rounded shadow-sm" alt="Exploring Azure DevOps Project Features After Creation - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_9_-_Microsoft_Azure_-_Create_Project_in_Azure_Devops_using_Basic_Process/p06-000.jpg" class="img-fluid rounded shadow-sm" alt="Exploring Azure DevOps Project Features After Creation - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_9_-_Microsoft_Azure_-_Create_Project_in_Azure_Devops_using_Basic_Process/p06-001.jpg" class="img-fluid rounded shadow-sm" alt="Exploring Azure DevOps Project Features After Creation - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_9_-_Microsoft_Azure_-_Create_Project_in_Azure_Devops_using_Basic_Process/p06-002.jpg" class="img-fluid rounded shadow-sm" alt="Exploring Azure DevOps Project Features After Creation - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_9_-_Microsoft_Azure_-_Create_Project_in_Azure_Devops_using_Basic_Process/p07-000.jpg" class="img-fluid rounded shadow-sm" alt="Exploring Azure DevOps Project Features After Creation - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_9_-_Microsoft_Azure_-_Create_Project_in_Azure_Devops_using_Basic_Process/p07-001.jpg" class="img-fluid rounded shadow-sm" alt="Exploring Azure DevOps Project Features After Creation - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_9_-_Microsoft_Azure_-_Create_Project_in_Azure_Devops_using_Basic_Process/p08-000.jpg" class="img-fluid rounded shadow-sm" alt="Exploring Azure DevOps Project Features After Creation - source image" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+            @await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureLessonNavigation.cshtml")
+</section>
+</div>
+<style>
+.azure-notes-text{white-space:pre-wrap;word-break:normal;font-family:inherit;font-size:1rem;line-height:1.7;background:#fff;border:0;padding:0;margin:0;color:#212529;}
+.azure-notes-content img{max-height:720px;}
+</style>

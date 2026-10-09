@@ -1,0 +1,236 @@
+@{
+    Layout = "~/Areas/GitHub/Views/Shared/GithubLayout.cshtml";
+    ViewData["Title"] = "Pull Requests";
+}
+
+<main id="tutorials" class="container py-1">
+    <div class="row g-4">
+
+        <!-- Sidebar Navigation -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/GitHub/Views/Shared/GithubTopics.cshtml")
+        </aside>
+
+        <!-- Reading Content Area -->
+        <section class="col-lg-9">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4 p-lg-5">
+
+                    <h1 class="fw-bold mb-3">Pull Requests (PRs)</h1>
+
+                    <p>
+                        In Git and platforms like GitHub, GitLab, or Bitbucket,
+                        a <strong>Pull Request (PR)</strong>—also called a
+                        Merge Request on some platforms—is a way to submit code
+                        changes so other team members can review, discuss,
+                        and merge them into the main codebase.
+                    </p>
+
+                    <p class="text-muted">
+                        Learn how a Pull Request works, which Git commands
+                        you need, and the best practices for submitting
+                        changes to a shared project.
+                    </p>
+
+                    <hr class="my-4" />
+
+                    <!-- How PR Works -->
+                    <h3 class="fw-bold mb-3">How a Pull Request Works</h3>
+
+                    <h5 class="fw-semibold mt-4">1. Create a Feature Branch</h5>
+
+                    <p>
+                        Create a separate branch so you can work on a feature
+                        without directly changing the main branch.
+                    </p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git checkout -b feature/your-feature-name</code></pre>
+
+                    <h5 class="fw-semibold mt-4">2. Push Your Branch to the Remote</h5>
+
+                    <p>
+                        After committing your changes, push your branch to
+                        GitHub or your chosen hosting platform.
+                    </p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git push -u origin feature/your-feature-name</code></pre>
+
+                    <h5 class="fw-semibold mt-4">3. Open the Pull Request</h5>
+
+                    <ol>
+                        <li>Open your repository on GitHub.</li>
+                        <li>Navigate to the Pull Requests section.</li>
+                        <li>Click <strong>New pull request</strong>.</li>
+                        <li>
+                            Select your feature branch as the source branch
+                            and <code>main</code> or <code>dev</code> as the
+                            target branch.
+                        </li>
+                        <li>Add a title and description, then create the PR.</li>
+                    </ol>
+
+                    <h5 class="fw-semibold mt-4">4. Review the Code</h5>
+
+                    <p>
+                        Team members inspect your changes, leave comments,
+                        discuss implementation details, and request changes
+                        when necessary.
+                    </p>
+
+                    <h5 class="fw-semibold mt-4">5. Merge the Pull Request</h5>
+
+                    <p>
+                        Once the required reviews and checks are complete,
+                        an authorized team member can merge the changes
+                        into the target branch.
+                    </p>
+
+                    <div class="alert alert-info mt-3">
+                        <strong>Remember:</strong>
+                        Opening a Pull Request does not automatically merge
+                        your code. The changes must pass the repository's
+                        review and merge requirements.
+                    </div>
+
+                    <hr class="my-4" />
+
+                    <!-- Essential Commands -->
+                    <h3 class="fw-bold mb-3">Essential Git Commands for PRs</h3>
+
+                    <h5 class="fw-semibold mt-4">1. Create and Switch to a Branch</h5>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git checkout -b feature/your-feature-name</code></pre>
+
+                    <h5 class="fw-semibold mt-4">2. Stage and Commit Your Changes</h5>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git add .
+git commit -m "Add description of your changes"</code></pre>
+
+                    <p>
+                        Stage the files you intend to include and use a
+                        descriptive commit message.
+                    </p>
+
+                    <h5 class="fw-semibold mt-4">3. Push Your Branch</h5>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git push origin feature/your-feature-name</code></pre>
+
+                    <p>
+                        Uploads your branch to the remote repository.
+                        Some GitHub workflows may display a URL in the
+                        terminal that you can use to open a Pull Request.
+                    </p>
+
+                    <hr class="my-4" />
+
+                    <!-- Best Practices -->
+                    <h3 class="fw-bold mb-3">Best Practices for Pull Requests</h3>
+
+                    <h5 class="fw-semibold mt-4">1. Keep Pull Requests Small</h5>
+
+                    <p>
+                        Smaller PRs are easier to review, understand,
+                        test, and maintain.
+                    </p>
+
+                    <h5 class="fw-semibold mt-4">2. Write Clear Descriptions</h5>
+
+                    <p>
+                        Explain what you changed, why you made the change,
+                        and how reviewers can test it.
+                    </p>
+
+                    <h5 class="fw-semibold mt-4">3. Synchronize with the Target Branch</h5>
+
+                    <p>
+                        Before opening a PR, check whether your target branch
+                        has new commits. If necessary, integrate them into
+                        your feature branch.
+                    </p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git fetch origin
+git switch feature/your-feature-name
+git merge origin/main</code></pre>
+
+                    <p>
+                        Resolve any conflicts and push the updated feature
+                        branch before requesting review.
+                    </p>
+
+                    <div class="alert alert-warning mt-3">
+                        <strong>Note:</strong>
+                        Replace <code>main</code> with your actual target
+                        branch if your project uses another branch, such as
+                        <code>dev</code>.
+                    </div>
+
+                    <hr class="my-4" />
+
+                    <!-- Quick Reference -->
+                    <h3 class="fw-bold mb-3">Quick Reference</h3>
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped align-middle">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Command</th>
+                                    <th>Purpose</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>git checkout -b feature/name</code></td>
+                                    <td>Create and switch to a feature branch</td>
+                                </tr>
+                                <tr>
+                                    <td><code>git add .</code></td>
+                                    <td>Stage changes in the current directory</td>
+                                </tr>
+                                <tr>
+                                    <td><code>git commit -m "message"</code></td>
+                                    <td>Create a commit</td>
+                                </tr>
+                                <tr>
+                                    <td><code>git push -u origin feature/name</code></td>
+                                    <td>Push a branch and configure upstream tracking</td>
+                                </tr>
+                                <tr>
+                                    <td><code>git fetch origin</code></td>
+                                    <td>Download remote updates without integrating them</td>
+                                </tr>
+                                <tr>
+                                    <td><code>git merge origin/main</code></td>
+                                    <td>Integrate the fetched target branch into your current branch</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="alert alert-success mt-4">
+                        <strong>Key Takeaway:</strong>
+                        A Pull Request provides a structured way to submit,
+                        review, discuss, and merge code changes. Use feature
+                        branches, clear commit messages, and focused PRs to
+                        make collaboration easier.
+                    </div>
+
+                    <!-- Previous / Next Navigation -->
+                    <div class="d-flex justify-content-between align-items-center gap-3 flex-wrap mt-5 pt-4 border-top">
+
+                        <a class="btn btn-outline-primary"
+                           href="@Url.Action("PullingUpdates", "RemoteCollaboration", new { area = "GitHub" })">
+                            &larr; Previous: Pulling Updates
+                        </a>
+
+                        <a class="btn btn-primary"
+                           href="@Url.Action("ForksVsClones", "RemoteCollaboration", new { area = "GitHub" })">
+                            Next: Forks vs. Clones &rarr;
+                        </a>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+</main>

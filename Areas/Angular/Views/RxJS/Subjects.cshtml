@@ -1,0 +1,1943 @@
+﻿@{
+    ViewData["Title"] = "RxJS Subjects";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- Header -->
+    <section class="mb-4">
+
+        <h1 class="fw-bold text-dark">
+            RxJS Subjects
+        </h1>
+
+        <p class="lead text-muted">
+            Learn what RxJS Subjects are, how they work as both Observables
+            and Observers, and how Subject types can be used for sharing
+            and distributing values.
+        </p>
+
+    </section>
+
+
+    <!-- What is Subject -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            What is a Subject?
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                A <strong>Subject</strong> is a special type of RxJS
+                Observable that can also receive values.
+            </p>
+
+            <p>
+                Unlike a normal Observable where values are generally produced
+                by the Observable source, a Subject allows application code
+                to call methods such as <strong>next()</strong> and send
+                values to its subscribers.
+            </p>
+
+            <p class="mb-0">
+                A Subject can therefore act as both an
+                <strong>Observable</strong> and an <strong>Observer</strong>.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Subject Flow -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Subject Working Flow
+        </h2>
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+
+                <strong>Producer</strong>
+
+                <span>
+                    Sends Value
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>Subject</strong>
+
+                <span>
+                    Receives Value
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>Subscriber 1</strong>
+
+                <span>
+                    Receives Value
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                +
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>Subscriber 2</strong>
+
+                <span>
+                    Receives Value
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Subject as Observable and Observer -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Subject as Observable and Observer
+        </h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    O
+                </div>
+
+                <h5>
+                    As Observable
+                </h5>
+
+                <p>
+                    Other parts of the application can subscribe to the Subject.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    R
+                </div>
+
+                <h5>
+                    As Receiver
+                </h5>
+
+                <p>
+                    The Subject can receive values through next().
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    M
+                </div>
+
+                <h5>
+                    Multicast
+                </h5>
+
+                <p>
+                    One emitted value can be delivered to multiple subscribers.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    S
+                </div>
+
+                <h5>
+                    Shared Stream
+                </h5>
+
+                <p>
+                    Multiple consumers can observe the same Subject stream.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Creating Subject -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Creating a Subject
+        </h2>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                TypeScript
+            </div>
+
+            <pre><code>import { Subject } from '@@rxjs';
+
+const courseSubject =
+    new Subject&lt;string&gt;();</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Subscribe -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Subscribing to a Subject
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                A Subject can have multiple subscribers.
+            </p>
+
+            <p class="mb-0">
+                When the Subject emits a value using <strong>next()</strong>,
+                each active subscriber receives that value.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Subscribers
+            </div>
+
+            <pre><code>courseSubject.subscribe({
+
+    next: course =&gt; {
+
+        console.log(
+            'Subscriber 1:',
+            course
+        );
+
+    }
+
+});
+
+
+courseSubject.subscribe({
+
+    next: course =&gt; {
+
+        console.log(
+            'Subscriber 2:',
+            course
+        );
+
+    }
+
+});</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- next -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Emitting Values with next()
+        </h2>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Emit Values
+            </div>
+
+            <pre><code>courseSubject.next(
+    'Java Full Stack'
+);
+
+courseSubject.next(
+    '.NET Full Stack'
+);
+
+courseSubject.next(
+    'Python Full Stack'
+);</code></pre>
+
+        </div>
+
+
+        <div class="output-box mt-3">
+
+            <div class="student-preview">
+
+                <h4>
+                    Subject Output
+                </h4>
+
+                <p>
+                    Subscriber 1: Java Full Stack
+                </p>
+
+                <p>
+                    Subscriber 2: Java Full Stack
+                </p>
+
+                <p>
+                    Subscriber 1: .NET Full Stack
+                </p>
+
+                <p>
+                    Subscriber 2: .NET Full Stack
+                </p>
+
+                <p class="mb-0">
+                    Both active subscribers receive each emitted value.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Multicast -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Subject and Multicasting
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                A Subject can multicast a value to multiple subscribers.
+            </p>
+
+            <p class="mb-0">
+                When the Subject emits a value, all subscribers that are
+                currently connected to the Subject receive that emission.
+            </p>
+
+        </div>
+
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+
+                <strong>next()</strong>
+
+                <span>
+                    One Value
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>Subject</strong>
+
+                <span>
+                    Multicast
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>Subscriber A</strong>
+
+                <span>
+                    Same Value
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                +
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>Subscriber B</strong>
+
+                <span>
+                    Same Value
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Late Subscriber -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Late Subscribers
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                A normal Subject does not automatically replay values that
+                were emitted before a subscriber joined.
+            </p>
+
+            <p class="mb-0">
+                This is an important difference between a regular
+                <strong>Subject</strong> and subjects such as
+                <strong>BehaviorSubject</strong> and
+                <strong>ReplaySubject</strong>.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>const subject =
+    new Subject&lt;string&gt;();
+
+
+subject.next(
+    'Java Full Stack'
+);
+
+
+subject.subscribe({
+
+    next: value =&gt; {
+
+        console.log(value);
+
+    }
+
+});
+
+
+subject.next(
+    '.NET Full Stack'
+);</code></pre>
+
+        </div>
+
+
+        <div class="output-box mt-3">
+
+            <div class="student-preview">
+
+                <h4>
+                    Output
+                </h4>
+
+                <p class="mb-0">
+                    .NET Full Stack
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- BehaviorSubject -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            BehaviorSubject
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                A <strong>BehaviorSubject</strong> requires an initial value
+                and stores the latest emitted value.
+            </p>
+
+            <p class="mb-0">
+                A new subscriber immediately receives the current value
+                when it subscribes.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>import {
+    BehaviorSubject
+} from '@@rxjs';
+
+const courseSubject =
+    new BehaviorSubject&lt;string&gt;(
+        'Angular'
+    );
+
+
+courseSubject.subscribe({
+
+    next: course =&gt; {
+
+        console.log(course);
+
+    }
+
+});</code></pre>
+
+        </div>
+
+
+        <div class="output-box mt-3">
+
+            <div class="student-preview">
+
+                <h4>
+                    Initial Value
+                </h4>
+
+                <p class="mb-0">
+                    Angular
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- BehaviorSubject next -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Updating BehaviorSubject
+        </h2>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>const courseSubject =
+    new BehaviorSubject&lt;string&gt;(
+        'Angular'
+    );
+
+
+courseSubject.next(
+    'React'
+);
+
+
+courseSubject.next(
+    'Node.js'
+);</code></pre>
+
+        </div>
+
+
+        <div class="info-card mt-3">
+
+            <p class="mb-0">
+                The latest emitted value remains available as the current
+                value for future subscribers.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ReplaySubject -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            ReplaySubject
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                A <strong>ReplaySubject</strong> can replay previously emitted
+                values to a new subscriber according to the configured buffer.
+            </p>
+
+            <p class="mb-0">
+                It is useful when a subscriber needs access to recent values
+                that were emitted before the subscription started.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>import {
+    ReplaySubject
+} from '@@rxjs';
+
+const courseSubject =
+    new ReplaySubject&lt;string&gt;(2);
+
+
+courseSubject.next(
+    'Java'
+);
+
+courseSubject.next(
+    '.NET'
+);
+
+courseSubject.next(
+    'Python'
+);
+
+
+courseSubject.subscribe({
+
+    next: course =&gt; {
+
+        console.log(course);
+
+    }
+
+});</code></pre>
+
+        </div>
+
+
+        <div class="output-box mt-3">
+
+            <div class="student-preview">
+
+                <h4>
+                    Replayed Values
+                </h4>
+
+                <p>
+                    .NET
+                </p>
+
+                <p class="mb-0">
+                    Python
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- AsyncSubject -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            AsyncSubject
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                An <strong>AsyncSubject</strong> emits the latest value to
+                subscribers only when the Subject completes.
+            </p>
+
+            <p class="mb-0">
+                If the Subject completes without emitting a value, no value
+                is delivered to subscribers.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>import {
+    AsyncSubject
+} from '@@rxjs';
+
+const resultSubject =
+    new AsyncSubject&lt;number&gt;();
+
+
+resultSubject.subscribe({
+
+    next: value =&gt; {
+
+        console.log(value);
+
+    }
+
+});
+
+
+resultSubject.next(10);
+resultSubject.next(20);
+resultSubject.next(30);
+
+resultSubject.complete();</code></pre>
+
+        </div>
+
+
+        <div class="output-box mt-3">
+
+            <div class="student-preview">
+
+                <h4>
+                    Output
+                </h4>
+
+                <p class="mb-0">
+                    30
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Subject Types -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Types of RxJS Subjects
+        </h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    S
+                </div>
+
+                <h5>
+                    Subject
+                </h5>
+
+                <p>
+                    Multicasts values to current subscribers.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    B
+                </div>
+
+                <h5>
+                    BehaviorSubject
+                </h5>
+
+                <p>
+                    Stores and emits the current value to new subscribers.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    R
+                </div>
+
+                <h5>
+                    ReplaySubject
+                </h5>
+
+                <p>
+                    Replays previously emitted values according to its buffer.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    A
+                </div>
+
+                <h5>
+                    AsyncSubject
+                </h5>
+
+                <p>
+                    Emits the latest value when the Subject completes.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Subject Comparison -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Subject Types Comparison
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table syntax-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Subject Type
+                        </th>
+
+                        <th>
+                            Initial Value
+                        </th>
+
+                        <th>
+                            New Subscriber Receives
+                        </th>
+
+                        <th>
+                            Main Feature
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            Subject
+                        </td>
+
+                        <td>
+                            Not required
+                        </td>
+
+                        <td>
+                            Future emissions
+                        </td>
+
+                        <td>
+                            Multicast current values
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            BehaviorSubject
+                        </td>
+
+                        <td>
+                            Required
+                        </td>
+
+                        <td>
+                            Current/latest value
+                        </td>
+
+                        <td>
+                            Stores current value
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            ReplaySubject
+                        </td>
+
+                        <td>
+                            Not required
+                        </td>
+
+                        <td>
+                            Buffered previous values
+                        </td>
+
+                        <td>
+                            Replays values
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            AsyncSubject
+                        </td>
+
+                        <td>
+                            Not required
+                        </td>
+
+                        <td>
+                            Latest value after completion
+                        </td>
+
+                        <td>
+                            Final-value emission
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- Subject vs Observable -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Subject vs Observable
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table syntax-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Feature
+                        </th>
+
+                        <th>
+                            Observable
+                        </th>
+
+                        <th>
+                            Subject
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            Can Subscribe
+                        </td>
+
+                        <td>
+                            Yes
+                        </td>
+
+                        <td>
+                            Yes
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Can Call next()
+                        </td>
+
+                        <td>
+                            Not from the consumer API
+                        </td>
+
+                        <td>
+                            Yes
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Multiple Subscribers
+                        </td>
+
+                        <td>
+                            Depends on the source and sharing strategy
+                        </td>
+
+                        <td>
+                            Yes, values are multicasted
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Manual Emission
+                        </td>
+
+                        <td>
+                            Source controls emissions
+                        </td>
+
+                        <td>
+                            next() can emit values
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Special Variants
+                        </td>
+
+                        <td>
+                            No Subject-specific variants
+                        </td>
+
+                        <td>
+                            BehaviorSubject, ReplaySubject, AsyncSubject
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- CIIT Example -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            CIIT Training Institute Example
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                Suppose the CIIT Training Institute application has a
+                selected-course stream that is used by multiple components.
+            </p>
+
+            <p class="mb-0">
+                A BehaviorSubject can store the current selected course so
+                that subscribers can receive the latest value.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Course Selection Service
+            </div>
+
+            <pre><code>import {
+    BehaviorSubject
+} from '@@rxjs';
+
+export class CourseStateService {
+
+    private selectedCourseSubject =
+        new BehaviorSubject&lt;string&gt;(
+            'Java Full Stack'
+        );
+
+    selectedCourse$ =
+        this.selectedCourseSubject
+            .asObservable();
+
+
+    selectCourse(course: string) {
+
+        this.selectedCourseSubject
+            .next(course);
+
+    }
+
+}</code></pre>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Component
+            </div>
+
+            <pre><code>this.courseStateService
+    .selectedCourse$
+    .subscribe({
+
+        next: course =&gt; {
+
+            console.log(
+                'Selected Course:',
+                course
+            );
+
+        }
+
+    });</code></pre>
+
+        </div>
+
+
+        <div class="output-box mt-3">
+
+            <div class="student-preview">
+
+                <h4>
+                    CIIT Training Institute
+                </h4>
+
+                <p>
+                    Selected Course:
+                    <strong>Java Full Stack</strong>
+                </p>
+
+                <p class="mb-0">
+                    Other components can subscribe to the shared course state.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- asObservable -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Using asObservable()
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                A Subject can expose an Observable view using
+                <strong>asObservable()</strong>.
+            </p>
+
+            <p class="mb-0">
+                This is useful when other parts of the application should
+                subscribe to a stream without directly calling next() on
+                the underlying Subject.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>private courseSubject =
+    new BehaviorSubject&lt;string&gt;(
+        'Java Full Stack'
+    );
+
+
+course$ =
+    this.courseSubject
+        .asObservable();</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Subject Lifecycle -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Subject Lifecycle
+        </h2>
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+
+                <strong>Create</strong>
+
+                <span>
+                    Subject
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>Subscribe</strong>
+
+                <span>
+                    Consumers Connect
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>next()</strong>
+
+                <span>
+                    Emit Values
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>complete()</strong>
+
+                <span>
+                    End Stream
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Complete Error -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            complete() and error()
+        </h2>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Subject Lifecycle Example
+            </div>
+
+            <pre><code>const subject =
+    new Subject&lt;string&gt;();
+
+
+subject.subscribe({
+
+    next: value =&gt; {
+
+        console.log(value);
+
+    },
+
+    error: error =&gt; {
+
+        console.error(error);
+
+    },
+
+    complete: () =&gt; {
+
+        console.log(
+            'Completed'
+        );
+
+    }
+
+});
+
+
+subject.next('Angular');
+
+subject.complete();</code></pre>
+
+        </div>
+
+        <div class="info-card mt-3">
+
+            <p class="mb-0">
+                After a Subject has completed or errored, it cannot continue
+                its normal emission lifecycle.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- When to Use -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            When Can Subjects Be Useful?
+        </h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    S
+                </div>
+
+                <h5>
+                    Shared State
+                </h5>
+
+                <p>
+                    Share a value or state stream between multiple consumers.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    E
+                </div>
+
+                <h5>
+                    Events
+                </h5>
+
+                <p>
+                    Represent application events that multiple consumers need.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    N
+                </div>
+
+                <h5>
+                    Notifications
+                </h5>
+
+                <p>
+                    Broadcast application notifications to subscribers.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    C
+                </div>
+
+                <h5>
+                    Communication
+                </h5>
+
+                <p>
+                    Coordinate communication between services and consumers.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Avoid unnecessary Subjects -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Avoid Unnecessary Subjects
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                Subjects are useful, but every Observable-based problem does
+                not require a Subject.
+            </p>
+
+            <p class="mb-0">
+                When data can be represented cleanly using a normal Observable
+                pipeline, introducing a Subject may add unnecessary state or
+                lifecycle complexity.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Best Practices -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            RxJS Subject Best Practices
+        </h2>
+
+        <ul class="best-practice-list">
+
+            <li>
+                Use Subject when the application genuinely needs manual
+                emission or multicasting behavior.
+            </li>
+
+            <li>
+                Use BehaviorSubject when a current value needs to be retained
+                and made available to new subscribers.
+            </li>
+
+            <li>
+                Use ReplaySubject when recent past values need to be replayed.
+            </li>
+
+            <li>
+                Keep Subjects private inside services when external consumers
+                only need to observe the stream.
+            </li>
+
+            <li>
+                Expose a read-only Observable using
+                <code>asObservable()</code> where appropriate.
+            </li>
+
+            <li>
+                Avoid using Subjects everywhere when a normal Observable
+                pipeline provides a simpler solution.
+            </li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- Important Points -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Important Points
+        </h2>
+
+        <div class="best-practice-list">
+
+            <div class="info-card mb-3">
+
+                <strong>
+                    1. Subject Can Receive Values
+                </strong>
+
+                <p class="mb-0">
+                    A Subject exposes methods such as next() that can be used
+                    to emit values.
+                </p>
+
+            </div>
+
+
+            <div class="info-card mb-3">
+
+                <strong>
+                    2. Subject Can Have Multiple Subscribers
+                </strong>
+
+                <p class="mb-0">
+                    Active subscribers receive the values emitted by the
+                    Subject.
+                </p>
+
+            </div>
+
+
+            <div class="info-card mb-3">
+
+                <strong>
+                    3. Subject Types Have Different Behavior
+                </strong>
+
+                <p class="mb-0">
+                    BehaviorSubject, ReplaySubject and AsyncSubject are designed
+                    for different value-delivery requirements.
+                </p>
+
+            </div>
+
+
+            <div class="info-card">
+
+                <strong>
+                    4. Protect Internal Subjects
+                </strong>
+
+                <p class="mb-0">
+                    Keeping a Subject private and exposing an Observable view
+                    can provide better control over who can emit values.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Summary -->
+    <section class="mb-4">
+
+        <div class="summary-box">
+
+            <h4 class="fw-bold">
+                Summary
+            </h4>
+
+            <p>
+                A <strong>Subject</strong> is an RxJS type that can act as
+                both an Observable and an Observer.
+            </p>
+
+            <p>
+                <strong>BehaviorSubject</strong> stores the current value,
+                <strong>ReplaySubject</strong> can replay buffered values,
+                and <strong>AsyncSubject</strong> emits its latest value
+                when it completes.
+            </p>
+
+            <p class="mb-0">
+                Subjects are useful for multicasting and shared reactive
+                state, but they should be introduced only when their
+                behavior is actually required. The <strong>
+                RxJS module
+                is now complete
+            </strong>.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- Navigation -->
+<div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+
+    <a class="btn btn-outline-secondary"
+       href="@Url.Action("HigherOrderMapping", "RxJS", new { area = "Angular" })">
+
+        ← Higher Order Mapping
+
+    </a>
+
+
+    <a class="btn btn-primary"
+       href="@Url.Action("Index", "APIIntegration", new { area = "Angular" })">
+
+        API Integration →
+
+    </a>
+
+</div>
+
+</div>
+
+
+<style>
+
+    .info-card {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-left: 5px solid #4c1d95;
+        border-radius: 10px;
+        padding: 20px;
+        line-height: 1.7;
+        color: #334155;
+    }
+
+
+    .syntax-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        flex-wrap: wrap;
+        margin: 25px 0;
+    }
+
+
+    .syntax-box {
+        background: linear-gradient( 135deg, #2e1065, #4c1d95 );
+        color: white;
+        padding: 18px 25px;
+        border-radius: 12px;
+        text-align: center;
+        min-width: 180px;
+        box-shadow: 0 5px 15px rgba(76, 29, 149, 0.15);
+    }
+
+
+        .syntax-box strong {
+            display: block;
+            font-size: 16px;
+        }
+
+
+        .syntax-box span {
+            display: block;
+            margin-top: 5px;
+            color: #d8c9f5;
+            font-size: 14px;
+        }
+
+
+    .syntax-arrow {
+        font-size: 28px;
+        font-weight: bold;
+        color: #4c1d95;
+    }
+
+
+    .syntax-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+
+
+    .syntax-card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 22px;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+    }
+
+
+        .syntax-card h5 {
+            margin-top: 15px;
+            font-weight: 700;
+            color: #2e1065;
+        }
+
+
+        .syntax-card p {
+            color: #64748b;
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+
+
+    .syntax-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: #ede9fe;
+        color: #4c1d95;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 18px;
+        margin: 0 auto;
+    }
+
+
+    .code-card {
+        background: #0f172a;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(15, 23, 42, 0.10);
+    }
+
+
+    .code-title {
+        background: #1e293b;
+        color: #ffffff;
+        padding: 12px 18px;
+        font-weight: 700;
+        font-size: 14px;
+    }
+
+
+    .code-card pre {
+        margin: 0;
+        padding: 20px;
+        overflow-x: auto;
+    }
+
+
+    .code-card code {
+        color: #f8fafc;
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+
+    .output-box {
+        background: #f8fafc;
+        border: 1px solid #ddd6fe;
+        border-radius: 12px;
+        padding: 20px;
+    }
+
+
+    .student-preview {
+        background: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        padding: 20px;
+    }
+
+
+        .student-preview h4 {
+            color: #2e1065;
+            font-weight: 700;
+        }
+
+
+        .student-preview p {
+            color: #64748b;
+        }
+
+
+    .syntax-table {
+        width: 100%;
+        margin-bottom: 0;
+        border: 1px solid #e2e8f0;
+    }
+
+
+        .syntax-table thead th {
+            background: #2e1065;
+            color: white;
+            padding: 14px;
+            border-color: #4c1d95;
+        }
+
+
+        .syntax-table tbody td {
+            padding: 14px;
+            vertical-align: middle;
+            color: #334155;
+            border-color: #e2e8f0;
+        }
+
+
+        .syntax-table tbody tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+
+        .syntax-table code {
+            color: #4c1d95;
+            font-weight: 600;
+        }
+
+
+    .best-practice-list {
+        margin: 0;
+        padding-left: 20px;
+    }
+
+
+        .best-practice-list li {
+            margin-bottom: 10px;
+            color: #334155;
+            line-height: 1.6;
+        }
+
+
+    .summary-box {
+        background: #cfe2ff;
+        color: #084298;
+        border-radius: 10px;
+        padding: 22px;
+        border: 1px solid #b6d4fe;
+    }
+
+
+        .summary-box h4 {
+            margin-bottom: 12px;
+        }
+
+
+    @@media (max-width: 991px) {
+
+        .syntax-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .syntax-flow {
+            gap: 12px;
+        }
+
+        .syntax-box {
+            min-width: 160px;
+        }
+    }
+
+
+    @@media (max-width: 576px) {
+
+        .syntax-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .syntax-flow {
+            flex-direction: column;
+        }
+
+        .syntax-arrow {
+            transform: rotate(90deg);
+        }
+
+        .syntax-box {
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .code-card pre {
+            padding: 15px;
+        }
+
+        .code-card code {
+            font-size: 13px;
+        }
+    }
+
+</style>

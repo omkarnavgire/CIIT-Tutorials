@@ -1,0 +1,721 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Defining & Calling Functions";
+}
+
+<style>
+    #python-defining-calling-functions-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 0.5rem;
+        padding: 1rem !important;
+        overflow-x: auto;
+    }
+
+        #python-defining-calling-functions-page pre code {
+            background-color: transparent !important;
+            color: #ffffff !important;
+        }
+</style>
+
+<main id="python-defining-calling-functions-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- =========================
+             LEFT SIDEBAR - PYTHON SYLLABUS
+        ========================== -->
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+
+        </aside>
+
+
+        <!-- =========================
+             RIGHT CONTENT
+        ========================== -->
+        <section class="col-lg-9">
+
+            <!-- Page Heading -->
+            <h1 class="display-6 fw-bold mb-3">
+                Defining & Calling Functions in Python
+            </h1>
+
+            <p class="lead">
+                Python function is a reusable block of code that performs a specific task.
+                Instead of writing the same code again and again, we can create a function
+                once and call it whenever required.
+            </p>
+
+            <!-- CIIT Tip -->
+            <div class="alert alert-light border">
+
+                <strong>CIIT Tip:</strong>
+
+                Think of a function as a small reusable machine —
+                provide input, process it, and return the required output.
+
+            </div>
+
+
+            <!-- =========================
+                 1. WHAT IS A FUNCTION
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                1. What is a Function?
+            </h2>
+
+            <p>
+                A function is a block of statements that is created to perform a
+                particular task. In Python, the
+                <strong>def</strong> keyword is used to define a function.
+            </p>
+
+            <pre><code>def greet():
+    print("Welcome to CIIT Institute 📩🔓..!")</code></pre>
+
+            <p>
+                Above, we have <strong>greet()</strong> named function.
+                Defining a function alone does not execute the code.
+                The function must be called to execute the code.
+            </p>
+
+
+            <!-- =========================
+                 2. FUNCTION SYNTAX
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                2. Function Syntax
+            </h2>
+
+            <pre><code>def function_name():
+    # function body
+    statement</code></pre>
+
+            <table class="table table-bordered mt-3">
+
+                <thead class="table-light">
+
+                    <tr>
+                        <th>Part</th>
+                        <th>Meaning</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td><strong>def</strong></td>
+                        <td>Keyword used to define a function</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>function_name</strong></td>
+                        <td>Function name</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>()</strong></td>
+                        <td>Parentheses for parameters</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>:</strong></td>
+                        <td>Starts the function block</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Function Body</strong></td>
+                        <td>Code executed inside the function</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+
+            <!-- =========================
+                 3. DEFINING FUNCTION
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                3. Defining a Function
+            </h2>
+
+            <p>
+                When defining a function, we specify the function name and the
+                code that will be executed inside it.
+            </p>
+
+            <pre><code>def welcome():
+    print("Have a nice day ..😁😍")
+    print("Welcome to CIIT Training Institute 📩🔓..!")</code></pre>
+
+            <p>
+                The function has only been defined so far.
+                The function must be called to execute the code.
+            </p>
+
+
+            <!-- =========================
+                 4. CALLING FUNCTION
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                4. Calling a Function
+            </h2>
+
+            <p>
+                To call a function, use parentheses after the function name.
+                parentheses <strong>()</strong> use karte hain.
+            </p>
+
+            <pre><code>def welcome():
+    print("Welcome to CIIT Training Institute 📩🔓..!")
+
+welcome()</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>Welcome to CIIT Training Institute 📩🔓..!</code></pre>
+
+
+            <!-- =========================
+                 5. MULTIPLE CALLS
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                5. Calling a Function Multiple Times
+            </h2>
+
+            <p>
+                A function can be called multiple times.
+            </p>
+
+            <pre><code>def message():
+    print("Learn Python with CIIT 👨‍🏫")
+
+message()
+message()
+message()</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>Learn Python with CIIT👨‍🏫
+Learn Python with CIIT 👨‍🏫
+Learn Python with CIIT 👨‍🏫</code></pre>
+
+
+            <!-- =========================
+                 6. PARAMETERS
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                6. Function with Parameters
+            </h2>
+
+            <p>
+                Parameters are used to pass data to a function.
+            </p>
+
+            <pre><code>def greet(name):
+    print("Hello", name)
+
+greet("Rahul")
+greet("Priya")</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>Hello Rahul
+Hello Priya</code></pre>
+
+
+            <!-- =========================
+                 7. MULTIPLE PARAMETERS
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                7. Function with Multiple Parameters
+            </h2>
+
+            <pre><code>def add(a, b):
+    print(a + b)
+
+add(10, 20)
+add(50, 30)</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>30
+80</code></pre>
+
+
+            <!-- =========================
+                 8. RETURN VALUE
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                8. Returning a Value
+            </h2>
+
+            <p>
+                The <strong>return</strong> statement is used to send a calculated result from the function to the outside.
+                <strong>return</strong> statement use karte hain.
+            </p>
+
+            <pre><code>def add(a, b):
+    return a + b
+
+result = add(10, 20)
+
+print(result)</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>30</code></pre>
+
+
+            <!-- =========================
+                 9. PRINT VS RETURN
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                9. print() vs return
+            </h2>
+
+            <table class="table table-bordered mt-3">
+
+                <thead class="table-light">
+
+                    <tr>
+                        <th>print()</th>
+                        <th>return</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>Screen par output display karta hai</td>
+                        <td>Value function ke bahar bhejta hai</td>
+                    </tr>
+
+                    <tr>
+                        <td>Further calculation ke liye directly use nahi hota</td>
+                        <td>Returned value ko variable mein store kar sakte hain</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+            <pre><code>def square(number):
+    return number * number
+
+result = square(5)
+
+print(result)</code></pre>
+
+
+            <!-- =========================
+                 10. DEFAULT PARAMETER
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                10. Default Parameter
+            </h2>
+
+            <p>
+                If the caller does not provide a value, a default value can be used.
+            </p>
+
+            <pre><code>def greet(name="Student"):
+    print("Hello", name)
+
+greet()
+greet("Amit")</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>Hello Student
+Hello Amit</code></pre>
+
+
+            <!-- =========================
+                 11. KEYWORD ARGUMENTS
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                11. Keyword Arguments
+            </h2>
+
+            <p>
+                With keyword arguments, you can pass a value by specifying the parameter name.
+            </p>
+
+            <pre><code>def student_info(name, course):
+    print("Name:", name)
+    print("Course:", course)
+
+student_info(
+    course="Python Full Stack",
+    name="Rahul"
+)</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>Name: Rahul
+Course: Python Full Stack</code></pre>
+
+
+            <!-- =========================
+                 12. REAL WORLD EXAMPLE
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                12. CIIT Example 🧑‍🎓🌍
+            </h2>
+
+            <p>
+                Suppose we want to display a student’s course and fee at CIIT.
+                We can create a reusable function for this.
+            </p>
+
+            <pre><code>def student_details(name, course, fee):
+    print("Student:", name)
+    print("Course:", course)
+    print("Fee:", fee)
+
+student_details(
+    "Amit",
+    "Python Full Stack",
+    35000
+)</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>Student: Amit
+Course: Python Full Stack
+Fee: 35000</code></pre>
+
+
+            <!-- =========================
+                 13. EXECUTION FLOW
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                13. Function Execution Flow
+            </h2>
+
+            <div class="alert alert-secondary">
+
+                <strong>Step 1:</strong> Define the function
+                <br>
+                         ↓
+                <br>       
+
+                <strong>Step 2:</strong> Call the function
+                <br>
+                         ↓
+                <br>
+
+                <strong>Step 3:</strong> Pass the arguments
+                <br>
+                         ↓
+                <br>
+
+                <strong>Step 4:</strong> The function body is executed
+                <br>
+                         ↓
+                <br>
+
+                <strong>Step 5:</strong> The result is returned
+
+            </div>
+
+
+            <!-- =========================
+                 14. BEST PRACTICES
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                14. Function Best Practices
+            </h2>
+
+            <ul>
+
+                <li>Use a meaningful name for the function.</li>
+
+                <li>
+                    Preferably give a function one clear responsibility.
+                </li>
+
+                <li>
+                    Convert repeated code into a function.
+                </li>
+
+                <li>
+                    Pass required data through parameters.
+                </li>
+
+                <li>
+                    Use <strong>return</strong> when you need a result.
+                </li>
+
+                <li>
+                    Generally use lowercase and underscore style for function names.
+                </li>
+
+            </ul>
+
+
+            <!-- =========================
+                 15. COMMON MISTAKES
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                15. Common Mistakes
+            </h2>
+
+            <pre><code># Wrong
+def greet()
+    print("Hello")
+
+# Correct
+def greet():
+    print("Hello")</code></pre>
+
+            <pre><code># Function defined but not called
+
+def greet():
+    print("Hello")
+
+# Call the function
+greet()</code></pre>
+
+            <div class="alert alert-warning">
+
+                <strong>Important:</strong>
+
+                Indentation is very important in Python.
+                Code inside a function must be written with proper indentation.
+
+            </div>
+
+
+            <!-- =========================
+                 16. INTERVIEW POINTS
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                16. Interview Points
+            </h2>
+
+            <ul>
+
+                <li>
+                    In Python, the kaunsa keyword use hota hai?
+                </li>
+
+                <li>
+                    How do you execute a function?
+                </li>
+
+                <li>
+                    What is the difference between a parameter and an argument?
+                </li>
+
+                <li>
+                    What is the difference between <strong>print()</strong> and <strong>return</strong>?
+                </li>
+
+                <li>
+                    What is a default parameter?
+                </li>
+
+                <li>
+                    What is a keyword argument?
+                </li>
+
+            </ul>
+
+
+            <!-- =========================
+                 CIIT LEARNING POINT
+            ========================== -->
+
+            <div class="alert alert-success mt-4">
+
+                <h2 class="h4 fw-bold">
+                    CIIT Learning Point
+                </h2>
+
+                <p class="mb-0">
+
+                    Functions are a core concept in Python programming.
+                    If you want to write reusable, clean, and maintainable code,
+                    it is very important to use functions properly.
+
+                </p>
+
+            </div>
+
+
+            <!-- =========================
+                 CIIT PRACTICE TASKS
+            ========================== -->
+
+            <div class="alert alert-warning mt-4">
+
+                <h2 class="h4 fw-bold">
+                    CIIT Practice Tasks
+                </h2>
+
+                <ol class="mb-0">
+
+                    <li class="mb-2">
+
+                        <strong>Greeting Function:</strong>
+
+                        <br>
+
+                        <code>Create a <code>greet()</code> function that
+                        <strong>"Welcome to CIIT Training Institute"</strong>
+                        prints it.
+
+                    </li>
+
+
+                    <li class="mb-2">
+
+                        <strong>Addition Function:</strong>
+
+                        <br>
+
+                        <code>add(a, b)</code> create a function that
+                        returns the sum of two numbers.
+
+                    </li>
+
+
+                    <li class="mb-2">
+
+                        <strong>Square Function:</strong>
+
+                        <br>
+
+                        <code>square(number)</code> function create karo
+                        that returns the square of a number.
+
+                    </li>
+
+
+                    <li class="mb-2">
+
+                        <strong>Student Details:</strong>
+
+                        <br>
+
+                        Create a function that accepts the student name, course, and city
+                        and displays the details.
+
+                    </li>
+
+
+                    <li>
+
+                        <strong>Even Number Function:</strong>
+
+                        <br>
+
+                        <code>is_even(number)</code> create a function that
+                        return <strong>True</strong> if the number is even; otherwise return
+                        <strong>False</strong>.
+
+                    </li>
+
+                </ol>
+
+            </div>
+
+
+            <!-- =========================
+                 SUMMARY
+            ========================== -->
+
+            <div class="alert alert-info mt-4 mb-0"
+                 style="background-color:#cfe2ff; border:0; color:#123c73;">
+
+                <h2 class="h3 fw-bold mt-0 mb-3"
+                    style="color:#123c73;">
+
+                    Summary :
+
+                </h2>
+
+                <p class="mb-0"
+                   style="color:#123c73;">
+
+                    Python functions are reusable blocks of code.
+                    A function is defined using the <strong>def</strong> keyword
+                    and called using parentheses after the function name.
+                    You can pass data through parameters and
+                    <strong>return</strong> statement ke through the result outside the function using the
+                    statement.
+
+                </p>
+
+            </div>
+
+
+            <!-- =========================
+                 PREVIOUS / NEXT
+            ========================== -->
+
+            <div class="d-flex justify-content-between mt-5">
+
+                <a class="btn btn-outline-secondary"
+                   href="@Url.Action("Index", "Functions", new { area = "Python" })">
+
+                    ← Previous : Topic
+
+                </a>
+
+
+                <a class="btn btn-primary"
+                   href="@Url.Action("ParametersArguments", "Functions", new { area = "Python" })">
+
+                    Next : Topic →
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

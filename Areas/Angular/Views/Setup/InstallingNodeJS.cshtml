@@ -1,0 +1,957 @@
+﻿@{
+    ViewData["Title"] = "Installing Node.js";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- ================= HEADER ================= -->
+    <section class="mb-4">
+
+        <h1 class="fw-bold text-dark">
+            Installing Node.js
+        </h1>
+
+        <p class="text-muted fs-5">
+            Node.js is required for Angular development because Angular CLI
+            and npm depend on the Node.js environment.
+        </p>
+
+    </section>
+
+
+    <!-- ================= WHAT IS NODE.JS ================= -->
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            What is Node.js?
+        </h2>
+
+        <p>
+            Node.js is a JavaScript runtime environment that allows
+            JavaScript applications and development tools to run outside
+            the browser.
+        </p>
+
+        <p>
+            Angular uses Node.js as part of its development environment.
+            Angular CLI and npm work with Node.js to create, manage,
+            develop and build Angular applications.
+        </p>
+
+    </section>
+
+
+    <!-- ================= INSTALLATION FLOW ================= -->
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Node.js Installation Flow
+        </h2>
+
+        <div class="installation-flow">
+
+            <div class="flow-card">
+
+                <div class="flow-number">
+                    1
+                </div>
+
+                <h4>
+                    Download
+                </h4>
+
+                <p>
+                    Download Node.js installer.
+                </p>
+
+            </div>
+
+
+            <div class="flow-arrow">
+                →
+            </div>
+
+
+            <div class="flow-card">
+
+                <div class="flow-number">
+                    2
+                </div>
+
+                <h4>
+                    Install
+                </h4>
+
+                <p>
+                    Run the Node.js installer.
+                </p>
+
+            </div>
+
+
+            <div class="flow-arrow">
+                →
+            </div>
+
+
+            <div class="flow-card">
+
+                <div class="flow-number">
+                    3
+                </div>
+
+                <h4>
+                    Verify
+                </h4>
+
+                <p>
+                    Check Node.js and npm.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= STEP 1 ================= -->
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Step 1: Download Node.js
+        </h2>
+
+        <p>
+            Download the Node.js installer suitable for your operating
+            system.
+        </p>
+
+        <div class="info-box">
+
+            <h4>
+                Important
+            </h4>
+
+            <p class="mb-0">
+                Choose a Node.js version that is compatible with the
+                Angular version used in your project.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= STEP 2 ================= -->
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Step 2: Run the Node.js Installer
+        </h2>
+
+        <div class="installation-steps">
+
+            <div class="install-step">
+
+                <span>
+                    01
+                </span>
+
+                <div>
+
+                    <h5>
+                        Open the Installer
+                    </h5>
+
+                    <p>
+                        Double-click the downloaded Node.js installer.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="install-step">
+
+                <span>
+                    02
+                </span>
+
+                <div>
+
+                    <h5>
+                        Accept the License
+                    </h5>
+
+                    <p>
+                        Read and accept the Node.js license agreement.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="install-step">
+
+                <span>
+                    03
+                </span>
+
+                <div>
+
+                    <h5>
+                        Select Installation Location
+                    </h5>
+
+                    <p>
+                        Select the installation location or keep the
+                        default location.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="install-step">
+
+                <span>
+                    04
+                </span>
+
+                <div>
+
+                    <h5>
+                        Start Installation
+                    </h5>
+
+                    <p>
+                        Click the Install button and wait for the
+                        installation to complete.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="install-step">
+
+                <span>
+                    05
+                </span>
+
+                <div>
+
+                    <h5>
+                        Finish Installation
+                    </h5>
+
+                    <p>
+                        Click Finish after the installation is completed.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= STEP 3 ================= -->
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Step 3: Verify Node.js Installation
+        </h2>
+
+        <p>
+            Open Command Prompt or Terminal and execute the following
+            command:
+        </p>
+
+        <div class="code-box">
+
+            <div class="code-header">
+                Terminal
+            </div>
+
+            <pre><code>node --version</code></pre>
+
+        </div>
+
+
+        <div class="output-box">
+
+            <h5>
+                Expected Output
+            </h5>
+
+            <p>
+                The terminal displays the installed Node.js version.
+            </p>
+
+            <div class="terminal-output">
+                v[installed-version]
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= STEP 4 ================= -->
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Step 4: Verify npm Installation
+        </h2>
+
+        <p>
+            npm is normally installed along with Node.js. Verify npm
+            using the following command:
+        </p>
+
+        <div class="code-box">
+
+            <div class="code-header">
+                Terminal
+            </div>
+
+            <pre><code>npm --version</code></pre>
+
+        </div>
+
+
+        <div class="output-box">
+
+            <h5>
+                Expected Output
+            </h5>
+
+            <p>
+                The terminal displays the installed npm version.
+            </p>
+
+            <div class="terminal-output">
+                [installed-npm-version]
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= NODE + NPM ================= -->
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Node.js and npm Verification
+        </h2>
+
+        <div class="row g-4">
+
+            <div class="col-md-6">
+
+                <div class="check-card">
+
+                    <div class="check-icon">
+                        ✓
+                    </div>
+
+                    <h4>
+                        Node.js
+                    </h4>
+
+                    <p>
+                        Node.js is installed and available from the
+                        terminal.
+                    </p>
+
+                    <div class="mini-command">
+                        node --version
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6">
+
+                <div class="check-card">
+
+                    <div class="check-icon">
+                        ✓
+                    </div>
+
+                    <h4>
+                        npm
+                    </h4>
+
+                    <p>
+                        npm is available for installing and managing
+                        project packages.
+                    </p>
+
+                    <div class="mini-command">
+                        npm --version
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= NODE ANGULAR FLOW ================= -->
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Node.js Role in Angular
+        </h2>
+
+        <div class="role-flow">
+
+            <div class="role-box">
+                <strong>
+                    Node.js
+                </strong>
+
+                <span>
+                    Runtime Environment
+                </span>
+            </div>
+
+
+            <div class="role-arrow">
+                ↓
+            </div>
+
+
+            <div class="role-box">
+                <strong>
+                    npm
+                </strong>
+
+                <span>
+                    Package Management
+                </span>
+            </div>
+
+
+            <div class="role-arrow">
+                ↓
+            </div>
+
+
+            <div class="role-box">
+                <strong>
+                    Angular CLI
+                </strong>
+
+                <span>
+                    Angular Development Tools
+                </span>
+            </div>
+
+
+            <div class="role-arrow">
+                ↓
+            </div>
+
+
+            <div class="role-box">
+                <strong>
+                    Angular Application
+                </strong>
+
+                <span>
+                    Development and Build
+                </span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= COMMON ISSUE ================= -->
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Common Installation Issue
+        </h2>
+
+        <div class="warning-box">
+
+            <h4>
+                'node' is not recognized
+            </h4>
+
+            <p>
+                If the terminal says that the node command is not
+                recognized, close the terminal and open it again.
+            </p>
+
+            <p class="mb-0">
+                Then run <strong>node --version</strong> again.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= SUMMARY ================= -->
+    <section class="mb-5">
+
+        <div class="summary-box">
+
+            <h3>
+                Summary
+            </h3>
+
+            <p>
+                Node.js is an important prerequisite for Angular
+                development.
+            </p>
+
+            <p>
+                After installing Node.js, verify both Node.js and npm
+                from the terminal.
+            </p>
+
+            <p class="mb-0">
+                Once Node.js is installed successfully, the next step is
+                <strong>Installing Angular CLI</strong>.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= NAVIGATION ================= -->
+    <div class="topic-navigation">
+
+        <a class="btn btn-outline-secondary"
+           href="@Url.Action("NodeJS", "Setup", new { area = "Angular" })">
+            ← Node.js
+        </a>
+
+
+        <a class="btn btn-primary"
+           href="@Url.Action("AngularCLI", "Setup", new { area = "Angular" })">
+            Installing Angular CLI →
+        </a>
+
+    </div>
+
+</div>
+
+
+<style>
+
+    .section-title {
+        font-size: 25px;
+        font-weight: 700;
+        color: #2e1065;
+        margin-bottom: 18px;
+        border-left: 5px solid #4c1d95;
+        padding-left: 12px;
+    }
+
+
+    .installation-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        flex-wrap: wrap;
+        background: #f8f7fc;
+        border: 1px solid #e5e7eb;
+        border-radius: 10px;
+        padding: 30px 20px;
+        margin-top: 20px;
+    }
+
+
+    .flow-card {
+        width: 190px;
+        min-height: 140px;
+        text-align: center;
+        background: white;
+        border: 1px solid #ddd6fe;
+        border-radius: 10px;
+        padding: 18px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+    }
+
+
+    .flow-number {
+        width: 42px;
+        height: 42px;
+        margin: 0 auto 10px;
+        border-radius: 50%;
+        background: #4c1d95;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+    }
+
+
+    .flow-card h4 {
+        color: #2e1065;
+        font-size: 18px;
+        font-weight: 700;
+    }
+
+
+    .flow-card p {
+        color: #64748b;
+        font-size: 14px;
+        margin-bottom: 0;
+    }
+
+
+    .flow-arrow {
+        color: #4c1d95;
+        font-size: 30px;
+        font-weight: 700;
+    }
+
+
+    .info-box {
+        background: #f3f0ff;
+        border-left: 5px solid #4c1d95;
+        border-radius: 6px;
+        padding: 18px 22px;
+        margin-top: 18px;
+    }
+
+
+    .info-box h4 {
+        color: #2e1065;
+        font-weight: 700;
+        margin-bottom: 8px;
+    }
+
+
+    .info-box p {
+        color: #4c1d95;
+        line-height: 1.6;
+    }
+
+
+    .installation-steps {
+        background: #f8f7fc;
+        border: 1px solid #e5e7eb;
+        border-radius: 10px;
+        padding: 20px;
+        margin-top: 18px;
+    }
+
+
+    .install-step {
+        display: flex;
+        gap: 15px;
+        padding: 15px 5px;
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+
+    .install-step:last-child {
+        border-bottom: none;
+    }
+
+
+    .install-step > span {
+        width: 38px;
+        height: 38px;
+        flex-shrink: 0;
+        border-radius: 50%;
+        background: #4c1d95;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+    }
+
+
+    .install-step h5 {
+        color: #2e1065;
+        font-weight: 700;
+        margin-bottom: 5px;
+    }
+
+
+    .install-step p {
+        color: #64748b;
+        margin-bottom: 0;
+        line-height: 1.6;
+    }
+
+
+    .code-box {
+        background: #0f172a;
+        border-radius: 8px;
+        overflow: hidden;
+        margin-top: 15px;
+    }
+
+
+    .code-header {
+        background: #1e293b;
+        color: #cbd5e1;
+        padding: 9px 15px;
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+
+    .code-box pre {
+        margin: 0;
+        padding: 18px;
+        overflow-x: auto;
+    }
+
+
+    .code-box code {
+        color: #e2e8f0;
+        font-size: 15px;
+        line-height: 1.7;
+    }
+
+
+    .output-box {
+        background: #ecfdf5;
+        border-left: 5px solid #198754;
+        padding: 16px 20px;
+        margin-top: 18px;
+        border-radius: 6px;
+    }
+
+
+    .output-box h5 {
+        color: #146c43;
+        font-weight: 700;
+        margin-bottom: 8px;
+    }
+
+
+    .output-box p {
+        color: #14532d;
+        line-height: 1.6;
+    }
+
+
+    .terminal-output {
+        background: white;
+        border: 1px solid #bbf7d0;
+        border-radius: 5px;
+        padding: 10px 14px;
+        color: #166534;
+        font-family: monospace;
+        font-weight: 600;
+    }
+
+
+    .check-card {
+        height: 100%;
+        background: white;
+        border: 1px solid #ddd6fe;
+        border-radius: 10px;
+        padding: 22px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    }
+
+
+    .check-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #4c1d95;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        margin-bottom: 12px;
+    }
+
+
+    .check-card h4 {
+        color: #2e1065;
+        font-weight: 700;
+    }
+
+
+    .check-card p {
+        color: #64748b;
+        line-height: 1.6;
+    }
+
+
+    .mini-command {
+        background: #0f172a;
+        color: #e2e8f0;
+        padding: 10px 14px;
+        border-radius: 5px;
+        font-family: monospace;
+        font-size: 14px;
+    }
+
+
+    .role-flow {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 25px;
+        background: #f8f7fc;
+        border: 1px solid #e5e7eb;
+        border-radius: 10px;
+    }
+
+
+    .role-box {
+        width: 300px;
+        text-align: center;
+        background: white;
+        border: 2px solid #4c1d95;
+        border-radius: 8px;
+        padding: 15px;
+    }
+
+
+    .role-box strong {
+        display: block;
+        color: #2e1065;
+        font-size: 17px;
+    }
+
+
+    .role-box span {
+        display: block;
+        color: #64748b;
+        font-size: 14px;
+        margin-top: 5px;
+    }
+
+
+    .role-arrow {
+        color: #4c1d95;
+        font-size: 28px;
+        font-weight: 700;
+        margin: 5px 0;
+    }
+
+
+    .warning-box {
+        background: #fff7ed;
+        border-left: 5px solid #f59e0b;
+        border-radius: 6px;
+        padding: 18px 22px;
+    }
+
+
+    .warning-box h4 {
+        color: #9a3412;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+
+
+    .warning-box p {
+        color: #7c2d12;
+        line-height: 1.6;
+    }
+
+
+    .summary-box {
+        background: #cfe2ff;
+        border-radius: 6px;
+        padding: 18px 22px;
+        margin-top: 20px;
+    }
+
+
+    .summary-box h3 {
+        font-size: 20px;
+        font-weight: 700;
+        color: #084298;
+        margin-bottom: 10px;
+    }
+
+
+    .summary-box p {
+        font-size: 16px !important;
+        line-height: 1.6 !important;
+        color: #084298 !important;
+        margin-bottom: 8px;
+    }
+
+
+    .topic-navigation {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 1px solid #e5e7eb;
+    }
+
+
+    .topic-navigation .btn-primary {
+        background: #4c1d95;
+        border-color: #4c1d95;
+    }
+
+
+    .topic-navigation .btn-primary:hover {
+        background: #2e1065;
+        border-color: #2e1065;
+    }
+
+
+    @@media (max-width: 768px) {
+
+        .installation-flow {
+            flex-direction: column;
+        }
+
+        .flow-arrow {
+            transform: rotate(90deg);
+        }
+
+        .flow-card {
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .role-box {
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .section-title {
+            font-size: 21px;
+        }
+
+        .code-box code {
+            font-size: 13px;
+        }
+
+    }
+
+</style>

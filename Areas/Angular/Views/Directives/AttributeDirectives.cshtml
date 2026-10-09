@@ -1,0 +1,606 @@
+﻿@{
+    ViewData["Title"] = "Attribute Directives";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- Header -->
+    <section class="mb-4">
+        <h1 class="fw-bold text-dark">Attribute Directives</h1>
+        <p class="lead text-muted">
+            Learn how Angular attribute directives change the appearance
+            or behavior of existing HTML elements.
+        </p>
+    </section>
+
+    <!-- What are Attribute Directives -->
+    <section class="mb-4">
+        <h2 class="fw-bold">What are Attribute Directives?</h2>
+
+        <div class="info-card">
+            <p>
+                Attribute directives are Angular directives that modify the
+                behavior, appearance, or properties of an existing HTML element.
+            </p>
+
+            <p class="mb-0">
+                Unlike structural directives, attribute directives do not
+                create or remove elements from the DOM.
+            </p>
+        </div>
+    </section>
+
+    <!-- Flow -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Attribute Directive Flow</h2>
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+                <div class="syntax-icon">1</div>
+                <h5>HTML Element</h5>
+                <p>Create an element in the Angular template.</p>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+                <div class="syntax-icon">2</div>
+                <h5>Directive</h5>
+                <p>Apply an attribute directive to the element.</p>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+                <div class="syntax-icon">3</div>
+                <h5>Angular</h5>
+                <p>Angular evaluates the directive and its values.</p>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+                <div class="syntax-icon">4</div>
+                <h5>UI Update</h5>
+                <p>The appearance or behavior changes.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Common Attribute Directives -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Common Attribute Directives</h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+                <div class="syntax-icon">C</div>
+                <h5>ngClass</h5>
+                <p>
+                    Dynamically adds or removes CSS classes.
+                </p>
+            </div>
+
+            <div class="syntax-card">
+                <div class="syntax-icon">S</div>
+                <h5>ngStyle</h5>
+                <p>
+                    Dynamically applies CSS styles.
+                </p>
+            </div>
+
+            <div class="syntax-card">
+                <div class="syntax-icon">A</div>
+                <h5>Attribute Binding</h5>
+                <p>
+                    Dynamically changes HTML attributes.
+                </p>
+            </div>
+
+            <div class="syntax-card">
+                <div class="syntax-icon">C</div>
+                <h5>Custom Directive</h5>
+                <p>
+                    Adds reusable custom behavior to elements.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ngClass -->
+    <section class="mb-4">
+        <h2 class="fw-bold">ngClass Directive</h2>
+
+        <p>
+            The <code>ngClass</code> directive allows CSS classes to be
+            added or removed dynamically.
+        </p>
+
+        <div class="code-card">
+            <div class="code-title">Component</div>
+
+            <pre><code>isActive = true;
+isPremium = false;</code></pre>
+        </div>
+
+        <div class="code-card">
+            <div class="code-title">HTML</div>
+
+            <pre><code>&lt;div [ngClass]="{
+    active: isActive,
+    premium: isPremium
+}"&gt;
+    Student Profile
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <div class="output-box">
+            <strong>Result:</strong>
+
+            <div class="output-preview">
+                The <code>active</code> class is applied because
+                <code>isActive</code> is true.
+            </div>
+        </div>
+    </section>
+
+    <!-- ngClass with Multiple Classes -->
+    <section class="mb-4">
+        <h2 class="fw-bold">ngClass with Multiple Classes</h2>
+
+        <p>
+            Multiple CSS classes can be controlled using an object.
+        </p>
+
+        <div class="code-card">
+            <div class="code-title">HTML</div>
+
+            <pre><code>&lt;div [ngClass]="{
+    active: isActive,
+    premium: isPremium,
+    highlighted: isHighlighted
+}"&gt;
+
+    Student Details
+
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <div class="output-box">
+            <strong>Result:</strong>
+
+            <div class="output-preview">
+                Each class is applied according to its corresponding
+                boolean value.
+            </div>
+        </div>
+    </section>
+
+    <!-- ngStyle -->
+    <section class="mb-4">
+        <h2 class="fw-bold">ngStyle Directive</h2>
+
+        <p>
+            The <code>ngStyle</code> directive dynamically applies one or
+            more CSS styles to an element.
+        </p>
+
+        <div class="code-card">
+            <div class="code-title">Component</div>
+
+            <pre><code>textColor = 'purple';
+fontSize = 20;</code></pre>
+        </div>
+
+        <div class="code-card">
+            <div class="code-title">HTML</div>
+
+            <pre><code>&lt;p [ngStyle]="{
+    color: textColor,
+    'font-size.px': fontSize
+}"&gt;
+
+    Angular Full Stack Training
+
+&lt;/p&gt;</code></pre>
+        </div>
+
+        <div class="output-box">
+            <strong>Result:</strong>
+
+            <div class="output-preview">
+                The text color and font size are controlled dynamically.
+            </div>
+        </div>
+    </section>
+
+    <!-- Attribute Binding -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Attribute Binding</h2>
+
+        <p>
+            Angular can dynamically change HTML attributes using
+            attribute binding.
+        </p>
+
+        <div class="code-card">
+            <div class="code-title">HTML</div>
+
+            <pre><code>&lt;button
+    [attr.disabled]="isDisabled ? true : null"&gt;
+
+    Submit
+
+&lt;/button&gt;</code></pre>
+        </div>
+
+        <div class="output-box">
+            <strong>Result:</strong>
+
+            <div class="output-preview">
+                The <code>disabled</code> attribute is added when
+                <code>isDisabled</code> is true.
+            </div>
+        </div>
+    </section>
+
+    <!-- Class vs Style -->
+    <section class="mb-4">
+        <h2 class="fw-bold">ngClass vs ngStyle</h2>
+
+        <div class="table-responsive">
+
+            <table class="table syntax-table">
+
+                <thead>
+                    <tr>
+                        <th>Directive</th>
+                        <th>Purpose</th>
+                        <th>Example</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td><code>ngClass</code></td>
+                        <td>Apply CSS classes dynamically</td>
+                        <td><code>[ngClass]="classes"</code></td>
+                    </tr>
+
+                    <tr>
+                        <td><code>ngStyle</code></td>
+                        <td>Apply CSS styles dynamically</td>
+                        <td><code>[ngStyle]="styles"</code></td>
+                    </tr>
+
+                    <tr>
+                        <td><code>attr</code></td>
+                        <td>Change HTML attributes</td>
+                        <td><code>[attr.title]="title"</code></td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+    </section>
+
+    <!-- Complete Example -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Complete Student Example</h2>
+
+        <div class="code-card">
+            <div class="code-title">student.component.ts</div>
+
+            <pre><code>export class StudentComponent {
+
+    studentName = 'Pradnya';
+
+    isActive = true;
+
+    isPremium = true;
+
+    textColor = 'purple';
+
+    fontSize = 20;
+
+}</code></pre>
+        </div>
+
+        <div class="code-card">
+            <div class="code-title">student.component.html</div>
+
+            <pre><code>&lt;div
+    [ngClass]="{
+        active: isActive,
+        premium: isPremium
+    }"
+    [ngStyle]="{
+        color: textColor,
+        'font-size.px': fontSize
+    }"&gt;
+
+    &lt;h3&gt;{{studentName}}&lt;/h3&gt;
+
+    &lt;p&gt;Angular Full Stack Student&lt;/p&gt;
+
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <div class="student-preview">
+            <h4>Pradnya</h4>
+
+            <p class="mb-0">
+                Angular Full Stack Student
+            </p>
+        </div>
+    </section>
+
+    <!-- Benefits -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Benefits of Attribute Directives</h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+                <div class="syntax-icon">R</div>
+                <h5>Reusable</h5>
+                <p>
+                    Directive behavior can be reused across multiple elements.
+                </p>
+            </div>
+
+            <div class="syntax-card">
+                <div class="syntax-icon">D</div>
+                <h5>Dynamic</h5>
+                <p>
+                    UI appearance can change according to component data.
+                </p>
+            </div>
+
+            <div class="syntax-card">
+                <div class="syntax-icon">U</div>
+                <h5>UI Control</h5>
+                <p>
+                    Control classes, styles, and attributes dynamically.
+                </p>
+            </div>
+
+            <div class="syntax-card">
+                <div class="syntax-icon">C</div>
+                <h5>Customizable</h5>
+                <p>
+                    Developers can create their own attribute directives.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Best Practices -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Best Practices</h2>
+
+        <ul class="best-practice-list">
+            <li>Use <code>ngClass</code> for dynamic CSS classes.</li>
+            <li>Use <code>ngStyle</code> for dynamic style values.</li>
+            <li>Prefer class-based styling for reusable UI designs.</li>
+            <li>Keep directive expressions simple and readable.</li>
+            <li>Use meaningful class and directive names.</li>
+            <li>Create custom directives only when reusable behavior is required.</li>
+        </ul>
+    </section>
+
+    <!-- Summary -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Summary</h2>
+
+        <div class="summary-box">
+            <ul class="mb-0">
+                <li>Attribute directives modify existing HTML elements.</li>
+                <li><code>ngClass</code> dynamically manages CSS classes.</li>
+                <li><code>ngStyle</code> dynamically manages CSS styles.</li>
+                <li>Attribute binding can dynamically control HTML attributes.</li>
+                <li>Attribute directives do not change the DOM structure.</li>
+                <li>Custom directives can provide reusable application behavior.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Navigation -->
+    <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+
+        <a class="btn btn-outline-secondary"
+           href="@Url.Action("Index", "Directives", new { area = "Angular" })">
+            ← Directives Introduction
+        </a>
+
+        <a class="btn btn-primary"
+           href="@Url.Action("StructuralDirectives", "Directives", new { area = "Angular" })">
+            Structural Directives →
+        </a>
+
+    </div>
+
+</div>
+
+<style>
+
+    .info-card {
+        background: #f8fafc;
+        border-left: 5px solid #4c1d95;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    .syntax-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .syntax-box {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 20px;
+        text-align: center;
+        width: 190px;
+        min-height: 160px;
+    }
+
+    .syntax-icon {
+        width: 45px;
+        height: 45px;
+        background: #4c1d95;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 12px;
+        font-weight: bold;
+    }
+
+    .syntax-arrow {
+        font-size: 28px;
+        font-weight: bold;
+        color: #4c1d95;
+    }
+
+    .syntax-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+
+    .syntax-card {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .code-card {
+        background: #0f172a;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-bottom: 20px;
+    }
+
+    .code-title {
+        background: #1e293b;
+        color: #ddd6fe;
+        padding: 10px 15px;
+        font-weight: 600;
+    }
+
+    .code-card pre {
+        margin: 0;
+        padding: 20px;
+        overflow-x: auto;
+    }
+
+    .code-card code {
+        color: #f8fafc;
+        font-family: Consolas, monospace;
+        line-height: 1.7;
+    }
+
+    .output-box {
+        background: #ede9fe;
+        border-left: 5px solid #4c1d95;
+        padding: 18px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+
+    .output-preview {
+        background: white;
+        border-radius: 8px;
+        padding: 15px;
+        margin-top: 10px;
+    }
+
+    .syntax-table {
+        border: 1px solid #e2e8f0;
+    }
+
+        .syntax-table th {
+            background: #4c1d95;
+            color: white;
+        }
+
+        .syntax-table td {
+            vertical-align: middle;
+        }
+
+    .student-preview {
+        background: #ede9fe;
+        border: 2px solid #4c1d95;
+        border-radius: 12px;
+        padding: 25px;
+        text-align: center;
+    }
+
+    .best-practice-list {
+        background: #f8fafc;
+        border-radius: 10px;
+        padding: 25px 40px;
+        border-left: 5px solid #4c1d95;
+    }
+
+        .best-practice-list li {
+            margin-bottom: 10px;
+        }
+
+    .summary-box {
+        background: #cfe2ff;
+        color: #084298;
+        border-radius: 10px;
+        padding: 20px;
+    }
+
+    @@media (max-width: 991px) {
+
+        .syntax-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .syntax-flow {
+            flex-direction: column;
+        }
+
+        .syntax-arrow {
+            transform: rotate(90deg);
+        }
+    }
+
+    @@media (max-width: 576px) {
+
+        .syntax-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .syntax-box {
+            width: 100%;
+        }
+
+        .best-practice-list {
+            padding: 20px 30px;
+        }
+
+        .code-card pre {
+            font-size: 13px;
+        }
+    }
+
+</style>

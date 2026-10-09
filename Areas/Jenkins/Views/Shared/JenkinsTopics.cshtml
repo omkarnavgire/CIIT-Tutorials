@@ -1,0 +1,625 @@
+@{
+    // Current controller name.
+    var currentController =
+        ViewContext.RouteData.Values["controller"]?.ToString();
+
+    // Current action name.
+    var currentAction =
+        ViewContext.RouteData.Values["action"]?.ToString();
+
+    // Checks whether the current topic is active.
+    bool IsActive(string controller, string action)
+    {
+        return string.Equals(
+                   currentController,
+                   controller,
+                   StringComparison.OrdinalIgnoreCase)
+               &&
+               string.Equals(
+                   currentAction,
+                   action,
+                   StringComparison.OrdinalIgnoreCase);
+    }
+}
+
+
+<style>
+
+    /* =========================================================
+       COURSE SYLLABUS CARD
+       ========================================================= */
+
+    .jenkins-syllabus-card {
+        border: 0;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        position: sticky;
+        top: 90px;
+        max-height: calc(100vh - 110px);
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .jenkins-syllabus-header {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        padding: 14px 18px !important;
+        font-size: 15px;
+        font-weight: 700;
+        display: block !important;
+        visibility: visible !important;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+
+    .jenkins-syllabus-header span { color: #ffffff !important; }
+
+    .jenkins-module-title {
+        background-color: #f8f9fa !important;
+        font-weight: 700 !important;
+        color: #212529 !important;
+        padding: 12px 16px;
+        border-bottom: 1px solid #e9ecef;
+    }
+
+    .jenkins-topic-link {
+        display: block;
+        padding: 10px 16px 10px 28px;
+        font-size: 14px;
+        color: #495057 !important;
+        text-decoration: none !important;
+        border: 0 !important;
+        border-bottom: 1px solid #f1f1f1 !important;
+        background-color: #ffffff !important;
+    }
+
+    .jenkins-topic-link:hover {
+        background-color: #f1f3f5 !important;
+        color: #212529 !important;
+    }
+
+    .jenkins-topic-link.active,
+    .jenkins-topic-link.active:hover,
+    .jenkins-topic-link.active:focus {
+        background-color: #ffffff !important;
+        color: #495057 !important;
+        font-weight: 400 !important;
+        border-top: 0 !important;
+        border-left: 0 !important;
+        border-right: 0 !important;
+        border-bottom: 2px solid #2563eb !important;
+        box-shadow: none !important;
+    }
+
+    .jenkins-syllabus-card::-webkit-scrollbar { width: 6px; }
+    .jenkins-syllabus-card::-webkit-scrollbar-track { background: #f1f1f1; }
+    .jenkins-syllabus-card::-webkit-scrollbar-thumb { background: #c8c8c8; border-radius: 10px; }
+    .jenkins-syllabus-card::-webkit-scrollbar-thumb:hover { background: #aaaaaa; }
+
+    @@media (max-width: 991px) {
+        .jenkins-syllabus-card { position: relative; top: auto; max-height: none; overflow: hidden; }
+        .jenkins-syllabus-header { position: relative; }
+    }
+
+</style>
+
+
+<!-- =========================================================
+     JENKINS COURSE SYLLABUS
+     ========================================================= -->
+
+<div class="card jenkins-syllabus-card">
+
+    <div class="card-header jenkins-syllabus-header">
+        <span>COURSE SYLLABUS</span>
+    </div>
+
+    <div class="list-group list-group-flush">
+
+        <!-- =====================================================
+             PHASE 1
+             ===================================================== -->
+
+        <div class="list-group-item jenkins-module-title">
+            1. Foundations
+        </div>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("Foundations", "Index") ? "active" : "")"
+           href="@Url.Action("Index", "Foundations", new { area = "Jenkins" })">
+
+            Introduction to Jenkins
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("Foundations", "CICDConcepts") ? "active" : "")"
+           href="@Url.Action("CICDConcepts", "Foundations", new { area = "Jenkins" })">
+
+            What is CI/CD?
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("Foundations", "WhyJenkins") ? "active" : "")"
+           href="@Url.Action("WhyJenkins", "Foundations", new { area = "Jenkins" })">
+
+            Why Jenkins?
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("Foundations", "JenkinsArchitecture") ? "active" : "")"
+           href="@Url.Action("JenkinsArchitecture", "Foundations", new { area = "Jenkins" })">
+
+            Jenkins Architecture
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("Foundations", "ControllerAndAgents") ? "active" : "")"
+           href="@Url.Action("ControllerAndAgents", "Foundations", new { area = "Jenkins" })">
+
+            Controller and Agents
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("Foundations", "JenkinsEcosystem") ? "active" : "")"
+           href="@Url.Action("JenkinsEcosystem", "Foundations", new { area = "Jenkins" })">
+
+            Jenkins Ecosystem
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("Foundations", "InstallationPrerequisites") ? "active" : "")"
+           href="@Url.Action("InstallationPrerequisites", "Foundations", new { area = "Jenkins" })">
+
+            Installation Prerequisites
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("Foundations", "DockerInstallation") ? "active" : "")"
+           href="@Url.Action("DockerInstallation", "Foundations", new { area = "Jenkins" })">
+
+            Jenkins with Docker
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("Foundations", "NativeInstallation") ? "active" : "")"
+           href="@Url.Action("NativeInstallation", "Foundations", new { area = "Jenkins" })">
+
+            Native OS Installation
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("Foundations", "Dashboard") ? "active" : "")"
+           href="@Url.Action("Dashboard", "Foundations", new { area = "Jenkins" })">
+
+            Jenkins Dashboard
+
+        </a>
+
+        <!-- =====================================================
+             PHASE 2
+             ===================================================== -->
+
+        <div class="list-group-item jenkins-module-title">
+            2. Core CI/CD Basics
+        </div>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("CoreCICD", "Index") ? "active" : "")"
+           href="@Url.Action("Index", "CoreCICD", new { area = "Jenkins" })">
+
+            Freestyle Projects
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("CoreCICD", "FirstJob") ? "active" : "")"
+           href="@Url.Action("FirstJob", "CoreCICD", new { area = "Jenkins" })">
+
+            Creating Your First Jenkins Job
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("CoreCICD", "SourceControl") ? "active" : "")"
+           href="@Url.Action("SourceControl", "CoreCICD", new { area = "Jenkins" })">
+
+            Source Control Management
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("CoreCICD", "BuildSteps") ? "active" : "")"
+           href="@Url.Action("BuildSteps", "CoreCICD", new { area = "Jenkins" })">
+
+            Build Steps
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("CoreCICD", "BuildTriggers") ? "active" : "")"
+           href="@Url.Action("BuildTriggers", "CoreCICD", new { area = "Jenkins" })">
+
+            Build Triggers
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("CoreCICD", "ParameterizedBuilds") ? "active" : "")"
+           href="@Url.Action("ParameterizedBuilds", "CoreCICD", new { area = "Jenkins" })">
+
+            Parameterized Builds
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("CoreCICD", "GlobalTools") ? "active" : "")"
+           href="@Url.Action("GlobalTools", "CoreCICD", new { area = "Jenkins" })">
+
+            Global Tool Configuration
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("CoreCICD", "Workspaces") ? "active" : "")"
+           href="@Url.Action("Workspaces", "CoreCICD", new { area = "Jenkins" })">
+
+            Managing Workspaces
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("CoreCICD", "Artifacts") ? "active" : "")"
+           href="@Url.Action("Artifacts", "CoreCICD", new { area = "Jenkins" })">
+
+            Artifacts and Build Outputs
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("CoreCICD", "UpstreamDownstream") ? "active" : "")"
+           href="@Url.Action("UpstreamDownstream", "CoreCICD", new { area = "Jenkins" })">
+
+            Upstream and Downstream Jobs
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("CoreCICD", "BuildHistory") ? "active" : "")"
+           href="@Url.Action("BuildHistory", "CoreCICD", new { area = "Jenkins" })">
+
+            Build History and Console Output
+
+        </a>
+
+        <!-- =====================================================
+             PHASE 3
+             ===================================================== -->
+
+        <div class="list-group-item jenkins-module-title">
+            3. Pipeline as Code
+        </div>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("Pipeline", "Index") ? "active" : "")"
+           href="@Url.Action("Index", "Pipeline", new { area = "Jenkins" })">
+
+            Jenkinsfile Foundations
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("Pipeline", "DeclarativeVsScripted") ? "active" : "")"
+           href="@Url.Action("DeclarativeVsScripted", "Pipeline", new { area = "Jenkins" })">
+
+            Declarative vs Scripted Pipeline
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("Pipeline", "PipelineAnatomy") ? "active" : "")"
+           href="@Url.Action("PipelineAnatomy", "Pipeline", new { area = "Jenkins" })">
+
+            Pipeline Anatomy
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("Pipeline", "AgentDirective") ? "active" : "")"
+           href="@Url.Action("AgentDirective", "Pipeline", new { area = "Jenkins" })">
+
+            Agent Directive
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("Pipeline", "StagesAndSteps") ? "active" : "")"
+           href="@Url.Action("StagesAndSteps", "Pipeline", new { area = "Jenkins" })">
+
+            Stages and Steps
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("Pipeline", "EnvironmentVariables") ? "active" : "")"
+           href="@Url.Action("EnvironmentVariables", "Pipeline", new { area = "Jenkins" })">
+
+            Environment Variables
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("Pipeline", "Parameters") ? "active" : "")"
+           href="@Url.Action("Parameters", "Pipeline", new { area = "Jenkins" })">
+
+            Pipeline Parameters
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("Pipeline", "WhenDirective") ? "active" : "")"
+           href="@Url.Action("WhenDirective", "Pipeline", new { area = "Jenkins" })">
+
+            Conditional Execution with when
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("Pipeline", "ParallelExecution") ? "active" : "")"
+           href="@Url.Action("ParallelExecution", "Pipeline", new { area = "Jenkins" })">
+
+            Parallel Execution
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("Pipeline", "PostBlock") ? "active" : "")"
+           href="@Url.Action("PostBlock", "Pipeline", new { area = "Jenkins" })">
+
+            Post Block and Build Results
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("Pipeline", "Multibranch") ? "active" : "")"
+           href="@Url.Action("Multibranch", "Pipeline", new { area = "Jenkins" })">
+
+            Multibranch Pipelines
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("Pipeline", "Webhooks") ? "active" : "")"
+           href="@Url.Action("Webhooks", "Pipeline", new { area = "Jenkins" })">
+
+            Git Webhooks
+
+        </a>
+
+        <!-- =====================================================
+             PHASE 4
+             ===================================================== -->
+
+        <div class="list-group-item jenkins-module-title">
+            4. Real-World Language Ecosystems
+        </div>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("LanguageStacks", "Index") ? "active" : "")"
+           href="@Url.Action("Index", "LanguageStacks", new { area = "Jenkins" })">
+
+            Language Stack Pipelines
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("LanguageStacks", "Maven") ? "active" : "")"
+           href="@Url.Action("Maven", "LanguageStacks", new { area = "Jenkins" })">
+
+            Java and Maven Builds
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("LanguageStacks", "SpringBoot") ? "active" : "")"
+           href="@Url.Action("SpringBoot", "LanguageStacks", new { area = "Jenkins" })">
+
+            Spring Boot CI Pipeline
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("LanguageStacks", "JUnitReports") ? "active" : "")"
+           href="@Url.Action("JUnitReports", "LanguageStacks", new { area = "Jenkins" })">
+
+            JUnit Test Reports
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("LanguageStacks", "JarWarArtifacts") ? "active" : "")"
+           href="@Url.Action("JarWarArtifacts", "LanguageStacks", new { area = "Jenkins" })">
+
+            JAR and WAR Artifacts
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("LanguageStacks", "NodeReact") ? "active" : "")"
+           href="@Url.Action("NodeReact", "LanguageStacks", new { area = "Jenkins" })">
+
+            Node.js and React Pipeline
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("LanguageStacks", "NpmTesting") ? "active" : "")"
+           href="@Url.Action("NpmTesting", "LanguageStacks", new { area = "Jenkins" })">
+
+            npm Testing and Packaging
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("LanguageStacks", "Python") ? "active" : "")"
+           href="@Url.Action("Python", "LanguageStacks", new { area = "Jenkins" })">
+
+            Python Pipeline
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("LanguageStacks", "Pytest") ? "active" : "")"
+           href="@Url.Action("Pytest", "LanguageStacks", new { area = "Jenkins" })">
+
+            pytest Testing
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("LanguageStacks", "DotNet") ? "active" : "")"
+           href="@Url.Action("DotNet", "LanguageStacks", new { area = "Jenkins" })">
+
+            C# and .NET Pipeline
+
+        </a>
+
+        <!-- =====================================================
+             PHASE 5
+             ===================================================== -->
+
+        <div class="list-group-item jenkins-module-title">
+            5. Cloud, GitOps and Modern Integrations
+        </div>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("CloudDevOps", "Index") ? "active" : "")"
+           href="@Url.Action("Index", "CloudDevOps", new { area = "Jenkins" })">
+
+            Cloud-Native Jenkins
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("CloudDevOps", "GitHubIntegration") ? "active" : "")"
+           href="@Url.Action("GitHubIntegration", "CloudDevOps", new { area = "Jenkins" })">
+
+            Jenkins and GitHub
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("CloudDevOps", "DockerBuild") ? "active" : "")"
+           href="@Url.Action("DockerBuild", "CloudDevOps", new { area = "Jenkins" })">
+
+            Docker Image Build
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("CloudDevOps", "DockerRegistry") ? "active" : "")"
+           href="@Url.Action("DockerRegistry", "CloudDevOps", new { area = "Jenkins" })">
+
+            Docker Registry Push
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("CloudDevOps", "Aws") ? "active" : "")"
+           href="@Url.Action("Aws", "CloudDevOps", new { area = "Jenkins" })">
+
+            Jenkins and AWS
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("CloudDevOps", "Ec2Deployment") ? "active" : "")"
+           href="@Url.Action("Ec2Deployment", "CloudDevOps", new { area = "Jenkins" })">
+
+            EC2 Deployment
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("CloudDevOps", "S3Artifacts") ? "active" : "")"
+           href="@Url.Action("S3Artifacts", "CloudDevOps", new { area = "Jenkins" })">
+
+            S3 Artifact Storage
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("CloudDevOps", "KubernetesAgents") ? "active" : "")"
+           href="@Url.Action("KubernetesAgents", "CloudDevOps", new { area = "Jenkins" })">
+
+            Kubernetes Pod Agents
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("CloudDevOps", "KubernetesDeployment") ? "active" : "")"
+           href="@Url.Action("KubernetesDeployment", "CloudDevOps", new { area = "Jenkins" })">
+
+            Kubernetes Deployment
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("CloudDevOps", "GitOps") ? "active" : "")"
+           href="@Url.Action("GitOps", "CloudDevOps", new { area = "Jenkins" })">
+
+            Jenkins and GitOps
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("CloudDevOps", "ExternalIntegrations") ? "active" : "")"
+           href="@Url.Action("ExternalIntegrations", "CloudDevOps", new { area = "Jenkins" })">
+
+            External Integrations
+
+        </a>
+
+        <!-- =====================================================
+             PHASE 6
+             ===================================================== -->
+
+        <div class="list-group-item jenkins-module-title">
+            6. Scaling, Security and Architecture
+        </div>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("Master", "Index") ? "active" : "")"
+           href="@Url.Action("Index", "Master", new { area = "Jenkins" })">
+
+            Enterprise Jenkins
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("Master", "Credentials") ? "active" : "")"
+           href="@Url.Action("Credentials", "Master", new { area = "Jenkins" })">
+
+            Credentials Management
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("Master", "Secrets") ? "active" : "")"
+           href="@Url.Action("Secrets", "Master", new { area = "Jenkins" })">
+
+            Secrets and Secret Handling
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("Master", "RBAC") ? "active" : "")"
+           href="@Url.Action("RBAC", "Master", new { area = "Jenkins" })">
+
+            Roles and Access Control
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("Master", "LdapOidc") ? "active" : "")"
+           href="@Url.Action("LdapOidc", "Master", new { area = "Jenkins" })">
+
+            LDAP and OIDC
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("Master", "AgentSecurity") ? "active" : "")"
+           href="@Url.Action("AgentSecurity", "Master", new { area = "Jenkins" })">
+
+            Agent and Controller Security
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("Master", "SharedLibraries") ? "active" : "")"
+           href="@Url.Action("SharedLibraries", "Master", new { area = "Jenkins" })">
+
+            Shared Libraries
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("Master", "JCasC") ? "active" : "")"
+           href="@Url.Action("JCasC", "Master", new { area = "Jenkins" })">
+
+            Jenkins Configuration as Code
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("Master", "BackupRecovery") ? "active" : "")"
+           href="@Url.Action("BackupRecovery", "Master", new { area = "Jenkins" })">
+
+            Backup and Disaster Recovery
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("Master", "Performance") ? "active" : "")"
+           href="@Url.Action("Performance", "Master", new { area = "Jenkins" })">
+
+            Performance and Troubleshooting
+
+        </a>
+
+        <a class="list-group-item list-group-item-action jenkins-topic-link @(IsActive("Master", "FinalProject") ? "active" : "")"
+           href="@Url.Action("FinalProject", "Master", new { area = "Jenkins" })">
+
+            Enterprise Jenkins Capstone Project
+
+        </a>
+
+    </div>
+
+</div>

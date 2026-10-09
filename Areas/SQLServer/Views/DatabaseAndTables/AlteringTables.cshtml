@@ -1,0 +1,522 @@
+﻿@{
+    ViewData["Title"] = "Altering Tables";
+}
+
+<section>
+
+    <!-- PAGE INTRODUCTION -->
+    <div class="mb-5">
+
+        <h1 class="fw-bold mb-3">
+            Altering Tables
+        </h1>
+
+        <p class="lead text-muted">
+            The ALTER TABLE statement is used to modify the structure
+            of an existing SQL Server table. We can add, modify or
+            remove columns without recreating the complete table.
+        </p>
+
+    </div>
+
+
+    <!-- WHAT IS ALTER TABLE -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            What is ALTER TABLE?
+        </h2>
+
+        <p>
+            The <strong>ALTER TABLE</strong> statement is used when
+            we need to change the structure of an existing table.
+        </p>
+
+        <p>
+            For example, we can add a new column, remove an existing
+            column or change the data type of a column.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>ALTER TABLE TableName
+ADD ColumnName DataType;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- ALTER TABLE OPERATIONS -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Common ALTER TABLE Operations
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>Operation</th>
+                        <th>Purpose</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>Add Column</td>
+                        <td>Adds a new column to an existing table.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Alter Column</td>
+                        <td>Changes the data type or definition of a column.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Drop Column</td>
+                        <td>Removes a column from the table.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Add Constraint</td>
+                        <td>Adds a constraint to the table.</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- ADD COLUMN -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            1. Add a New Column
+        </h2>
+
+        <p>
+            The ADD clause is used to add a new column to an existing
+            table.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>ALTER TABLE Students
+ADD Email VARCHAR(150);</code></pre>
+
+        </div>
+
+        <p>
+            The above statement adds an <strong>Email</strong> column
+            to the Students table.
+        </p>
+
+    </section>
+
+
+    <!-- ADD MULTIPLE COLUMNS -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            2. Add Multiple Columns
+        </h2>
+
+        <p>
+            Multiple columns can be added to a table using ALTER TABLE.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>ALTER TABLE Students
+ADD Phone VARCHAR(15),
+    Address VARCHAR(200);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- ALTER COLUMN -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            3. Modify a Column
+        </h2>
+
+        <p>
+            The ALTER COLUMN clause can be used to change the definition
+            or data type of an existing column.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>ALTER TABLE Students
+ALTER COLUMN StudentName VARCHAR(200);</code></pre>
+
+        </div>
+
+        <p>
+            Here, the maximum length of the StudentName column is
+            changed to 200 characters.
+        </p>
+
+    </section>
+
+
+    <!-- DROP COLUMN -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            4. Remove a Column
+        </h2>
+
+        <p>
+            The DROP COLUMN clause is used to remove an existing column
+            from a table.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>ALTER TABLE Students
+DROP COLUMN Address;</code></pre>
+
+        </div>
+
+        <div class="alert alert-warning border-0">
+
+            <h5 class="fw-bold">
+                Important
+            </h5>
+
+            <p class="mb-0">
+                Dropping a column removes that column and its stored
+                data from the table. Use this operation carefully.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ADD CONSTRAINT -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            5. Add a Constraint
+        </h2>
+
+        <p>
+            ALTER TABLE can also be used to add constraints to an
+            existing table.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>ALTER TABLE Students
+ADD CONSTRAINT PK_Students
+PRIMARY KEY (StudentId);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- BEFORE -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Table Before ALTER
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>StudentId</th>
+                        <th>StudentName</th>
+                        <th>Age</th>
+                        <th>Course</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>1</td>
+                        <td>Samadhan</td>
+                        <td>22</td>
+                        <td>Java</td>
+                    </tr>
+
+                    <tr>
+                        <td>2</td>
+                        <td>Samiksh</td>
+                        <td>21</td>
+                        <td>.NET</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- ALTER EXAMPLE -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Practical Example
+        </h2>
+
+        <p>
+            Suppose we want to add an Email column to the Students
+            table.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>ALTER TABLE Students
+ADD Email VARCHAR(150);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- AFTER -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Table After ALTER
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>StudentId</th>
+                        <th>StudentName</th>
+                        <th>Age</th>
+                        <th>Course</th>
+                        <th>Email</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>1</td>
+                        <td>Samadhan</td>
+                        <td>22</td>
+                        <td>Java</td>
+                        <td>samadhan@example.com</td>
+                    </tr>
+
+                    <tr>
+                        <td>2</td>
+                        <td>Samiksh</td>
+                        <td>21</td>
+                        <td>.NET</td>
+                        <td>samiksha@example.com</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- ALTER FLOW -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            ALTER TABLE Flow
+        </h2>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL Server
+            </div>
+
+            <pre class="mb-0"><code>
+                                                        Existing Table
+                                                              ↓
+                                                         ALTER TABLE
+                                                              ↓
+                                                         Choose Operation
+                                                              ↓
+                                                         ADD / ALTER / DROP
+                                                              ↓
+                                                       Updated Table Structure</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- VERIFY STRUCTURE -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Verify the Updated Table
+        </h2>
+
+        <p>
+            After altering a table, we can verify its structure using
+            the following query:
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>EXEC sp_help 'Students';</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- IMPORTANT NOTES -->
+    <section class="mb-5">
+
+        <div class="alert alert-info border-0">
+
+            <h5 class="fw-bold">
+                Important Points
+            </h5>
+
+            <ul class="mb-0">
+
+                <li class="mb-2">
+                    ALTER TABLE changes the structure of an existing table.
+                </li>
+
+                <li class="mb-2">
+                    ADD is used to add columns.
+                </li>
+
+                <li class="mb-2">
+                    ALTER COLUMN is used to modify a column definition.
+                </li>
+
+                <li class="mb-2">
+                    DROP COLUMN removes a column and its data.
+                </li>
+
+                <li>
+                    Always be careful when changing a table containing
+                    important production data.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </section>
+
+
+    <!-- SUMMARY -->
+    <section class="mb-4">
+
+        <div class="alert alert-primary border-0">
+
+            <h2 class="fw-bold mb-3">
+                Summary
+            </h2>
+
+            <p class="mb-0">
+                In this section, we learned how to modify an existing
+                SQL Server table using ALTER TABLE. We learned how to
+                add columns, modify columns, remove columns and add
+                constraints.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- PREVIOUS / NEXT -->
+
+    <div class="d-flex justify-content-between align-items-center
+                mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/DatabaseAndTables/TableStructure"
+           class="btn btn-outline-primary">
+
+            ← Previous: Table Structure
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/DatabaseAndTables/DroppingTables"
+           class="btn btn-primary">
+
+            Next: Dropping Tables →
+
+        </a>
+
+    </div>
+
+</section>

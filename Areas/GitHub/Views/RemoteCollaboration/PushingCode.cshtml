@@ -1,0 +1,259 @@
+@{
+    Layout = "~/Areas/GitHub/Views/Shared/GithubLayout.cshtml";
+    ViewData["Title"] = "Pushing Code";
+}
+
+<main id="tutorials" class="container py-1">
+    <div class="row g-4">
+
+        <!-- Sidebar Navigation -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/GitHub/Views/Shared/GithubTopics.cshtml")
+        </aside>
+
+        <!-- Reading Content Area -->
+        <section class="col-lg-9">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4 p-lg-5">
+
+                    <h1 class="fw-bold mb-3">Pushing Code</h1>
+
+                    <p>
+                        <strong>Pushing code</strong> copies commits from your
+                        local computer to a hosted platform such as GitHub,
+                        GitLab, or Bitbucket. This makes your committed changes
+                        available to other developers and allows your team to
+                        review them through a Pull Request.
+                    </p>
+
+                    <p class="text-muted">
+                        Follow this checklist to push your code safely and
+                        handle common Git push errors.
+                    </p>
+
+                    <hr class="my-4" />
+
+                    <!-- Standard Pushing Checklist -->
+                    <h3 class="fw-bold mb-3">The Standard Pushing Checklist</h3>
+
+                    <p>
+                        Before pushing code, check your working directory,
+                        synchronize with the remote branch when appropriate,
+                        and then push your commits.
+                    </p>
+
+                    <h5 class="fw-semibold mt-4">1. Check Your Workspace Status</h5>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git status</code></pre>
+
+                    <p>
+                        Shows which files have been modified, staged,
+                        or committed. Remember that <code>git push</code>
+                        uploads commits, not uncommitted file changes.
+                    </p>
+
+                    <h5 class="fw-semibold mt-4">2. Pull Incoming Changes</h5>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git pull origin &lt;your-branch-name&gt;</code></pre>
+
+                    <p>
+                        Fetches changes from the specified remote branch
+                        and integrates them into your current branch.
+                        Resolve any conflicts before continuing.
+                    </p>
+
+                    <div class="alert alert-info">
+                        <strong>Tip:</strong>
+                        Ensure you are on the intended local branch before
+                        pulling. If you have uncommitted changes, commit
+                        or safely stash them first when necessary.
+                    </div>
+
+                    <h5 class="fw-semibold mt-4">3. Push Your Code</h5>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git push origin &lt;your-branch-name&gt;</code></pre>
+
+                    <p>
+                        Uploads your local commits on the specified branch
+                        to the remote repository, provided the push is
+                        permitted and can be applied.
+                    </p>
+
+                    <hr class="my-4" />
+
+                    <!-- Pushing Scenarios -->
+                    <h3 class="fw-bold mb-3">Pushing Scenarios Matrix</h3>
+
+                    <p>
+                        Choose the command that matches your objective.
+                    </p>
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped align-middle">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Goal</th>
+                                    <th>Command</th>
+                                    <th>What It Does</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Track a New Branch</strong></td>
+                                    <td><code>git push -u origin &lt;branch&gt;</code></td>
+                                    <td>Pushes the branch and configures upstream tracking.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Push All Local Branches</strong></td>
+                                    <td><code>git push origin --all</code></td>
+                                    <td>Pushes all local branches to the remote.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Push Tags / Versions</strong></td>
+                                    <td><code>git push origin --tags</code></td>
+                                    <td>Pushes local tags to the remote repository.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Force Push After Rewriting History</strong></td>
+                                    <td><code>git push --force-with-lease origin &lt;branch&gt;</code></td>
+                                    <td>Attempts a force push while checking that the remote reference has not changed unexpectedly.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="alert alert-warning mt-3">
+                        <strong>Warning:</strong>
+                        Force pushes can replace remote history and affect
+                        other developers. Use
+                        <code>--force-with-lease</code> only when you
+                        understand the consequences and are authorized
+                        to rewrite the branch history.
+                    </div>
+
+                    <hr class="my-4" />
+
+                    <!-- Troubleshooting -->
+                    <h3 class="fw-bold mb-3">Troubleshooting: What If Git Blocks Your Push?</h3>
+
+                    <h5 class="fw-semibold mt-4">Non-Fast-Forward Rejection</h5>
+
+                    <p>
+                        If you see an error containing
+                        <code>[rejected - non-fast-forward]</code>, the
+                        remote branch contains commits that your local
+                        branch does not include.
+                    </p>
+
+                    <p>First, fetch and integrate the remote changes:</p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git pull --rebase origin &lt;your-branch-name&gt;</code></pre>
+
+                    <p>
+                        If conflicts occur, resolve them and continue the
+                        rebase as Git instructs. Then push again:
+                    </p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git push origin &lt;your-branch-name&gt;</code></pre>
+
+                    <div class="alert alert-secondary">
+                        <strong>Alternative:</strong>
+                        You can use <code>
+                        git pull origin
+                        &lt;your-branch-name&gt;
+                    </code> to merge remote
+                    changes instead of rebasing. Follow your team's
+                    preferred workflow.
+                </div>
+
+                <h5 class="fw-semibold mt-4">Authentication or Permission Errors</h5>
+
+                <p>
+                    If Git reports an authentication or permission error,
+                    check that you are signed in with the correct account,
+                    that your credentials or SSH key are configured, and
+                    that you have permission to push to the repository.
+                </p>
+
+                <h5 class="fw-semibold mt-4">Protected Branch Errors</h5>
+
+                <p>
+                    If the remote blocks direct pushes to
+                    <code>main</code>, create a feature branch, push it,
+                    and open a Pull Request if that is your team's
+                    required workflow.
+                </p>
+
+                <pre class="bg-dark text-light p-3 rounded"><code>git switch -c feature/my-change
+git push -u origin feature/my-change</code></pre>
+
+                <hr class="my-4" />
+
+                <!-- Quick Reference -->
+                <h3 class="fw-bold mb-3">Quick Reference</h3>
+
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped align-middle">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Command</th>
+                                <th>Purpose</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>git status</code></td>
+                                <td>Check working directory and staging status</td>
+                            </tr>
+                            <tr>
+                                <td><code>git pull origin &lt;branch&gt;</code></td>
+                                <td>Fetch and integrate remote changes</td>
+                            </tr>
+                            <tr>
+                                <td><code>git push origin &lt;branch&gt;</code></td>
+                                <td>Push commits to a remote branch</td>
+                            </tr>
+                            <tr>
+                                <td><code>git push -u origin &lt;branch&gt;</code></td>
+                                <td>Push a branch and set upstream tracking</td>
+                            </tr>
+                            <tr>
+                                <td><code>git push origin --all</code></td>
+                                <td>Push all local branches</td>
+                            </tr>
+                            <tr>
+                                <td><code>git push origin --tags</code></td>
+                                <td>Push local tags</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="alert alert-success mt-4">
+                    <strong>Key Takeaway:</strong>
+                    Check your branch and working directory, integrate
+                    incoming changes when needed, and push your commits
+                    to the correct remote branch. Use force-push commands
+                    cautiously.
+                </div>
+
+                <!-- Previous / Next Navigation -->
+                <div class="d-flex justify-content-between align-items-center gap-3 flex-wrap mt-5 pt-4 border-top">
+
+                    <a class="btn btn-outline-primary"
+                       href="@Url.Action("CloningProjects", "RemoteCollaboration", new { area = "GitHub" })">
+                        &larr; Previous: Cloning Projects
+                    </a>
+
+                    <a class="btn btn-primary"
+                       href="@Url.Action("PullingUpdates", "RemoteCollaboration", new { area = "GitHub" })">
+                        Next: Pulling Updates &rarr;
+                    </a>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+</div>
+</main>

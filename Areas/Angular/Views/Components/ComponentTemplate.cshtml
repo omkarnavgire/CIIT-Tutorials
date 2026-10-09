@@ -1,0 +1,1097 @@
+﻿@{
+    ViewData["Title"] = "Component Template";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- ================= HEADER ================= -->
+
+    <section class="mb-4">
+
+        <h1 class="fw-bold text-dark">
+            Angular Component Template
+        </h1>
+
+        <p class="text-muted fs-5">
+            A component template defines the user interface of an Angular
+            component. It contains HTML along with Angular template syntax
+            used to display and interact with application data.
+        </p>
+
+    </section>
+
+
+    <!-- ================= WHAT IS TEMPLATE ================= -->
+
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            What is a Component Template?
+        </h2>
+
+        <p>
+            A component template is an HTML file associated with an Angular
+            component. It defines what should be displayed in the browser.
+        </p>
+
+        <p>
+            Angular extends normal HTML with features such as interpolation,
+            property binding, event binding, directives and control flow.
+        </p>
+
+        <div class="info-highlight">
+
+            <strong>Simple Definition:</strong>
+
+            <span>
+                Component Template = HTML + Angular Template Syntax
+            </span>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= TEMPLATE FLOW ================= -->
+
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Component Template Flow
+        </h2>
+
+        <div class="template-flow">
+
+            <div class="flow-card">
+
+                <div class="flow-number">
+                    1
+                </div>
+
+                <h5>Component Class</h5>
+
+                <p>
+                    Stores data and application logic.
+                </p>
+
+            </div>
+
+            <div class="flow-arrow">
+                →
+            </div>
+
+            <div class="flow-card">
+
+                <div class="flow-number">
+                    2
+                </div>
+
+                <h5>Template</h5>
+
+                <p>
+                    Uses HTML and Angular syntax.
+                </p>
+
+            </div>
+
+            <div class="flow-arrow">
+                →
+            </div>
+
+            <div class="flow-card">
+
+                <div class="flow-number">
+                    3
+                </div>
+
+                <h5>Angular</h5>
+
+                <p>
+                    Processes the template.
+                </p>
+
+            </div>
+
+            <div class="flow-arrow">
+                →
+            </div>
+
+            <div class="flow-card">
+
+                <div class="flow-number">
+                    4
+                </div>
+
+                <h5>Browser</h5>
+
+                <p>
+                    Displays the final UI.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= EXTERNAL TEMPLATE ================= -->
+
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            External Template
+        </h2>
+
+        <p>
+            An external template is stored in a separate HTML file and
+            connected to the component using <strong>templateUrl</strong>.
+        </p>
+
+        <div class="code-box">
+
+            <div class="code-header">
+                <span>student.component.ts</span>
+            </div>
+
+<pre><code>import { Component } from '@@angular/core';
+
+@@Component({
+    selector: 'app-student',
+    templateUrl: './student.component.html'
+})
+export class StudentComponent {
+
+    studentName = 'Sam';
+
+}</code></pre>
+
+        </div>
+
+
+        <div class="code-box mt-4">
+
+            <div class="code-header">
+                <span>student.component.html</span>
+            </div>
+
+<pre><code>&lt;h2&gt;Student Details&lt;/h2&gt;
+
+&lt;p&gt;
+    Student Name: &#123;&#123; studentName &#125;&#125;
+&lt;/p&gt;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= INLINE TEMPLATE ================= -->
+
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Inline Template
+        </h2>
+
+        <p>
+            Instead of using a separate HTML file, a component can define
+            its template directly using the <strong>template</strong>
+            property.
+        </p>
+
+        <div class="code-box">
+
+            <div class="code-header">
+                <span>student.component.ts</span>
+            </div>
+
+<pre><code>import { Component } from '@@angular/core';
+
+@@Component({
+    selector: 'app-student',
+    template: `
+        &lt;h2&gt;Student Details&lt;/h2&gt;
+        &lt;p&gt;Student Name: Sam&lt;/p&gt;
+    `
+})
+export class StudentComponent {
+}</code></pre>
+
+        </div>
+
+        <div class="info-card mt-3">
+
+            <h5>When to Use?</h5>
+
+            <p class="mb-0">
+                Inline templates can be useful for small components.
+                Larger templates are generally easier to maintain in
+                separate HTML files.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= INTERPOLATION ================= -->
+
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Interpolation in Templates
+        </h2>
+
+        <p>
+            Interpolation is used to display component data inside HTML.
+            It uses double curly braces.
+        </p>
+
+        <div class="code-box">
+
+            <div class="code-header">
+                <span>student.component.ts</span>
+            </div>
+
+<pre><code>export class StudentComponent {
+
+    studentName = 'Sam';
+
+}</code></pre>
+
+        </div>
+
+        <div class="code-box mt-4">
+
+            <div class="code-header">
+                <span>student.component.html</span>
+            </div>
+
+<pre><code>&lt;h2&gt;Student Details&lt;/h2&gt;
+
+&lt;p&gt;
+    Student Name: &#123;&#123; studentName &#125;&#125;
+&lt;/p&gt;</code></pre>
+
+        </div>
+
+        <div class="output-box mt-3">
+
+            <h5>Expected Output</h5>
+
+            <p class="mb-0">
+                Student Name: Sam
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= PROPERTY BINDING ================= -->
+
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Property Binding in Templates
+        </h2>
+
+        <p>
+            Property binding connects a component property with a property
+            of an HTML element.
+        </p>
+
+        <div class="code-box">
+
+            <div class="code-header">
+                <span>Example</span>
+            </div>
+
+<pre><code>export class StudentComponent {
+
+    imageUrl = 'assets/student.png';
+
+}</code></pre>
+
+        </div>
+
+        <div class="code-box mt-4">
+
+            <div class="code-header">
+                <span>HTML Template</span>
+            </div>
+
+<pre><code>&lt;img [src]="imageUrl" alt="Student"&gt;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= EVENT BINDING ================= -->
+
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Event Binding in Templates
+        </h2>
+
+        <p>
+            Event binding allows the template to respond to user actions
+            such as button clicks.
+        </p>
+
+        <div class="code-box">
+
+            <div class="code-header">
+                <span>student.component.ts</span>
+            </div>
+
+<pre><code>export class StudentComponent {
+
+    message = '';
+
+    showMessage() {
+        this.message = 'Welcome Sam';
+    }
+
+}</code></pre>
+
+        </div>
+
+        <div class="code-box mt-4">
+
+            <div class="code-header">
+                <span>student.component.html</span>
+            </div>
+
+<pre><code>&lt;button (click)="showMessage()"&gt;
+    Show Message
+&lt;/button&gt;
+
+&lt;p&gt;
+    &#123;&#123; message &#125;&#125;
+&lt;/p&gt;</code></pre>
+
+        </div>
+
+        <div class="output-box mt-3">
+
+            <h5>Expected Output</h5>
+
+            <p class="mb-0">
+                After clicking the button: Welcome Sam
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= TEMPLATE EXPRESSIONS ================= -->
+
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Template Expressions
+        </h2>
+
+        <p>
+            Angular templates can use expressions to display values
+            calculated from component data.
+        </p>
+
+        <div class="code-box">
+
+            <div class="code-header">
+                <span>Example</span>
+            </div>
+
+<pre><code>export class StudentComponent {
+
+    marks = 85;
+
+}</code></pre>
+
+        </div>
+
+        <div class="code-box mt-4">
+
+            <div class="code-header">
+                <span>Template</span>
+            </div>
+
+<pre><code>&lt;p&gt;
+    Marks: &#123;&#123; marks &#125;&#125;
+&lt;/p&gt;
+
+&lt;p&gt;
+    Total: &#123;&#123; marks + 15 &#125;&#125;
+&lt;/p&gt;</code></pre>
+
+        </div>
+
+        <div class="output-box mt-3">
+
+            <h5>Expected Output</h5>
+
+            <p>
+                Marks: 85
+            </p>
+
+            <p class="mb-0">
+                Total: 100
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= TEMPLATE FEATURES ================= -->
+
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Common Angular Template Features
+        </h2>
+
+        <div class="feature-grid">
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    { }
+                </div>
+
+                <h5>Interpolation</h5>
+
+                <code>&#123;&#123; value &#125;&#125;</code>
+
+                <p>
+                    Displays component data.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    [ ]
+                </div>
+
+                <h5>Property Binding</h5>
+
+                <code>[property]</code>
+
+                <p>
+                    Binds values to element properties.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    ( )
+                </div>
+
+                <h5>Event Binding</h5>
+
+                <code>(click)</code>
+
+                <p>
+                    Handles user events.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    * 
+                </div>
+
+                <h5>Template Features</h5>
+
+                <code>@@if / @@for</code>
+
+                <p>
+                    Controls how template content is rendered.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= COMPONENT DATA FLOW ================= -->
+
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Data Flow Between Component and Template
+        </h2>
+
+        <div class="data-flow">
+
+            <div class="data-step">
+
+                <div class="data-number">
+                    1
+                </div>
+
+                <strong>Component Class</strong>
+
+                <span>
+                    studentName = 'Sam'
+                </span>
+
+            </div>
+
+
+            <div class="data-arrow">
+                →
+            </div>
+
+
+            <div class="data-step">
+
+                <div class="data-number">
+                    2
+                </div>
+
+                <strong>Angular Template</strong>
+
+                <span>
+                    &#123;&#123; studentName &#125;&#125;
+                </span>
+
+            </div>
+
+
+            <div class="data-arrow">
+                →
+            </div>
+
+
+            <div class="data-step">
+
+                <div class="data-number">
+                    3
+                </div>
+
+                <strong>Browser</strong>
+
+                <span>
+                    Student Name: Sam
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= TEMPLATE BEST PRACTICES ================= -->
+
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Template Best Practices
+        </h2>
+
+        <div class="practice-list">
+
+            <div class="practice-item">
+                <span>✓</span>
+                <p>
+                    Keep templates simple and readable.
+                </p>
+            </div>
+
+            <div class="practice-item">
+                <span>✓</span>
+                <p>
+                    Keep complex business logic inside the component
+                    or services instead of the template.
+                </p>
+            </div>
+
+            <div class="practice-item">
+                <span>✓</span>
+                <p>
+                    Use meaningful property and method names.
+                </p>
+            </div>
+
+            <div class="practice-item">
+                <span>✓</span>
+                <p>
+                    Reuse components where appropriate.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= SUMMARY ================= -->
+
+    <section class="mb-5">
+
+        <div class="summary-box">
+
+            <h3>
+                Summary
+            </h3>
+
+            <p>
+                An Angular component template defines the user interface
+                of a component.
+            </p>
+
+            <p>
+                Templates can use HTML together with Angular features such
+                as interpolation, property binding and event binding.
+            </p>
+
+            <p class="mb-0">
+                Templates connect component data and logic with the
+                user interface displayed in the browser.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= NAVIGATION ================= -->
+
+    <div class="topic-navigation">
+
+        <a class="btn btn-outline-secondary"
+           href="@Url.Action("ComponentSelector", "Components", new { area = "Angular" })">
+            ← Component Selector
+        </a>
+
+        <a class="btn btn-primary"
+           href="@Url.Action("ComponentStyles", "Components", new { area = "Angular" })">
+            Component Styles →
+        </a>
+
+    </div>
+
+</div>
+
+
+<style>
+
+    /* ================= SECTION TITLE ================= */
+
+    .section-title {
+        font-size: 25px;
+        font-weight: 700;
+        color: #2e1065;
+        margin-bottom: 18px;
+        border-left: 5px solid #4c1d95;
+        padding-left: 12px;
+    }
+
+
+    /* ================= INFO ================= */
+
+    .info-highlight {
+        background: #f3eefe;
+        border-left: 5px solid #4c1d95;
+        padding: 15px 18px;
+        border-radius: 7px;
+        margin-top: 20px;
+    }
+
+    .info-highlight strong {
+        color: #2e1065;
+        margin-right: 8px;
+    }
+
+    .info-highlight span {
+        color: #4c1d95;
+        font-weight: 600;
+    }
+
+
+    /* ================= FLOW ================= */
+
+    .template-flow {
+        display: flex;
+        align-items: stretch;
+        justify-content: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        background: #f8f7fc;
+        border: 1px solid #e5e7eb;
+        border-radius: 10px;
+        padding: 25px;
+    }
+
+    .flow-card {
+        width: 175px;
+        min-height: 140px;
+        text-align: center;
+        padding: 18px;
+        background: white;
+        border: 1px solid #ddd6fe;
+        border-radius: 9px;
+    }
+
+    .flow-number {
+        width: 40px;
+        height: 40px;
+        margin: 0 auto 10px;
+        background: #4c1d95;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+    }
+
+    .flow-card h5 {
+        color: #2e1065;
+        font-weight: 700;
+    }
+
+    .flow-card p {
+        color: #64748b;
+        font-size: 13px;
+        margin-bottom: 0;
+    }
+
+    .flow-arrow {
+        align-self: center;
+        color: #4c1d95;
+        font-size: 25px;
+        font-weight: 700;
+    }
+
+
+    /* ================= CODE ================= */
+
+    .code-box {
+        background: #0f172a;
+        border-radius: 8px;
+        margin-top: 15px;
+        overflow: hidden;
+    }
+
+    .code-header {
+        background: #1e293b;
+        color: #cbd5e1;
+        padding: 8px 15px;
+        font-size: 13px;
+        font-weight: 600;
+        border-bottom: 1px solid #334155;
+    }
+
+    .code-box pre {
+        margin: 0;
+        padding: 18px 20px;
+        overflow-x: auto;
+    }
+
+    .code-box code {
+        color: #e2e8f0;
+        font-family: Consolas, "Courier New", monospace;
+        font-size: 15px;
+        line-height: 1.7;
+    }
+
+
+    /* ================= INFO CARD ================= */
+
+    .info-card {
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-left: 5px solid #4c1d95;
+        border-radius: 7px;
+        padding: 18px 20px;
+    }
+
+    .info-card h5 {
+        color: #4c1d95;
+        font-weight: 700;
+    }
+
+
+    /* ================= OUTPUT ================= */
+
+    .output-box {
+        background: #f1f5f9;
+        border-left: 5px solid #4c1d95;
+        border-radius: 7px;
+        padding: 18px 20px;
+    }
+
+    .output-box h5 {
+        color: #4c1d95;
+        font-weight: 700;
+    }
+
+
+    /* ================= FEATURES ================= */
+
+    .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+    }
+
+    .feature-card {
+        background: #f8f7fc;
+        border: 1px solid #ddd6fe;
+        border-radius: 9px;
+        padding: 18px;
+        text-align: center;
+    }
+
+    .feature-icon {
+        width: 45px;
+        height: 45px;
+        margin: 0 auto 12px;
+        background: #4c1d95;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+    }
+
+    .feature-card h5 {
+        color: #2e1065;
+        font-weight: 700;
+    }
+
+    .feature-card code {
+        display: inline-block;
+        background: #ede9fe;
+        color: #4c1d95;
+        padding: 5px 8px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+
+    .feature-card p {
+        color: #64748b;
+        font-size: 13px;
+        margin-bottom: 0;
+    }
+
+
+    /* ================= DATA FLOW ================= */
+
+    .data-flow {
+        display: flex;
+        align-items: stretch;
+        justify-content: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        background: #f8f7fc;
+        border: 1px solid #e5e7eb;
+        border-radius: 10px;
+        padding: 25px;
+    }
+
+    .data-step {
+        width: 220px;
+        min-height: 135px;
+        background: white;
+        border: 1px solid #ddd6fe;
+        border-radius: 9px;
+        padding: 18px;
+        text-align: center;
+    }
+
+    .data-number {
+        width: 38px;
+        height: 38px;
+        margin: 0 auto 10px;
+        background: #4c1d95;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+    }
+
+    .data-step strong {
+        display: block;
+        color: #2e1065;
+        margin-bottom: 8px;
+    }
+
+    .data-step span {
+        display: block;
+        color: #64748b;
+        font-size: 13px;
+    }
+
+    .data-arrow {
+        align-self: center;
+        color: #4c1d95;
+        font-size: 25px;
+        font-weight: 700;
+    }
+
+
+    /* ================= PRACTICES ================= */
+
+    .practice-list {
+        background: #f8f7fc;
+        border: 1px solid #e5e7eb;
+        border-radius: 9px;
+        padding: 10px 20px;
+    }
+
+    .practice-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 0;
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    .practice-item:last-child {
+        border-bottom: none;
+    }
+
+    .practice-item span {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: #4c1d95;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .practice-item p {
+        margin: 0;
+    }
+
+
+    /* ================= SUMMARY ================= */
+
+    .summary-box {
+        background: #cfe2ff;
+        border-radius: 6px;
+        padding: 18px 22px;
+        margin-top: 20px;
+    }
+
+    .summary-box h3 {
+        font-size: 20px;
+        font-weight: 700;
+        color: #084298;
+        margin-bottom: 10px;
+    }
+
+    .summary-box p {
+        font-size: 16px !important;
+        line-height: 1.6 !important;
+        color: #084298 !important;
+        margin-bottom: 8px;
+    }
+
+
+    /* ================= NAVIGATION ================= */
+
+    .topic-navigation {
+        display: flex;
+        justify-content: space-between;
+        gap: 15px;
+        margin-top: 35px;
+        padding-top: 20px;
+        border-top: 1px solid #e5e7eb;
+    }
+
+    .topic-navigation .btn {
+        padding: 10px 18px;
+        font-weight: 600;
+    }
+
+    .topic-navigation .btn-primary {
+        background: #4c1d95;
+        border-color: #4c1d95;
+    }
+
+    .topic-navigation .btn-primary:hover {
+        background: #2e1065;
+        border-color: #2e1065;
+    }
+
+
+    /* ================= RESPONSIVE ================= */
+
+    @@media (max-width: 991px) {
+
+        .feature-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .flow-arrow,
+        .data-arrow {
+            display: none;
+        }
+
+    }
+
+
+    @@media (max-width: 576px) {
+
+        .section-title {
+            font-size: 22px;
+        }
+
+        .feature-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .template-flow,
+        .data-flow {
+            flex-direction: column;
+        }
+
+        .flow-card,
+        .data-step {
+            width: 100%;
+        }
+
+        .topic-navigation {
+            flex-direction: column;
+        }
+
+        .topic-navigation .btn {
+            width: 100%;
+            text-align: center;
+        }
+
+        .code-box code {
+            font-size: 13px;
+        }
+
+    }
+
+</style>

@@ -1,0 +1,330 @@
+```cshtml
+@{
+    Layout = "~/Areas/GitHub/Views/Shared/GithubLayout.cshtml";
+    ViewData["Title"] = "Git Branching Concepts";
+}
+
+<main id="tutorials" class="container py-1">
+    <div class="row g-4">
+
+        <!-- Sidebar Navigation -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/GitHub/Views/Shared/GithubTopics.cshtml")
+        </aside>
+
+        <!-- Reading Content Area -->
+        <section class="col-lg-9">
+
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4 p-lg-5">
+
+                    <!-- HEADER -->
+                    <header class="mb-4">
+                        <h2 class="fw-bold mb-3">Git Branching Concepts</h2>
+
+                        <p class="lead text-muted">
+                            Git branching allows developers to work on different
+                            features, bug fixes, and experiments independently
+                            without directly affecting the main development branch.
+                        </p>
+
+                        <p>
+                            In this lesson, you will learn what branches are,
+                            why developers use them, and how branching supports
+                            a collaborative development workflow.
+                        </p>
+                    </header>
+                   
+
+                    <!-- SECTION 1 -->
+                    <section class="mb-4">
+                        <h4 class="fw-semibold mb-3">1. What Is a Git Branch?</h4>
+
+                        <p>
+                            A Git branch is a lightweight, movable pointer to a
+                            commit. It identifies a line of development in your
+                            repository.
+                        </p>
+
+                        <p>
+                            Branches allow you to develop a new feature or fix a
+                            bug separately from the main line of development.
+                            When your work is ready, you can integrate it into
+                            another branch using a merge or another integration
+                            workflow.
+                        </p>
+
+                        <div class="alert alert-info border-0">
+                            <strong>Simple example:</strong>
+                            Imagine your application is working correctly. You
+                            want to add a login feature. Instead of changing the
+                            main branch directly, you create a separate branch,
+                            implement the login feature, test it, and then merge
+                            the completed changes.
+                        </div>
+                    </section>
+
+                    <!-- SECTION 2 -->
+                    <section class="mb-4">
+                        <h4 class="fw-semibold mb-3">2. Why Are Branches Important?</h4>
+
+                        <ul>
+                            <li class="mb-2">
+                                <strong>Independent development:</strong>
+                                Work on new features without directly changing
+                                the main branch.
+                            </li>
+
+                            <li class="mb-2">
+                                <strong>Safer bug fixes:</strong>
+                                Isolate a fix and test it before integrating it.
+                            </li>
+
+                            <li class="mb-2">
+                                <strong>Team collaboration:</strong>
+                                Different developers can work on separate branches.
+                            </li>
+
+                            <li class="mb-2">
+                                <strong>Experimentation:</strong>
+                                Try new ideas without immediately affecting
+                                the primary development line.
+                            </li>
+
+                            <li>
+                                <strong>Organized workflow:</strong>
+                                Keep feature development, releases, and fixes
+                                separated when the project requires it.
+                            </li>
+                        </ul>
+                    </section>
+
+                    <!-- SECTION 3 -->
+                    <section class="mb-4">
+                        <h4 class="fw-semibold mb-3">3. Common Types of Branches</h4>
+
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover align-middle">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Branch Type</th>
+                                        <th>Purpose</th>
+                                        <th>Example Name</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Main Branch</strong></td>
+                                        <td>
+                                            The primary development or release
+                                            branch, depending on the team's workflow.
+                                        </td>
+                                        <td><code>main</code></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><strong>Feature Branch</strong></td>
+                                        <td>
+                                            Used to develop a new feature independently.
+                                        </td>
+                                        <td><code>feature/login</code></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><strong>Bug-Fix Branch</strong></td>
+                                        <td>
+                                            Used to correct a specific problem.
+                                        </td>
+                                        <td><code>fix/login-error</code></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><strong>Release Branch</strong></td>
+                                        <td>
+                                            Used to prepare and stabilize a release
+                                            when the team's workflow requires it.
+                                        </td>
+                                        <td><code>release/1.0</code></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <!-- SECTION 4 -->
+                    <section class="mb-4">
+                        <h4 class="fw-semibold mb-3">4. Understanding Branches Visually</h4>
+
+                        <p>
+                            Consider a project with a main branch and a separate
+                            feature branch. Both branches can point to different
+                            commits as development progresses.
+                        </p>
+
+                        <div class="bg-dark text-white rounded p-3 mb-3 font-monospace">
+                            main:     A --- B --- C<br />
+                            &nbsp;             \<br />
+                            feature:          D --- E
+                        </div>
+
+                        <p>
+                            In this simplified diagram, commits D and E represent
+                            work developed on the feature branch after it diverged
+                            from the main branch at commit B.
+                        </p>
+
+                        <p>
+                            Once the feature is complete, its changes can be
+                            integrated into the main branch.
+                        </p>
+                    </section>
+
+                    <!-- SECTION 5 -->
+                    <section class="mb-4">
+                        <h4 class="fw-semibold mb-3">5. Basic Git Branch Commands</h4>
+
+                        <p>
+                            Git provides simple commands for creating, listing,
+                            and switching branches.
+                        </p>
+
+                        <h6 class="fw-bold mt-3">View Existing Branches</h6>
+
+                        <div class="bg-dark text-white rounded p-3 mb-3 font-monospace">
+                            <span class="text-secondary">$</span> git branch
+                        </div>
+
+                        <p>
+                            Lists local branches and marks the currently checked-out
+                            branch with an asterisk.
+                        </p>
+
+                        <h6 class="fw-bold mt-3">Create a New Branch</h6>
+
+                        <div class="bg-dark text-white rounded p-3 mb-3 font-monospace">
+                            <span class="text-secondary">$</span> git branch feature/login
+                        </div>
+
+                        <p>
+                            Creates a branch named <code>feature/login</code>
+                            without switching to it.
+                        </p>
+
+                        <h6 class="fw-bold mt-3">Switch to a Branch</h6>
+
+                        <div class="bg-dark text-white rounded p-3 mb-3 font-monospace">
+                            <span class="text-secondary">$</span> git switch feature/login
+                        </div>
+
+                        <p>
+                            Switches your working directory to the selected branch.
+                        </p>
+
+                        <h6 class="fw-bold mt-3">Create and Switch in One Command</h6>
+
+                        <div class="bg-dark text-white rounded p-3 mb-3 font-monospace">
+                            <span class="text-secondary">$</span> git switch -c feature/login
+                        </div>
+
+                        <p>
+                            Creates the new branch and switches to it immediately.
+                        </p>
+                    </section>
+
+                    <!-- SECTION 6 -->
+                    <section class="mb-4">
+                        <h4 class="fw-semibold mb-3">6. A Typical Branching Workflow</h4>
+
+                        <ol>
+                            <li class="mb-2">
+                                Start from the appropriate base branch.
+                            </li>
+                            <li class="mb-2">
+                                Create a feature branch.
+                            </li>
+                            <li class="mb-2">
+                                Make changes and commit your work.
+                            </li>
+                            <li class="mb-2">
+                                Test your changes and review the code.
+                            </li>
+                            <li class="mb-2">
+                                Push the branch to the remote repository if needed.
+                            </li>
+                            <li>
+                                Merge the completed work into the target branch
+                                according to your team's workflow.
+                            </li>
+                        </ol>
+
+                        <div class="bg-dark text-white rounded p-3 mb-3 font-monospace">
+                            <span class="text-secondary">$</span> git switch main<br />
+                            <span class="text-secondary">$</span> git pull<br />
+                            <span class="text-secondary">$</span> git switch -c feature/login<br />
+                            <span class="text-secondary">$</span> git add .<br />
+                            <span class="text-secondary">$</span> git commit -m "Add login feature"<br />
+                            <span class="text-secondary">$</span> git push -u origin feature/login
+                        </div>
+
+                        <p class="text-muted small">
+                            These commands assume that the repository has a remote
+                            named <code>origin</code>, the main branch is named
+                            <code>main</code>, and the changes are ready to commit.
+                            Review <code>git status</code> before staging files.
+                        </p>
+                    </section>
+
+                    <!-- SUMMARY -->
+                    <section class="mb-4">
+                        <div class="alert alert-dark border-0 mb-0">
+                            <h5 class="fw-bold mb-2">
+                                <i class="bi bi-lightbulb me-2"></i>
+                                Key Takeaway
+                            </h5>
+
+                            <p class="mb-0">
+                                Git branches provide separate lines of development
+                                within a repository. They help developers isolate
+                                features and bug fixes, collaborate safely, and
+                                integrate changes when the work is ready.
+                            </p>
+                        </div>
+                    </section>
+
+                    <!-- PREVIOUS / NEXT NAVIGATION -->
+                    <div class="d-flex justify-content-between align-items-center border-top pt-4 mt-4">
+
+                        <!-- PREVIOUS TOPIC -->
+                        <a href="@Url.Action(
+                                    "IgnoringFiles",
+                                    "LocalGitWorkflow",
+                                    new { area = "GitHub" }
+                                 )"
+                           class="btn btn-outline-secondary px-3">
+
+                            <span class="me-2">←</span>
+                            Previous: .gitignore
+                        </a>
+
+                        <!-- NEXT TOPIC -->
+                        <a href="@Url.Action(
+                                    "ManagingBranches",
+                                    "BranchingAndMerging",
+                                    new { area = "GitHub" }
+                                 )"
+                           class="btn btn-primary px-3">
+
+                            Next: Managing Branches
+                            <span class="ms-2">→</span>
+                        </a>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+    </div>
+</main>
+```

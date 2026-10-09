@@ -1,0 +1,1318 @@
+﻿@{
+    ViewData["Title"] = "Angular OnDestroy";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- Header -->
+    <section class="mb-4">
+
+        <h1 class="fw-bold text-dark">Angular OnDestroy</h1>
+
+        <p class="lead text-muted">
+            Angular <strong>@@OnDestroy</strong> is a lifecycle hook used to
+            perform cleanup work just before a component or directive is
+            destroyed.
+        </p>
+
+    </section>
+
+    <!-- What is OnDestroy -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">What is @@OnDestroy?</h2>
+
+        <p>
+            The <strong>ngOnDestroy()</strong> lifecycle hook is called once
+            just before Angular destroys a component, directive, or service
+            instance that is no longer required.
+        </p>
+
+        <p>
+            It is commonly used to clean up subscriptions, timers, event
+            listeners, resources, and other ongoing activities.
+        </p>
+
+        <div class="info-card">
+
+            <h5>Simple Definition</h5>
+
+            <p>
+                <strong>ngOnDestroy()</strong> is the place where cleanup
+                logic is performed before a component is removed from the UI.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- Lifecycle Flow -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold mb-3">Where @@OnDestroy Fits in Angular Lifecycle</h2>
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+
+                <i class="bi bi-box"></i>
+
+                <strong>Component</strong>
+
+                <span>Component is active</span>
+
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+
+                <i class="bi bi-activity"></i>
+
+                <strong>Application Runs</strong>
+
+                <span>Timers / subscriptions active</span>
+
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+
+                <i class="bi bi-trash3"></i>
+
+                <strong>ngOnDestroy()</strong>
+
+                <span>Cleanup logic runs</span>
+
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+
+                <i class="bi bi-x-circle"></i>
+
+                <strong>Component Removed</strong>
+
+                <span>Instance is destroyed</span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Basic Syntax -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Basic Syntax</h2>
+
+        <p>
+            To use this lifecycle hook, implement the
+            <strong>OnDestroy</strong> interface and define the
+            <strong>ngOnDestroy()</strong> method.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Component
+            </div>
+
+            <pre><code>import &#123; Component, OnDestroy &#125; from '@@angular/core';
+
+@@Component(&#123;
+    selector: 'app-dashboard',
+    templateUrl: './dashboard.component.html'
+&#125;)
+export class DashboardComponent implements OnDestroy &#123;
+
+    ngOnDestroy(): void &#123;
+
+        console.log('Component destroyed');
+
+    &#125;
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="info-card">
+
+            <h5>Important</h5>
+
+            <p>
+                Angular automatically calls <strong>ngOnDestroy()</strong>
+                before destroying the component.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- Why use OnDestroy -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Why Use @@OnDestroy?</h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-stopwatch"></i>
+                </div>
+
+                <h5>Clear Timers</h5>
+
+                <p>
+                    Stop intervals or timeouts created by the component.
+                </p>
+
+                <code>clearInterval()</code>
+
+            </div>
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-x-diamond"></i>
+                </div>
+
+                <h5>Unsubscribe</h5>
+
+                <p>
+                    Clean up active subscriptions when required.
+                </p>
+
+                <code>unsubscribe()</code>
+
+            </div>
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-broadcast"></i>
+                </div>
+
+                <h5>Remove Events</h5>
+
+                <p>
+                    Remove manually registered event listeners.
+                </p>
+
+                <code>removeEventListener()</code>
+
+            </div>
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-trash3"></i>
+                </div>
+
+                <h5>Release Resources</h5>
+
+                <p>
+                    Release resources created during component execution.
+                </p>
+
+                <code>cleanup()</code>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Simple Example -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">1. Simple OnDestroy Example</h2>
+
+        <p>
+            The following example shows a cleanup message when the component
+            is about to be destroyed.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Component
+            </div>
+
+            <pre><code>import &#123; Component, OnDestroy &#125; from '@@angular/core';
+
+@@Component(&#123;
+    selector: 'app-course',
+    templateUrl: './course.component.html'
+&#125;)
+export class CourseComponent implements OnDestroy &#123;
+
+    ngOnDestroy(): void &#123;
+
+        console.log(
+            'Course component is being destroyed'
+        );
+
+    &#125;
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="info-card">
+
+            <h5>How it works</h5>
+
+            <p>
+                When Angular removes the course component from the view,
+                <strong>ngOnDestroy()</strong> is automatically executed.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- Timer Cleanup -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">2. Cleaning Up a Timer</h2>
+
+        <p>
+            If a component creates a timer, the timer should be cleared when
+            the component is destroyed.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Component
+            </div>
+
+            <pre><code>import &#123; Component, OnDestroy } from '@@angular/core';
+
+@@Component(&#123;
+    selector: 'app-clock',
+    templateUrl: './clock.component.html'
+&#125;)
+export class ClockComponent implements OnDestroy &#123;
+
+    timerId: any;
+
+    constructor() &#123;
+
+        this.timerId = setInterval(() =&gt; &#123;
+
+            console.log('Timer running...');
+
+        &#125;, 1000);
+
+    &#125;
+
+    ngOnDestroy(): void &#123;
+
+        clearInterval(this.timerId);
+
+        console.log('Timer cleared');
+
+    &#125;
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="output-box">
+
+            <strong>Expected Behavior:</strong>
+
+            <div class="output-preview">
+
+                <p>
+                    While the component is active:
+                    <strong>Timer running...</strong>
+                </p>
+
+                <p>
+                    Before the component is removed:
+                    <strong>Timer cleared</strong>
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Subscription Cleanup -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">3. Cleaning Up a Subscription</h2>
+
+        <p>
+            A component may subscribe to an Observable. The subscription can
+            be cleaned up when the component is destroyed.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Component
+            </div>
+
+            <pre><code>import &#123; Component, OnDestroy, OnInit &#125; from '@@angular/core';
+import &#123; Subscription &#125; from 'rxjs';
+
+@@Component(&#123;
+    selector: 'app-course-list',
+    templateUrl: './course-list.component.html'
+&#125;)
+export class CourseListComponent
+    implements OnInit, OnDestroy &#123;
+
+    courseSubscription!: Subscription;
+
+    ngOnInit(): void &#123;
+
+        this.courseSubscription =
+            this.courseService.getCourses()
+                .subscribe(data =&gt; &#123;
+
+                    console.log(data);
+
+                &#125;);
+
+    &#125;
+
+    ngOnDestroy(): void &#123;
+
+        this.courseSubscription?.unsubscribe();
+
+        console.log(
+            'Course subscription cleaned up'
+        );
+
+    &#125;
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="info-card">
+
+            <h5>Important Point</h5>
+
+            <p>
+                Cleanup is important when a subscription or other ongoing
+                resource should no longer remain active after the component
+                leaves the UI.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- Event Listener Cleanup -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">4. Removing Event Listeners</h2>
+
+        <p>
+            When an event listener is manually registered, it should also be
+            removed when the component is destroyed.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Component
+            </div>
+
+            <pre><code>export class DashboardComponent
+    implements OnInit, OnDestroy &#123;
+
+    handleResize = () =&gt; &#123;
+
+        console.log(window.innerWidth);
+
+    &#125;;
+
+    ngOnInit(): void &#123;
+
+        window.addEventListener(
+            'resize',
+            this.handleResize
+        );
+
+    &#125;
+
+    ngOnDestroy(): void &#123;
+
+        window.removeEventListener(
+            'resize',
+            this.handleResize
+        );
+
+    &#125;
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="binding-flow">
+
+            <div class="binding-item">
+
+                <strong>ngOnInit()</strong>
+
+                <span>
+                    Add Event Listener
+                </span>
+
+            </div>
+
+            <div class="binding-arrow">→</div>
+
+            <div class="binding-item">
+
+                <strong>Component Active</strong>
+
+                <span>
+                    Event Listener Works
+                </span>
+
+            </div>
+
+            <div class="binding-arrow">→</div>
+
+            <div class="binding-item">
+
+                <strong>ngOnDestroy()</strong>
+
+                <span>
+                    Remove Listener
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Conditional Component -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">5. OnDestroy with Conditional Rendering</h2>
+
+        <p>
+            A component can be created and destroyed depending on application
+            state. The OnDestroy hook runs when Angular removes the component.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Template
+            </div>
+
+            <pre><code>&lt;app-course
+    *ngIf="showCourse"&gt;
+&lt;/app-course&gt;
+
+&lt;button (click)="showCourse = !showCourse"&gt;
+
+    Toggle Course
+
+&lt;/button&gt;</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Component
+            </div>
+
+            <pre><code>showCourse = true;</code></pre>
+
+        </div>
+
+        <div class="info-card">
+
+            <h5>How it works</h5>
+
+            <p>
+                When <strong>showCourse</strong> becomes false, Angular
+                removes the component and calls its
+                <strong>ngOnDestroy()</strong> method.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- OnInit and OnDestroy -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">6. Using OnInit and OnDestroy Together</h2>
+
+        <p>
+            A common pattern is to start a resource in
+            <strong>ngOnInit()</strong> and clean it up in
+            <strong>ngOnDestroy()</strong>.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>timerId: any;
+
+ngOnInit(): void &#123;
+
+    this.timerId = setInterval(() =&gt; &#123;
+
+        console.log('Working...');
+
+    &#125;, 1000);
+
+&#125;
+
+ngOnDestroy(): void &#123;
+
+    clearInterval(this.timerId);
+
+    console.log('Cleanup completed');
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="binding-flow">
+
+            <div class="binding-item">
+
+                <strong>ngOnInit()</strong>
+
+                <span>
+                    Start Resource
+                </span>
+
+            </div>
+
+            <div class="binding-arrow">→</div>
+
+            <div class="binding-item">
+
+                <strong>Component Active</strong>
+
+                <span>
+                    Resource in use
+                </span>
+
+            </div>
+
+            <div class="binding-arrow">→</div>
+
+            <div class="binding-item">
+
+                <strong>ngOnDestroy()</strong>
+
+                <span>
+                    Cleanup Resource
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- OnDestroy vs OnInit -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold mb-3">@@OnInit vs @@OnDestroy</h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered syntax-table">
+
+                <thead>
+
+                    <tr>
+                        <th>ngOnInit()</th>
+                        <th>ngOnDestroy()</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            Used for component initialization.
+                        </td>
+
+                        <td>
+                            Used for component cleanup.
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            Runs during component initialization.
+                        </td>
+
+                        <td>
+                            Runs before component destruction.
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            Can start timers, subscriptions, or data loading.
+                        </td>
+
+                        <td>
+                            Can stop timers and clean up subscriptions.
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            Prepares resources for component execution.
+                        </td>
+
+                        <td>
+                            Releases resources no longer required.
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+    <!-- Complete CIIT Example -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Complete CIIT Training Institute Example</h2>
+
+        <p>
+            Suppose CIIT Training Institute has a live course dashboard.
+            When the dashboard opens, it starts a timer. When the dashboard
+            is closed or removed, the timer should be cleared using
+            <strong>ngOnDestroy()</strong>.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                live-dashboard.component.ts
+            </div>
+
+            <pre><code>import &#123;
+    Component,
+    OnInit,
+    OnDestroy
+&#125; from '@@angular/core';
+
+@@Component(&#123;
+    selector: 'app-live-dashboard',
+    templateUrl: './live-dashboard.component.html'
+&#125;)
+export class LiveDashboardComponent
+    implements OnInit, OnDestroy &#123;
+
+    timerId: any;
+
+    status = '';
+
+    ngOnInit(): void &#123;
+
+        this.status =
+            'Live Dashboard Active';
+
+        this.timerId = setInterval(() =&gt; &#123;
+
+            console.log(
+                'Checking live training status...'
+            );
+
+        &#125;, 5000);
+
+    &#125;
+
+    ngOnDestroy(): void &#123;
+
+        clearInterval(this.timerId);
+
+        console.log(
+            'Live Dashboard Cleanup Completed'
+        );
+
+    &#125;
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                live-dashboard.component.html
+            </div>
+
+            <pre><code>&lt;div&gt;
+
+    &lt;h2&gt;
+        CIIT Training Institute
+    &lt;/h2&gt;
+
+    &lt;p&gt;
+        &#123;&#123; status &#125;&#125;
+    &lt;/p&gt;
+
+&lt;/div&gt;</code></pre>
+
+        </div>
+
+        <div class="output-box">
+
+            <strong>Expected Output:</strong>
+
+            <div class="student-preview">
+
+                <h3>
+                    CIIT Training Institute
+                </h3>
+
+                <p>
+                    Live Dashboard Active
+                </p>
+
+                <p>
+                    When the component is destroyed,
+                    the timer is cleared automatically through
+                    <strong>ngOnDestroy()</strong>.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Important Points -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Important Points About @@OnDestroy</h2>
+
+        <ul class="best-practice-list">
+
+            <li>
+                ngOnDestroy() is called before Angular destroys a component.
+            </li>
+
+            <li>
+                It is mainly used for cleanup operations.
+            </li>
+
+            <li>
+                Timers can be stopped during component destruction.
+            </li>
+
+            <li>
+                Subscriptions can be cleaned up when they are no longer needed.
+            </li>
+
+            <li>
+                Manually registered event listeners should be removed.
+            </li>
+
+            <li>
+                Cleanup helps prevent unnecessary ongoing work after a
+                component is removed.
+            </li>
+
+        </ul>
+
+    </section>
+
+    <!-- Best Practices -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">@@OnDestroy Best Practices</h2>
+
+        <ul class="best-practice-list">
+
+            <li>
+                Keep cleanup logic inside ngOnDestroy().
+            </li>
+
+            <li>
+                Clear timers created by the component.
+            </li>
+
+            <li>
+                Clean up subscriptions when required.
+            </li>
+
+            <li>
+                Remove manually attached browser event listeners.
+            </li>
+
+            <li>
+                Release resources that are no longer required.
+            </li>
+
+            <li>
+                Keep cleanup code simple and easy to maintain.
+            </li>
+
+        </ul>
+
+    </section>
+
+    <!-- Summary -->
+    <section class="summary-box">
+
+        <h3>Summary</h3>
+
+        <p>
+            Angular <strong>@@OnDestroy</strong> provides the
+            <strong>ngOnDestroy()</strong> lifecycle method for performing
+            cleanup work before a component or directive is destroyed.
+        </p>
+
+        <p>
+            It is commonly used to clear timers, clean up subscriptions,
+            remove event listeners, and release resources created while the
+            component was active.
+        </p>
+
+    </section>
+
+    <!-- Navigation -->
+    <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+
+        <a class="btn btn-outline-secondary"
+           href="@Url.Action("AfterViewInit", "LifecycleHooks", new { area = "Angular" })">
+            ← ngAfterViewInit
+        </a>
+
+        <a class="btn btn-primary"
+           href="@Url.Action("Index", "Services", new { area = "Angular" })">
+            Services →
+        </a>
+
+    </div>
+
+</div>
+
+<style>
+
+    .info-card {
+        background: #f8fafc;
+        border-left: 5px solid #4c1d95;
+        padding: 18px 20px;
+        border-radius: 7px;
+        margin-top: 15px;
+    }
+
+        .info-card h5 {
+            color: #4c1d95;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .info-card p {
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+
+    .syntax-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        padding: 25px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+    }
+
+    .syntax-box {
+        width: 175px;
+        min-height: 125px;
+        padding: 18px;
+        text-align: center;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 9px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+        .syntax-box i {
+            display: block;
+            font-size: 28px;
+            color: #4c1d95;
+            margin-bottom: 8px;
+        }
+
+        .syntax-box strong {
+            display: block;
+            color: #2e1065;
+            font-weight: 700;
+        }
+
+        .syntax-box span {
+            display: block;
+            color: #64748b;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+    .syntax-arrow {
+        color: #4c1d95;
+        font-size: 25px;
+        font-weight: 700;
+    }
+
+    .syntax-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+    }
+
+    .syntax-card {
+        padding: 20px;
+        text-align: center;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 9px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    }
+
+    .syntax-icon {
+        width: 55px;
+        height: 55px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 12px;
+        background: #ede9fe;
+        color: #4c1d95;
+        border-radius: 50%;
+        font-size: 24px;
+    }
+
+    .syntax-card h5 {
+        color: #2e1065;
+        font-weight: 700;
+    }
+
+    .syntax-card p {
+        color: #64748b;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .syntax-card code {
+        color: #4c1d95;
+        font-weight: 600;
+    }
+
+    .code-card {
+        margin-top: 15px;
+        margin-bottom: 18px;
+        border-radius: 8px;
+        overflow: hidden;
+        background: #0f172a;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .code-title {
+        background: #1e293b;
+        color: #d8c9f5;
+        padding: 10px 15px;
+        font-weight: 600;
+        border-bottom: 1px solid #334155;
+    }
+
+    .code-card pre {
+        margin: 0;
+        padding: 18px;
+        overflow-x: auto;
+    }
+
+    .code-card code {
+        color: #e2e8f0;
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    .output-box {
+        margin-top: 15px;
+        padding: 18px;
+        background: #f1f5f9;
+        border-left: 5px solid #4c1d95;
+        border-radius: 6px;
+    }
+
+    .output-preview {
+        margin-top: 12px;
+        padding: 18px;
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 7px;
+    }
+
+        .output-preview h3 {
+            color: #2e1065;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .output-preview p {
+            margin-bottom: 7px;
+        }
+
+    .binding-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 20px;
+        padding: 20px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+    }
+
+    .binding-item {
+        min-width: 170px;
+        padding: 15px;
+        text-align: center;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 8px;
+    }
+
+        .binding-item strong {
+            display: block;
+            color: #4c1d95;
+            font-weight: 700;
+        }
+
+        .binding-item span {
+            display: block;
+            color: #64748b;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+    .binding-arrow {
+        color: #4c1d95;
+        font-size: 25px;
+        font-weight: 700;
+    }
+
+    .active-preview {
+        margin-top: 12px;
+        display: inline-block;
+        padding: 12px 20px;
+        background: #ede9fe;
+        border: 2px solid #4c1d95;
+        border-radius: 7px;
+        color: #2e1065;
+        font-weight: 700;
+    }
+
+    .style-preview {
+        margin-top: 12px;
+        font-size: 20px;
+        font-weight: 600;
+        color: #4c1d95;
+    }
+
+    .control-flow-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .control-card {
+        padding: 20px;
+        background: #f8fafc;
+        border: 1px solid #ddd6fe;
+        border-radius: 8px;
+    }
+
+        .control-card h5 {
+            color: #4c1d95;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+    .code-small {
+        background: #0f172a;
+        border-radius: 7px;
+        overflow: hidden;
+    }
+
+        .code-small pre {
+            margin: 0;
+            padding: 15px;
+            overflow-x: auto;
+        }
+
+        .code-small code {
+            color: #e2e8f0;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+    .syntax-table {
+        background: #ffffff;
+    }
+
+        .syntax-table thead th {
+            background: #4c1d95;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .syntax-table td {
+            vertical-align: middle;
+        }
+
+        .syntax-table code {
+            color: #4c1d95;
+            font-weight: 600;
+        }
+
+    .student-preview {
+        margin-top: 12px;
+        padding: 20px;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 8px;
+    }
+
+        .student-preview h3 {
+            color: #2e1065;
+            font-weight: 700;
+        }
+
+    .best-practice-list {
+        padding: 20px 20px 20px 40px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+    }
+
+        .best-practice-list li {
+            margin-bottom: 11px;
+            line-height: 1.6;
+        }
+
+            .best-practice-list li:last-child {
+                margin-bottom: 0;
+            }
+
+    .summary-box {
+        background: #cfe2ff;
+        border-radius: 6px;
+        padding: 18px 22px;
+        margin-top: 20px;
+    }
+
+        .summary-box h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #084298;
+            margin-bottom: 10px;
+        }
+
+        .summary-box p {
+            font-size: 16px !important;
+            line-height: 1.6 !important;
+            color: #084298 !important;
+            margin-bottom: 8px;
+        }
+
+            .summary-box p:last-child {
+                margin-bottom: 0;
+            }
+
+    @@media (max-width: 991px) {
+
+        .syntax-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .control-flow-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @@media (max-width: 576px) {
+
+        .syntax-grid,
+        .control-flow-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .syntax-flow,
+        .binding-flow {
+            flex-direction: column;
+        }
+
+        .syntax-arrow,
+        .binding-arrow {
+            transform: rotate(90deg);
+        }
+
+        .syntax-box {
+            width: 100%;
+            max-width: 280px;
+        }
+
+        .binding-item {
+            width: 100%;
+            max-width: 250px;
+        }
+
+        .code-card code,
+        .code-small code {
+            font-size: 13px;
+        }
+
+        .d-flex.justify-content-between {
+            gap: 10px;
+        }
+
+            .d-flex.justify-content-between .btn {
+                font-size: 13px;
+                padding: 8px 12px;
+            }
+    }
+
+</style>

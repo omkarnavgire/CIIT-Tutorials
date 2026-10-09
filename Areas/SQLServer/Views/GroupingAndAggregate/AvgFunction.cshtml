@@ -1,0 +1,593 @@
+﻿@{
+    ViewData["Title"] = "AVG() Function - SQL Server";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- =========================
+         PAGE HEADER
+    ========================== -->
+
+    <div class="mb-5">
+
+        <h1 class="fw-bold">
+            AVG() Function
+        </h1>
+
+        <p class="lead text-muted">
+            Learn how to calculate the average of numeric values
+            using the AVG() aggregate function in SQL Server.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         1. INTRODUCTION
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            What is AVG()?
+        </h2>
+
+        <p>
+            The <strong>AVG()</strong> function is an aggregate function
+            in SQL Server used to calculate the average value of a
+            numeric column.
+        </p>
+
+        <p>
+            It is commonly used to calculate average salary,
+            average marks, average price, average rating and
+            other numerical values.
+        </p>
+
+        <div class="alert alert-info">
+
+            <strong>In simple words:</strong>
+
+            <p class="mb-0 mt-2">
+                AVG() adds the values and calculates their average.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         2. SYNTAX
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            AVG() Syntax
+        </h2>
+
+        <pre class="bg-light p-4 rounded border"><code>SELECT AVG(column_name)
+FROM table_name;</code></pre>
+
+    </section>
+
+
+    <!-- =========================
+         3. SAMPLE TABLE
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Example Table
+        </h2>
+
+        <p>
+            Consider the following <strong>Employees</strong> table:
+        </p>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>EmployeeId</th>
+                        <th>EmployeeName</th>
+                        <th>Department</th>
+                        <th>Salary</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>1</td>
+                        <td>Rahul</td>
+                        <td>IT</td>
+                        <td>50000</td>
+                    </tr>
+
+                    <tr>
+                        <td>2</td>
+                        <td>Priya</td>
+                        <td>HR</td>
+                        <td>40000</td>
+                    </tr>
+
+                    <tr>
+                        <td>3</td>
+                        <td>Amit</td>
+                        <td>IT</td>
+                        <td>60000</td>
+                    </tr>
+
+                    <tr>
+                        <td>4</td>
+                        <td>Neha</td>
+                        <td>HR</td>
+                        <td>45000</td>
+                    </tr>
+
+                    <tr>
+                        <td>5</td>
+                        <td>Rohit</td>
+                        <td>Sales</td>
+                        <td>35000</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         4. BASIC AVG
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Basic AVG() Example
+        </h2>
+
+        <p>
+            To calculate the average salary of all employees:
+        </p>
+
+        <pre class="bg-light p-4 rounded border"><code>SELECT AVG(Salary) AS AverageSalary
+FROM Employees;</code></pre>
+
+        <h4 class="fw-bold mt-4">
+            Calculation
+        </h4>
+
+        <pre class="bg-light p-4 rounded border"><code>(50000 + 40000 + 60000 + 45000 + 35000) / 5
+= 46000</code></pre>
+
+        <h4 class="fw-bold mt-4">
+            Output
+        </h4>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered">
+
+                <thead class="table-primary">
+
+                    <tr>
+                        <th>AverageSalary</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>46000</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         5. AVG WITH WHERE
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            AVG() with WHERE
+        </h2>
+
+        <p>
+            AVG() can be combined with WHERE to calculate the average
+            only for records that satisfy a condition.
+        </p>
+
+        <p>
+            For example, calculate the average salary of employees
+            whose salary is greater than 40000:
+        </p>
+
+        <pre class="bg-light p-4 rounded border"><code>SELECT AVG(Salary) AS AverageSalary
+FROM Employees
+WHERE Salary &gt; 40000;</code></pre>
+
+        <h4 class="fw-bold mt-4">
+            Calculation
+        </h4>
+
+        <pre class="bg-light p-4 rounded border"><code>(50000 + 60000 + 45000) / 3
+= 51666.67</code></pre>
+
+    </section>
+
+
+    <!-- =========================
+         6. AVG WITH GROUP BY
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            AVG() with GROUP BY
+        </h2>
+
+        <p>
+            AVG() can be combined with GROUP BY to calculate
+            the average value for each group.
+        </p>
+
+        <pre class="bg-light p-4 rounded border"><code>SELECT Department,
+       AVG(Salary) AS AverageSalary
+FROM Employees
+GROUP BY Department;</code></pre>
+
+        <h4 class="fw-bold mt-4">
+            Output
+        </h4>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered">
+
+                <thead class="table-success">
+
+                    <tr>
+                        <th>Department</th>
+                        <th>AverageSalary</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>HR</td>
+                        <td>42500</td>
+                    </tr>
+
+                    <tr>
+                        <td>IT</td>
+                        <td>55000</td>
+                    </tr>
+
+                    <tr>
+                        <td>Sales</td>
+                        <td>35000</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         7. AVG WITH HAVING
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            AVG() with HAVING
+        </h2>
+
+        <p>
+            HAVING can be used to filter groups based on their
+            average value.
+        </p>
+
+        <p>
+            For example, display departments whose average salary
+            is greater than 40000:
+        </p>
+
+        <pre class="bg-light p-4 rounded border"><code>SELECT Department,
+       AVG(Salary) AS AverageSalary
+FROM Employees
+GROUP BY Department
+HAVING AVG(Salary) &gt; 40000;</code></pre>
+
+        <h4 class="fw-bold mt-4">
+            Output
+        </h4>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered">
+
+                <thead class="table-warning">
+
+                    <tr>
+                        <th>Department</th>
+                        <th>AverageSalary</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>HR</td>
+                        <td>42500</td>
+                    </tr>
+
+                    <tr>
+                        <td>IT</td>
+                        <td>55000</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         8. AVG AND NULL VALUES
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            AVG() and NULL Values
+        </h2>
+
+        <p>
+            AVG() ignores NULL values while calculating the average.
+        </p>
+
+        <p>
+            For example:
+        </p>
+
+        <pre class="bg-light p-4 rounded border"><code>50000
+60000
+NULL
+40000</code></pre>
+
+        <p>
+            SQL Server calculates the average using the three
+            available numeric values:
+        </p>
+
+        <pre class="bg-light p-4 rounded border"><code>(50000 + 60000 + 40000) / 3
+= 50000</code></pre>
+
+    </section>
+
+
+    <!-- =========================
+         9. AVG DISTINCT
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            AVG(DISTINCT)
+        </h2>
+
+        <p>
+            <strong>AVG(DISTINCT column)</strong> calculates the
+            average using only unique values.
+        </p>
+
+        <pre class="bg-light p-4 rounded border"><code>SELECT AVG(DISTINCT Salary) AS AverageSalary
+FROM Employees;</code></pre>
+
+        <div class="alert alert-secondary mt-3">
+
+            <strong>Note:</strong>
+
+            <p class="mb-0 mt-2">
+                DISTINCT removes duplicate values before calculating
+                the average.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         10. AVG WITH ROUND
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            AVG() with ROUND()
+        </h2>
+
+        <p>
+            We can use ROUND() when we want to control the number
+            of decimal places in the average result.
+        </p>
+
+        <pre class="bg-light p-4 rounded border"><code>SELECT ROUND(AVG(Salary), 2) AS AverageSalary
+FROM Employees;</code></pre>
+
+    </section>
+
+
+    <!-- =========================
+         11. REAL WORLD USE
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Real-World Uses of AVG()
+        </h2>
+
+        <ul>
+
+            <li class="mb-2">
+                Calculate average employee salary.
+            </li>
+
+            <li class="mb-2">
+                Calculate average student marks.
+            </li>
+
+            <li class="mb-2">
+                Calculate average product price.
+            </li>
+
+            <li class="mb-2">
+                Calculate average customer rating.
+            </li>
+
+            <li>
+                Calculate average monthly sales.
+            </li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- =========================
+         12. IMPORTANT POINTS
+    ========================== -->
+
+    <section class="mb-5">
+
+        <div class="alert alert-warning">
+
+            <h3 class="fw-bold">
+                Important Points
+            </h3>
+
+            <ul class="mb-0">
+
+                <li class="mb-2">
+                    AVG() is an aggregate function.
+                </li>
+
+                <li class="mb-2">
+                    AVG() works with numeric values.
+                </li>
+
+                <li class="mb-2">
+                    AVG() ignores NULL values.
+                </li>
+
+                <li class="mb-2">
+                    AVG() can be used with WHERE.
+                </li>
+
+                <li class="mb-2">
+                    AVG() can be used with GROUP BY.
+                </li>
+
+                <li class="mb-2">
+                    HAVING can filter grouped AVG() results.
+                </li>
+
+                <li>
+                    AVG(DISTINCT column) calculates the average
+                    of unique values.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         13. SUMMARY
+    ========================== -->
+
+    <section class="mb-5">
+
+        <div class="alert alert-success">
+
+            <h3 class="fw-bold">
+                Summary
+            </h3>
+
+            <p class="mb-0">
+                AVG() is used to calculate the average of numeric
+                values in SQL Server. It can be combined with
+                WHERE, GROUP BY and HAVING to calculate averages
+                for specific records or groups.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         PREVIOUS / NEXT
+    ========================== -->
+
+    <div class="d-flex justify-content-between align-items-center
+        mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/GroupingAndAggregate/SumFunction"
+           class="btn btn-outline-primary">
+
+            ← Previous: SUM()
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/GroupingAndAggregate/MinMaxFunctions"
+           class="btn btn-primary">
+
+            Next: MIN() &amp; MAX() →
+
+        </a>
+
+    </div>
+
+</div>

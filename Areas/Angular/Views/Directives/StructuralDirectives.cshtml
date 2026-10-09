@@ -1,0 +1,688 @@
+﻿@{
+    ViewData["Title"] = "Structural Directives";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- Header -->
+    <section class="mb-4">
+        <h1 class="fw-bold text-dark">Structural Directives</h1>
+        <p class="lead text-muted">
+            Learn how Angular structural directives control the creation,
+            removal, and repetition of elements in the DOM.
+        </p>
+    </section>
+
+    <!-- What are Structural Directives -->
+    <section class="mb-4">
+        <h2 class="fw-bold">What are Structural Directives?</h2>
+
+        <div class="info-card">
+            <p>
+                Structural directives are Angular directives that change the
+                structure of the DOM by adding, removing, or repeating elements.
+            </p>
+
+            <p class="mb-0">
+                They are commonly used for conditional rendering and displaying
+                collections of data.
+            </p>
+        </div>
+    </section>
+
+    <!-- Flow -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Structural Directive Flow</h2>
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+                <div class="syntax-icon">1</div>
+                <h5>Condition</h5>
+                <p>Angular evaluates a condition or collection.</p>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+                <div class="syntax-icon">2</div>
+                <h5>Directive</h5>
+                <p>The structural directive processes the expression.</p>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+                <div class="syntax-icon">3</div>
+                <h5>DOM</h5>
+                <p>Angular creates or removes template content.</p>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+                <div class="syntax-icon">4</div>
+                <h5>UI</h5>
+                <p>The required content appears on the page.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Common Directives -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Common Structural Directives</h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+                <div class="syntax-icon">IF</div>
+                <h5>*ngIf</h5>
+                <p>
+                    Displays an element when a condition is true.
+                </p>
+            </div>
+
+            <div class="syntax-card">
+                <div class="syntax-icon">FOR</div>
+                <h5>*ngFor</h5>
+                <p>
+                    Repeats an element for every item in a collection.
+                </p>
+            </div>
+
+            <div class="syntax-card">
+                <div class="syntax-icon">SW</div>
+                <h5>*ngSwitch</h5>
+                <p>
+                    Displays content based on a selected case.
+                </p>
+            </div>
+
+            <div class="syntax-card">
+                <div class="syntax-icon">C</div>
+                <h5>Control Flow</h5>
+                <p>
+                    Modern Angular also provides built-in control-flow syntax.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ngIf -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Using *ngIf</h2>
+
+        <p>
+            <code>*ngIf</code> conditionally adds or removes an element
+            from the DOM.
+        </p>
+
+        <div class="code-card">
+            <div class="code-title">Component</div>
+
+            <pre><code>isLoggedIn = true;</code></pre>
+        </div>
+
+        <div class="code-card">
+            <div class="code-title">HTML</div>
+
+            <pre><code>&lt;div *ngIf="isLoggedIn"&gt;
+    Welcome to CIIT Training Institute
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <div class="output-box">
+            <strong>Result:</strong>
+
+            <div class="output-preview">
+                The welcome message is displayed when
+                <code>isLoggedIn</code> is true.
+            </div>
+        </div>
+    </section>
+
+    <!-- ngIf Else -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Using *ngIf with else</h2>
+
+        <p>
+            An alternative template can be displayed when the condition
+            is false.
+        </p>
+
+        <div class="code-card">
+            <div class="code-title">HTML</div>
+
+            <pre><code>&lt;div *ngIf="isLoggedIn; else loginMessage"&gt;
+    Welcome Student
+&lt;/div&gt;
+
+&lt;ng-template #loginMessage&gt;
+    Please Login
+&lt;/ng-template&gt;</code></pre>
+        </div>
+
+        <div class="output-box">
+            <strong>Result:</strong>
+
+            <div class="output-preview">
+                Angular displays either the welcome message or the
+                login message.
+            </div>
+        </div>
+    </section>
+
+    <!-- ngFor -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Using *ngFor</h2>
+
+        <p>
+            <code>*ngFor</code> repeats an element for every item in
+            an array.
+        </p>
+
+        <div class="code-card">
+            <div class="code-title">Component</div>
+
+            <pre><code>students = [
+    'Pradnya',
+    'Rahul',
+    'Amit'
+];</code></pre>
+        </div>
+
+        <div class="code-card">
+            <div class="code-title">HTML</div>
+
+            <pre><code>&lt;ul&gt;
+
+    &lt;li *ngFor="let student of students"&gt;
+        {{student}}
+    &lt;/li&gt;
+
+&lt;/ul&gt;</code></pre>
+        </div>
+
+        <div class="output-box">
+            <strong>Result:</strong>
+
+            <div class="output-preview">
+                Angular creates one list item for each student.
+            </div>
+        </div>
+    </section>
+
+    <!-- ngFor Index -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Using Index with *ngFor</h2>
+
+        <p>
+            The <code>index</code> value can be used to display the
+            position of each item.
+        </p>
+
+        <div class="code-card">
+            <div class="code-title">HTML</div>
+
+            <pre><code>&lt;div *ngFor="let student of students; let i = index"&gt;
+
+    {{i + 1}} - {{student}}
+
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <div class="output-box">
+            <strong>Output:</strong>
+
+            <div class="output-preview">
+                1 - Pradnya<br />
+                2 - Rahul<br />
+                3 - Amit
+            </div>
+        </div>
+    </section>
+
+    <!-- ngSwitch -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Using *ngSwitch</h2>
+
+        <p>
+            <code>*ngSwitch</code> can be used when different content
+            needs to be displayed according to a value.
+        </p>
+
+        <div class="code-card">
+            <div class="code-title">Component</div>
+
+            <pre><code>course = 'Angular';</code></pre>
+        </div>
+
+        <div class="code-card">
+            <div class="code-title">HTML</div>
+
+            <pre><code>&lt;div [ngSwitch]="course"&gt;
+
+    &lt;p *ngSwitchCase="'Angular'"&gt;
+        Angular Course
+    &lt;/p&gt;
+
+    &lt;p *ngSwitchCase="'Java'"&gt;
+        Java Course
+    &lt;/p&gt;
+
+    &lt;p *ngSwitchDefault&gt;
+        Course Not Found
+    &lt;/p&gt;
+
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <div class="output-box">
+            <strong>Result:</strong>
+
+            <div class="output-preview">
+                Angular Course
+            </div>
+        </div>
+    </section>
+
+    <!-- DOM Concept -->
+    <section class="mb-4">
+        <h2 class="fw-bold">How Structural Directives Affect the DOM</h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+                <div class="syntax-icon">+</div>
+                <h5>Create</h5>
+                <p>
+                    Angular creates template content when required.
+                </p>
+            </div>
+
+            <div class="syntax-card">
+                <div class="syntax-icon">−</div>
+                <h5>Remove</h5>
+                <p>
+                    Angular removes content when a condition is false.
+                </p>
+            </div>
+
+            <div class="syntax-card">
+                <div class="syntax-icon">R</div>
+                <h5>Repeat</h5>
+                <p>
+                    Angular repeats content for collection items.
+                </p>
+            </div>
+
+            <div class="syntax-card">
+                <div class="syntax-icon">S</div>
+                <h5>Switch</h5>
+                <p>
+                    Angular selects content according to a value.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Modern Control Flow -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Modern Angular Control Flow</h2>
+
+        <p>
+            Modern Angular also provides built-in control-flow syntax
+            such as <code>@@if</code>, <code>@@for</code>, and
+            <code>@@switch</code>.
+        </p>
+
+        <div class="code-card">
+            <div class="code-title">Example</div>
+
+            <pre><code>@@if (isLoggedIn) {
+    &lt;p&gt;Welcome Student&lt;/p&gt;
+}
+
+@@for (student of students; track student) {
+    &lt;p&gt;{{student}}&lt;/p&gt;
+}</code></pre>
+        </div>
+
+        <div class="output-box">
+            <strong>Note:</strong>
+
+            <div class="output-preview">
+                Modern Angular applications can use the built-in control-flow
+                syntax for conditional and repeated content.
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Structural Directive Comparison</h2>
+
+        <div class="table-responsive">
+
+            <table class="table syntax-table">
+
+                <thead>
+                    <tr>
+                        <th>Directive</th>
+                        <th>Purpose</th>
+                        <th>Example</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td><code>*ngIf</code></td>
+                        <td>Conditional rendering</td>
+                        <td><code>*ngIf="isLoggedIn"</code></td>
+                    </tr>
+
+                    <tr>
+                        <td><code>*ngFor</code></td>
+                        <td>Repeat elements</td>
+                        <td><code>*ngFor="let student of students"</code></td>
+                    </tr>
+
+                    <tr>
+                        <td><code>*ngSwitch</code></td>
+                        <td>Multiple conditions</td>
+                        <td><code>[ngSwitch]="course"</code></td>
+                    </tr>
+
+                    <tr>
+                        <td><code>@@if</code></td>
+                        <td>Modern conditional rendering</td>
+                        <td><code>@@if (condition)</code></td>
+                    </tr>
+
+                    <tr>
+                        <td><code>@@for</code></td>
+                        <td>Modern repeated rendering</td>
+                        <td><code>@@for (item of items)</code></td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+    </section>
+
+    <!-- Complete Example -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Complete Student Example</h2>
+
+        <div class="code-card">
+            <div class="code-title">student.component.ts</div>
+
+            <pre><code>export class StudentComponent {
+
+    isLoggedIn = true;
+
+    students = [
+        'Pradnya',
+        'Rahul',
+        'Amit'
+    ];
+
+}</code></pre>
+        </div>
+
+        <div class="code-card">
+            <div class="code-title">student.component.html</div>
+
+            <pre><code>&lt;h3 *ngIf="isLoggedIn"&gt;
+    Welcome to Angular Training
+&lt;/h3&gt;
+
+&lt;ul&gt;
+
+    &lt;li *ngFor="let student of students"&gt;
+        {{student}}
+    &lt;/li&gt;
+
+&lt;/ul&gt;</code></pre>
+        </div>
+
+        <div class="student-preview">
+            <h4>Welcome to Angular Training</h4>
+
+            <p class="mb-1">Students:</p>
+
+            <p class="mb-0">
+                Pradnya &nbsp; | &nbsp; Rahul &nbsp; | &nbsp; Amit
+            </p>
+        </div>
+    </section>
+
+    <!-- Best Practices -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Best Practices</h2>
+
+        <ul class="best-practice-list">
+            <li>Use conditional rendering only when necessary.</li>
+            <li>Use tracking when rendering large collections.</li>
+            <li>Keep structural directive expressions simple.</li>
+            <li>Use modern Angular control flow in new Angular applications where appropriate.</li>
+            <li>Avoid unnecessary nested structural directives.</li>
+            <li>Keep template logic readable and maintainable.</li>
+        </ul>
+    </section>
+
+    <!-- Summary -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Summary</h2>
+
+        <div class="summary-box">
+            <ul class="mb-0">
+                <li>Structural directives change the structure of the DOM.</li>
+                <li><code>*ngIf</code> provides conditional rendering.</li>
+                <li><code>*ngFor</code> repeats content for collection items.</li>
+                <li><code>*ngSwitch</code> selects content based on a value.</li>
+                <li>Modern Angular provides <code>@@if</code>, <code>@@for</code>, and <code>@@switch</code>.</li>
+                <li>Structural directives are useful for dynamic UI rendering.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Navigation -->
+    <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+
+        <a class="btn btn-outline-secondary"
+           href="@Url.Action("AttributeDirectives", "Directives", new { area = "Angular" })">
+            ← Attribute Directives
+        </a>
+
+        <a class="btn btn-primary"
+           href="@Url.Action("CustomDirectives", "Directives", new { area = "Angular" })">
+            Custom Directives →
+        </a>
+
+    </div>
+
+</div>
+
+<style>
+
+    .info-card {
+        background: #f8fafc;
+        border-left: 5px solid #4c1d95;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    .syntax-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .syntax-box {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 20px;
+        text-align: center;
+        width: 190px;
+        min-height: 160px;
+    }
+
+    .syntax-icon {
+        width: 45px;
+        height: 45px;
+        background: #4c1d95;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 12px;
+        font-weight: bold;
+        font-size: 13px;
+    }
+
+    .syntax-arrow {
+        font-size: 28px;
+        font-weight: bold;
+        color: #4c1d95;
+    }
+
+    .syntax-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+
+    .syntax-card {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .code-card {
+        background: #0f172a;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-bottom: 20px;
+    }
+
+    .code-title {
+        background: #1e293b;
+        color: #ddd6fe;
+        padding: 10px 15px;
+        font-weight: 600;
+    }
+
+    .code-card pre {
+        margin: 0;
+        padding: 20px;
+        overflow-x: auto;
+    }
+
+    .code-card code {
+        color: #f8fafc;
+        font-family: Consolas, monospace;
+        line-height: 1.7;
+    }
+
+    .output-box {
+        background: #ede9fe;
+        border-left: 5px solid #4c1d95;
+        padding: 18px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+
+    .output-preview {
+        background: white;
+        border-radius: 8px;
+        padding: 15px;
+        margin-top: 10px;
+    }
+
+    .syntax-table {
+        border: 1px solid #e2e8f0;
+    }
+
+        .syntax-table th {
+            background: #4c1d95;
+            color: white;
+        }
+
+        .syntax-table td {
+            vertical-align: middle;
+        }
+
+    .student-preview {
+        background: #ede9fe;
+        border: 2px solid #4c1d95;
+        border-radius: 12px;
+        padding: 25px;
+        text-align: center;
+    }
+
+    .best-practice-list {
+        background: #f8fafc;
+        border-radius: 10px;
+        padding: 25px 40px;
+        border-left: 5px solid #4c1d95;
+    }
+
+        .best-practice-list li {
+            margin-bottom: 10px;
+        }
+
+    .summary-box {
+        background: #cfe2ff;
+        color: #084298;
+        border-radius: 10px;
+        padding: 20px;
+    }
+
+    @@media (max-width: 991px) {
+
+        .syntax-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .syntax-flow {
+            flex-direction: column;
+        }
+
+        .syntax-arrow {
+            transform: rotate(90deg);
+        }
+    }
+
+    @@media (max-width: 576px) {
+
+        .syntax-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .syntax-box {
+            width: 100%;
+        }
+
+        .best-practice-list {
+            padding: 20px 30px;
+        }
+
+        .code-card pre {
+            font-size: 13px;
+        }
+    }
+
+</style>

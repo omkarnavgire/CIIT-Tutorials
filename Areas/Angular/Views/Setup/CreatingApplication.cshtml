@@ -1,0 +1,1575 @@
+﻿@{
+    ViewData["Title"] = "Creating an Angular Application";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- ================= HEADER ================= -->
+    <section class="mb-4">
+        <h1 class="fw-bold text-dark">
+            Creating an Angular Application
+        </h1>
+
+        <p class="text-muted fs-5">
+            After installing Node.js and Angular CLI, we can create our
+            first Angular application using the Angular CLI.
+        </p>
+    </section>
+
+
+    <!-- ================= INTRODUCTION ================= -->
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            What is an Angular Application?
+        </h2>
+
+        <p>
+            An Angular application is a web application built using the
+            Angular framework. Angular provides components, templates,
+            services, routing, forms and other features required to
+            develop modern web applications.
+        </p>
+
+        <p>
+            Angular CLI provides the
+            <strong>ng new</strong> command to create a new Angular
+            application with the required project structure.
+        </p>
+
+        <div class="info-box">
+
+            <h4>
+                In Simple Words
+            </h4>
+
+            <p class="mb-0">
+                The <strong>ng new</strong> command creates a ready-to-use
+                Angular project with the required files, folders and
+                configuration.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= APPLICATION CREATION FLOW ================= -->
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Angular Application Creation Flow
+        </h2>
+
+        <div class="creation-flow">
+
+            <div class="creation-card">
+
+                <div class="creation-number">
+                    1
+                </div>
+
+                <h4>
+                    Open Terminal
+                </h4>
+
+                <p>
+                    Open Command Prompt or Terminal.
+                </p>
+
+            </div>
+
+
+            <div class="flow-arrow">
+                →
+            </div>
+
+
+            <div class="creation-card">
+
+                <div class="creation-number">
+                    2
+                </div>
+
+                <h4>
+                    Run ng new
+                </h4>
+
+                <p>
+                    Create a new Angular project.
+                </p>
+
+            </div>
+
+
+            <div class="flow-arrow">
+                →
+            </div>
+
+
+            <div class="creation-card">
+
+                <div class="creation-number">
+                    3
+                </div>
+
+                <h4>
+                    Configure
+                </h4>
+
+                <p>
+                    Select project configuration options.
+                </p>
+
+            </div>
+
+
+            <div class="flow-arrow">
+                →
+            </div>
+
+
+            <div class="creation-card">
+
+                <div class="creation-number">
+                    4
+                </div>
+
+                <h4>
+                    Project Ready
+                </h4>
+
+                <p>
+                    Angular creates the project files.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= STEP 1 ================= -->
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Step 1: Open Terminal
+        </h2>
+
+        <p>
+            Open Command Prompt, PowerShell or Terminal on your computer.
+        </p>
+
+        <div class="info-highlight">
+
+            <strong>
+                Tip:
+            </strong>
+
+            <span>
+                You can open the terminal from any folder where you want
+                to create your Angular project.
+            </span>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= STEP 2 ================= -->
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Step 2: Create a New Angular Application
+        </h2>
+
+        <p>
+            Use the following command to create a new Angular application:
+        </p>
+
+        <div class="code-box">
+
+            <div class="code-header">
+                Terminal
+            </div>
+
+            <pre><code>ng new CIITStudentApp</code></pre>
+
+        </div>
+
+        <div class="output-box">
+
+            <h5>
+                Expected Result
+            </h5>
+
+            <p class="mb-0">
+                Angular CLI starts the project creation process and asks
+                for the required project configuration options.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= PROJECT NAME ================= -->
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Understanding the Project Name
+        </h2>
+
+        <p>
+            In the command:
+        </p>
+
+        <div class="code-box">
+
+            <div class="code-header">
+                Command
+            </div>
+
+            <pre><code>ng new CIITStudentApp</code></pre>
+
+        </div>
+
+        <div class="name-explanation">
+
+            <div class="name-part">
+
+                <strong>
+                    ng
+                </strong>
+
+                <span>
+                    Angular CLI command
+                </span>
+
+            </div>
+
+
+            <div class="name-part">
+
+                <strong>
+                    new
+                </strong>
+
+                <span>
+                    Create a new Angular application
+                </span>
+
+            </div>
+
+
+            <div class="name-part">
+
+                <strong>
+                    CIITStudentApp
+                </strong>
+
+                <span>
+                    Name of the Angular application
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= CONFIGURATION ================= -->
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Step 3: Angular Project Configuration
+        </h2>
+
+        <p>
+            During project creation, Angular CLI may ask configuration
+            questions depending on the Angular version and project setup.
+        </p>
+
+        <div class="configuration-list">
+
+            <div class="configuration-item">
+
+                <span>
+                    01
+                </span>
+
+                <div>
+
+                    <h5>
+                        Stylesheet Configuration
+                    </h5>
+
+                    <p>
+                        Select the stylesheet format required by the project.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="configuration-item">
+
+                <span>
+                    02
+                </span>
+
+                <div>
+
+                    <h5>
+                        Routing
+                    </h5>
+
+                    <p>
+                        Configure routing when the application requires
+                        multiple pages or routes.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="configuration-item">
+
+                <span>
+                    03
+                </span>
+
+                <div>
+
+                    <h5>
+                        Additional Configuration
+                    </h5>
+
+                    <p>
+                        Select additional options according to the project
+                        requirements.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= PROJECT CREATION ================= -->
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Step 4: Angular Creates the Project
+        </h2>
+
+        <p>
+            After the configuration is completed, Angular CLI creates the
+            application folder and generates the required project files.
+        </p>
+
+        <div class="code-box">
+
+            <div class="code-header">
+                Terminal
+            </div>
+
+            <pre><code>CREATE CIITStudentApp/
+CREATE CIITStudentApp/src/
+CREATE CIITStudentApp/src/app/
+CREATE CIITStudentApp/angular.json
+CREATE CIITStudentApp/package.json</code></pre>
+
+        </div>
+
+        <div class="output-box">
+
+            <h5>
+                Expected Result
+            </h5>
+
+            <p>
+                A new Angular project named
+                <strong>CIITStudentApp</strong> is created successfully.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= PROJECT FOLDER ================= -->
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Step 5: Move Into the Project Folder
+        </h2>
+
+        <p>
+            After creating the application, move into the project folder
+            using the <strong>cd</strong> command.
+        </p>
+
+        <div class="code-box">
+
+            <div class="code-header">
+                Terminal
+            </div>
+
+            <pre><code>cd CIITStudentApp</code></pre>
+
+        </div>
+
+        <div class="info-box">
+
+            <h4>
+                Why use cd?
+            </h4>
+
+            <p class="mb-0">
+                The <strong>cd</strong> command changes the current
+                directory to the Angular project folder.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= RUN APPLICATION ================= -->
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Step 6: Run the Angular Application
+        </h2>
+
+        <p>
+            Start the Angular development server using:
+        </p>
+
+        <div class="code-box">
+
+            <div class="code-header">
+                Terminal
+            </div>
+
+            <pre><code>ng serve</code></pre>
+
+        </div>
+
+        <div class="output-box">
+
+            <h5>
+                Expected Output
+            </h5>
+
+            <p>
+                Angular starts the development server and provides a local
+                URL for opening the application.
+            </p>
+
+            <div class="browser-output">
+                http://localhost:4200
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= BROWSER FLOW ================= -->
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Angular Application Running Flow
+        </h2>
+
+        <div class="application-flow">
+
+            <div class="application-box">
+
+                <strong>
+                    CIITStudentApp
+                </strong>
+
+                <span>
+                    Angular Project
+                </span>
+
+            </div>
+
+
+            <div class="application-arrow">
+                ↓
+            </div>
+
+
+            <div class="application-box">
+
+                <strong>
+                    ng serve
+                </strong>
+
+                <span>
+                    Development Server
+                </span>
+
+            </div>
+
+
+            <div class="application-arrow">
+                ↓
+            </div>
+
+
+            <div class="application-box">
+
+                <strong>
+                    localhost:4200
+                </strong>
+
+                <span>
+                    Local Application URL
+                </span>
+
+            </div>
+
+
+            <div class="application-arrow">
+                ↓
+            </div>
+
+
+            <div class="application-box">
+
+                <strong>
+                    Browser
+                </strong>
+
+                <span>
+                    Angular Application UI
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= PROJECT STRUCTURE PREVIEW ================= -->
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Basic Angular Project Structure
+        </h2>
+
+        <p>
+            After creating the application, Angular CLI generates a
+            structured project containing configuration files, source
+            files and application files.
+        </p>
+
+        <div class="structure-box">
+
+            <pre><code>CIITStudentApp
+│
+├── src
+│   ├── app
+│   ├── assets
+│   ├── index.html
+│   └── main.ts
+│
+├── angular.json
+├── package.json
+├── tsconfig.json
+└── README.md</code></pre>
+
+        </div>
+
+        <div class="info-highlight">
+
+            <strong>
+                Note:
+            </strong>
+
+            <span>
+                The exact files and structure can vary between Angular
+                versions and project configurations.
+            </span>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= COMPLETE FLOW ================= -->
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Complete Angular Application Creation
+        </h2>
+
+        <div class="complete-flow">
+
+            <div class="complete-step">
+                <span>1</span>
+                <strong>Install Node.js</strong>
+            </div>
+
+            <div class="complete-arrow">
+                →
+            </div>
+
+            <div class="complete-step">
+                <span>2</span>
+                <strong>Install Angular CLI</strong>
+            </div>
+
+            <div class="complete-arrow">
+                →
+            </div>
+
+            <div class="complete-step">
+                <span>3</span>
+                <strong>ng new</strong>
+            </div>
+
+            <div class="complete-arrow">
+                →
+            </div>
+
+            <div class="complete-step">
+                <span>4</span>
+                <strong>Configure</strong>
+            </div>
+
+            <div class="complete-arrow">
+                →
+            </div>
+
+            <div class="complete-step">
+                <span>5</span>
+                <strong>ng serve</strong>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= COMMON ISSUES ================= -->
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Common Issues
+        </h2>
+
+        <div class="issue-box">
+
+            <div class="issue-item">
+
+                <h4>
+                    'ng' is not recognized
+                </h4>
+
+                <p>
+                    Make sure Angular CLI is installed correctly and
+                    restart the terminal before trying again.
+                </p>
+
+            </div>
+
+
+            <div class="issue-item">
+
+                <h4>
+                    Project Name Error
+                </h4>
+
+                <p>
+                    Use a valid project name without spaces or unsupported
+                    characters.
+                </p>
+
+            </div>
+
+
+            <div class="issue-item">
+
+                <h4>
+                    Port Already in Use
+                </h4>
+
+                <p class="mb-0">
+                    If the default development port is already being used,
+                    Angular CLI can use another available port.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= SUMMARY ================= -->
+    <section class="mb-5">
+
+        <div class="summary-box">
+
+            <h3>
+                Summary
+            </h3>
+
+            <p>
+                Angular CLI provides the
+                <strong>ng new</strong> command for creating a new
+                Angular application.
+            </p>
+
+            <p>
+                The basic process is
+                <strong>
+                    ng new → Configure Project → Create Files → cd Project → ng serve
+                </strong>.
+            </p>
+
+            <p>
+                After starting the development server, the application
+                can be opened using
+                <strong>http://localhost:4200</strong>.
+            </p>
+
+            <p class="mb-0">
+                In the next topic, we will learn about
+                <strong>Angular Project Structure</strong>.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= NAVIGATION ================= -->
+    <div class="topic-navigation">
+
+        <a class="btn btn-outline-secondary"
+           href="@Url.Action("AngularCLI", "Setup", new { area = "Angular" })">
+
+            ← Installing Angular CLI
+
+        </a>
+
+
+        <a class="btn btn-primary"
+           href="@Url.Action("ProjectStructure", "Setup", new { area = "Angular" })">
+
+            Angular Project Structure →
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<style>
+
+    /* ================= SECTION TITLE ================= */
+
+    .section-title {
+
+        font-size: 25px;
+
+        font-weight: 700;
+
+        color: #2e1065;
+
+        margin-bottom: 18px;
+
+        border-left: 5px solid #4c1d95;
+
+        padding-left: 12px;
+    }
+
+
+    /* ================= INFO BOX ================= */
+
+    .info-box {
+
+        background: #f3f0ff;
+
+        border-left: 5px solid #4c1d95;
+
+        border-radius: 6px;
+
+        padding: 18px 22px;
+
+        margin-top: 18px;
+    }
+
+
+    .info-box h4 {
+
+        color: #2e1065;
+
+        font-weight: 700;
+
+        margin-bottom: 8px;
+    }
+
+
+    .info-box p {
+
+        color: #4c1d95;
+
+        line-height: 1.6;
+    }
+
+
+    /* ================= CREATION FLOW ================= */
+
+    .creation-flow {
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 15px;
+
+        flex-wrap: wrap;
+
+        background: #f8f7fc;
+
+        border: 1px solid #e5e7eb;
+
+        border-radius: 10px;
+
+        padding: 28px 20px;
+    }
+
+
+    .creation-card {
+
+        width: 190px;
+
+        min-height: 145px;
+
+        text-align: center;
+
+        background: white;
+
+        border: 1px solid #ddd6fe;
+
+        border-radius: 10px;
+
+        padding: 18px;
+
+        box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    }
+
+
+    .creation-number {
+
+        width: 42px;
+
+        height: 42px;
+
+        margin: 0 auto 10px;
+
+        border-radius: 50%;
+
+        background: #4c1d95;
+
+        color: white;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        font-weight: 700;
+    }
+
+
+    .creation-card h4 {
+
+        color: #2e1065;
+
+        font-size: 17px;
+
+        font-weight: 700;
+    }
+
+
+    .creation-card p {
+
+        color: #64748b;
+
+        font-size: 14px;
+
+        margin-bottom: 0;
+
+        line-height: 1.5;
+    }
+
+
+    .flow-arrow {
+
+        color: #4c1d95;
+
+        font-size: 28px;
+
+        font-weight: 700;
+    }
+
+
+    /* ================= INFO HIGHLIGHT ================= */
+
+    .info-highlight {
+
+        background: #ede9fe;
+
+        border-left: 5px solid #4c1d95;
+
+        padding: 14px 18px;
+
+        border-radius: 6px;
+
+        margin-top: 15px;
+
+        color: #2e1065;
+
+        line-height: 1.6;
+    }
+
+
+    .info-highlight span {
+
+        margin-left: 5px;
+    }
+
+
+    /* ================= CODE BOX ================= */
+
+    .code-box {
+
+        background: #0f172a;
+
+        border-radius: 8px;
+
+        overflow: hidden;
+
+        margin-top: 15px;
+    }
+
+
+    .code-header {
+
+        background: #1e293b;
+
+        color: #cbd5e1;
+
+        padding: 9px 15px;
+
+        font-size: 14px;
+
+        font-weight: 600;
+    }
+
+
+    .code-box pre {
+
+        margin: 0;
+
+        padding: 18px;
+
+        overflow-x: auto;
+    }
+
+
+    .code-box code {
+
+        color: #e2e8f0;
+
+        font-size: 15px;
+
+        line-height: 1.7;
+    }
+
+
+    /* ================= OUTPUT ================= */
+
+    .output-box {
+
+        background: #ecfdf5;
+
+        border-left: 5px solid #198754;
+
+        padding: 16px 20px;
+
+        margin-top: 18px;
+
+        border-radius: 6px;
+    }
+
+
+    .output-box h5 {
+
+        color: #146c43;
+
+        font-weight: 700;
+
+        margin-bottom: 8px;
+    }
+
+
+    .output-box p {
+
+        color: #14532d;
+
+        line-height: 1.6;
+    }
+
+
+    .browser-output {
+
+        background: white;
+
+        border: 1px solid #bbf7d0;
+
+        padding: 10px 14px;
+
+        border-radius: 5px;
+
+        color: #166534;
+
+        font-family: monospace;
+
+        font-weight: 600;
+    }
+
+
+    /* ================= NAME EXPLANATION ================= */
+
+    .name-explanation {
+
+        display: grid;
+
+        grid-template-columns: repeat(3, 1fr);
+
+        gap: 15px;
+
+        margin-top: 18px;
+    }
+
+
+    .name-part {
+
+        background: #f8f7fc;
+
+        border: 1px solid #ddd6fe;
+
+        border-radius: 8px;
+
+        padding: 18px;
+
+        text-align: center;
+    }
+
+
+    .name-part strong {
+
+        display: block;
+
+        color: #4c1d95;
+
+        font-family: monospace;
+
+        font-size: 17px;
+
+        margin-bottom: 8px;
+    }
+
+
+    .name-part span {
+
+        color: #64748b;
+
+        font-size: 14px;
+
+        line-height: 1.5;
+    }
+
+
+    /* ================= CONFIGURATION ================= */
+
+    .configuration-list {
+
+        background: #f8f7fc;
+
+        border: 1px solid #e5e7eb;
+
+        border-radius: 10px;
+
+        padding: 20px;
+    }
+
+
+    .configuration-item {
+
+        display: flex;
+
+        gap: 15px;
+
+        padding: 15px 5px;
+
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+
+    .configuration-item:last-child {
+
+        border-bottom: none;
+    }
+
+
+    .configuration-item > span {
+
+        width: 38px;
+
+        height: 38px;
+
+        flex-shrink: 0;
+
+        border-radius: 50%;
+
+        background: #4c1d95;
+
+        color: white;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        font-weight: 700;
+    }
+
+
+    .configuration-item h5 {
+
+        color: #2e1065;
+
+        font-weight: 700;
+
+        margin-bottom: 5px;
+    }
+
+
+    .configuration-item p {
+
+        color: #64748b;
+
+        margin-bottom: 0;
+
+        line-height: 1.6;
+    }
+
+
+    /* ================= APPLICATION FLOW ================= */
+
+    .application-flow {
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        background: #f8f7fc;
+
+        border: 1px solid #e5e7eb;
+
+        border-radius: 10px;
+
+        padding: 25px;
+    }
+
+
+    .application-box {
+
+        width: 300px;
+
+        text-align: center;
+
+        background: white;
+
+        border: 2px solid #4c1d95;
+
+        border-radius: 8px;
+
+        padding: 16px;
+    }
+
+
+    .application-box strong {
+
+        display: block;
+
+        color: #2e1065;
+
+        font-size: 17px;
+    }
+
+
+    .application-box span {
+
+        display: block;
+
+        color: #64748b;
+
+        font-size: 14px;
+
+        margin-top: 5px;
+    }
+
+
+    .application-arrow {
+
+        color: #4c1d95;
+
+        font-size: 28px;
+
+        font-weight: 700;
+
+        margin: 5px 0;
+    }
+
+
+    /* ================= STRUCTURE ================= */
+
+    .structure-box {
+
+        background: #0f172a;
+
+        border-radius: 8px;
+
+        margin-top: 15px;
+
+        overflow-x: auto;
+    }
+
+
+    .structure-box pre {
+
+        margin: 0;
+
+        padding: 20px;
+    }
+
+
+    .structure-box code {
+
+        color: #e2e8f0;
+
+        font-family: monospace;
+
+        font-size: 14px;
+
+        line-height: 1.8;
+    }
+
+
+    /* ================= COMPLETE FLOW ================= */
+
+    .complete-flow {
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 10px;
+
+        flex-wrap: wrap;
+
+        background: #f8f7fc;
+
+        border: 1px solid #e5e7eb;
+
+        border-radius: 10px;
+
+        padding: 25px;
+    }
+
+
+    .complete-step {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 8px;
+
+        background: white;
+
+        border: 1px solid #ddd6fe;
+
+        border-radius: 7px;
+
+        padding: 10px 14px;
+
+        color: #2e1065;
+    }
+
+
+    .complete-step span {
+
+        width: 28px;
+
+        height: 28px;
+
+        border-radius: 50%;
+
+        background: #4c1d95;
+
+        color: white;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        font-size: 13px;
+
+        font-weight: 700;
+    }
+
+
+    .complete-arrow {
+
+        color: #4c1d95;
+
+        font-weight: 700;
+
+        font-size: 20px;
+    }
+
+
+    /* ================= ISSUES ================= */
+
+    .issue-box {
+
+        background: #fff7ed;
+
+        border-left: 5px solid #f59e0b;
+
+        border-radius: 6px;
+
+        padding: 18px 22px;
+    }
+
+
+    .issue-item {
+
+        padding: 12px 0;
+
+        border-bottom: 1px solid #fed7aa;
+    }
+
+
+    .issue-item:last-child {
+
+        border-bottom: none;
+    }
+
+
+    .issue-item h4 {
+
+        color: #9a3412;
+
+        font-weight: 700;
+
+        margin-bottom: 7px;
+    }
+
+
+    .issue-item p {
+
+        color: #7c2d12;
+
+        line-height: 1.6;
+
+        margin-bottom: 0;
+    }
+
+
+    /* ================= SUMMARY ================= */
+
+    .summary-box {
+
+        background: #cfe2ff;
+
+        border-radius: 6px;
+
+        padding: 18px 22px;
+
+        margin-top: 20px;
+    }
+
+
+    .summary-box h3 {
+
+        font-size: 20px;
+
+        font-weight: 700;
+
+        color: #084298;
+
+        margin-bottom: 10px;
+    }
+
+
+    .summary-box p {
+
+        font-size: 16px !important;
+
+        line-height: 1.6 !important;
+
+        color: #084298 !important;
+
+        margin-bottom: 8px;
+    }
+
+
+    /* ================= NAVIGATION ================= */
+
+    .topic-navigation {
+
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+        margin-top: 30px;
+
+        padding-top: 20px;
+
+        border-top: 1px solid #e5e7eb;
+    }
+
+
+    .topic-navigation .btn-primary {
+
+        background: #4c1d95;
+
+        border-color: #4c1d95;
+    }
+
+
+    .topic-navigation .btn-primary:hover {
+
+        background: #2e1065;
+
+        border-color: #2e1065;
+    }
+
+
+    /* ================= MOBILE ================= */
+
+    @@media (max-width: 768px) {
+
+        .section-title {
+
+            font-size: 21px;
+        }
+
+
+        .creation-flow {
+
+            flex-direction: column;
+        }
+
+
+        .flow-arrow {
+
+            transform: rotate(90deg);
+        }
+
+
+        .creation-card {
+
+            width: 100%;
+
+            max-width: 300px;
+        }
+
+
+        .name-explanation {
+
+            grid-template-columns: 1fr;
+        }
+
+
+        .application-box {
+
+            width: 100%;
+
+            max-width: 300px;
+        }
+
+
+        .complete-flow {
+
+            flex-direction: column;
+
+            align-items: stretch;
+        }
+
+
+        .complete-arrow {
+
+            text-align: center;
+
+            transform: rotate(90deg);
+        }
+
+
+        .code-box code {
+
+            font-size: 13px;
+        }
+
+
+        .topic-navigation {
+
+            gap: 10px;
+        }
+
+
+        .topic-navigation .btn {
+
+            font-size: 13px;
+
+            padding: 8px 10px;
+        }
+
+    }
+
+</style>

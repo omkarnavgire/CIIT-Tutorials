@@ -1,0 +1,909 @@
+﻿@{
+    ViewData["Title"] = "Date & Time Functions";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- =========================
+         PAGE HEADER
+    ========================== -->
+
+    <div class="mb-5">
+
+        <h1 class="fw-bold">
+            SQL Server Date &amp; Time Functions
+        </h1>
+
+        <p class="lead text-muted">
+            Date and Time Functions in SQL Server are used to work
+            with dates, times, extract date parts, calculate date
+            differences and manipulate date values.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         INTRODUCTION
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            What are Date &amp; Time Functions?
+        </h2>
+
+        <p>
+            Date and Time Functions are built-in SQL Server functions
+            used to retrieve, manipulate and calculate date and time
+            values.
+        </p>
+
+        <p>
+            These functions are commonly used in applications for
+            storing registration dates, joining dates, order dates,
+            payment dates, birthdays, deadlines and timestamps.
+        </p>
+
+        <div class="alert alert-info mt-4">
+
+            <strong>Example:</strong>
+
+            <p class="mb-0 mt-2">
+                Suppose an Employee table contains an employee's
+                joining date. Date functions can be used to find
+                the year of joining, calculate the employee's
+                experience or find the number of days between
+                two dates.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         COMMON DATE FUNCTIONS
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Common Date &amp; Time Functions
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped align-middle">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>Function</th>
+                        <th>Purpose</th>
+                        <th>Example</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td><strong>GETDATE()</strong></td>
+
+                        <td>
+                            Returns the current system date and time.
+                        </td>
+
+                        <td>
+                            <code>GETDATE()</code>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td><strong>SYSDATETIME()</strong></td>
+
+                        <td>
+                            Returns the current system date and time
+                            with higher precision.
+                        </td>
+
+                        <td>
+                            <code>SYSDATETIME()</code>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td><strong>GETUTCDATE()</strong></td>
+
+                        <td>
+                            Returns the current UTC date and time.
+                        </td>
+
+                        <td>
+                            <code>GETUTCDATE()</code>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td><strong>DATEPART()</strong></td>
+
+                        <td>
+                            Returns a specific part of a date.
+                        </td>
+
+                        <td>
+                            <code>DATEPART(YEAR, GETDATE())</code>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td><strong>YEAR()</strong></td>
+
+                        <td>
+                            Returns the year from a date.
+                        </td>
+
+                        <td>
+                            <code>YEAR(GETDATE())</code>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td><strong>MONTH()</strong></td>
+
+                        <td>
+                            Returns the month from a date.
+                        </td>
+
+                        <td>
+                            <code>MONTH(GETDATE())</code>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td><strong>DAY()</strong></td>
+
+                        <td>
+                            Returns the day from a date.
+                        </td>
+
+                        <td>
+                            <code>DAY(GETDATE())</code>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td><strong>DATEADD()</strong></td>
+
+                        <td>
+                            Adds a specified time interval to a date.
+                        </td>
+
+                        <td>
+                            <code>DATEADD(DAY, 10, GETDATE())</code>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td><strong>DATEDIFF()</strong></td>
+
+                        <td>
+                            Calculates the difference between two dates.
+                        </td>
+
+                        <td>
+                            <code>DATEDIFF(DAY, '2025-01-01', GETDATE())</code>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td><strong>EOMONTH()</strong></td>
+
+                        <td>
+                            Returns the last day of a month.
+                        </td>
+
+                        <td>
+                            <code>EOMONTH(GETDATE())</code>
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         1. GETDATE()
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            1. GETDATE() Function
+        </h2>
+
+        <p>
+            The <strong>GETDATE()</strong> function returns the
+            current system date and time of the SQL Server.
+        </p>
+
+        <h5 class="fw-bold mt-4">
+            Syntax
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>GETDATE()</code></pre>
+
+        <h5 class="fw-bold mt-4">
+            Example
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT GETDATE();</code></pre>
+
+        <div class="alert alert-success mt-3">
+
+            <strong>Output:</strong>
+
+            <br />
+
+            The current date and time of the SQL Server.
+
+        </div>
+
+        <p>
+            The exact output depends on the system date and time
+            when the query is executed.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         2. SYSDATETIME()
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            2. SYSDATETIME() Function
+        </h2>
+
+        <p>
+            The <strong>SYSDATETIME()</strong> function returns the
+            current system date and time with higher fractional
+            seconds precision than GETDATE().
+        </p>
+
+        <h5 class="fw-bold mt-4">
+            Syntax
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SYSDATETIME()</code></pre>
+
+        <h5 class="fw-bold mt-4">
+            Example
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT SYSDATETIME();</code></pre>
+
+    </section>
+
+
+    <!-- =========================
+         3. GETUTCDATE()
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            3. GETUTCDATE() Function
+        </h2>
+
+        <p>
+            The <strong>GETUTCDATE()</strong> function returns the
+            current UTC date and time.
+        </p>
+
+        <h5 class="fw-bold mt-4">
+            Syntax
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>GETUTCDATE()</code></pre>
+
+        <h5 class="fw-bold mt-4">
+            Example
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT GETUTCDATE();</code></pre>
+
+        <div class="alert alert-info mt-3">
+            UTC stands for <strong>Coordinated Universal Time</strong>.
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         4. DATEPART()
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            4. DATEPART() Function
+        </h2>
+
+        <p>
+            The <strong>DATEPART()</strong> function returns a
+            specific part of a date such as year, month, day,
+            hour or minute.
+        </p>
+
+        <h5 class="fw-bold mt-4">
+            Syntax
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>DATEPART(datepart, date)</code></pre>
+
+        <h5 class="fw-bold mt-4">
+            Example
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT DATEPART(YEAR, GETDATE());</code></pre>
+
+        <div class="alert alert-success mt-3">
+            <strong>Output:</strong> Current year
+        </div>
+
+        <h5 class="fw-bold mt-4">
+            More Examples
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT DATEPART(MONTH, GETDATE());
+
+SELECT DATEPART(DAY, GETDATE());
+
+SELECT DATEPART(HOUR, GETDATE());</code></pre>
+
+    </section>
+
+
+    <!-- =========================
+         5. YEAR()
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            5. YEAR() Function
+        </h2>
+
+        <p>
+            The <strong>YEAR()</strong> function extracts the year
+            from a date value.
+        </p>
+
+        <h5 class="fw-bold mt-4">
+            Syntax
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>YEAR(date)</code></pre>
+
+        <h5 class="fw-bold mt-4">
+            Example
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT YEAR('2026-10-05');</code></pre>
+
+        <div class="alert alert-success mt-3">
+            <strong>Output:</strong> 2026
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         6. MONTH()
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            6. MONTH() Function
+        </h2>
+
+        <p>
+            The <strong>MONTH()</strong> function returns the month
+            number from a date.
+        </p>
+
+        <h5 class="fw-bold mt-4">
+            Syntax
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>MONTH(date)</code></pre>
+
+        <h5 class="fw-bold mt-4">
+            Example
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT MONTH('2026-10-05');</code></pre>
+
+        <div class="alert alert-success mt-3">
+            <strong>Output:</strong> 10
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         7. DAY()
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            7. DAY() Function
+        </h2>
+
+        <p>
+            The <strong>DAY()</strong> function returns the day
+            number from a date.
+        </p>
+
+        <h5 class="fw-bold mt-4">
+            Syntax
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>DAY(date)</code></pre>
+
+        <h5 class="fw-bold mt-4">
+            Example
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT DAY('2026-10-05');</code></pre>
+
+        <div class="alert alert-success mt-3">
+            <strong>Output:</strong> 5
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         8. DATEADD()
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            8. DATEADD() Function
+        </h2>
+
+        <p>
+            The <strong>DATEADD()</strong> function adds a specified
+            number of date or time units to a date.
+        </p>
+
+        <h5 class="fw-bold mt-4">
+            Syntax
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>DATEADD(datepart, number, date)</code></pre>
+
+        <h5 class="fw-bold mt-4">
+            Example
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT DATEADD(DAY, 10, '2026-10-05');</code></pre>
+
+        <div class="alert alert-success mt-3">
+            <strong>Output:</strong> 2026-10-15
+        </div>
+
+        <p>
+            Here, 10 days are added to the given date.
+        </p>
+
+        <h5 class="fw-bold mt-4">
+            More Examples
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT DATEADD(MONTH, 2, '2026-10-05');
+
+SELECT DATEADD(YEAR, 1, '2026-10-05');
+
+SELECT DATEADD(DAY, -5, '2026-10-05');</code></pre>
+
+    </section>
+
+
+    <!-- =========================
+         9. DATEDIFF()
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            9. DATEDIFF() Function
+        </h2>
+
+        <p>
+            The <strong>DATEDIFF()</strong> function returns the
+            difference between two dates based on the specified
+            date part.
+        </p>
+
+        <h5 class="fw-bold mt-4">
+            Syntax
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>DATEDIFF(datepart, startdate, enddate)</code></pre>
+
+        <h5 class="fw-bold mt-4">
+            Example
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT DATEDIFF(DAY, '2026-10-01', '2026-10-05');</code></pre>
+
+        <div class="alert alert-success mt-3">
+            <strong>Output:</strong> 4
+        </div>
+
+        <p>
+            There are four days between October 1 and October 5.
+        </p>
+
+        <h5 class="fw-bold mt-4">
+            Calculate Years
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT DATEDIFF(YEAR, '2020-01-01', '2026-01-01');</code></pre>
+
+        <div class="alert alert-success mt-3">
+            <strong>Output:</strong> 6
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         10. EOMONTH()
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            10. EOMONTH() Function
+        </h2>
+
+        <p>
+            The <strong>EOMONTH()</strong> function returns the last
+            day of the month for a specified date.
+        </p>
+
+        <h5 class="fw-bold mt-4">
+            Syntax
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>EOMONTH(start_date)</code></pre>
+
+        <h5 class="fw-bold mt-4">
+            Example
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT EOMONTH('2026-10-05');</code></pre>
+
+        <div class="alert alert-success mt-3">
+            <strong>Output:</strong> 2026-10-31
+        </div>
+
+        <p>
+            October has 31 days, so the last day of the month is
+            October 31.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         PRACTICAL TABLE EXAMPLE
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Practical Example with Employee Table
+        </h2>
+
+        <p>
+            Suppose we have an Employees table:
+        </p>
+
+        <pre class="bg-light p-3 rounded"><code>CREATE TABLE Employees
+(
+    EmployeeId INT,
+    EmployeeName VARCHAR(100),
+    JoiningDate DATE
+);</code></pre>
+
+
+        <p class="mt-4">
+            Insert sample records:
+        </p>
+
+        <pre class="bg-light p-3 rounded"><code>INSERT INTO Employees
+VALUES
+(101, 'Rahul Sharma', '2020-01-15'),
+(102, 'Priya Patil', '2022-06-10'),
+(103, 'Amit Kumar', '2024-03-20');</code></pre>
+
+
+        <h5 class="fw-bold mt-4">
+            Find Joining Year
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT
+    EmployeeName,
+    JoiningDate,
+    YEAR(JoiningDate) AS JoiningYear
+FROM Employees;</code></pre>
+
+
+        <h5 class="fw-bold mt-4">
+            Find Joining Month
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT
+    EmployeeName,
+    MONTH(JoiningDate) AS JoiningMonth
+FROM Employees;</code></pre>
+
+
+        <h5 class="fw-bold mt-4">
+            Find Number of Days Since Joining
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT
+    EmployeeName,
+    DATEDIFF(DAY, JoiningDate, GETDATE()) AS DaysCompleted
+FROM Employees;</code></pre>
+
+
+        <h5 class="fw-bold mt-4">
+            Add 1 Year to Joining Date
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT
+    EmployeeName,
+    DATEADD(YEAR, 1, JoiningDate) AS NextYearDate
+FROM Employees;</code></pre>
+
+    </section>
+
+
+    <!-- =========================
+         DATEADD VS DATEDIFF
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            DATEADD() vs DATEDIFF()
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>Function</th>
+                        <th>Purpose</th>
+                        <th>Example</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>DATEADD()</td>
+
+                        <td>
+                            Adds or subtracts a date interval.
+                        </td>
+
+                        <td>
+                            <code>DATEADD(DAY, 10, GETDATE())</code>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>DATEDIFF()</td>
+
+                        <td>
+                            Finds the difference between two dates.
+                        </td>
+
+                        <td>
+                            <code>DATEDIFF(DAY, StartDate, EndDate)</code>
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         WHEN TO USE
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            When Do We Use Date &amp; Time Functions?
+        </h2>
+
+        <ul>
+
+            <li class="mb-2">
+                To get the current date and time.
+            </li>
+
+            <li class="mb-2">
+                To extract year, month and day from a date.
+            </li>
+
+            <li class="mb-2">
+                To calculate the difference between two dates.
+            </li>
+
+            <li class="mb-2">
+                To add or subtract days, months or years.
+            </li>
+
+            <li class="mb-2">
+                To calculate employee experience.
+            </li>
+
+            <li class="mb-2">
+                To calculate order and delivery dates.
+            </li>
+
+            <li>
+                To find the beginning or end of a date period.
+            </li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- =========================
+         IMPORTANT POINTS
+    ========================== -->
+
+    <section class="mb-5">
+
+        <div class="alert alert-warning">
+
+            <h4 class="fw-bold">
+                Important Points
+            </h4>
+
+            <ul class="mb-0">
+
+                <li class="mb-2">
+                    GETDATE() returns the current SQL Server date and time.
+                </li>
+
+                <li class="mb-2">
+                    YEAR(), MONTH() and DAY() extract individual
+                    date components.
+                </li>
+
+                <li class="mb-2">
+                    DATEPART() can extract different parts of a date.
+                </li>
+
+                <li class="mb-2">
+                    DATEADD() adds or subtracts a date interval.
+                </li>
+
+                <li class="mb-2">
+                    DATEDIFF() calculates the difference between dates.
+                </li>
+
+                <li class="mb-2">
+                    EOMONTH() returns the last day of a month.
+                </li>
+
+                <li>
+                    Date functions are widely used in real-world
+                    database applications.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         SUMMARY
+    ========================== -->
+
+    <section class="mb-5">
+
+        <div class="alert alert-primary">
+
+            <h2 class="fw-bold">
+                Summary
+            </h2>
+
+            <p class="mb-0">
+                SQL Server Date and Time Functions are used to work
+                with date and time values. In this topic, we learned
+                GETDATE(), SYSDATETIME(), GETUTCDATE(), DATEPART(),
+                YEAR(), MONTH(), DAY(), DATEADD(), DATEDIFF() and
+                EOMONTH(). These functions are extremely useful for
+                employee records, orders, payments, reports,
+                scheduling and date-based calculations.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         PREVIOUS / NEXT
+    ========================== -->
+
+    <div class="d-flex justify-content-between align-items-center
+        mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/Functions/NumericFunctions"
+           class="btn btn-outline-primary">
+
+            ← Previous: Numeric Functions
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/Functions/ConversionFunctions"
+           class="btn btn-primary">
+
+            Next: Conversion Functions →
+
+        </a>
+
+    </div>
+
+</div>

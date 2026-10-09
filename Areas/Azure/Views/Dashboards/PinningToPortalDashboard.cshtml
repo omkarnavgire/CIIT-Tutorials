@@ -1,0 +1,101 @@
+@{
+    ViewData["Title"] = "Microsoft Azure - Pinning to Portal Dashboard";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+                <div class="azure-notes-content">
+                    <pre class="azure-notes-text">Microsoft Azure - Pinning to Portal Dashboard
+we will learn about the improvements on how to pin content to an Azure portal dashboard. The
+article demonstrates how you can pin content across the portal that is meaningful to you all into one
+place on an Azure dashboard of your choice.
+
+So, suppose on the portal, you are just browsing around and you come across something that you
+like, say like a chart. Now that you want to keep a copy of that, you can pin that to a dashboard. So if
+you click the pin to dashboard button, you can choose a dashboard that you would like to pin to.
+Azure has two different types of dashboards on the portal. The first one is a private dashboard, a
+dashboard that only you have access to. Azure also has the concept of shared dashboards, which is
+an Azure resource that is third in a resource group and subscription.
+
+
+
+
+So now that you have chosen your type, say you want to pin to a private dashboard, Azure has a
+dashboard selector here that you can choose from. It automatically populates the last dashboard
+that you were on. But if this isn&#x27;t the dashboard that you want to pin to, you can go ahead and
+choose another dashboard. So, you can see that you have a list of your recent dashboards here or
+the full list of dashboards. If you don&#x27;t see the one you want and don&#x27;t want to scroll but you
+remember the name, you can just search for it.
+
+Now let&#x27;s say you are inside and don&#x27;t want to pin to an existing dashboard that you already have.
+You want to start on a brand new dashboard and just pin this content. That&#x27;s not a problem either.
+You can go there, click, create new. Again, just choose whether you want it to be a private or shared
+dashboard. And then name this dashboard, just put your dashboard name there, click create and pin.
+
+
+
+
+You&#x27;ll get a notification that it&#x27;s successful and when you click on that notification, it will bring you to
+that dashboard. And there you see the content that you saw earlier and it&#x27;s pinned here.
+
+
+
+
+Now it&#x27;s not just, for example, monitoring or metrics or, a query that can be pinned. You can also pin
+other content across the portal. So, for example, let&#x27;s say you want to go to all resources and want to
+pin the list to your dashboard as well. As long as you see the pin icon anywhere on the portal, that
+means that you can go ahead and pin the content through the dashboard.
+
+
+
+
+If you go click the pin, again, you will get a notification. Now when you go back, you will notice that
+the tile also exists on the dashboard now.
+This feature allows you to sort of save all the content that you would like all into one place so that
+you can more easily access everything in one go. And if you like this view and you want this to be the
+view that you always land on when you go to the portal, you can go into your settings and save
+dashboards as your default view.</pre>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_7_-_Dashboards/p10-000.jpg" class="img-fluid rounded shadow-sm" alt="Microsoft Azure - Pinning to Portal Dashboard - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_7_-_Dashboards/p11-000.jpg" class="img-fluid rounded shadow-sm" alt="Microsoft Azure - Pinning to Portal Dashboard - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_7_-_Dashboards/p11-001.jpg" class="img-fluid rounded shadow-sm" alt="Microsoft Azure - Pinning to Portal Dashboard - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_7_-_Dashboards/p12-000.jpg" class="img-fluid rounded shadow-sm" alt="Microsoft Azure - Pinning to Portal Dashboard - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_7_-_Dashboards/p12-001.jpg" class="img-fluid rounded shadow-sm" alt="Microsoft Azure - Pinning to Portal Dashboard - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_7_-_Dashboards/p12-002.jpg" class="img-fluid rounded shadow-sm" alt="Microsoft Azure - Pinning to Portal Dashboard - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_7_-_Dashboards/p13-000.jpg" class="img-fluid rounded shadow-sm" alt="Microsoft Azure - Pinning to Portal Dashboard - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_7_-_Dashboards/p14-000.jpg" class="img-fluid rounded shadow-sm" alt="Microsoft Azure - Pinning to Portal Dashboard - source image" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+            @await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureLessonNavigation.cshtml")
+</section>
+</div>
+<style>
+.azure-notes-text{white-space:pre-wrap;word-break:normal;font-family:inherit;font-size:1rem;line-height:1.7;background:#fff;border:0;padding:0;margin:0;color:#212529;}
+.azure-notes-content img{max-height:720px;}
+</style>

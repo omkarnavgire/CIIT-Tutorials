@@ -1,0 +1,826 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Lambda Functions";
+}
+
+<style>
+    #python-lambda-functions-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 0.5rem;
+        padding: 1rem !important;
+        overflow-x: auto;
+    }
+
+        #python-lambda-functions-page pre code {
+            background-color: transparent !important;
+            color: #ffffff !important;
+        }
+</style>
+
+<main id="python-lambda-functions-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- =========================
+             LEFT SIDEBAR
+        ========================== -->
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+
+        </aside>
+
+
+        <!-- =========================
+             RIGHT CONTENT
+        ========================== -->
+        <section class="col-lg-9">
+
+            <!-- =========================
+                 PAGE INTRO
+            ========================== -->
+
+            <h1 class="display-6 fw-bold mb-3">
+                Lambda Functions in Python
+            </h1>
+
+            <p class="lead">
+                A Lambda function in Python is a
+                <strong>small anonymous function</strong>.
+                It is used to perform short and simple operations in a single line.
+                
+            </p>
+
+            <div class="alert alert-light border">
+
+                <strong>CIIT Tip:</strong>
+
+                Think of a lambda as a
+                <strong>one-line mini function</strong> one-line mini function.
+                When a function is very simple and contains only one expression,
+                a lambda can be useful.
+
+            </div>
+
+
+            <!-- =========================
+                 1. WHAT IS LAMBDA?
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                1. What is a Lambda Function?
+            </h2>
+
+            <p>
+                A lambda function is a short function that normally
+                does not have an explicit function name.
+                Therefore, it is also called an <strong>anonymous function</strong> bhi kehte hain.
+            </p>
+
+            <pre><code>lambda x: x * 2</code></pre>
+
+            <p>
+                This function <strong>x</strong> takes as input and
+                <strong>x * 2</strong> returns
+            </p>
+
+
+            <!-- =========================
+                 2. NORMAL FUNCTION
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                2. Normal Function vs Lambda
+            </h2>
+
+            <p>
+                The same operation can be performed using both a normal function and a lambda.
+            </p>
+
+            <h5 class="fw-bold mt-3">
+                Normal Function:
+            </h5>
+
+            <pre><code>def square(number):
+    return number * number
+
+print(square(5))</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Lambda Function:
+            </h5>
+
+            <pre><code>square = lambda number: number * number
+
+print(square(5))</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>25</code></pre>
+
+
+            <!-- =========================
+                 3. LAMBDA SYNTAX
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                3. Lambda Syntax
+            </h2>
+
+            <pre><code>lambda arguments: expression</code></pre>
+
+            <table class="table table-bordered mt-3">
+
+                <thead class="table-light">
+
+                    <tr>
+                        <th>Part</th>
+                        <th>Meaning</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td><strong>lambda</strong></td>
+                        <td>Keyword used to define a lambda function</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>arguments</strong></td>
+                        <td>Input values of the function</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>expression</strong></td>
+                        <td>Expression to be evaluated</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+
+            <!-- =========================
+                 4. SINGLE ARGUMENT
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                4. Lambda with One Argument
+            </h2>
+
+            <pre><code>double = lambda x: x * 2
+
+print(double(10))
+print(double(25))</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>20
+50</code></pre>
+
+
+            <!-- =========================
+                 5. MULTIPLE ARGUMENTS
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                5. Lambda with Multiple Arguments
+            </h2>
+
+            <pre><code>add = lambda a, b: a + b
+
+print(add(10, 20))
+print(add(50, 30))</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>30
+80</code></pre>
+
+
+            <!-- =========================
+                 6. THREE ARGUMENTS
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                6. Lambda with Three Arguments
+            </h2>
+
+            <pre><code>total = lambda a, b, c: a + b + c
+
+print(total(10, 20, 30))</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>60</code></pre>
+
+
+            <!-- =========================
+                 7. CONDITIONAL EXPRESSION
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                7. Lambda with Condition
+            </h2>
+
+            <p>
+                A conditional expression can also be used in a lambda.
+            </p>
+
+            <pre><code>check = lambda number: "Even" if number % 2 == 0 else "Odd"
+
+print(check(10))
+print(check(7))</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>Even
+Odd</code></pre>
+
+
+            <!-- =========================
+                 8. LAMBDA WITH IF
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                8. Lambda with Maximum Number
+            </h2>
+
+            <pre><code>maximum = lambda a, b: a if a > b else b
+
+print(maximum(10, 25))</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>25</code></pre>
+
+
+            <!-- =========================
+                 9. LAMBDA WITH LIST
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                9. Lambda with List
+            </h2>
+
+            <p>
+                A lambda can also be used with list data.
+            </p>
+
+            <pre><code>numbers = [1, 2, 3, 4, 5]
+
+square = lambda x: x * x
+
+for number in numbers:
+    print(square(number))</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>1
+4
+9
+16
+25</code></pre>
+
+
+            <!-- =========================
+                 10. MAP FUNCTION
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                10. Lambda with map()
+            </h2>
+
+            <p>
+                <strong>map()</strong> is used to apply an operation to each element of a list.
+                
+            </p>
+
+            <pre><code>numbers = [1, 2, 3, 4, 5]
+
+squares = list(
+    map(lambda x: x * x, numbers)
+)
+
+print(squares)</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>[1, 4, 9, 16, 25]</code></pre>
+
+
+            <!-- =========================
+                 11. FILTER FUNCTION
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                11. Lambda with filter()
+            </h2>
+
+            <p>
+                <strong>filter()</strong> is used to select
+                elements that satisfy a condition.
+            </p>
+
+            <pre><code>numbers = [1, 2, 3, 4, 5, 6]
+
+even_numbers = list(
+    filter(lambda x: x % 2 == 0, numbers)
+)
+
+print(even_numbers)</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>[2, 4, 6]</code></pre>
+
+
+            <!-- =========================
+                 12. SORT WITH LAMBDA
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                12. Lambda with sorted()
+            </h2>
+
+            <p>
+                A lambda can also be used to define a custom sorting rule.
+            </p>
+
+            <pre><code>students = [
+    ("Amit", 85),
+    ("Rahul", 72),
+    ("Sneha", 92)
+]
+
+students.sort(
+    key=lambda student: student[1]
+)
+
+print(students)</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>[('Rahul', 72), ('Amit', 85), ('Sneha', 92)]</code></pre>
+
+
+            <!-- =========================
+                 13. SORT DESCENDING
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                13. Lambda with Descending Sort
+            </h2>
+
+            <pre><code>students = [
+    ("Amit", 85),
+    ("Rahul", 72),
+    ("Sneha", 92)
+]
+
+students.sort(
+    key=lambda student: student[1],
+    reverse=True
+)
+
+print(students)</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>[('Sneha', 92), ('Amit', 85), ('Rahul', 72)]</code></pre>
+
+
+            <!-- =========================
+                 14. REAL WORLD CIIT EXAMPLE
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                14. CIIT Example 📩🤓
+            </h2>
+
+            <p>
+                Suppose we have marks of CIIT students and we only want to
+                filter the passing students.
+            </p>
+
+            <pre><code>marks = [35, 48, 72, 29, 65, 80]
+
+passing_marks = list(
+    filter(lambda mark: mark >= 40, marks)
+)
+
+print(passing_marks)</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>[48, 72, 65, 80]</code></pre>
+
+
+            <!-- =========================
+                 15. CIIT COURSE EXAMPLE
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                15. CIIT Course Example 📩
+            </h2>
+
+            <pre><code>courses = [
+    ("Python", 35000),
+    (".NET", 40000),
+    ("Java", 38000)
+]
+
+courses.sort(
+    key=lambda course: course[1]
+)
+
+print(courses)</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>[('Python', 35000), ('Java', 38000), ('.NET', 40000)]</code></pre>
+
+
+            <!-- =========================
+                 16. LAMBDA RETURN
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                16. Lambda Automatically Returns Result
+            </h2>
+
+            <p>
+                In a lambda function, <strong>return</strong> keyword explicitly
+                does not need to be written explicitly.
+                The result of the expression is returned automatically.
+            </p>
+
+            <pre><code>square = lambda x: x * x
+
+print(square(6))</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>36</code></pre>
+
+
+            <!-- =========================
+                 17. LIMITATIONS
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                17. Lambda Function Limitations
+            </h2>
+
+            <ul>
+
+                <li>
+                    A lambda is generally suitable for a single expression.
+                </li>
+
+                <li>
+                    A normal function is better for complex business logic.
+                </li>
+
+                <li>
+                    Excessive use of lambda can reduce code readability.
+                </li>
+
+                <li>
+                    A large function with multiple statements is not suitable for a lambda.
+                </li>
+
+            </ul>
+
+
+            <!-- =========================
+                 18. NORMAL FUNCTION VS LAMBDA
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                18. Normal Function vs Lambda
+            </h2>
+
+            <table class="table table-bordered">
+
+                <thead class="table-light">
+
+                    <tr>
+                        <th>Normal Function</th>
+                        <th>Lambda Function</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td><code>The <code>def</code> keyword is used</td>
+                        <td><code>The <code>lambda</code> keyword is used</td>
+                    </tr>
+
+                    <tr>
+                        <td>Usually named function</td>
+                        <td>Useful for anonymous functions</td>
+                    </tr>
+
+                    <tr>
+                        <td>Can contain multiple statements</td>
+                        <td>Designed for a single expression</td>
+                    </tr>
+
+                    <tr>
+                        <td>Better for complex logic</td>
+                        <td>Better for short operations</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+
+            <!-- =========================
+                 19. COMMON MISTAKES
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                19. Common Mistakes
+            </h2>
+
+            <pre><code># Wrong
+
+square = lambda x:
+    return x * x</code></pre>
+
+            <p>
+                Normal multi-line return syntax is not used inside a lambda.
+            </p>
+
+            <pre><code># Correct
+
+square = lambda x: x * x
+
+print(square(5))</code></pre>
+
+            <h5 class="fw-bold mt-4">
+                Another Example:
+            </h5>
+
+            <pre><code># Avoid unnecessarily complex lambda
+
+result = lambda x: (x * 2 + 10) if x > 5 else (x * 3 - 2)</code></pre>
+
+            <p>
+                If the logic is becoming complex, it is better to use a normal
+                <strong>def</strong> <strong>def</strong> function.
+            </p>
+
+
+            <!-- =========================
+                 20. INTERVIEW POINTS
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                20. Interview Points
+            </h2>
+
+            <ul>
+
+                <li>
+                    What is a lambda function?
+                </li>
+
+                <li>
+                    Why is a lambda called an anonymous function?
+                </li>
+
+                <li>
+                    What is the syntax of a lambda function?
+                </li>
+
+                <li>
+                    How many expressions are allowed in a lambda?
+                </li>
+
+                <li>
+                    What is the difference between a lambda and a normal function?
+                </li>
+
+                <li>
+                    How do you use a lambda with <strong>map()</strong> ?
+                </li>
+
+                <li>
+                    How do you use a lambda with <strong>filter()</strong> ?
+                </li>
+
+                <li>
+                    How is a lambda used in sorting?
+                </li>
+
+            </ul>
+
+
+            <!-- =========================
+                 CIIT LEARNING POINT
+            ========================== -->
+
+            <div class="alert alert-success mt-4">
+
+                <h2 class="h4 fw-bold">
+                    CIIT Learning Point
+                </h2>
+
+                <p class="mb-0">
+
+                    Lambda functions are powerful tools for short and simple operations.
+                    powerful tool hain. They are especially used
+                    <strong>map(), filter(), sorted()</strong> functions
+                    ke saath frequently kiya jata hai. For complex logic,
+                    it is better to prefer readable normal functions.
+
+                </p>
+
+            </div>
+
+
+            <!-- =========================
+                 CIIT PRACTICE TASKS
+            ========================== -->
+
+            <div class="alert alert-warning mt-4">
+
+                <h2 class="h4 fw-bold">
+                    CIIT Practice Tasks
+                </h2>
+
+                <ol class="mb-0">
+
+                    <li class="mb-2">
+
+                        <strong>Square:</strong>
+
+                        <br>
+
+                        Create a lambda function that returns the square of a given number.
+
+                    </li>
+
+                    <li class="mb-2">
+
+                        <strong>Cube:</strong>
+
+                        <br>
+
+                        Create a lambda function that returns the cube of a given number.
+
+                    </li>
+
+                    <li class="mb-2">
+
+                        <strong>Addition:</strong>
+
+                        <br>
+
+                        Create a lambda function to add two numbers.
+
+                    </li>
+
+                    <li class="mb-2">
+
+                        <strong>Even Numbers:</strong>
+
+                        <br>
+
+                        <code>filter()</code> using <code>filter()</code> and lambda to find
+                        only the even numbers in a list.
+
+                    </li>
+
+                    <li class="mb-2">
+
+                        <strong>Squares:</strong>
+
+                        <br>
+
+                        <code>map()</code> using <code>map()</code> and lambda to find the square of
+                        each number in a list.
+
+                    </li>
+
+                    <li class="mb-2">
+
+                        <strong>Student Marks:</strong>
+
+                        <br>
+
+                        Use lambda and <code>filter()</code> to find
+                        40 students with marks greater than or equal to 40.
+
+                    </li>
+
+                    <li>
+
+                        <strong>Course Fee Sorting:</strong>
+
+                        <br>
+
+                        Use lambda and <code>sort()</code> to find
+                        sort CIIT courses in ascending order based on their fees.
+
+                    </li>
+
+                </ol>
+
+            </div>
+
+
+            <!-- =========================
+                 SUMMARY
+            ========================== -->
+
+            <div class="alert alert-info mt-4 mb-0"
+                 style="background-color:#cfe2ff; border:0; color:#123c73;">
+
+                <h2 class="h3 fw-bold mt-0 mb-3"
+                    style="color:#123c73;">
+
+                    Summary :
+
+                </h2>
+
+                <p class="mb-0"
+                   style="color:#123c73;">
+
+                    A lambda function in Python is a short anonymous function that
+                    generally performs a single expression.
+                    The syntax of a lambda is <strong>lambda arguments: expression</strong> hota hai.
+                    It is commonly used for short calculations and conditions, along with
+                    <strong>map(), filter() aur sorted()</strong> functions
+                    ke saath commonly kiya jata hai.
+
+                </p>
+
+            </div>
+
+
+            <!-- =========================
+                 PREVIOUS / NEXT
+            ========================== -->
+
+            <div class="d-flex justify-content-between mt-5">
+
+                <a class="btn btn-outline-secondary"
+                   href="@Url.Action("Recursion", "Functions", new { area = "Python" })">
+
+                    ← Previous : Topic
+
+                </a>
+
+                <a class="btn btn-primary"
+                   href="@Url.Action("Index", "DataStructures", new { area = "Python" })">
+
+                    Next : Topic →
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

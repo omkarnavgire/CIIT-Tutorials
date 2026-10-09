@@ -1,0 +1,822 @@
+﻿@{
+    ViewData["Title"] = "Component Metadata";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- Header -->
+    <section class="mb-4">
+        <h1 class="fw-bold text-dark">Component Metadata</h1>
+
+        <p class="lead text-muted">
+            Angular Component Metadata defines how a component should behave,
+            where its template is located, which styles it uses, and how Angular
+            should identify and configure the component.
+        </p>
+    </section>
+
+    <!-- What is Metadata -->
+    <section class="mb-4">
+        <h2 class="fw-bold">What is Component Metadata?</h2>
+
+        <p>
+            Component metadata is configuration information provided inside the
+            <strong>Component decorator</strong>. It tells Angular important
+            information about a component.
+        </p>
+
+        <p>
+            The metadata is written inside the
+            <code>@@Component(&#123; ... &#125;)</code> decorator.
+        </p>
+    </section>
+
+    <!-- Metadata Flow -->
+    <section class="mb-4">
+        <h2 class="fw-bold mb-3">Component Metadata Flow</h2>
+
+        <div class="metadata-flow">
+
+            <div class="metadata-box">
+                <i class="bi bi-filetype-tsx"></i>
+                <h5>Component Class</h5>
+                <p>StudentComponent</p>
+            </div>
+
+            <div class="metadata-arrow">→</div>
+
+            <div class="metadata-box">
+                <i class="bi bi-gear-fill"></i>
+                <h5>Metadata</h5>
+                <p>@@Component</p>
+            </div>
+
+            <div class="metadata-arrow">→</div>
+
+            <div class="metadata-box">
+                <i class="bi bi-diagram-3-fill"></i>
+                <h5>Angular</h5>
+                <p>Component Configuration</p>
+            </div>
+
+            <div class="metadata-arrow">→</div>
+
+            <div class="metadata-box">
+                <i class="bi bi-window"></i>
+                <h5>UI</h5>
+                <p>Rendered Component</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Basic Metadata -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Basic Component Metadata</h2>
+
+        <p>
+            A component commonly contains metadata such as
+            <code>selector</code>, <code>templateUrl</code> and
+            <code>styleUrl</code>.
+        </p>
+
+        <div class="code-card">
+            <div class="code-title">student.component.ts</div>
+
+            <pre><code>import &#123; Component &#125; from '@@angular/core';
+
+@@Component(&#123;
+    selector: 'app-student',
+    templateUrl: './student.component.html',
+    styleUrl: './student.component.css'
+&#125;)
+export class StudentComponent &#123;
+
+    studentName = 'Sam';
+
+&#125;</code></pre>
+        </div>
+    </section>
+
+    <!-- Selector -->
+    <section class="mb-4">
+        <h2 class="fw-bold">1. selector</h2>
+
+        <p>
+            The <code>selector</code> defines the custom HTML element used to
+            display the component.
+        </p>
+
+        <div class="code-card">
+            <div class="code-title">Selector</div>
+
+            <pre><code>selector: 'app-student'</code></pre>
+        </div>
+
+        <p>
+            The component can then be used inside another template like this:
+        </p>
+
+        <div class="code-card">
+            <div class="code-title">app.component.html</div>
+
+            <pre><code>&lt;app-student&gt;&lt;/app-student&gt;</code></pre>
+        </div>
+
+        <div class="output-box">
+            <strong>Result:</strong>
+            Angular renders the StudentComponent wherever
+            <code>&lt;app-student&gt;</code> is used.
+        </div>
+    </section>
+
+    <!-- TemplateUrl -->
+    <section class="mb-4">
+        <h2 class="fw-bold">2. templateUrl</h2>
+
+        <p>
+            The <code>templateUrl</code> property tells Angular where the
+            component's external HTML template is located.
+        </p>
+
+        <div class="code-card">
+            <div class="code-title">Component Metadata</div>
+
+            <pre><code>templateUrl: './student.component.html'</code></pre>
+        </div>
+
+        <p>
+            Example template:
+        </p>
+
+        <div class="code-card">
+            <div class="code-title">student.component.html</div>
+
+            <pre><code>&lt;h2&gt;Student Details&lt;/h2&gt;
+&lt;p&gt;Student Name: &#123;&#123; studentName &#125;&#125;&lt;/p&gt;</code></pre>
+        </div>
+
+        <div class="output-box">
+            <strong>Expected Output:</strong>
+
+            <div class="output-content">
+                <h4>Student Details</h4>
+                <p>Student Name: Sam</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Template -->
+    <section class="mb-4">
+        <h2 class="fw-bold">3. template</h2>
+
+        <p>
+            Instead of using a separate HTML file, a component can also define
+            its HTML directly using the <code>template</code> property.
+        </p>
+
+        <div class="code-card">
+            <div class="code-title">Inline Template</div>
+
+            <pre><code>import &#123; Component &#125; from '@@angular/core';
+
+@@Component(&#123;
+    selector: 'app-student',
+    template: `
+        &lt;h2&gt;Student Details&lt;/h2&gt;
+        &lt;p&gt;Student Name: Sam&lt;/p&gt;
+    `
+&#125;)
+export class StudentComponent &#123;
+
+&#125;</code></pre>
+        </div>
+
+        <div class="output-box">
+            <strong>Expected Output:</strong>
+
+            <div class="output-content">
+                <h4>Student Details</h4>
+                <p>Student Name: Sam</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- StyleUrl -->
+    <section class="mb-4">
+        <h2 class="fw-bold">4. styleUrl</h2>
+
+        <p>
+            The <code>styleUrl</code> property specifies the CSS file associated
+            with the component.
+        </p>
+
+        <div class="code-card">
+            <div class="code-title">Component Metadata</div>
+
+            <pre><code>styleUrl: './student.component.css'</code></pre>
+        </div>
+
+        <div class="code-card">
+            <div class="code-title">student.component.css</div>
+
+            <pre><code>h2 &#123;
+    font-size: 26px;
+    font-weight: 700;
+&#125;
+
+p &#123;
+    font-size: 18px;
+&#125;</code></pre>
+        </div>
+    </section>
+
+    <!-- Styles -->
+    <section class="mb-4">
+        <h2 class="fw-bold">5. styles</h2>
+
+        <p>
+            The <code>styles</code> property allows CSS to be written directly
+            inside the component metadata.
+        </p>
+
+        <div class="code-card">
+            <div class="code-title">Inline Component Styles</div>
+
+            <pre><code>@@Component(&#123;
+    selector: 'app-student',
+
+    template: `
+        &lt;h2&gt;Student Details&lt;/h2&gt;
+        &lt;p&gt;Student Name: Sam&lt;/p&gt;
+    `,
+
+    styles: [`
+        h2 &#123;
+            font-size: 26px;
+        &#125;
+
+        p &#123;
+            font-size: 18px;
+        &#125;
+    `]
+&#125;)</code></pre>
+        </div>
+    </section>
+
+    <!-- Standalone -->
+    <section class="mb-4">
+        <h2 class="fw-bold">6. standalone</h2>
+
+        <p>
+            Modern Angular applications commonly use standalone components.
+            A standalone component can declare its own dependencies through
+            the <code>imports</code> metadata property.
+        </p>
+
+        <div class="code-card">
+            <div class="code-title">Standalone Component</div>
+
+            <pre><code>import &#123; Component &#125; from '@@angular/core';
+
+@@Component(&#123;
+    selector: 'app-student',
+    standalone: true,
+    template: `
+        &lt;h2&gt;Student Details&lt;/h2&gt;
+        &lt;p&gt;Student Name: Sam&lt;/p&gt;
+    `
+&#125;)
+export class StudentComponent &#123;
+
+&#125;</code></pre>
+        </div>
+    </section>
+
+    <!-- Imports -->
+    <section class="mb-4">
+        <h2 class="fw-bold">7. imports</h2>
+
+        <p>
+            The <code>imports</code> metadata property is used by standalone
+            components to make required Angular features or other standalone
+            components/directives/pipes available to the template.
+        </p>
+
+        <div class="code-card">
+            <div class="code-title">Example</div>
+
+            <pre><code>@@Component(&#123;
+    selector: 'app-student',
+    standalone: true,
+    imports: [],
+    template: `
+        &lt;h2&gt;Student Details&lt;/h2&gt;
+    `
+&#125;)</code></pre>
+        </div>
+    </section>
+
+    <!-- Metadata Table -->
+    <section class="mb-4">
+        <h2 class="fw-bold mb-3">Important Metadata Properties</h2>
+
+        <div class="table-responsive">
+            <table class="table table-bordered metadata-table">
+                <thead>
+                    <tr>
+                        <th>Property</th>
+                        <th>Purpose</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td><code>selector</code></td>
+                        <td>Defines how the component is used in HTML.</td>
+                    </tr>
+
+                    <tr>
+                        <td><code>template</code></td>
+                        <td>Defines an inline HTML template.</td>
+                    </tr>
+
+                    <tr>
+                        <td><code>templateUrl</code></td>
+                        <td>Points to an external HTML template.</td>
+                    </tr>
+
+                    <tr>
+                        <td><code>styles</code></td>
+                        <td>Defines inline CSS styles.</td>
+                    </tr>
+
+                    <tr>
+                        <td><code>styleUrl</code></td>
+                        <td>Points to an external CSS file.</td>
+                    </tr>
+
+                    <tr>
+                        <td><code>standalone</code></td>
+                        <td>Marks a component as standalone.</td>
+                    </tr>
+
+                    <tr>
+                        <td><code>imports</code></td>
+                        <td>Provides dependencies used by a standalone component template.</td>
+                    </tr>
+
+                    <tr>
+                        <td><code>providers</code></td>
+                        <td>Can configure providers available to the component's injector.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Complete Example -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Complete Component Metadata Example</h2>
+
+        <div class="code-card">
+            <div class="code-title">student.component.ts</div>
+
+            <pre><code>import &#123; Component &#125; from '@@angular/core';
+
+@@Component(&#123;
+    selector: 'app-student',
+    standalone: true,
+    template: `
+        &lt;div class="student-card"&gt;
+            &lt;h2&gt;Student Details&lt;/h2&gt;
+            &lt;p&gt;Student Name: Sam&lt;/p&gt;
+        &lt;/div&gt;
+    `,
+    styles: [`
+        .student-card &#123;
+            padding: 20px;
+            border-radius: 8px;
+        &#125;
+
+        h2 &#123;
+            margin-bottom: 10px;
+        &#125;
+    `]
+&#125;)
+export class StudentComponent &#123;
+
+&#125;</code></pre>
+        </div>
+
+        <div class="output-box">
+            <strong>Expected Output:</strong>
+
+            <div class="output-content student-preview">
+                <h4>Student Details</h4>
+                <p>Student Name: Sam</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Metadata Relationship -->
+    <section class="mb-4">
+        <h2 class="fw-bold mb-3">Metadata Relationship</h2>
+
+        <div class="relationship-grid">
+
+            <div class="relationship-card">
+                <h5>selector</h5>
+                <p>How the component is placed in HTML.</p>
+            </div>
+
+            <div class="relationship-card">
+                <h5>template</h5>
+                <p>What the component displays.</p>
+            </div>
+
+            <div class="relationship-card">
+                <h5>styles</h5>
+                <p>How the component looks.</p>
+            </div>
+
+            <div class="relationship-card">
+                <h5>standalone</h5>
+                <p>How the component is configured.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Component Flow -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Complete Metadata Flow</h2>
+
+        <div class="flow-box">
+
+            <div class="flow-item">
+                <span>@@Component</span>
+                <small>Metadata</small>
+            </div>
+
+            <div class="flow-line">↓</div>
+
+            <div class="flow-item">
+                <span>selector</span>
+                <small>Component Identity</small>
+            </div>
+
+            <div class="flow-line">↓</div>
+
+            <div class="flow-item">
+                <span>template / templateUrl</span>
+                <small>UI Structure</small>
+            </div>
+
+            <div class="flow-line">↓</div>
+
+            <div class="flow-item">
+                <span>styles / styleUrl</span>
+                <small>UI Design</small>
+            </div>
+
+            <div class="flow-line">↓</div>
+
+            <div class="flow-item">
+                <span>Angular</span>
+                <small>Rendered Component</small>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Best Practices -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Component Metadata Best Practices</h2>
+
+        <ul class="best-practice-list">
+            <li>Use clear and meaningful component selectors.</li>
+            <li>Keep large HTML templates in separate files.</li>
+            <li>Keep component-specific styles with the component.</li>
+            <li>Use standalone components for modern Angular applications when appropriate.</li>
+            <li>Keep metadata simple and easy to understand.</li>
+            <li>Use the <code>imports</code> property only for dependencies required by the template.</li>
+        </ul>
+    </section>
+
+    <!-- Summary -->
+    <section class="summary-box">
+        <h3>Summary</h3>
+
+        <p>
+            Component metadata provides Angular with the configuration required
+            to create and render a component.
+        </p>
+
+        <p>
+            Important metadata properties include
+            <strong>selector</strong>, <strong>template</strong>,
+            <strong>templateUrl</strong>, <strong>styles</strong>,
+            <strong>styleUrl</strong>, <strong>standalone</strong> and
+            <strong>imports</strong>.
+        </p>
+
+        <p>
+            Understanding metadata is important because it connects the
+            component class, template, styles and Angular configuration.
+        </p>
+    </section>
+
+    <!-- Navigation -->
+    <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+
+        <a class="btn btn-outline-secondary"
+           href="@Url.Action("ComponentStyles", "Components", new { area = "Angular" })">
+            ← Component Styles
+        </a>
+
+        <a class="btn btn-primary"
+           href="@Url.Action("StandaloneComponents", "Components", new { area = "Angular" })">
+            Standalone Components →
+        </a>
+
+    </div>
+
+</div>
+
+<style>
+
+    .metadata-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        flex-wrap: wrap;
+        padding: 25px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+    }
+
+    .metadata-box {
+        width: 180px;
+        min-height: 120px;
+        padding: 18px;
+        text-align: center;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
+
+        .metadata-box i {
+            font-size: 28px;
+            color: #4c1d95;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .metadata-box h5 {
+            font-weight: 700;
+            color: #2e1065;
+            margin-bottom: 5px;
+        }
+
+        .metadata-box p {
+            margin: 0;
+            color: #64748b;
+            font-size: 14px;
+        }
+
+    .metadata-arrow {
+        font-size: 28px;
+        font-weight: 700;
+        color: #4c1d95;
+    }
+
+    .code-card {
+        margin-top: 15px;
+        margin-bottom: 18px;
+        border-radius: 8px;
+        overflow: hidden;
+        background: #0f172a;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .code-title {
+        background: #1e293b;
+        color: #d8c9f5;
+        padding: 10px 15px;
+        font-weight: 600;
+        border-bottom: 1px solid #334155;
+    }
+
+    .code-card pre {
+        margin: 0;
+        padding: 18px;
+        overflow-x: auto;
+    }
+
+    .code-card code {
+        color: #e2e8f0;
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    .output-box {
+        margin-top: 15px;
+        padding: 18px;
+        background: #f1f5f9;
+        border-left: 5px solid #4c1d95;
+        border-radius: 6px;
+    }
+
+    .output-content {
+        margin-top: 12px;
+        padding: 15px;
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 7px;
+    }
+
+        .output-content h4 {
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: #2e1065;
+        }
+
+        .output-content p {
+            margin-bottom: 0;
+        }
+
+    .student-preview {
+        box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    }
+
+    .metadata-table {
+        background: #ffffff;
+    }
+
+        .metadata-table thead th {
+            background: #4c1d95;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .metadata-table td {
+            vertical-align: middle;
+        }
+
+        .metadata-table code {
+            color: #4c1d95;
+            font-weight: 600;
+        }
+
+    .relationship-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+    }
+
+    .relationship-card {
+        padding: 20px;
+        background: #f8fafc;
+        border: 1px solid #ddd6fe;
+        border-radius: 8px;
+        text-align: center;
+    }
+
+        .relationship-card h5 {
+            color: #4c1d95;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .relationship-card p {
+            color: #64748b;
+            margin-bottom: 0;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+    .flow-box {
+        max-width: 650px;
+        margin: 20px auto;
+        padding: 25px;
+        text-align: center;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+    }
+
+    .flow-item {
+        padding: 14px 20px;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 8px;
+        box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+    }
+
+        .flow-item span {
+            display: block;
+            color: #4c1d95;
+            font-weight: 700;
+        }
+
+        .flow-item small {
+            color: #64748b;
+        }
+
+    .flow-line {
+        color: #4c1d95;
+        font-size: 24px;
+        font-weight: 700;
+        margin: 5px 0;
+    }
+
+    .best-practice-list {
+        padding: 20px 20px 20px 40px;
+        background: #f8fafc;
+        border-radius: 8px;
+        border: 1px solid #e2e8f0;
+    }
+
+        .best-practice-list li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+            .best-practice-list li:last-child {
+                margin-bottom: 0;
+            }
+
+    .summary-box {
+        background: #cfe2ff;
+        border-radius: 6px;
+        padding: 18px 22px;
+        margin-top: 20px;
+    }
+
+        .summary-box h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #084298;
+            margin-bottom: 10px;
+        }
+
+        .summary-box p {
+            font-size: 16px !important;
+            line-height: 1.6 !important;
+            color: #084298 !important;
+            margin-bottom: 8px;
+        }
+
+            .summary-box p:last-child {
+                margin-bottom: 0;
+            }
+
+    @@media (max-width: 991px) {
+
+        .relationship-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .metadata-arrow {
+            transform: rotate(90deg);
+        }
+    }
+
+    @@media (max-width: 576px) {
+
+        .relationship-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .metadata-flow {
+            flex-direction: column;
+        }
+
+        .metadata-arrow {
+            transform: rotate(90deg);
+        }
+
+        .metadata-box {
+            width: 100%;
+            max-width: 280px;
+        }
+
+        .code-card code {
+            font-size: 13px;
+        }
+
+        .d-flex.justify-content-between {
+            gap: 10px;
+        }
+
+            .d-flex.justify-content-between .btn {
+                font-size: 13px;
+                padding: 8px 12px;
+            }
+    }
+
+</style>

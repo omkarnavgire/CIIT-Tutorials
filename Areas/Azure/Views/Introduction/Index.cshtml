@@ -1,0 +1,97 @@
+@{
+    ViewData["Title"] = "Introduction to Microsoft Azure";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+    <!-- LEFT SIDEBAR -->
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+                <h1 class="fw-bold mb-3">Introduction to Microsoft Azure</h1>
+                <p class="lead text-muted mb-4">
+                    Kickstart your cloud architecture journey. Master core deployment models, service classifications, and foundational concepts required for modern cloud environments.
+                </p>
+
+                <!-- SECTION: WHAT IS CLOUD COMPUTING -->
+                <div class="mb-4">
+                    <h3 class="fw-bold h4 text-dark mb-3">What is Microsoft Azure?</h3>
+                    <p>
+                        **Microsoft Azure** is a comprehensive, expanding suite of cloud computing services designed to help organizations build, manage, and deploy global scale applications. Operating out of hundreds of secure global data centres, Azure eliminates upfront infrastructure investments by replacing physical hardware servers with dynamic, utility-based resource access.
+                    </p>
+                </div>
+
+                <!-- INFRASTRUCTURE DEPLOYMENT CARD -->
+                <div class="alert alert-info border-0 shadow-sm mb-4">
+                    <strong>Syllabus Scope:</strong> This learning pathway starts with foundational Microsoft Azure core concepts and advances methodically through storage architectures, security models, and deep enterprise-grade **Azure DevOps orchestration configurations**.
+                </div>
+
+                <!-- SERVICE ARCHITECTURE PILLARS -->
+                <h3 class="fw-bold h4 text-dark mb-3">Core Cloud Service Classifications</h3>
+                <div class="row g-3 mb-4">
+                    <div class="col-md-4">
+                        <div class="info-card p-3 border rounded bg-light h-100">
+                            <h5 class="fw-bold text-primary mb-2">IaaS</h5>
+                            <p class="mb-0 small text-muted">
+                                <strong>Infrastructure as a Service:</strong> Provision raw computing resources like Azure Virtual Machines, virtual networking planes, and physical data block storage paths.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="info-card p-3 border rounded bg-light h-100">
+                            <h5 class="fw-bold text-primary mb-2">PaaS</h5>
+                            <p class="mb-0 small text-muted">
+                                <strong>Platform as a Service:</strong> Deploy application runtimes, codebases, and databases (e.g., Azure App Services) without managing underlying operating system patches.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="info-card p-3 border rounded bg-light h-100">
+                            <h5 class="fw-bold text-primary mb-2">SaaS</h5>
+                            <p class="mb-0 small text-muted">
+                                <strong>Software as a Service:</strong> Access fully completed end-user software applications (such as Microsoft 365 or cloud-hosted DevOps boards) over secure web tokens.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LEARNING PROGRESS CHECKBOX -->
+                <div class="concept-box p-4 rounded border bg-light mt-4">
+                    <h4 class="fw-bold h5 mb-3 text-dark">Module Orientation Exercise</h4>
+                    <ol class="mb-0">
+                        <li class="mb-2">Review your active course **Syllabus Sidebar** to locate your upcoming lesson paths and practice modules.</li>
+                        <li class="mb-2">Verify that your global layout engine loads all core font assets and responsive grids across viewport breakpoints.</li>
+                        <li>Prepare an active sandbox account (Azure Free Tier or enterprise playground) to perform real-world architecture deployments in the next step.</li>
+                    </ol>
+                </div>
+
+            </div>
+        </div>
+
+        @await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureLessonNavigation.cshtml")
+    </section>
+</div>
+
+<style>
+    .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+    }
+
+    .info-card {
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+        .info-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+</style>

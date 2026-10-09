@@ -1,0 +1,1053 @@
+﻿@{
+    ViewData["Title"] = "Angular Passing Data Through Events";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- Header -->
+    <section class="mb-4">
+
+        <h1 class="fw-bold text-dark">
+            Passing Data Through Events
+        </h1>
+
+        <p class="lead text-muted">
+            Learn how to pass custom values and event information from an
+            Angular template to component methods.
+        </p>
+
+        <div class="info-card">
+
+            <h5>CIIT Training Institute</h5>
+
+            <p>
+                Event binding can pass useful information to component methods.
+                This is helpful for course selection, enquiry forms, search,
+                filters and other interactive features.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- What is Passing Data -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            What Does Passing Data Mean?
+        </h2>
+
+        <p>
+            In Angular, an event can call a component method and pass data
+            along with that method call.
+        </p>
+
+        <p>
+            For example, when a user selects
+            <strong>Angular Full Stack</strong>, the selected course name
+            can be passed to the component method.
+        </p>
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+                <i>👤</i>
+                <strong>User</strong>
+                <span>Selects course</span>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+                <i>🖱️</i>
+                <strong>Event</strong>
+                <span>Click occurs</span>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+                <i>📦</i>
+                <strong>Data</strong>
+                <span>Course name</span>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+                <i>🔧</i>
+                <strong>Method</strong>
+                <span>Processes data</span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Passing Simple Value -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Passing a Simple Value
+        </h2>
+
+        <p>
+            A string, number or other value can be passed directly to a
+            component method.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                HTML Template
+            </div>
+
+            <pre><code>&lt;button
+    (click)="selectCourse('Angular Full Stack')"&gt;
+
+    Angular Full Stack
+
+&lt;/button&gt;</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                TypeScript
+            </div>
+
+            <pre><code>selectCourse(course: string) {
+
+    console.log(
+        'Selected Course:',
+        course
+    );
+
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Multiple Values -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Passing Multiple Values
+        </h2>
+
+        <p>
+            Multiple values can be passed to a method when more information
+            is required.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                HTML
+            </div>
+
+            <pre><code>&lt;button
+    (click)="selectCourse(
+        'Angular Full Stack',
+        35000
+    )"&gt;
+
+    Join Course
+
+&lt;/button&gt;</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                TypeScript
+            </div>
+
+            <pre><code>selectCourse(
+    course: string,
+    fees: number
+) {
+
+    console.log(
+        'Course:',
+        course
+    );
+
+    console.log(
+        'Fees:',
+        fees
+    );
+
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Course Example -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            CIIT Course Selection Example
+        </h2>
+
+        <p>
+            Let's create a course selection section for
+            <strong>CIIT Training Institute</strong>.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                course.component.html
+            </div>
+
+            <pre><code>&lt;h2&gt;
+    CIIT Training Institute
+&lt;/h2&gt;
+
+&lt;button
+    class="btn btn-primary"
+    (click)="selectCourse('Angular Full Stack')"&gt;
+
+    Angular Full Stack
+
+&lt;/button&gt;
+
+&lt;button
+    class="btn btn-primary"
+    (click)="selectCourse('Java Full Stack')"&gt;
+
+    Java Full Stack
+
+&lt;/button&gt;
+
+&lt;button
+    class="btn btn-primary"
+    (click)="selectCourse('.NET Full Stack')"&gt;
+
+    .NET Full Stack
+
+&lt;/button&gt;</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                course.component.ts
+            </div>
+
+            <pre><code>selectedCourse = '';
+
+selectCourse(course: string) {
+
+    this.selectedCourse = course;
+
+}</code></pre>
+
+        </div>
+
+        <div class="output-box">
+
+            <strong>Expected Output:</strong>
+
+            <div class="student-preview">
+
+                <h3>
+                    CIIT Training Institute
+                </h3>
+
+                <p>
+                    Select a course:
+                </p>
+
+                <div class="mb-3">
+
+                    <button class="btn btn-primary me-2 mb-2">
+                        Angular Full Stack
+                    </button>
+
+                    <button class="btn btn-primary me-2 mb-2">
+                        Java Full Stack
+                    </button>
+
+                    <button class="btn btn-primary mb-2">
+                        .NET Full Stack
+                    </button>
+
+                </div>
+
+                <div class="alert alert-light border mb-0">
+
+                    <strong>
+                        Selected Course:
+                    </strong>
+
+                    Angular Full Stack
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Passing Event Object -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Passing the Event Object
+        </h2>
+
+        <p>
+            Instead of passing a custom value, Angular can pass the actual
+            browser event using <strong>$event</strong>.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                HTML
+            </div>
+
+            <pre><code>&lt;input
+    (input)="searchCourse($event)"
+    placeholder="Search course"&gt;</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                TypeScript
+            </div>
+
+            <pre><code>searchCourse(event: Event) {
+
+    const input =
+        event.target as HTMLInputElement;
+
+    console.log(
+        input.value
+    );
+
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Custom Value vs Event -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Custom Value vs $event
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered syntax-table">
+
+                <thead>
+
+                    <tr>
+                        <th>Approach</th>
+                        <th>Example</th>
+                        <th>Use When</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>Custom Value</td>
+                        <td>
+                            <code>
+                                (click)="selectCourse('Java')"
+                            </code>
+                        </td>
+                        <td>
+                            You already know the required value.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Event Object</td>
+                        <td>
+                            <code>
+                                (click)="handleClick($event)"
+                            </code>
+                        </td>
+                        <td>
+                            You need information about the event.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Multiple Values</td>
+                        <td>
+                            <code>
+                                (click)="selectCourse(name, fees)"
+                            </code>
+                        </td>
+                        <td>
+                            More than one value is required.
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- Number Example -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Passing Numbers
+        </h2>
+
+        <p>
+            Numbers can also be passed to component methods.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                HTML
+            </div>
+
+            <pre><code>&lt;button
+    (click)="applyDiscount(20)"&gt;
+
+    Apply 20% Discount
+
+&lt;/button&gt;</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                TypeScript
+            </div>
+
+            <pre><code>applyDiscount(discount: number) {
+
+    console.log(
+        'Discount:',
+        discount + '%'
+    );
+
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Multiple Parameters -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Passing Multiple Parameters
+        </h2>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                HTML
+            </div>
+
+            <pre><code>&lt;button
+    (click)="registerCourse(
+        'Angular Full Stack',
+        'Online',
+        35000
+    )"&gt;
+
+    Register Now
+
+&lt;/button&gt;</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                TypeScript
+            </div>
+
+            <pre><code>registerCourse(
+    course: string,
+    mode: string,
+    fees: number
+) {
+
+    console.log(
+        course,
+        mode,
+        fees
+    );
+
+}</code></pre>
+
+        </div>
+
+        <div class="info-card">
+
+            <p>
+                This approach is useful when an action needs several related
+                pieces of information.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Complete Example -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Complete Example – Course Registration
+        </h2>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                course.component.ts
+            </div>
+
+            <pre><code>selectedCourse = '';
+selectedMode = '';
+
+registerCourse(
+    course: string,
+    mode: string
+) {
+
+    this.selectedCourse = course;
+    this.selectedMode = mode;
+
+}</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                course.component.html
+            </div>
+
+            <pre><code>&lt;h2&gt;
+    CIIT Training Institute
+&lt;/h2&gt;
+
+&lt;p&gt;
+    Choose your course mode:
+&lt;/p&gt;
+
+&lt;button
+    class="btn btn-primary me-2 mb-2"
+    (click)="registerCourse(
+        'Angular Full Stack',
+        'Online'
+    )"&gt;
+
+    Angular - Online
+
+&lt;/button&gt;
+
+&lt;button
+    class="btn btn-primary mb-2"
+    (click)="registerCourse(
+        'Angular Full Stack',
+        'Offline'
+    )"&gt;
+
+    Angular - Offline
+
+&lt;/button&gt;
+
+&lt;p class="mt-3"&gt;
+    Course:
+    &#123;&#123; selectedCourse &#125;&#125;
+&lt;/p&gt;
+
+&lt;p&gt;
+    Mode:
+    &#123;&#123; selectedMode &#125;&#125;
+&lt;/p&gt;</code></pre>
+
+        </div>
+
+        <div class="output-box">
+
+            <strong>Expected Output:</strong>
+
+            <div class="student-preview">
+
+                <h3>
+                    CIIT Training Institute
+                </h3>
+
+                <p>
+                    Choose your course mode:
+                </p>
+
+                <button class="btn btn-primary me-2 mb-2">
+                    Angular - Online
+                </button>
+
+                <button class="btn btn-primary mb-2">
+                    Angular - Offline
+                </button>
+
+                <div class="alert alert-light border mt-3 mb-0">
+
+                    <p class="mb-2">
+                        <strong>Course:</strong>
+                        Angular Full Stack
+                    </p>
+
+                    <p class="mb-0">
+                        <strong>Mode:</strong>
+                        Online
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Flow -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Passing Data Flow
+        </h2>
+
+        <div class="binding-flow">
+
+            <div class="binding-item">
+                <strong>Template</strong>
+                <span>Button clicked</span>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="binding-item">
+                <strong>Value</strong>
+                <span>Course / Fees / Mode</span>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="binding-item">
+                <strong>Method</strong>
+                <span>Receives parameters</span>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="binding-item">
+                <strong>Component</strong>
+                <span>Processes data</span>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="binding-item">
+                <strong>UI</strong>
+                <span>Displays result</span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Best Practices -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Best Practices
+        </h2>
+
+        <ul class="best-practice-list">
+
+            <li>
+                Pass only the data required by the event handler.
+            </li>
+
+            <li>
+                Use meaningful parameter names.
+            </li>
+
+            <li>
+                Use proper TypeScript types for method parameters.
+            </li>
+
+            <li>
+                Use <strong>$event</strong> when actual event information
+                is required.
+            </li>
+
+            <li>
+                Avoid passing unnecessary values from templates.
+            </li>
+
+            <li>
+                Keep event-handler methods simple and readable.
+            </li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- Summary -->
+    <section class="summary-box">
+
+        <h3>
+            Summary
+        </h3>
+
+        <p>
+            Angular event binding allows data to be passed from the template
+            to component methods.
+        </p>
+
+        <p>
+            We can pass strings, numbers, multiple values or the complete
+            event object using <strong>$event</strong>.
+        </p>
+
+        <p class="mb-0">
+            This technique is useful for interactive features such as
+            <strong>CIIT Training Institute</strong> course selection,
+            registration, enquiry and filtering.
+        </p>
+
+    </section>
+
+
+    <!-- Navigation -->
+    <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+
+        <a class="btn btn-outline-secondary"
+           href="@Url.Action("EventObject", "EventHandling", new { area = "Angular" })">
+            ← Event Object
+        </a>
+
+        <a class="btn btn-primary"
+           href="@Url.Action("Index", "InputOutput", new { area = "Angular" })">
+            Input & Output →
+        </a>
+
+    </div>
+
+</div>
+
+
+<style>
+
+    .info-card {
+        background: #f8fafc;
+        border-left: 5px solid #4c1d95;
+        padding: 18px 20px;
+        border-radius: 7px;
+        margin-top: 15px;
+    }
+
+        .info-card h5 {
+            color: #4c1d95;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .info-card p {
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+
+    .syntax-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        padding: 25px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+    }
+
+    .syntax-box {
+        width: 175px;
+        min-height: 125px;
+        padding: 18px;
+        text-align: center;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 9px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+        .syntax-box i {
+            display: block;
+            font-size: 28px;
+            color: #4c1d95;
+            margin-bottom: 8px;
+            font-style: normal;
+        }
+
+        .syntax-box strong {
+            display: block;
+            color: #2e1065;
+            font-weight: 700;
+        }
+
+        .syntax-box span {
+            display: block;
+            color: #64748b;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+    .syntax-arrow {
+        color: #4c1d95;
+        font-size: 25px;
+        font-weight: 700;
+    }
+
+    .syntax-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+    }
+
+    .syntax-card {
+        padding: 20px;
+        text-align: center;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 9px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    }
+
+        .syntax-card h5 {
+            color: #2e1065;
+            font-weight: 700;
+            margin-top: 12px;
+        }
+
+        .syntax-card p {
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+    .event-icon {
+        width: 55px;
+        height: 55px;
+        margin: auto;
+        border-radius: 50%;
+        background: #ede9fe;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 25px;
+    }
+
+    .code-card {
+        background: #0f172a;
+        border-radius: 8px;
+        overflow: hidden;
+        margin-top: 18px;
+    }
+
+    .code-title {
+        background: #1e293b;
+        color: #d8c9f5;
+        padding: 10px 16px;
+        font-weight: 600;
+    }
+
+    .code-card pre {
+        margin: 0;
+        padding: 20px;
+        overflow-x: auto;
+    }
+
+    .code-card code {
+        color: #f8fafc;
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    .output-box {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        padding: 20px;
+        margin-top: 20px;
+    }
+
+    .student-preview {
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 9px;
+        padding: 20px;
+        margin-top: 12px;
+    }
+
+    .syntax-table {
+        background: #ffffff;
+    }
+
+        .syntax-table th {
+            background: #4c1d95;
+            color: #ffffff;
+        }
+
+        .syntax-table td,
+        .syntax-table th {
+            padding: 12px;
+            vertical-align: middle;
+        }
+
+    .binding-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        padding: 20px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+    }
+
+    .binding-item {
+        min-width: 150px;
+        padding: 15px;
+        text-align: center;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 9px;
+    }
+
+        .binding-item strong {
+            display: block;
+            color: #2e1065;
+            font-weight: 700;
+        }
+
+        .binding-item span {
+            display: block;
+            color: #64748b;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+    .best-practice-list {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        padding: 20px 25px 20px 45px;
+    }
+
+        .best-practice-list li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+            color: #334155;
+        }
+
+            .best-practice-list li:last-child {
+                margin-bottom: 0;
+            }
+
+    .summary-box {
+        background: #cfe2ff;
+        color: #084298;
+        padding: 22px;
+        border-radius: 10px;
+    }
+
+        .summary-box h3 {
+            color: #084298;
+            font-weight: 700;
+        }
+
+    @@media (max-width: 991px) {
+
+        .syntax-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .syntax-flow {
+            gap: 8px;
+        }
+
+        .syntax-box {
+            width: 160px;
+        }
+    }
+
+    @@media (max-width: 576px) {
+
+        .syntax-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .syntax-box {
+            width: 100%;
+        }
+
+        .syntax-arrow {
+            transform: rotate(90deg);
+        }
+
+        .binding-flow {
+            flex-direction: column;
+        }
+
+        .binding-item {
+            width: 100%;
+        }
+
+        .binding-flow .syntax-arrow {
+            transform: rotate(90deg);
+        }
+
+        .code-card code {
+            font-size: 13px;
+        }
+
+        .student-preview {
+            padding: 16px;
+        }
+    }
+
+</style>

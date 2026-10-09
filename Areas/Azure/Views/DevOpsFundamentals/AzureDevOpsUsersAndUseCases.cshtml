@@ -1,0 +1,42 @@
+@{
+    ViewData["Title"] = "Who uses Azure DevOps?";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+                <div class="azure-notes-content">
+                    <pre class="azure-notes-text">Who uses Azure DevOps?
+Azure DevOps can be used by any team who wants to make the workflow automate most
+primarily Azure DevOps is used by the Software Develops, DevOps Engineers, and Testing
+Engineers.
+When coming to organizations there are some famous organizations that are using Azure
+DevOps some of them are mentioned below.
+   •   Netflix: Netflix is a company that will have continuous updates on the source code to
+       satisfy their customers by using Azure DevOps will reduce the cost and time of the
+       company and can deliver most efficiently to the end users.
+   •   Microsoft: We all know that Microsoft is one of the biggest organizations in the
+       whole world it is very important for them to reduce the latency or give a hundred
+       percent to the users who are using Microsoft products it can be achieved easily with
+       the help of Azure DevOps.
+The above are a few companies that are currently using Azure DevOps. other than that there
+are more companies like Google, Uber, and so on which are using Azure DevOps.</pre>
+                </div>
+            </div>
+        </div>
+    
+
+            @await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureLessonNavigation.cshtml")
+</section>
+</div>
+<style>
+.azure-notes-text{white-space:pre-wrap;word-break:normal;font-family:inherit;font-size:1rem;line-height:1.7;background:#fff;border:0;padding:0;margin:0;color:#212529;}
+.azure-notes-content img{max-height:720px;}
+</style>

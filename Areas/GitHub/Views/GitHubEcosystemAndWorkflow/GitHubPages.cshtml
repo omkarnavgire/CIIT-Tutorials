@@ -1,0 +1,264 @@
+@{
+    Layout = "~/Areas/GitHub/Views/Shared/GithubLayout.cshtml";
+    ViewData["Title"] = "GitHub Pages";
+}
+
+<main id="tutorials" class="container py-1">
+    <div class="row g-4">
+
+        <!-- Sidebar Navigation -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/GitHub/Views/Shared/GithubTopics.cshtml")
+        </aside>
+
+        <!-- Reading Content Area -->
+        <section class="col-lg-9">
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-body p-4 p-lg-5">
+
+                    <h2 class="mb-3">GitHub Pages</h2>
+
+                    <p class="lead">
+                        <strong>GitHub Pages</strong> is a static website hosting
+                        service that publishes website files directly from a
+                        GitHub repository.
+                    </p>
+
+                    <p>
+                        It is useful for hosting developer portfolios, project
+                        documentation, landing pages, and personal blogs.
+                        GitHub Pages supports HTML, CSS, JavaScript, and static
+                        assets such as images.
+                    </p>
+
+                    <div class="alert alert-info">
+                        <strong>Important:</strong> GitHub Pages does not run
+                        server-side application code or provide a database.
+                        Applications that require a backend API need to host
+                        that backend separately.
+                    </div>
+
+                    <hr />
+
+                    <h4>1. GitHub Pages URL Structure</h4>
+
+                    <p>GitHub Pages provides different URL formats depending on your website type.</p>
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped align-middle">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Website Type</th>
+                                    <th>URL Format</th>
+                                    <th>Repository Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Project Website</td>
+                                    <td><code>https://username.github.io/repository-name/</code></td>
+                                    <td>Your project repository</td>
+                                </tr>
+                                <tr>
+                                    <td>User Website</td>
+                                    <td><code>https://username.github.io/</code></td>
+                                    <td><code>username.github.io</code></td>
+                                </tr>
+                                <tr>
+                                    <td>Custom Domain</td>
+                                    <td><code>https://www.example.com/</code></td>
+                                    <td>Your configured repository</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <p>
+                        Replace <code>username</code> and
+                        <code>repository-name</code> with your actual GitHub
+                        username and repository name.
+                    </p>
+
+                    <hr />
+
+                    <h4>2. Publish a Website Using GitHub Pages</h4>
+
+                    <p>Follow these steps to publish a basic HTML website.</p>
+
+                    <ol>
+                        <li>
+                            <strong>Create a repository:</strong>
+                            Sign in to GitHub and create a repository for your website.
+                        </li>
+                        <li>
+                            <strong>Add an HTML file:</strong>
+                            Select <strong>Add file → Create new file</strong>,
+                            name the file <code>index.html</code>, and add your HTML.
+                        </li>
+                        <li>
+                            <strong>Open repository settings:</strong>
+                            Navigate to <strong>Settings → Pages</strong>.
+                        </li>
+                        <li>
+                            <strong>Select the publishing source:</strong>
+                            Under <strong>Build and deployment</strong>, select
+                            <strong>Deploy from a branch</strong>, if available.
+                        </li>
+                        <li>
+                            <strong>Select the branch and folder:</strong>
+                            Choose your publishing branch, usually
+                            <code>main</code>, and select <code>/(root)</code>
+                            or <code>/docs</code>, depending on where your files are stored.
+                        </li>
+                        <li>
+                            <strong>Save and wait:</strong>
+                            Save the configuration and check the Pages section
+                            for the published website URL.
+                        </li>
+                    </ol>
+
+                    <h5 class="mt-4">Example: index.html</h5>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;My GitHub Website&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Welcome to My Website&lt;/h1&gt;
+    &lt;p&gt;This website is hosted using GitHub Pages.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+                    <div class="alert alert-success">
+                        <strong>Result:</strong> After GitHub finishes publishing,
+                        open the Pages URL to view your live website. The first
+                        deployment may take several minutes.
+                    </div>
+
+                    <hr />
+
+                    <h4>3. Common Publishing Methods</h4>
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered align-middle">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Method</th>
+                                    <th>Best For</th>
+                                    <th>How It Works</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Root Folder</strong></td>
+                                    <td>Simple HTML, CSS, and JavaScript sites</td>
+                                    <td>Publishes files from the selected branch's root directory.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong><code>/docs</code> Folder</strong></td>
+                                    <td>Documentation stored alongside project code</td>
+                                    <td>Publishes static files from the selected branch's <code>docs</code> directory.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>GitHub Actions</strong></td>
+                                    <td>React, Vue, Angular, and static site generators</td>
+                                    <td>Builds the project and deploys its generated static output.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <p>
+                        Framework projects generally need a build step before
+                        deployment. The generated output directory depends on
+                        the framework and its configuration.
+                    </p>
+
+                    <hr />
+
+                    <h4>4. Using a Custom Domain</h4>
+
+                    <p>
+                        If you own a domain, you can configure GitHub Pages to
+                        publish your site through that domain.
+                    </p>
+
+                    <ol>
+                        <li>Open your repository's <strong>Settings → Pages</strong> section.</li>
+                        <li>Enter your domain under <strong>Custom domain</strong>.</li>
+                        <li>Configure the required DNS records with your domain provider.</li>
+                        <li>Wait for DNS verification and enable HTTPS when available.</li>
+                    </ol>
+
+                    <hr />
+
+                    <h4>5. GitHub Pages Limitations</h4>
+
+                    <ul>
+                        <li>
+                            <strong>Static hosting:</strong>
+                            It does not execute server-side code such as PHP or
+                            Python, or run an ASP.NET Core or Node.js backend.
+                        </li>
+                        <li>
+                            <strong>No hosted database:</strong>
+                            A database-backed application needs a separately hosted backend and database.
+                        </li>
+                        <li>
+                            <strong>Usage limits:</strong>
+                            GitHub Pages has published build, site-size, and bandwidth limits.
+                        </li>
+                        <li>
+                            <strong>Commercial use:</strong>
+                            GitHub Pages is not intended to serve as free hosting
+                            for an online business, e-commerce site, or SaaS platform.
+                        </li>
+                    </ul>
+
+                    <div class="alert alert-warning">
+                        <strong>Tip:</strong> Before deploying a large website,
+                        review GitHub's current Pages limits and acceptable-use
+                        policies.
+                    </div>
+
+                    <hr />
+
+                    <h4>6. When Should You Use GitHub Pages?</h4>
+
+                    <ul>
+                        <li>Personal developer portfolios</li>
+                        <li>Project documentation and tutorials</li>
+                        <li>Static landing pages</li>
+                        <li>Personal blogs generated as static websites</li>
+                        <li>Frontend applications that can be built into static files</li>
+                    </ul>
+
+                    <div class="alert alert-success mt-4">
+                        <h5 class="alert-heading">Key Takeaway</h5>
+                        GitHub Pages makes it easy to publish static websites
+                        directly from a GitHub repository. For applications
+                        requiring server-side logic or a database, deploy the
+                        backend separately.
+                    </div>
+
+                    <!-- Previous / Next Navigation -->
+                    <div class="d-flex justify-content-between align-items-center gap-3 mt-4 pt-3 border-top">
+                        <a class="btn btn-outline-secondary"
+                           href="@Url.Action("GitHubIssues", "GitHubEcosystemAndWorkflow", new { area = "GitHub" })">
+                            &larr; Previous  GitHub Issues
+                        </a>
+
+                        <a class="btn btn-primary"
+                           href="@Url.Action("MarkdownDocumentation", "GitHubEcosystemAndWorkflow", new { area = "GitHub" })">
+                            Next  Markdown Documentation &rarr;
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+</main>

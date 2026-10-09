@@ -1,0 +1,889 @@
+﻿@{
+    ViewData["Title"] = "Index Performance";
+}
+
+<div class="container-fluid px-4 py-4">
+
+    <!-- =========================
+         PAGE HEADER
+    ========================== -->
+
+    <div class="mb-4">
+
+        <h1 class="fw-bold">
+            Index Performance
+        </h1>
+
+        <p class="text-muted">
+            Learn how indexes improve query performance and how to
+            maintain them effectively in SQL Server.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         INTRODUCTION
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                What is Index Performance?
+            </h2>
+
+            <p>
+                Index performance refers to how effectively indexes help
+                SQL Server find and retrieve data from a table.
+            </p>
+
+            <p>
+                Properly designed indexes can significantly improve
+                <strong>SELECT</strong> query performance.
+            </p>
+
+            <p>
+                However, unnecessary or poorly designed indexes can
+                increase storage usage and slow down
+                <strong>INSERT</strong>, <strong>UPDATE</strong> and
+                <strong>DELETE</strong> operations.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         WHY INDEXES IMPROVE PERFORMANCE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Why Do Indexes Improve Performance?
+            </h2>
+
+            <p>
+                Without a suitable index, SQL Server may need to examine
+                many or all rows in a table to find the required data.
+            </p>
+
+            <p>
+                This operation is commonly known as a
+                <strong>Table Scan</strong>.
+            </p>
+
+            <p>
+                With a suitable index, SQL Server may be able to locate
+                the required rows more efficiently.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         TABLE SCAN
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Table Scan
+            </h2>
+
+            <p>
+                A table scan occurs when SQL Server reads rows throughout
+                a table to find matching records.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>SELECT *
+FROM Students
+WHERE City = 'Pune';</code></pre>
+
+            <p class="mt-3">
+                If there is no useful index on the City column,
+                SQL Server may need to scan a large portion of the table.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         INDEX SEEK
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Index Seek
+            </h2>
+
+            <p>
+                An <strong>Index Seek</strong> allows SQL Server to
+                navigate directly to the relevant portion of an index
+                instead of examining every row.
+            </p>
+
+            <p>
+                Index seeks are generally efficient when a suitable
+                index exists and the query can use it effectively.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         EXAMPLE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Example of Index Performance
+            </h2>
+
+            <p>
+                Suppose we have the following table:
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>CREATE TABLE Students
+(
+    StudentId INT,
+    StudentName VARCHAR(100),
+    Course VARCHAR(100),
+    City VARCHAR(50),
+    Age INT
+);</code></pre>
+
+            <p class="mt-3">
+                Create an index on City:
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>CREATE NONCLUSTERED INDEX IX_Students_City
+ON Students(City);</code></pre>
+
+            <p class="mt-3">
+                Now execute:
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>SELECT *
+FROM Students
+WHERE City = 'Pune';</code></pre>
+
+            <p class="mt-3">
+                SQL Server can consider the City index when creating
+                the execution plan for this query.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         EXECUTION PLAN
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Execution Plan
+            </h2>
+
+            <p>
+                SQL Server uses an <strong>Execution Plan</strong> to
+                determine how a query should be executed.
+            </p>
+
+            <p>
+                The execution plan can show whether SQL Server is using
+                operations such as:
+            </p>
+
+            <ul>
+
+                <li class="mb-2">
+                    Index Seek
+                </li>
+
+                <li class="mb-2">
+                    Index Scan
+                </li>
+
+                <li class="mb-2">
+                    Table Scan
+                </li>
+
+                <li class="mb-2">
+                    Key Lookup
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         DISPLAY ACTUAL EXECUTION PLAN
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Viewing Execution Plan in SSMS
+            </h2>
+
+            <p>
+                In SQL Server Management Studio (SSMS), you can enable
+                the Actual Execution Plan before running a query.
+            </p>
+
+            <p>
+                Keyboard shortcut:
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>Ctrl + M</code></pre>
+
+            <p class="mt-3">
+                After enabling it, execute the query and open the
+                <strong>Execution Plan</strong> tab to analyze how
+                SQL Server processed the query.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         INDEX SCAN VS SEEK
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-4">
+                Index Seek vs Index Scan
+            </h2>
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-striped">
+
+                    <thead class="table-dark">
+
+                        <tr>
+
+                            <th>
+                                Index Seek
+                            </th>
+
+                            <th>
+                                Index Scan
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+
+                            <td>
+                                Searches specific portions of an index.
+                            </td>
+
+                            <td>
+                                Reads a larger portion or the entire index.
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>
+                                Usually efficient for selective queries.
+                            </td>
+
+                            <td>
+                                Can be useful when many rows are required.
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>
+                                Typically accesses fewer rows.
+                            </td>
+
+                            <td>
+                                May process many rows.
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         INDEX SELECTIVITY
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Index Selectivity
+            </h2>
+
+            <p>
+                Selectivity describes how effectively an index can
+                distinguish between rows.
+            </p>
+
+            <p>
+                Columns with many distinct values often have higher
+                selectivity than columns with only a few distinct values.
+            </p>
+
+            <p>
+                For example, a StudentId column usually has better
+                selectivity than a Gender column.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         INDEXED COLUMNS
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Choosing Columns for Indexes
+            </h2>
+
+            <p>
+                Good candidates for indexes are columns frequently used
+                in:
+            </p>
+
+            <ul>
+
+                <li class="mb-2">
+                    WHERE conditions
+                </li>
+
+                <li class="mb-2">
+                    JOIN conditions
+                </li>
+
+                <li class="mb-2">
+                    ORDER BY
+                </li>
+
+                <li class="mb-2">
+                    GROUP BY
+                </li>
+
+            </ul>
+
+            <p>
+                However, indexes should be created based on actual
+                query and workload requirements.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         COVERING INDEX
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Covering Index
+            </h2>
+
+            <p>
+                A covering index contains all the columns required by
+                a query, allowing SQL Server to retrieve the required
+                information directly from the index.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>CREATE NONCLUSTERED INDEX IX_Students_City
+ON Students(City)
+INCLUDE(StudentName, Course);</code></pre>
+
+            <p class="mt-3">
+                In this example, City is the index key while
+                StudentName and Course are included columns.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         TOO MANY INDEXES
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Problem with Too Many Indexes
+            </h2>
+
+            <p>
+                Creating an index for every column is not recommended.
+            </p>
+
+            <p>
+                Each additional index requires storage and may need
+                maintenance whenever data changes.
+            </p>
+
+            <ul>
+
+                <li class="mb-2">
+                    More storage usage
+                </li>
+
+                <li class="mb-2">
+                    Slower INSERT operations
+                </li>
+
+                <li class="mb-2">
+                    Additional UPDATE maintenance
+                </li>
+
+                <li class="mb-2">
+                    Additional DELETE maintenance
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         INDEX FRAGMENTATION
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Index Fragmentation
+            </h2>
+
+            <p>
+                Index fragmentation can occur as rows are inserted,
+                updated and deleted over time.
+            </p>
+
+            <p>
+                Fragmentation can affect the efficiency of index access,
+                especially in heavily modified tables.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         CHECK FRAGMENTATION
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Checking Index Fragmentation
+            </h2>
+
+            <p>
+                SQL Server provides
+                <strong>sys.dm_db_index_physical_stats</strong>
+                to inspect index physical statistics.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>SELECT
+    OBJECT_NAME(object_id) AS TableName,
+    index_id,
+    avg_fragmentation_in_percent
+FROM sys.dm_db_index_physical_stats
+(
+    DB_ID(),
+    NULL,
+    NULL,
+    NULL,
+    'LIMITED'
+);</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         REBUILD INDEX
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Rebuilding an Index
+            </h2>
+
+            <p>
+                An index can be rebuilt to reorganize its structure.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>ALTER INDEX IX_Students_City
+ON Students
+REBUILD;</code></pre>
+
+            <p class="mt-3">
+                Rebuilding an index can be useful when significant
+                fragmentation needs to be addressed.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         REORGANIZE INDEX
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Reorganizing an Index
+            </h2>
+
+            <p>
+                SQL Server also supports index reorganization.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>ALTER INDEX IX_Students_City
+ON Students
+REORGANIZE;</code></pre>
+
+            <p class="mt-3">
+                Reorganize is an online operation that incrementally
+                defragments an index.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         REBUILD VS REORGANIZE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-4">
+                REBUILD vs REORGANIZE
+            </h2>
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-striped">
+
+                    <thead class="table-dark">
+
+                        <tr>
+                            <th>REBUILD</th>
+                            <th>REORGANIZE</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+
+                            <td>
+                                Recreates the index structure.
+                            </td>
+
+                            <td>
+                                Defragments the existing index incrementally.
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>
+                                Can be more resource intensive.
+                            </td>
+
+                            <td>
+                                Generally less resource intensive.
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>
+                                Useful when substantial maintenance is required.
+                            </td>
+
+                            <td>
+                                Useful for lighter fragmentation.
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         BEST PRACTICES
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Index Performance Best Practices
+            </h2>
+
+            <ol>
+
+                <li class="mb-2">
+                    Create indexes based on actual query requirements.
+                </li>
+
+                <li class="mb-2">
+                    Avoid creating unnecessary indexes.
+                </li>
+
+                <li class="mb-2">
+                    Monitor query performance regularly.
+                </li>
+
+                <li class="mb-2">
+                    Review execution plans for important queries.
+                </li>
+
+                <li class="mb-2">
+                    Monitor index fragmentation where appropriate.
+                </li>
+
+                <li class="mb-2">
+                    Maintain indexes according to workload requirements.
+                </li>
+
+                <li class="mb-2">
+                    Consider covering indexes for frequently executed queries.
+                </li>
+
+            </ol>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         IMPORTANT POINTS
+    ========================== -->
+
+    <div class="alert alert-warning mb-4">
+
+        <h4 class="fw-bold">
+            Important Points
+        </h4>
+
+        <ul class="mb-0">
+
+            <li>
+                Indexes can improve SELECT query performance.
+            </li>
+
+            <li>
+                Index Seek is generally efficient for selective searches.
+            </li>
+
+            <li>
+                Table Scan may occur when a suitable index is unavailable.
+            </li>
+
+            <li>
+                Too many indexes can negatively affect write operations.
+            </li>
+
+            <li>
+                Execution Plans help analyze query performance.
+            </li>
+
+            <li>
+                Index fragmentation should be monitored when appropriate.
+            </li>
+
+            <li>
+                REBUILD and REORGANIZE are available for index maintenance.
+            </li>
+
+        </ul>
+
+    </div>
+
+
+    <!-- =========================
+         SUMMARY
+    ========================== -->
+
+    <div class="p-4 rounded shadow-sm mb-4"
+         style="background-color:#cfe2ff;">
+
+        <h2 class="fw-bold mb-3">
+            Summary
+        </h2>
+
+        <p>
+            Indexes are an important part of SQL Server performance
+            optimization. A properly designed index can reduce the amount
+            of data SQL Server needs to examine when executing queries.
+        </p>
+
+        <p>
+            Execution plans can be used to understand how SQL Server
+            accesses data and whether operations such as Index Seek,
+            Index Scan or Table Scan are being used.
+        </p>
+
+        <p class="mb-0">
+            Indexes should be created and maintained carefully because
+            they require storage and can increase the cost of data
+            modification operations.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         MODEL 16 COMPLETED
+    ========================== -->
+
+    <div class="alert alert-success mb-4">
+
+        <h4 class="fw-bold">
+            Model 16 Completed
+        </h4>
+
+        <p class="mb-0">
+            You have completed the SQL Server Indexes module:
+            Indexes Introduction, Clustered Index, Non-Clustered Index,
+            Creating &amp; Dropping Indexes and Index Performance.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+     PREVIOUS / NEXT
+========================== -->
+
+    <div class="d-flex justify-content-between align-items-center
+        mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/Indexes/CreateDropIndexes"
+           class="btn btn-outline-primary">
+
+            ← Previous: Creating &amp; Dropping Indexes
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/CTE/Index"
+           class="btn btn-primary">
+
+            Next: CTE Introduction →
+
+        </a>
+
+    </div>
+
+</div>

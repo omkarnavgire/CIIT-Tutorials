@@ -1,0 +1,144 @@
+@{
+    ViewData["Title"] = "Various Azure Services Catalog";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+    <!-- LEFT SIDEBAR -->
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+                <h1 class="fw-bold mb-3">Exploring Various Azure Services</h1>
+                <p class="lead text-muted mb-4">
+                    Microsoft Azure offers over 200 integrated cloud services designed to handle everything from basic website hosting to advanced enterprise artificial intelligence.
+                </p>
+
+                <!-- INTRODUCTION ALERT -->
+                <div class="alert alert-info border-0 shadow-sm mb-4">
+                    <strong>Service Architecture:</strong> To simplify cloud architecture planning, Azure products are organized into clear functional categories based on core business requirements.
+                </div>
+
+                <!-- 1. COMPUTE SERVICES -->
+                <div class="mb-5">
+                    <h3 class="fw-bold h4 text-primary border-bottom pb-2 mb-3">💻 Compute Services</h3>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="service-card p-3 border rounded bg-light h-100">
+                                <h5>Azure Virtual Machines (VMs)</h5>
+                                <p class="mb-0 small text-muted">On-demand, scalable, rented virtual computing instances that give you complete administrative control over custom Windows or Linux operating systems.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="service-card p-3 border rounded bg-light h-100">
+                                <h5>Azure App Service</h5>
+                                <p class="mb-0 small text-muted">An HTTP-based Platform as a Service (PaaS) built specifically to deploy, host, and auto-scale web applications and mobile backends without managing server runtimes.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="service-card p-3 border rounded bg-light h-100">
+                                <h5>Azure Kubernetes Service (AKS)</h5>
+                                <p class="mb-0 small text-muted">A fully managed container orchestration platform that simplifies the deployment, management, and scaling of large microservice groups using Kubernetes.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="service-card p-3 border rounded bg-light h-100">
+                                <h5>Azure Functions</h5>
+                                <p class="mb-0 small text-muted">A serverless event-driven compute engine where code only executes when explicitly triggered, ensuring you only pay for the exact millisecond of computational runtime.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. NETWORKING SERVICES -->
+                <div class="mb-5">
+                    <h3 class="fw-bold h4 text-success border-bottom pb-2 mb-3">🌐 Networking Services</h3>
+                    <ul class="list-unstyled custom-list">
+                        <li class="mb-3"><strong>Azure Virtual Network (VNet):</strong> The foundational private, isolated digital space that enables secure communication between your VMs, database engines, and the internet.</li>
+                        <li class="mb-3"><strong>Azure Load Balancer:</strong> An ultra-low latency Layer-4 traffic distribution hub that evenly disperses incoming network payloads to keep backend virtual node clusters highly available.</li>
+                        <li class="mb-3"><strong>Azure VPN Gateway:</strong> A cross-premises cloud router that sends encrypted traffic across the public internet between an on-premises enterprise building and an Azure infrastructure network.</li>
+                        <li class="mb-0"><strong>Azure ExpressRoute:</strong> A premium connectivity tool that establishes high-speed, dedicated private connections directly from your data centres to Azure, completely bypassing the public internet.</li>
+                    </ul>
+                </div>
+
+                <!-- 3. STORAGE & DATABASES GRID -->
+                <div class="mb-5">
+                    <div class="row g-4">
+                        <!-- STORAGE SERVICES -->
+                        <div class="col-md-6">
+                            <h3 class="fw-bold h4 text-dark border-bottom pb-2 mb-3">💾 Storage Services</h3>
+                            <ul class="list-unstyled custom-list">
+                                <li class="mb-2"><strong>Azure Blob Storage:</strong> Highly scalable object storage designed to house massive pools of unstructured data like media files, logs, and system backups.</li>
+                                <li class="mb-2"><strong>Azure Disk Storage:</strong> High-performance persistent block storage virtual drives attached directly to running Azure VMs.</li>
+                                <li class="mb-0"><strong>Azure Files:</strong> Fully managed, serverless shared cloud file shares accessible via the industry-standard SMB or NFS protocols.</li>
+                            </ul>
+                        </div>
+                        <!-- DATABASE SERVICES -->
+                        <div class="col-md-6">
+                            <h3 class="fw-bold h4 text-dark border-bottom pb-2 mb-3">🗄️ Database Services</h3>
+                            <ul class="list-unstyled custom-list">
+                                <li class="mb-3"><strong>Azure SQL Database:</strong> A fully managed, evergreen relational database engine backed by enterprise Microsoft SQL Server technologies.</li>
+                                <li class="mb-0"><strong>Azure Cosmos DB:</strong> A globally distributed, multi-model NoSQL database engine designed to provide single-digit millisecond latency at any operational scale.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. SECURITY & AI SERVICES -->
+                <div class="mb-4">
+                    <h3 class="fw-bold h4 text-purple border-bottom pb-2 mb-3">🔒 Security, Identity &amp; AI Frameworks</h3>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="p-3 border rounded bg-white h-100 shadow-sm border-start border-4 border-primary">
+                                <h5 class="fw-bold">Microsoft Entra ID</h5>
+                                <p class="mb-0 small text-muted">Formerly *Azure Active Directory*. A comprehensive identity manager handling single sign-on (SSO), multi-factor authentication (MFA), and fine-grained directory RBAC scopes.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-3 border rounded bg-white h-100 shadow-sm border-start border-4 border-warning">
+                                <h5 class="fw-bold">Azure Key Vault</h5>
+                                <p class="mb-0 small text-muted">A secure digital safe used to encrypt and safeguard application API tokens, database connection strings, cryptographic keys, and SSL certificates.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-3 border rounded bg-white h-100 shadow-sm border-start border-4 border-success">
+                                <h5 class="fw-bold">Azure OpenAI Service</h5>
+                                <p class="mb-0 small text-muted">Provides production-grade access to advanced artificial intelligence large language models with enterprise security, data compliance, and private data fine-tuning capabilities.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-3 border rounded bg-white h-100 shadow-sm border-start border-4 border-info">
+                                <h5 class="fw-bold">Azure AI Services</h5>
+                                <p class="mb-0 small text-muted">A unified portfolio of specialized cognitive capabilities, vision mapping algorithms, natural speech translation systems, and document intelligence tools.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- INTERACTIVE LAB LAB CASE TASK -->
+                <div class="concept-box p-4 rounded border bg-light mt-5">
+                    <h4 class="fw-bold h5 mb-3 text-dark">Architecture Matching Task</h4>
+                    <p class="small text-muted mb-0">
+                        Assume you are building a decoupled application that takes images uploaded by web users and uses AI tools to generate descriptions. Select the <strong>Compute, Storage, and AI services</strong> from this directory page required to map your pipeline solution, and trace how a <strong>Virtual Network</strong> keeps it isolated.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+        @await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureLessonNavigation.cshtml")
+    </section>
+</div>
+
+<style>
+    .text-purple {
+    color: #5b21b6;
+    }
+
+    .service-card {

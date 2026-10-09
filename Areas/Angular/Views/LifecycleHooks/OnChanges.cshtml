@@ -1,0 +1,1301 @@
+﻿@{
+    ViewData["Title"] = "Angular OnChanges";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- Header -->
+    <section class="mb-4">
+
+        <h1 class="fw-bold text-dark">Angular OnChanges</h1>
+
+        <p class="lead text-muted">
+            Angular <strong>@@OnChanges</strong> is a lifecycle hook used to
+            detect changes in input-bound properties of a component.
+            It is useful when a child component needs to react whenever
+            data received from its parent changes.
+        </p>
+
+    </section>
+
+    <!-- What is OnChanges -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">What is @@OnChanges?</h2>
+
+        <p>
+            The <strong>ngOnChanges()</strong> lifecycle hook is called when
+            one or more data-bound input properties of a component change.
+        </p>
+
+        <p>
+            It receives a <strong>SimpleChanges</strong> object containing
+            information about the previous value and the current value of
+            the changed input property.
+        </p>
+
+        <div class="info-card">
+
+            <h5>Simple Definition</h5>
+
+            <p>
+                <strong>ngOnChanges()</strong> allows a component to respond
+                when data received through <strong>@@Input</strong> changes.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- Lifecycle Flow -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold mb-3">How @@OnChanges Works</h2>
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+
+                <i class="bi bi-box-arrow-up"></i>
+
+                <strong>Parent Component</strong>
+
+                <span>Sends data</span>
+
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+
+                <i class="bi bi-arrow-down-circle"></i>
+
+                <strong>@@Input</strong>
+
+                <span>Receives value</span>
+
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+
+                <i class="bi bi-arrow-repeat"></i>
+
+                <strong>ngOnChanges()</strong>
+
+                <span>Detects change</span>
+
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+
+                <i class="bi bi-display"></i>
+
+                <strong>Component UI</strong>
+
+                <span>Updates accordingly</span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Basic Syntax -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Basic Syntax</h2>
+
+        <p>
+            A component can implement the <strong>OnChanges</strong>
+            interface and define the <strong>ngOnChanges()</strong> method.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Component
+            </div>
+
+            <pre><code>import &#123; Component, Input, OnChanges, SimpleChanges &#125;
+from '@@angular/core';
+
+@@Component(&#123;
+    selector: 'app-course',
+    templateUrl: './course.component.html'
+&#125;)
+export class CourseComponent implements OnChanges &#123;
+
+    @@Input() courseName = '';
+
+    ngOnChanges(changes: SimpleChanges): void &#123;
+
+        console.log(changes);
+
+    &#125;
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="info-card">
+
+            <h5>Important</h5>
+
+            <p>
+                Angular automatically calls <strong>ngOnChanges()</strong>
+                whenever an input-bound property receives a changed value.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- SimpleChanges -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">What is SimpleChanges?</h2>
+
+        <p>
+            The <strong>SimpleChanges</strong> object contains information
+            about the input properties that changed.
+        </p>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-arrow-left"></i>
+                </div>
+
+                <h5>Previous Value</h5>
+
+                <p>
+                    Contains the value of the input before the change.
+                </p>
+
+                <code>previousValue</code>
+
+            </div>
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-arrow-right"></i>
+                </div>
+
+                <h5>Current Value</h5>
+
+                <p>
+                    Contains the latest value received by the component.
+                </p>
+
+                <code>currentValue</code>
+
+            </div>
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-123"></i>
+                </div>
+
+                <h5>First Change</h5>
+
+                <p>
+                    Indicates whether this is the first detected change.
+                </p>
+
+                <code>firstChange</code>
+
+            </div>
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-braces"></i>
+                </div>
+
+                <h5>Changes Object</h5>
+
+                <p>
+                    Gives access to all changed input properties.
+                </p>
+
+                <code>SimpleChanges</code>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Simple Example -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">1. Simple OnChanges Example</h2>
+
+        <p>
+            In this example, the child component receives a course name
+            through <strong>@@Input</strong> and reacts when that value changes.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Child Component
+            </div>
+
+            <pre><code>import &#123; Component, Input, OnChanges, SimpleChanges &#125;
+from '@@angular/core';
+
+@@Component(&#123;
+    selector: 'app-course',
+    templateUrl: './course.component.html'
+&#125;)
+export class CourseComponent implements OnChanges &#123;
+
+    @@Input() courseName = '';
+
+    ngOnChanges(changes: SimpleChanges): void &#123;
+
+        if (changes['courseName']) &#123;
+
+            console.log(
+                'Course changed to:',
+                changes['courseName'].currentValue
+            );
+
+        &#125;
+
+    &#125;
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Parent Template
+            </div>
+
+            <pre><code>&lt;app-course
+    [courseName]="selectedCourse"&gt;
+&lt;/app-course&gt;</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Parent Component
+            </div>
+
+            <pre><code>selectedCourse = 'Java Full Stack';</code></pre>
+
+        </div>
+
+        <div class="output-box">
+
+            <strong>Expected Behavior:</strong>
+
+            <div class="output-preview">
+
+                <p>
+                    Initial Course:
+                    <strong>Java Full Stack</strong>
+                </p>
+
+                <p>
+                    When the parent changes the course value,
+                    <strong>ngOnChanges()</strong> detects the change.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Previous and Current Value -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">2. Previous Value and Current Value</h2>
+
+        <p>
+            Angular provides both the previous and current values through the
+            <strong>SimpleChange</strong> object.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Component
+            </div>
+
+            <pre><code>@@Input() courseName = '';
+
+ngOnChanges(changes: SimpleChanges): void &#123;
+
+    const change = changes['courseName'];
+
+    if (change) &#123;
+
+        console.log(
+            'Previous:',
+            change.previousValue
+        );
+
+        console.log(
+            'Current:',
+            change.currentValue
+        );
+
+    &#125;
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="binding-flow">
+
+            <div class="binding-item">
+
+                <strong>Previous Value</strong>
+
+                <span>
+                    Java Full Stack
+                </span>
+
+            </div>
+
+            <div class="binding-arrow">→</div>
+
+            <div class="binding-item">
+
+                <strong>Input Change</strong>
+
+                <span>
+                    Parent updates value
+                </span>
+
+            </div>
+
+            <div class="binding-arrow">→</div>
+
+            <div class="binding-item">
+
+                <strong>Current Value</strong>
+
+                <span>
+                    Python Full Stack
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- First Change -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">3. Checking First Change</h2>
+
+        <p>
+            The <strong>firstChange</strong> property can be used to determine
+            whether the current change is the first change detected for an
+            input property.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>@@Input() courseName = '';
+
+ngOnChanges(changes: SimpleChanges): void &#123;
+
+    const change = changes['courseName'];
+
+    if (change) &#123;
+
+        if (change.firstChange) &#123;
+
+            console.log('First course value received');
+
+        &#125; else &#123;
+
+            console.log('Course value changed');
+
+        &#125;
+
+    &#125;
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="output-box">
+
+            <strong>Expected Behavior:</strong>
+
+            <div class="output-preview">
+
+                <p>
+                    First value:
+                    <strong>firstChange = true</strong>
+                </p>
+
+                <p>
+                    Later updates:
+                    <strong>firstChange = false</strong>
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Multiple Inputs -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">4. Detecting Multiple Input Changes</h2>
+
+        <p>
+            A component can have multiple input properties. The
+            <strong>SimpleChanges</strong> object can contain information
+            about each property that changed.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Component
+            </div>
+
+            <pre><code>@@Input() courseName = '';
+
+@@Input() trainingMode = '';
+
+ngOnChanges(changes: SimpleChanges): void &#123;
+
+    if (changes['courseName']) &#123;
+
+        console.log(
+            'Course:',
+            changes['courseName'].currentValue
+        );
+
+    &#125;
+
+    if (changes['trainingMode']) &#123;
+
+        console.log(
+            'Mode:',
+            changes['trainingMode'].currentValue
+        );
+
+    &#125;
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Parent Template
+            </div>
+
+            <pre><code>&lt;app-course
+    [courseName]="course"
+    [trainingMode]="mode"&gt;
+&lt;/app-course&gt;</code></pre>
+
+        </div>
+
+        <div class="output-box">
+
+            <strong>Example Values:</strong>
+
+            <div class="student-preview">
+
+                <p>
+                    <strong>Course:</strong>
+                    .NET Full Stack
+                </p>
+
+                <p>
+                    <strong>Training Mode:</strong>
+                    Offline
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Reacting to Input Change -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">5. Reacting to Input Changes</h2>
+
+        <p>
+            One of the important uses of ngOnChanges() is to perform some
+            action whenever an input value changes.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>@@Input() searchText = '';
+
+message = '';
+
+ngOnChanges(changes: SimpleChanges): void &#123;
+
+    if (changes['searchText']) &#123;
+
+        const value =
+            changes['searchText'].currentValue;
+
+        this.message =
+            'Searching for: ' + value;
+
+    &#125;
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Template
+            </div>
+
+            <pre><code>&lt;p&gt;
+    &#123;&#123; message &#125;&#125;
+&lt;/p&gt;</code></pre>
+
+        </div>
+
+        <div class="output-box">
+
+            <strong>Expected Output:</strong>
+
+            <div class="output-preview">
+
+                Searching for:
+                <strong>Angular</strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- OnChanges vs OnInit -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold mb-3">@@OnChanges vs @@OnInit</h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered syntax-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>ngOnChanges()</th>
+
+                        <th>ngOnInit()</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            Responds to changes in input-bound properties.
+                        </td>
+
+                        <td>
+                            Performs component initialization.
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            Can run whenever an input value changes.
+                        </td>
+
+                        <td>
+                            Normally runs once during initialization.
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            Receives a SimpleChanges object.
+                        </td>
+
+                        <td>
+                            Does not receive SimpleChanges.
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            Useful for reacting to parent-to-child data changes.
+                        </td>
+
+                        <td>
+                            Useful for setting up initial component state.
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+    <!-- Complete CIIT Example -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Complete CIIT Training Institute Example</h2>
+
+        <p>
+            Suppose the CIIT Training Institute course dashboard sends a
+            selected course and training mode to a child component.
+            The child component can react whenever these values change.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                course-details.component.ts
+            </div>
+
+            <pre><code>import &#123;
+    Component,
+    Input,
+    OnChanges,
+    SimpleChanges
+&#125; from '@@angular/core';
+
+@@Component(&#123;
+    selector: 'app-course-details',
+    templateUrl: './course-details.component.html'
+&#125;)
+export class CourseDetailsComponent
+    implements OnChanges &#123;
+
+    @@Input() courseName = '';
+
+    @@Input() trainingMode = '';
+
+    courseMessage = '';
+
+    ngOnChanges(changes: SimpleChanges): void &#123;
+
+        if (
+            changes['courseName'] ||
+            changes['trainingMode']
+        ) &#123;
+
+            this.courseMessage =
+                this.courseName +
+                ' - ' +
+                this.trainingMode;
+
+        &#125;
+
+    &#125;
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Parent Template
+            </div>
+
+            <pre><code>&lt;app-course-details
+    [courseName]="selectedCourse"
+    [trainingMode]="selectedMode"&gt;
+&lt;/app-course-details&gt;</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Parent Component
+            </div>
+
+            <pre><code>selectedCourse = 'Java Full Stack';
+
+selectedMode = 'Offline';</code></pre>
+
+        </div>
+
+        <div class="output-box">
+
+            <strong>Expected Output:</strong>
+
+            <div class="student-preview">
+
+                <h3>
+                    Selected Course
+                </h3>
+
+                <p>
+                    <strong>Course:</strong>
+                    Java Full Stack
+                </p>
+
+                <p>
+                    <strong>Training Mode:</strong>
+                    Offline
+                </p>
+
+                <p>
+                    <strong>Message:</strong>
+                    Java Full Stack - Offline
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Important Points -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Important Points About @@OnChanges</h2>
+
+        <ul class="best-practice-list">
+
+            <li>
+                ngOnChanges() is related to input-bound properties.
+            </li>
+
+            <li>
+                It receives a SimpleChanges object.
+            </li>
+
+            <li>
+                previousValue provides the earlier value.
+            </li>
+
+            <li>
+                currentValue provides the latest value.
+            </li>
+
+            <li>
+                firstChange indicates whether it is the first detected change.
+            </li>
+
+            <li>
+                It is especially useful for reacting to parent-to-child
+                data updates.
+            </li>
+
+        </ul>
+
+    </section>
+
+    <!-- Best Practices -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">@@OnChanges Best Practices</h2>
+
+        <ul class="best-practice-list">
+
+            <li>
+                Use ngOnChanges when component behavior depends on input changes.
+            </li>
+
+            <li>
+                Check the required property before processing its change.
+            </li>
+
+            <li>
+                Use currentValue and previousValue when comparison is needed.
+            </li>
+
+            <li>
+                Keep change-handling logic simple and readable.
+            </li>
+
+            <li>
+                Move reusable business logic into services when appropriate.
+            </li>
+
+            <li>
+                Avoid unnecessary processing when unrelated inputs change.
+            </li>
+
+        </ul>
+
+    </section>
+
+    <!-- Summary -->
+    <section class="summary-box">
+
+        <h3>Summary</h3>
+
+        <p>
+            Angular <strong>@@OnChanges</strong> provides the
+            <strong>ngOnChanges()</strong> lifecycle method for responding to
+            changes in input-bound properties.
+        </p>
+
+        <p>
+            The <strong>SimpleChanges</strong> object provides useful
+            information such as <strong>previousValue</strong>,
+            <strong>currentValue</strong>, and <strong>firstChange</strong>.
+        </p>
+
+    </section>
+
+    <!-- Navigation -->
+    <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+
+        <a class="btn btn-outline-secondary"
+           href="@Url.Action("OnInit", "LifecycleHooks", new { area = "Angular" })">
+            ← ngOnInit
+        </a>
+
+        <a class="btn btn-primary"
+           href="@Url.Action("AfterViewInit", "LifecycleHooks", new { area = "Angular" })">
+            ngAfterViewInit →
+        </a>
+
+    </div>
+
+</div>
+
+<style>
+
+    .info-card {
+        background: #f8fafc;
+        border-left: 5px solid #4c1d95;
+        padding: 18px 20px;
+        border-radius: 7px;
+        margin-top: 15px;
+    }
+
+        .info-card h5 {
+            color: #4c1d95;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .info-card p {
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+
+    .syntax-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        padding: 25px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+    }
+
+    .syntax-box {
+        width: 175px;
+        min-height: 125px;
+        padding: 18px;
+        text-align: center;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 9px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+        .syntax-box i {
+            display: block;
+            font-size: 28px;
+            color: #4c1d95;
+            margin-bottom: 8px;
+        }
+
+        .syntax-box strong {
+            display: block;
+            color: #2e1065;
+            font-weight: 700;
+        }
+
+        .syntax-box span {
+            display: block;
+            color: #64748b;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+    .syntax-arrow {
+        color: #4c1d95;
+        font-size: 25px;
+        font-weight: 700;
+    }
+
+    .syntax-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+    }
+
+    .syntax-card {
+        padding: 20px;
+        text-align: center;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 9px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    }
+
+    .syntax-icon {
+        width: 55px;
+        height: 55px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 12px;
+        background: #ede9fe;
+        color: #4c1d95;
+        border-radius: 50%;
+        font-size: 24px;
+    }
+
+    .syntax-card h5 {
+        color: #2e1065;
+        font-weight: 700;
+    }
+
+    .syntax-card p {
+        color: #64748b;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .syntax-card code {
+        color: #4c1d95;
+        font-weight: 600;
+    }
+
+    .code-card {
+        margin-top: 15px;
+        margin-bottom: 18px;
+        border-radius: 8px;
+        overflow: hidden;
+        background: #0f172a;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .code-title {
+        background: #1e293b;
+        color: #d8c9f5;
+        padding: 10px 15px;
+        font-weight: 600;
+        border-bottom: 1px solid #334155;
+    }
+
+    .code-card pre {
+        margin: 0;
+        padding: 18px;
+        overflow-x: auto;
+    }
+
+    .code-card code {
+        color: #e2e8f0;
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    .output-box {
+        margin-top: 15px;
+        padding: 18px;
+        background: #f1f5f9;
+        border-left: 5px solid #4c1d95;
+        border-radius: 6px;
+    }
+
+    .output-preview {
+        margin-top: 12px;
+        padding: 18px;
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 7px;
+    }
+
+        .output-preview h3 {
+            color: #2e1065;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .output-preview p {
+            margin-bottom: 7px;
+        }
+
+    .binding-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 20px;
+        padding: 20px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+    }
+
+    .binding-item {
+        min-width: 170px;
+        padding: 15px;
+        text-align: center;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 8px;
+    }
+
+        .binding-item strong {
+            display: block;
+            color: #4c1d95;
+            font-weight: 700;
+        }
+
+        .binding-item span {
+            display: block;
+            color: #64748b;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+    .binding-arrow {
+        color: #4c1d95;
+        font-size: 25px;
+        font-weight: 700;
+    }
+
+    .active-preview {
+        margin-top: 12px;
+        display: inline-block;
+        padding: 12px 20px;
+        background: #ede9fe;
+        border: 2px solid #4c1d95;
+        border-radius: 7px;
+        color: #2e1065;
+        font-weight: 700;
+    }
+
+    .style-preview {
+        margin-top: 12px;
+        font-size: 20px;
+        font-weight: 600;
+        color: #4c1d95;
+    }
+
+    .control-flow-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .control-card {
+        padding: 20px;
+        background: #f8fafc;
+        border: 1px solid #ddd6fe;
+        border-radius: 8px;
+    }
+
+        .control-card h5 {
+            color: #4c1d95;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+    .code-small {
+        background: #0f172a;
+        border-radius: 7px;
+        overflow: hidden;
+    }
+
+        .code-small pre {
+            margin: 0;
+            padding: 15px;
+            overflow-x: auto;
+        }
+
+        .code-small code {
+            color: #e2e8f0;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+    .syntax-table {
+        background: #ffffff;
+    }
+
+        .syntax-table thead th {
+            background: #4c1d95;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .syntax-table td {
+            vertical-align: middle;
+        }
+
+        .syntax-table code {
+            color: #4c1d95;
+            font-weight: 600;
+        }
+
+    .student-preview {
+        margin-top: 12px;
+        padding: 20px;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 8px;
+    }
+
+        .student-preview h3 {
+            color: #2e1065;
+            font-weight: 700;
+        }
+
+    .best-practice-list {
+        padding: 20px 20px 20px 40px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+    }
+
+        .best-practice-list li {
+            margin-bottom: 11px;
+            line-height: 1.6;
+        }
+
+            .best-practice-list li:last-child {
+                margin-bottom: 0;
+            }
+
+    .summary-box {
+        background: #cfe2ff;
+        border-radius: 6px;
+        padding: 18px 22px;
+        margin-top: 20px;
+    }
+
+        .summary-box h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #084298;
+            margin-bottom: 10px;
+        }
+
+        .summary-box p {
+            font-size: 16px !important;
+            line-height: 1.6 !important;
+            color: #084298 !important;
+            margin-bottom: 8px;
+        }
+
+            .summary-box p:last-child {
+                margin-bottom: 0;
+            }
+
+    @@media (max-width: 991px) {
+
+        .syntax-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .control-flow-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @@media (max-width: 576px) {
+
+        .syntax-grid,
+        .control-flow-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .syntax-flow,
+        .binding-flow {
+            flex-direction: column;
+        }
+
+        .syntax-arrow,
+        .binding-arrow {
+            transform: rotate(90deg);
+        }
+
+        .syntax-box {
+            width: 100%;
+            max-width: 280px;
+        }
+
+        .binding-item {
+            width: 100%;
+            max-width: 250px;
+        }
+
+        .code-card code,
+        .code-small code {
+            font-size: 13px;
+        }
+            
+        .d-flex.justify-content-between {
+            gap: 10px;
+        }
+
+            .d-flex.justify-content-between .btn {
+                font-size: 13px;
+                padding: 8px 12px;
+            }
+    }
+
+</style>

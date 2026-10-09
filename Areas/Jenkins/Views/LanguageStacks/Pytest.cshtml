@@ -1,0 +1,202 @@
+@{
+    Layout = "~/Areas/Jenkins/Views/Shared/JenkinsLayout.cshtml";
+    ViewData["Title"] = "pytest Testing";
+}
+
+<style>
+    #pytest-testing-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #pytest-testing-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #pytest-testing-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #pytest-testing-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #pytest-testing-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+    #pytest-testing-page .example-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+    }
+</style>
+
+<main id="pytest-testing-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/Jenkins/Views/Shared/JenkinsTopics.cshtml")
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+                <h1 class="fw-bold">pytest Testing</h1>
+                <p class="lead">
+                    Learn how to execute automated Python test suites using pytest, generate compatible XML metrics, track coverage ratios, and process test status dashboards inside Jenkins.
+                </p>
+            </div>
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">What is pytest Testing in Jenkins?</h2>
+                <p>
+                    <strong>pytest</strong> is the standard, highly extensible testing framework for the Python ecosystem. Running automated validation targets locally helps developers verify individual functions, but integrating <strong>pytest Testing</strong> within a centralized Jenkins automation pipeline makes sure every single pull request is automatically verified against code regressions.
+                </p>
+                <p>
+                    Because Jenkins can parse standardized testing outputs, running pytest requires using extension libraries to output results into structured **JUnit-compliant XML files**. Jenkins reads these generated records to build interactive visual plots, track performance metrics, flag flaky test patterns, and gracefully capture failure details right on the job landing dashboard.
+                </p>
+                <div class="alert alert-info">
+                    <strong>Simple Definition:</strong> A production validation phase in Jenkins that launches Python test files using the pytest runner, extracts results into XML reports, and surfaces error dashboards on the user interface.
+                </div>
+            </div>
+
+            <!-- KEY CONCEPTS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Key Concepts</h2>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>JUnit XML Result Exports</h5>
+                            <p class="mb-0">Passing execution arguments like <code>--junitxml=reports.xml</code> to save raw terminal assertions into structured files that Jenkins can native parse.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Post-Execution Capture Rules</h5>
+                            <p class="mb-0">Using the declarative pipeline <code>post { always { ... } }</code> block to capture test details even if assertions fail and crash the main stage shell.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Code Coverage Audits</h5>
+                            <p class="mb-0">Integrating tools such as <code>pytest-cov</code> to measure code coverage percentage thresholds, blocking deployments if thresholds are not met.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Pipeline Error Handling</h5>
+                            <p class="mb-0">Gracefully shifting build status badges to 'Unstable' instead of 'Failure' when unit tests fail, ensuring reports are generated properly.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXAMPLE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Practical Jenkins Example</h2>
+                <p>This production-ready declarative template provisions an isolated virtual environment, installs the required testing wrappers, and evaluates code assertions while generating JUnit metrics:</p>
+                <pre><code>pipeline {
+    agent any
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    stages {
+        stage('Initialize & Setup') {
+            steps {
+                echo 'Creating isolated environment context...'
+                sh '''
+                    python3 -m venv venv
+                    . venv/bin/activate
+                    pip install --upgrade pip
+                    // Ensures pytest and xml generation modules are present
+                    pip install pytest pytest-cov -r requirements.txt
+                '''
+            }
+        }
+
+        stage('Execute Pytest Suite') {
+            steps {
+                echo 'Running automated verification routines...'
+                // Generates junitxml output and evaluates absolute coverage targets simultaneously
+                sh '''
+                    . venv/bin/activate
+                    pytest --junitxml=target/pytest-reports/results.xml --cov=src/ tests/
+                '''
+            }
+        }
+    }
+
+    post {
+        always {
+            echo 'Processing structured validation outputs...'
+            // Directs Jenkins to load and parse the exported XML results to render UI dashboards
+            junit allowEmptyResults: true, testResults: '**/target/pytest-reports/*.xml'
+        }
+    }
+}</code></pre>
+</div>
+
+<!-- PRACTICE -->
+<div class="mb-4">
+<h2 class="h3 fw-bold">Practice Exercise</h2>
+<ol>
+<li class="mb-2">Verify that your repository structure includes a <code>tests/</code> folder with python files prefixed by <code>test_</code>.</li>
+<li class="mb-2">Create a new <strong>Pipeline</strong> job path in your central Jenkins console titled <code>python-pytest-pipeline</code>.</li>
+<li class="mb-2">Paste the complete declarative layout script shared in the practical example section above into your pipeline code space.</li>
+<li class="mb-2">Trigger consecutive builds. Check the job's main landing layout to explore the generated <strong>Test Result Trend</strong> graphs and detailed assertion history views.</li>
+                </ol>
+            </div>
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+                <h2 class="h4 fw-bold">Summary</h2>
+                <p class="mb-0">You have completed the <strong>pytest Testing</strong> lesson. Mastering test automation across interpreted architectures gives you the foundational knowledge needed to configure corporate applications on compiled systems like **C# and .NET Pipelines**.</p>
+            </div>
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+                <a class="btn btn-outline-primary" href="@Url.Action("Python", "LanguageStacks", new { area = "Jenkins" })">&larr; Previous: Python Pipeline</a>
+                <a class="btn btn-primary" href="@Url.Action("DotNet", "LanguageStacks", new { area = "Jenkins" })">Next: C# and .NET Pipeline &rarr;</a>
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

@@ -1,0 +1,662 @@
+﻿@{
+    ViewData["Title"] = "Pipes Introduction";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- Header -->
+    <section class="mb-4">
+        <h1 class="fw-bold text-dark">Pipes Introduction</h1>
+        <p class="lead text-muted">
+            Learn how Angular Pipes transform and format data directly
+            inside templates without changing the original component data.
+        </p>
+    </section>
+
+    <!-- What are Pipes -->
+    <section class="mb-4">
+        <h2 class="fw-bold">What are Pipes?</h2>
+
+        <div class="info-card">
+            <p>
+                Pipes are Angular features used to transform and format
+                data before displaying it in the template.
+            </p>
+
+            <p class="mb-0">
+                They are useful for formatting dates, numbers, currency,
+                text, and other values in a readable way.
+            </p>
+        </div>
+    </section>
+
+    <!-- Flow -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Pipe Flow</h2>
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+                <div class="syntax-icon">1</div>
+                <h5>Component Data</h5>
+                <p>Data is defined inside the component.</p>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+                <div class="syntax-icon">2</div>
+                <h5>Pipe</h5>
+                <p>The pipe transforms the value.</p>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+                <div class="syntax-icon">3</div>
+                <h5>Template</h5>
+                <p>The transformed value is displayed.</p>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+                <div class="syntax-icon">4</div>
+                <h5>UI</h5>
+                <p>The formatted data appears to the user.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Basic Syntax -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Basic Pipe Syntax</h2>
+
+        <div class="code-card">
+            <div class="code-title">Angular Template</div>
+
+            <pre><code>{{value | pipeName}}</code></pre>
+        </div>
+
+        <div class="output-box">
+            <strong>Example:</strong>
+
+            <div class="output-preview">
+                <code>{{ "SAM" | lowercase }}</code>
+            </div>
+        </div>
+    </section>
+
+    <!-- Common Pipes -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Common Angular Pipes</h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+                <div class="syntax-icon">T</div>
+                <h5>UpperCase</h5>
+                <p>
+                    Converts text into uppercase characters.
+                </p>
+                <code>uppercase</code>
+            </div>
+
+            <div class="syntax-card">
+                <div class="syntax-icon">L</div>
+                <h5>LowerCase</h5>
+                <p>
+                    Converts text into lowercase characters.
+                </p>
+                <code>lowercase</code>
+            </div>
+
+            <div class="syntax-card">
+                <div class="syntax-icon">D</div>
+                <h5>Date</h5>
+                <p>
+                    Formats date values for display.
+                </p>
+                <code>date</code>
+            </div>
+
+            <div class="syntax-card">
+                <div class="syntax-icon">C</div>
+                <h5>Currency</h5>
+                <p>
+                    Formats numbers as currency values.
+                </p>
+                <code>currency</code>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Uppercase -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Uppercase Pipe</h2>
+
+        <p>
+            The <code>uppercase</code> pipe converts a string into
+            uppercase characters.
+        </p>
+
+        <div class="code-card">
+            <div class="code-title">Component</div>
+
+            <pre><code>studentName = 'Samiksha';</code></pre>
+        </div>
+
+        <div class="code-card">
+            <div class="code-title">HTML</div>
+
+            <pre><code>&lt;p&gt;
+    {{studentName | uppercase}}
+&lt;/p&gt;</code></pre>
+        </div>
+
+        <div class="output-box">
+            <strong>Output:</strong>
+
+            <div class="output-preview">
+                SAMIKSHA
+            </div>
+        </div>
+    </section>
+
+    <!-- Lowercase -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Lowercase Pipe</h2>
+
+        <p>
+            The <code>lowercase</code> pipe converts a string into
+            lowercase characters.
+        </p>
+
+        <div class="code-card">
+            <div class="code-title">HTML</div>
+
+            <pre><code>&lt;p&gt;
+    {{studentName | lowercase}}
+&lt;/p&gt;</code></pre>
+        </div>
+
+        <div class="output-box">
+            <strong>Output:</strong>
+
+            <div class="output-preview">
+                samiksha
+            </div>
+        </div>
+    </section>
+
+    <!-- Date -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Date Pipe</h2>
+
+        <p>
+            The <code>date</code> pipe formats date values into
+            readable formats.
+        </p>
+
+        <div class="code-card">
+            <div class="code-title">Component</div>
+
+            <pre><code>joiningDate = new Date();</code></pre>
+        </div>
+
+        <div class="code-card">
+            <div class="code-title">HTML</div>
+
+            <pre><code>&lt;p&gt;
+    {{joiningDate | date}}
+&lt;/p&gt;</code></pre>
+        </div>
+
+        <div class="output-box">
+            <strong>Output:</strong>
+
+            <div class="output-preview">
+                The date is displayed in a formatted form.
+            </div>
+        </div>
+    </section>
+
+    <!-- Currency -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Currency Pipe</h2>
+
+        <p>
+            The <code>currency</code> pipe formats a number as a
+            currency value.
+        </p>
+
+        <div class="code-card">
+            <div class="code-title">Component</div>
+
+            <pre><code>courseFee = 35000;</code></pre>
+        </div>
+
+        <div class="code-card">
+            <div class="code-title">HTML</div>
+
+            <pre><code>&lt;p&gt;
+    {{courseFee | currency:'INR'}}
+&lt;/p&gt;</code></pre>
+        </div>
+
+        <div class="output-box">
+            <strong>Output:</strong>
+
+            <div class="output-preview">
+                ₹35,000.00
+            </div>
+        </div>
+    </section>
+
+    <!-- Pipe with Parameters -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Pipe with Parameters</h2>
+
+        <p>
+            Some pipes accept parameters to control how the value
+            should be formatted.
+        </p>
+
+        <div class="code-card">
+            <div class="code-title">Example</div>
+
+            <pre><code>{{courseFee | currency:'INR'}}</code></pre>
+        </div>
+
+        <div class="output-box">
+            <strong>Explanation:</strong>
+
+            <div class="output-preview">
+                <code>'INR'</code> is passed as a parameter to the
+                currency pipe.
+            </div>
+        </div>
+    </section>
+
+    <!-- Multiple Pipes -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Using Multiple Pipes</h2>
+
+        <p>
+            Multiple pipes can be chained together when more than one
+            transformation is required.
+        </p>
+
+        <div class="code-card">
+            <div class="code-title">Example</div>
+
+            <pre><code>{{studentName | uppercase}}</code></pre>
+        </div>
+
+        <div class="output-box">
+            <strong>Output:</strong>
+
+            <div class="output-preview">
+                SAMIKSHA
+            </div>
+        </div>
+    </section>
+
+    <!-- Student Examples -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Student Data Examples</h2>
+
+        <div class="code-card">
+            <div class="code-title">Component</div>
+
+            <pre><code>student1 = 'Sam';
+student2 = 'Pradnya';
+student3 = 'Samiksha';
+
+courseFee = 35000;
+
+joiningDate = new Date();</code></pre>
+        </div>
+
+        <div class="code-card">
+            <div class="code-title">Template</div>
+
+            <pre><code>&lt;p&gt;{{student1 | uppercase}}&lt;/p&gt;
+
+&lt;p&gt;{{student2 | lowercase}}&lt;/p&gt;
+
+&lt;p&gt;{{student3 | uppercase}}&lt;/p&gt;
+
+&lt;p&gt;{{courseFee | currency:'INR'}}&lt;/p&gt;
+
+&lt;p&gt;{{joiningDate | date}}&lt;/p&gt;</code></pre>
+        </div>
+
+        <div class="student-preview">
+            <h4>Student Information</h4>
+
+            <p>Sam</p>
+            <p>Pradnya</p>
+            <p>Samiksha</p>
+
+            <hr />
+
+            <p>Course Fee: ₹35,000.00</p>
+        </div>
+    </section>
+
+    <!-- Pipe Benefits -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Benefits of Pipes</h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+                <div class="syntax-icon">F</div>
+                <h5>Formatting</h5>
+                <p>
+                    Display data in a user-friendly format.
+                </p>
+            </div>
+
+            <div class="syntax-card">
+                <div class="syntax-icon">C</div>
+                <h5>Clean Templates</h5>
+                <p>
+                    Keep common formatting logic simple.
+                </p>
+            </div>
+
+            <div class="syntax-card">
+                <div class="syntax-icon">R</div>
+                <h5>Reusable</h5>
+                <p>
+                    Built-in pipes can be reused across templates.
+                </p>
+            </div>
+
+            <div class="syntax-card">
+                <div class="syntax-icon">D</div>
+                <h5>Readable Data</h5>
+                <p>
+                    Convert raw values into readable UI output.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Comparison -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Common Pipe Reference</h2>
+
+        <div class="table-responsive">
+
+            <table class="table syntax-table">
+
+                <thead>
+                    <tr>
+                        <th>Pipe</th>
+                        <th>Purpose</th>
+                        <th>Example</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td><code>uppercase</code></td>
+                        <td>Convert text to uppercase</td>
+                        <td><code>{{name | uppercase}}</code></td>
+                    </tr>
+
+                    <tr>
+                        <td><code>lowercase</code></td>
+                        <td>Convert text to lowercase</td>
+                        <td><code>{{name | lowercase}}</code></td>
+                    </tr>
+
+                    <tr>
+                        <td><code>date</code></td>
+                        <td>Format date</td>
+                        <td><code>{{date | date}}</code></td>
+                    </tr>
+
+                    <tr>
+                        <td><code>currency</code></td>
+                        <td>Format currency</td>
+                        <td><code>{{fee | currency:'INR'}}</code></td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+    </section>
+
+    <!-- Best Practices -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Best Practices</h2>
+
+        <ul class="best-practice-list">
+            <li>Use pipes mainly for presentation and formatting.</li>
+            <li>Keep complex business logic outside the template.</li>
+            <li>Use meaningful pipe parameters.</li>
+            <li>Use built-in pipes whenever they satisfy the requirement.</li>
+            <li>Create custom pipes when reusable transformation logic is required.</li>
+            <li>Avoid unnecessary pipe chains in complex templates.</li>
+        </ul>
+    </section>
+
+    <!-- Summary -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Summary</h2>
+
+        <div class="summary-box">
+            <ul class="mb-0">
+                <li>Pipes transform and format data in Angular templates.</li>
+                <li>The pipe operator is represented using <code>|</code>.</li>
+                <li><code>uppercase</code> converts text to uppercase.</li>
+                <li><code>lowercase</code> converts text to lowercase.</li>
+                <li><code>date</code> formats date values.</li>
+                <li><code>currency</code> formats currency values.</li>
+                <li>Pipes can accept parameters for customized formatting.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Navigation -->
+    <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+
+        <a class="btn btn-outline-secondary"
+           href="@Url.Action("CustomDirectives", "Directives", new { area = "Angular" })">
+            ← Custom Directives
+        </a>
+
+        <a class="btn btn-primary"
+           href="@Url.Action("BuiltInPipes", "Pipes", new { area = "Angular" })">
+            Built-in Pipes →
+        </a>
+
+    </div>
+
+</div>
+
+<style>
+
+    .info-card {
+        background: #f8fafc;
+        border-left: 5px solid #4c1d95;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    .syntax-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .syntax-box {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 20px;
+        text-align: center;
+        width: 190px;
+        min-height: 160px;
+    }
+
+    .syntax-icon {
+        width: 45px;
+        height: 45px;
+        background: #4c1d95;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 12px;
+        font-weight: bold;
+    }
+
+    .syntax-arrow {
+        font-size: 28px;
+        font-weight: bold;
+        color: #4c1d95;
+    }
+
+    .syntax-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+
+    .syntax-card {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .code-card {
+        background: #0f172a;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-bottom: 20px;
+    }
+
+    .code-title {
+        background: #1e293b;
+        color: #ddd6fe;
+        padding: 10px 15px;
+        font-weight: 600;
+    }
+
+    .code-card pre {
+        margin: 0;
+        padding: 20px;
+        overflow-x: auto;
+    }
+
+    .code-card code {
+        color: #f8fafc;
+        font-family: Consolas, monospace;
+        line-height: 1.7;
+    }
+
+    .output-box {
+        background: #ede9fe;
+        border-left: 5px solid #4c1d95;
+        padding: 18px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+
+    .output-preview {
+        background: white;
+        border-radius: 8px;
+        padding: 15px;
+        margin-top: 10px;
+    }
+
+    .syntax-table {
+        border: 1px solid #e2e8f0;
+    }
+
+    .syntax-table th {
+        background: #4c1d95;
+        color: white;
+    }
+
+    .syntax-table td {
+        vertical-align: middle;
+    }
+
+    .student-preview {
+        background: #ede9fe;
+        border: 2px solid #4c1d95;
+        border-radius: 12px;
+        padding: 25px;
+        text-align: center;
+    }
+
+    .best-practice-list {
+        background: #f8fafc;
+        border-radius: 10px;
+        padding: 25px 40px;
+        border-left: 5px solid #4c1d95;
+    }
+
+    .best-practice-list li {
+        margin-bottom: 10px;
+    }
+
+    .summary-box {
+        background: #cfe2ff;
+        color: #084298;
+        border-radius: 10px;
+        padding: 20px;
+    }
+
+    @@media (max-width: 991px) {
+
+        .syntax-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .syntax-flow {
+            flex-direction: column;
+        }
+
+        .syntax-arrow {
+            transform: rotate(90deg);
+        }
+    }
+
+    @@media (max-width: 576px) {
+
+        .syntax-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .syntax-box {
+            width: 100%;
+        }
+
+        .best-practice-list {
+            padding: 20px 30px;
+        }
+
+        .code-card pre {
+            font-size: 13px;
+        }
+    }
+
+</style>

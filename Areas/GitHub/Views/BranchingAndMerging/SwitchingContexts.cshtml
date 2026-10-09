@@ -1,0 +1,201 @@
+@{
+    Layout = "~/Areas/GitHub/Views/Shared/GithubLayout.cshtml";
+    ViewData["Title"] = "Switching Context";
+}
+
+<main id="tutorials" class="container py-1">
+    <div class="row g-4">
+
+        <!-- Sidebar Navigation -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/GitHub/Views/Shared/GithubTopics.cshtml")
+        </aside>
+
+        <!-- Reading Content Area -->
+        <section class="col-lg-9">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4 p-lg-5">
+
+                    <h1 class="fw-bold mb-3">Switching Context</h1>
+
+                    <p>
+                        When you need to switch branches but aren't ready to
+                        commit your current work, Git provides two primary
+                        ways to handle your context: <strong>
+                        stashing your
+                        changes or carrying them with you.
+                    </strong>
+                </p>
+
+                <p class="text-muted">
+                    Here is how to manage your context depending on what
+                    you want to do with your uncommitted changes.
+                </p>
+
+                <hr class="my-4" />
+
+                <!-- Option 1: Git Stash -->
+                <h3 class="fw-bold mb-3">Option 1: Hide Your Work Safely (Git Stash)</h3>
+
+                <p>
+                    If your current work is incomplete and you want a clean
+                    slate before switching branches, use the stash. This
+                    saves your changes temporarily and cleans the affected
+                    tracked files in your working directory.
+                </p>
+
+                <h6 class="fw-semibold">1. Save Your Changes</h6>
+                <pre class="bg-dark text-light p-3 rounded"><code>git stash</code></pre>
+                <p>
+                    Saves changes to tracked files and clears those changes
+                    from your working directory.
+                </p>
+
+                <h6 class="fw-semibold">2. Switch to Another Branch</h6>
+                <pre class="bg-dark text-light p-3 rounded"><code>git switch &lt;other-branch&gt;</code></pre>
+                <p>
+                    Switches to your target branch.
+                </p>
+
+                <h6 class="fw-semibold">3. Return to Your Original Branch</h6>
+                <pre class="bg-dark text-light p-3 rounded"><code>git switch &lt;original-branch&gt;</code></pre>
+                <p>
+                    Switches back to the branch where you saved your work.
+                </p>
+
+                <h6 class="fw-semibold">4. Restore Your Changes</h6>
+                <pre class="bg-dark text-light p-3 rounded"><code>git stash pop</code></pre>
+                <p>
+                    Restores the most recent stash and removes it from
+                    the stash list if it applies successfully.
+                </p>
+
+                <div class="alert alert-info mt-3">
+                    <strong>Tip:</strong>
+                    Use <code>git stash -u</code> if you also need to
+                    stash untracked files.
+                </div>
+
+                <hr class="my-4" />
+
+                <!-- Option 2: Carry Changes -->
+                <h3 class="fw-bold mb-3">Option 2: Bring Your Changes With You</h3>
+
+                <p>
+                    If you accidentally started working on the wrong
+                    branch, you may be able to switch branches while
+                    keeping your current uncommitted changes.
+                </p>
+
+                <h6 class="fw-semibold">1. Switch to an Existing Branch</h6>
+                <pre class="bg-dark text-light p-3 rounded"><code>git switch &lt;existing-branch&gt;</code></pre>
+                <p>
+                    Moves to the specified branch while carrying compatible
+                    uncommitted changes in your working directory.
+                </p>
+
+                <h6 class="fw-semibold">2. Create a New Branch and Switch</h6>
+                <pre class="bg-dark text-light p-3 rounded"><code>git switch -c &lt;new-branch&gt;</code></pre>
+                <p>
+                    Creates a new branch and immediately switches to it,
+                    keeping compatible uncommitted changes.
+                </p>
+
+                <div class="alert alert-warning mt-3">
+                    <strong>Note:</strong>
+                    Git may block the switch if your changes would be
+                    overwritten by files on the destination branch.
+                    In that case, commit or stash your changes before
+                    switching.
+                </div>
+
+                <hr class="my-4" />
+
+                <!-- Option 3: Discard Changes -->
+                <h3 class="fw-bold mb-3"> Option 3: Discard Changes (Hard Reset)</h3>
+
+                <p>
+                    If you no longer need your uncommitted changes, you
+                    can discard changes to tracked files before switching
+                    branches.
+                </p>
+
+                <pre class="bg-dark text-light p-3 rounded"><code>git reset --hard HEAD</code></pre>
+
+                <div class="alert alert-danger mt-3">
+                    <strong>Warning:</strong>
+                    This permanently discards uncommitted changes to
+                    tracked files in your working directory and index.
+                    The operation may be difficult or impossible to undo.
+                    Make sure you do not need those changes before running it.
+                </div>
+
+                <h3 class="fw-bold mt-5 mb-3">Quick Reference</h3>
+
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped align-middle">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Command</th>
+                                <th>Purpose</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>git stash</code></td>
+                                <td>Temporarily save changes to tracked files</td>
+                            </tr>
+                            <tr>
+                                <td><code>git stash -u</code></td>
+                                <td>Stash tracked and untracked files</td>
+                            </tr>
+                            <tr>
+                                <td><code>git stash pop</code></td>
+                                <td>Restore and remove the latest stash when applied successfully</td>
+                            </tr>
+                            <tr>
+                                <td><code>git switch &lt;branch&gt;</code></td>
+                                <td>Switch branches while preserving compatible changes</td>
+                            </tr>
+                            <tr>
+                                <td><code>git switch -c &lt;branch&gt;</code></td>
+                                <td>Create a branch and switch to it</td>
+                            </tr>
+                            <tr>
+                                <td><code>git reset --hard HEAD</code></td>
+                                <td>Discard uncommitted changes to tracked files</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="alert alert-success mt-4">
+                    <strong>Key Takeaway:</strong>
+                    Use <code>git stash</code> when you want to save
+                    unfinished work temporarily. Switch branches directly
+                    when Git can safely carry your changes. Use
+                    <code>git reset --hard HEAD</code> only when you
+                    intentionally want to discard tracked-file changes.
+                </div>
+
+                <!-- Previous / Next Navigation -->
+                <div class="d-flex justify-content-between align-items-center gap-3 flex-wrap mt-5 pt-4 border-top">
+
+                    <a class="btn btn-outline-primary"
+                       href='@Url.Action("ManagingBranches", "BranchingAndMerging", new { area = "GitHub" })'>
+                        &larr; Previous: Managing Branches
+                    </a>
+
+                    <a class="btn btn-primary"
+                       href='@Url.Action("BasicMerging", "BranchingAndMerging", new { area = "GitHub" })'>
+                        Next: Basic Merging &rarr;
+                    </a>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+</div>
+</main>
+

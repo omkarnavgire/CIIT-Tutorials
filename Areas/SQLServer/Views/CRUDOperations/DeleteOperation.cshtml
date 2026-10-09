@@ -1,0 +1,510 @@
+﻿@{
+    ViewData["Title"] = "DELETE Operation";
+}
+
+<section>
+
+    <!-- PAGE INTRODUCTION -->
+
+    <div class="mb-5">
+
+        <h1 class="fw-bold mb-3">
+            DELETE Operation
+        </h1>
+
+        <p class="lead text-muted">
+            The DELETE statement is used to remove existing records
+            from a SQL Server table.
+        </p>
+
+        <p>
+            When a record is no longer required, the DELETE statement
+            can be used to remove it from the table. We can delete
+            a single record or multiple records based on a condition.
+        </p>
+
+    </div>
+
+
+    <!-- WHAT IS DELETE -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            What is DELETE?
+        </h2>
+
+        <p>
+            The <strong>DELETE</strong> statement removes one or more
+            existing rows from a table.
+        </p>
+
+        <p>
+            The <strong>WHERE</strong> clause is normally used to
+            specify which records should be deleted.
+        </p>
+
+    </section>
+
+
+    <!-- SYNTAX -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            DELETE Syntax
+        </h2>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>DELETE FROM table_name
+WHERE condition;</code></pre>
+
+        </div>
+
+        <div class="alert alert-warning border-0 mt-4">
+
+            <strong>Important:</strong>
+            Always check the WHERE condition before executing a DELETE
+            statement. Without WHERE, all rows in the table can be
+            deleted.
+
+        </div>
+
+    </section>
+
+
+    <!-- SAMPLE TABLE -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Example Table
+        </h2>
+
+        <p>
+            We will use the following Students table for the examples.
+        </p>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>StudentId</th>
+                        <th>StudentName</th>
+                        <th>Age</th>
+                        <th>City</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>101</td>
+                        <td>Rahul</td>
+                        <td>22</td>
+                        <td>Pune</td>
+                    </tr>
+
+                    <tr>
+                        <td>102</td>
+                        <td>Priya</td>
+                        <td>23</td>
+                        <td>Mumbai</td>
+                    </tr>
+
+                    <tr>
+                        <td>103</td>
+                        <td>Amit</td>
+                        <td>21</td>
+                        <td>Nashik</td>
+                    </tr>
+
+                    <tr>
+                        <td>104</td>
+                        <td>Neha</td>
+                        <td>22</td>
+                        <td>Pune</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- DELETE SINGLE RECORD -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Delete a Single Record
+        </h2>
+
+        <p>
+            Suppose we want to remove the student whose StudentId is
+            104.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>DELETE FROM Students
+WHERE StudentId = 104;</code></pre>
+
+        </div>
+
+        <p class="mt-3">
+            Only the record with StudentId 104 will be removed.
+        </p>
+
+    </section>
+
+
+    <!-- OUTPUT -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Output
+        </h2>
+
+        <p>
+            After executing the DELETE statement, the record with
+            StudentId 104 is removed from the table.
+        </p>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>StudentId</th>
+                        <th>StudentName</th>
+                        <th>Age</th>
+                        <th>City</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>101</td>
+                        <td>Rahul</td>
+                        <td>22</td>
+                        <td>Pune</td>
+                    </tr>
+
+                    <tr>
+                        <td>102</td>
+                        <td>Priya</td>
+                        <td>23</td>
+                        <td>Mumbai</td>
+                    </tr>
+
+                    <tr>
+                        <td>103</td>
+                        <td>Amit</td>
+                        <td>21</td>
+                        <td>Nashik</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- DELETE USING CONDITION -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            DELETE Using a Condition
+        </h2>
+
+        <p>
+            We can delete multiple records when they satisfy a
+            particular condition.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>DELETE FROM Students
+WHERE City = 'Mumbai';</code></pre>
+
+        </div>
+
+        <p class="mt-3">
+            This statement deletes all students whose City is Mumbai.
+        </p>
+
+    </section>
+
+
+    <!-- DELETE WITH NUMERIC CONDITION -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            DELETE Using a Numeric Condition
+        </h2>
+
+        <p>
+            Numeric columns can also be used in the WHERE condition.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>DELETE FROM Students
+WHERE Age &lt; 22;</code></pre>
+
+        </div>
+
+        <p class="mt-3">
+            This removes all students whose age is less than 22.
+        </p>
+
+    </section>
+
+
+    <!-- DELETE WITHOUT WHERE -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            DELETE Without WHERE
+        </h2>
+
+        <p>
+            If the WHERE clause is omitted, the DELETE statement
+            removes all rows from the table.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>DELETE FROM Students;</code></pre>
+
+        </div>
+
+        <div class="alert alert-danger border-0 mt-4">
+
+            <h5 class="fw-bold">
+                Warning
+            </h5>
+
+            <p class="mb-0">
+                The above statement deletes all records from the
+                Students table. The table structure itself remains.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- DELETE VS DROP -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            DELETE vs DROP
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>DELETE</th>
+                        <th>DROP</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>Removes rows from a table.</td>
+                        <td>Removes the database object itself.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Table structure remains.</td>
+                        <td>Table structure is removed.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Can use WHERE to remove selected rows.</td>
+                        <td>Removes the complete table.</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- PRACTICAL EXAMPLE -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Practical Example
+        </h2>
+
+        <p>
+            Suppose a student permanently leaves an institute and
+            their record needs to be removed from the Students table.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>DELETE FROM Students
+WHERE StudentId = 103;</code></pre>
+
+        </div>
+
+        <p class="mt-3">
+            The record belonging to StudentId 103 will be removed.
+        </p>
+
+    </section>
+
+
+    <!-- IMPORTANT POINTS -->
+
+    <section class="mb-5">
+
+        <div class="alert alert-info border-0">
+
+            <h4 class="fw-bold mb-3">
+                Important Points
+            </h4>
+
+            <ul class="mb-0">
+
+                <li class="mb-2">
+                    DELETE is used to remove existing records.
+                </li>
+
+                <li class="mb-2">
+                    WHERE is used to identify the records to delete.
+                </li>
+
+                <li class="mb-2">
+                    Multiple records can be deleted using a condition.
+                </li>
+
+                <li class="mb-2">
+                    Without WHERE, all rows can be deleted.
+                </li>
+
+                <li class="mb-2">
+                    DELETE removes rows but does not remove the table
+                    structure.
+                </li>
+
+                <li>
+                    Always verify the WHERE condition before executing
+                    DELETE.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </section>
+
+
+    <!-- SUMMARY -->
+
+    <section class="mb-4">
+
+        <div class="alert alert-primary border-0">
+
+            <h2 class="fw-bold mb-3">
+                Summary
+            </h2>
+
+            <p class="mb-0">
+                In this section, we learned how the DELETE statement
+                removes records from a SQL Server table. We covered
+                deleting a single record, deleting multiple records
+                using conditions, and the importance of using the
+                WHERE clause.
+            </p>
+
+        </div>
+
+    </section>
+
+
+<!-- PREVIOUS / NEXT -->
+
+<div class="d-flex justify-content-between align-items-center
+            mt-5 pt-4 border-top">
+
+    <!-- PREVIOUS -->
+
+    <a href="/SQLServer/CRUDOperations/UpdateOperation"
+       class="btn btn-outline-primary">
+
+        ← Previous: UPDATE Operation
+
+    </a>
+
+
+    <!-- NEXT -->
+
+    <a href="/SQLServer/Queries/Index"
+       class="btn btn-primary">
+
+        Next: Queries Introduction →
+
+    </a>
+
+</div>
+
+</section>

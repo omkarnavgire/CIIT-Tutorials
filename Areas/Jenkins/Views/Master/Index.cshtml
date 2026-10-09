@@ -1,0 +1,174 @@
+@{
+    Layout = "~/Areas/Jenkins/Views/Shared/JenkinsLayout.cshtml";
+    ViewData["Title"] = "Enterprise Jenkins";
+}
+
+<style>
+    #enterprise-jenkins-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+    #enterprise-jenkins-page pre code {
+        background: transparent !important;
+        color: #ffffff !important;
+    }
+
+    #enterprise-jenkins-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #enterprise-jenkins-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+    #enterprise-jenkins-page .info-card h5 {
+        color: #5b21b6;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+
+    #enterprise-jenkins-page .example-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+    }
+</style>
+
+<main id="enterprise-jenkins-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Jenkins/Views/Shared/JenkinsTopics.cshtml"
+            )
+
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+
+                <h1 class="fw-bold">
+                    Enterprise Jenkins
+                </h1>
+
+                <p class="lead">
+                    Master horizontal scaling, high availability, centralized administration, and robust governance models required to run Jenkins across thousands of enterprise delivery pipelines.
+                </p>
+
+            </div>
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">What is Enterprise Jenkins?</h2>
+                <p>
+                    In massive production environments, a single standalone Jenkins instance becomes a single point of failure (SPOF) and a performance bottleneck. <strong>Enterprise Jenkins</strong> refers to the strategic architectural models, security controls, and high-availability (HA) mechanisms designed to scale CI/CD orchestration reliably across large organizations.
+                </p>
+                <p>
+                    This ecosystem moves away from traditional fixed infrastructures, leveraging cloud-native ephemereal agents, immutable configuration-as-code, and isolated controller architectures (such as CloudBees CI or multi-controller open-source topologies) to enforce operational stability.
+                </p>
+                <div class="alert alert-info">
+                    <strong>Simple Definition:</strong> Enterprise Jenkins is the practice of running Jenkins at scale using distributed controller-agent topologies, configuration-as-code automation, single sign-on security, and robust high-availability practices to handle heavy enterprise-grade workloads.
+                </div>
+            </div>
+
+
+
+            <!-- KEY CONCEPTS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Key Architectural Concepts</h2>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Distributed Architecture (Controller/Agent)</h5>
+                            <p class="mb-0">Offload execution workloads entirely from the controller instance. Controllers handle orchestration, UI rendering, and build scheduling, while dedicated, ephemeral execution agents (Node pools, Kubernetes Pods) handle the actual compilation and deployments.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Jenkins Configuration as Code (JCasC)</h5>
+                            <p class="mb-0">Eliminate manual GUI configurations and prevent configuration drift. Define plugins, credentials, system settings, and security realms inside a declarative YAML file (`jenkins.yaml`) stored inside a version control repository.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>High Availability & Horizontal Scaling</h5>
+                            <p class="mb-0">Utilise active-active or active-passive controller configurations combined with shared filesystems (like EFS/NFS) and network load balancers to provide immediate automated failover and handle user traffic routing seamlessly.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Enterprise Governance & Security</h5>
+                            <p class="mb-0">Enforce enterprise-grade access management by integrating Single Sign-On (SSO) protocols like OpenID Connect, SAML, or LDAP alongside fine-grained Role-Based Access Control (RBAC) matrix permissions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- EXAMPLE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Practical Jenkins Example
+                </h2>
+
+                <pre><code>pipeline {
+    agent any
+    stages {
+        stage(&#x27;Learn Enterprise Jenkins&#x27;) {
+            steps {
+                echo &#x27;Jenkins lesson: Enterprise Jenkins &#x27; 
+            }
+        }
+    }
+}</code></pre>
+
+            </div>
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Enterprise Practice Exercise</h2>
+                <ol>
+                    <li class="mb-2"><strong>Analyze Distributed Loads:</strong> Navigate to <em>Manage Jenkins &rarr; Nodes and Clouds</em> and inspect how tasks are distributed across agents versus the built-in node controller.</li>
+                    <li class="mb-2"><strong>Audit Security Matrix:</strong> Open the global security configurations to examine the integration points for LDAP/SAML and verify the active Role-Based Access Control (RBAC) strategy.</li>
+                    <li class="mb-2"><strong>Trigger an Isolated Build:</strong> Create a new declarative pipeline using the enterprise snippet framework above, execute it, and review the Console Output logs to ensure resources are provisioned on external nodes.</li>
+                    <li><strong>Review Automated Disasters:</strong> Verify the data retention metrics, automated thin-backup schedule paths, and the storage status of your `JENKINS_HOME` mount.</li>
+                </ol>
+            </div>
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+                <h2 class="h4 fw-bold">Summary</h2>
+                <p class="mb-0">You have completed the <strong>Enterprise Jenkins</strong> module. You are now equipped with the fundamental core concepts to design, optimize, secure, and scale high-concurrency continuous integration architectures. Continue through the syllabus to build deep infrastructure engineering expertise.</p>
+            </div>
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+                <a class="btn btn-outline-primary" href="@Url.Action("ExternalIntegrations", "CloudDevOps", new { area = "Jenkins" })">← Previous: External Integrations</a>
+                <a class="btn btn-primary" href="@Url.Action("Credentials", "Master", new { area = "Jenkins" })">Next: Credentials Management →</a>
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

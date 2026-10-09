@@ -1,0 +1,205 @@
+@{
+    Layout = "~/Areas/Jenkins/Views/Shared/JenkinsLayout.cshtml";
+    ViewData["Title"] = "Spring Boot CI Pipeline";
+}
+
+<style>
+    #spring-boot-ci-pipeline-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #spring-boot-ci-pipeline-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #spring-boot-ci-pipeline-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #spring-boot-ci-pipeline-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #spring-boot-ci-pipeline-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+    #spring-boot-ci-pipeline-page .example-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+    }
+</style>
+
+<main id="spring-boot-ci-pipeline-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/Jenkins/Views/Shared/JenkinsTopics.cshtml")
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+                <h1 class="fw-bold">Spring Boot CI Pipeline</h1>
+                <p class="lead">
+                    Learn how to design an enterprise-grade Continuous Integration pipeline for Spring Boot applications, covering execution wrappers, compilation verification, profile management, and fat-JAR packaging.
+                </p>
+            </div>
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">What is a Spring Boot CI Pipeline?</h2>
+                <p>
+                    Spring Boot is a dominant microservices framework in the Enterprise Java ecosystem. A dedicated <strong>Spring Boot Continuous Integration (CI) Pipeline</strong> automates compliance testing and compilation constraints as developers commit new features.
+                </p>
+                <p>
+                    Unlike standard foundational Java builds, a Spring Boot pipeline validates specialized app initializations. It targets native integration tests (like <code>@@SpringBootTest</code> context verification), maps profiles (such as <code>application-test.yml</code>), and bundles embedded servlet containers into a single self-contained executable file (executable fat-JAR).
+                </p>
+                <div class="alert alert-info">
+                    <strong>Simple Definition:</strong> A specialized automation sequence in Jenkins that compiles Spring Java code, boots test contexts to confirm configuration safety, and packs a standalone executable with its container layers.
+                </div>
+            </div>
+
+            <!-- KEY CONCEPTS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Key Concepts</h2>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Maven/Gradle Wrappers</h5>
+                            <p class="mb-0">Utilizing localized repository binaries (<code>./mvnw</code> or <code>./gradlew</code>) inside pipeline commands to guarantee the exact build runner engine version is pinned directly in source control.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Application Test Contexts</h5>
+                            <p class="mb-0">Invoking the integration testing engine to verify that the Spring Dependency Injection container bootstraps successfully without runtime configuration syntax bugs.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Spring Profile Injections</h5>
+                            <p class="mb-0">Passing dynamic parameter variables (such as <code>-Dspring.profiles.active=ci</code>) during pipeline step execution to swap production cloud configurations with isolated test mocks.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Spring Boot Maven Plugin</h5>
+                            <p class="mb-0">Executing the repackage goal via the build step to bundle your application bytecode along with runtime dependencies inside a single transportable archive.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXAMPLE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Practical Jenkins Example</h2>
+                <p>This declarative pipeline relies on the standard Maven wrapper (<code>./mvnw</code>) embedded within a repository to fetch dependencies, inject a dedicated build profile, and compile an executable Spring Boot application file:</p>
+                <pre><code>pipeline {
+    agent any
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    tools {
+        // Sets up the base JDK version required to execute the framework context
+        jdk 'OpenJDK-17'
+    }
+
+    stages {
+        stage('Checkout & Lint') {
+            steps {
+                echo 'Verifying environment permissions...'
+                // Ensures execution scripts have file permissions on Linux/macOS agents
+                sh 'chmod +x mvnw'
+                sh './mvnw --version'
+            }
+        }
+
+        stage('Execute Core Unit Tests') {
+            steps {
+                echo 'Running unit tests and bootstrapping application contexts...'
+                // Forces active profiles to pull isolated properties definitions
+                sh './mvnw clean test -Dspring.profiles.active=ci'
+            }
+        }
+
+        stage('Package Fat-JAR') {
+            steps {
+                echo 'Repackaging application into a self-contained runtime archive...'
+                // Skips tests here since validation was accomplished during the previous stage
+                sh './mvnw package -DskipTests'
+            }
+        }
+
+
+        stage('Publish Distribution Binary') {
+            steps {
+                echo 'Stash build archive for subsequent continuous deployment phases...'
+                archiveArtifacts artifacts: 'target/*.jar', allowEmptyArchive: false, fingerprint: true
+            }
+        }
+    }
+}</code></pre>
+</div>
+
+<!-- PRACTICE -->
+<div class="mb-4">
+                <h2 class="h3 fw-bold">Practice Exercise</h2>
+                <ol>
+                    <li class="mb-2">Verify your Spring Boot code repository includes standard wrapper utilities (such as <code>mvnw</code> and the <code>.mvn/</code> wrapper configurations folder).</li>
+                    <li class="mb-2">Create a new <strong>Pipeline</strong> job in your Jenkins portal called <code>springboot-ci-pipeline</code>.</li>
+                    <li class="mb-2">Paste the declarative wrapper implementation listed above into your pipeline configuration box.</li>
+                    <li class="mb-2">Trigger a new build execution, view the <strong>Console Output</strong>, and track the process as it resolves structural assets and completes the Spring Boot repackage routine.</li>
+                </ol>
+            </div>
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+                <h2 class="h4 fw-bold">Summary</h2>
+                <p class="mb-0">You have completed the <strong>Spring Boot CI Pipeline</strong> lesson. Automating the packaging mechanics of microservices allows you to expand into test results rendering and standard deployment frameworks.</p>
+            </div>
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+                <a class="btn btn-outline-primary" href="@Url.Action("Maven", "LanguageStacks", new { area = "Jenkins" })">← Previous: Java and Maven Builds</a>
+                <a class="btn btn-primary" href="@Url.Action("JUnitReports", "LanguageStacks", new { area = "Jenkins" })">Next: JUnit Test Reports →</a>
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

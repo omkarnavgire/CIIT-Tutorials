@@ -1,0 +1,865 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Scope";
+}
+
+<style>
+    #python-scope-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 0.5rem;
+        padding: 1rem !important;
+        overflow-x: auto;
+    }
+
+        #python-scope-page pre code {
+            background-color: transparent !important;
+            color: #ffffff !important;
+        }
+</style>
+
+<main id="python-scope-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+
+        </aside>
+
+
+        <!-- RIGHT CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- =========================
+                 PAGE INTRO
+            ========================== -->
+
+            <h1 class="display-6 fw-bold mb-3">
+                Scope in Python
+            </h1>
+
+            <p class="lead">
+                In Python, <strong>Scope</strong> determines where a variable
+                is accessible within a program.
+                In simple words, scope tells us
+                <strong>where a variable can be used</strong>.
+            </p>
+
+            <div class="alert alert-light border">
+
+                <strong>CIIT Tip:</strong>
+
+                Think of a variable as something kept inside a room.
+                If the thing is inside the room, it is available in that room.
+                Similarly, Python scope determines where a variable
+                is accessible.
+
+            </div>
+
+
+            <!-- =========================
+                 1. WHAT IS SCOPE
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                1. What is Scope?
+            </h2>
+
+            <p>
+                Scope means the variable's
+                <strong>visibility and accessibility</strong>.
+            </p>
+
+            <p>
+                In Python, beginners should mainly understand two important scopes:
+            </p>
+
+            <ul>
+                <li>Local Scope</li>
+                <li>Global Scope</li>
+            </ul>
+
+
+            <!-- =========================
+                 2. LOCAL SCOPE
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                2. Local Scope
+            </h2>
+
+            <p>
+                A variable created inside a function
+                is generally a <strong>local variable</strong>.
+                It can be accessed inside the function.
+            </p>
+
+            <pre><code>def greet():
+
+    message = "Hello CIIT"
+
+    print(message)
+
+
+greet()</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>Hello CIIT</code></pre>
+
+            <p>
+                Here, <strong>message</strong> is created inside the function,
+                so its scope is limited to the function.
+            </p>
+
+
+            <!-- =========================
+                 3. LOCAL VARIABLE OUTSIDE
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                3. Local Variable Outside Function
+            </h2>
+
+            <p>
+                Trying to access a local variable directly outside the function
+                will result in an error.
+            </p>
+
+            <pre><code>def greet():
+
+    message = "Hello CIIT"
+
+    print(message)
+
+
+greet()
+
+print(message)</code></pre>
+
+            <div class="alert alert-warning">
+
+                <strong>Important:</strong>
+
+                <code>message</code> is a local variable of the function.
+                Therefore, it is not directly accessible outside the function.
+
+            </div>
+
+
+            <!-- =========================
+                 4. GLOBAL SCOPE
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                4. Global Scope
+            </h2>
+
+            <p>
+                A variable created outside a function
+                is a <strong>global variable</strong>.
+            </p>
+
+            <pre><code>course = "Python Full Stack"
+
+
+def show_course():
+
+    print(course)
+
+
+show_course()
+
+print(course)</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>Python Full Stack
+Python Full Stack</code></pre>
+
+            <p>
+                A global variable can also be accessed inside a function.
+            </p>
+
+
+            <!-- =========================
+                 5. LOCAL VS GLOBAL
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                5. Local Scope vs Global Scope
+            </h2>
+
+            <table class="table table-bordered">
+
+                <thead class="table-light">
+
+                    <tr>
+                        <th>Local Variable</th>
+                        <th>Global Variable</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>Created inside a function</td>
+                        <td>Created outside a function</td>
+                    </tr>
+
+                    <tr>
+                        <td>Accessible inside the function</td>
+                        <td>Can be accessible in multiple parts of the program</td>
+                    </tr>
+
+                    <tr>
+                        <td>Limited scope</td>
+                        <td>Wider scope</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+
+            <!-- =========================
+                 6. SAME VARIABLE NAME
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                6. Same Variable Name in Different Scopes
+            </h2>
+
+            <p>
+                The same variable name can exist in local and global scopes.
+            </p>
+
+            <pre><code>course = "Python"
+
+
+def show_course():
+
+    course = "Java"
+
+    print("Inside:", course)
+
+
+show_course()
+
+print("Outside:", course)</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>Inside: Java
+Outside: Python</code></pre>
+
+            <p>
+                The local <strong>course</strong> is used inside the function,
+                while the global <strong>course</strong> is used outside the function.
+            </p>
+
+
+            <!-- =========================
+                 7. GLOBAL KEYWORD
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                7. global Keyword
+            </h2>
+
+            <p>
+                If you want to modify a global variable inside a function,
+                you can use the <strong>global</strong> keyword.
+            </p>
+
+            <pre><code>count = 10
+
+
+def update_count():
+
+    global count
+
+    count = 20
+
+
+update_count()
+
+print(count)</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>20</code></pre>
+
+
+            <!-- =========================
+                 8. WITHOUT GLOBAL
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                8. Why global is Needed?
+            </h2>
+
+            <p>
+                When an assignment is made inside a function, Python normally
+                treats that variable as a local variable.
+            </p>
+
+            <pre><code>count = 10
+
+
+def update_count():
+
+    count = 20
+
+    print("Inside:", count)
+
+
+update_count()
+
+print("Outside:", count)</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>Inside: 20
+Outside: 10</code></pre>
+
+            <p>
+                Here, a new local variable was created inside the function.
+                The global variable was not changed.
+            </p>
+
+
+            <!-- =========================
+                 9. GLOBAL WITH FUNCTION
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                9. Global Variable Example 🤓❤️
+            </h2>
+
+            <pre><code>institute = "CIIT Training Institute 🤓👀...!"
+
+
+def display_institute():
+
+    print(institute)
+
+
+display_institute()</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>CIIT Training Institute 🤓👀...!</code></pre>
+
+
+            <!-- =========================
+                 10. FUNCTION PARAMETERS
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                10. Function Parameters and Scope
+            </h2>
+
+            <p>
+                Function parameters also behave like local variables inside the function.
+            </p>
+
+            <pre><code>def greet(name):
+
+    print("Hello", name)
+
+
+greet("Amit")</code></pre>
+<h5 class="fw-bold">
+    Output
+</h5>
+
+<pre><code>Hello Amit</code></pre>
+
+            <p>
+                Here, <strong>name</strong> is a parameter and is available in the function's local scope.
+            </p>
+
+
+            <!-- =========================
+                 11. NESTED FUNCTION
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                11. Nested Function Scope
+            </h2>
+
+            <p>
+                In Python, one function can be defined inside another function.
+            </p>
+
+            <pre><code>def outer():
+
+    message = "Hello from Outer"
+
+    def inner():
+
+        print(message)
+
+    inner()
+
+
+outer()</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>Hello from Outer</code></pre>
+
+            <p>
+                The inner function can access the outer function's variable.
+            </p>
+
+
+            <!-- =========================
+                 12. ENCLOSING SCOPE
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                12. Enclosing Scope
+            </h2>
+
+            <p>
+                In nested functions, the outer function's scope
+                is called the <strong>enclosing scope</strong>.
+            </p>
+
+            <pre><code>def outer():
+
+    name = "CIIT"
+
+    def inner():
+
+        print(name)
+
+    inner()
+
+
+outer()</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>CIIT</code></pre>
+
+
+            <!-- =========================
+                 13. LEGB RULE
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                13. LEGB Rule
+            </h2>
+
+            <p>
+                When searching for a variable, Python
+                follows the <strong>LEGB Rule</strong>.
+            </p>
+
+            <table class="table table-bordered">
+
+                <thead class="table-light">
+
+                    <tr>
+                        <th>Letter</th>
+                        <th>Scope</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td><strong>L</strong></td>
+                        <td>Local</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>E</strong></td>
+                        <td>Enclosing</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>G</strong></td>
+                        <td>Global</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>B</strong></td>
+                        <td>Built-in</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+            <div class="alert alert-secondary">
+
+                <strong>Search Order:</strong>
+
+                <br><br>
+
+                Local
+                → Enclosing
+                → Global
+                → Built-in
+
+            </div>
+
+
+            <!-- =========================
+                 14. BUILT-IN SCOPE
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                14. Built-in Scope
+            </h2>
+
+            <p>
+                Python's built-in functions and objects
+                are available in the built-in scope.
+            </p>
+
+            <pre><code>numbers = [10, 20, 30]
+
+print(len(numbers))
+
+print(max(numbers))
+
+print(sum(numbers))</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>3
+30
+60</code></pre>
+
+
+            <!-- =========================
+                 15. CIIT EXAMPLE
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                15. CIIT Example 👀🤓
+            </h2>
+
+            <p>
+                Suppose the institute name is global in a CIIT application,
+                and the student name is local inside the function.
+            </p>
+
+            <pre><code>institute = "CIIT Training Institute ❤️😍...!"
+
+
+def student_details(name):
+
+    course = "Python Full Stack"
+
+    print("Institute:", institute)
+    print("Student:", name)
+    print("Course:", course)
+
+
+student_details("Rahul")</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>Institute: CIIT Training Institute ❤️😍...!
+Student: Rahul
+Course: Python Full Stack</code></pre>
+
+
+            <!-- =========================
+                 16. BEST PRACTICES
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                16. Scope Best Practices
+            </h2>
+
+            <ul>
+
+                <li>
+                    Keep variables limited to the scope where they are required.
+                </li>
+
+                <li>
+                    Avoid unnecessary global variables.
+                </li>
+
+                <li>
+                    Use parameters for function inputs.
+                </li>
+
+                <li>
+                    Use <strong>return</strong> to get a result from a function.
+                </li>
+
+                <li>
+                    Use meaningful variable names.
+                </li>
+
+            </ul>
+
+
+            <!-- =========================
+                 17. COMMON MISTAKES
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                17. Common Mistakes
+            </h2>
+
+            <pre><code>def student():
+
+    name = "Amit"
+
+
+student()
+
+print(name)</code></pre>
+
+            <p>
+                Here, <strong>name</strong> is a local variable.
+                Therefore, it cannot be accessed outside the function.
+            </p>
+
+            <div class="alert alert-warning">
+
+                <strong>Remember:</strong>
+
+                A local variable generally has scope inside the function,
+                whereas a global variable is defined outside the function.
+
+            </div>
+
+
+            <!-- =========================
+                 18. INTERVIEW POINTS
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                18. Interview Points
+            </h2>
+
+            <ul>
+
+                <li>
+                    What is scope in Python?
+                </li>
+
+                <li>
+                    What is the difference between local and global variables?
+                </li>
+
+                <li>
+                    When is the <strong>global</strong> keyword used?
+                </li>
+
+                <li>
+                    What is the LEGB rule?
+                </li>
+
+                <li>
+                    What is the scope of a function parameter?
+                </li>
+
+                <li>
+                    Can an inner function access a variable from the outer function?
+                </li>
+
+            </ul>
+
+
+            <!-- =========================
+                 CIIT LEARNING POINT
+            ========================== -->
+
+            <div class="alert alert-success mt-4">
+
+                <h2 class="h4 fw-bold">
+                    CIIT Learning Point
+                </h2>
+
+                <p class="mb-0">
+
+                    Understanding scope makes it clear where Python variables
+                    can be created, accessed, and modified.
+                    Local, Enclosing, Global, and Built-in scopes
+                    understanding through the <strong>LEGB Rule</strong>
+                    is important for Python programming.
+
+                </p>
+
+            </div>
+
+
+            <!-- =========================
+                 CIIT PRACTICE TASKS
+            ========================== -->
+
+            <div class="alert alert-warning mt-4">
+
+                <h2 class="h4 fw-bold">
+                    CIIT Practice Tasks
+                </h2>
+
+                <ol class="mb-0">
+
+                    <li class="mb-2">
+
+                        <strong>Local Variable:</strong>
+
+                        <br>
+
+                        Create a function in which the student's
+                        <code>name</code> is a local variable and print it.
+
+                    </li>
+
+                    <li class="mb-2">
+
+                        <strong>Global Variable:</strong>
+
+                        <br>
+
+                        <code>institute = "CIIT Training Institute"</code>
+                        Create a global variable and display it inside the function.
+
+                    </li>
+
+                    <li class="mb-2">
+
+                        <strong>Same Variable Name:</strong>
+
+                        <br>
+
+                        Use the same variable name in global and local scopes and
+                        display both values.
+
+                    </li>
+
+                    <li class="mb-2">
+
+                        <strong>global Keyword:</strong>
+
+                        <br>
+
+                        Create a global counter variable and inside the function
+                        update its value using the <strong>global</strong> keyword.
+
+                    </li>
+
+                    <li class="mb-2">
+
+                        <strong>Nested Function:</strong>
+
+                        <br>
+
+                        Create a student name in the outer function and
+                        display it from the inner function.
+
+                    </li>
+
+                    <li>
+
+                        <strong>LEGB Practice:</strong>
+
+                        <br>
+
+                        Create an example of local, enclosing, and global variables
+                        and identify which value Python searches for first.
+
+                    </li>
+
+                </ol>
+
+            </div>
+
+
+            <!-- =========================
+                 SUMMARY
+            ========================== -->
+
+            <div class="alert alert-info mt-4 mb-0"
+                 style="background-color:#cfe2ff; border:0; color:#123c73;">
+
+                <h2 class="h3 fw-bold mt-0 mb-3"
+                    style="color:#123c73;">
+
+                    Summary :
+
+                </h2>
+
+                <p class="mb-0"
+                   style="color:#123c73;">
+
+                    In Python, scope determines a variable's visibility and accessibility.
+                    A variable created inside a function
+                    generally has local scope, while a variable created outside a function
+                    has global scope.
+                    The enclosing scope is also important in nested functions.
+                    Python searches for variables in the <strong>LEGB</strong> order:
+                    Local, Enclosing, Global, and Built-in.
+
+                </p>
+
+            </div>
+
+
+            <!-- =========================
+                 PREVIOUS / NEXT
+            ========================== -->
+
+            <div class="d-flex justify-content-between mt-5">
+
+                <a class="btn btn-outline-secondary"
+                   href="@Url.Action("ReturnValues", "Functions", new { area = "Python" })">
+
+                    ← Previous : Topic
+
+                </a>
+
+                <a class="btn btn-primary"
+                   href="@Url.Action("Recursion", "Functions", new { area = "Python" })">
+
+                    Next : Topic →
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

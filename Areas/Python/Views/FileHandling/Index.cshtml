@@ -1,0 +1,1000 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Python File Handling";
+}
+
+<style>
+
+    #python-file-handling-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #python-file-handling-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #python-file-handling-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #python-file-handling-page .diagram-box {
+        background: #ffffff;
+        border: 2px solid #6f42c1;
+        border-radius: 10px;
+        padding: 18px;
+        text-align: center;
+        height: 100%;
+    }
+
+        #python-file-handling-page .diagram-box h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        #python-file-handling-page .diagram-box p {
+            margin-bottom: 0;
+            font-size: 14px;
+            color: #495057;
+        }
+
+    #python-file-handling-page .diagram-arrow {
+        text-align: center;
+        font-size: 28px;
+        font-weight: 700;
+        color: #6f42c1;
+        padding: 8px 0;
+    }
+
+    #python-file-handling-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #python-file-handling-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+        }
+
+</style>
+
+
+<main id="python-file-handling-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+
+                <h1 class="fw-bold">
+                    File Handling in Python
+                </h1>
+
+                <p class="lead">
+                    Learn how Python can create, read, write, update and
+                    manage files stored on a computer.
+                </p>
+
+            </div>
+
+
+            <!-- WHAT IS FILE HANDLING -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    What is File Handling?
+                </h2>
+
+                <p>
+                    File handling means working with files using a program.
+                </p>
+
+                <p>
+                    In Python, we can use file handling to read existing
+                    data from a file, create new files, write data into
+                    files and update existing file content.
+                </p>
+
+                <div class="alert alert-info">
+
+                    <strong>Simple Definition:</strong>
+
+                    File handling is the process of reading, writing,
+                    creating and managing files using Python.
+
+                </div>
+
+            </div>
+
+
+            <!-- WHY FILE HANDLING -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Why Do We Need File Handling?
+                </h2>
+
+                <p>
+                    Variables store data temporarily while a program is
+                    running. Files allow us to store data so that it can
+                    be used again later.
+                </p>
+
+                <div class="row g-3 mt-2">
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Store Data
+                            </h5>
+
+                            <p class="mb-0">
+                                Save information permanently in files.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Read Data
+                            </h5>
+
+                            <p class="mb-0">
+                                Read previously stored information.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Process Data
+                            </h5>
+
+                            <p class="mb-0">
+                                Use file data inside Python programs.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- DIAGRAM -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    File Handling Diagram
+                </h2>
+
+                <p>
+                    A basic file-handling process can be understood
+                    through these steps:
+                </p>
+
+                <div class="concept-box">
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            Python Program
+                        </h5>
+
+                        <p>
+                            Application needs to work with stored data.
+                        </p>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="row g-3">
+
+                        <div class="col-md-3">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    Open
+                                </h5>
+
+                                <p>
+                                    Open the file using
+                                    <code>open()</code>.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-3">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    Read
+                                </h5>
+
+                                <p>
+                                    Get data from the file.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-3">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    Write
+                                </h5>
+
+                                <p>
+                                    Add or update file data.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-3">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    Close
+                                </h5>
+
+                                <p>
+                                    Finish using the file.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            Stored File
+                        </h5>
+
+                        <p>
+                            Data remains available for future use.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- OPEN -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Opening a File
+                </h2>
+
+                <p>
+                    Python provides the built-in <code>open()</code>
+                    function to work with files.
+                </p>
+
+                <pre><code>file = open("example.txt", "r")</code></pre>
+
+                <p class="mt-3">
+                    Here:
+                </p>
+
+                <ul>
+
+                    <li>
+                        <code>example.txt</code> is the file name.
+                    </li>
+
+                    <li>
+                        <code>"r"</code> means read mode.
+                    </li>
+
+                    <li>
+                        <code>file</code> stores the file object.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- FILE MODES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    File Opening Modes
+                </h2>
+
+                <p>
+                    The mode tells Python what we want to do with the file.
+                </p>
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered align-middle">
+
+                        <thead>
+
+                            <tr>
+                                <th>Mode</th>
+                                <th>Meaning</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td><code>r</code></td>
+                                <td>Read the file.</td>
+                            </tr>
+
+                            <tr>
+                                <td><code>w</code></td>
+                                <td>Write to the file. Existing content can be replaced.</td>
+                            </tr>
+
+                            <tr>
+                                <td><code>a</code></td>
+                                <td>Add data to the end of the file.</td>
+                            </tr>
+
+                            <tr>
+                                <td><code>x</code></td>
+                                <td>Create a new file and fail if it already exists.</td>
+                            </tr>
+
+                            <tr>
+                                <td><code>rb</code></td>
+                                <td>Read a binary file.</td>
+                            </tr>
+
+                            <tr>
+                                <td><code>wb</code></td>
+                                <td>Write binary data.</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <!-- READ PREVIEW -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Reading a File
+                </h2>
+
+                <p>
+                    The <code>read()</code> method is used to read the
+                    file content.
+                </p>
+
+                <pre><code>file = open("example.txt", "r")
+
+data = file.read()
+
+print(data)
+
+file.close()</code></pre>
+
+                <p>
+                    This reads the complete content of the file.
+                </p>
+
+            </div>
+
+
+            <!-- WRITE PREVIEW -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Writing to a File
+                </h2>
+
+                <p>
+                    The <code>w</code> mode is used to write data.
+                </p>
+
+                <pre><code>file = open("example.txt", "w")
+
+file.write("Hello Python")
+
+file.close()</code></pre>
+
+                <p>
+                    The text is written into the file.
+                </p>
+
+                <div class="alert alert-warning">
+
+                    <strong>Important:</strong>
+
+                    Write mode can replace existing content in the file.
+                    Use it carefully when existing data must be preserved.
+
+                </div>
+
+            </div>
+
+
+            <!-- APPEND PREVIEW -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Appending Data
+                </h2>
+
+                <p>
+                    The <code>a</code> mode adds new data at the end
+                    of the file.
+                </p>
+
+                <pre><code>file = open("example.txt", "a")
+
+file.write("\nWelcome to Python")
+
+file.close()</code></pre>
+
+                <p>
+                    Existing content is kept and the new content is added
+                    at the end.
+                </p>
+
+            </div>
+
+
+            <!-- WITH -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Using the <code>with</code> Statement
+                </h2>
+
+                <p>
+                    Python provides the <code>with</code> statement to
+                    work with files more safely and conveniently.
+                </p>
+
+                <pre><code>with open("example.txt", "r") as file:
+
+    data = file.read()
+
+    print(data)</code></pre>
+
+                <p>
+                    After the <code>with</code> block finishes, Python
+                    handles the file resource automatically.
+                </p>
+
+            </div>
+
+
+            <!-- FILE METHODS -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Common File Methods
+                </h2>
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered align-middle">
+
+                        <thead>
+
+                            <tr>
+                                <th>Method</th>
+                                <th>Purpose</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td><code>read()</code></td>
+                                <td>Reads the file content.</td>
+                            </tr>
+
+                            <tr>
+                                <td><code>readline()</code></td>
+                                <td>Reads one line.</td>
+                            </tr>
+
+                            <tr>
+                                <td><code>readlines()</code></td>
+                                <td>Reads lines into a list.</td>
+                            </tr>
+
+                            <tr>
+                                <td><code>write()</code></td>
+                                <td>Writes text to a file.</td>
+                            </tr>
+
+                            <tr>
+                                <td><code>writelines()</code></td>
+                                <td>Writes multiple strings.</td>
+                            </tr>
+
+                            <tr>
+                                <td><code>close()</code></td>
+                                <td>Closes the file.</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <!-- TEXT AND BINARY -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Text Files and Binary Files
+                </h2>
+
+                <p>
+                    Files are commonly handled in two broad forms:
+                    text and binary.
+                </p>
+
+                <div class="row g-3 mt-2">
+
+                    <div class="col-md-6">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Text Files
+                            </h5>
+
+                            <p>
+                                Store text-based content such as:
+                            </p>
+
+                            <ul>
+                                <li>TXT files</li>
+                                <li>CSV files</li>
+                                <li>JSON files</li>
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-6">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Binary Files
+                            </h5>
+
+                            <p>
+                                Store data such as:
+                            </p>
+
+                            <ul>
+                                <li>Images</li>
+                                <li>PDF files</li>
+                                <li>Other binary content</li>
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- FILE FLOW -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Basic File Handling Flow
+                </h2>
+
+                <div class="concept-box">
+
+                    <p>
+                        <strong>Step 1:</strong>
+                        Decide which file you need to work with.
+                    </p>
+
+                    <p>
+                        ↓
+                    </p>
+
+                    <p>
+                        <strong>Step 2:</strong>
+                        Open the file using the required mode.
+                    </p>
+
+                    <p>
+                        ↓
+                    </p>
+
+                    <p>
+                        <strong>Step 3:</strong>
+                        Read or write data.
+                    </p>
+
+                    <p>
+                        ↓
+                    </p>
+
+                    <p>
+                        <strong>Step 4:</strong>
+                        Save or finish the operation.
+                    </p>
+
+                    <p>
+                        ↓
+                    </p>
+
+                    <p class="mb-0">
+                        <strong>Step 5:</strong>
+                        Close or automatically release the file resource.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- REAL WORLD -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Example 👀🔓
+                </h2>
+
+                <p>
+                    Suppose a training institute wants to store student
+                    information.
+                </p>
+
+                <pre><code>Name,Course,Fees
+Rahul,Python,45000
+Priya,Java,40000</code></pre>
+
+                <p>
+                    Python can read this information from a file,
+                    process it and save updated information.
+                </p>
+
+                <p>
+                    Later in this module we will learn how to work with
+                    <strong>CSV</strong> and <strong>JSON</strong> files
+                    in more detail.
+                </p>
+
+            </div>
+
+
+            <!-- COMMON MISTAKES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Common Mistakes
+                </h2>
+
+                <ul>
+
+                    <li>
+                        Using the wrong file path.
+                    </li>
+
+                    <li>
+                        Using the wrong file mode.
+                    </li>
+
+                    <li>
+                        Forgetting to close a file when not using
+                        the <code>with</code> statement.
+                    </li>
+
+                    <li>
+                        Accidentally replacing existing content with
+                        write mode.
+                    </li>
+
+                    <li>
+                        Trying to read a file that does not exist.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Practice Programs
+                </h2>
+
+                <ol>
+
+                    <li>
+                        Create a text file using Python.
+                    </li>
+
+                    <li>
+                        Write three lines into the file.
+                    </li>
+
+                    <li>
+                        Read the complete file content.
+                    </li>
+
+                    <li>
+                        Read the file one line at a time.
+                    </li>
+
+                    <li>
+                        Append new data to the file.
+                    </li>
+
+                    <li>
+                        Read a file using the <code>with</code> statement.
+                    </li>
+
+                </ol>
+
+            </div>
+
+
+            <!-- MODULE TOPICS -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    File Handling Topics
+                </h2>
+
+                <div class="concept-box">
+
+                    <div class="row g-3">
+
+                        <div class="col-md-4">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    Reading Files
+                                </h5>
+
+                                <p>
+                                    Read text and data from files.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-4">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    Writing Files
+                                </h5>
+
+                                <p>
+                                    Create and write file content.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-4">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    Files &amp; Directories
+                                </h5>
+
+                                <p>
+                                    Work with paths, files and folders.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-4">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    CSV Files
+                                </h5>
+
+                                <p>
+                                    Read and write CSV data.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-4">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    JSON Files
+                                </h5>
+
+                                <p>
+                                    Read and write JSON data.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-4">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    Practice
+                                </h5>
+
+                                <p>
+                                    Apply file-handling concepts in programs.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+
+                <h2 class="h4 fw-bold">
+                    Summary
+                </h2>
+
+                <p class="mb-0">
+
+                    File handling allows Python programs to work with
+                    stored data. The <code>open()</code> function is used
+                    to open files in different modes such as
+                    <code>r</code>, <code>w</code> and <code>a</code>.
+                    Python provides methods such as <code>read()</code>,
+                    <code>write()</code> and <code>close()</code>.
+                    The <code>with</code> statement provides a convenient
+                    way to work with files and handle the file resource
+                    automatically. In the upcoming topics, we will study
+                    reading files, writing files, directories, CSV files
+                    and JSON files in detail.
+
+                </p>
+
+            </div>
+
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+
+                <a class="btn btn-outline-secondary"
+                   href="@Url.Action("VirtualEnvironments", "ModulesPackages", new { area = "Python" })">
+
+                    ← Previous: Topic
+
+                </a>
+
+
+                <a class="btn btn-primary"
+                   href="@Url.Action("ReadingFiles", "FileHandling", new { area = "Python" })">
+
+                    Next: Topic →
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

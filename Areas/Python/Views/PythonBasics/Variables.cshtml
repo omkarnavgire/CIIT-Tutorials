@@ -1,0 +1,681 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Python Variables";
+}
+
+<main id="tutorials" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- ================================================= -->
+        <!-- LEFT SIDEBAR -->
+        <!-- ================================================= -->
+
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+
+        </aside>
+
+
+        <!-- ================================================= -->
+        <!-- MAIN CONTENT -->
+        <!-- ================================================= -->
+
+        <section class="col-lg-9">
+
+            <div class="card shadow-sm border-0 p-4 p-md-5 mb-4">
+
+
+                <!-- ================================================= -->
+                <!-- PAGE TITLE -->
+                <!-- ================================================= -->
+
+                <h1 class="h1 fw-bold text-dark mt-1 mb-4">
+                   Variables
+                </h1>
+
+                <p class="text-muted mb-4">
+                    Variables are one of the most important concepts in
+                    Python programming. A variable is used to store data
+                    that can be used later in a program.
+                </p>
+
+
+                <!-- ================================================= -->
+                <!-- CIIT INTRO -->
+                <!-- ================================================= -->
+
+                <div class="alert alert-info mb-4"
+                     style="background-color:#cfe2ff; border:0; color:#123c73;">
+
+                    <strong style="color:#123c73;">
+                        CIIT Training Institute :
+                    </strong>
+
+                    <span style="color:#123c73;">
+                        Understanding variables clearly will make it easier
+                        to learn data types, operators, functions, collections,
+                        and real-world Python applications.
+                    </span>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- WHAT IS VARIABLE -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    What is a Variable?
+                </h2>
+
+                <p class="text-muted mb-3">
+                    A variable is a name that refers to a value stored in
+                    memory. In Python, you do not need to declare the
+                    variable type separately.
+                </p>
+
+                <p class="text-muted mb-4">
+                    Python determines the type automatically based on
+                    the value assigned to the variable.
+                </p>
+
+
+                <!-- ================================================= -->
+                <!-- BASIC EXAMPLE -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Creating a Variable
+                </h2>
+
+                <p class="text-muted mb-3">
+                    A variable is created when you assign a value using
+                    the assignment operator <strong>=</strong>.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>name = "Samadhan"
+age = 25
+course = "Python"</code></pre>
+
+                </div>
+
+
+
+                <!-- ================================================= -->
+                <!-- VARIABLE FLOW DIAGRAM -->
+                <!-- ================================================= -->
+
+                <div class="border rounded p-4 mb-4 bg-light">
+
+                    <h3 class="h5 fw-bold text-dark text-center mb-4">
+                        How Variable Assignment Works
+                    </h3>
+
+                    <div class="d-flex flex-column align-items-center gap-2">
+
+                        <div class="px-4 py-3 border rounded bg-white shadow-sm text-center"
+                             style="max-width:380px; width:100%;">
+
+                            <strong>Variable Name</strong>
+
+                            <br />
+
+                            <small class="text-muted">
+                                name
+                            </small>
+
+                        </div>
+
+
+                        <div class="fw-bold text-primary fs-4">
+                            ↓
+                        </div>
+
+
+                        <div class="px-4 py-3 border rounded bg-white shadow-sm text-center"
+                             style="max-width:380px; width:100%;">
+
+                            <strong>Assignment Operator</strong>
+
+                            <br />
+
+                            <small class="text-muted">
+                                =
+                            </small>
+
+                        </div>
+
+
+                        <div class="fw-bold text-primary fs-4">
+                            ↓
+                        </div>
+
+
+                        <div class="px-4 py-3 border rounded bg-white shadow-sm text-center"
+                             style="max-width:380px; width:100%;">
+
+                            <strong>Value</strong>
+
+                            <br />
+
+                            <small class="text-muted">
+                                "Samadhan"
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- PRINT VARIABLES -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Printing Variables
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Once a value is stored in a variable, we can use the
+                    variable name to access that value.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>name = "Samadhan"
+age = 25
+
+print(name)
+print(age)</code></pre>
+
+                </div>
+
+
+                <h3 class="h5 fw-bold text-dark mt-4 mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>Samadhan
+25</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- MULTIPLE VARIABLES -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Multiple Variables
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Python allows you to create multiple variables in
+                    the same program.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>name = "Samadhan"
+age = 25
+salary = 45000.50
+is_student = True</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- MULTIPLE ASSIGNMENT -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Multiple Assignment
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Python allows multiple variables to be assigned
+                    values in a single statement.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>name, age, course = "Samadhan", 25, "Python"
+
+print(name)
+print(age)
+print(course)</code></pre>
+
+                </div>
+
+
+                <h3 class="h5 fw-bold text-dark mt-4 mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>Samadhan
+25
+Python</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- SAME VALUE -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Assigning the Same Value
+                </h2>
+
+                <p class="text-muted mb-3">
+                    The same value can be assigned to multiple variables.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>x = y = z = 100
+
+print(x)
+print(y)
+print(z)</code></pre>
+
+                </div>
+                <h3 class="h5 fw-bold text-dark mb-3">
+    Output:
+</h3>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="code-lang-tag">
+        Output
+    </div>
+
+    <pre class="mb-0"><code>100
+100
+100</code></pre>
+</div>
+
+                <!-- ================================================= -->
+                <!-- VARIABLE TYPE -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Checking the Variable Type
+                </h2>
+
+                <p class="text-muted mb-3">
+                    The <strong>type()</strong> function can be used to
+                    find the data type of a variable.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>name = "Samadhan"
+age = 25
+
+print(type(name))
+print(type(age))</code></pre>
+
+                </div>
+
+
+                <h3 class="h5 fw-bold text-dark mt-4 mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>&lt;class 'str'&gt;
+&lt;class 'int'&gt;</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- DYNAMIC TYPING -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Dynamic Typing in Python
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Python is dynamically typed. This means the type of
+                    a variable can change when a different type of value
+                    is assigned to it.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>value = 100
+
+print(value)
+
+value = "Python"
+
+print(value)</code></pre>
+
+                </div>
+
+
+                <h3 class="h5 fw-bold text-dark mt-4 mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>100
+Python</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- VARIABLE NAMING RULES -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Variable Naming Rules
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Python has some rules that should be followed when
+                    creating variable names.
+                </p>
+
+                <ul class="text-muted mb-4">
+
+                    <li class="mb-2">
+                        A variable name can contain letters, numbers,
+                        and underscores.
+                    </li>
+
+                    <li class="mb-2">
+                        A variable name cannot start with a number.
+                    </li>
+
+                    <li class="mb-2">
+                        Variable names are case-sensitive.
+                    </li>
+
+                    <li class="mb-2">
+                        Spaces should not be used in variable names.
+                    </li>
+
+                    <li class="mb-2">
+                        Python keywords should not be used as variable names.
+                    </li>
+
+                </ul>
+
+
+                <!-- ================================================= -->
+                <!-- VALID INVALID -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Valid and Invalid Variable Names
+                </h2>
+
+                <div class="table-responsive mb-4">
+
+                    <table class="table table-bordered align-middle">
+
+                        <thead class="table-light">
+
+                            <tr>
+                                <th>Variable</th>
+                                <th>Status</th>
+                                <th>Reason</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>student_name</td>
+                                <td>Valid</td>
+                                <td>Uses letters and underscore</td>
+                            </tr>
+
+                            <tr>
+                                <td>age25</td>
+                                <td>Valid</td>
+                                <td>Number is not at the beginning</td>
+                            </tr>
+
+                            <tr>
+                                <td>student name</td>
+                                <td>Invalid</td>
+                                <td>Contains a space</td>
+                            </tr>
+
+                            <tr>
+                                <td>25age</td>
+                                <td>Invalid</td>
+                                <td>Starts with a number</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- CASE SENSITIVE -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Variables are Case-Sensitive
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Python treats uppercase and lowercase letters as
+                    different characters.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>name = "Samadhan"
+Name = "CIIT"
+
+print(name)
+print(Name)</code></pre>
+
+                </div>
+
+
+                <h3 class="h5 fw-bold text-dark mt-4 mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>Samadhan
+CIIT</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- REAL WORLD EXAMPLE -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Example 🌍🔓
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Let's create variables for a student learning
+                    Python at <strong>CIIT Training Institute 👀❤️...!</strong>.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>student_name = "Samadhan"
+institute = "CIIT Training Institute 👀❤️...!"
+course = "Python Full Stack 🖥️"
+experience = 0
+
+print("Student:", student_name)
+print("Institute:", institute)
+print("Course:", course)
+print("Experience:", experience)</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+    Output:
+</h3>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="code-lang-tag">
+        Output
+    </div>
+
+    <pre class="mb-0"><code>Student: Samadhan
+Institute: CIIT Training Institute 👀❤️...!
+Course: Python Full Stack 🖥️
+Experience: 0</code></pre>
+</div>
+                <!-- ================================================= -->
+                <!-- CIIT LEARNING POINT -->
+                <!-- ================================================= -->
+
+                <div class="alert alert-success mt-4">
+
+                    <h5 class="fw-bold">
+                        CIIT Learning Point
+                    </h5>
+
+                    <p class="mb-0">
+                        Use meaningful variable names. A good variable name
+                        makes your code easier to understand, maintain,
+                        and debug. Prefer names such as
+                        <strong>student_name</strong> instead of unclear
+                        names such as <strong>x</strong>.
+                    </p>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- SAM PRACTICE -->
+                <!-- ================================================= -->
+
+                <div class="border rounded p-4 mt-4 mb-4">
+
+                    <h3 class="h5 fw-bold text-dark mb-3">
+                        CIIT Practice Task
+                    </h3>
+
+                    <p class="text-muted mb-3">
+                        Create variables for your name, age, city, and
+                        favorite programming language. Display all the
+                        values using <strong>print()</strong>.
+                    </p>
+
+                    <div class="bg-dark text-light rounded p-3">
+
+                        <pre class="mb-0"><code>name = "Samadhan"
+age = 25
+city = "Pune"
+language = "Python"
+
+print("Name:", name)
+print("Age:", age)
+print("City:", city)
+print("Language:", language)</code></pre>
+
+                    </div>
+                    <h3 class="h5 fw-bold text-dark mb-3">
+    Output:
+</h3>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="code-lang-tag">
+        Output
+    </div>
+
+    <pre class="mb-0"><code>Name: Samadhan
+Age: 25
+City: Pune
+Language: Python</code></pre>
+</div>
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- SUMMARY -->
+                <!-- ================================================= -->
+
+                <div class="alert alert-info mt-4 mb-0"
+                     style="background-color:#cfe2ff; border:0; color:#123c73;">
+
+                    <h2 class="h3 fw-bold mt-0 mb-3"
+                        style="color:#123c73;">
+
+                        Summary :
+
+                    </h2>
+
+                    <p class="mb-0"
+                       style="color:#123c73;">
+
+                        Variables are used to store and work with data
+                        in Python programs. You learned how to create
+                        variables, assign multiple values, check variable
+                        types, understand dynamic typing, and follow
+                        proper variable naming rules. Meaningful variables
+                        make Python programs easier to read and maintain.
+
+                    </p>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- NAVIGATION -->
+                <!-- ================================================= -->
+
+                <div class="d-flex justify-content-between align-items-center mt-5 pt-4 border-top">
+
+                    <a href="@Url.Action("Index", "PythonBasics", new { area = "Python" })"
+                       class="btn btn-outline-secondary">
+
+                        ← Previous: Topic
+
+                    </a>
+
+
+                    <a href="@Url.Action("DataTypes", "PythonBasics", new { area = "Python" })"
+                       class="btn btn-primary">
+
+                        Next: Topic →
+
+                    </a>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

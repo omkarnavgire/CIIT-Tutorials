@@ -1,0 +1,880 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Python Classes and Objects";
+}
+
+<style>
+    /* Page-scoped dark code blocks */
+    #python-classes-objects-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 0.5rem;
+        padding: 1rem !important;
+        overflow-x: auto;
+    }
+
+        #python-classes-objects-page pre code {
+            background-color: transparent !important;
+            color: #ffffff !important;
+        }
+
+    /* Classes and Objects Diagram */
+    #python-classes-objects-page .concept-diagram {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 25px;
+    }
+
+    #python-classes-objects-page .diagram-box {
+        background: #ffffff;
+        border: 2px solid #6f42c1;
+        border-radius: 10px;
+        padding: 18px;
+        text-align: center;
+        height: 100%;
+    }
+
+        #python-classes-objects-page .diagram-box h5 {
+            color: #4c1d95;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        #python-classes-objects-page .diagram-box p {
+            margin-bottom: 0;
+            color: #495057;
+            font-size: 0.92rem;
+        }
+
+    #python-classes-objects-page .diagram-main {
+        background: #2e1065;
+        color: #ffffff;
+        border-radius: 10px;
+        padding: 18px;
+        text-align: center;
+        font-weight: 700;
+        font-size: 1.15rem;
+    }
+
+    #python-classes-objects-page .diagram-arrow {
+        text-align: center;
+        font-size: 1.7rem;
+        color: #6f42c1;
+        font-weight: 700;
+        padding: 8px 0;
+    }
+</style>
+
+<main id="python-classes-objects-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- Left Sidebar -->
+        <aside class="col-lg-3">
+
+            @Html.Partial("~/Areas/Python/Views/Shared/PythonTopics.cshtml")
+
+        </aside>
+
+
+        <!-- Main Content -->
+        <section class="col-lg-9">
+
+            <!-- Heading -->
+            <div class="mb-4">
+
+                <h1 class="fw-bold">
+                    Classes &amp; Objects in Python
+                </h1>
+
+                <p class="lead">
+                    Learn how to create classes, objects, attributes and
+                    methods in Python using practical real-world examples.
+                </p>
+
+            </div>
+
+
+            <!-- Introduction -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    What are Classes and Objects?
+                </h2>
+
+                <p>
+                    <strong>Class</strong> and <strong>Object</strong> are
+                    fundamental concepts of Object-Oriented Programming.
+                </p>
+
+                <p>
+                    A <strong>class</strong> is a blueprint or template that
+                    defines the properties and behaviors of an entity.
+                </p>
+
+                <p>
+                    An <strong>object</strong> is a real instance created
+                    from that class.
+                </p>
+
+                <p>
+                    For example, if <strong>Student</strong> is a class,
+                    then Rahul, Priya and Amit can be individual student
+                    objects.
+                </p>
+
+            </div>
+
+
+            <!-- Simple Analogy -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Real-World Analogy
+                </h2>
+
+                <p>
+                    Think of a house blueprint.
+                </p>
+
+                <ul>
+
+                    <li>
+                        <strong>Blueprint → Class</strong>
+                    </li>
+
+                    <li>
+                        <strong>Actual house → Object</strong>
+                    </li>
+
+                </ul>
+
+                <p>
+                    One blueprint can be used to construct multiple houses.
+                    Similarly, one Python class can be used to create
+                    multiple objects.
+                </p>
+
+            </div>
+
+
+            <!-- Diagram -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Class &amp; Object Diagram
+                </h2>
+
+                <p>
+                    This diagram shows how a class works as a blueprint
+                    for creating multiple objects.
+                </p>
+
+                <div class="concept-diagram">
+
+                    <div class="diagram-main">
+                        Student Class
+                        <br />
+                        <small>
+                            Blueprint
+                        </small>
+                    </div>
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+                    <div class="row g-3">
+
+                        <div class="col-md-4">
+
+                            <div class="diagram-box">
+
+                                <h5>Object 1</h5>
+
+                                <p>
+                                    Samiksha<br />
+                                    .NET Full Stack
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-4">
+
+                            <div class="diagram-box">
+
+                                <h5>Object 2</h5>
+
+                                <p>
+                                    Pradnya<br />
+                                    Python Full Stack
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-4">
+
+                            <div class="diagram-box">
+
+                                <h5>Object 3</h5>
+
+                                <p>
+                                    Samadhan<br />
+                                    Java Full Stack
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Creating Class -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Creating a Class
+                </h2>
+
+                <p>
+                    In Python, a class is created using the
+                    <code>class</code> keyword.
+                </p>
+
+                <pre><code>class Student:
+    pass</code></pre>
+
+                <p class="mt-3">
+                    The <code>pass</code> statement is used when we want
+                    to create an empty class temporarily.
+                </p>
+
+            </div>
+
+
+            <!-- Creating Object -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Creating an Object
+                </h2>
+
+                <p>
+                    After defining a class, we can create an object by
+                    calling the class like a function.
+                </p>
+
+                <pre><code>class Student:
+    pass
+
+
+student1 = Student()
+student2 = Student()
+
+print(student1)
+print(student2)</code></pre>
+
+                <p class="mt-3">
+                    Here, <code>student1</code> and <code>student2</code>
+                    are two different objects of the
+                    <code>Student</code> class.
+                </p>
+
+            </div>
+
+
+            <!-- Attributes -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Class Attributes and Object Attributes
+                </h2>
+
+                <p>
+                    Attributes are variables that store information about
+                    an object.
+                </p>
+
+                <pre><code>class Student:
+    pass
+
+
+student1 = Student()
+
+student1.name = "Rahul"
+student1.course = ".NET Full Stack"
+student1.fees = 35000
+
+print(student1.name)
+print(student1.course)
+print(student1.fees)</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Rahul
+.NET Full Stack
+35000</code></pre>
+
+            </div>
+
+
+            <!-- Methods -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Methods in a Class
+                </h2>
+
+                <p>
+                    A method is a function defined inside a class.
+                    It represents behavior or an action of an object.
+                </p>
+
+                <pre><code>class Student:
+
+    def display(self):
+        print("Student Details")
+
+
+student = Student()
+
+student.display()</code></pre>
+
+                <p class="mt-3">
+                    The <code>display()</code> method belongs to the
+                    <code>Student</code> class.
+                </p>
+
+            </div>
+
+
+            <!-- self -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Understanding <code>self</code>
+                </h2>
+
+                <p>
+                    <code>self</code> refers to the current object.
+                    It allows a method to access the attributes and
+                    other methods belonging to that object.
+                </p>
+
+                <pre><code>class Student:
+
+    def display(self):
+        print("Student object")
+
+
+student1 = Student()
+
+student1.display()</code></pre>
+
+                <p class="mt-3">
+                    When <code>student1.display()</code> is called,
+                    Python passes <code>student1</code> as the current
+                    object represented by <code>self</code>.
+                </p>
+
+            </div>
+
+
+            <!-- Constructor Preview -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Using <code>__init__()</code>
+                </h2>
+
+                <p>
+                    The <code>__init__()</code> method is commonly used
+                    to initialize object attributes when an object is created.
+                </p>
+
+                <pre><code>class Student:
+
+    def __init__(self, name, course):
+        self.name = name
+        self.course = course
+
+
+student1 = Student("Rahul", ".NET Full Stack")
+
+print(student1.name)
+print(student1.course)</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Rahul
+.NET Full Stack</code></pre>
+
+                <p>
+                    The detailed concept of constructors will be covered
+                    in the next topic.
+                </p>
+
+            </div>
+
+
+            <!-- Multiple Objects -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Creating Multiple Objects
+                </h2>
+
+                <p>
+                    A single class can be used to create many independent
+                    objects.
+                </p>
+
+                <pre><code>class Student:
+
+    def __init__(self, name, course):
+        self.name = name
+        self.course = course
+
+
+student1 = Student("Rahul", ".NET")
+student2 = Student("Priya", "Python")
+student3 = Student("Amit", "Java")
+
+print(student1.name, student1.course)
+print(student2.name, student2.course)
+print(student3.name, student3.course)</code></pre>
+
+                <p class="mt-3">
+                    Each object stores its own values while using the
+                    same class structure.
+                </p>
+
+            </div>
+
+
+            <!-- Complete Example -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Complete Student Example
+                </h2>
+
+                <pre><code>class Student:
+
+    def __init__(self, name, age, course):
+        self.name = name
+        self.age = age
+        self.course = course
+
+    def display_details(self):
+        print("Name:", self.name)
+        print("Age:", self.age)
+        print("Course:", self.course)
+
+
+student1 = Student(
+    "Sneha",
+    22,
+    "Python Full Stack"
+)
+
+student1.display_details()</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Name: Sneha
+Age: 22
+Course: Python Full Stack</code></pre>
+
+            </div>
+
+
+            <!-- Class vs Object -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Class vs Object
+                </h2>
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered align-middle">
+
+                        <thead>
+                            <tr>
+                                <th>Class</th>
+                                <th>Object</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>Blueprint or template</td>
+                                <td>Instance of a class</td>
+                            </tr>
+
+                            <tr>
+                                <td>Defines structure</td>
+                                <td>Contains actual data</td>
+                            </tr>
+
+                            <tr>
+                                <td>Does not represent a specific entity</td>
+                                <td>Represents a specific entity</td>
+                            </tr>
+
+                            <tr>
+                                <td>Example: Student</td>
+                                <td>Example: student1</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <!-- Object Independence -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Objects Have Independent Data
+                </h2>
+
+                <p>
+                    Different objects created from the same class can
+                    contain different values.
+                </p>
+
+                <pre><code>class Student:
+
+    def __init__(self, name):
+        self.name = name
+
+
+student1 = Student("Rahul")
+student2 = Student("Priya")
+
+student1.name = "Amit"
+
+print(student1.name)
+print(student2.name)</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Amit
+Priya</code></pre>
+
+                <p>
+                    Changing <code>student1</code> does not change the
+                    value stored in <code>student2</code>.
+                </p>
+
+            </div>
+
+
+            <!-- CIIT Example -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    CIIT Training Example 📩🌍
+                </h2>
+
+                <p>
+                    Suppose CIIT needs to maintain information about
+                    different training courses.
+                </p>
+
+                <pre><code>class Course:
+
+    def __init__(self, name, duration, fees):
+        self.name = name
+        self.duration = duration
+        self.fees = fees
+
+    def display(self):
+        print("Course:", self.name)
+        print("Duration:", self.duration)
+        print("Fees:", self.fees)
+
+
+course1 = Course(
+    "Python Full Stack",
+    "6 Months",
+    35000
+)
+
+course2 = Course(
+    ".NET Full Stack",
+    "6 Months",
+    35000
+)
+
+course1.display()
+course2.display()</code></pre>
+
+                <p class="mt-3">
+                    Here, <code>Course</code> is the class and
+                    <code>course1</code> and <code>course2</code>
+                    are objects containing different course information.
+                </p>
+                <div class="px-2">
+    <h5 class="fw-bold mb-2">
+        Output
+    </h5>
+
+    <pre class="mb-4"><code>Course: Python Full Stack
+Duration: 6 Months
+Fees: 35000
+Course: .NET Full Stack
+Duration: 6 Months
+Fees: 35000</code></pre>
+</div>
+            </div>
+
+
+            <!-- Important Rules -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Important Rules
+                </h2>
+
+                <ul>
+
+                    <li>
+                        Use the <code>class</code> keyword to define a class.
+                    </li>
+
+                    <li>
+                        Class names are conventionally written using
+                        PascalCase.
+                    </li>
+
+                    <li>
+                        Create an object by calling the class.
+                    </li>
+
+                    <li>
+                        Use <code>self</code> to refer to the current object.
+                    </li>
+
+                    <li>
+                        Use <code>__init__()</code> to initialize object data.
+                    </li>
+
+                    <li>
+                        Methods are functions defined inside a class.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- Common Mistakes -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Common Beginner Mistakes
+                </h2>
+
+                <ul>
+
+                    <li>
+                        Forgetting indentation inside the class.
+                    </li>
+
+                    <li>
+                        Forgetting the colon after the class declaration.
+                    </li>
+
+                    <li>
+                        Forgetting <code>self</code> in instance methods.
+                    </li>
+
+                    <li>
+                        Confusing class names with object names.
+                    </li>
+
+                    <li>
+                        Calling an instance method without an object.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- Interview Questions -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Interview Questions
+                </h2>
+
+                <ol>
+
+                    <li>
+                        What is a class in Python?
+                    </li>
+
+                    <li>
+                        What is an object?
+                    </li>
+
+                    <li>
+                        What is the difference between class and object?
+                    </li>
+
+                    <li>
+                        How do you create an object in Python?
+                    </li>
+
+                    <li>
+                        What is <code>self</code>?
+                    </li>
+
+                    <li>
+                        What is the purpose of <code>__init__()</code>?
+                    </li>
+
+                    <li>
+                        Can multiple objects be created from one class?
+                    </li>
+
+                </ol>
+
+            </div>
+
+
+            <!-- Learning Point -->
+            <div class="alert alert-success">
+
+                <h2 class="h4 fw-bold">
+                    CIIT Learning Point
+                </h2>
+
+                <p class="mb-0">
+                    Think of a class as a blueprint and an object as the
+                    actual entity created from that blueprint. Once you
+                    understand this relationship, Python OOPs becomes much
+                    easier to understand and apply in real-world projects.
+                </p>
+
+            </div>
+
+
+            <!-- Practice Tasks -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    CIIT Practice Tasks
+                </h2>
+
+                <ol>
+
+                    <li>
+                        Create a <code>Student</code> class with name,
+                        age and course.
+                    </li>
+
+                    <li>
+                        Create three Student objects with different values.
+                    </li>
+
+                    <li>
+                        Create an <code>Employee</code> class with name,
+                        department and salary.
+                    </li>
+
+                    <li>
+                        Create a <code>Course</code> class with course name,
+                        duration and fees.
+                    </li>
+
+                    <li>
+                        Add a method to each class that displays the
+                        object's information.
+                    </li>
+
+                </ol>
+
+            </div>
+
+
+            <!-- Summary -->
+            <div class="alert alert-info mt-4 mb-0"
+                 style="background-color:#cfe2ff; border:0; color:#123c73;">
+
+                <h2 class="h3 fw-bold mt-0 mb-3"
+                    style="color:#123c73;">
+
+                    Summary :
+
+                </h2>
+
+                <p class="mb-0"
+                   style="color:#123c73;">
+
+                    A class is a blueprint used to define the structure
+                    and behavior of objects. An object is an instance of
+                    a class. Python classes can contain attributes that
+                    store data and methods that define behavior.
+                    The <code>self</code> keyword refers to the current
+                    object, while <code>__init__()</code> is commonly used
+                    to initialize object attributes. One class can be used
+                    to create multiple objects, and each object can maintain
+                    its own independent data.
+
+                </p>
+
+            </div>
+
+
+            <!-- Navigation -->
+            <div class="d-flex justify-content-between mt-4">
+
+                <a class="btn btn-outline-secondary"
+                   href="@Url.Action("Index", "OOPs", new { area = "Python" })">
+
+                    ← Previous: Topic
+
+                </a>
+
+                <a class="btn btn-primary"
+                   href="@Url.Action("Constructors", "OOPs", new { area = "Python" })">
+
+                    Next: Topic →
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

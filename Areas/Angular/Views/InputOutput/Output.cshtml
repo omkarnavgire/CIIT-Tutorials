@@ -1,0 +1,922 @@
+﻿@{
+    ViewData["Title"] = "Angular Output";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- Header -->
+    <section class="mb-4">
+        <h1 class="fw-bold text-dark">Angular @@Output</h1>
+        <p class="lead text-muted">
+            Learn how to use @@Output to send data from a child component to a parent component
+            in Angular.
+        </p>
+    </section>
+
+    <!-- Introduction -->
+    <section class="mb-4">
+        <h2 class="fw-bold">What is @@Output?</h2>
+
+        <div class="info-card">
+            <p>
+                In Angular, <strong>@@Output</strong> is used when a child component needs to
+                send information or notify an event to its parent component.
+            </p>
+
+            <p>
+                The child component creates a custom event using
+                <strong>EventEmitter</strong>, while the parent component listens to that
+                event using event binding.
+            </p>
+
+            <p class="mb-0">
+                This creates a simple and controlled way for components to communicate
+                from <strong>Child → Parent</strong>.
+            </p>
+        </div>
+    </section>
+
+    <!-- Communication Flow -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Child to Parent Communication</h2>
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+                <strong>Child Component</strong>
+                <span>Generates Event</span>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+                <strong>EventEmitter</strong>
+                <span>emit()</span>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+                <strong>Parent Component</strong>
+                <span>Receives Event</span>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Basic Syntax -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Basic @@Output Syntax</h2>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Child Component
+            </div>
+
+            <pre><code>import { Component, Output, EventEmitter } from '@@angular/core';
+
+@@Component({
+    selector: 'app-course-card',
+    templateUrl: './course-card.component.html'
+})
+export class CourseCardComponent {
+
+    @@Output() courseSelected = new EventEmitter&lt;string&gt;();
+
+}</code></pre>
+
+        </div>
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Emitting Event
+            </div>
+
+            <pre><code>selectCourse() {
+
+    this.courseSelected.emit('Java Full Stack');
+
+}</code></pre>
+
+        </div>
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Parent Component
+            </div>
+
+            <pre><code>&lt;app-course-card
+    (courseSelected)="handleCourseSelection($event)"&gt;
+&lt;/app-course-card&gt;</code></pre>
+
+        </div>
+    </section>
+
+    <!-- How Output Works -->
+    <section class="mb-4">
+        <h2 class="fw-bold">How @@Output Works</h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+                <div class="syntax-icon">1</div>
+                <h5>Create Output</h5>
+                <p>
+                    The child component creates an event using @@Output and EventEmitter.
+                </p>
+            </div>
+
+            <div class="syntax-card">
+                <div class="syntax-icon">2</div>
+                <h5>Trigger Event</h5>
+                <p>
+                    The child calls emit() when the required action occurs.
+                </p>
+            </div>
+
+            <div class="syntax-card">
+                <div class="syntax-icon">3</div>
+                <h5>Parent Listens</h5>
+                <p>
+                    The parent listens to the custom event using event binding.
+                </p>
+            </div>
+
+            <div class="syntax-card">
+                <div class="syntax-icon">4</div>
+                <h5>Receive Data</h5>
+                <p>
+                    The parent receives the emitted value through $event.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Simple Example -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Simple @@Output Example</h2>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Child Component
+            </div>
+
+            <pre><code>import { Component, Output, EventEmitter } from '@@angular/core';
+
+@@Component({
+    selector: 'app-course-card',
+    templateUrl: './course-card.component.html'
+})
+export class CourseCardComponent {
+
+    @@Output() courseSelected =
+        new EventEmitter&lt;string&gt;();
+
+    selectCourse() {
+
+        this.courseSelected.emit('Python Full Stack');
+
+    }
+
+}</code></pre>
+
+        </div>
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Child HTML
+            </div>
+
+            <pre><code>&lt;button
+    type="button"
+    (click)="selectCourse()"&gt;
+
+    Select Course
+
+&lt;/button&gt;</code></pre>
+
+        </div>
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Parent HTML
+            </div>
+
+            <pre><code>&lt;app-course-card
+    (courseSelected)="receiveCourse($event)"&gt;
+&lt;/app-course-card&gt;</code></pre>
+
+        </div>
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Parent Component
+            </div>
+
+            <pre><code>receiveCourse(course: string) {
+
+    console.log('Selected Course:', course);
+
+}</code></pre>
+
+        </div>
+    </section>
+
+    <!-- Output -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Output</h2>
+
+        <div class="output-box">
+
+            <div class="student-preview">
+
+                <h4>Python Full Stack</h4>
+
+                <p class="mb-0">
+                    Course selected successfully at CIIT Training Institute.
+                </p>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Event Binding -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Using Event Binding with @@Output</h2>
+
+        <p>
+            Parent components use the
+            <strong>(event)</strong>
+            syntax to listen for a custom event generated by the child component.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Event Binding
+            </div>
+
+            <pre><code>&lt;app-course-card
+    (courseSelected)="receiveCourse($event)"&gt;
+&lt;/app-course-card&gt;</code></pre>
+
+        </div>
+
+        <div class="binding-flow mt-4">
+
+            <div class="binding-item">
+                <strong>Child Action</strong>
+                <span>Course Selection</span>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="binding-item">
+                <strong>emit()</strong>
+                <span>EventEmitter</span>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="binding-item">
+                <strong>(courseSelected)</strong>
+                <span>Event Binding</span>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="binding-item">
+                <strong>$event</strong>
+                <span>Parent Data</span>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- EventEmitter -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Using EventEmitter</h2>
+
+        <div class="info-card">
+            <p>
+                <strong>EventEmitter</strong> is used with @@Output to create custom events
+                that can be handled by the parent component.
+            </p>
+
+            <p class="mb-0">
+                The <strong>emit()</strong> method triggers the event and can send data
+                along with the event.
+            </p>
+        </div>
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                EventEmitter Example
+            </div>
+
+            <pre><code>@@Output() enquiry =
+    new EventEmitter&lt;string&gt;();
+
+sendEnquiry() {
+
+    this.enquiry.emit('Full Stack .NET');
+
+}</code></pre>
+
+        </div>
+    </section>
+
+    <!-- Complete CIIT Example -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Complete CIIT Training Institute Example</h2>
+
+        <div class="info-card">
+
+            <p>
+                Suppose CIIT Training Institute has a reusable course card component.
+                When a visitor clicks the <strong>Enquire Now</strong> button,
+                the child component sends the selected course to the parent.
+            </p>
+
+            <p class="mb-0">
+                This communication is handled using @@Output and EventEmitter.
+            </p>
+
+        </div>
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Child Component
+            </div>
+
+            <pre><code>import {
+    Component,
+    Output,
+    EventEmitter
+} from '@@angular/core';
+
+@@Component({
+    selector: 'app-course-card',
+    templateUrl: './course-card.component.html'
+})
+export class CourseCardComponent {
+
+    @@Output() enquiry =
+        new EventEmitter&lt;string&gt;();
+
+    courseName = 'Full Stack .NET';
+
+    sendEnquiry() {
+
+        this.enquiry.emit(this.courseName);
+
+    }
+
+}</code></pre>
+
+        </div>
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Child HTML
+            </div>
+
+            <pre><code>&lt;div class="course-card"&gt;
+
+    &lt;h3&gt;&#123;&#123; courseName &#125;&#125;&lt;/h3&gt;
+
+    &lt;p&gt;
+        Learn Full Stack Development
+        at CIIT Training Institute.
+    &lt;/p&gt;
+
+    &lt;button
+        type="button"
+        (click)="sendEnquiry()"&gt;
+
+        Enquire Now
+
+    &lt;/button&gt;
+
+&lt;/div&gt;</code></pre>
+
+        </div>
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Parent HTML
+            </div>
+
+            <pre><code>&lt;app-course-card
+    (enquiry)="receiveEnquiry($event)"&gt;
+&lt;/app-course-card&gt;</code></pre>
+
+        </div>
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Parent Component
+            </div>
+
+            <pre><code>receiveEnquiry(course: string) {
+
+    console.log(
+        'Enquiry received for:',
+        course
+    );
+
+}</code></pre>
+
+        </div>
+    </section>
+
+    <!-- Data Flow -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Data Flow</h2>
+
+        <div class="binding-flow">
+
+            <div class="binding-item">
+                <strong>Enquire Now</strong>
+                <span>User Action</span>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="binding-item">
+                <strong>sendEnquiry()</strong>
+                <span>Child Method</span>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="binding-item">
+                <strong>emit()</strong>
+                <span>EventEmitter</span>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="binding-item">
+                <strong>$event</strong>
+                <span>Parent Receives Data</span>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Passing Different Data -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Passing Different Types of Data</h2>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                String
+            </div>
+
+            <pre><code>@@Output() courseSelected =
+    new EventEmitter&lt;string&gt;();
+
+this.courseSelected.emit('Java Full Stack');</code></pre>
+
+        </div>
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Number
+            </div>
+
+            <pre><code>@@Output() feeChanged =
+    new EventEmitter&lt;number&gt;();
+
+this.feeChanged.emit(35000);</code></pre>
+
+        </div>
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Object
+            </div>
+
+            <pre><code>@@Output() courseDetails =
+    new EventEmitter&lt;object&gt;();
+
+this.courseDetails.emit({
+    name: 'Python Full Stack',
+    duration: '6 Months',
+    mode: 'Online'
+});</code></pre>
+
+        </div>
+    </section>
+
+    <!-- Input vs Output -->
+    <section class="mb-4">
+        <h2 class="fw-bold">@@Input vs @@Output</h2>
+
+        <div class="table-responsive">
+
+            <table class="syntax-table">
+
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>@@Input</th>
+                        <th>@@Output</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>Direction</td>
+                        <td>Parent → Child</td>
+                        <td>Child → Parent</td>
+                    </tr>
+
+                    <tr>
+                        <td>Purpose</td>
+                        <td>Receive data</td>
+                        <td>Send event/data</td>
+                    </tr>
+
+                    <tr>
+                        <td>Main Feature</td>
+                        <td>Input Property</td>
+                        <td>EventEmitter</td>
+                    </tr>
+
+                    <tr>
+                        <td>Binding</td>
+                        <td>[property]</td>
+                        <td>(event)</td>
+                    </tr>
+
+                    <tr>
+                        <td>Example</td>
+                        <td>[courseName]</td>
+                        <td>(courseSelected)</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+    </section>
+
+    <!-- Important Points -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Important Points</h2>
+
+        <div class="best-practice-list">
+
+            <div class="info-card mb-3">
+                <strong>1. Child → Parent</strong>
+                <p class="mb-0">
+                    @@Output is mainly used for passing events or data from a child
+                    component to a parent component.
+                </p>
+            </div>
+
+            <div class="info-card mb-3">
+                <strong>2. Use EventEmitter</strong>
+                <p class="mb-0">
+                    EventEmitter is used to create and emit custom events.
+                </p>
+            </div>
+
+            <div class="info-card mb-3">
+                <strong>3. Use emit()</strong>
+                <p class="mb-0">
+                    The emit() method triggers the event and sends the required value.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <strong>4. Use $event</strong>
+                <p class="mb-0">
+                    The parent component can access the emitted value using $event.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Best Practices -->
+    <section class="mb-4">
+        <h2 class="fw-bold">@@Output Best Practices</h2>
+
+        <ul class="best-practice-list">
+            <li>Use @@Output for Child → Parent communication.</li>
+            <li>Use meaningful custom event names.</li>
+            <li>Use EventEmitter for custom events.</li>
+            <li>Use emit() when the required action occurs.</li>
+            <li>Send only the required data to the parent.</li>
+            <li>Keep child components reusable and focused.</li>
+        </ul>
+    </section>
+
+    <!-- Summary -->
+    <section class="mb-4">
+        <div class="summary-box">
+
+            <h4 class="fw-bold">Summary</h4>
+
+            <p class="mb-0">
+                Angular <strong>@@Output</strong> allows a child component to communicate
+                with its parent component. The child creates a custom event using
+                <strong>EventEmitter</strong>, sends data using <strong>emit()</strong>,
+                and the parent listens to that event using event binding and receives
+                the value through <strong>$event</strong>.
+            </p>
+
+        </div>
+    </section>
+
+    <!-- Navigation -->
+    <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+
+        <a class="btn btn-outline-secondary"
+           href="@Url.Action("Input", "InputOutput", new { area = "Angular" })">
+            ← Input
+        </a>
+
+        <a class="btn btn-primary"
+           href="@Url.Action("EventEmitter", "InputOutput", new { area = "Angular" })">
+            EventEmitter →
+        </a>
+
+    </div>
+
+</div>
+
+<style>
+
+    .info-card {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-left: 5px solid #4c1d95;
+        border-radius: 10px;
+        padding: 20px;
+        line-height: 1.7;
+    }
+
+    .syntax-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        flex-wrap: wrap;
+        margin: 25px 0;
+    }
+
+    .syntax-box {
+        background: linear-gradient(135deg, #2e1065, #4c1d95);
+        color: white;
+        padding: 18px 25px;
+        border-radius: 12px;
+        text-align: center;
+        min-width: 180px;
+        box-shadow: 0 5px 15px rgba(76, 29, 149, 0.15);
+    }
+
+        .syntax-box strong {
+            display: block;
+            font-size: 16px;
+        }
+
+        .syntax-box span {
+            display: block;
+            margin-top: 5px;
+            color: #d8c9f5;
+            font-size: 14px;
+        }
+
+    .syntax-arrow {
+        font-size: 28px;
+        font-weight: bold;
+        color: #4c1d95;
+    }
+
+    .syntax-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+
+    .syntax-card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 22px;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+    }
+
+        .syntax-card h5 {
+            margin-top: 15px;
+            font-weight: 700;
+        }
+
+        .syntax-card p {
+            color: #64748b;
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+
+    .syntax-icon {
+        width: 48px;
+        height: 48px;
+        margin: auto;
+        border-radius: 50%;
+        background: #ede9fe;
+        color: #4c1d95;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 18px;
+    }
+
+    .code-card {
+        background: #0f172a;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-top: 15px;
+    }
+
+    .code-title {
+        background: #1e293b;
+        color: #ddd6fe;
+        padding: 10px 16px;
+        font-weight: 600;
+        border-bottom: 1px solid #334155;
+    }
+
+    .code-card pre {
+        margin: 0;
+        padding: 20px;
+        overflow-x: auto;
+    }
+
+    .code-card code {
+        color: #f8fafc;
+        font-family: Consolas, Monaco, monospace;
+        line-height: 1.7;
+    }
+
+    .output-box {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 25px;
+    }
+
+    .student-preview {
+        background: white;
+        border: 1px solid #ddd6fe;
+        border-radius: 10px;
+        padding: 22px;
+        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+    }
+
+        .student-preview h4 {
+            color: #4c1d95;
+            font-weight: 700;
+        }
+
+    .binding-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .binding-item {
+        background: #ede9fe;
+        border: 1px solid #ddd6fe;
+        border-radius: 10px;
+        padding: 15px 22px;
+        text-align: center;
+        min-width: 170px;
+    }
+
+        .binding-item strong {
+            display: block;
+            color: #2e1065;
+        }
+
+        .binding-item span {
+            display: block;
+            color: #64748b;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+
+    .syntax-table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        border: 1px solid #e2e8f0;
+    }
+
+        .syntax-table th {
+            background: #4c1d95;
+            color: white;
+            padding: 14px;
+            text-align: left;
+        }
+
+        .syntax-table td {
+            padding: 14px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .syntax-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .syntax-table td:first-child {
+            font-weight: 600;
+            color: #2e1065;
+        }
+
+    .best-practice-list {
+        padding-left: 20px;
+        line-height: 1.9;
+    }
+
+        .best-practice-list li {
+            margin-bottom: 7px;
+        }
+
+    .summary-box {
+        background: #cfe2ff;
+        color: #084298;
+        border-radius: 10px;
+        padding: 22px;
+        border: 1px solid #b6d4fe;
+    }
+
+    @@media (max-width: 991px) {
+
+        .syntax-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .syntax-flow {
+            flex-direction: column;
+        }
+
+        .syntax-arrow {
+            transform: rotate(90deg);
+        }
+
+        .binding-flow {
+            flex-direction: column;
+        }
+    }
+
+    @@media (max-width: 576px) {
+
+        .syntax-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .syntax-box {
+            width: 100%;
+        }
+
+        .binding-item {
+            width: 100%;
+        }
+
+        .code-card pre {
+            font-size: 13px;
+        }
+
+        .syntax-table {
+            font-size: 13px;
+        }
+    }
+
+</style>

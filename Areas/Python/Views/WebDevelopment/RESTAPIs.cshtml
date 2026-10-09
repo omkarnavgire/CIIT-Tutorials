@@ -1,0 +1,888 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Python REST APIs";
+}
+
+<style>
+    #python-rest-apis-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #python-rest-apis-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #python-rest-apis-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #python-rest-apis-page .diagram-box {
+        background: #ffffff;
+        border: 2px solid #6f42c1;
+        border-radius: 10px;
+        padding: 18px;
+        text-align: center;
+        height: 100%;
+    }
+
+        #python-rest-apis-page .diagram-box h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        #python-rest-apis-page .diagram-box p {
+            margin-bottom: 0;
+            font-size: 14px;
+            color: #495057;
+        }
+
+    #python-rest-apis-page .diagram-arrow {
+        text-align: center;
+        font-size: 28px;
+        font-weight: 700;
+        color: #6f42c1;
+        padding: 8px 0;
+    }
+
+    #python-rest-apis-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #python-rest-apis-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+        }
+</style>
+
+<main id="python-rest-apis-page" class="container py-5">
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+                <h1 class="fw-bold">REST APIs in Python</h1>
+
+                <p class="lead">
+                    REST APIs allow different applications to communicate
+                    with each other using standard HTTP methods and data formats.
+                </p>
+            </div>
+
+            <!-- WHAT IS REST -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">What is REST?</h2>
+
+                <p>
+                    REST stands for <strong>Representational State Transfer</strong>.
+                    It is an architectural style commonly used to design web APIs.
+                </p>
+
+                <p>
+                    A REST API allows a client application to communicate
+                    with a server using HTTP requests.
+                </p>
+
+                <div class="concept-box mt-3">
+                    <h5 class="fw-bold">Simple Definition</h5>
+
+                    <p class="mb-0">
+                        A <strong>REST API</strong> is a web-based interface
+                        that allows applications to exchange data using
+                        HTTP requests and responses.
+                    </p>
+                </div>
+            </div>
+
+            <!-- REST API FLOW -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">REST API Flow</h2>
+
+                <p>
+                    A client sends a request to an API endpoint. The server
+                    processes the request and returns a response.
+                </p>
+
+                <div class="row g-3 mt-3">
+
+                    <div class="col-md-3">
+                        <div class="diagram-box">
+                            <h5>Client</h5>
+
+                            <p>
+                                Browser, mobile app or another application
+                                sends a request.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-1 d-flex align-items-center justify-content-center">
+                        <div class="diagram-arrow">→</div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="diagram-box">
+                            <h5>REST API</h5>
+
+                            <p>
+                                API receives and processes the request.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-1 d-flex align-items-center justify-content-center">
+                        <div class="diagram-arrow">→</div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="diagram-box">
+                            <h5>Response</h5>
+
+                            <p>
+                                Server sends data such as JSON back to the client.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- REST RESOURCES -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Resources in REST APIs</h2>
+
+                <p>
+                    REST APIs usually work with resources. A resource can
+                    represent an object or collection of data.
+                </p>
+
+                <div class="row g-3 mt-2">
+
+                    <div class="col-md-4">
+                        <div class="info-card">
+
+                            <h5>Students</h5>
+
+                            <p class="mb-0">
+                                Represents student information.
+                            </p>
+
+                            <pre><code>/students</code></pre>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="info-card">
+
+                            <h5>Courses</h5>
+
+                            <p class="mb-0">
+                                Represents available courses.
+                            </p>
+
+                            <pre><code>/courses</code></pre>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="info-card">
+
+                            <h5>Products</h5>
+
+                            <p class="mb-0">
+                                Represents product information.
+                            </p>
+
+                            <pre><code>/products</code></pre>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- HTTP METHODS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">HTTP Methods in REST APIs</h2>
+
+                <p>
+                    REST APIs commonly use HTTP methods to describe
+                    the required operation.
+                </p>
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered">
+
+                        <thead class="table-light">
+                            <tr>
+                                <th>Method</th>
+                                <th>Purpose</th>
+                                <th>Example</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>GET</td>
+                                <td>Retrieve data</td>
+                                <td>/students</td>
+                            </tr>
+
+                            <tr>
+                                <td>POST</td>
+                                <td>Create new data</td>
+                                <td>/students</td>
+                            </tr>
+
+                            <tr>
+                                <td>PUT</td>
+                                <td>Update existing data</td>
+                                <td>/students/1</td>
+                            </tr>
+
+                            <tr>
+                                <td>DELETE</td>
+                                <td>Delete data</td>
+                                <td>/students/1</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+            </div>
+
+            <!-- GET API -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">GET Request</h2>
+
+                <p>
+                    GET is commonly used to retrieve data from a server.
+                </p>
+
+                <pre><code>from fastapi import FastAPI
+
+app = FastAPI()
+
+&#64;app.get("/students")
+def get_students():
+    return {
+        "students": [
+            "Rahul",
+            "Priya",
+            "Amit"
+        ]
+    }</code></pre>
+
+                <div class="alert alert-success mt-3">
+                    The endpoint returns student information as JSON data.
+                </div>
+            </div>
+            <div class="px-2">
+                <h5 class="fw-bold mb-2">
+                    Output
+                </h5>
+
+                <pre class="mb-4"><code>{
+    "students": [
+        "Rahul",
+        "Priya",
+        "Amit"
+    ]
+}</code></pre>
+            </div>
+            <!-- POST API -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">POST Request</h2>
+
+                <p>
+                    POST is commonly used to create new data on the server.
+                </p>
+
+                <pre><code>from fastapi import FastAPI
+
+app = FastAPI()
+
+&#64;app.post("/students")
+def create_student():
+    return {
+        "message": "Student created successfully"
+    }</code></pre>
+            </div>
+            <div class="px-2">
+                <h5 class="fw-bold mb-2">
+                    Output
+                </h5>
+
+                <pre class="mb-4"><code>{
+    "message": "Student created successfully"
+}</code></pre>
+            </div>
+            <!-- PUT API -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">PUT Request</h2>
+
+                <p>
+                    PUT is commonly used to update an existing resource.
+                </p>
+
+                <pre><code>from fastapi import FastAPI
+
+app = FastAPI()
+
+&#64;app.put("/students/{student_id}")
+def update_student(student_id: int):
+    return {
+        "message": "Student updated",
+        "student_id": student_id
+    }</code></pre>
+            </div>
+            <div class="px-2">
+                <h5 class="fw-bold mb-2">
+                    Output
+                </h5>
+
+                <pre class="mb-4"><code>{
+    "message": "Student updated",
+    "student_id": 1
+}</code></pre>
+            </div>
+            <!-- DELETE API -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">DELETE Request</h2>
+
+                <p>
+                    DELETE is used to remove a resource.
+                </p>
+
+                <pre><code>from fastapi import FastAPI
+
+app = FastAPI()
+
+&#64;app.delete("/students/{student_id}")
+def delete_student(student_id: int):
+    return {
+        "message": "Student deleted",
+        "student_id": student_id
+    }</code></pre>
+            </div>
+            <div class="px-2">
+                <h5 class="fw-bold mb-2">
+                    Output
+                </h5>
+
+                <pre class="mb-4"><code>{
+    "message": "Student deleted",
+    "student_id": 1
+}</code></pre>
+            </div>
+            <!-- JSON -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">JSON in REST APIs</h2>
+
+                <p>
+                    JSON is commonly used to exchange structured data
+                    between clients and servers.
+                </p>
+
+                <pre><code>{
+    "id": 101,
+    "name": "Rahul",
+    "course": "Python",
+    "city": "Pune"
+}</code></pre>
+
+                <p class="mt-3">
+                    JSON contains data in key-value form and can also
+                    contain lists and nested objects.
+                </p>
+            </div>
+
+            <!-- API ENDPOINTS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">REST API Endpoints</h2>
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered">
+
+                        <thead class="table-light">
+                            <tr>
+                                <th>Method</th>
+                                <th>Endpoint</th>
+                                <th>Operation</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>GET</td>
+                                <td>/students</td>
+                                <td>Get all students</td>
+                            </tr>
+
+                            <tr>
+                                <td>GET</td>
+                                <td>/students/1</td>
+                                <td>Get one student</td>
+                            </tr>
+
+                            <tr>
+                                <td>POST</td>
+                                <td>/students</td>
+                                <td>Create a student</td>
+                            </tr>
+
+                            <tr>
+                                <td>PUT</td>
+                                <td>/students/1</td>
+                                <td>Update a student</td>
+                            </tr>
+
+                            <tr>
+                                <td>DELETE</td>
+                                <td>/students/1</td>
+                                <td>Delete a student</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+            </div>
+
+            <!-- STATUS CODES -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">HTTP Status Codes</h2>
+
+                <p>
+                    HTTP status codes tell the client whether a request
+                    was successful or whether an error occurred.
+                </p>
+
+                <div class="row g-3 mt-2">
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+
+                            <h5>200 - OK</h5>
+
+                            <p class="mb-0">
+                                The request was successfully processed.
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+
+                            <h5>201 - Created</h5>
+
+                            <p class="mb-0">
+                                A new resource was successfully created.
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+
+                            <h5>400 - Bad Request</h5>
+
+                            <p class="mb-0">
+                                The request contains invalid data.
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+
+                            <h5>404 - Not Found</h5>
+
+                            <p class="mb-0">
+                                The requested resource could not be found.
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+
+                            <h5>500 - Server Error</h5>
+
+                            <p class="mb-0">
+                                An unexpected server-side error occurred.
+                            </p>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- PRACTICAL FASTAPI REST API -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">
+                    Example: Course REST API 🤓👀
+                </h2>
+
+                <p>
+                    The following example creates simple REST endpoints
+                    for a training institute.
+                </p>
+
+                <pre><code>from fastapi import FastAPI
+
+app = FastAPI()
+
+&#64;app.get("/courses")
+def get_courses():
+    return {
+        "courses": [
+            {
+                "id": 1,
+                "name": "Python"
+            },
+            {
+                "id": 2,
+                "name": ".NET Full Stack"
+            }
+        ]
+    }
+
+&#64;app.get("/courses/{course_id}")
+def get_course(course_id: int):
+    return {
+        "course_id": course_id
+    }
+
+&#64;app.post("/courses")
+def create_course():
+    return {
+        "message": "Course created"
+    }
+
+&#64;app.put("/courses/{course_id}")
+def update_course(course_id: int):
+    return {
+        "message": "Course updated",
+        "course_id": course_id
+    }
+
+&#64;app.delete("/courses/{course_id}")
+def delete_course(course_id: int):
+    return {
+        "message": "Course deleted",
+        "course_id": course_id
+    }</code></pre>
+            </div>
+            <div class="px-2">
+                <h5 class="fw-bold mb-2">
+                    Output
+                </h5>
+
+                <pre class="mb-4"><code>{
+    "courses": [
+        {
+            "id": 1,
+            "name": "Python"
+        },
+        {
+            "id": 2,
+            "name": ".NET Full Stack"
+        }
+    ]
+}
+
+{
+    "course_id": 1
+}
+
+{
+    "message": "Course created"
+}
+
+{
+    "message": "Course updated",
+    "course_id": 1
+}
+
+{
+    "message": "Course deleted",
+    "course_id": 1
+}</code></pre>
+            </div>
+            <!-- REST PRINCIPLES -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Basic REST Principles</h2>
+
+                <div class="row g-3 mt-2">
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+
+                            <h5>Resource Based</h5>
+
+                            <p class="mb-0">
+                                APIs should represent resources such as
+                                students, courses, or products.
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+
+                            <h5>HTTP Methods</h5>
+
+                            <p class="mb-0">
+                                HTTP methods define the action performed
+                                on the resource.
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+
+                            <h5>Stateless</h5>
+
+                            <p class="mb-0">
+                                Each request should contain the information
+                                required to process it.
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+
+                            <h5>Standard Format</h5>
+
+                            <p class="mb-0">
+                                JSON is commonly used to exchange
+                                API data.
+                            </p>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- API TESTING -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Testing a REST API</h2>
+
+                <p>
+                    REST APIs can be tested using browser tools, API clients,
+                    or interactive documentation.
+                </p>
+
+                <div class="concept-box">
+
+                    <h5 class="fw-bold">Common Tools</h5>
+
+                    <ul class="mb-0">
+                        <li>Browser</li>
+                        <li>Swagger UI</li>
+                        <li>Postman</li>
+                        <li>cURL</li>
+                    </ul>
+
+                </div>
+            </div>
+
+            <!-- BEST PRACTICES -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Best Practices</h2>
+
+                <div class="concept-box">
+
+                    <ul class="mb-0">
+
+                        <li>
+                            Use clear and meaningful endpoint names.
+                        </li>
+
+                        <li>
+                            Use the correct HTTP method for each operation.
+                        </li>
+
+                        <li>
+                            Return appropriate HTTP status codes.
+                        </li>
+
+                        <li>
+                            Validate incoming data.
+                        </li>
+
+                        <li>
+                            Use consistent JSON response structures.
+                        </li>
+
+                        <li>
+                            Protect sensitive API endpoints.
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div>
+
+            <!-- COMMON MISTAKES -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Common Mistakes</h2>
+
+                <div class="alert alert-warning">
+
+                    <ul class="mb-0">
+
+                        <li>
+                            Using incorrect HTTP methods.
+                        </li>
+
+                        <li>
+                            Creating unclear endpoint names.
+                        </li>
+
+                        <li>
+                            Returning incorrect status codes.
+                        </li>
+
+                        <li>
+                            Not validating client data.
+                        </li>
+
+                        <li>
+                            Mixing unrelated resources in one endpoint.
+                        </li>
+
+                        <li>
+                            Exposing sensitive information in API responses.
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div>
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Practice Exercise</h2>
+
+                <div class="concept-box">
+
+                    <p>
+                        Create a REST API for students with the following endpoints:
+                    </p>
+
+                    <ol>
+
+                        <li>
+                            <strong>GET /students</strong> →
+                            Return all students.
+                        </li>
+
+                        <li>
+                            <strong>GET /students/{id}</strong> →
+                            Return one student.
+                        </li>
+
+                        <li>
+                            <strong>POST /students</strong> →
+                            Create a student.
+                        </li>
+
+                        <li>
+                            <strong>PUT /students/{id}</strong> →
+                            Update a student.
+                        </li>
+
+                        <li>
+                            <strong>DELETE /students/{id}</strong> →
+                            Delete a student.
+                        </li>
+
+                    </ol>
+
+                    <p class="mb-0">
+                        Test all endpoints using an API testing tool.
+                    </p>
+
+                </div>
+            </div>
+            <!-- SUMMARY -->
+<div class="alert alert-info mt-4">
+
+    <h2 class="h4 fw-bold">
+        Summary
+    </h2>
+
+    <p class="mb-0">
+
+        REST APIs allow applications to communicate through HTTP and work
+        with resources such as students and courses. The GET method is used
+        to retrieve data, POST is used to create data, PUT is used to update
+        data, and DELETE is used to remove data. JSON is commonly used for
+        exchanging API data, while HTTP status codes communicate the result
+        of a request.
+
+    </p>
+
+</div>
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+
+                <a class="btn btn-outline-secondary"
+                   href="@Url.Action("WebRoutes", "WebDevelopment", new { area = "Python" })">
+                    ← Previous: Topic
+                </a>
+
+                <a class="btn btn-primary"
+                   href="@Url.Action("APIRequests", "WebDevelopment", new { area = "Python" })">
+                    Next: Topic →
+                </a>
+
+            </div>
+
+        </section>
+    </div>
+</main>

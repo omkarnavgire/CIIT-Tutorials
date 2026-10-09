@@ -1,0 +1,1061 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Python Reading Files";
+}
+
+<style>
+
+    #python-reading-files-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #python-reading-files-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #python-reading-files-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #python-reading-files-page .diagram-box {
+        background: #ffffff;
+        border: 2px solid #6f42c1;
+        border-radius: 10px;
+        padding: 18px;
+        text-align: center;
+        height: 100%;
+    }
+
+        #python-reading-files-page .diagram-box h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        #python-reading-files-page .diagram-box p {
+            margin-bottom: 0;
+            font-size: 14px;
+            color: #495057;
+        }
+
+    #python-reading-files-page .diagram-arrow {
+        text-align: center;
+        font-size: 28px;
+        font-weight: 700;
+        color: #6f42c1;
+        padding: 8px 0;
+    }
+
+    #python-reading-files-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #python-reading-files-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+        }
+
+</style>
+
+
+<main id="python-reading-files-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+
+                <h1 class="fw-bold">
+                    Reading Files in Python
+                </h1>
+
+                <p class="lead">
+                    Learn how to open a file, read its contents and process
+                    file data using different Python methods.
+                </p>
+
+            </div>
+
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    What is Reading a File?
+                </h2>
+
+                <p>
+                    Reading a file means getting the data stored inside a file
+                    and using that data in a Python program.
+                </p>
+
+                <p>
+                    Python provides the <code>open()</code> function to open
+                    a file and different methods to read its contents.
+                </p>
+
+                <div class="alert alert-info">
+
+                    <strong>Simple Definition:</strong>
+
+                    File reading means opening a file and getting
+                    its stored data into a Python program.
+
+                </div>
+
+            </div>
+
+
+            <!-- BASIC FLOW DIAGRAM -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Reading File Diagram
+                </h2>
+
+                <p>
+                    The basic process of reading a file is:
+                </p>
+
+                <div class="concept-box">
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            Python Program
+                        </h5>
+
+                        <p>
+                            Wants to read stored information.
+                        </p>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="row g-3">
+
+                        <div class="col-md-4">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    Open File
+                                </h5>
+
+                                <p>
+                                    Use
+                                    <code>open()</code>
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-4">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    Read Data
+                                </h5>
+
+                                <p>
+                                    Use
+                                    <code>read()</code>
+                                    or other methods.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-4">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    Process Data
+                                </h5>
+
+                                <p>
+                                    Display or use the file content.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            File Content
+                        </h5>
+
+                        <p>
+                            Data is available inside the Python program.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- OPEN FILE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Step 1: Open a File
+                </h2>
+
+                <p>
+                    To read a text file, we can open it using
+                    <code>open()</code> with <code>"r"</code> mode.
+                </p>
+
+                <pre><code>file = open("example.txt", "r")</code></pre>
+
+                <p class="mt-3">
+                    Here:
+                </p>
+
+                <ul>
+
+                    <li>
+                        <code>example.txt</code> is the file name.
+                    </li>
+
+                    <li>
+                        <code>"r"</code> means read mode.
+                    </li>
+
+                    <li>
+                        <code>file</code> stores the opened file object.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- READ -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Step 2: Read the Complete File
+                </h2>
+
+                <p>
+                    The <code>read()</code> method reads the file content.
+                </p>
+
+                <pre><code>file = open("example.txt", "r")
+
+data = file.read()
+
+print(data)
+
+file.close()</code></pre>
+
+                <p class="mt-3">
+                    Suppose <code>example.txt</code> contains:
+                </p>
+
+                <pre><code>Hello Python
+Welcome to File Handling</code></pre>
+
+                <p>
+                    Output:
+                </p>
+
+                <pre><code>Hello Python
+Welcome to File Handling</code></pre>
+
+                <p>
+                    The complete file content is returned as one string.
+                </p>
+
+            </div>
+
+
+            <!-- WITH -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Reading a File Using <code>with</code>
+                </h2>
+
+                <p>
+                    A better and safer way is to use the
+                    <code>with</code> statement.
+                </p>
+
+                <pre><code>with open("example.txt", "r") as file:
+
+    data = file.read()
+
+    print(data)</code></pre>
+
+                <p>
+                    When the <code>with</code> block finishes, Python
+                    handles the file resource automatically.
+                </p>
+
+            </div>
+
+
+            <!-- READ CHARACTER COUNT -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Reading a Specific Number of Characters
+                </h2>
+
+                <p>
+                    We can pass a number to <code>read()</code> to read
+                    only a specific number of characters.
+                </p>
+
+                <pre><code>with open("example.txt", "r") as file:
+
+    data = file.read(5)
+
+    print(data)</code></pre>
+
+                <p class="mt-3">
+                    If the file starts with:
+                </p>
+
+                <pre><code>Hello Python</code></pre>
+
+                <p>
+                    Output:
+                </p>
+
+                <pre><code>Hello</code></pre>
+
+                <p>
+                    Here, only the first five characters are read.
+                </p>
+
+            </div>
+
+
+            <!-- READLINE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Reading One Line Using <code>readline()</code>
+                </h2>
+
+                <p>
+                    The <code>readline()</code> method reads one line
+                    from the file.
+                </p>
+
+                <pre><code>with open("example.txt", "r") as file:
+
+    line = file.readline()
+
+    print(line)</code></pre>
+
+                <p>
+                    Suppose the file contains:
+                </p>
+
+                <pre><code>Python
+Java
+.NET</code></pre>
+
+                <p>
+                    The first call to <code>readline()</code> reads:
+                </p>
+
+                <pre><code>Python</code></pre>
+
+            </div>
+
+
+            <!-- MULTIPLE READLINE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Reading Multiple Lines
+                </h2>
+
+                <p>
+                    We can call <code>readline()</code> multiple times.
+                </p>
+
+                <pre><code>with open("example.txt", "r") as file:
+
+    line1 = file.readline()
+    line2 = file.readline()
+
+    print(line1)
+    print(line2)</code></pre>
+
+                <p>
+                    Each call moves the reading position to the next line.
+                </p>
+
+            </div>
+
+
+            <!-- READLINES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Reading All Lines Using <code>readlines()</code>
+                </h2>
+
+                <p>
+                    The <code>readlines()</code> method reads all lines
+                    and returns them as a list.
+                </p>
+
+                <pre><code>with open("example.txt", "r") as file:
+
+    lines = file.readlines()
+
+    print(lines)</code></pre>
+
+                <p>
+                    For a file containing:
+                </p>
+
+                <pre><code>Python
+Java
+.NET</code></pre>
+
+                <p>
+                    The result is similar to:
+                </p>
+
+                <pre><code>['Python\n', 'Java\n', '.NET']</code></pre>
+
+                <p>
+                    Each item in the list represents a line.
+                </p>
+
+            </div>
+
+
+            <!-- LOOP -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Reading a File Line by Line Using a Loop
+                </h2>
+
+                <p>
+                    We can directly loop through a file object.
+                </p>
+
+                <pre><code>with open("example.txt", "r") as file:
+
+    for line in file:
+
+        print(line.strip())</code></pre>
+
+                <p>
+                    This is useful when a file contains many lines
+                    and we want to process them one by one.
+                </p>
+
+            </div>
+
+
+            <!-- STRIP -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Using <code>strip()</code> While Reading
+                </h2>
+
+                <p>
+                    Lines read from a text file often contain a newline
+                    character.
+                </p>
+
+                <p>
+                    We can use <code>strip()</code> to remove unwanted
+                    spaces and newline characters.
+                </p>
+
+                <pre><code>with open("example.txt", "r") as file:
+
+    for line in file:
+
+        print(line.strip())</code></pre>
+
+            </div>
+
+
+            <!-- FILE NOT FOUND -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Handling File Not Found Error
+                </h2>
+
+                <p>
+                    If the file does not exist, Python can raise a
+                    <code>FileNotFoundError</code>.
+                </p>
+
+                <pre><code>try:
+
+    with open("example.txt", "r") as file:
+
+        data = file.read()
+
+        print(data)
+
+except FileNotFoundError:
+
+    print("File not found")</code></pre>
+
+                <p>
+                    This prevents the program from stopping unexpectedly
+                    when the required file is missing.
+                </p>
+
+            </div>
+
+
+            <!-- ENCODING -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Reading a File with Encoding
+                </h2>
+
+                <p>
+                    We can specify the text encoding while opening a file.
+                </p>
+
+                <pre><code>with open(
+    "example.txt",
+    "r",
+    encoding="utf-8"
+) as file:
+
+    data = file.read()
+
+    print(data)</code></pre>
+
+                <p>
+                    UTF-8 is a common text encoding and is useful when
+                    working with multilingual text.
+                </p>
+
+            </div>
+
+
+            <!-- FILE POSITION -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Understanding the File Position
+                </h2>
+
+                <p>
+                    Python keeps track of the current position while
+                    reading a file.
+                </p>
+
+                <pre><code>with open("example.txt", "r") as file:
+
+    print(file.tell())
+
+    file.read(5)
+
+    print(file.tell())</code></pre>
+
+                <p>
+                    The <code>tell()</code> method returns the current
+                    position in the file.
+                </p>
+
+            </div>
+
+
+            <!-- SEEK -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Moving the File Position with <code>seek()</code>
+                </h2>
+
+                <p>
+                    The <code>seek()</code> method changes the current
+                    reading position.
+                </p>
+
+                <pre><code>with open("example.txt", "r") as file:
+
+    print(file.read(5))
+
+    file.seek(0)
+
+    print(file.read(5))</code></pre>
+
+                <p class="mt-3">
+                    Here <code>seek(0)</code> moves the reading position
+                    back to the beginning of the file.
+                </p>
+
+            </div>
+
+
+            <!-- TEXT FILE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Reading a Text File
+                </h2>
+
+                <p>
+                    Example file:
+                </p>
+
+                <pre><code>students.txt
+
+Rahul
+Priya
+Amit
+Sneha</code></pre>
+
+                <p class="mt-3">
+                    Python program:
+                </p>
+
+                <pre><code>with open("students.txt", "r") as file:
+
+    for student in file:
+
+        print(student.strip())</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Rahul
+Priya
+Amit
+Sneha</code></pre>
+
+            </div>
+
+
+            <!-- READ INTO LIST -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Store File Data in a List
+                </h2>
+
+                <p>
+                    We can store each line inside a Python list.
+                </p>
+
+                <pre><code>students = []
+
+with open("students.txt", "r") as file:
+
+    for line in file:
+
+        students.append(line.strip())
+
+
+print(students)</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>['Rahul', 'Priya', 'Amit', 'Sneha']</code></pre>
+
+            </div>
+
+
+            <!-- COUNT LINES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Count Number of Lines
+                </h2>
+
+                <pre><code>count = 0
+
+with open("students.txt", "r") as file:
+
+    for line in file:
+
+        count += 1
+
+
+print("Total Lines:", count)</code></pre>
+
+                <p class="mt-3">
+                    Output for the example file:
+                </p>
+
+                <pre><code>Total Lines: 4</code></pre>
+
+            </div>
+
+
+            <!-- SEARCH -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Search for Text in a File
+                </h2>
+
+                <p>
+                    We can check whether a particular word exists
+                    in a file.
+                </p>
+
+                <pre><code>search_name = "Rahul"
+
+with open("students.txt", "r") as file:
+
+    data = file.read()
+
+    if search_name in data:
+
+        print("Student found")
+
+    else:
+
+        print("Student not found")</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Student found</code></pre>
+
+            </div>
+
+
+            <!-- READ METHOD COMPARISON -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    read() vs readline() vs readlines()
+                </h2>
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered align-middle">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Method
+                                </th>
+
+                                <th>
+                                    Returns
+                                </th>
+
+                                <th>
+                                    Use
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+
+                                <td>
+                                    <code>read()</code>
+                                </td>
+
+                                <td>
+                                    Complete content as a string
+                                </td>
+
+                                <td>
+                                    Read the whole file
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    <code>readline()</code>
+                                </td>
+
+                                <td>
+                                    One line
+                                </td>
+
+                                <td>
+                                    Read one line at a time
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    <code>readlines()</code>
+                                </td>
+
+                                <td>
+                                    List of lines
+                                </td>
+
+                                <td>
+                                    Read all lines as a list
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <!-- BEST PRACTICE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Best Practice for Reading Files
+                </h2>
+
+                <div class="concept-box">
+
+                    <p>
+                        <strong>Step 1:</strong>
+                        Make sure the file path is correct.
+                    </p>
+
+                    <p>
+                        ↓
+                    </p>
+
+                    <p>
+                        <strong>Step 2:</strong>
+                        Open the file in read mode.
+                    </p>
+
+                    <p>
+                        ↓
+                    </p>
+
+                    <p>
+                        <strong>Step 3:</strong>
+                        Use <code>with</code> whenever practical.
+                    </p>
+
+                    <p>
+                        ↓
+                    </p>
+
+                    <p>
+                        <strong>Step 4:</strong>
+                        Choose the appropriate reading method.
+                    </p>
+
+                    <p>
+                        ↓
+                    </p>
+
+                    <p class="mb-0">
+                        <strong>Step 5:</strong>
+                        Handle missing files and other exceptions.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- COMMON MISTAKES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Common Mistakes
+                </h2>
+
+                <ul>
+
+                    <li>
+                        Giving an incorrect file path.
+                    </li>
+
+                    <li>
+                        Forgetting to use read mode when needed.
+                    </li>
+
+                    <li>
+                        Trying to read a file that does not exist.
+                    </li>
+
+                    <li>
+                        Forgetting that <code>read()</code> returns a string.
+                    </li>
+
+                    <li>
+                        Forgetting to remove newline characters while
+                        processing individual lines.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Practice Programs
+                </h2>
+
+                <ol>
+
+                    <li>
+                        Create a file named <code>students.txt</code>
+                        containing five student names.
+                    </li>
+
+                    <li>
+                        Read and display the complete file.
+                    </li>
+
+                    <li>
+                        Read only the first line.
+                    </li>
+
+                    <li>
+                        Read all lines using <code>readlines()</code>.
+                    </li>
+
+                    <li>
+                        Print every line using a <code>for</code> loop.
+                    </li>
+
+                    <li>
+                        Count the total number of lines.
+                    </li>
+
+                    <li>
+                        Search for a specific student name in the file.
+                    </li>
+
+                </ol>
+
+            </div>
+
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+
+                <h2 class="h4 fw-bold">
+                    Summary
+                </h2>
+
+                <p class="mb-0">
+
+                    Python provides several ways to read file data.
+                    The <code>read()</code> method reads the complete
+                    content, <code>readline()</code> reads one line and
+                    <code>readlines()</code> returns all lines as a list.
+                    We can also loop through a file line by line.
+                    The <code>with</code> statement is a convenient way
+                    to work with files, and exceptions such as
+                    <code>FileNotFoundError</code> can be handled when
+                    the file is missing.
+
+                </p>
+
+            </div>
+
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+
+                <a class="btn btn-outline-secondary"
+                   href="@Url.Action("Index", "FileHandling", new { area = "Python" })">
+
+                    ← Previous: Topic
+
+                </a>
+
+
+                <a class="btn btn-primary"
+                   href="@Url.Action("WritingFiles", "FileHandling", new { area = "Python" })">
+
+                    Next: Topic →
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

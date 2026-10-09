@@ -1,0 +1,212 @@
+@{
+    Layout = "~/Areas/Jenkins/Views/Shared/JenkinsLayout.cshtml";
+    ViewData["Title"] = "Freestyle Projects";
+}
+
+<style>
+    #freestyle-projects-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #freestyle-projects-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #freestyle-projects-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #freestyle-projects-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #freestyle-projects-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+    #freestyle-projects-page .screenshot-placeholder {
+        background: #e9ecef;
+        border: 2px dashed #adb5bd;
+        border-radius: 8px;
+        padding: 40px 20px;
+        text-align: center;
+        color: #495057;
+        font-weight: 500;
+    }
+</style>
+
+<main id="freestyle-projects-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/Jenkins/Views/Shared/JenkinsTopics.cshtml")
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+                <h1 class="fw-bold">Freestyle Projects</h1>
+                <p class="lead">
+                    Learn the concepts, configuration workflows, and GUI steps required to build, orchestrate, and execute standard Freestyle build jobs.
+                </p>
+            </div>
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">What is a Freestyle Project?</h2>
+                <p>
+                    A Freestyle Project is the foundational, web-based build job type offered by Jenkins. Unlike modern Jenkinsfiles that rely on Groovy code logic, a Freestyle Project allows administrators to configure build steps, Source Code Management tracking, security flags, and trigger hooks entirely using the **Jenkins Web Graphical Interface**.
+                </p>
+
+                <div class="alert alert-info">
+                    <strong>Core Definition:</strong> A highly configurable, UI-driven automation job suitable for simple continuous integration tasks, script executions, and legacy automation tasks.
+                </div>
+            </div>
+
+            <!-- KEY CONCEPTS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Key Elements of a Freestyle Configuration</h2>
+                <div class="row g-3">
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>1. Source Code Management (SCM)</h5>
+                            <p class="mb-0 text-muted small">Links the project workspace directly to an external code repository (like Git or Subversion) to pull down code before compiling.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>2. Build Triggers</h5>
+                            <p class="mb-0 text-muted small">Defines automated event hooks that launch the job, such as webhooks, cron-based scheduling expressions, or polling modifications.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>3. Build Steps</h5>
+                            <p class="mb-0 text-muted small">The operational heart of the item. Directs Jenkins to run specific tasks like shell script lines (bash), Windows batch sequences, or Maven build goals.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>4. Post-build Actions</h5>
+                            <p class="mb-0 text-muted small">Tasks triggered immediately after execution wraps up, such as sending emails, archiving compiled artifacts, or initiating downstream jobs.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- CREATION STEPS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Step-by-Step: How to Create a Freestyle Project</h2>
+
+                <div class="row align-items-center g-4 mb-4">
+                    <div class="col-md-7">
+                        <ol class="ps-3 unique-steps">
+                            <li class="mb-2">Open the main <strong>Jenkins Dashboard</strong> and click **New Item** from the left navigation menu.</li>
+                            <li class="mb-2">Enter a unique identifier name for your project inside the input field.</li>
+                            <li class="mb-2">Select the card option explicitly labeled <strong>Freestyle project</strong>.</li>
+                            <li class="mb-3">Scroll down to the footer actions block and click the <strong>OK </strong>confirmation button to load the properties workspace page.</li>
+                        </ol>
+                    </div>
+
+                </div>
+
+                <div class="row align-items-center g-4">
+                    <div class="col-md-7">
+                        <ol class="ps-3 unique-steps" start="5">
+                            <li class="mb-2">Locate the <strong>Build Steps</strong> tab section down the configuration form page.</li>
+                            <li class="mb-2">Click the <strong>Add build step</strong> dropdown button and choose Execute shell (or Execute Windows batch command).</li>
+                            <li class="mb-2">Type your target command script logic inside the exposed configuration block.</li>
+                            <li class="mb-3">Click the green <strong>Save</strong> button to write configurations to disk storage.</li>
+                        </ol>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- PRACTICAL SHELL EXAMPLE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Typical Build Step Command Hook</h2>
+                <p>Instead of declarative syntax files, standard shell configurations execute directly inside the execution environment workspace like this:</p>
+                <pre><code># Basic compilation checks run during UI Freestyle build execution stages
+echo "Running automated integration check tasks..."
+npm install
+npm test
+echo "Build step completed successfully!"</code></pre>
+            </div>
+
+            <!-- PRACTICE EXERCISE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Practice Exercise: Your First UI Automation Job</h2>
+                <div class="concept-box">
+                    <h5>Task Objective:</h5>
+                    <p>Create a basic upstream project that logs custom messages and simulates code production directly from your local Jenkins installation.</p>
+                    <ul class="mb-0">
+                        <li>Spin up a Freestyle job named <code>System-Diagnostic-Check</code>.</li>
+                        <li>Add an <strong>Execute Shell</strong> component to output system parameters (e.g., <code>uname -a</code> or <code>hostname</code>).</li>
+                        <li>Configure a <strong>Post-build Action</strong> to archive any resultant <code>.log</code> or text files.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- KNOWLEDGE CHECK QUIZ -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Knowledge Check</h2>
+                <div class="card shadow-sm border-0">
+                    <div class="card-body p-4">
+                        <h5 class="fw-bold text-dark mb-3">Question: Where is the primary configuration for a Freestyle Project stored and managed?</h5>
+                        <div class="quiz-options">
+                            <div class="quiz-option">
+                                <strong>A.</strong> In a file named <code>Jenkinsfile</code> tracked in a git repository.
+                            </div>
+                            <div class="quiz-option">
+                                <strong>B.</strong> Exclusively via the Jenkins web UI and saved as an XML configuration file on the controller disk storage.
+                            </div>
+                            <div class="quiz-option">
+                                <strong>C.</strong> Inside an infrastructure playbook managed by tools like Terraform or Ansible.
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- FIXED: Closed the missing quiz card container tag -->
+            </div>
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+                <h2 class="h4 fw-bold">Summary</h2>
+                <p class="mb-0">You have completed the <strong>Freestyle Projects</strong> lesson. Continue through the syllabus to learn the differences between UI-driven jobs and code-defined pipelines.</p>
+            </div>
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+                <a class="btn btn-outline-primary" href="@Url.Action("Dashboard", "Foundations", new { area = "Jenkins" })">← Previous: Jenkins Dashboard</a>
+                <a class="btn btn-primary" href="@Url.Action("FirstJob", "CoreCICD", new { area = "Jenkins" })">Next: Creating Your First Jenkins Job →</a>
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

@@ -1,0 +1,831 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Python Data Types";
+}
+
+<main id="tutorials" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- ================================================= -->
+        <!-- LEFT SIDEBAR -->
+        <!-- ================================================= -->
+
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+
+        </aside>
+
+
+        <!-- ================================================= -->
+        <!-- MAIN CONTENT -->
+        <!-- ================================================= -->
+
+        <section class="col-lg-9">
+
+            <div class="card shadow-sm border-0 p-4 p-md-5 mb-4">
+
+                <!-- ================================================= -->
+                <!-- PAGE TITLE -->
+                <!-- ================================================= -->
+
+                <h1 class="h1 fw-bold text-dark mt-1 mb-4">
+                    Data Types
+                </h1>
+
+                <p class="text-muted mb-4">
+                    Data types define what kind of value a variable stores.
+                    Python provides several built-in data types that are
+                    used to work with numbers, text, collections, and
+                    logical values.
+                </p>
+
+
+                <!-- ================================================= -->
+                <!-- CIIT INTRO -->
+                <!-- ================================================= -->
+
+                <div class="alert alert-info mb-4"
+                     style="background-color:#cfe2ff; border:0; color:#123c73;">
+
+                    <strong style="color:#123c73;">
+                        CIIT Training Institute :
+                    </strong>
+
+                    <span style="color:#123c73;">
+                        Understanding data types is important because
+                        every Python program works with different kinds
+                        of data.
+                    </span>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- WHAT IS DATA TYPE -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    What is a Data Type?
+                </h2>
+
+                <p class="text-muted mb-3">
+                    A data type tells Python what kind of data a value
+                    represents and what operations can be performed on it.
+                </p>
+
+                <p class="text-muted mb-4">
+                    For example, <strong>25</strong> is an integer,
+                    <strong>25.5</strong> is a floating-point number,
+                    and <strong>"Python"</strong> is a string.
+                </p>
+
+
+                <!-- ================================================= -->
+                <!-- DATA TYPE FLOW -->
+                <!-- ================================================= -->
+
+                <div class="border rounded p-4 mb-4 bg-light">
+
+                    <h3 class="h5 fw-bold text-dark text-center mb-4">
+                        Python Data Type Concept
+                    </h3>
+
+                    <div class="d-flex flex-column align-items-center gap-2">
+
+                        <div class="px-4 py-3 border rounded bg-white shadow-sm text-center"
+                             style="max-width:420px; width:100%;">
+
+                            <strong>Value</strong>
+
+                            <br />
+
+                            <small class="text-muted">
+                                25
+                            </small>
+
+                        </div>
+
+                        <div class="fw-bold text-primary fs-4">
+                            ↓
+                        </div>
+
+                        <div class="px-4 py-3 border rounded bg-white shadow-sm text-center"
+                             style="max-width:420px; width:100%;">
+
+                            <strong>Data Type</strong>
+
+                            <br />
+
+                            <small class="text-muted">
+                                int
+                            </small>
+
+                        </div>
+
+                        <div class="fw-bold text-primary fs-4">
+                            ↓
+                        </div>
+
+                        <div class="px-4 py-3 border rounded bg-white shadow-sm text-center"
+                             style="max-width:420px; width:100%;">
+
+                            <strong>Operation</strong>
+
+                            <br />
+
+                            <small class="text-muted">
+                                Addition, comparison, conversion, etc.
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- BUILT-IN DATA TYPES -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Built-in Data Types in Python
+                </h2>
+
+                <p class="text-muted mb-4">
+                    Python has several built-in data types. Some of the
+                    most commonly used ones are:
+                </p>
+
+                <div class="table-responsive mb-4">
+
+                    <table class="table table-bordered align-middle">
+
+                        <thead class="table-light">
+
+                            <tr>
+                                <th>Data Type</th>
+                                <th>Example</th>
+                                <th>Description</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td><strong>int</strong></td>
+                                <td>25</td>
+                                <td>Whole numbers</td>
+                            </tr>
+
+                            <tr>
+                                <td><strong>float</strong></td>
+                                <td>25.5</td>
+                                <td>Decimal numbers</td>
+                            </tr>
+
+                            <tr>
+                                <td><strong>complex</strong></td>
+                                <td>3 + 4j</td>
+                                <td>Complex numbers</td>
+                            </tr>
+
+                            <tr>
+                                <td><strong>str</strong></td>
+                                <td>"Python"</td>
+                                <td>Text</td>
+                            </tr>
+
+                            <tr>
+                                <td><strong>bool</strong></td>
+                                <td>True</td>
+                                <td>True or False values</td>
+                            </tr>
+
+                            <tr>
+                                <td><strong>list</strong></td>
+                                <td>[10, 20, 30]</td>
+                                <td>Ordered, changeable collection</td>
+                            </tr>
+
+                            <tr>
+                                <td><strong>tuple</strong></td>
+                                <td>(10, 20, 30)</td>
+                                <td>Ordered, unchangeable collection</td>
+                            </tr>
+
+                            <tr>
+                                <td><strong>set</strong></td>
+                                <td>{10, 20, 30}</td>
+                                <td>Unordered collection of unique values</td>
+                            </tr>
+
+                            <tr>
+                                <td><strong>dict</strong></td>
+                                <td>{"name": "Samadhan"}</td>
+                                <td>Key-value collection</td>
+                            </tr>
+
+                            <tr>
+                                <td><strong>NoneType</strong></td>
+                                <td>None</td>
+                                <td>Represents no value</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- INTEGER -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    1. Integer (int)
+                </h2>
+
+                <p class="text-muted mb-3">
+                    The <strong>int</strong> data type is used to store
+                    whole numbers without decimal points.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>age = 25
+students = 50
+marks = -10
+
+print(age)
+print(type(age))</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>25
+&lt;class 'int'&gt;</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- FLOAT -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    2. Float (float)
+                </h2>
+
+                <p class="text-muted mb-3">
+                    The <strong>float</strong> data type is used for
+                    numbers containing decimal values.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>price = 499.99
+percentage = 85.5
+
+print(price)
+print(type(price))</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>499.99
+&lt;class 'float'&gt;</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- COMPLEX -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    3. Complex (complex)
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Python supports complex numbers using the
+                    <strong>j</strong> notation for the imaginary part.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>number = 3 + 4j
+
+print(number)
+print(type(number))</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>(3+4j)
+&lt;class 'complex'&gt;</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- STRING -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    4. String (str)
+                </h2>
+
+                <p class="text-muted mb-3">
+                    A <strong>string</strong> is a sequence of characters
+                    used to represent text. Strings can be written using
+                    single or double quotes.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>name = "Samadhan"
+course = 'Python'
+
+print(name)
+print(type(name))</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>Samadhan
+&lt;class 'str'&gt;</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- BOOLEAN -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    5. Boolean (bool)
+                </h2>
+
+                <p class="text-muted mb-3">
+                    The <strong>bool</strong> data type represents one
+                    of two values: <strong>True</strong> or
+                    <strong>False</strong>.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>is_student = True
+is_completed = False
+
+print(is_student)
+print(type(is_student))</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>True
+&lt;class 'bool'&gt;</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- LIST -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    6. List (list)
+                </h2>
+
+                <p class="text-muted mb-3">
+                    A list is an ordered and changeable collection.
+                    Lists can contain multiple values.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>courses = ["Python", "C#", "Java"]
+
+print(courses)
+print(type(courses))</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>['Python', 'C#', 'Java']
+&lt;class 'list'&gt;</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- TUPLE -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    7. Tuple (tuple)
+                </h2>
+
+                <p class="text-muted mb-3">
+                    A tuple is an ordered collection that cannot be
+                    changed after it is created.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>languages = ("Python", "Java", "C#")
+
+print(languages)
+print(type(languages))</code></pre>
+
+                </div>
+                <h3 class="h5 fw-bold text-dark mb-3">
+    Output:
+</h3>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="code-lang-tag">
+        Output
+    </div>
+
+    <pre class="mb-0"><code>('Python', 'Java', 'C#')
+&lt;class 'tuple'&gt;</code></pre>
+</div>
+
+                <!-- ================================================= -->
+                <!-- SET -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    8. Set (set)
+                </h2>
+
+                <p class="text-muted mb-3">
+                    A set is a collection of unique values. Duplicate
+                    values are automatically removed.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>numbers = {10, 20, 30, 20}
+
+print(numbers)
+print(type(numbers))</code></pre>
+
+                </div>
+                <h3 class="h5 fw-bold text-dark mb-3">
+    Output:
+</h3>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="code-lang-tag">
+        Output
+    </div>
+
+    <pre class="mb-0"><code>{10, 20, 30}
+&lt;class 'set'&gt;</code></pre>
+</div>
+                <p class="text-muted mb-4">
+                    Notice that the duplicate value
+                    <strong>20</strong> is stored only once.
+                </p>
+
+
+                <!-- ================================================= -->
+                <!-- DICTIONARY -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    9. Dictionary (dict)
+                </h2>
+
+                <p class="text-muted mb-3">
+                    A dictionary stores data in
+                    <strong>key-value pairs</strong>.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>student = {
+    "name": "Samadhan",
+    "course": "Python",
+    "institute": "CIIT Training Institute 🫠👀.."
+}
+
+print(student)
+print(type(student))</code></pre>
+
+                </div>
+                <h3 class="h5 fw-bold text-dark mb-3">
+    Output:
+</h3>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="code-lang-tag">
+        Output
+    </div>
+
+    <pre class="mb-0"><code>{'name': 'Samadhan', 'course': 'Python', 'institute': 'CIIT Training Institute 🫠👀..'}
+&lt;class 'dict'&gt;</code></pre>
+</div>
+
+
+                <!-- ================================================= -->
+                <!-- NONE -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    10. NoneType
+                </h2>
+
+                <p class="text-muted mb-3">
+                    <strong>None</strong> represents the absence of a value.
+                    It is commonly used when a variable currently has
+                    no meaningful value.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>result = None
+
+print(result)
+print(type(result))</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>None
+&lt;class 'NoneType'&gt;</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- CHECKING TYPE -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Checking Data Type using type()
+                </h2>
+
+                <p class="text-muted mb-3">
+                    The <strong>type()</strong> function tells us the
+                    type of a value or variable.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>name = "Samadhan"
+age = 25
+salary = 45000.50
+is_active = True
+
+print(type(name))
+print(type(age))
+print(type(salary))
+print(type(is_active))</code></pre>
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+    Output:
+</h3>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="code-lang-tag">
+        Output
+    </div>
+
+    <pre class="mb-0"><code>&lt;class 'str'&gt;
+&lt;class 'int'&gt;
+&lt;class 'float'&gt;
+&lt;class 'bool'&gt;</code></pre>
+</div>
+
+                <!-- ================================================= -->
+                <!-- CONVERSION PREVIEW -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Data Type Conversion
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Python provides functions such as
+                    <strong>int()</strong>, <strong>float()</strong>,
+                    and <strong>str()</strong> to convert values from
+                    one data type to another.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>age = "25"
+
+age_number = int(age)
+
+print(age_number)
+print(type(age_number))</code></pre>
+
+                </div>
+
+                <h3 class="h5 fw-bold text-dark mb-3">
+    Output:
+</h3>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="code-lang-tag">
+        Output
+    </div>
+
+    <pre class="mb-0"><code>25
+&lt;class 'int'&gt;</code></pre>
+</div>
+                <p class="text-muted mb-4">
+                    Detailed type conversion will be covered in the
+                    next topic: <strong>Type Conversion</strong>.
+                </p>
+
+
+                <!-- ================================================= -->
+                <!-- CIIT LEARNING POINT -->
+                <!-- ================================================= -->
+
+                <div class="alert alert-success mt-4">
+
+                    <h5 class="fw-bold">
+                        CIIT Learning Point
+                    </h5>
+
+                    <p class="mb-0">
+                        Before performing an operation, understand the
+                        type of data you are working with. Using
+                        <strong>type()</strong> is a simple way to check
+                        the type of a variable while learning and
+                        debugging Python programs.
+                    </p>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- SAM PRACTICE -->
+                <!-- ================================================= -->
+
+                <div class="border rounded p-4 mt-4 mb-4">
+
+                    <h3 class="h5 fw-bold text-dark mb-3">
+                        CIIT Practice Task
+                    </h3>
+
+                    <p class="text-muted mb-3">
+                        Create one variable for each of the following
+                        data types and print both its value and type:
+                    </p>
+
+                    <ul class="text-muted mb-3">
+
+                        <li>Integer</li>
+                        <li>Float</li>
+                        <li>String</li>
+                        <li>Boolean</li>
+                        <li>List</li>
+                        <li>Dictionary</li>
+
+                    </ul>
+
+                    <div class="bg-dark text-light rounded p-3">
+
+                        <pre class="mb-0"><code>age = 25
+percentage = 85.5
+name = "Samadhan"
+is_student = True
+courses = ["Python", "C#", "Java"]
+student = {"name": "Samadhan", "age": 25}
+
+print(age, type(age))
+print(percentage, type(percentage))
+print(name, type(name))
+print(is_student, type(is_student))
+print(courses, type(courses))
+print(student, type(student))</code></pre>
+
+                    </div>
+
+                    <h3 class="h5 fw-bold text-dark mb-3">
+    Output:
+</h3>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="code-lang-tag">
+        Output
+    </div>
+
+    <pre class="mb-0"><code>25 &lt;class 'int'&gt;
+85.5 &lt;class 'float'&gt;
+Samadhan &lt;class 'str'&gt;
+True &lt;class 'bool'&gt;
+['Python', 'C#', 'Java'] &lt;class 'list'&gt;
+{'name': 'Samadhan', 'age': 25} &lt;class 'dict'&gt;</code></pre>
+</div>
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- SUMMARY -->
+                <!-- ================================================= -->
+
+                <div class="alert alert-info mt-4 mb-0"
+                     style="background-color:#cfe2ff; border:0; color:#123c73;">
+
+                    <h2 class="h3 fw-bold mt-0 mb-3"
+                        style="color:#123c73;">
+
+                        Summary :
+
+                    </h2>
+
+                    <p class="mb-0"
+                       style="color:#123c73;">
+
+                        Python provides different data types such as
+                        int, float, complex, string, boolean, list, tuple,
+                        set, dictionary, and NoneType. Data types help
+                        Python understand what kind of value is being
+                        stored and how that value can be used in a program.
+
+                    </p>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- NAVIGATION -->
+                <!-- ================================================= -->
+
+                <div class="d-flex justify-content-between align-items-center mt-5 pt-4 border-top">
+
+                    <a href="@Url.Action("Variables", "PythonBasics", new { area = "Python" })"
+                       class="btn btn-outline-secondary">
+
+                        ← Previous: Topic
+
+                    </a>
+
+
+                    <a href="@Url.Action("TypeConversion", "PythonBasics", new { area = "Python" })"
+                       class="btn btn-primary">
+
+                        Next: Topic →
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

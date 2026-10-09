@@ -1,0 +1,50 @@
+@{
+    ViewData["Title"] = "Creating a storage account using Microsoft Azure Portal:";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+                <div class="azure-notes-content">
+                    <pre class="azure-notes-text">Creating a storage account using Microsoft Azure Portal:
+
+The portal provides us with a user-friendly graphical user interface with explanations given for each
+setting. This makes it easy for us to use.
+
+Step 1: Navigate to the Azure Portal
+Step 2: On the homepage click on the + Create a resource option. It will display a list of resources
+you can create.
+Step 3: Search for Storage Account and select it. The storage accounts pane appears.
+
+
+
+
+Step 4: Select Create option. The Create a storage account pane will be displayed.</pre>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_4_-_Microsoft_Azure_-_Storage_Accounts/p02-000.jpg" class="img-fluid rounded shadow-sm" alt="Creating a storage account using Microsoft Azure Portal: - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_4_-_Microsoft_Azure_-_Storage_Accounts/p03-000.jpg" class="img-fluid rounded shadow-sm" alt="Creating a storage account using Microsoft Azure Portal: - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_4_-_Microsoft_Azure_-_Storage_Accounts/p04-000.jpg" class="img-fluid rounded shadow-sm" alt="Creating a storage account using Microsoft Azure Portal: - source image" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+            @await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureLessonNavigation.cshtml")
+</section>
+</div>
+<style>
+.azure-notes-text{white-space:pre-wrap;word-break:normal;font-family:inherit;font-size:1rem;line-height:1.7;background:#fff;border:0;padding:0;margin:0;color:#212529;}
+.azure-notes-content img{max-height:720px;}
+</style>

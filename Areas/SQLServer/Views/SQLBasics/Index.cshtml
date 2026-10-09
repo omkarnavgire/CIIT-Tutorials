@@ -1,0 +1,536 @@
+﻿@{
+    ViewData["Title"] = "SQL Basics Introduction";
+}
+
+<section>
+
+    <!-- PAGE INTRODUCTION -->
+    <div class="mb-5">
+
+        <h1 class="fw-bold mb-3">
+            SQL Basics Introduction
+        </h1>
+
+        <p class="lead text-muted">
+            SQL, which stands for Structured Query Language, is used
+            to communicate with relational databases. SQL Server uses
+            SQL commands to create, retrieve, modify and manage data
+            stored in databases.
+        </p>
+
+    </div>
+
+
+    <!-- WHAT IS SQL -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            What is SQL?
+        </h2>
+
+        <p>
+            SQL is a standard language used to work with relational
+            databases. It allows developers and database administrators
+            to perform operations such as creating databases, creating
+            tables, inserting records, retrieving data, updating records
+            and deleting records.
+        </p>
+
+        <div class="alert alert-primary border-0">
+
+            <h5 class="fw-bold">
+                Simple Definition
+            </h5>
+
+            <p class="mb-0">
+                SQL is a language used to communicate with and manage
+                data in a relational database.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- WHY SQL -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Why Do We Use SQL?
+        </h2>
+
+        <p>
+            SQL provides commands that allow us to work with the data
+            stored inside database tables.
+        </p>
+
+        <ul>
+
+            <li class="mb-2">
+                Create databases and tables
+            </li>
+
+            <li class="mb-2">
+                Insert new records
+            </li>
+
+            <li class="mb-2">
+                Retrieve data
+            </li>
+
+            <li class="mb-2">
+                Update existing records
+            </li>
+
+            <li class="mb-2">
+                Delete records
+            </li>
+
+            <li class="mb-2">
+                Filter and sort data
+            </li>
+
+            <li>
+                Manage database objects
+            </li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- SQL AND SQL SERVER -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            SQL and SQL Server
+        </h2>
+
+        <p>
+            SQL is the language used to communicate with a relational
+            database. SQL Server is a relational database management
+            system developed by Microsoft that understands and executes
+            SQL statements.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL Server
+            </div>
+
+            <pre class="mb-0"><code>
+                                                        Application
+                                                             ↓
+                                                          SQL Query
+                                                              ↓
+                                                          SQL Server
+                                                             ↓
+                                                        Database Engine
+                                                             ↓
+                                                          Database
+                                                             ↓
+                                                           Result</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- FIRST SQL QUERY -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            First SQL Query
+        </h2>
+
+        <p>
+            A simple SELECT statement can be used to retrieve data
+            from a table.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT *
+FROM Students;</code></pre>
+
+        </div>
+
+        <p class="mt-3">
+            The above query retrieves all columns and all records from
+            the Students table.
+        </p>
+
+    </section>
+
+
+    <!-- SELECT EXAMPLE -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Example
+        </h2>
+
+        <p>
+            Suppose the Students table contains the following records:
+        </p>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>StudentId</th>
+                        <th>StudentName</th>
+                        <th>Age</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>101</td>
+                        <td>Rahul</td>
+                        <td>22</td>
+                    </tr>
+
+                    <tr>
+                        <td>102</td>
+                        <td>Priya</td>
+                        <td>21</td>
+                    </tr>
+
+                    <tr>
+                        <td>103</td>
+                        <td>Amit</td>
+                        <td>23</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <div class="code-block mt-4">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT StudentName, Age
+FROM Students;</code></pre>
+
+        </div>
+
+        <h5 class="fw-bold mt-4">
+            Output
+        </h5>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>StudentName</th>
+                        <th>Age</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>Rahul</td>
+                        <td>22</td>
+                    </tr>
+
+                    <tr>
+                        <td>Priya</td>
+                        <td>21</td>
+                    </tr>
+
+                    <tr>
+                        <td>Amit</td>
+                        <td>23</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- SQL STATEMENT STRUCTURE -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Basic SQL Statement Structure
+        </h2>
+
+        <p>
+            Most SQL statements follow a specific structure depending
+            on the operation being performed.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT column_name
+FROM table_name;</code></pre>
+
+        </div>
+
+        <div class="table-responsive mt-4">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>Keyword</th>
+                        <th>Purpose</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td><strong>SELECT</strong></td>
+                        <td>Specifies the columns to retrieve.</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>FROM</strong></td>
+                        <td>Specifies the table from which data is retrieved.</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- BASIC SQL OPERATIONS -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Basic SQL Operations
+        </h2>
+
+        <p>
+            SQL provides different commands for performing common
+            database operations.
+        </p>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>Operation</th>
+                        <th>SQL Command</th>
+                        <th>Purpose</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>Create</td>
+                        <td>CREATE</td>
+                        <td>Create database objects.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Retrieve</td>
+                        <td>SELECT</td>
+                        <td>Retrieve data.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Insert</td>
+                        <td>INSERT</td>
+                        <td>Add new records.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Update</td>
+                        <td>UPDATE</td>
+                        <td>Modify existing records.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Delete</td>
+                        <td>DELETE</td>
+                        <td>Remove records.</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- SQL QUERY FLOW -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            How a SQL Query Works
+        </h2>
+
+        <p>
+            When a SQL query is executed, SQL Server processes the
+            statement and returns the requested result.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL Server
+            </div>
+
+            <pre class="mb-0"><code>User
+  ↓
+SQL Statement
+  ↓
+SQL Server
+  ↓
+Database Engine
+  ↓
+Table / Data
+  ↓
+Result</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- SQL EXAMPLE -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Simple SQL Examples
+        </h2>
+
+        <div class="code-block mb-4">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>-- Retrieve data
+SELECT * FROM Students;
+
+-- Insert data
+INSERT INTO Students
+VALUES (104, 'Neha', 22);
+
+-- Update data
+UPDATE Students
+SET Age = 23
+WHERE StudentId = 104;
+
+-- Delete data
+DELETE FROM Students
+WHERE StudentId = 104;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- IMPORTANT -->
+    <section class="mb-5">
+
+        <div class="alert alert-warning border-0">
+
+            <h5 class="fw-bold">
+                Important
+            </h5>
+
+            <p class="mb-0">
+                SQL statements should always be written carefully,
+                especially UPDATE and DELETE statements. A missing
+                WHERE condition can affect multiple records.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- SUMMARY -->
+    <section class="mb-4">
+
+        <div class="alert alert-primary border-0">
+
+            <h2 class="fw-bold mb-3">
+                Summary
+            </h2>
+
+            <p class="mb-0">
+                In this section, we learned what SQL is, why SQL is
+                used, how SQL communicates with SQL Server, the basic
+                structure of SQL statements and the common operations
+                used to work with database data.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- PREVIOUS / NEXT -->
+
+    <div class="d-flex justify-content-between align-items-center
+                mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/Constraints/CheckConstraint"
+           class="btn btn-outline-primary">
+
+            ← Previous: CHECK Constraint
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/SQLBasics/SQLCommands"
+           class="btn btn-primary">
+
+            Next: SQL Commands →
+
+        </a>
+
+    </div>
+
+</section>

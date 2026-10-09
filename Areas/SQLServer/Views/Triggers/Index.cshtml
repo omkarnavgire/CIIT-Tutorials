@@ -1,0 +1,461 @@
+﻿@{
+    ViewData["Title"] = "Triggers Introduction";
+}
+
+<div class="container-fluid">
+
+    <!-- =========================
+         PAGE HEADER
+    ========================== -->
+
+    <div class="mb-4">
+
+        <h1 class="fw-bold">
+            SQL Server Triggers
+        </h1>
+
+        <p class="text-muted">
+            Learn what SQL Server Triggers are, why they are used,
+            and how they automatically execute when database events occur.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         INTRODUCTION
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Triggers Introduction
+            </h2>
+
+            <p>
+                A <strong>Trigger</strong> is a special type of stored procedure
+                that automatically executes when a specific event occurs
+                in a SQL Server database.
+            </p>
+
+            <p>
+                Unlike a normal stored procedure, a trigger is not executed
+                directly using the <code>EXEC</code> statement.
+                SQL Server automatically executes the trigger when its
+                associated database event occurs.
+            </p>
+
+            <p class="mb-0">
+                Triggers are commonly used to maintain data integrity,
+                keep audit information, and automatically perform
+                additional operations when data is inserted, updated,
+                or deleted.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         WHAT IS A TRIGGER
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h3 class="fw-bold mb-3">
+                What is a Trigger?
+            </h3>
+
+            <p>
+                A trigger is a database object that is automatically
+                executed in response to a specific event on a table
+                or other database object.
+            </p>
+
+            <p>
+                For example, when a new student record is inserted
+                into the <strong>Students</strong> table, an
+                <strong>AFTER INSERT</strong> trigger can automatically
+                execute another SQL statement.
+            </p>
+
+            <div class="alert alert-info">
+
+                <strong>Important:</strong>
+
+                A trigger runs automatically.
+                You do not normally call it directly using
+                <code>EXEC TriggerName</code>.
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         WHY TRIGGERS ARE USED
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h3 class="fw-bold mb-3">
+                Why are Triggers Used?
+            </h3>
+
+            <p>
+                Triggers are useful when an operation should happen
+                automatically after or instead of a database event.
+            </p>
+
+            <ul>
+
+                <li class="mb-2">
+                    Automatically maintain related data.
+                </li>
+
+                <li class="mb-2">
+                    Maintain audit information.
+                </li>
+
+                <li class="mb-2">
+                    Track INSERT, UPDATE and DELETE operations.
+                </li>
+
+                <li class="mb-2">
+                    Maintain data consistency.
+                </li>
+
+                <li class="mb-2">
+                    Perform automatic actions when table data changes.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         TRIGGER EVENTS
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h3 class="fw-bold mb-3">
+                Common Trigger Events
+            </h3>
+
+            <p>
+                Triggers can be associated with different database
+                operations.
+            </p>
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-striped">
+
+                    <thead class="table-primary">
+
+                        <tr>
+                            <th>Event</th>
+                            <th>Description</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+
+                            <td>
+                                <strong>INSERT</strong>
+                            </td>
+
+                            <td>
+                                Executes when a new record is inserted
+                                into a table.
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>
+                                <strong>UPDATE</strong>
+                            </td>
+
+                            <td>
+                                Executes when an existing record
+                                is modified.
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>
+                                <strong>DELETE</strong>
+                            </td>
+
+                            <td>
+                                Executes when a record is deleted
+                                from a table.
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         TYPES OF TRIGGERS
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h3 class="fw-bold mb-3">
+                Types of Triggers Covered
+            </h3>
+
+            <p>
+                In this section we will learn the following triggers:
+            </p>
+
+            <div class="row g-3">
+
+                <div class="col-md-6">
+
+                    <div class="border rounded p-3 h-100">
+
+                        <h5 class="fw-bold">
+                            1. AFTER INSERT Trigger
+                        </h5>
+
+                        <p class="mb-0">
+                            Executes after a new record has been
+                            successfully inserted.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-6">
+
+                    <div class="border rounded p-3 h-100">
+
+                        <h5 class="fw-bold">
+                            2. AFTER UPDATE Trigger
+                        </h5>
+
+                        <p class="mb-0">
+                            Executes after an existing record
+                            has been updated.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-6">
+
+                    <div class="border rounded p-3 h-100">
+
+                        <h5 class="fw-bold">
+                            3. AFTER DELETE Trigger
+                        </h5>
+
+                        <p class="mb-0">
+                            Executes after a record has been deleted.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-6">
+
+                    <div class="border rounded p-3 h-100">
+
+                        <h5 class="fw-bold">
+                            4. INSTEAD OF Trigger
+                        </h5>
+
+                        <p class="mb-0">
+                            Executes instead of the original
+                            INSERT, UPDATE or DELETE operation.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         BASIC EXAMPLE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h3 class="fw-bold mb-3">
+                Basic Trigger Example
+            </h3>
+
+            <p>
+                Suppose we have a <strong>Students</strong> table
+                and we want to automatically record an entry whenever
+                a student is added.
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>CREATE TRIGGER trg_AfterInsertStudent
+ON Students
+AFTER INSERT
+AS
+BEGIN
+    PRINT 'New student inserted successfully.';
+END;</code></pre>
+
+            <div class="alert alert-warning mt-3">
+
+                <strong>Note:</strong>
+
+                The above trigger automatically executes when an
+                INSERT operation occurs on the <code>Students</code>
+                table.
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         IMPORTANT POINTS
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h3 class="fw-bold mb-3">
+                Important Points
+            </h3>
+
+            <ul>
+
+                <li class="mb-2">
+                    A trigger executes automatically.
+                </li>
+
+                <li class="mb-2">
+                    Triggers are associated with database events.
+                </li>
+
+                <li class="mb-2">
+                    INSERT, UPDATE and DELETE are common trigger events.
+                </li>
+
+                <li class="mb-2">
+                    Triggers can help maintain data consistency.
+                </li>
+
+                <li class="mb-2">
+                    Triggers can be used for auditing and tracking changes.
+                </li>
+
+                <li class="mb-2">
+                    SQL Server supports different types of triggers
+                    for different requirements.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         SUMMARY
+    ========================== -->
+
+    <div class="alert alert-primary p-4 mb-4">
+
+        <h3 class="fw-bold">
+            Summary
+        </h3>
+
+        <p class="mb-0">
+            SQL Server Triggers are special database objects that
+            automatically execute when specific database events occur.
+            They are commonly used with INSERT, UPDATE and DELETE
+            operations to maintain data integrity, track changes,
+            and perform automatic database operations.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+     PREVIOUS / NEXT
+========================== -->
+
+    <div class="d-flex justify-content-between align-items-center
+        mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/StoredProcedures/ExecuteModifyStoredProcedure"
+           class="btn btn-outline-primary">
+
+            ← Previous: Executing &amp; Modifying Stored Procedures
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/Triggers/AfterInsertTrigger"
+           class="btn btn-primary">
+
+            Next: AFTER INSERT Trigger →
+
+        </a>
+
+    </div>
+
+</div>

@@ -1,0 +1,520 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "First Python Program";
+}
+
+<main id="tutorials" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- ================================================= -->
+        <!-- LEFT SIDEBAR -->
+        <!-- ================================================= -->
+
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+
+        </aside>
+
+
+        <!-- ================================================= -->
+        <!-- MAIN CONTENT -->
+        <!-- ================================================= -->
+
+        <section class="col-lg-9">
+
+            <div class="card shadow-sm border-0 p-4 p-md-5 mb-4">
+
+
+                <!-- ================================================= -->
+                <!-- PAGE TITLE -->
+                <!-- ================================================= -->
+
+                <h1 class="h1 fw-bold text-dark mt-1 mb-4">
+                    First Python Program
+                </h1>
+
+                <p class="text-muted mb-4">
+                    Now that Python is installed and our development
+                    environment is ready, let's write and execute our
+                    first Python program.
+                </p>
+
+
+                <!-- ================================================= -->
+                <!-- CIIT INTRO -->
+                <!-- ================================================= -->
+
+                <div class="alert alert-info mb-4"
+                     style="background-color:#cfe2ff; border:0; color:#123c73;">
+
+                    <strong style="color:#123c73;">
+                        CIIT Training Institute :
+                    </strong>
+
+                    <span style="color:#123c73;">
+                        In this lesson, we will understand how a Python
+                        program is written, executed, and how Python
+                        displays the output.
+                    </span>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- FIRST PROGRAM -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Your First Python Program
+                </h2>
+
+                <p class="text-muted mb-3">
+                    The simplest way to display a message in Python is
+                    by using the <strong>print()</strong> function.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-3">
+
+                    <pre class="mb-0"><code>print("Hello, World!")</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- OUTPUT -->
+                <!-- ================================================= -->
+
+                <h3 class="h5 fw-bold text-dark mt-4 mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>Hello, World!</code></pre>
+
+                </div>
+
+                <p class="text-muted">
+                    The <strong>print()</strong> function sends the
+                    specified message to the output screen.
+                </p>
+
+
+                <!-- ================================================= -->
+                <!-- HOW PROGRAM WORKS -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    How Does the Program Work?
+                </h2>
+
+                <p class="text-muted mb-4">
+                    Python reads the instruction and executes the
+                    <strong>print()</strong> function. The text written
+                    inside quotation marks is displayed as output.
+                </p>
+
+
+                <!-- ================================================= -->
+                <!-- SIMPLE DIAGRAM -->
+                <!-- ================================================= -->
+
+                <div class="border rounded p-4 mb-4 bg-light">
+
+                    <h3 class="h5 fw-bold text-dark text-center mb-4">
+                        Python Program Execution Flow
+                    </h3>
+
+                    <div class="d-flex flex-column align-items-center gap-2">
+
+                        <div class="px-4 py-3 border rounded bg-white shadow-sm text-center"
+                             style="max-width:320px; width:100%;">
+
+                            <strong>Python Source Code</strong>
+
+                            <br />
+
+                            <small class="text-muted">
+                                print("Hello, World!")
+                            </small>
+
+                        </div>
+
+
+                        <div class="fw-bold text-primary fs-4">
+                            ↓
+                        </div>
+
+
+                        <div class="px-4 py-3 border rounded bg-white shadow-sm text-center"
+                             style="max-width:320px; width:100%;">
+
+                            <strong>Python Interpreter</strong>
+
+                            <br />
+
+                            <small class="text-muted">
+                                Reads and executes the code
+                            </small>
+
+                        </div>
+
+
+                        <div class="fw-bold text-primary fs-4">
+                            ↓
+                        </div>
+
+
+                        <div class="px-4 py-3 border rounded bg-white shadow-sm text-center"
+                             style="max-width:320px; width:100%;">
+
+                            <strong>Output</strong>
+
+                            <br />
+
+                            <small class="text-muted">
+                                Hello, World!
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- PRINT FUNCTION -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Understanding the print() Function
+                </h2>
+
+                <p class="text-muted mb-3">
+                    The <strong>print()</strong> function is one of the
+                    most commonly used functions in Python. It is used
+                    to display information on the screen.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>print("Welcome to CIIT Training Institute 🤓❤️..!")
+print("Python Programming 🫥🔓")
+print("Learning with SAM ❤️")</code></pre>
+
+                </div>
+
+
+                <h3 class="h5 fw-bold text-dark mt-4 mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>Welcome to CIIT Training Institute 🤓❤️..!
+Python Programming 🫥🔓
+Learning with SAM ❤️</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- VARIABLES -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Printing Variables
+                </h2>
+
+                <p class="text-muted mb-3">
+                    We can also store information in variables and
+                    display those variables using the
+                    <strong>print()</strong> function.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>name = "Samadhan"
+course = "Python Programming"
+
+print(name)
+print(course)</code></pre>
+
+                </div>
+
+
+                <h3 class="h5 fw-bold text-dark mt-4 mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>Samadhan
+Python Programming</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- MULTIPLE VALUES -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Printing Multiple Values
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Python also allows us to print multiple values
+                    using a single <strong>print()</strong> statement.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>name = "Samadhan"
+course = "Python"
+
+print("Name:", name)
+print("Course:", course)</code></pre>
+
+                </div>
+
+
+                <h3 class="h5 fw-bold text-dark mt-4 mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>Name: Samadhan
+Course: Python</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- SIMPLE CALCULATION -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Performing a Simple Calculation
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Python can also perform mathematical calculations
+                    directly inside the <strong>print()</strong> function.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>print(10 + 20)
+print(50 - 20)
+print(5 * 4)
+print(20 / 5)</code></pre>
+
+                </div>
+
+
+                <h3 class="h5 fw-bold text-dark mt-4 mb-3">
+                    Output
+                </h3>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>30
+30
+20
+4.0</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- COMMENTS -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    Adding Comments
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Comments are notes written inside the program for
+                    developers. Python ignores comments during execution.
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code># This is my first Python program
+
+print("Hello, CIIT!")</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- RUNNING PROGRAM -->
+                <!-- ================================================= -->
+
+                <h2 class="h3 fw-bold text-dark mt-4 mb-3">
+                    How to Run a Python Program
+                </h2>
+
+                <p class="text-muted mb-3">
+                    Create a file with the <strong>.py</strong> extension.
+                    For example:
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>first_program.py</code></pre>
+
+                </div>
+
+                <p class="text-muted mb-3">
+                    Add your Python code to the file:
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>print("My First Python Program")</code></pre>
+
+                </div>
+
+                <p class="text-muted mb-3">
+                    Open the terminal in the same folder and execute:
+                </p>
+
+                <div class="bg-dark text-light rounded p-3 mb-4">
+
+                    <pre class="mb-0"><code>python first_program.py</code></pre>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- CIIT LEARNING POINT -->
+                <!-- ================================================= -->
+
+                <div class="alert alert-success mt-4">
+
+                    <h5 class="fw-bold">
+                        CIIT Learning Point
+                    </h5>
+
+                    <p class="mb-0">
+                        Do not just copy Python programs. Type the code
+                        yourself, run it, change the values, and observe
+                        the output. This practice will help you understand
+                        Python much faster.
+                    </p>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- SAM PRACTICE -->
+                <!-- ================================================= -->
+
+                <div class="border rounded p-4 mt-4 mb-4">
+
+                    <h3 class="h5 fw-bold text-dark mb-3">
+                        CIIT Practice Task
+                    </h3>
+
+                    <p class="text-muted mb-3">
+                        Create a Python program that displays your name,
+                        institute name, and course name.
+                    </p>
+
+                    <div class="bg-dark text-light rounded p-3">
+
+                        <pre class="mb-0"><code>name = "Samadhan"
+institute = "CIIT Training Institute 🤓🌍...!"
+course = "Python Programming 🤓🔓"
+
+print("Name:", name)
+print("Institute:", institute)
+print("Course:", course)</code></pre>
+
+                    </div>
+
+                    <h3 class="h5 fw-bold text-dark mb-3"> 
+    Output: 
+</h3> 
+ 
+<div class="code-block mb-4 shadow-sm"> 
+    <div class="code-lang-tag"> 
+        Output 
+    </div> 
+ 
+    <pre class="mb-0"><code>Name: Samadhan
+Institute: CIIT Training Institute 🤓🌍...!
+Course: Python Programming 🤓🔓</code></pre> 
+</div>
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- SUMMARY -->
+                <!-- ================================================= -->
+
+                <div class="alert alert-info mt-4 mb-0"
+                     style="background-color:#cfe2ff; border:0; color:#123c73;">
+
+                    <h2 class="h3 fw-bold mt-0 mb-3"
+                        style="color:#123c73;">
+
+                        Summary :
+
+                    </h2>
+
+                    <p class="mb-0"
+                       style="color:#123c73;">
+
+                        Your first Python program starts with the
+                        print() function. You learned how to display
+                        text, variables, calculations, and comments,
+                        and how to create and execute a Python file.
+                        These basic concepts provide the foundation
+                        for writing more advanced Python programs.
+
+                    </p>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- NAVIGATION -->
+                <!-- ================================================= -->
+
+                <div class="d-flex justify-content-between align-items-center mt-5 pt-4 border-top">
+
+                    <a href="@Url.Action("DevelopmentTools", "Introduction", new { area = "Python" })"
+                       class="btn btn-outline-secondary">
+
+                        ← Previous: Topic
+
+                    </a>
+
+
+                    <a href="@Url.Action("Index", "PythonBasics", new { area = "Python" })"
+                       class="btn btn-primary">
+
+                        Next: Topic →
+
+                    </a>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

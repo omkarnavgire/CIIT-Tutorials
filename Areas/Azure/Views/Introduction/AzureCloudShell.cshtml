@@ -1,0 +1,134 @@
+@{
+    ViewData["Title"] = "Azure Cloud Shell & Azure PowerShell";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+    <!-- LEFT SIDEBAR -->
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+                <h1 class="fw-bold mb-3">Azure Cloud Shell & Azure PowerShell</h1>
+                <p class="lead text-muted mb-4">
+                    Master interactive cloud administration and process automation using cloud-hosted environments and specialized command-line modules.
+                </p>
+
+                <!-- SECTION: AZURE POWERSHELL OVERVIEW -->
+                <div class="mb-4">
+                    <h3 class="fw-bold h4 text-dark mb-3">Understanding Azure PowerShell</h3>
+                    <p>
+                        <strong>Azure PowerShell</strong> is a powerful extension built on top of the standard PowerShell framework. It provides developers and administrators with specialized command-line modules to manage Azure resources directly. By leveraging compiled cross-platform scripts known as <strong>cmdlets</strong> (pronounced <em>"command-lets"</em>), you can programmatically deploy virtual machines, control networking topologies, and provision identity directories with high speed and precision.
+                    </p>
+                </div>
+
+                <!-- KEY ADVANTAGES ROW -->
+                <h3 class="fw-bold h4 text-dark mb-3">Core Operational Capabilities</h3>
+                <div class="row g-3 mb-4">
+                    <div class="col-md-4">
+                        <div class="info-card p-3 border rounded bg-light h-100">
+                            <h5 class="fw-bold text-primary mb-2">Unified Execution</h5>
+                            <p class="mb-0 small text-muted">
+                                Execute commands and automation scripts seamlessly with integrated shell mechanisms like **tab completion** and comprehensive **command history** tracking.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="info-card p-3 border rounded bg-light h-100">
+                            <h5 class="fw-bold text-primary mb-2">Subscription Control</h5>
+                            <p class="mb-0 small text-muted">
+                                Audit your cloud boundary topologies: list, create, or delete active subscriptions, manage user access matrices, and provision cryptographically secure credential tokens.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="info-card p-3 border rounded bg-light h-100">
+                            <h5 class="fw-bold text-primary mb-2">Interactive Learning</h5>
+                            <p class="mb-0 small text-muted">
+                                Launch integrated environment tutorials directly inside the console to master production provisioning tasks, such as virtual network and storage mapping.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TERMINAL EXAMPLE PANEL -->
+                <h3 class="fw-bold h4 mb-2">Practical Cmdlet Blueprint</h3>
+                <p class="text-muted small">Below is a standard Azure PowerShell cmdlet pattern demonstrating how to securely fetch subscription context and create a target logical resource boundary:</p>
+
+                <div class="terminal-mockup p-3 text-light rounded shadow mb-4">
+                    <div class="terminal-header d-flex align-items-center mb-2 pb-2 border-bottom border-secondary">
+                        <span class="dot bg-danger rounded-circle me-1" style="width:10px; height:10px;"></span>
+                        <span class="dot bg-warning rounded-circle me-1" style="width:10px; height:10px;"></span>
+                        <span class="dot bg-success rounded-circle me-3" style="width:10px; height:10px;"></span>
+                        <span class="small text-muted font-monospace">PS Azure:\></span>
+                    </div>
+                    <pre class="mb-0 font-monospace text-warning"><span>PS Azure:\></span> <span class="text-light">Get-AzSubscription</span>
+
+
+
+
+
+
+
+
+
+
+
+Name                 Id                                   TenantId                             State
+----                 --                                   --------                             -----
+Enterprise-Prod-Sub  11111111-2222-3333-4444-555555555555 66666666-7777-8888-9999-000000000000 Enabled
+
+<span>PS Azure:\></span> <span class="text-light">New-AzResourceGroup -Name "rg-enterprise-prod" -Location "EastUS"</span>
+
+ResourceGroupName : rg-enterprise-prod
+Location          : eastus
+ProvisioningState : Succeeded
+ResourceId        : /subscriptions/11111111-2222-3333-4444-555555555555/resourceGroups/rg-enterprise-prod</pre>
+                    </div>
+
+                <!-- LAB PRACTICE BOX -->
+            <div class="concept-box mt-4 bg-light p-4 rounded border">
+        <h4 class="fw-bold h5 mb-3 text-dark">Practice Task</h4>
+                    <ol class="mb-0">
+        <li class="mb-2">Boot up your <strong>Azure Cloud Shell</strong> terminal instance inside the cloud portal portal dashboard interface.</li>
+    <li class="mb-2">Switch the active environment profile selector widget in the top console corner to <strong>PowerShell</strong>.</li>
+<li class="mb-2">Execute the command <code class="bg-dark text-light px-1 rounded">Get-AzLocation | Select-Object Location</code> to query all geographical region constraints available to your tenancy profile.</li>
+                        <li>Write a basic loop script or run a deployment simulation to create an isolated logical storage bucket container using PowerShell parameters.</li>
+</ol>
+    </div>
+
+    </div>
+    </div>
+
+    @await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureLessonNavigation.cshtml")
+    </section>
+    </div>
+
+    <style>
+    .terminal-mockup {
+        background-color: #012456; /* Azure PowerShell classic blue tone */
+        border: 1px solid #001a3e;
+    }
+
+        .terminal-mockup pre {
+            white-space: pre-wrap;
+            word-break: break-all;
+            font-family: 'Consolas', 'Courier New', Courier, monospace;
+            font-size: 0.95rem;
+        line-height: 1.6;
+        }
+
+.info-card {
+    transition: transform 0.2s ease;
+}
+
+    .info-card:hover {
+        transform: translateY(-2px);
+    }
+</style>

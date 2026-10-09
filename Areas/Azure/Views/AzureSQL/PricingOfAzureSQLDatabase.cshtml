@@ -1,0 +1,67 @@
+@{
+    ViewData["Title"] = "Pricing Of Azure SQL Database";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+                <div class="azure-notes-content">
+                    <pre class="azure-notes-text">Pricing Of Azure SQL Database
+
+There are two types of purchase models available in the Azure database. They are:
+
+    1. vCore ( virtual cores)
+
+    2. DTU (Data Transaction Units)
+
+1. vCore (virtual cores) Pricing
+
+Serverless compute:
+
+A better option for databases with erratic usage patterns is the Serverless Compute tier. It guarantees
+effective resource usage by automatically adjusting compute resources in accordance with demand.
+This tier offers flexibility for changing workloads and streamlines cost management with compute
+consumption invoicing computed per second.
+
+    •   Hyperscale: Optimizes cost performance for a range of workloads by combining compute
+        and storage auto-scaling up to 100 TB. With storage fees determined by real allocation,
+        scalability is possible without incurring excessive charges for underutilized resources.
+
+            o   Standard-series (Gen 5): Offers dependable performance with vCore usage-based
+                pricing for the majority of relational database systems. The Hyperscale tier&#x27;s dynamic
+                storage cost allocation between 10 GB and 100 TB guarantees effective resource use.
+                Redundancy choices influence backup storage costs, offering flexibility for data
+                protection requirements.
+
+2. DTU (Data Transaction Units)
+
+Single database model:
+
+with pricing based on Database Transaction Units (DTUs) and included storage. Offers a cost-effective
+option for smaller applications with basic performance requirements. There are few models like
+basic, standard, premium and extra storage models.
+
+    •   Basic: Azure&#x27;s Basic tier offers 5 DTUs and includes 2 GB of storage, ideal for basic workloads,
+        priced at $0.0068/hour.</pre>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_8_-_Microsoft_Azure_-_Database_Availability_and_Consistency_For_Azure_SQL/p17-000.jpg" class="img-fluid rounded shadow-sm" alt="Pricing Of Azure SQL Database - source image" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+            @await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureLessonNavigation.cshtml")
+</section>
+</div>
+<style>
+.azure-notes-text{white-space:pre-wrap;word-break:normal;font-family:inherit;font-size:1rem;line-height:1.7;background:#fff;border:0;padding:0;margin:0;color:#212529;}
+.azure-notes-content img{max-height:720px;}
+</style>

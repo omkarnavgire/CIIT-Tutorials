@@ -1,0 +1,190 @@
+@{
+    Layout = "~/Areas/Jenkins/Views/Shared/JenkinsLayout.cshtml";
+    ViewData["Title"] = "Language Stack Pipelines";
+}
+
+<style>
+    #language-stack-pipelines-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #language-stack-pipelines-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #language-stack-pipelines-page class-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #language-stack-pipelines-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #language-stack-pipelines-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+    #language-stack-pipelines-page .example-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+    }
+</style>
+
+<main id="language-stack-pipelines-page" class="container py-5">
+    <div class="row g-4">
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/Jenkins/Views/Shared/JenkinsTopics.cshtml")
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+                <h1 class="fw-bold">Language Stack Pipelines</h1>
+                <p class="lead">
+                    Learn how to design, configure, and isolate runtime environments for polyglot systems and multi-language applications using Jenkins.
+                </p>
+            </div>
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">What are Language Stack Pipelines?</h2>
+                <p>
+                    Modern software architectures often rely on polyglot codebases where a single repository or enterprise system utilizes multiple runtime languages (e.g., a Python microservice, a Node.js frontend, and a Go backend API).
+                </p>
+                <p>
+                    <strong>Language Stack Pipelines</strong> in Jenkins refer to the structural patterns and tools required to provision, isolate, and execute build jobs across different language runtimes without causing environment drift, version collisions, or configuration conflicts on your Jenkins agents.
+                </p>
+                <div class="alert alert-info">
+                    <strong>Simple Definition:</strong> A strategy for managing multiple programming language runtimes and SDK versions within Jenkins automation, ensuring that every pipeline stage executes against the correct isolated environment.
+                </div>
+            </div>
+
+            <!-- KEY CONCEPTS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Key Concepts</h2>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Tool Environment Isolation</h5>
+                            <p class="mb-0">Using explicit tools, virtual environments (like Python <code>venv</code>), or container runtimes to prevent one pipeline's dependencies from polluting global agent spaces.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Dynamic Jenkins Tools</h5>
+                            <p class="mb-0">Leveraging the <code>tools</code> block in Declarative Pipelines to automatically download, cache, and inject specific language SDKs into the execution path.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Ephemeral Ephemeral Agents</h5>
+                            <p class="mb-0">Utilizing specialized Docker images as execution agents (<code>agent { docker { image '...' } }</code>) to achieve complete environment parity from build to build.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Cross-Stack Orchestration</h5>
+                            <p class="mb-0">Structuring pipeline stages to build, test, and artifact code across different runtimes within the same CI/CD pipeline run lifecycle.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXAMPLE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Practical Jenkins Example</h2>
+                <p>The following declarative pipeline demonstrates how to isolate a <strong>Node.js</strong> frontend build step and a <strong>Python</strong> test suite within the same pipeline run using Global Tool Configurations and virtual environments:</p>
+                <pre><code>pipeline {
+    agent any
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+    tools {
+        // Automatically injects a pre-configured Node.js installation from Jenkins Global Tool Configuration
+        nodejs 'NodeJS-18'
+    }
+    
+    stages {
+        stage('Build Frontend (Node.js)') {
+            steps {
+                echo 'Checking Node.js version...'
+                sh 'node --version'
+                sh 'npm --version'
+                echo 'Installing dependencies and compiling assets...'
+                sh 'npm install'
+                sh 'npm run build'
+            }
+        }
+        
+        stage('Test Backend Service (Python)') {
+            steps {
+                echo 'Setting up isolated Python Virtual Environment...'
+                // Ensures a specific runtime state without modifying global python binaries
+                sh '''
+                    python3 -m venv venv
+                    . venv/bin/activate
+                    pip install --upgrade pip
+                    pip install -r requirements.txt
+                    pytest tests/
+                '''
+            }
+        }
+    }
+}</code></pre>
+</div>
+
+<!-- PRACTICE -->
+<div class="mb-4">
+<h2 class="h3 fw-bold">Practice Exercise</h2>
+<ol>
+<li class="mb-2">Navigate to <strong>Manage Jenkins</strong> &rarr; <strong>Tools</strong> and verify that you have configurations available under <strong>NodeJS</strong>, <strong>JDK</strong>, or <strong>Go</strong>.</li>
+<li class="mb-2">Create a new <strong>Pipeline</strong> job named <code>multi-stack-test-pipeline</code>.</li>
+<li class="mb-2">Paste the example script above into the pipeline editor, modifying the tool name to match an active runtime on your local controller.</li>
+                    <li class="mb-2">Run the job, open the <strong>Console Output</strong>, and inspect how Jenkins resolves environmental variables and executes binary paths across the separate runtimes.</li>
+                </ol>
+            </div>
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+                <h2 class="h4 fw-bold">Summary</h2>
+                <p class="mb-0">You have completed the <strong>Language Stack Pipelines</strong> lesson. Understanding how to orchestrate multi-runtime architectures safely sets the foundation for standard enterprise tools like Maven, Gradle, and npm inside automated workflows.</p>
+            </div>
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+                <a class="btn btn-outline-primary" href="@Url.Action("Webhooks", "Pipeline", new { area = "Jenkins" })">← Previous: Git Webhooks</a>
+                <a class="btn btn-primary" href="@Url.Action("Maven", "LanguageStacks", new { area = "Jenkins" })">Next: Java and Maven Builds →</a>
+            </div>
+        </section>
+    </div>
+</main>

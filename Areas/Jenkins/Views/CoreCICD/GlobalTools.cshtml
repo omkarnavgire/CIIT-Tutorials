@@ -1,0 +1,187 @@
+@{
+    Layout = "~/Areas/Jenkins/Views/Shared/JenkinsLayout.cshtml";
+    ViewData["Title"] = "Global Tool Configuration";
+}
+
+<style>
+    #global-tool-configuration-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #global-tool-configuration-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #global-tool-configuration-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #global-tool-configuration-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #global-tool-configuration-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+    #global-tool-configuration-page .example-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+    }
+</style>
+
+<main id="global-tool-configuration-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/Jenkins/Views/Shared/JenkinsTopics.cshtml")
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+                <h1 class="fw-bold">Global Tool Configuration</h1>
+                <p class="lead">
+                    Learn the concepts, tool mappings, path definitions, and installer workflows required to inject and manage baseline execution runtimes uniformly across your automation cluster nodes.
+                </p>
+            </div>
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">What is Global Tool Configuration?</h2>
+                <p>
+                    <strong>Global Tool Configuration</strong> (managed under <em>Manage Jenkins &gt; Tools</em> in modern setups) is the central configuration area where compilers, testing runtimes, and deployment binaries are defined. Instead of manually installing and hardcoding binary engine paths on every individual worker node machine, Jenkins manages these tools centrally and aliases them with friendly system string handles.
+                </p>
+
+                <div class="alert alert-info my-3">
+                    <strong>Simple Definition:</strong> Global Tool Configuration is a centralized control dashboard where system administrators name and configure third-party software executables (like Git, JDK, Maven, Gradle, or NodeJS) so they can be injected on-demand into any active pipeline stage.
+                </div>
+
+                <h3 class="h4 fw-bold mt-4">Key Installation Stratagems</h3>
+                <p class="mb-2">Jenkins provides two primary methods for populating executable tools into your build pipelines:</p>
+                <ul class="mb-3">
+                    <li class="mb-1"><strong>Install Automatically (Managed):</strong> Jenkins intercepts the pipeline run, automatically downloads the specific requested binary variant from official tool repositories, extracts it into an isolated home directory, and hooks it right into the build execution context.</li>
+                    <li class="mb-1"><strong>Pre-installed Paths (Custom):</strong> Administrators turn off auto-download features and declare a fixed environment pathway pointing straight to a pre-baked binary installation lying on the node's local storage disk layers (e.g., matching a fixed `JAVA_HOME` configuration).</li>
+                    <li><strong>Ecosystem Independence:</strong> Named tool sets allow pipelines to run isolated environments concurrently—such as running one build against `NodeJS 18` and another against `NodeJS 20` using the same node resources.</li>
+                </ul>
+            </div>
+
+            <!-- KEY CONCEPTS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Key Concepts</h2>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>The `tools` Directive Injection</h5>
+                            <p class="mb-0">Learning to call top-level environment structures in declarative pipelines that automatically update the active binary `PATH` parameters for stage blocks, ensuring commands like `mvn` or `npm` resolve correctly.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Automated Tool Provisioning</h5>
+                            <p class="mb-0">Understanding that managed tools are lazily provisioned onto agent nodes only when an active job explicitly requests them, minimizing initial execution footprints across clean workers.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXAMPLE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Practical Jenkins Example</h2>
+                <p>The following declarative blueprint introduces native cross-tool environment injection by calling friendly aliases inside the root `tools` declaration block:</p>
+                <pre><code>pipeline {
+    agent any
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // Injecting pre-configured global tool installations into this pipeline instance
+    tools {
+        maven 'Maven_3.9.5'
+        nodejs 'Node_20.x'
+    }
+
+    stages {
+        stage('Verify Global Tool Runtimes') {
+            steps {
+                echo 'Checking availability of global configuration ecosystem targets...'
+                
+                // Native paths are managed automatically by the tool handles declared above
+                sh 'mvn --version'
+                sh 'node --version'
+                sh 'npm --version'
+            }
+        }
+        stage('Execute Multi-Language Application Build') {
+            steps {
+                echo 'Running build scripts using localized pipeline wrappers...'
+                // Real compilation hooks go here (e.g., npm run build or mvn clean package)
+            }
+        }
+    }
+}</code></pre>
+                </div>
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+        <h2 class="h3 fw-bold">Practice Exercise: Map and Verify a Central Tool Alias</h2>
+                <div class="concept-box">
+    <h5 class="fw-bold">Step-by-Step Task Sequence:</h5>
+                    <ol class="ps-3 mb-0">
+<li class="mb-2">Open the main dashboard interface and select <strong>Manage Jenkins &gt; Tools</strong> (or <em>Global Tool Configuration</em> depending on your legacy version layout).</li>
+                        <li class="mb-2">Scroll down to an installation category (e.g., Maven installations or NodeJS installations), click <strong>Add Tool</strong>, and name it explicitly (e.g., `Maven_3.9.5` or `Node_20.x`).</li>
+                        <li class="mb-2">Check the box for <strong>Install automatically</strong>, choose your target edition variant version from the dropdown selector grid, and click the green <strong>Save</strong> button.</li>
+<li class="mb-2">Initialize or load a test Pipeline script workspace, copy-paste the template code blocks provided in the example above into your editor window, and click **Save**.</li>
+<li>Launch your pipeline by selecting **Build Now** and inspect the streaming log trails in your **Console Output** to verify Jenkins automatically fetching, extracting, and executing the mapped tools.</li>
+</ol>
+</div>
+</div>
+
+<!-- SUMMARY -->
+<div class="alert alert-info mt-4">
+<h2 class="h4 fw-bold">Summary</h2>
+<p class="mb-0">You have completed the <strong>Global Tool Configuration</strong> lesson. Continue through the syllabus to explore how Jenkins sandboxes individual pipeline actions dynamically by Managing Workspaces.</p>
+</div>
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+                <a class="btn btn-outline-primary" href="@Url.Action("ParameterizedBuilds", "CoreCICD", new { area = "Jenkins" })">← Previous: Parameterized Builds</a>
+                <a class="btn btn-primary" href="@Url.Action("Workspaces", "CoreCICD", new { area = "Jenkins" })">Next: Managing Workspaces →</a>
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

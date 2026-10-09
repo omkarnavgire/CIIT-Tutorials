@@ -1,0 +1,270 @@
+@{
+    Layout = "~/Areas/GitHub/Views/Shared/GithubLayout.cshtml";
+    ViewData["Title"] = "Git Blame & Auditing";
+}
+
+<main id="tutorials" class="container py-1">
+    <div class="row g-4">
+
+        <!-- Sidebar Navigation -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/GitHub/Views/Shared/GithubTopics.cshtml")
+        </aside>
+
+        <!-- Reading Content Area -->
+        <section class="col-lg-9">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4 p-lg-5">
+
+                    <h1 class="fw-bold mb-3">Git Blame &amp; Auditing</h1>
+
+                    <p>
+                        In Git, <strong>blaming and auditing</strong> means
+                        inspecting a file's history to understand who last
+                        modified each line, when the change occurred, and
+                        which commit introduced it.
+                    </p>
+
+                    <p>
+                        This is useful for debugging, investigating regressions,
+                        reviewing code changes, and understanding the context
+                        behind implementation decisions.
+                    </p>
+
+                    <div class="alert alert-info">
+                        <strong>Key Concept:</strong>
+                        <code>git blame</code> helps identify the commit
+                        associated with a line. Use <code>git show</code>
+                        and <code>git log</code> to investigate the
+                        surrounding changes and commit messages.
+                    </div>
+
+                    <hr class="my-4" />
+
+                    <!-- Basic Blame -->
+                    <h3 class="fw-bold mb-3">1. The Basic Git Blame</h3>
+
+                    <p>
+                        Use the following command to inspect the history
+                        of individual lines in a file.
+                    </p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git blame filename.ext</code></pre>
+
+                    <p>The output typically shows:</p>
+
+                    <ul>
+                        <li><strong>Commit hash:</strong> Identifies the commit associated with the line.</li>
+                        <li><strong>Author:</strong> Shows the recorded author of the change.</li>
+                        <li><strong>Timestamp:</strong> Indicates when the change was made.</li>
+                        <li><strong>Source line:</strong> Displays the corresponding line of code.</li>
+                    </ul>
+
+                    <p>
+                        Replace <code>filename.ext</code> with the actual
+                        file path, such as <code>src/LoginController.cs</code>.
+                    </p>
+
+                    <hr class="my-4" />
+
+                    <!-- Narrowing Search -->
+                    <h3 class="fw-bold mb-3">2. Narrowing Down the Search</h3>
+
+                    <h5 class="fw-semibold mt-4">Blame Specific Lines</h5>
+
+                    <p>
+                        Use the <code>-L</code> option to inspect a specific
+                        range of lines instead of the entire file.
+                    </p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git blame -L 15,30 filename.ext</code></pre>
+
+                    <p>
+                        This displays blame information for lines 15 through 30.
+                    </p>
+
+                    <h5 class="fw-semibold mt-4">Ignore Whitespace Changes</h5>
+
+                    <p>
+                        Use the <code>-w</code> option to ignore whitespace
+                        changes when identifying the origin of lines.
+                    </p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git blame -w filename.ext</code></pre>
+
+                    <p>
+                        This can help when a commit changed indentation
+                        or formatting without changing the underlying logic.
+                    </p>
+
+                    <hr class="my-4" />
+
+                    <!-- Git Log -->
+                    <h3 class="fw-bold mb-3">3. Deep Auditing with Git Log</h3>
+
+                    <p>
+                        After finding a commit hash with
+                        <code>git blame</code>, investigate the commit
+                        to understand what changed and why.
+                    </p>
+
+                    <h5 class="fw-semibold mt-4">View Commit Details and Changes</h5>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git show &lt;commit-hash&gt;</code></pre>
+
+                    <p>
+                        Displays information about the commit, including
+                        its message and the changes introduced by it.
+                    </p>
+
+                    <h5 class="fw-semibold mt-4">Search History for a String</h5>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git log -S "functionName" --oneline</code></pre>
+
+                    <p>
+                        The <code>-S</code> option searches for commits
+                        where the number of occurrences of the specified
+                        string changes. It can help identify when a
+                        function name or text was introduced or removed.
+                    </p>
+
+                    <h5 class="fw-semibold mt-4">View a File's Commit History</h5>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git log --oneline -- filename.ext</code></pre>
+
+                    <p>
+                        Lists commits affecting the specified file.
+                    </p>
+
+                    <hr class="my-4" />
+
+                    <!-- Graphical Auditing -->
+                    <h3 class="fw-bold mb-3">4. Graphical Auditing Tools</h3>
+
+                    <h5 class="fw-semibold mt-4">Visual Studio Code with GitLens</h5>
+
+                    <p>
+                        GitLens can display Git blame annotations inside
+                        Visual Studio Code. These annotations help you
+                        inspect line authorship and related commit details
+                        without repeatedly running terminal commands.
+                    </p>
+
+                    <h5 class="fw-semibold mt-4">GitHub Web Interface</h5>
+
+                    <p>
+                        To inspect blame information on GitHub:
+                    </p>
+
+                    <ol>
+                        <li>Open your repository on GitHub.</li>
+                        <li>Navigate to the file you want to inspect.</li>
+                        <li>Open the file's <strong>Blame</strong> view.</li>
+                        <li>Review the associated commits and line changes.</li>
+                        <li>Open a commit to examine its message and diff.</li>
+                    </ol>
+
+                    <p>
+                        The blame view is useful when you want to audit
+                        a file without checking out the repository locally.
+                    </p>
+
+                    <hr class="my-4" />
+
+                    <!-- Example Workflow -->
+                    <h3 class="fw-bold mb-3">5. Example: Investigate a Bug</h3>
+
+                    <p>
+                        Suppose a method started behaving incorrectly
+                        after a recent code change. You can trace its
+                        history with the following workflow.
+                    </p>
+
+                    <h5 class="fw-semibold mt-4">Step 1: Inspect the Relevant Lines</h5>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git blame -L 20,40 src/LoginController.cs</code></pre>
+
+                    <h5 class="fw-semibold mt-4">Step 2: Inspect the Suspected Commit</h5>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git show &lt;commit-hash&gt;</code></pre>
+
+                    <h5 class="fw-semibold mt-4">Step 3: Review the File's History</h5>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git log --oneline -- src/LoginController.cs</code></pre>
+
+                    <p>
+                        Together, these commands help you identify the
+                        relevant change and understand the context
+                        before deciding how to fix the issue.
+                    </p>
+
+                    <hr class="my-4" />
+
+                    <!-- Quick Reference -->
+                    <h3 class="fw-bold mb-3">6. Quick Reference</h3>
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped align-middle">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Command</th>
+                                    <th>Purpose</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>git blame filename.ext</code></td>
+                                    <td>Inspect line-by-line authorship and commit information.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>git blame -L 15,30 filename.ext</code></td>
+                                    <td>Inspect a specific range of lines.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>git blame -w filename.ext</code></td>
+                                    <td>Ignore whitespace changes during blame analysis.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>git show &lt;commit-hash&gt;</code></td>
+                                    <td>Inspect a commit and its changes.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>git log -S "functionName" --oneline</code></td>
+                                    <td>Find commits that change the occurrence count of a string.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>git log --oneline -- filename.ext</code></td>
+                                    <td>View the commit history of a file.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="alert alert-success mt-4">
+                        <strong>Key Takeaway:</strong>
+                        Use <code>git blame</code> to trace individual lines,
+                        <code>git show</code> to inspect a particular commit,
+                        and <code>git log</code> to explore the broader
+                        history of a file or code change.
+                    </div>
+
+                    <!-- Previous / Next Navigation -->
+                    <div class="d-flex justify-content-between align-items-center gap-3 flex-wrap mt-5 pt-4 border-top">
+
+                        <a class="btn btn-outline-primary"
+                           href="@Url.Action("Rebasing", "AdvancedGitAndHistory", new { area = "GitHub" })">
+                            &larr; Previous: Rebasing
+                        </a>
+
+                        <a class="btn btn-primary"
+                           href="@Url.Action("GitHubActions", "GitHubEcosystemAndWorkflow", new { area = "GitHub" })">
+                            Next: GitHub Actions &rarr;
+                        </a>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+</main>

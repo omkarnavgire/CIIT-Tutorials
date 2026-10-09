@@ -1,0 +1,46 @@
+@{
+    ViewData["Title"] = "Microsoft Azure Boards";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+                <div class="azure-notes-content">
+                    <pre class="azure-notes-text">Microsoft Azure Boards
+Microsoft Azure Boards is a powerful tool for managing software projects. It offers a suite of
+agile tools to support planning, tracking, and discussing work across your teams. Whether
+you&#x27;re a project manager, developer, or stakeholder, Azure Boards can help you streamline
+your workflows and improve project outcomes. This guide will introduce you to Azure
+Boards and how to get started with it.
+
+
+
+What is Microsoft Azure Boards?
+Azure Boards is a service within the Azure DevOps suite that provides tools for managing
+your software development projects. It supports various methodologies like Agile, Scrum,
+and Kanban, making it flexible for different project needs. Key features include:
+   •   Work Items: Track all your project tasks, bugs, features, and epics.
+   •   Boards: Visualize work with Kanban boards, task boards, and backlogs.
+   •   Sprints: Plan and execute sprints using Scrum tools.
+   •   Dashboards: Customize dashboards to visualize your project metrics and progress.
+   •   Integrations: Integrate with other Azure DevOps services, GitHub, and third-party
+       tools.</pre>
+                </div>
+            </div>
+        </div>
+    
+
+            @await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureLessonNavigation.cshtml")
+</section>
+</div>
+<style>
+.azure-notes-text{white-space:pre-wrap;word-break:normal;font-family:inherit;font-size:1rem;line-height:1.7;background:#fff;border:0;padding:0;margin:0;color:#212529;}
+.azure-notes-content img{max-height:720px;}
+</style>

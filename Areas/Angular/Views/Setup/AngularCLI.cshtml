@@ -1,0 +1,1463 @@
+﻿@{
+    ViewData["Title"] = "Installing Angular CLI";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- ================= HEADER ================= -->
+    <section class="mb-4">
+        <h1 class="fw-bold text-dark">
+            Installing Angular CLI
+        </h1>
+
+        <p class="text-muted fs-5">
+            Angular CLI is a command-line tool used to create, develop,
+            test, build and manage Angular applications.
+        </p>
+    </section>
+
+
+    <!-- ================= WHAT IS ANGULAR CLI ================= -->
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            What is Angular CLI?
+        </h2>
+
+        <p>
+            Angular CLI stands for
+            <strong>Angular Command Line Interface</strong>.
+            It provides a set of commands that help developers create
+            and manage Angular applications from the terminal.
+        </p>
+
+        <p>
+            Instead of manually creating every Angular file and folder,
+            Angular CLI can automatically generate the required project
+            structure and development files.
+        </p>
+
+        <div class="info-box">
+
+            <h4>
+                In Simple Words
+            </h4>
+
+            <p class="mb-0">
+                Angular CLI is a development tool that makes it easier
+                to create, run, generate and build Angular applications.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= WHY ANGULAR CLI ================= -->
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Why Do We Need Angular CLI?
+        </h2>
+
+        <div class="row g-4">
+
+            <div class="col-md-6 col-lg-3">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        1
+                    </div>
+
+                    <h4>
+                        Create
+                    </h4>
+
+                    <p>
+                        Create new Angular applications quickly.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 col-lg-3">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        2
+                    </div>
+
+                    <h4>
+                        Generate
+                    </h4>
+
+                    <p>
+                        Generate components, services and other files.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 col-lg-3">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        3
+                    </div>
+
+                    <h4>
+                        Develop
+                    </h4>
+
+                    <p>
+                        Run Angular applications using the development server.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 col-lg-3">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        4
+                    </div>
+
+                    <h4>
+                        Build
+                    </h4>
+
+                    <p>
+                        Build Angular applications for deployment.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= PREREQUISITE ================= -->
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Prerequisite
+        </h2>
+
+        <p>
+            Before installing Angular CLI, make sure that
+            <strong>Node.js</strong> and <strong>npm</strong> are installed
+            on your system.
+        </p>
+
+        <div class="requirement-flow">
+
+            <div class="requirement-card">
+
+                <div class="requirement-icon">
+                    ✓
+                </div>
+
+                <h4>
+                    Node.js
+                </h4>
+
+                <p>
+                    Required runtime environment.
+                </p>
+
+            </div>
+
+
+            <div class="requirement-arrow">
+                +
+            </div>
+
+
+            <div class="requirement-card">
+
+                <div class="requirement-icon">
+                    ✓
+                </div>
+
+                <h4>
+                    npm
+                </h4>
+
+                <p>
+                    Required package manager.
+                </p>
+
+            </div>
+
+
+            <div class="requirement-arrow">
+                →
+            </div>
+
+
+            <div class="requirement-card">
+
+                <div class="requirement-icon">
+                    ✓
+                </div>
+
+                <h4>
+                    Angular CLI
+                </h4>
+
+                <p>
+                    Angular development tool.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= CHECK NODE ================= -->
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Step 1: Check Node.js
+        </h2>
+
+        <p>
+            Open Command Prompt or Terminal and check whether Node.js
+            is installed.
+        </p>
+
+        <div class="code-box">
+
+            <div class="code-header">
+                Terminal
+            </div>
+
+            <pre><code>node --version</code></pre>
+
+        </div>
+
+        <div class="output-box">
+
+            <h5>
+                Expected Output
+            </h5>
+
+            <p>
+                The terminal displays the installed Node.js version.
+            </p>
+
+            <div class="terminal-output">
+                v[installed-version]
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= CHECK NPM ================= -->
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Step 2: Check npm
+        </h2>
+
+        <p>
+            npm is normally installed together with Node.js.
+            Verify the npm installation using the following command.
+        </p>
+
+        <div class="code-box">
+
+            <div class="code-header">
+                Terminal
+            </div>
+
+            <pre><code>npm --version</code></pre>
+
+        </div>
+
+        <div class="output-box">
+
+            <h5>
+                Expected Output
+            </h5>
+
+            <p>
+                The terminal displays the installed npm version.
+            </p>
+
+            <div class="terminal-output">
+                [installed-npm-version]
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= INSTALL CLI ================= -->
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Step 3: Install Angular CLI
+        </h2>
+
+        <p>
+            Now install Angular CLI globally using npm.
+            Open Command Prompt or Terminal and execute:
+        </p>
+
+        <div class="code-box">
+
+            <div class="code-header">
+                Terminal
+            </div>
+
+            <pre><code>npm install -g @@angular/cli</code></pre>
+
+        </div>
+
+        <div class="info-box">
+
+            <h4>
+                What does this command mean?
+            </h4>
+
+            <p>
+                <strong>npm</strong> is the package manager,
+                <strong>install</strong> installs a package,
+                <strong>-g</strong> installs it globally, and
+                <strong>@@angular/cli</strong> is the Angular CLI package.
+            </p>
+
+            <p class="mb-0">
+                A global installation allows the Angular CLI command
+                to be used from different project folders.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= INSTALLATION FLOW ================= -->
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Angular CLI Installation Flow
+        </h2>
+
+        <div class="cli-flow">
+
+            <div class="cli-flow-box">
+
+                <strong>
+                    Terminal
+                </strong>
+
+                <span>
+                    Developer enters command
+                </span>
+
+            </div>
+
+
+            <div class="cli-arrow">
+                ↓
+            </div>
+
+
+            <div class="cli-flow-box">
+
+                <strong>
+                    npm
+                </strong>
+
+                <span>
+                    Downloads Angular CLI
+                </span>
+
+            </div>
+
+
+            <div class="cli-arrow">
+                ↓
+            </div>
+
+
+            <div class="cli-flow-box">
+
+                <strong>
+                    Angular CLI
+                </strong>
+
+                <span>
+                    Installed globally
+                </span>
+
+            </div>
+
+
+            <div class="cli-arrow">
+                ↓
+            </div>
+
+
+            <div class="cli-flow-box">
+
+                <strong>
+                    ng Command
+                </strong>
+
+                <span>
+                    Ready for Angular development
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= VERIFY CLI ================= -->
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Step 4: Verify Angular CLI Installation
+        </h2>
+
+        <p>
+            After Angular CLI installation is completed, verify the
+            installation using the following command:
+        </p>
+
+        <div class="code-box">
+
+            <div class="code-header">
+                Terminal
+            </div>
+
+            <pre><code>ng version</code></pre>
+
+        </div>
+
+        <div class="output-box">
+
+            <h5>
+                Expected Output
+            </h5>
+
+            <p>
+                Angular CLI displays information about the installed
+                Angular CLI version, Node.js version and related packages.
+            </p>
+
+            <div class="terminal-output">
+
+                Angular CLI: [version]<br />
+                Node: [version]<br />
+                Package Manager: npm [version]
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= NG COMMAND ================= -->
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            What is the ng Command?
+        </h2>
+
+        <p>
+            After installing Angular CLI, the
+            <strong>ng</strong> command becomes available in the terminal.
+        </p>
+
+        <p>
+            The <strong>ng</strong> command is used for different Angular
+            development operations such as creating applications,
+            generating components, running the development server and
+            building applications.
+        </p>
+
+        <div class="code-box">
+
+            <div class="code-header">
+                Terminal
+            </div>
+
+            <pre><code>ng</code></pre>
+
+        </div>
+
+        <div class="output-box">
+
+            <h5>
+                Expected Result
+            </h5>
+
+            <p class="mb-0">
+                Angular CLI displays the available Angular commands
+                and options.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= IMPORTANT COMMANDS ================= -->
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Important Angular CLI Commands
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table command-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Command
+                        </th>
+
+                        <th>
+                            Purpose
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            <code>ng version</code>
+                        </td>
+
+                        <td>
+                            Display Angular CLI version information
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            <code>ng new ProjectName</code>
+                        </td>
+
+                        <td>
+                            Create a new Angular application
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            <code>ng serve</code>
+                        </td>
+
+                        <td>
+                            Start the Angular development server
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            <code>ng generate component name</code>
+                        </td>
+
+                        <td>
+                            Generate a new Angular component
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            <code>ng generate service name</code>
+                        </td>
+
+                        <td>
+                            Generate an Angular service
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            <code>ng build</code>
+                        </td>
+
+                        <td>
+                            Build the Angular application
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= EXAMPLE ================= -->
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Example: Generate a Student Component
+        </h2>
+
+        <p>
+            Suppose we want to create a component for displaying
+            student information.
+        </p>
+
+        <div class="code-box">
+
+            <div class="code-header">
+                Terminal
+            </div>
+
+            <pre><code>ng generate component student</code></pre>
+
+        </div>
+
+        <p class="mt-3">
+            Angular CLI generates the required component files
+            automatically.
+        </p>
+
+        <div class="generated-files">
+
+            <div class="file-item">
+                <span>📄</span>
+                student.component.ts
+            </div>
+
+            <div class="file-item">
+                <span>📄</span>
+                student.component.html
+            </div>
+
+            <div class="file-item">
+                <span>📄</span>
+                student.component.css
+            </div>
+
+            <div class="file-item">
+                <span>📄</span>
+                student.component.spec.ts
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= COMMON ISSUES ================= -->
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Common Installation Issues
+        </h2>
+
+        <div class="issue-box">
+
+            <div class="issue-item">
+
+                <h4>
+                    'ng' is not recognized
+                </h4>
+
+                <p>
+                    If the terminal does not recognize the
+                    <strong>ng</strong> command, close the terminal
+                    and open it again.
+                </p>
+
+            </div>
+
+
+            <div class="issue-item">
+
+                <h4>
+                    Installation Permission Issue
+                </h4>
+
+                <p>
+                    If npm shows a permission-related error,
+                    open the terminal with appropriate permissions
+                    and try the installation again.
+                </p>
+
+            </div>
+
+
+            <div class="issue-item">
+
+                <h4>
+                    Check Node.js and npm
+                </h4>
+
+                <p class="mb-0">
+                    Make sure Node.js and npm are installed correctly
+                    before installing Angular CLI.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= SUMMARY ================= -->
+    <section class="mb-5">
+
+        <div class="summary-box">
+
+            <h3>
+                Summary
+            </h3>
+
+            <p>
+                Angular CLI is a command-line tool used to create,
+                generate, develop and build Angular applications.
+            </p>
+
+            <p>
+                The Angular CLI can be installed globally using
+                <strong>npm install -g @@angular/cli</strong>.
+            </p>
+
+            <p>
+                After installation, use
+                <strong>ng version</strong>
+                to verify the Angular CLI installation.
+            </p>
+
+            <p class="mb-0">
+                In the next topic, we will learn how to
+                <strong>Create an Angular Application</strong>.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= NAVIGATION ================= -->
+    <div class="topic-navigation">
+
+        <a class="btn btn-outline-secondary"
+           href="@Url.Action("InstallingNodeJS", "Setup", new { area = "Angular" })">
+
+            ← Installing Node.js
+
+        </a>
+
+
+        <a class="btn btn-primary"
+           href="@Url.Action("CreatingApplication", "Setup", new { area = "Angular" })">
+
+            Creating an Angular Application →
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<style>
+
+    /* ================= SECTION TITLE ================= */
+
+    .section-title {
+
+        font-size: 25px;
+
+        font-weight: 700;
+
+        color: #2e1065;
+
+        margin-bottom: 18px;
+
+        border-left: 5px solid #4c1d95;
+
+        padding-left: 12px;
+    }
+
+
+    /* ================= INFO BOX ================= */
+
+    .info-box {
+
+        background: #f3f0ff;
+
+        border-left: 5px solid #4c1d95;
+
+        border-radius: 6px;
+
+        padding: 18px 22px;
+
+        margin-top: 18px;
+    }
+
+
+    .info-box h4 {
+
+        color: #2e1065;
+
+        font-weight: 700;
+
+        margin-bottom: 8px;
+    }
+
+
+    .info-box p {
+
+        color: #4c1d95;
+
+        line-height: 1.6;
+    }
+
+
+    /* ================= FEATURE CARDS ================= */
+
+    .feature-card {
+
+        height: 100%;
+
+        background: white;
+
+        border: 1px solid #ddd6fe;
+
+        border-radius: 10px;
+
+        padding: 22px;
+
+        box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    }
+
+
+    .feature-icon {
+
+        width: 42px;
+
+        height: 42px;
+
+        border-radius: 50%;
+
+        background: #4c1d95;
+
+        color: white;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        font-weight: 700;
+
+        margin-bottom: 12px;
+    }
+
+
+    .feature-card h4 {
+
+        color: #2e1065;
+
+        font-weight: 700;
+
+        margin-bottom: 8px;
+    }
+
+
+    .feature-card p {
+
+        color: #64748b;
+
+        line-height: 1.6;
+
+        margin-bottom: 0;
+    }
+
+
+    /* ================= REQUIREMENT FLOW ================= */
+
+    .requirement-flow {
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 18px;
+
+        flex-wrap: wrap;
+
+        background: #f8f7fc;
+
+        border: 1px solid #e5e7eb;
+
+        border-radius: 10px;
+
+        padding: 25px;
+    }
+
+
+    .requirement-card {
+
+        width: 210px;
+
+        min-height: 145px;
+
+        text-align: center;
+
+        background: white;
+
+        border: 1px solid #ddd6fe;
+
+        border-radius: 10px;
+
+        padding: 20px;
+
+        box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    }
+
+
+    .requirement-icon {
+
+        width: 40px;
+
+        height: 40px;
+
+        margin: 0 auto 10px;
+
+        border-radius: 50%;
+
+        background: #4c1d95;
+
+        color: white;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        font-weight: 700;
+    }
+
+
+    .requirement-card h4 {
+
+        color: #2e1065;
+
+        font-weight: 700;
+    }
+
+
+    .requirement-card p {
+
+        color: #64748b;
+
+        margin-bottom: 0;
+
+        font-size: 14px;
+    }
+
+
+    .requirement-arrow {
+
+        color: #4c1d95;
+
+        font-size: 28px;
+
+        font-weight: 700;
+    }
+
+
+    /* ================= CODE BOX ================= */
+
+    .code-box {
+
+        background: #0f172a;
+
+        border-radius: 8px;
+
+        overflow: hidden;
+
+        margin-top: 15px;
+    }
+
+
+    .code-header {
+
+        background: #1e293b;
+
+        color: #cbd5e1;
+
+        padding: 9px 15px;
+
+        font-size: 14px;
+
+        font-weight: 600;
+    }
+
+
+    .code-box pre {
+
+        margin: 0;
+
+        padding: 18px;
+
+        overflow-x: auto;
+    }
+
+
+    .code-box code {
+
+        color: #e2e8f0;
+
+        font-size: 15px;
+
+        line-height: 1.7;
+    }
+
+
+    /* ================= OUTPUT ================= */
+
+    .output-box {
+
+        background: #ecfdf5;
+
+        border-left: 5px solid #198754;
+
+        padding: 16px 20px;
+
+        margin-top: 18px;
+
+        border-radius: 6px;
+    }
+
+
+    .output-box h5 {
+
+        color: #146c43;
+
+        font-weight: 700;
+
+        margin-bottom: 8px;
+    }
+
+
+    .output-box p {
+
+        color: #14532d;
+
+        line-height: 1.6;
+    }
+
+
+    .terminal-output {
+
+        background: white;
+
+        border: 1px solid #bbf7d0;
+
+        border-radius: 5px;
+
+        padding: 10px 14px;
+
+        color: #166534;
+
+        font-family: monospace;
+
+        font-weight: 600;
+
+        line-height: 1.7;
+    }
+
+
+    /* ================= CLI FLOW ================= */
+
+    .cli-flow {
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        padding: 25px;
+
+        background: #f8f7fc;
+
+        border: 1px solid #e5e7eb;
+
+        border-radius: 10px;
+    }
+
+
+    .cli-flow-box {
+
+        width: 310px;
+
+        text-align: center;
+
+        background: white;
+
+        border: 2px solid #4c1d95;
+
+        border-radius: 8px;
+
+        padding: 16px;
+    }
+
+
+    .cli-flow-box strong {
+
+        display: block;
+
+        color: #2e1065;
+
+        font-size: 17px;
+    }
+
+
+    .cli-flow-box span {
+
+        display: block;
+
+        color: #64748b;
+
+        font-size: 14px;
+
+        margin-top: 5px;
+    }
+
+
+    .cli-arrow {
+
+        color: #4c1d95;
+
+        font-size: 28px;
+
+        font-weight: 700;
+
+        margin: 5px 0;
+    }
+
+
+    /* ================= COMMAND TABLE ================= */
+
+    .command-table {
+
+        border: 1px solid #e5e7eb;
+    }
+
+
+    .command-table thead {
+
+        background: #4c1d95;
+
+        color: white;
+    }
+
+
+    .command-table th,
+    .command-table td {
+
+        padding: 13px 15px;
+
+        vertical-align: middle;
+    }
+
+
+    .command-table code {
+
+        color: #4c1d95;
+
+        font-weight: 600;
+    }
+
+
+    /* ================= GENERATED FILES ================= */
+
+    .generated-files {
+
+        display: grid;
+
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 12px;
+
+        background: #f8f7fc;
+
+        border: 1px solid #e5e7eb;
+
+        border-radius: 10px;
+
+        padding: 20px;
+
+        margin-top: 18px;
+    }
+
+
+    .file-item {
+
+        background: white;
+
+        border: 1px solid #ddd6fe;
+
+        border-radius: 7px;
+
+        padding: 13px 15px;
+
+        color: #334155;
+
+        font-family: monospace;
+
+        font-size: 14px;
+    }
+
+
+    .file-item span {
+
+        margin-right: 8px;
+    }
+
+
+    /* ================= COMMON ISSUES ================= */
+
+    .issue-box {
+
+        background: #fff7ed;
+
+        border-left: 5px solid #f59e0b;
+
+        border-radius: 6px;
+
+        padding: 18px 22px;
+    }
+
+
+    .issue-item {
+
+        padding: 12px 0;
+
+        border-bottom: 1px solid #fed7aa;
+    }
+
+
+    .issue-item:last-child {
+
+        border-bottom: none;
+    }
+
+
+    .issue-item h4 {
+
+        color: #9a3412;
+
+        font-weight: 700;
+
+        margin-bottom: 7px;
+    }
+
+
+    .issue-item p {
+
+        color: #7c2d12;
+
+        line-height: 1.6;
+
+        margin-bottom: 0;
+    }
+
+
+    /* ================= SUMMARY ================= */
+
+    .summary-box {
+
+        background: #cfe2ff;
+
+        border-radius: 6px;
+
+        padding: 18px 22px;
+
+        margin-top: 20px;
+    }
+
+
+    .summary-box h3 {
+
+        font-size: 20px;
+
+        font-weight: 700;
+
+        color: #084298;
+
+        margin-bottom: 10px;
+    }
+
+
+    .summary-box p {
+
+        font-size: 16px !important;
+
+        line-height: 1.6 !important;
+
+        color: #084298 !important;
+
+        margin-bottom: 8px;
+    }
+
+
+    /* ================= NAVIGATION ================= */
+
+    .topic-navigation {
+
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+        margin-top: 30px;
+
+        padding-top: 20px;
+
+        border-top: 1px solid #e5e7eb;
+    }
+
+
+    .topic-navigation .btn-primary {
+
+        background: #4c1d95;
+
+        border-color: #4c1d95;
+    }
+
+
+    .topic-navigation .btn-primary:hover {
+
+        background: #2e1065;
+
+        border-color: #2e1065;
+    }
+
+
+    /* ================= MOBILE ================= */
+
+    @@media (max-width: 768px) {
+
+        .section-title {
+
+            font-size: 21px;
+        }
+
+
+        .requirement-flow {
+
+            flex-direction: column;
+        }
+
+
+        .requirement-arrow {
+
+            transform: rotate(90deg);
+        }
+
+
+        .requirement-card {
+
+            width: 100%;
+
+            max-width: 300px;
+        }
+
+
+        .cli-flow-box {
+
+            width: 100%;
+
+            max-width: 310px;
+        }
+
+
+        .generated-files {
+
+            grid-template-columns: 1fr;
+        }
+
+
+        .code-box code {
+
+            font-size: 13px;
+        }
+
+
+        .topic-navigation {
+
+            gap: 10px;
+        }
+
+
+        .topic-navigation .btn {
+
+            font-size: 13px;
+
+            padding: 8px 10px;
+        }
+
+    }
+
+</style>

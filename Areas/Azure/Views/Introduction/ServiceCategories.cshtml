@@ -1,0 +1,153 @@
+@{
+    ViewData["Title"] = "The 3 Service Categories Provided by Microsoft Azure";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+    <!-- LEFT SIDEBAR -->
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+                <h1 class="fw-bold mb-3">The 3 Service Categories Provided by Microsoft Azure</h1>
+                <p class="lead text-muted mb-4">
+                    Master the foundational cloud service models—IaaS, PaaS, and SaaS—to establish proper infrastructure operational boundaries and clear shared responsibility matrix parameters.
+                </p>
+
+                <!-- INTRODUCTION ALERT -->
+                <div class="alert alert-info border-0 shadow-sm mb-4">
+                    <strong>Core Pillar:</strong> Microsoft Azure groups its vast catalog of computing utilities into three primary model categories, defining exactly which engineering layers are managed by the vendor versus your internal delivery teams.
+                </div>
+
+                <!-- CARDS INTERACTIVE GRID DISPLAY -->
+                <div class="row g-4 mb-5">
+                    <!-- 1. IAAS CARD -->
+                    <div class="col-md-4">
+                        <div class="category-card p-4 border rounded shadow-sm bg-white h-100">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="badge bg-primary fs-6 px-3 py-2 me-2">1</div>
+                                <h4 class="fw-bold mb-0 text-primary">IaaS</h4>
+                            </div>
+                            <h6 class="fw-semibold text-secondary">Infrastructure as a Service</h6>
+                            <hr />
+                            <p class="small text-muted"><strong>Definition:</strong> Provides on-demand access to fundamental computing infrastructure components like computing instances, storage systems, and networking parameters.</p>
+                            <p class="small text-muted"><strong>Responsibility:</strong> Azure coordinates the hardware lifecycle, while you remain responsible for the operating system configurations, middleware layers, patches, and applications.</p>
+                            <div class="mt-3">
+                                <span class="d-block fw-bold small text-dark mb-1">Key Azure Artifacts:</span>
+                                <span class="badge bg-light text-dark border me-1 mb-1">Azure VMs</span>
+                                <span class="badge bg-light text-dark border me-1 mb-1">Disk Storage</span>
+                                <span class="badge bg-light text-dark border me-1 mb-1">Virtual Networks</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. PAAS CARD -->
+                    <div class="col-md-4">
+                        <div class="category-card p-4 border rounded shadow-sm bg-white h-100">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="badge bg-success fs-6 px-3 py-2 me-2">2</div>
+                                <h4 class="fw-bold mb-0 text-success">PaaS</h4>
+                            </div>
+                            <h6 class="fw-semibold text-secondary">Platform as a Service</h6>
+                            <hr />
+                            <p class="small text-muted"><strong>Definition:</strong> Provides a managed, abstract execution ecosystem tailored for compiling, testing, distributing, and hosting web applications.</p>
+                            <p class="small text-muted"><strong>Responsibility:</strong> Azure automates OS systems, underlying runtime baselines, and database patches, leaving your engineers free to focus entirely on writing clean code.</p>
+                            <div class="mt-3">
+                                <span class="d-block fw-bold small text-dark mb-1">Key Azure Artifacts:</span>
+                                <span class="badge bg-light text-dark border me-1 mb-1">App Services</span>
+                                <span class="badge bg-light text-dark border me-1 mb-1">Azure Functions</span>
+                                <span class="badge bg-light text-dark border me-1 mb-1">Azure SQL DB</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. SAAS CARD -->
+                    <div class="col-md-4">
+                        <div class="category-card p-4 border rounded shadow-sm bg-white h-100">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="badge bg-warning text-dark fs-6 px-3 py-2 me-2">3</div>
+                                <h4 class="fw-bold mb-0 text-warning">SaaS</h4>
+                            </div>
+                            <h6 class="fw-semibold text-secondary">Software as a Service</h6>
+                            <hr />
+                            <p class="small text-muted"><strong>Definition:</strong> Provides fully functional, enterprise-ready software platforms hosted globally and accessed over secure web endpoints.</p>
+                            <p class="small text-muted"><strong>Responsibility:</strong> The service provider controls the absolute architecture stack, from bare metal to final interface; you manage user access matrices and corporate profile preferences.</p>
+                            <div class="mt-3">
+                                <span class="d-block fw-bold small text-dark mb-1">Key Azure Artifacts:</span>
+                                <span class="badge bg-light text-dark border me-1 mb-1">Microsoft 365</span>
+                                <span class="badge bg-light text-dark border me-1 mb-1">Dynamics 365</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RESPONSIBILITY MATRIX MATRIX SECTION -->
+                <h3 class="fw-bold h4 text-dark mb-3">Shared Responsibility Comparison Table</h3>
+                <div class="table-responsive mb-4">
+                    <table class="table table-bordered table-striped align-middle">
+                        <thead class="table-dark text-center">
+                            <tr>
+                                <th style="width: 20%;">Service Model</th>
+                                <th style="width: 40%;">What Microsoft Azure Manages</th>
+                                <th style="width: 40%;">What You (The Customer) Manage</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="fw-bold text-center text-primary table-light">IaaS</td>
+                                <td>Physical computing infrastructure, data host servers, cooling facilities, network routes, hypervisors, and storage devices.</td>
+                                <td>Operating Systems, middleware engines, container runtimes, custom data objects, active pipelines, and application logic.</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-center text-success table-light">PaaS</td>
+                                <td>Hardware layers, operating system patch updates, engine libraries, development runtimes, auto-scaling automation, and background updates.</td>
+                                <td>Application deployment code files, databases configurations, object access tokens, and microservice route tuning parameters.</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-center text-warning table-light">SaaS</td>
+                                <td>The absolute application software stack, cluster network configurations, systemic application bugs, performance scale parameters, and user storage data centers.</td>
+                                <td>Granular directory user access policies (IAM/RBAC metrics), individual data fields, and basic tenant software configuration profiles.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- VISUAL ILLUSTRATION ELEMENT PANEL -->
+                <div class="text-center my-5 p-3 bg-light rounded border">
+                    <h5 class="fw-bold text-secondary mb-3">Architectural Diagram Reference</h5>
+                    <img src="/Images/AzureNotes/Chapter_1_-_Introduction_to_Microsoft_Azure/p02-000.jpg" class="img-fluid rounded shadow-sm custom-azure-img" alt="The 3 Service Categories Provided by Microsoft Azure shared responsibility diagram map" />
+                </div>
+
+            </div>
+        </div>
+
+        @await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureLessonNavigation.cshtml")
+    </section>
+</div>
+
+<style>
+    .category-card {
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        background-color: #ffffff;
+    }
+
+        .category-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.08) !important;
+        }
+
+    .custom-azure-img {
+        max-height: 500px;
+        width: auto;
+    }
+
+    .table th {
+        font-weight: 600;
+    }
+</style>

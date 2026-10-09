@@ -1,0 +1,35 @@
+@{
+    ViewData["Title"] = "Chapter 4 - Microsoft Azure - Storage Accounts";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+                <div class="azure-notes-content">
+                    <pre class="azure-notes-text">Chapter 4 - Microsoft Azure - Storage Accounts
+
+
+Azure Storage Account is a storage account that is a resource that acts as a container that groups all
+the data services from Azure storage (Azure blobs, Azure files, Azure Queues, and Azure Tables).
+This helps us manage all of them as a group. The policies we specify while creating the storage
+account or making changes after the creation applies to all the services inside the account. Deleting a
+storage account deletes all the storage services deployed and the data stored inside it.</pre>
+                </div>
+            </div>
+        </div>
+    
+
+            @await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureLessonNavigation.cshtml")
+</section>
+</div>
+<style>
+.azure-notes-text{white-space:pre-wrap;word-break:normal;font-family:inherit;font-size:1rem;line-height:1.7;background:#fff;border:0;padding:0;margin:0;color:#212529;}
+.azure-notes-content img{max-height:720px;}
+</style>

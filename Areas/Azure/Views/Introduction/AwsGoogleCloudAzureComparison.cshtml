@@ -1,0 +1,114 @@
+@{
+    ViewData["Title"] = "Difference between AWS, Google Cloud, and Azure";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+    <!-- LEFT SIDEBAR -->
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+                <h1 class="fw-bold mb-3">Difference between AWS, Google Cloud, and Azure</h1>
+                <p class="lead text-muted mb-4">
+                    A comprehensive architectural comparison across core infrastructure, managed databases, storage types, computing configurations, and AI services.
+                </p>
+
+                <!-- COMPARISON TABLE CONTAINER -->
+                <div class="table-responsive mt-4">
+                    <table class="table table-bordered table-striped align-middle">
+                        <thead class="table-dark text-center">
+                            <tr>
+                                <th style="width: 15%;">Feature</th>
+                                <th style="width: 28%;">Amazon Web Services (AWS)</th>
+                                <th style="width: 28%;">Google Cloud Platform (GCP)</th>
+                                <th style="width: 28%;">Microsoft Azure</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th class="table-light">Core Compute</th>
+                                <td><strong>EC2</strong> (Elastic Compute Cloud)</td>
+                                <td><strong>Compute Engine</strong> (GCE)</td>
+                                <td><strong>Azure Virtual Machines</strong> (utilizing VHDs)</td>
+                            </tr>
+                            <tr>
+                                <th class="table-light">Storage Services</th>
+                                <td>
+                                    <ul class="mb-0 ps-3">
+                                        <li>Simple Storage Service (S3)</li>
+                                        <li>Elastic Block Store (EBS)</li>
+                                        <li>Elastic File System (EFS)</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul class="mb-0 ps-3">
+                                        <li>Cloud Storage</li>
+                                        <li>Persistent Disk</li>
+                                        <li>Filestore / Transfer Appliance</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul class="mb-0 ps-3">
+                                        <li>Blob / Queue Storage</li>
+                                        <li>Azure Files / Disk Storage</li>
+                                        <li>Data Lake Storage Gen2</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="table-light">Databases</th>
+                                <td>Robust support for RDS (Relational), DynamoDB (NoSQL), Redshift, and Amazon Aurora.</td>
+                                <td>Advanced analytics and open source: Cloud SQL, Cloud Spanner, Bigtable, and BigQuery.</td>
+                                <td>Deep enterprise integration: Azure SQL Database, Azure Cosmos DB, and HDInsight (Hadoop).</td>
+                            </tr>
+                            <tr>
+                                <th class="table-light">Pricing Model</th>
+                                <td>Historically per-hour billing models (now supporting per-second for selected services).</td>
+                                <td>Per-minute billing increments, allowing highly precise calculation scaling.</td>
+                                <td>Per-minute billing increments, rounded up dynamically based on runtime parameters.</td>
+                            </tr>
+                            <tr>
+                                <th class="table-light">Commitment Tiers</th>
+                                <td>On-Demand instances, Savings Plans, Reserved Instances (RI), and Spot Instances.</td>
+                                <td>On-Demand options alongside dynamic, automated Sustained Use Discounts (SUD).</td>
+                                <td>On-Demand options alongside fixed Azure Reserved Virtual Machine Instances.</td>
+                            </tr>
+                            <tr>
+                                <th class="table-light">Machine Learning</th>
+                                <td>Amazon SageMaker, Lex, Polly, Rekognition, and comprehensive AI bedrock wrappers.</td>
+                                <td>Vertex AI, Cloud Speech-to-Text, Vision AI, Translation AI, and advanced TPU nodes.</td>
+                                <td>Azure OpenAI Service, Azure Bot Service, and Azure Cognitive Services.</td>
+                            </tr>
+                            <tr>
+                                <th class="table-light">Adoption Barriers</th>
+                                <td>Highly detailed and complex billing line-items can lead to cost structure confusion.</td>
+                                <td>Historically smaller ecosystem catalog compared to deep enterprise legacy integrations.</td>
+                                <td>Legacy enterprise configurations require structural active directory management skills.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
+        @await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureLessonNavigation.cshtml")
+    </section>
+</div>
+
+<style>
+    .table th {
+        font-weight: 600;
+    }
+
+    .table td ul {
+        padding-left: 1.25rem;
+    }
+</style>

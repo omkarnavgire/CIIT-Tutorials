@@ -1,0 +1,1572 @@
+﻿@{
+    ViewData["Title"] = "Angular Route Configuration";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- Header -->
+    <section class="mb-4">
+
+        <h1 class="fw-bold text-dark">Angular Route Configuration</h1>
+
+        <p class="lead text-muted">
+            Angular Route Configuration defines the URL paths of an application
+            and specifies which component should be displayed when a particular
+            route is activated.
+        </p>
+
+    </section>
+
+    <!-- What is Route Configuration -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">What is Route Configuration?</h2>
+
+        <p>
+            Route configuration is the process of defining Angular routes using
+            a <strong>Routes</strong> array.
+        </p>
+
+        <p>
+            Each route can contain a path and a component. Angular uses this
+            configuration to determine which component should be displayed
+            for the current URL.
+        </p>
+
+        <div class="info-card">
+
+            <h5>Simple Definition</h5>
+
+            <p>
+                Route Configuration connects a
+                <strong>URL path with an Angular component</strong>.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- Route Configuration Flow -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold mb-3">Route Configuration Flow</h2>
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+
+                <i class="bi bi-link-45deg"></i>
+
+                <strong>URL Path</strong>
+
+                <span>/courses</span>
+
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+
+                <i class="bi bi-signpost-2"></i>
+
+                <strong>Route</strong>
+
+                <span>Matches Path</span>
+
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+
+                <i class="bi bi-window"></i>
+
+                <strong>Component</strong>
+
+                <span>Selected View</span>
+
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+
+                <i class="bi bi-display"></i>
+
+                <strong>RouterOutlet</strong>
+
+                <span>Displays View</span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Routes -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">1. Creating a Routes Array</h2>
+
+        <p>
+            Angular routes are commonly stored in a
+            <strong>Routes</strong> array.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                app.routes.ts
+            </div>
+
+            <pre><code>import &#123; Routes &#125; from '@@angular/router';
+
+export const routes: Routes = [
+
+    &#123;
+        path: 'courses',
+        component: CoursesComponent
+    &#125;
+
+];</code></pre>
+
+        </div>
+
+        <div class="info-card">
+
+            <h5>How it works</h5>
+
+            <p>
+                When the user navigates to
+                <strong>/courses</strong>, Angular matches the route and
+                displays <strong>CoursesComponent</strong>.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- Route Object -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">2. Understanding a Route Object</h2>
+
+        <p>
+            A route is represented by an object containing configuration
+            properties such as <strong>path</strong> and
+            <strong>component</strong>.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Route Object
+            </div>
+
+            <pre><code>&#123;
+
+    path: 'courses',
+
+    component: CoursesComponent
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-signpost"></i>
+                </div>
+
+                <h5>path</h5>
+
+                <p>
+                    Defines the URL segment used for the route.
+                </p>
+
+                <code>'courses'</code>
+
+            </div>
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-window"></i>
+                </div>
+
+                <h5>component</h5>
+
+                <p>
+                    Defines the component displayed by the route.
+                </p>
+
+                <code>CoursesComponent</code>
+
+            </div>
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-diagram-3"></i>
+                </div>
+
+                <h5>children</h5>
+
+                <p>
+                    Defines nested child routes.
+                </p>
+
+                <code>children</code>
+
+            </div>
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-shield-check"></i>
+                </div>
+
+                <h5>canActivate</h5>
+
+                <p>
+                    Defines route activation guards.
+                </p>
+
+                <code>canActivate</code>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Multiple Routes -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">3. Configuring Multiple Routes</h2>
+
+        <p>
+            An Angular application can contain multiple routes for different
+            components.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                app.routes.ts
+            </div>
+
+            <pre><code>export const routes: Routes = [
+
+    &#123;
+        path: '',
+        component: HomeComponent
+    &#125;,
+
+    &#123;
+        path: 'courses',
+        component: CoursesComponent
+    &#125;,
+
+    &#123;
+        path: 'contact',
+        component: ContactComponent
+    &#125;
+
+];</code></pre>
+
+        </div>
+
+        <div class="output-box">
+
+            <strong>Configured Routes:</strong>
+
+            <div class="output-preview">
+
+                <p>
+                    <strong>/</strong>
+                    → HomeComponent
+                </p>
+
+                <p>
+                    <strong>/courses</strong>
+                    → CoursesComponent
+                </p>
+
+                <p>
+                    <strong>/contact</strong>
+                    → ContactComponent
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Empty Path -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">4. Configuring the Default Route</h2>
+
+        <p>
+            An empty path can represent the default route of an application.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Default Route
+            </div>
+
+            <pre><code>&#123;
+
+    path: '',
+
+    component: HomeComponent
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="info-card">
+
+            <h5>Meaning</h5>
+
+            <p>
+                The empty path represents the root URL of the application.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- Redirect -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">5. Redirecting a Route</h2>
+
+        <p>
+            A route can redirect the user from one path to another path using
+            <strong>redirectTo</strong>.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>export const routes: Routes = [
+
+    &#123;
+
+        path: '',
+
+        redirectTo: 'home',
+
+        pathMatch: 'full'
+
+    &#125;,
+
+    &#123;
+
+        path: 'home',
+
+        component: HomeComponent
+
+    &#125;
+
+];</code></pre>
+
+        </div>
+
+        <div class="binding-flow">
+
+            <div class="binding-item">
+
+                <strong>Root URL</strong>
+
+                <span>
+                    /
+                </span>
+
+            </div>
+
+            <div class="binding-arrow">→</div>
+
+            <div class="binding-item">
+
+                <strong>redirectTo</strong>
+
+                <span>
+                    home
+                </span>
+
+            </div>
+
+            <div class="binding-arrow">→</div>
+
+            <div class="binding-item">
+
+                <strong>HomeComponent</strong>
+
+                <span>
+                    Displays Home
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Wildcard -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">6. Configuring a Wildcard Route</h2>
+
+        <p>
+            A wildcard route can handle URLs that do not match another
+            configured route.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>export const routes: Routes = [
+
+    &#123;
+
+        path: 'courses',
+
+        component: CoursesComponent
+
+    &#125;,
+
+    &#123;
+
+        path: '**',
+
+        component: NotFoundComponent
+
+    &#125;
+
+];</code></pre>
+
+        </div>
+
+        <div class="output-box">
+
+            <strong>Example:</strong>
+
+            <div class="output-preview">
+
+                Unknown URL
+                →
+                <strong>NotFoundComponent</strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Parameterized Route -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">7. Parameterized Route Configuration</h2>
+
+        <p>
+            Route parameters allow part of the URL to contain dynamic data.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>&#123;
+
+    path: 'course/:id',
+
+    component: CourseDetailsComponent
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Example URL
+            </div>
+
+            <pre><code>/course/101</code></pre>
+
+        </div>
+
+        <div class="info-card">
+
+            <h5>Meaning</h5>
+
+            <p>
+                The <strong>:id</strong> segment represents dynamic route
+                information.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- Child Routes -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">8. Configuring Child Routes</h2>
+
+        <p>
+            Child routes can be defined inside a parent route using the
+            <strong>children</strong> property.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>export const routes: Routes = [
+
+    &#123;
+
+        path: 'courses',
+
+        component: CoursesComponent,
+
+        children: [
+
+            &#123;
+
+                path: 'details',
+
+                component:
+                    CourseDetailsComponent
+
+            &#125;
+
+        ]
+
+    &#125;
+
+];</code></pre>
+
+        </div>
+
+        <div class="binding-flow">
+
+            <div class="binding-item">
+
+                <strong>Parent</strong>
+
+                <span>
+                    /courses
+                </span>
+
+            </div>
+
+            <div class="binding-arrow">→</div>
+
+            <div class="binding-item">
+
+                <strong>Child</strong>
+
+                <span>
+                    /details
+                </span>
+
+            </div>
+
+            <div class="binding-arrow">→</div>
+
+            <div class="binding-item">
+
+                <strong>Nested View</strong>
+
+                <span>
+                    Course Details
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Route Guards -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">9. Configuring Route Guards</h2>
+
+        <p>
+            A route can use guards to control whether navigation to a route
+            should be allowed.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>&#123;
+
+    path: 'admin',
+
+    component: AdminComponent,
+
+    canActivate: [
+        authGuard
+    ]
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="info-card">
+
+            <h5>Use Case</h5>
+
+            <p>
+                Guards are commonly used to protect application areas that
+                require authentication or other conditions.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- Lazy Loading Preview -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">10. Lazy Loading Route Configuration</h2>
+
+        <p>
+            Routes can also be configured to load feature components or route
+            configurations only when they are needed.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>&#123;
+
+    path: 'admin',
+
+    loadComponent: () =&gt;
+        import('./admin.component')
+            .then(m =&gt; m.AdminComponent)
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="info-card">
+
+            <h5>Benefit</h5>
+
+            <p>
+                Lazy loading can keep larger applications modular by loading
+                feature code when that route is needed.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- Route Configuration Patterns -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">11. Common Route Configuration Patterns</h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-house"></i>
+                </div>
+
+                <h5>Default Route</h5>
+
+                <p>
+                    Defines the root application page.
+                </p>
+
+                <code>path: ''</code>
+
+            </div>
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-link"></i>
+                </div>
+
+                <h5>Static Route</h5>
+
+                <p>
+                    Uses a fixed path such as courses.
+                </p>
+
+                <code>path: 'courses'</code>
+
+            </div>
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-braces"></i>
+                </div>
+
+                <h5>Dynamic Route</h5>
+
+                <p>
+                    Uses a parameter in the route path.
+                </p>
+
+                <code>path: 'course/:id'</code>
+
+            </div>
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-exclamation-circle"></i>
+                </div>
+
+                <h5>Wildcard Route</h5>
+
+                <p>
+                    Handles unmatched URLs.
+                </p>
+
+                <code>path: '**'</code>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Router Outlet -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">12. Connecting Routes with RouterOutlet</h2>
+
+        <p>
+            The configured component needs a
+            <strong>router-outlet</strong> placeholder where Angular can render
+            the routed view.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                app.component.html
+            </div>
+
+            <pre><code>&lt;nav&gt;
+
+    &lt;a routerLink="/"&gt;
+        Home
+    &lt;/a&gt;
+
+    &lt;a routerLink="/courses"&gt;
+        Courses
+    &lt;/a&gt;
+
+&lt;/nav&gt;
+
+&lt;router-outlet&gt;
+&lt;/router-outlet&gt;</code></pre>
+
+        </div>
+
+        <div class="info-card">
+
+            <h5>Important</h5>
+
+            <p>
+                The <strong>router-outlet</strong> is the location where
+                Angular renders the component associated with the active route.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- Route Configuration Table -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold mb-3">Route Configuration Quick Reference</h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered syntax-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Property</th>
+                        <th>Purpose</th>
+                        <th>Example</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            <strong>path</strong>
+                        </td>
+
+                        <td>
+                            Defines the URL path.
+                        </td>
+
+                        <td>
+                            <code>path: 'courses'</code>
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            <strong>component</strong>
+                        </td>
+
+                        <td>
+                            Defines the component displayed by the route.
+                        </td>
+
+                        <td>
+                            <code>component: CoursesComponent</code>
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            <strong>redirectTo</strong>
+                        </td>
+
+                        <td>
+                            Redirects one route to another.
+                        </td>
+
+                        <td>
+                            <code>redirectTo: 'home'</code>
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            <strong>children</strong>
+                        </td>
+
+                        <td>
+                            Defines nested routes.
+                        </td>
+
+                        <td>
+                            <code>children: []</code>
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            <strong>canActivate</strong>
+                        </td>
+
+                        <td>
+                            Controls route activation.
+                        </td>
+
+                        <td>
+                            <code>canActivate: [authGuard]</code>
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            <strong>loadComponent</strong>
+                        </td>
+
+                        <td>
+                            Loads a component dynamically.
+                        </td>
+
+                        <td>
+                            <code>loadComponent: () =&gt; import(...)</code>
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+    <!-- Complete CIIT Example -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Complete CIIT Training Institute Example</h2>
+
+        <p>
+            Suppose the CIIT Training Institute Angular application has
+            Home, Courses, Course Details and Contact pages. We can define
+            routes for each page and use RouterOutlet to display them.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                app.routes.ts
+            </div>
+
+            <pre><code>import &#123; Routes &#125; from '@@angular/router';
+
+export const routes: Routes = [
+
+    &#123;
+
+        path: '',
+
+        component: HomeComponent
+
+    &#125;,
+
+    &#123;
+
+        path: 'courses',
+
+        component: CoursesComponent
+
+    &#125;,
+
+    &#123;
+
+        path: 'course/:id',
+
+        component:
+            CourseDetailsComponent
+
+    &#125;,
+
+    &#123;
+
+        path: 'contact',
+
+        component: ContactComponent
+
+    &#125;,
+
+    &#123;
+
+        path: '**',
+
+        component: NotFoundComponent
+
+    &#125;
+
+];</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                app.component.html
+            </div>
+
+            <pre><code>&lt;nav&gt;
+
+    &lt;a routerLink="/"&gt;
+        Home
+    &lt;/a&gt;
+
+    &lt;a routerLink="/courses"&gt;
+        Courses
+    &lt;/a&gt;
+
+    &lt;a routerLink="/contact"&gt;
+        Contact
+    &lt;/a&gt;
+
+&lt;/nav&gt;
+
+&lt;router-outlet&gt;
+&lt;/router-outlet&gt;</code></pre>
+
+        </div>
+
+        <div class="output-box">
+
+            <strong>Configured CIIT Routes:</strong>
+
+            <div class="student-preview">
+
+                <p>
+                    <strong>/</strong>
+                    → CIIT Home
+                </p>
+
+                <p>
+                    <strong>/courses</strong>
+                    → Course List
+                </p>
+
+                <p>
+                    <strong>/course/101</strong>
+                    → Course Details
+                </p>
+
+                <p>
+                    <strong>/contact</strong>
+                    → Contact Page
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Important Points -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Important Points About Route Configuration</h2>
+
+        <ul class="best-practice-list">
+
+            <li>
+                Routes are defined using a <strong>Routes</strong> array.
+            </li>
+
+            <li>
+                The <strong>path</strong> defines the URL segment.
+            </li>
+
+            <li>
+                The <strong>component</strong> property identifies the
+                component displayed for the route.
+            </li>
+
+            <li>
+                <strong>redirectTo</strong> can redirect one path to another.
+            </li>
+
+            <li>
+                <strong>children</strong> can be used for nested routes.
+            </li>
+
+            <li>
+                Wildcard routes can handle unmatched URLs.
+            </li>
+
+        </ul>
+
+    </section>
+
+    <!-- Best Practices -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Route Configuration Best Practices</h2>
+
+        <ul class="best-practice-list">
+
+            <li>
+                Keep route paths meaningful and easy to understand.
+            </li>
+
+            <li>
+                Use consistent naming for related routes.
+            </li>
+
+            <li>
+                Keep wildcard handling at the appropriate place in the route
+                configuration.
+            </li>
+
+            <li>
+                Use child routes when a feature contains logically nested views.
+            </li>
+
+            <li>
+                Use route guards for protected application areas.
+            </li>
+
+            <li>
+                Keep large applications organized into clear routing structures.
+            </li>
+
+        </ul>
+
+    </section>
+
+    <!-- Summary -->
+    <section class="summary-box">
+
+        <h3>Summary</h3>
+
+        <p>
+            Angular Route Configuration defines the relationship between
+            application URLs and Angular components.
+        </p>
+
+        <p>
+            Important configuration properties include
+            <strong>path</strong>,
+            <strong>component</strong>,
+            <strong>redirectTo</strong>,
+            <strong>children</strong>,
+            <strong>canActivate</strong>, and
+            <strong>loadComponent</strong>.
+        </p>
+
+    </section>
+
+    <!-- Navigation -->
+    <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+
+        <a class="btn btn-outline-secondary"
+           href="@Url.Action("Index", "Routing", new { area = "Angular" })">
+            ← Routing
+        </a>
+
+        <a class="btn btn-primary"
+           href="@Url.Action("Navigation", "Routing", new { area = "Angular" })">
+            Navigation →
+        </a>
+
+    </div>
+
+</div>
+
+<style>
+
+    .info-card {
+        background: #f8fafc;
+        border-left: 5px solid #4c1d95;
+        padding: 18px 20px;
+        border-radius: 7px;
+        margin-top: 15px;
+    }
+
+        .info-card h5 {
+            color: #4c1d95;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .info-card p {
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+
+    .syntax-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        padding: 25px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+    }
+
+    .syntax-box {
+        width: 175px;
+        min-height: 125px;
+        padding: 18px;
+        text-align: center;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 9px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+        .syntax-box i {
+            display: block;
+            font-size: 28px;
+            color: #4c1d95;
+            margin-bottom: 8px;
+        }
+
+        .syntax-box strong {
+            display: block;
+            color: #2e1065;
+            font-weight: 700;
+        }
+
+        .syntax-box span {
+            display: block;
+            color: #64748b;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+    .syntax-arrow {
+        color: #4c1d95;
+        font-size: 25px;
+        font-weight: 700;
+    }
+
+    .syntax-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+    }
+
+    .syntax-card {
+        padding: 20px;
+        text-align: center;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 9px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    }
+
+    .syntax-icon {
+        width: 55px;
+        height: 55px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 12px;
+        background: #ede9fe;
+        color: #4c1d95;
+        border-radius: 50%;
+        font-size: 24px;
+    }
+
+    .syntax-card h5 {
+        color: #2e1065;
+        font-weight: 700;
+    }
+
+    .syntax-card p {
+        color: #64748b;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .syntax-card code {
+        color: #4c1d95;
+        font-weight: 600;
+    }
+
+    .code-card {
+        margin-top: 15px;
+        margin-bottom: 18px;
+        border-radius: 8px;
+        overflow: hidden;
+        background: #0f172a;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .code-title {
+        background: #1e293b;
+        color: #d8c9f5;
+        padding: 10px 15px;
+        font-weight: 600;
+        border-bottom: 1px solid #334155;
+    }
+
+    .code-card pre {
+        margin: 0;
+        padding: 18px;
+        overflow-x: auto;
+    }
+
+    .code-card code {
+        color: #e2e8f0;
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    .output-box {
+        margin-top: 15px;
+        padding: 18px;
+        background: #f1f5f9;
+        border-left: 5px solid #4c1d95;
+        border-radius: 6px;
+    }
+
+    .output-preview {
+        margin-top: 12px;
+        padding: 18px;
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 7px;
+    }
+
+        .output-preview h3 {
+            color: #2e1065;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .output-preview p {
+            margin-bottom: 7px;
+        }
+
+    .binding-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 20px;
+        padding: 20px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+    }
+
+    .binding-item {
+        min-width: 170px;
+        padding: 15px;
+        text-align: center;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 8px;
+    }
+
+        .binding-item strong {
+            display: block;
+            color: #4c1d95;
+            font-weight: 700;
+        }
+
+        .binding-item span {
+            display: block;
+            color: #64748b;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+    .binding-arrow {
+        color: #4c1d95;
+        font-size: 25px;
+        font-weight: 700;
+    }
+
+    .active-preview {
+        margin-top: 12px;
+        display: inline-block;
+        padding: 12px 20px;
+        background: #ede9fe;
+        border: 2px solid #4c1d95;
+        border-radius: 7px;
+        color: #2e1065;
+        font-weight: 700;
+    }
+
+    .style-preview {
+        margin-top: 12px;
+        font-size: 20px;
+        font-weight: 600;
+        color: #4c1d95;
+    }
+
+    .control-flow-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .control-card {
+        padding: 20px;
+        background: #f8fafc;
+        border: 1px solid #ddd6fe;
+        border-radius: 8px;
+    }
+
+        .control-card h5 {
+            color: #4c1d95;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+    .code-small {
+        background: #0f172a;
+        border-radius: 7px;
+        overflow: hidden;
+    }
+
+        .code-small pre {
+            margin: 0;
+            padding: 15px;
+            overflow-x: auto;
+        }
+
+        .code-small code {
+            color: #e2e8f0;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+    .syntax-table {
+        background: #ffffff;
+    }
+
+        .syntax-table thead th {
+            background: #4c1d95;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .syntax-table td {
+            vertical-align: middle;
+        }
+
+        .syntax-table code {
+            color: #4c1d95;
+            font-weight: 600;
+        }
+
+    .student-preview {
+        margin-top: 12px;
+        padding: 20px;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 8px;
+    }
+
+        .student-preview h3 {
+            color: #2e1065;
+            font-weight: 700;
+        }
+
+    .best-practice-list {
+        padding: 20px 20px 20px 40px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+    }
+
+        .best-practice-list li {
+            margin-bottom: 11px;
+            line-height: 1.6;
+        }
+
+            .best-practice-list li:last-child {
+                margin-bottom: 0;
+            }
+
+    .summary-box {
+        background: #cfe2ff;
+        border-radius: 6px;
+        padding: 18px 22px;
+        margin-top: 20px;
+    }
+
+        .summary-box h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #084298;
+            margin-bottom: 10px;
+        }
+
+        .summary-box p {
+            font-size: 16px !important;
+            line-height: 1.6 !important;
+            color: #084298 !important;
+            margin-bottom: 8px;
+        }
+
+            .summary-box p:last-child {
+                margin-bottom: 0;
+            }
+
+    @@media (max-width: 991px) {
+
+        .syntax-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .control-flow-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @@media (max-width: 576px) {
+
+        .syntax-grid,
+        .control-flow-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .syntax-flow,
+        .binding-flow {
+            flex-direction: column;
+        }
+
+        .syntax-arrow,
+        .binding-arrow {
+            transform: rotate(90deg);
+        }
+
+        .syntax-box {
+            width: 100%;
+            max-width: 280px;
+        }
+
+        .binding-item {
+            width: 100%;
+            max-width: 250px;
+        }
+
+        .code-card code,
+        .code-small code {
+            font-size: 13px;
+        }
+
+        .d-flex.justify-content-between {
+            gap: 10px;
+        }
+
+            .d-flex.justify-content-between .btn {
+                font-size: 13px;
+                padding: 8px 12px;
+            }
+    }
+
+</style>

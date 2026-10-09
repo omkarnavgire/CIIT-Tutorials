@@ -1,0 +1,1866 @@
+﻿@{
+    ViewData["Title"] = "Angular Consuming API";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- Header -->
+    <section class="mb-4">
+
+        <h1 class="fw-bold text-dark">
+            Angular Consuming API
+        </h1>
+
+        <p class="lead text-muted">
+            Learn how to consume API responses in Angular, store the returned
+            data, display it in templates, and handle loading and error states.
+        </p>
+
+    </section>
+
+
+    <!-- Introduction -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            What Does Consuming an API Mean?
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                <strong>Consuming an API</strong> means receiving and using
+                the data returned by a backend API inside the Angular application.
+            </p>
+
+            <p>
+                After HttpClient sends a request, Angular receives a response
+                that can be assigned to component properties and displayed
+                in the template.
+            </p>
+
+            <p class="mb-0">
+                The response can contain a single object, an array of objects,
+                primitive values or other structured JSON data.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Consumption Flow -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            API Consumption Flow
+        </h2>
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+
+                <strong>Component</strong>
+
+                <span>
+                    Calls Service
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>HttpClient</strong>
+
+                <span>
+                    Sends Request
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>API</strong>
+
+                <span>
+                    Returns JSON
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>Component State</strong>
+
+                <span>
+                    Stores Data
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>Template</strong>
+
+                <span>
+                    Displays Data
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Response Types -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Common API Response Types
+        </h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    A
+                </div>
+
+                <h5>
+                    Array
+                </h5>
+
+                <p>
+                    A list of resources such as courses or trainers.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    O
+                </div>
+
+                <h5>
+                    Object
+                </h5>
+
+                <p>
+                    A single resource returned by the API.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    P
+                </div>
+
+                <h5>
+                    Primitive
+                </h5>
+
+                <p>
+                    A string, number, boolean or similar simple value.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    J
+                </div>
+
+                <h5>
+                    JSON
+                </h5>
+
+                <p>
+                    Structured data commonly returned by REST APIs.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Typed Response -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Using Typed API Responses
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                TypeScript types can be used to describe the structure of
+                API responses.
+            </p>
+
+            <p class="mb-0">
+                This makes the returned data easier to work with inside
+                Angular components and services.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Course Interface
+            </div>
+
+            <pre><code>export interface Course {
+
+    id: number;
+
+    name: string;
+
+    duration: string;
+
+    fees: number;
+
+}</code></pre>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Typed GET Method
+            </div>
+
+            <pre><code>getCourses() {
+
+    return this.http.get&lt;Course[]&gt;(
+        this.apiUrl
+    );
+
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Subscribe and Assign -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Receiving API Data
+        </h2>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Component
+            </div>
+
+            <pre><code>courses: Course[] = [];
+
+
+loadCourses() {
+
+    this.courseService
+        .getCourses()
+        .subscribe({
+
+            next: courses =&gt; {
+
+                this.courses = courses;
+
+            }
+
+        });
+
+}</code></pre>
+
+        </div>
+
+
+        <div class="output-box mt-3">
+
+            <div class="student-preview">
+
+                <h4>
+                    Received Courses
+                </h4>
+
+                <p>
+                    Java Full Stack
+                </p>
+
+                <p>
+                    .NET Full Stack
+                </p>
+
+                <p class="mb-0">
+                    Python Full Stack
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Template Display -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Displaying API Data in Template
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                After storing the API response in a component property,
+                the template can use Angular template syntax to display it.
+            </p>
+
+            <p class="mb-0">
+                A collection of objects can be rendered using Angular's
+                current template control-flow syntax.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Component
+            </div>
+
+            <pre><code>courses: Course[] = [];</code></pre>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Template
+            </div>
+
+            <pre><code>&lt;div&gt;
+
+    @@for (course of courses; track course.id) {
+
+        &lt;h3&gt;
+            &#123;&#123; course.name &#125;&#125;
+        &lt;/h3&gt;
+
+        &lt;p&gt;
+            Duration:
+            &#123;&#123; course.duration &#125;&#125;
+        &lt;/p&gt;
+
+        &lt;p&gt;
+            Fees:
+            ₹&#123;&#123; course.fees &#125;&#125;
+        &lt;/p&gt;
+
+    }
+
+&lt;/div&gt;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Single Object -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Consuming a Single API Object
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                Some endpoints return one resource instead of an array.
+            </p>
+
+            <p class="mb-0">
+                The component can store that object in a typed property.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Service
+            </div>
+
+            <pre><code>getCourse(id: number) {
+
+    return this.http.get&lt;Course&gt;(
+        this.apiUrl + '/' + id
+    );
+
+}</code></pre>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Component
+            </div>
+
+            <pre><code>course?: Course;
+
+
+loadCourse(id: number) {
+
+    this.courseService
+        .getCourse(id)
+        .subscribe({
+
+            next: course =&gt; {
+
+                this.course = course;
+
+            }
+
+        });
+
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Response Object -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Example API Response
+        </h2>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                JSON Response
+            </div>
+
+            <pre><code>{
+    "id": 101,
+    "name": "Java Full Stack",
+    "duration": "6 Months",
+    "fees": 35000
+}</code></pre>
+
+        </div>
+
+
+        <div class="output-box mt-3">
+
+            <div class="student-preview">
+
+                <h4>
+                    Course Details
+                </h4>
+
+                <p>
+                    <strong>ID:</strong> 101
+                </p>
+
+                <p>
+                    <strong>Name:</strong> Java Full Stack
+                </p>
+
+                <p>
+                    <strong>Duration:</strong> 6 Months
+                </p>
+
+                <p class="mb-0">
+                    <strong>Fees:</strong> ₹35000
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Loading State -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Handling Loading State
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                API requests can take time to complete. A
+                <strong>loading</strong> flag can be used to indicate that
+                the request is currently running.
+            </p>
+
+            <p class="mb-0">
+                The template can use this state to show a loading message
+                or indicator.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Component
+            </div>
+
+            <pre><code>courses: Course[] = [];
+
+loading = false;
+
+
+loadCourses() {
+
+    this.loading = true;
+
+    this.courseService
+        .getCourses()
+        .subscribe({
+
+            next: courses =&gt; {
+
+                this.courses = courses;
+                this.loading = false;
+
+            },
+
+            error: error =&gt; {
+
+                console.error(error);
+                this.loading = false;
+
+            }
+
+        });
+
+}</code></pre>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Template
+            </div>
+
+            <pre><code>@@if (loading) {
+
+    &lt;p&gt;
+        Loading courses...
+    &lt;/p&gt;
+
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Error State -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Handling Error State
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                When an API request fails, the application can store an
+                error message and display it to the user.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Component
+            </div>
+
+            <pre><code>errorMessage = '';
+
+
+loadCourses() {
+
+    this.errorMessage = '';
+
+    this.courseService
+        .getCourses()
+        .subscribe({
+
+            next: courses =&gt; {
+
+                this.courses = courses;
+
+            },
+
+            error: error =&gt; {
+
+                console.error(error);
+
+                this.errorMessage =
+                    'Unable to load courses.';
+
+            }
+
+        });
+
+}</code></pre>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Template
+            </div>
+
+            <pre><code>@@if (errorMessage) {
+
+    &lt;div class="alert alert-danger"&gt;
+
+        &#123;&#123; errorMessage &#125;&#125;
+
+    &lt;/div&gt;
+
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Empty State -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Handling Empty Data
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                An API may return an empty collection when no records match
+                the requested condition.
+            </p>
+
+            <p class="mb-0">
+                The UI can provide a clear empty-state message instead of
+                showing an empty area.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Template
+            </div>
+
+            <pre><code>@@if (courses.length === 0 &amp;&amp; !loading) {
+
+    &lt;p&gt;
+        No courses found.
+    &lt;/p&gt;
+
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Transform Response -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Transforming API Data
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                The API response can be transformed before being assigned
+                to the component state.
+            </p>
+
+            <p class="mb-0">
+                RxJS operators such as <strong>map()</strong> can be used
+                when a different representation is required.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>this.courseService
+    .getCourses()
+    .pipe(
+
+        map(courses =&gt;
+
+            courses.map(course =&gt; ({
+
+                ...course,
+
+                displayName:
+                    course.name +
+                    ' - ' +
+                    course.duration
+
+            }))
+
+        )
+
+    )
+    .subscribe({
+
+        next: courses =&gt; {
+
+            console.log(courses);
+
+        }
+
+    });</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Filter Response -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Filtering API Data
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                API data can also be filtered when the UI requires only a
+                subset of the returned records.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>this.courseService
+    .getCourses()
+    .pipe(
+
+        map(courses =&gt;
+
+            courses.filter(
+                course =&gt;
+                    course.fees &gt;= 30000
+            )
+
+        )
+
+    )
+    .subscribe({
+
+        next: courses =&gt; {
+
+            this.courses = courses;
+
+        }
+
+    });</code></pre>
+
+        </div>
+
+
+        <div class="output-box mt-3">
+
+            <div class="student-preview">
+
+                <h4>
+                    Filtered Courses
+                </h4>
+
+                <p>
+                    .NET Full Stack - ₹35000
+                </p>
+
+                <p class="mb-0">
+                    Python Full Stack - ₹40000
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Search API -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Consuming Search Results
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                A search API can return data based on a query parameter.
+                Angular can send the search term and use the returned
+                collection to update the UI.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Service
+            </div>
+
+            <pre><code>searchCourses(term: string) {
+
+    const params =
+        new HttpParams()
+            .set('search', term);
+
+    return this.http.get&lt;Course[]&gt;(
+        this.apiUrl,
+        {
+            params: params
+        }
+    );
+
+}</code></pre>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Component
+            </div>
+
+            <pre><code>search(term: string) {
+
+    this.courseService
+        .searchCourses(term)
+        .subscribe({
+
+            next: courses =&gt; {
+
+                this.courses = courses;
+
+            },
+
+            error: error =&gt; {
+
+                console.error(error);
+
+            }
+
+        });
+
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Pagination -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Consuming Paginated API Data
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                Some APIs return pagination information together with the
+                actual data.
+            </p>
+
+            <p class="mb-0">
+                Angular can consume both the records and pagination metadata
+                and use them to build a paginated UI.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Example Response
+            </div>
+
+            <pre><code>{
+    "items": [
+        {
+            "id": 1,
+            "name": "Java Full Stack"
+        },
+        {
+            "id": 2,
+            "name": ".NET Full Stack"
+        }
+    ],
+    "page": 1,
+    "pageSize": 10,
+    "totalCount": 25
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- CIIT Example -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            CIIT Training Institute Example
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                Suppose the CIIT Training Institute courses page loads
+                course information from a backend API.
+            </p>
+
+            <p class="mb-0">
+                The Angular component can consume the response, store it in
+                a typed property, and display the course information in
+                the template.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Course Service
+            </div>
+
+            <pre><code>getCourses() {
+
+    return this.http.get&lt;Course[]&gt;(
+        '/api/courses'
+    );
+
+}</code></pre>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Courses Component
+            </div>
+
+            <pre><code>courses: Course[] = [];
+
+loading = false;
+
+errorMessage = '';
+
+
+loadCourses() {
+
+    this.loading = true;
+    this.errorMessage = '';
+
+    this.courseService
+        .getCourses()
+        .subscribe({
+
+            next: courses =&gt; {
+
+                this.courses = courses;
+                this.loading = false;
+
+            },
+
+            error: error =&gt; {
+
+                console.error(error);
+
+                this.errorMessage =
+                    'Unable to load courses.';
+
+                this.loading = false;
+
+            }
+
+        });
+
+}</code></pre>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Courses Template
+            </div>
+
+            <pre><code>@@if (loading) {
+
+    &lt;p&gt;
+        Loading courses...
+    &lt;/p&gt;
+
+}
+
+@@if (errorMessage) {
+
+    &lt;div class="alert alert-danger"&gt;
+        &#123;&#123; errorMessage &#125;&#125;
+    &lt;/div&gt;
+
+}
+
+@@for (course of courses; track course.id) {
+
+    &lt;div class="course-card"&gt;
+
+        &lt;h3&gt;
+            &#123;&#123; course.name &#125;&#125;
+        &lt;/h3&gt;
+
+        &lt;p&gt;
+            Duration:
+            &#123;&#123; course.duration &#125;&#125;
+        &lt;/p&gt;
+
+        &lt;p&gt;
+            Fees:
+            ₹&#123;&#123; course.fees &#125;&#125;
+        &lt;/p&gt;
+
+    &lt;/div&gt;
+
+}</code></pre>
+
+        </div>
+
+
+        <div class="output-box mt-3">
+
+            <div class="student-preview">
+
+                <h4>
+                    CIIT Training Institute Courses
+                </h4>
+
+                <p>
+                    <strong>Java Full Stack</strong>
+                </p>
+
+                <p>
+                    Duration: 6 Months
+                </p>
+
+                <p>
+                    Fees: ₹35000
+                </p>
+
+                <hr>
+
+                <p class="mb-0">
+                    Course data consumed from backend API.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- State Flow -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            API Data State Flow
+        </h2>
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+
+                <strong>Request</strong>
+
+                <span>
+                    API Call
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>Loading</strong>
+
+                <span>
+                    Waiting
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>Success</strong>
+
+                <span>
+                    Store Data
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                /
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>Error</strong>
+
+                <span>
+                    Show Message
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Response Handling -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            API Response Handling Checklist
+        </h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    1
+                </div>
+
+                <h5>
+                    Receive
+                </h5>
+
+                <p>
+                    Subscribe to the API Observable and receive the response.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    2
+                </div>
+
+                <h5>
+                    Validate
+                </h5>
+
+                <p>
+                    Verify that the returned data matches the expected structure.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    3
+                </div>
+
+                <h5>
+                    Store
+                </h5>
+
+                <p>
+                    Assign the data to suitable component state.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    4
+                </div>
+
+                <h5>
+                    Display
+                </h5>
+
+                <p>
+                    Bind the component data to the Angular template.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Response Types Table -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Consuming Different Response Types
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table syntax-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Response
+                        </th>
+
+                        <th>
+                            Type
+                        </th>
+
+                        <th>
+                            Angular Property
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            Course List
+                        </td>
+
+                        <td>
+                            Course[]
+                        </td>
+
+                        <td>
+                            courses
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Single Course
+                        </td>
+
+                        <td>
+                            Course
+                        </td>
+
+                        <td>
+                            course
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Total Count
+                        </td>
+
+                        <td>
+                            number
+                        </td>
+
+                        <td>
+                            totalCount
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Status
+                        </td>
+
+                        <td>
+                            boolean
+                        </td>
+
+                        <td>
+                            isActive
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            API Message
+                        </td>
+
+                        <td>
+                            string
+                        </td>
+
+                        <td>
+                            message
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- Best Practices -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            API Consumption Best Practices
+        </h2>
+
+        <ul class="best-practice-list">
+
+            <li>
+                Define TypeScript interfaces or types for structured API data.
+            </li>
+
+            <li>
+                Keep API communication inside services.
+            </li>
+
+            <li>
+                Maintain clear loading, success, error and empty states.
+            </li>
+
+            <li>
+                Avoid directly duplicating API responses across multiple
+                component properties without a clear reason.
+            </li>
+
+            <li>
+                Transform or filter response data through RxJS pipelines when
+                that makes the data flow clearer.
+            </li>
+
+            <li>
+                Keep template logic simple and easy to read.
+            </li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- Important Points -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Important Points
+        </h2>
+
+        <div class="best-practice-list">
+
+            <div class="info-card mb-3">
+
+                <strong>
+                    1. Subscribe to the API Observable
+                </strong>
+
+                <p class="mb-0">
+                    The component can consume the response through the
+                    Observable returned by the service.
+                </p>
+
+            </div>
+
+
+            <div class="info-card mb-3">
+
+                <strong>
+                    2. Store the Response
+                </strong>
+
+                <p class="mb-0">
+                    Store the received data in a suitable component state
+                    property.
+                </p>
+
+            </div>
+
+
+            <div class="info-card mb-3">
+
+                <strong>
+                    3. Bind Data to the Template
+                </strong>
+
+                <p class="mb-0">
+                    Angular template syntax can display the consumed API data.
+                </p>
+
+            </div>
+
+
+            <div class="info-card">
+
+                <strong>
+                    4. Handle All Important States
+                </strong>
+
+                <p class="mb-0">
+                    Loading, successful response, empty data and error
+                    scenarios should be considered by the UI.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Summary -->
+    <section class="mb-4">
+
+        <div class="summary-box">
+
+            <h4 class="fw-bold">
+                Summary
+            </h4>
+
+            <p>
+                Consuming an API means receiving the backend response and
+                using that data inside the Angular application.
+            </p>
+
+            <p>
+                The response can be stored in typed component properties,
+                transformed with RxJS operators, and displayed in Angular
+                templates.
+            </p>
+
+            <p class="mb-0">
+                A good API-consuming flow is
+                <strong>Request → Loading → Response → Store → Display</strong>,
+                with suitable error and empty-state handling.
+                In the next topic, we will learn about
+                <strong>CRUD Integration</strong>.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Navigation -->
+    <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+
+        <a class="btn btn-outline-secondary"
+           href="@Url.Action("ConnectingAPI", "APIIntegration", new { area = "Angular" })">
+
+            ← Connecting API
+
+        </a>
+
+
+        <a class="btn btn-primary"
+           href="@Url.Action("CRUDIntegration", "APIIntegration", new { area = "Angular" })">
+
+            CRUD Integration →
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<style>
+
+    .info-card {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-left: 5px solid #4c1d95;
+        border-radius: 10px;
+        padding: 20px;
+        line-height: 1.7;
+        color: #334155;
+    }
+
+
+    .syntax-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        flex-wrap: wrap;
+        margin: 25px 0;
+    }
+
+
+    .syntax-box {
+        background: linear-gradient( 135deg, #2e1065, #4c1d95 );
+        color: white;
+        padding: 18px 25px;
+        border-radius: 12px;
+        text-align: center;
+        min-width: 180px;
+        box-shadow: 0 5px 15px rgba(76, 29, 149, 0.15);
+    }
+
+
+        .syntax-box strong {
+            display: block;
+            font-size: 16px;
+        }
+
+
+        .syntax-box span {
+            display: block;
+            margin-top: 5px;
+            color: #d8c9f5;
+            font-size: 14px;
+        }
+
+
+    .syntax-arrow {
+        font-size: 28px;
+        font-weight: bold;
+        color: #4c1d95;
+    }
+
+
+    .syntax-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+
+
+    .syntax-card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 22px;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+    }
+
+
+        .syntax-card h5 {
+            margin-top: 15px;
+            font-weight: 700;
+            color: #2e1065;
+        }
+
+
+        .syntax-card p {
+            color: #64748b;
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+
+
+    .syntax-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: #ede9fe;
+        color: #4c1d95;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 18px;
+        margin: 0 auto;
+    }
+
+
+    .code-card {
+        background: #0f172a;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(15, 23, 42, 0.10);
+    }
+
+
+    .code-title {
+        background: #1e293b;
+        color: #ffffff;
+        padding: 12px 18px;
+        font-weight: 700;
+        font-size: 14px;
+    }
+
+
+    .code-card pre {
+        margin: 0;
+        padding: 20px;
+        overflow-x: auto;
+    }
+
+
+    .code-card code {
+        color: #f8fafc;
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+
+    .output-box {
+        background: #f8fafc;
+        border: 1px solid #ddd6fe;
+        border-radius: 12px;
+        padding: 20px;
+    }
+
+
+    .student-preview {
+        background: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        padding: 20px;
+    }
+
+
+        .student-preview h4 {
+            color: #2e1065;
+            font-weight: 700;
+        }
+
+
+        .student-preview p {
+            color: #64748b;
+        }
+
+
+    .syntax-table {
+        width: 100%;
+        margin-bottom: 0;
+        border: 1px solid #e2e8f0;
+    }
+
+
+        .syntax-table thead th {
+            background: #2e1065;
+            color: white;
+            padding: 14px;
+            border-color: #4c1d95;
+        }
+
+
+        .syntax-table tbody td {
+            padding: 14px;
+            vertical-align: middle;
+            color: #334155;
+            border-color: #e2e8f0;
+        }
+
+
+        .syntax-table tbody tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+
+        .syntax-table code {
+            color: #4c1d95;
+            font-weight: 600;
+        }
+
+
+    .best-practice-list {
+        margin: 0;
+        padding-left: 20px;
+    }
+
+
+        .best-practice-list li {
+            margin-bottom: 10px;
+            color: #334155;
+            line-height: 1.6;
+        }
+
+
+    .summary-box {
+        background: #cfe2ff;
+        color: #084298;
+        border-radius: 10px;
+        padding: 22px;
+        border: 1px solid #b6d4fe;
+    }
+
+
+        .summary-box h4 {
+            margin-bottom: 12px;
+        }
+
+
+    @@media (max-width: 991px) {
+
+        .syntax-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .syntax-flow {
+            gap: 12px;
+        }
+
+        .syntax-box {
+            min-width: 160px;
+        }
+    }
+
+
+    @@media (max-width: 576px) {
+
+        .syntax-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .syntax-flow {
+            flex-direction: column;
+        }
+
+        .syntax-arrow {
+            transform: rotate(90deg);
+        }
+
+        .syntax-box {
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .code-card pre {
+            padding: 15px;
+        }
+
+        .code-card code {
+            font-size: 13px;
+        }
+    }
+
+</style>

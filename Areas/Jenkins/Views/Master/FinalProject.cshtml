@@ -1,0 +1,237 @@
+@{
+    Layout = "~/Areas/Jenkins/Views/Shared/JenkinsLayout.cshtml";
+    ViewData["Title"] = "Enterprise Jenkins Capstone Project";
+}
+
+<style>
+    #enterprise-jenkins-capstone-project-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #enterprise-jenkins-capstone-project-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #enterprise-jenkins-capstone-project-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #enterprise-jenkins-capstone-project-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #enterprise-jenkins-capstone-project-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+    #enterprise-jenkins-capstone-project-page .example-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+    }
+</style>
+
+<main id="enterprise-jenkins-capstone-project-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/Jenkins/Views/Shared/JenkinsTopics.cshtml")
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+                <h1 class="fw-bold">Enterprise Jenkins Capstone Project</h1>
+                <p class="lead">
+                    Synthesize your infrastructure knowledge into a final, end-to-end continuous orchestration architecture engineered for scale, zero-trust security, and immutable governance.
+                </p>
+            </div>
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">The Capstone Objective</h2>
+                <p>
+                    Throughout this course, you have analyzed components of scaling, security isolation, and disaster recovery. However, modern platform engineers must combine these isolated layers into unified infrastructure systems.
+                </p>
+                <p>
+                    This <strong>Capstone Project</strong> challenges you to build a fully automated, GitOps-ready configuration loop. You will design an immutable architecture that pulls system baselines via Jenkins Configuration as Code (JCasC), dynamically spins up isolated Kubernetes pods for workload execution, securely pulls external corporate tokens, and runs a zero-drift deployment script wrapped in global Shared Libraries.
+                </p>
+                <div class="alert alert-info">
+                    <strong>Simple Definition:</strong> The Capstone Project is a comprehensive production simulation where you design, deploy, secure, and monitor a multi-branch pipeline utilizing dynamic agent nodes, configuration-as-code state management, and masked variable binding matrices.
+                </div>
+            </div>
+
+            <!-- KEY CONCEPTS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Project Architecture Pillars</h2>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>1. Immutable Infrastructure Engine</h5>
+                            <p class="mb-0">The entire system state must be defined inside version control files. Administrators load system settings, SSO paths, and active plugin sets via a JCasC YAML schema file to allow rapid replication across availability zones.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>2. Ephemeral Workload Isolation</h5>
+                            <p class="mb-0">No build execution tasks are allowed to run locally on the master controller. Pipelines must declare dynamic, containerized pod templates to isolate runtime applications completely within unique, non-root system spaces.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>3. Zero-Trust Access & Telemetry</h5>
+                            <p class="mb-0">All credential bindings utilize strict context isolation scopes. Secrets must be masked from all build console output streams, and global log rotation metrics are applied to defend local disk spaces from storage exhaustions.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>4. Encapsulated DRY Deployments</h5>
+                            <p class="mb-0">Pipeline code duplication is completely eliminated. Application developers use clean, single-line global functions inherited directly from version-scoped enterprise Shared Libraries to trigger complex compilation tasks.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXAMPLE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Production Capstone Blueprint</h2>
+                <p>
+                    Below is the complete <strong>Multi-Branch Pipeline Architecture</strong> that brings together every architectural concept covered in this phase:
+                </p>
+                <pre><code>// 1. Importing the corporate standard orchestration framework explicitly
+@@Library('enterprise-shared-library@@v6.0.2') _
+
+
+
+
+
+
+
+
+
+
+
+
+pipeline {
+    // 2. Offloading execution entirely to a dynamic Kubernetes pod template
+    agent {
+        kubernetes {
+            yaml '''
+            apiVersion: v1
+            kind: Pod
+            spec:
+              containers:
+              - name: app-compiler
+                image: maven:3.9.6-eclipse-temurin-17
+                command: ['cat']
+                tty: true
+              - name: cloud-deployer
+                image: amazon/aws-cli:latest
+                command: ['cat']
+                tty: true
+            '''
+        }
+    }
+    
+    // 3. Applying strict operational safety limits and log rotations
+    options {
+        timeout(time: 45, unit: 'MINUTES')
+        buildDiscarder(logRotator(numToKeepStr: '30'))
+        disableConcurrentBuilds()
+        ansiColor('xterm')
+    }
+    
+    stages {
+        stage('Initialize Framework & Build') {
+            steps {
+                container('app-compiler') {
+                    echo 'Compiling package artifacts within isolated container agent...'
+                    sh 'mvn clean package -DskipTests'
+                }
+            }
+        }
+        
+        stage('Secure Deployment Matrix') {
+            steps {
+                // 4. Injecting secret credentials contextually without disk exposure
+                withCredentials([usernamePassword(
+                    credentialsId: 'production-cloud-key', 
+                    usernameVariable: 'AWS_ACCESS_KEY_ID', 
+                    passwordVariable: 'AWS_SECRET_ACCESS_KEY'
+                )]) {
+                    container('cloud-deployer') {
+                        echo 'Executing secure multi-region service deployments...'
+                        // Variables remain fully masked within Jenkins logging streams
+                        // sh 'aws ecs update-service --cluster enterprise-cluster --service web-app --force-new-deployment'
+                    }
+                }
+            }
+        }
+    }
+    
+    // 5. Automated Disaster Prevention and Telemetry alerts
+    post {
+        success {
+            // Invoking a centralized shared library function step
+            globalNotifier status: 'SUCCESS', channel: '#release-telemetry'
+        }
+        failure {
+            globalNotifier status: 'FAILURE', channel: '#release-telemetry'
+        }
+        always {
+            echo 'Wiping dynamic container ephemeral workspaces completely...'
+            cleanWs()
+        }
+    }
+}</code></pre>
+            </div>
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Capstone Checklist & Evaluation</h2>
+                <ol>
+                    <li class="mb-2"><strong>Assemble the JCasC Layer:</strong> Construct a valid `jenkins.yaml` file defining your global system message, disabled built-in executors, and role matrix permission structures.</li>
+                    <li class="mb-2"><strong>Build the Shared Library:</strong> Write an external Git repository hosting a `vars/globalNotifier.groovy` custom task to easily distribute slack notifications.</li>
+                    <li class="mb-2"><strong>Configure the Test Pipeline:</strong> Setup a new <strong>Pipeline</strong> job pointing directly to your capstone blueprint script file, trigger a fresh build run, and trace the step distribution.</li>
+                    <li><strong>Audit the Execution Logs:</strong> Open the <strong>Console Output</strong> logs to confirm that all secrets are replaced with asterisks (`****`), no workspace remnants exist, and the task executed entirely on an external agent node.</li>
+                </ol>
+            </div>
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+                <h2 class="h4 fw-bold">Phase 6 Syllabus Summary Complete</h2>
+p class="mb-0">You have completed the <strong>Enterprise Jenkins Capstone Project</strong> lesson. Continue through the syllabus to build the Jenkins skills required for real CI/CD automation.</p>
+            </div>
+
+            <!-- NAVIGATION -->
+<div class="d-flex justify-content-between mt-4">
+    <a class="btn btn-outline-primary" href="@Url.Action("Performance", "Master", new { area = "Jenkins" })">← Previous: Performance and Troubleshooting</a>
+    <span class="text-muted fw-bold text-success">Course Complete 😊</span>
+</div>
+
+
+        </section>
+
+    </div>
+
+</main>

@@ -1,0 +1,1065 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Python Data Structures";
+}
+
+<style>
+
+    /* =========================================================
+           PAGE-SPECIFIC CODE / OUTPUT BLOCKS
+           ========================================================= */
+
+    #python-data-structures-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 0.5rem;
+        padding: 1rem !important;
+        overflow-x: auto;
+    }
+
+        #python-data-structures-page pre code {
+            background-color: transparent !important;
+            color: #ffffff !important;
+        }
+
+</style>
+
+
+<main id="python-data-structures-page" class="container py-5">
+
+    <div class="row g-4">
+
+
+        <!-- =====================================================
+             LEFT SIDE - COURSE SYLLABUS
+             ===================================================== -->
+
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+
+        </aside>
+
+
+        <!-- =====================================================
+             RIGHT SIDE - TUTORIAL CONTENT
+             ===================================================== -->
+
+        <section class="col-lg-9">
+
+
+            <!-- =================================================
+                 PAGE TITLE
+                 ================================================= -->
+
+            <div class="mb-4">
+
+                <h1 class="display-6 fw-bold">
+                    Data Structures
+                </h1>
+
+                <p class="lead text-muted mb-0">
+                    Learn how Python stores, organizes and manages
+                    collections of data using Lists, Tuples, Sets
+                    and Dictionaries.
+                </p>
+
+            </div>
+
+
+            <!-- =================================================
+                 INTRODUCTION
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        What are Data Structures?
+                    </h2>
+
+                    <p>
+                        Data structures are ways of organizing and
+                        storing data so that a program can access,
+                        update and process it efficiently.
+                    </p>
+
+                    <p>
+                        Python provides several built-in data
+                        structures that are very easy to use.
+                    </p>
+
+                    <ul>
+                        <li>List</li>
+                        <li>Tuple</li>
+                        <li>Set</li>
+                        <li>Dictionary</li>
+                    </ul>
+
+                    <p class="mb-0">
+                        Choosing the correct data structure makes
+                        your Python programs easier to write,
+                        understand and maintain.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 BASIC CONCEPT
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Python Data Structures at a Glance
+                    </h2>
+
+                    <div class="table-responsive">
+
+                        <table class="table table-bordered align-middle">
+
+                            <thead class="table-dark">
+
+                                <tr>
+                                    <th>Data Structure</th>
+                                    <th>Ordered</th>
+                                    <th>Mutable</th>
+                                    <th>Duplicates</th>
+                                    <th>Example</th>
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                                <tr>
+                                    <td><strong>List</strong></td>
+                                    <td>Yes</td>
+                                    <td>Yes</td>
+                                    <td>Allowed</td>
+                                    <td><code>[10, 20, 30]</code></td>
+                                </tr>
+
+                                <tr>
+                                    <td><strong>Tuple</strong></td>
+                                    <td>Yes</td>
+                                    <td>No</td>
+                                    <td>Allowed</td>
+                                    <td><code>(10, 20, 30)</code></td>
+                                </tr>
+
+                                <tr>
+                                    <td><strong>Set</strong></td>
+                                    <td>No guaranteed order</td>
+                                    <td>Yes</td>
+                                    <td>Not allowed</td>
+                                    <td><code>{10, 20, 30}</code></td>
+                                </tr>
+
+                                <tr>
+                                    <td><strong>Dictionary</strong></td>
+                                    <td>Insertion order</td>
+                                    <td>Yes</td>
+                                    <td>Keys unique</td>
+                                    <td><code>{"name": "Rahul"}</code></td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 LIST
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        1. List
+                    </h2>
+
+                    <p>
+                        A List is an ordered and mutable collection.
+                        It can store multiple values in a single
+                        variable.
+                    </p>
+
+                    <h3 class="h5 fw-bold mt-4">
+                        Creating a List
+                    </h3>
+
+                    <pre><code>courses = ["Python", "Java", ".NET", "Data Science"]
+
+print(courses)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>['Python', 'Java', '.NET', 'Data Science']</code></pre>
+
+
+                    <h3 class="h5 fw-bold mt-4">
+                        Accessing List Elements
+                    </h3>
+
+                    <pre><code>courses = ["Python", "Java", ".NET"]
+
+print(courses[0])
+print(courses[1])
+print(courses[2])</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>Python
+Java
+.NET</code></pre>
+
+
+                    <h3 class="h5 fw-bold mt-4">
+                        Adding Elements
+                    </h3>
+
+                    <pre><code>courses = ["Python", "Java"]
+
+courses.append(".NET")
+
+print(courses)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>['Python', 'Java', '.NET']</code></pre>
+
+
+                    <h3 class="h5 fw-bold mt-4">
+                        Updating Elements
+                    </h3>
+
+                    <pre><code>courses = ["Python", "Java", ".NET"]
+
+courses[1] = "MERN"
+
+print(courses)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>['Python', 'MERN', '.NET']</code></pre>
+
+
+                    <h3 class="h5 fw-bold mt-4">
+                        Removing Elements
+                    </h3>
+
+                    <pre><code>courses = ["Python", "Java", ".NET"]
+
+courses.remove("Java")
+
+print(courses)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>['Python', '.NET']</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 LIST METHODS
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Common List Methods
+                    </h2>
+
+                    <div class="table-responsive">
+
+                        <table class="table table-bordered">
+
+                            <thead class="table-dark">
+
+                                <tr>
+                                    <th>Method</th>
+                                    <th>Purpose</th>
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                                <tr>
+                                    <td><code>append()</code></td>
+                                    <td>Adds an item at the end</td>
+                                </tr>
+
+                                <tr>
+                                    <td><code>insert()</code></td>
+                                    <td>Adds an item at a specific position</td>
+                                </tr>
+
+                                <tr>
+                                    <td><code>remove()</code></td>
+                                    <td>Removes a specific item</td>
+                                </tr>
+
+                                <tr>
+                                    <td><code>pop()</code></td>
+                                    <td>Removes an item using index</td>
+                                </tr>
+
+                                <tr>
+                                    <td><code>sort()</code></td>
+                                    <td>Sorts the list</td>
+                                </tr>
+
+                                <tr>
+                                    <td><code>reverse()</code></td>
+                                    <td>Reverses the list</td>
+                                </tr>
+
+                                <tr>
+                                    <td><code>len()</code></td>
+                                    <td>Returns number of elements</td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 TUPLE
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        2. Tuple
+                    </h2>
+
+                    <p>
+                        A Tuple is an ordered collection that cannot
+                        be changed after creation.
+                    </p>
+
+                    <p>
+                        Tuples are useful when data should remain
+                        unchanged.
+                    </p>
+
+                    <pre><code>student = ("Rahul", 22, "Python")
+
+print(student)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>('Rahul', 22, 'Python')</code></pre>
+
+
+                    <h3 class="h5 fw-bold mt-4">
+                        Accessing Tuple Elements
+                    </h3>
+
+                    <pre><code>student = ("Rahul", 22, "Python")
+
+print(student[0])
+print(student[2])</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>Rahul
+Python</code></pre>
+
+
+                    <h3 class="h5 fw-bold mt-4">
+                        Tuple Cannot Be Modified
+                    </h3>
+
+                    <pre><code>student = ("Rahul", 22, "Python")
+
+student[1] = 23</code></pre>
+
+                    <p>
+                        This produces a
+                        <strong>TypeError</strong> because tuples
+                        are immutable.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 SET
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        3. Set
+                    </h2>
+
+                    <p>
+                        A Set is a collection used when unique values
+                        are required.
+                    </p>
+
+                    <p>
+                        Duplicate values are automatically removed.
+                    </p>
+
+                    <pre><code>courses = {"Python", "Java", "Python", ".NET"}
+
+print(courses)</code></pre>
+
+                    <p><strong>Example Output:</strong></p>
+
+                    <pre><code>{'Python', 'Java', '.NET'}</code></pre>
+
+
+                    <h3 class="h5 fw-bold mt-4">
+                        Adding an Item
+                    </h3>
+
+                    <pre><code>courses = {"Python", "Java"}
+
+courses.add(".NET")
+
+print(courses)</code></pre>
+
+
+                    <h3 class="h5 fw-bold mt-4">
+                        Removing an Item
+                    </h3>
+
+                    <pre><code>courses = {"Python", "Java", ".NET"}
+
+courses.remove("Java")
+
+print(courses)</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 SET OPERATIONS
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Set Operations
+                    </h2>
+
+                    <pre><code>python_students = {"Rahul", "Amit", "Sneha"}
+
+java_students = {"Amit", "Sneha", "Priya"}
+
+print(python_students | java_students)
+
+print(python_students &amp; java_students)
+
+print(python_students - java_students)</code></pre>
+
+                    <p><strong>Operations:</strong></p>
+
+                    <ul>
+                        <li><code>|</code> → Union</li>
+                        <li><code>&amp;</code> → Intersection</li>
+                        <li><code>-</code> → Difference</li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 DICTIONARY
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        4. Dictionary
+                    </h2>
+
+                    <p>
+                        A Dictionary stores data in
+                        <strong>key-value pairs</strong>.
+                    </p>
+
+                    <pre><code>student = {
+    "name": "Rahul",
+    "age": 22,
+    "course": "Python"
+}
+
+print(student)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>{'name': 'Rahul', 'age': 22, 'course': 'Python'}</code></pre>
+
+
+                    <h3 class="h5 fw-bold mt-4">
+                        Accessing Values
+                    </h3>
+
+                    <pre><code>student = {
+    "name": "Rahul",
+    "age": 22,
+    "course": "Python"
+}
+
+print(student["name"])
+print(student["course"])</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>Rahul
+Python</code></pre>
+
+
+                    <h3 class="h5 fw-bold mt-4">
+                        Adding a New Key
+                    </h3>
+
+                    <pre><code>student["city"] = "Pune"
+
+print(student)</code></pre>
+
+
+                    <h3 class="h5 fw-bold mt-4">
+                        Updating a Value
+                    </h3>
+
+                    <pre><code>student["age"] = 23
+
+print(student["age"])</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>23</code></pre>
+
+
+                    <h3 class="h5 fw-bold mt-4">
+                        Removing a Key
+                    </h3>
+
+                    <pre><code>student.pop("city")
+
+print(student)</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 DICTIONARY METHODS
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Common Dictionary Methods
+                    </h2>
+
+                    <div class="table-responsive">
+
+                        <table class="table table-bordered">
+
+                            <thead class="table-dark">
+
+                                <tr>
+                                    <th>Method</th>
+                                    <th>Purpose</th>
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                                <tr>
+                                    <td><code>keys()</code></td>
+                                    <td>Returns dictionary keys</td>
+                                </tr>
+
+                                <tr>
+                                    <td><code>values()</code></td>
+                                    <td>Returns dictionary values</td>
+                                </tr>
+
+                                <tr>
+                                    <td><code>items()</code></td>
+                                    <td>Returns key-value pairs</td>
+                                </tr>
+
+                                <tr>
+                                    <td><code>get()</code></td>
+                                    <td>Safely gets a value</td>
+                                </tr>
+
+                                <tr>
+                                    <td><code>pop()</code></td>
+                                    <td>Removes a key-value pair</td>
+                                </tr>
+
+                                <tr>
+                                    <td><code>update()</code></td>
+                                    <td>Updates dictionary values</td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+
+                    <pre><code>student = {
+    "name": "Rahul",
+    "course": "Python",
+    "city": "Pune"
+}
+
+print(student.keys())
+print(student.values())
+print(student.items())</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 NESTED DATA STRUCTURES
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Nested Data Structures
+                    </h2>
+
+                    <p>
+                        Python data structures can contain other
+                        data structures.
+                    </p>
+
+                    <pre><code>students = [
+    {
+        "name": "Rahul",
+        "course": "Python"
+    },
+    {
+        "name": "Sneha",
+        "course": ".NET"
+    }
+]
+
+print(students[0]["name"])
+print(students[1]["course"])</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>Rahul
+.NET</code></pre>
+
+                    <p class="mb-0">
+                        This type of structure is very common when
+                        working with JSON data and REST APIs.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 PRACTICAL CIIT EXAMPLE
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        CIIT Example 📩🤓
+                    </h2>
+
+                    <p>
+                        Suppose CIIT needs to store student details.
+                        A dictionary can represent one student and
+                        a list can store multiple students.
+                    </p>
+
+                    <pre><code>students = [
+    {
+        "name": "Rahul",
+        "course": "Python",
+        "fees": 35000
+    },
+    {
+        "name": "Sneha",
+        "course": ".NET",
+        "fees": 35000
+    },
+    {
+        "name": "Amit",
+        "course": "Java",
+        "fees": 30000
+    }
+]
+
+for student in students:
+
+    print(student["name"])
+    print(student["course"])
+    print(student["fees"])
+    print("----------------")</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>Rahul
+Python
+35000
+----------------
+Sneha
+.NET
+35000
+----------------
+Amit
+Java
+30000
+----------------</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 HOW TO CHOOSE
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Which Data Structure Should You Use?
+                    </h2>
+
+                    <div class="table-responsive">
+
+                        <table class="table table-bordered align-middle">
+
+                            <thead class="table-dark">
+
+                                <tr>
+                                    <th>Requirement</th>
+                                    <th>Recommended</th>
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                                <tr>
+                                    <td>Collection can change</td>
+                                    <td><strong>List</strong></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Data should not change</td>
+                                    <td><strong>Tuple</strong></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Only unique values required</td>
+                                    <td><strong>Set</strong></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Key-value data required</td>
+                                    <td><strong>Dictionary</strong></td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 COMMON MISTAKES
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Common Mistakes
+                    </h2>
+
+                    <ol>
+
+                        <li class="mb-2">
+                            Trying to modify a Tuple.
+                        </li>
+
+                        <li class="mb-2">
+                            Assuming Set elements always have a
+                            fixed display order.
+                        </li>
+
+                        <li class="mb-2">
+                            Accessing a Dictionary key that does not
+                            exist without using <code>get()</code>.
+                        </li>
+
+                        <li class="mb-2">
+                            Confusing List indexes with Dictionary
+                            keys.
+                        </li>
+
+                        <li>
+                            Choosing a data structure without
+                            considering whether the data needs to
+                            change.
+                        </li>
+
+                    </ol>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 INTERVIEW POINTS
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Interview Points
+                    </h2>
+
+                    <ul>
+
+                        <li class="mb-2">
+                            What is the difference between List and Tuple?
+                        </li>
+
+                        <li class="mb-2">
+                            Why are Sets used?
+                        </li>
+
+                        <li class="mb-2">
+                            What is a Dictionary?
+                        </li>
+
+                        <li class="mb-2">
+                            Can a List contain different data types?
+                        </li>
+
+                        <li class="mb-2">
+                            How do you remove duplicate values from
+                            a collection?
+                        </li>
+
+                        <li>
+                            What is the difference between List,
+                            Set and Dictionary?
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 CIIT LEARNING POINT
+                 ================================================= -->
+
+            <div class="alert alert-success mt-4">
+
+                <h2 class="h4 fw-bold">
+                    CIIT Learning Point
+                </h2>
+
+                <p class="mb-0">
+                    Strong knowledge of Python data structures is
+                    essential for writing clean programs, solving
+                    coding problems and working with real-world
+                    APIs, databases and application data.
+                </p>
+
+            </div>
+
+
+            <!-- =================================================
+                 PRACTICE TASKS
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        CIIT Practice Tasks
+                    </h2>
+
+                    <ol>
+
+                        <li class="mb-2">
+                            Create a list of 10 course names and
+                            display them using a loop.
+                        </li>
+
+                        <li class="mb-2">
+                            Create a Tuple containing student name,
+                            age and course.
+                        </li>
+
+                        <li class="mb-2">
+                            Create a Set containing duplicate course
+                            names and observe the result.
+                        </li>
+
+                        <li class="mb-2">
+                            Create a Dictionary for a student with
+                            name, email, course and fees.
+                        </li>
+
+                        <li class="mb-2">
+                            Create a list of dictionaries containing
+                            five CIIT students.
+                        </li>
+
+                        <li>
+                            Find students enrolled in the Python
+                            course from the list of dictionaries.
+                        </li>
+
+                    </ol>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 SUMMARY
+                 ================================================= -->
+
+            <div class="alert alert-info mt-4 mb-0"
+                 style="background-color:#cfe2ff; border:0; color:#123c73;">
+
+                <h2 class="h3 fw-bold mt-0 mb-3"
+                    style="color:#123c73;">
+
+                    Summary :
+
+                </h2>
+
+                <p class="mb-0"
+                   style="color:#123c73;">
+
+                    Python provides powerful built-in data structures
+                    such as Lists, Tuples, Sets and Dictionaries.
+                    Lists are ordered and mutable, Tuples are ordered
+                    and immutable, Sets are useful for unique values,
+                    and Dictionaries store data using key-value pairs.
+                    Understanding these structures is essential for
+                    writing efficient Python programs and working with
+                    real-world application data.
+
+                </p>
+
+            </div>
+
+
+            <!-- =================================================
+                 PREVIOUS / NEXT NAVIGATION
+                 ================================================= -->
+
+            <div class="d-flex justify-content-between align-items-center mt-5 pt-3 border-top">
+
+                <a href="@Url.Action("LambdaFunctions", "Functions", new { area = "Python" })"
+                   class="btn btn-outline-secondary">
+
+                    ← Previous: Topic
+
+                </a>
+
+
+                <a href="@Url.Action("Lists", "DataStructures", new { area = "Python" })"
+                   class="btn btn-primary">
+
+                    Next: Topic →
+
+                </a>
+
+            </div>
+
+
+        </section>
+
+    </div>
+
+</main>

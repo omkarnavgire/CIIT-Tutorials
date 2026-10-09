@@ -1,0 +1,545 @@
+﻿@{
+    ViewData["Title"] = "CRUD Operations";
+}
+
+<section>
+
+    <!-- PAGE INTRODUCTION -->
+    <div class="mb-5">
+
+        <h1 class="fw-bold mb-3">
+            CRUD Operations
+        </h1>
+
+        <p class="lead text-muted">
+            CRUD stands for Create, Read, Update and Delete. These are
+            the four basic operations performed on data stored in a
+            database.
+        </p>
+
+        <p>
+            Almost every database-driven application uses CRUD
+            operations. In a Student Management System, for example,
+            we can create a student record, read student information,
+            update student details and delete a student record.
+        </p>
+
+    </div>
+
+
+    <!-- WHAT IS CRUD -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            What is CRUD?
+        </h2>
+
+        <p>
+            CRUD is a commonly used term in software development for
+            describing the four fundamental operations performed on
+            persistent data.
+        </p>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>Operation</th>
+                        <th>Meaning</th>
+                        <th>Purpose</th>
+                        <th>Common SQL Command</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            <strong>Create</strong>
+                        </td>
+
+                        <td>
+                            Add new data
+                        </td>
+
+                        <td>
+                            Creates a new record.
+                        </td>
+
+                        <td>
+                            INSERT
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            <strong>Read</strong>
+                        </td>
+
+                        <td>
+                            Retrieve data
+                        </td>
+
+                        <td>
+                            Reads existing records.
+                        </td>
+
+                        <td>
+                            SELECT
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            <strong>Update</strong>
+                        </td>
+
+                        <td>
+                            Modify data
+                        </td>
+
+                        <td>
+                            Changes an existing record.
+                        </td>
+
+                        <td>
+                            UPDATE
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            <strong>Delete</strong>
+                        </td>
+
+                        <td>
+                            Remove data
+                        </td>
+
+                        <td>
+                            Deletes an existing record.
+                        </td>
+
+                        <td>
+                            DELETE
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- CRUD DIAGRAM -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            CRUD Operations Flow
+        </h2>
+
+        <p>
+            The four CRUD operations can be understood using the
+            following flow:
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                CRUD
+            </div>
+
+            <pre class="mb-0"><code>
+                    CRUD
+                      |
+        --------------------------------
+        |              |              |
+      CREATE          READ          UPDATE
+        |              |              |
+      INSERT         SELECT         UPDATE
+        |
+        -------------------------------
+                      |
+                    DELETE
+                      |
+                    DELETE
+            </code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- CREATE -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            1. Create
+        </h2>
+
+        <p>
+            The Create operation is used to add new records to a
+            database table.
+        </p>
+
+        <p>
+            In SQL Server, the <strong>INSERT</strong> statement is
+            commonly used to perform the Create operation.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>INSERT INTO Students
+(
+    StudentId,
+    StudentName,
+    Age
+)
+VALUES
+(
+    101,
+    'Rahul',
+    22
+);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- READ -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            2. Read
+        </h2>
+
+        <p>
+            The Read operation is used to retrieve existing data from
+            a database table.
+        </p>
+
+        <p>
+            In SQL Server, the <strong>SELECT</strong> statement is
+            used to read data.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT *
+FROM Students;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- UPDATE -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            3. Update
+        </h2>
+
+        <p>
+            The Update operation is used to modify existing data in
+            a database table.
+        </p>
+
+        <p>
+            In SQL Server, the <strong>UPDATE</strong> statement is
+            used to modify existing records.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>UPDATE Students
+SET Age = 23
+WHERE StudentId = 101;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- DELETE -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            4. Delete
+        </h2>
+
+        <p>
+            The Delete operation is used to remove existing records
+            from a database table.
+        </p>
+
+        <p>
+            In SQL Server, the <strong>DELETE</strong> statement is
+            commonly used for this operation.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>DELETE FROM Students
+WHERE StudentId = 101;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- REAL WORLD EXAMPLE -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            CRUD in Student Management System
+        </h2>
+
+        <p>
+            Let's understand CRUD using a Student Management System.
+        </p>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>Requirement</th>
+                        <th>CRUD Operation</th>
+                        <th>SQL Command</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>Add a new student</td>
+                        <td><strong>Create</strong></td>
+                        <td>INSERT</td>
+                    </tr>
+
+                    <tr>
+                        <td>Display student details</td>
+                        <td><strong>Read</strong></td>
+                        <td>SELECT</td>
+                    </tr>
+
+                    <tr>
+                        <td>Change student details</td>
+                        <td><strong>Update</strong></td>
+                        <td>UPDATE</td>
+                    </tr>
+
+                    <tr>
+                        <td>Remove a student</td>
+                        <td><strong>Delete</strong></td>
+                        <td>DELETE</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- CRUD LIFECYCLE -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            CRUD Lifecycle
+        </h2>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                CRUD
+            </div>
+
+            <pre class="mb-0"><code>
+User
+  |
+  ↓
+Create Data
+  |
+  ↓
+Database
+  |
+  ↓
+Read Data
+  |
+  ↓
+Update Data
+  |
+  ↓
+Delete Data
+            </code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- CRUD AND SQL -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            CRUD and SQL Commands
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>CRUD</th>
+                        <th>SQL Command</th>
+                        <th>Action</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td><strong>Create</strong></td>
+                        <td>INSERT</td>
+                        <td>Add record</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Read</strong></td>
+                        <td>SELECT</td>
+                        <td>Retrieve record</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Update</strong></td>
+                        <td>UPDATE</td>
+                        <td>Modify record</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Delete</strong></td>
+                        <td>DELETE</td>
+                        <td>Remove record</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- IMPORTANT -->
+    <section class="mb-5">
+
+        <div class="alert alert-info border-0">
+
+            <h5 class="fw-bold">
+                Important
+            </h5>
+
+            <p class="mb-0">
+                CRUD operations form the foundation of database-driven
+                applications. In real-world applications, these
+                operations are usually performed through application
+                interfaces such as web pages, APIs or backend services.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- SUMMARY -->
+    <section class="mb-4">
+
+        <div class="alert alert-primary border-0">
+
+            <h2 class="fw-bold mb-3">
+                Summary
+            </h2>
+
+            <p class="mb-0">
+                CRUD stands for Create, Read, Update and Delete.
+                Create uses INSERT to add data, Read uses SELECT to
+                retrieve data, Update uses UPDATE to modify data and
+                Delete uses DELETE to remove data. These four operations
+                are fundamental to most database-driven applications.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- PREVIOUS / NEXT -->
+
+<div class="d-flex justify-content-between align-items-center
+            mt-5 pt-4 border-top">
+
+    <!-- PREVIOUS -->
+
+    <a href="/SQLServer/SQLBasics/InsertUpdateDelete"
+       class="btn btn-outline-primary">
+
+        ← Previous: INSERT, UPDATE &amp; DELETE
+
+    </a>
+
+
+    <!-- NEXT -->
+
+    <a href="/SQLServer/CRUDOperations/InsertOperation"
+       class="btn btn-primary">
+
+        Next: INSERT Operation →
+
+    </a>
+
+</div>
+
+</section>

@@ -1,0 +1,731 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Python Polymorphism";
+}
+
+<style>
+    #python-polymorphism-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #python-polymorphism-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #python-polymorphism-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #python-polymorphism-page .diagram-box {
+        background: #ffffff;
+        border: 2px solid #6f42c1;
+        border-radius: 10px;
+        padding: 18px;
+        text-align: center;
+        height: 100%;
+    }
+
+        #python-polymorphism-page .diagram-box h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        #python-polymorphism-page .diagram-box p {
+            margin-bottom: 0;
+            font-size: 14px;
+            color: #495057;
+        }
+
+    #python-polymorphism-page .diagram-arrow {
+        text-align: center;
+        font-size: 28px;
+        font-weight: 700;
+        color: #6f42c1;
+        padding: 8px 0;
+    }
+
+    #python-polymorphism-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #python-polymorphism-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+        }
+</style>
+
+
+<main id="python-polymorphism-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- Sidebar -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/Python/Views/Shared/PythonTopics.cshtml")
+        </aside>
+
+
+        <!-- Main Content -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+
+                <h1 class="fw-bold">
+                    Polymorphism in Python
+                </h1>
+
+                <p class="lead">
+                    Learn how the same method or operation can behave
+                    differently for different objects.
+                </p>
+
+            </div>
+
+
+            <!-- WHAT IS POLYMORPHISM -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    What is Polymorphism?
+                </h2>
+
+                <p>
+                    Polymorphism is an important concept of
+                    Object-Oriented Programming.
+                </p>
+
+                <p>
+                    The word polymorphism means
+                    <strong>"many forms"</strong>.
+                </p>
+
+                <p>
+                    In Python, the same method, function or operation
+                    can behave differently depending on the object
+                    or data being used.
+                </p>
+
+                <div class="alert alert-info">
+
+                    <strong>Simple Definition:</strong>
+
+                    One name, many forms or different behaviors.
+
+                </div>
+
+            </div>
+
+
+            <!-- REAL WORLD EXAMPLE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Example 📩🌍
+                </h2>
+
+                <p>
+                    Think about the word <strong>"sound"</strong>.
+                </p>
+
+                <p>
+                    A dog makes one type of sound, while a cat makes
+                    another type of sound.
+                </p>
+
+                <p>
+                    The method name can remain the same:
+                    <code>sound()</code>, but the behavior changes.
+                </p>
+
+            </div>
+
+
+            <!-- DIAGRAM -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Polymorphism Diagram
+                </h2>
+
+                <div class="concept-box">
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            Same Method
+                        </h5>
+
+                        <p>
+                            <code>sound()</code>
+                        </p>
+
+                    </div>
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+                    <div class="row g-3">
+
+                        <div class="col-md-4">
+
+                            <div class="diagram-box">
+
+                                <h5>Dog</h5>
+
+                                <p>
+                                    sound() → Bark
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-4">
+
+                            <div class="diagram-box">
+
+                                <h5>Cat</h5>
+
+                                <p>
+                                    sound() → Meow
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-4">
+
+                            <div class="diagram-box">
+
+                                <h5>Cow</h5>
+
+                                <p>
+                                    sound() → Moo
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            Different Behavior
+                        </h5>
+
+                        <p>
+                            Same method name, different output.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- SIMPLE EXAMPLE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Simple Example
+                </h2>
+
+                <pre><code>class Dog:
+
+    def sound(self):
+        print("Dog barks")
+
+
+class Cat:
+
+    def sound(self):
+        print("Cat meows")
+
+
+dog1 = Dog()
+cat1 = Cat()
+
+dog1.sound()
+cat1.sound()</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Dog barks
+Cat meows</code></pre>
+
+                <p>
+                    Both classes have the same method name
+                    <code>sound()</code>, but the result is different.
+                </p>
+
+            </div>
+
+
+            <!-- METHOD OVERRIDING -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Polymorphism through Method Overriding
+                </h2>
+
+                <p>
+                    When a child class provides its own version of a method
+                    that exists in the parent class, it is called
+                    method overriding.
+                </p>
+
+                <pre><code>class Animal:
+
+    def sound(self):
+        print("Animal makes a sound")
+
+
+class Dog(Animal):
+
+    def sound(self):
+        print("Dog barks")
+
+
+class Cat(Animal):
+
+    def sound(self):
+        print("Cat meows")
+
+
+dog1 = Dog()
+cat1 = Cat()
+
+dog1.sound()
+cat1.sound()</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Dog barks
+Cat meows</code></pre>
+
+            </div>
+
+
+            <!-- COMMON INTERFACE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Same Interface, Different Behavior
+                </h2>
+
+                <p>
+                    We can call the same method on different objects.
+                </p>
+
+                <pre><code>animals = [Dog(), Cat()]
+
+for animal in animals:
+    animal.sound()</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Dog barks
+Cat meows</code></pre>
+
+                <p>
+                    The loop does not need to know whether the object is a
+                    <code>Dog</code> or a <code>Cat</code>. Each object
+                    provides its own behavior for <code>sound()</code>.
+                </p>
+
+            </div>
+
+
+            <!-- FUNCTION POLYMORPHISM -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Polymorphism with Functions
+                </h2>
+
+                <p>
+                    A function can work with different objects as long as
+                    those objects provide the required method.
+                </p>
+
+                <pre><code>def make_sound(animal):
+    animal.sound()
+
+
+make_sound(Dog())
+make_sound(Cat())</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Dog barks
+Cat meows</code></pre>
+
+            </div>
+
+
+            <!-- BUILT IN POLYMORPHISM -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Polymorphism with Built-in Functions
+                </h2>
+
+                <p>
+                    Python's built-in functions can also behave differently
+                    depending on the object or data type.
+                </p>
+
+                <h4 class="fw-bold mt-4">
+                    Example: <code>len()</code>
+                </h4>
+
+                <pre><code>print(len("Python"))
+print(len([10, 20, 30, 40]))</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>6
+4</code></pre>
+
+                <p>
+                    The same <code>len()</code> function works with both
+                    a string and a list.
+                </p>
+
+            </div>
+
+
+            <!-- OPERATOR POLYMORPHISM -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Operator Polymorphism
+                </h2>
+
+                <p>
+                    The same operator can behave differently depending
+                    on the data type.
+                </p>
+
+                <pre><code>print(10 + 20)
+
+print("Hello " + "Python")
+
+print([1, 2] + [3, 4])</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>30
+Hello Python
+[1, 2, 3, 4]</code></pre>
+
+                <p>
+                    Here the <code>+</code> operator performs different
+                    operations for numbers, strings and lists.
+                </p>
+
+            </div>
+
+
+            <!-- DUCK TYPING -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Duck Typing
+                </h2>
+
+                <p>
+                    Python follows a concept called duck typing.
+                </p>
+
+                <p>
+                    The important thing is what an object can do,
+                    rather than exactly what type of object it is.
+                </p>
+
+                <pre><code>class Dog:
+
+    def sound(self):
+        print("Bark")
+
+
+class Cat:
+
+    def sound(self):
+        print("Meow")
+
+
+def make_sound(animal):
+    animal.sound()
+
+
+make_sound(Dog())
+make_sound(Cat())</code></pre>
+
+                <p class="mt-3">
+                    Both objects have a <code>sound()</code> method,
+                    so the same function can work with both.
+                </p>
+
+            </div>
+            <div class="px-2">
+    <h5 class="fw-bold mb-2">
+        Output
+    </h5>
+
+    <pre class="mb-4"><code>Bark
+Meow</code></pre>
+</div>
+
+            <!-- MULTIPLE FORMS -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Different Forms of Polymorphism
+                </h2>
+
+                <div class="concept-box">
+
+                    <div class="row g-3">
+
+                        <div class="col-md-4">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    Method Overriding
+                                </h5>
+
+                                <p>
+                                    Child class changes
+                                    parent method behavior.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-4">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    Function Polymorphism
+                                </h5>
+
+                                <p>
+                                    Same function works
+                                    with different objects.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-4">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    Operator Polymorphism
+                                </h5>
+
+                                <p>
+                                    Same operator behaves
+                                    differently for data types.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- BENEFITS -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Benefits of Polymorphism
+                </h2>
+
+                <ul>
+
+                    <li>
+                        Makes code flexible.
+                    </li>
+
+                    <li>
+                        Reduces repeated code.
+                    </li>
+
+                    <li>
+                        Makes programs easier to extend.
+                    </li>
+
+                    <li>
+                        Allows common interfaces.
+                    </li>
+
+                    <li>
+                        Makes code easier to maintain.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- COMMON MISTAKES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Common Mistakes
+                </h2>
+
+                <ul>
+
+                    <li>
+                        Using different method names when a common behavior
+                        is expected.
+                    </li>
+
+                    <li>
+                        Forgetting the <code>self</code> parameter.
+                    </li>
+
+                    <li>
+                        Calling a method that does not exist in the object.
+                    </li>
+
+                    <li>
+                        Confusing polymorphism with inheritance.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Practice Programs
+                </h2>
+
+                <ol>
+
+                    <li>
+                        Create <code>Dog</code> and <code>Cat</code>
+                        classes with a common <code>sound()</code> method.
+                    </li>
+
+                    <li>
+                        Create a <code>Vehicle</code> class and override
+                        a method in child classes.
+                    </li>
+
+                    <li>
+                        Create a function that works with two different
+                        objects.
+                    </li>
+
+                    <li>
+                        Write examples of operator polymorphism.
+                    </li>
+
+                    <li>
+                        Create a small duck typing example.
+                    </li>
+
+                </ol>
+
+            </div>
+
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+
+                <h2 class="h4 fw-bold">
+                    Summary
+                </h2>
+
+                <p class="mb-0">
+
+                    Polymorphism means many forms. In Python, the same
+                    method, function or operator can behave differently
+                    depending on the object or data type. Method overriding,
+                    function polymorphism, operator polymorphism and duck
+                    typing are common ways to understand polymorphism in
+                    Python.
+
+                </p>
+
+            </div>
+
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+
+                <a class="btn btn-outline-secondary"
+                   href="@Url.Action("Inheritance", "OOPs", new { area = "Python" })">
+
+                    ← Previous: Topic
+
+                </a>
+
+                <a class="btn btn-primary"
+                   href="@Url.Action("Abstraction", "OOPs", new { area = "Python" })">
+
+                    Next: Topic →
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

@@ -1,0 +1,122 @@
+@{
+    ViewData["Title"] = "Azure Global Infrastructure";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+
+                <h1>Azure Global Infrastructure</h1>
+
+                <p>
+                    <b>Microsoft Azure's global infrastructure</b> is one of the largest cloud
+                    and AI architectures in the world, spanning over 80 regions and 500+
+                    physical datacenters globally. This backbone is engineered to deliver
+                    high availability, ultra-low latency, strict data residency compliance,
+                    and massive computing power for intensive AI workloads.
+                </p>
+
+                <div class="text-center my-4">
+                    <img src="https://i.ytimg.com/vi/SO_30ezSBDE/maxresdefault.jpg"
+                         alt="Microsoft Azure Global Infrastructure"
+                         class="img-fluid rounded shadow-sm"
+                         style="max-width: 850px; width: 100%; height: auto;">
+                </div>
+
+                <h2>The Core Building Blocks</h2>
+
+                <p>
+                    Azure’s infrastructure is structured hierarchically, separating physical
+                    hardware from geopolitical boundaries.
+                </p>
+
+                <ul>
+                    <li>
+                        <b>Datacenters:</b> Unique, highly secure physical buildings housing
+                        networked computer servers equipped with independent power, cooling,
+                        and network redundancy.
+                    </li>
+
+                    <li>
+                        <b>Availability Zones (AZs):</b> Physically separate locations within
+                        an Azure region. Each zone consists of one or more datacenters. A minimum
+                        of three separate zones exist per supported region to protect applications
+                        against entire localized datacenter failures.
+                    </li>
+
+                    <li>
+                        <b>Azure Regions:</b> A geographical area consisting of a set of datacenters
+                        deployed within a latency-defined perimeter. They are connected through a
+                        dedicated, regional, low-latency network. Examples include East US,
+                        West Europe, and Central India.
+                    </li>
+
+                    <li>
+                        <b>Geographies:</b> Typically defined by geopolitical or country borders
+                        such as North America, Europe, or Asia Pacific. Geographies contain one
+                        or more regions and exist to ensure data residency and compliance
+                        regulations like GDPR are strictly met.
+                    </li>
+                </ul>
+
+                <h2>Resilience and Global Operations</h2>
+
+                @* <div class="text-center my-4">
+                    <img src="https://build5nines.com/wp-content/uploads/2025/05/Azure-Regions-Availability-Zones.png"
+                         alt="Azure Regions and Availability Zones"
+                         class="img-fluid rounded shadow-sm"
+                         style="max-width: 850px; width: 100%; height: auto;">
+                </div> *@
+
+                <ul>
+                    <li>
+                        <b>Region Pairs:</b> Most Azure regions are paired with another region
+                        within the same geography, located at least 300 miles apart. In the event
+                        of a catastrophic regional failure, such as a natural disaster, Azure
+                        prioritizes automatic failover, data isolation, and rapid service
+                        restoration within the paired region.
+                    </li>
+
+                    <li>
+                        <b>Sovereign Clouds:</b> For entities with extreme security or regulatory
+                        mandates, Microsoft operates isolated environments like Azure Government
+                        (US) and Azure China.
+                    </li>
+
+                    <li>
+                        <b>Global Network:</b> All datacenters connect via Microsoft’s private,
+                        high-speed fiber-optic global network, bypassing the public internet for
+                        enhanced security and consistent latency performance.
+                    </li>
+                </ul>
+
+                <div style="min-height:80px;"></div>
+
+                <div class="mt-4 d-flex justify-content-between align-items-center">
+
+                    <a class="btn btn-outline-primary fw-semibold"
+                       href="@Url.Action("WhatisMicrosoftAzure", "Introduction", new { area = "Azure" })">
+                        ← Previous
+                    </a>
+
+                    <a class="btn btn-primary fw-semibold"
+                       href="@Url.Action("AzurePortalIntroduction", "Introduction", new { area = "Azure" })">
+                        Next →
+                    </a>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</div>

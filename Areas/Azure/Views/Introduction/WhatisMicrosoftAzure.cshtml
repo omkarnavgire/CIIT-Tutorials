@@ -1,0 +1,39 @@
+@{
+    ViewData["Title"] = "Introduction to Microsoft Azure - A Cloud Computing Service";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+                <h2 class="fw-bold mb-4">Introduction to Microsoft Azure - A Cloud Computing Service</h2>
+                <div class="azure-notes-content">
+                    <pre class="azure-notes-text">Introduction to Microsoft Azure - A Cloud Computing Service
+
+
+Microsoft Azure, launched in 2010, is a widely used cloud computing platform that simplifies
+building, deploying, and managing applications. It offers services like compute, storage,
+networking, analytics, databases, cognitive services, and IoT. With a “Pay-As-You-Go” pricing
+model, Azure provides scalable virtual resources without heavy upfront infrastructure costs.
+   •   Microsoft’s cloud platform, similar to AWS and Google Cloud.
+   •   Provides virtual machines, analytics, monitoring tools, and fast data processing.
+   •   Eliminates the need for large physical infrastructure and investment.
+   •   Cost-effective model where users pay only for the resources they consume.</pre>
+                </div>
+            </div>
+        </div>
+    
+
+            @await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureLessonNavigation.cshtml")
+</section>
+</div>
+<style>
+.azure-notes-text{white-space:pre-wrap;word-break:normal;font-family:inherit;font-size:1rem;line-height:1.7;background:#fff;border:0;padding:0;margin:0;color:#212529;}
+.azure-notes-content img{max-height:720px;}
+</style>

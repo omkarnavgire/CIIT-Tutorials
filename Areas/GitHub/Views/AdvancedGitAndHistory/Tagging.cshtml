@@ -1,0 +1,222 @@
+@{
+    Layout = "~/Areas/GitHub/Views/Shared/GithubLayout.cshtml";
+    ViewData["Title"] = "Tagging Releases";
+}
+
+<main id="tutorials" class="container py-1">
+    <div class="row g-4">
+
+        <!-- Sidebar Navigation -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/GitHub/Views/Shared/GithubTopics.cshtml")
+        </aside>
+
+        <!-- Reading Content Area -->
+        <section class="col-lg-9">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4 p-lg-5">
+
+                    <h1 class="fw-bold mb-3">Tagging Releases</h1>
+
+                    <p>
+                        In Git, <strong>tagging releases</strong> means
+                        marking specific points in your repository's history
+                        as important milestones, such as software releases
+                        or production deployments. A tag like
+                        <code>v1.0.0</code> identifies a particular commit.
+                    </p>
+
+                    <p>
+                        Unlike branches, tags are intended to identify a
+                        specific point in history rather than move forward
+                        as new commits are created.
+                    </p>
+
+                    <hr class="my-4" />
+
+                    <!-- Types of Tags -->
+                    <h3 class="fw-bold mb-3">1. Types of Tags</h3>
+
+                    <h5 class="fw-semibold mt-4">Annotated Tags</h5>
+
+                    <p>
+                        Annotated tags are stored as full objects in Git.
+                        They contain the tagger's name, email, date,
+                        a message, and can be cryptographically signed.
+                        They are recommended for release versions.
+                    </p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git tag -a v1.0.0 -m "Initial production release"</code></pre>
+
+                    <h5 class="fw-semibold mt-4">Lightweight Tags</h5>
+
+                    <p>
+                        Lightweight tags are simple references to a
+                        specific commit. They do not contain the additional
+                        tagger information and message stored in an
+                        annotated tag.
+                    </p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git tag v1.0.0-lw</code></pre>
+
+                    <hr class="my-4" />
+
+                    <!-- Common Commands -->
+                    <h3 class="fw-bold mb-3">2. Common Tagging Commands</h3>
+
+                    <h5 class="fw-semibold mt-4">Tag a Previous Commit</h5>
+
+                    <p>
+                        You can tag an older commit by supplying its
+                        commit hash.
+                    </p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git tag -a v1.0.0 9f25d2b -m "Tagging an older commit"</code></pre>
+
+                    <p>
+                        Replace <code>9f25d2b</code> with the actual
+                        commit hash from your repository.
+                    </p>
+
+                    <h5 class="fw-semibold mt-4">List All Existing Tags</h5>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git tag</code></pre>
+
+                    <p>
+                        Lists the tags available in your local repository.
+                    </p>
+
+                    <h5 class="fw-semibold mt-4">Push a Specific Tag</h5>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git push origin v1.0.0</code></pre>
+
+                    <p>
+                        Publishes the specified tag to the remote repository.
+                        A regular <code>git push</code> does not normally
+                        publish all local tags automatically.
+                    </p>
+
+                    <h5 class="fw-semibold mt-4">Push All Local Tags</h5>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git push origin --tags</code></pre>
+
+                    <p>
+                        Pushes all local tags that have not already been
+                        transferred to the remote.
+                    </p>
+
+                    <div class="alert alert-warning">
+                        <strong>Important:</strong>
+                        Before pushing all tags, verify that you intend to
+                        publish them all to the remote repository.
+                    </div>
+
+                    <h5 class="fw-semibold mt-4">Delete a Local Tag</h5>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git tag -d v1.0.0</code></pre>
+
+                    <h5 class="fw-semibold mt-4">Delete a Remote Tag</h5>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git push origin --delete v1.0.0</code></pre>
+
+                    <p>
+                        Deleting a remote tag removes it from the remote
+                        repository. It does not automatically delete
+                        copies of that tag from other developers' local
+                        repositories.
+                    </p>
+
+                    <hr class="my-4" />
+
+                    <!-- Semantic Versioning -->
+                    <h3 class="fw-bold mb-3">3. Semantic Versioning (SemVer)</h3>
+
+                    <p>
+                        Many development teams use Semantic Versioning
+                        in the format:
+                    </p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>vMAJOR.MINOR.PATCH</code></pre>
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped align-middle">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Version Part</th>
+                                    <th>Meaning</th>
+                                    <th>Example</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Major</strong></td>
+                                    <td>Introduces incompatible changes.</td>
+                                    <td><code>v2.0.0</code></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Minor</strong></td>
+                                    <td>Adds backward-compatible functionality.</td>
+                                    <td><code>v1.1.0</code></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Patch</strong></td>
+                                    <td>Includes backward-compatible bug fixes.</td>
+                                    <td><code>v1.0.1</code></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <hr class="my-4" />
+
+                    <!-- Example Workflow -->
+                    <h3 class="fw-bold mb-3">4. Example: Tag a Release</h3>
+
+                    <p>
+                        Use the following sequence to tag a release
+                        and publish it to your remote repository.
+                    </p>
+
+                    <h5 class="fw-semibold mt-4">Step 1: Check Your Commits</h5>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git log --oneline</code></pre>
+
+                    <h5 class="fw-semibold mt-4">Step 2: Create an Annotated Tag</h5>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git tag -a v1.0.0 -m "Release version 1.0.0"</code></pre>
+
+                    <h5 class="fw-semibold mt-4">Step 3: Verify the Tag</h5>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git show v1.0.0</code></pre>
+
+                    <h5 class="fw-semibold mt-4">Step 4: Publish the Tag</h5>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git push origin v1.0.0</code></pre>
+
+                    <div class="alert alert-success mt-4">
+                        <strong>Key Takeaway:</strong>
+                        Use annotated tags for release milestones, choose
+                        meaningful version numbers, and push tags explicitly
+                        when you want to publish them to your remote repository.
+                    </div>
+
+                    <!-- Previous / Next Navigation -->
+                    <div class="d-flex justify-content-between align-items-center gap-3 flex-wrap mt-5 pt-4 border-top">
+
+                        <a class="btn btn-outline-primary"
+                           href="@Url.Action("Stashing", "AdvancedGitAndHistory", new { area = "GitHub" })">
+                            &larr; Previous: Stashing Changes
+                        </a>
+
+                        <a class="btn btn-primary"
+                           href="@Url.Action("UndoingMistakes", "AdvancedGitAndHistory", new { area = "GitHub" })">
+                            Next: Undoing Mistakes &rarr;
+                        </a>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+</main>

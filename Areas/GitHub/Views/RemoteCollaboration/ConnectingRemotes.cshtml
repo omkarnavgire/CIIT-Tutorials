@@ -1,0 +1,238 @@
+@{
+    Layout = "~/Areas/GitHub/Views/Shared/GithubLayout.cshtml";
+    ViewData["Title"] = "Connecting Remotes";
+}
+
+<main id="tutorials" class="container py-4">
+    <div class="row g-4">
+        <!-- Sidebar Navigation -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/GitHub/Views/Shared/GithubTopics.cshtml")
+        </aside>
+
+        <!-- Reading Content Area -->
+        <section class="col-lg-9">
+            <div class="card border-0 shadow-sm rounded-3">
+                <div class="card-body p-4 p-lg-5">
+                    
+                    <!-- Header Section -->
+                    <div class="mb-4">
+                        <h1 class="fw-bold display-6 mb-3 text-dark">Connecting Remotes Git Repository</h1>
+                        <p class="fs-5 text-secondary lead">
+                            <strong>Connecting a remote</strong> links your local Git repository on your computer to a hosted repository on the internet, such as <strong>GitHub, GitLab, or Bitbucket</strong>. This link allows you to synchronize your code, back it up, and collaborate with others.
+                        </p>
+                        <p class="text-muted mb-0">
+                            Learn how to set up, view, and manage your remote connections efficiently.
+                        </p>
+                    </div>
+
+                    <hr class="my-4 border-light-subtle" />
+
+                    <!-- Section 1 -->
+                    <div class="mb-5">
+                        <h3 class="fw-bold mb-3 d-flex align-items-center gap-2 text-dark">
+                            <i class="bi bi-link-45deg text-primary"></i> 1. Connecting a Local Repo to a Brand New Remote
+                        </h3>
+                        <p class="text-secondary">
+                            If you initialized a repository locally using <code>git init</code>, you can connect it to an empty repository that you created on GitHub.
+                        </p>
+                        <div class="position-relative mb-3">
+                            <pre class="bg-dark text-light p-3 rounded-3"><code class="language-bash"># Link your local repo to the remote hosting service
+git remote add origin &lt;remote-repository-url&gt;
+
+# Verify that the link was created successfully
+git remote -v</code></pre>
+                        </div>
+                        <ul class="text-secondary ps-3">
+                            <li class="mb-2"><strong><code>origin</code>:</strong> The conventional nickname for a primary remote repository.</li>
+                            <li><strong>Remote URL:</strong> The address of the hosted repository.</li>
+                        </ul>
+                        
+                        <p class="fw-semibold text-dark mt-4 mb-2">Example remote URL formats:</p>
+                        <div class="position-relative mb-3">
+                            <pre class="bg-dark text-light p-3 rounded-3"><code class="language-bash"># HTTPS
+https://github.com/username/repo-name.git
+
+# SSH
+git@github.com:username/repo-name.git</code></pre>
+                        </div>
+                        
+                        <div class="alert alert-info border-0 shadow-sm d-flex align-items-start gap-3 rounded-3">
+                            <i class="bi bi-info-circle-fill text-info fs-5 mt-1"></i>
+                            <div>
+                                <strong>Note:</strong> Replace the example URLs with your actual repository URL. SSH connections require an appropriate SSH key setup.
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="my-4 border-light-subtle" />
+
+                    <!-- Section 2 -->
+                    <div class="mb-5">
+                        <h3 class="fw-bold mb-3 d-flex align-items-center gap-2 text-dark">
+                            <i class="bi bi-cloud-arrow-up text-primary"></i> 2. Pushing Your Branches to the Remote
+                        </h3>
+                        <p class="text-secondary">
+                            Once the remote is configured, you can upload your local branch and its commits to the hosted repository.
+                        </p>
+                        
+                        <h5 class="fw-semibold text-dark mt-4 mb-2">Push a Branch for the First Time</h5>
+                        <div class="position-relative mb-2">
+                            <pre class="bg-dark text-light p-3 rounded-3"><code class="language-bash">git push -u origin main</code></pre>
+                        </div>
+                        <p class="text-secondary small mb-4">
+                            The <code>-u</code> flag sets the upstream tracking relationship between your local <code>main</code> branch and the corresponding branch on <code>origin</code>. Future pushes and pulls can usually use <code>git push</code> and <code>git pull</code>.
+                        </p>
+
+                        <h5 class="fw-semibold text-dark mt-3 mb-2">Push a Feature Branch</h5>
+                        <div class="position-relative mb-3">
+                            <pre class="bg-dark text-light p-3 rounded-3"><code class="language-bash">git push origin feature-login</code></pre>
+                        </div>
+                        <p class="text-secondary small">
+                            Uploads the <code>feature-login</code> branch to the remote repository.
+                        </p>
+
+                        <div class="alert alert-warning border-0 shadow-sm d-flex align-items-start gap-3 rounded-3">
+                            <i class="bi bi-exclamation-triangle-fill text-warning fs-5 mt-1"></i>
+                            <div>
+                                <strong>Important:</strong> Ensure your local branch exists and that you have permission to push to the remote repository.
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="my-4 border-light-subtle" />
+
+                    <!-- Section 3 -->
+                    <div class="mb-5">
+                        <h3 class="fw-bold mb-3 d-flex align-items-center gap-2 text-dark">
+                            <i class="bi bi-search text-primary"></i> 3. Inspecting and Managing Remotes
+                        </h3>
+                        <p class="text-secondary">
+                            When working on an existing project, you may need to check which hosted repositories are configured.
+                        </p>
+
+                        <h5 class="fw-semibold text-dark mt-4 mb-2">List All Connected Remotes</h5>
+                        <div class="position-relative mb-2">
+                            <pre class="bg-dark text-light p-3 rounded-3"><code class="language-bash">git remote -v</code></pre>
+                        </div>
+                        <p class="text-secondary small mb-4">
+                            Displays remote names and their URLs for fetching and pushing data.
+                        </p>
+
+                        <h5 class="fw-semibold text-dark mt-3 mb-2">Show Detailed Remote Configuration</h5>
+                        <div class="position-relative mb-3">
+                            <pre class="bg-dark text-light p-3 rounded-3"><code class="language-bash">git remote show origin</code></pre>
+                        </div>
+                        <p class="text-secondary small">
+                            Displays information about the remote, including tracked branches and the status of remote-tracking relationships.
+                        </p>
+                    </div>
+
+                    <hr class="my-4 border-light-subtle" />
+
+                    <!-- Section 4 -->
+                    <div class="mb-5">
+                        <h3 class="fw-bold mb-3 d-flex align-items-center gap-2 text-dark">
+                            <i class="bi bi-arrow-left-right text-primary"></i> 4. Changing or Updating a Remote URL
+                        </h3>
+                        <p class="text-secondary">
+                            If a repository is renamed, moved to another account, or changes from HTTPS to SSH, you can update its URL.
+                        </p>
+
+                        <h5 class="fw-semibold text-dark mt-4 mb-2">Update an Existing Remote URL</h5>
+                        <div class="position-relative mb-2">
+                            <pre class="bg-dark text-light p-3 rounded-3"><code class="language-bash">git remote set-url origin &lt;new-repository-url&gt;</code></pre>
+                        </div>
+                        <p class="text-secondary small mb-4">
+                            Changes the URL associated with the <code>origin</code> remote.
+                        </p>
+
+                        <h5 class="fw-semibold text-dark mt-3 mb-2">Remove a Remote</h5>
+                        <div class="position-relative mb-3">
+                            <pre class="bg-dark text-light p-3 rounded-3"><code class="language-bash">git remote remove origin</code></pre>
+                        </div>
+                        <p class="text-secondary small">
+                            Removes the remote configuration named <code>origin</code> from your local repository. It does not delete the hosted repository or your local project files.
+                        </p>
+                    </div>
+
+                    <hr class="my-4 border-light-subtle" />
+
+                                                <!-- Quick Reference -->
+                                <h3 class="fw-bold mb-3">📘 Quick Reference</h3>
+
+                            <div class="table-responsive">
+                        <table class="table table-bordered table-striped align-middle">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Command</th>
+                                <th>Purpose</th>
+                            </tr>
+                            </thead>
+                                <tbody>
+                                <tr>
+                            <td><code>git remote add origin &lt;url&gt;</code></td>
+                            <td>Connect a local repository to a remote</td>
+                                </tr>
+                                <tr>
+                            <td><code>git remote -v</code></td>
+                            <td>List configured remotes and URLs</td>
+                                </tr>
+                                <tr>
+                            <td><code>git push -u origin main</code></td>
+                            <td>Push a branch and set upstream tracking</td>
+                                </tr>
+                                <tr>
+                            <td><code>git push origin feature-login</code></td>
+                            <td>Push a feature branch</td>
+                                </tr>
+                                <tr>
+                            <td><code>git remote show origin</code></td>
+                            <td>Inspect remote configuration and branches</td>
+                                </tr>
+                                <tr>
+                            <td><code>git remote set-url origin &lt;url&gt;</code></td>
+                        <td>Update a remote URL</td>
+                    </tr>
+                <tr>
+                                    <td><code>git remote remove origin</code></td>
+                <td>Remove a remote configuration</td>
+                    </tr>
+                    </tbody>
+                    </table>
+                    </div>
+
+                    <div class="alert alert-success mt-4">
+                <strong>Key Takeaway:</strong>
+                Use <code>git remote add</code> to connect your local
+                        repository, <code>git push</code> to publish branches,
+                    and <code>git remote -v</code> to verify your remote URLs.
+                        </div>
+
+                    <!-- Previous / Next Navigation -->
+                    <div class="d-flex justify-content-between align-items-center gap-3 flex-wrap mt-5 pt-4 border-top">
+
+                        <a class="btn btn-outline-primary"
+                       href='@Url.Action("ResolvingMergeConflicts", "BranchingAndMerging", new { area = "GitHub" })'>
+                    &larr; Previous: Resolving Merge Conflicts
+                        </a>
+
+                        
+                            <a class="btn btn-primary"
+                       href='@Url.Action("CloningProjects", "RemoteCollaboration", new { area = "GitHub" })'>
+    Next: Cloning Projects &rarr;
+</a>
+
+
+
+</div>
+
+
+
+</div>
+</div>
+</section>
+</div>
+</main>
+
+

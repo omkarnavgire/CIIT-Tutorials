@@ -1,0 +1,1861 @@
+﻿@{
+    ViewData["Title"] = "RxJS Higher Order Mapping";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- Header -->
+    <section class="mb-4">
+
+        <h1 class="fw-bold text-dark">
+            RxJS Higher Order Mapping
+        </h1>
+
+        <p class="lead text-muted">
+            Learn how higher order mapping operators create and manage
+            inner Observable streams using switchMap(), mergeMap(),
+            concatMap() and exhaustMap().
+        </p>
+
+    </section>
+
+
+    <!-- Introduction -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            What is Higher Order Mapping?
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                A <strong>higher order Observable</strong> is an Observable
+                whose emitted values are themselves Observables.
+            </p>
+
+            <p>
+                Higher order mapping operators take a value from an outer
+                Observable, use that value to create or select an inner
+                Observable, and then control how those inner Observables
+                are subscribed to.
+            </p>
+
+            <p class="mb-0">
+                Common operators are
+                <strong>switchMap()</strong>,
+                <strong>mergeMap()</strong>,
+                <strong>concatMap()</strong> and
+                <strong>exhaustMap()</strong>.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Flow -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Higher Order Mapping Flow
+        </h2>
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+
+                <strong>Outer Observable</strong>
+
+                <span>
+                    Emits Values
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>Mapping Function</strong>
+
+                <span>
+                    Creates Inner Observable
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>Inner Observable</strong>
+
+                <span>
+                    Async Operation
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>Flattened Result</strong>
+
+                <span>
+                    Subscriber Receives Data
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Why Higher Order -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Why Use Higher Order Mapping?
+        </h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    A
+                </div>
+
+                <h5>
+                    Async Operations
+                </h5>
+
+                <p>
+                    Connect one Observable to another asynchronous operation.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    S
+                </div>
+
+                <h5>
+                    Search
+                </h5>
+
+                <p>
+                    Handle changing search terms and API requests.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    O
+                </div>
+
+                <h5>
+                    API Calls
+                </h5>
+
+                <p>
+                    Start an inner API Observable for each source value.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    C
+                </div>
+
+                <h5>
+                    Concurrency Control
+                </h5>
+
+                <p>
+                    Control whether inner operations run, queue, merge or switch.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Basic Difference -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            map() vs Higher Order Mapping
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                The normal <strong>map()</strong> operator transforms one
+                value into another value.
+            </p>
+
+            <p class="mb-0">
+                Higher order mapping operators transform an outer value
+                into an <strong>Observable</strong> and then control the
+                resulting inner streams.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Normal map()
+            </div>
+
+            <pre><code>const result$ = source$.pipe(
+
+    map(value =&gt; value * 2)
+
+);</code></pre>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Higher Order Mapping
+            </div>
+
+            <pre><code>const result$ = source$.pipe(
+
+    switchMap(value =&gt;
+        getData(value)
+    )
+
+);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Inner Observable -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Outer and Inner Observables
+        </h2>
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+
+                <strong>Search Term</strong>
+
+                <span>
+                    Outer Value
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>switchMap()</strong>
+
+                <span>
+                    Creates Request
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>HTTP Observable</strong>
+
+                <span>
+                    Inner Stream
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>Search Result</strong>
+
+                <span>
+                    Final Output
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- switchMap -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            1. switchMap()
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                <strong>switchMap()</strong> maps each outer value to an
+                inner Observable and switches to the newest inner Observable.
+            </p>
+
+            <p class="mb-0">
+                When a new outer value arrives, the previous inner subscription
+                is cancelled.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Basic Example
+            </div>
+
+            <pre><code>const search$ = of(
+    'Java',
+    '.NET',
+    'Python'
+);
+
+const result$ = search$.pipe(
+
+    switchMap(course =&gt;
+        of(course + ' results')
+    )
+
+);
+
+result$.subscribe({
+
+    next: result =&gt; {
+
+        console.log(result);
+
+    }
+
+});</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- switchMap Use Case -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            switchMap() Use Case
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                switchMap() is especially useful when only the latest request
+                is relevant.
+            </p>
+
+            <p class="mb-0">
+                A common example is a search box where the user enters a new
+                search term before the previous request has finished.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Search Example
+            </div>
+
+            <pre><code>searchControl.valueChanges.pipe(
+
+    debounceTime(300),
+
+    switchMap(term =&gt;
+        this.courseService.search(term)
+    )
+
+).subscribe({
+
+    next: courses =&gt; {
+
+        this.courses = courses;
+
+    },
+
+    error: error =&gt; {
+
+        console.error(error);
+
+    }
+
+});</code></pre>
+
+        </div>
+
+
+        <div class="output-box mt-3">
+
+            <div class="student-preview">
+
+                <h4>
+                    Search Flow
+                </h4>
+
+                <p>
+                    User types: <strong>Java</strong>
+                </p>
+
+                <p>
+                    User changes search: <strong>Java Full Stack</strong>
+                </p>
+
+                <p class="mb-0">
+                    Latest search becomes the active request.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- mergeMap -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            2. mergeMap()
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                <strong>mergeMap()</strong> maps each outer value to an inner
+                Observable and subscribes to the inner Observables concurrently.
+            </p>
+
+            <p class="mb-0">
+                Multiple inner operations can therefore remain active at the
+                same time.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>const courseIds$ = of(
+    101,
+    102,
+    103
+);
+
+const result$ = courseIds$.pipe(
+
+    mergeMap(id =&gt;
+        this.courseService
+            .getCourse(id)
+    )
+
+);
+
+result$.subscribe({
+
+    next: course =&gt; {
+
+        console.log(course);
+
+    }
+
+});</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- mergeMap Flow -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            mergeMap() Flow
+        </h2>
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+
+                <strong>101</strong>
+
+                <span>
+                    Request A
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                +
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>102</strong>
+
+                <span>
+                    Request B
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                +
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>103</strong>
+
+                <span>
+                    Request C
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>mergeMap()</strong>
+
+                <span>
+                    Concurrent Inner Streams
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- concatMap -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            3. concatMap()
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                <strong>concatMap()</strong> maps each outer value to an
+                inner Observable and subscribes to those inner Observables
+                sequentially.
+            </p>
+
+            <p class="mb-0">
+                The next inner Observable starts only after the previous
+                inner Observable completes.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>const topics$ = of(
+    'Introduction',
+    'Components',
+    'Services'
+);
+
+const result$ = topics$.pipe(
+
+    concatMap(topic =&gt;
+        this.lessonService
+            .saveProgress(topic)
+    )
+
+);
+
+result$.subscribe({
+
+    next: response =&gt; {
+
+        console.log(response);
+
+    }
+
+});</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- concatMap Flow -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            concatMap() Flow
+        </h2>
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+
+                <strong>Topic 1</strong>
+
+                <span>
+                    Start
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>Complete</strong>
+
+                <span>
+                    Topic 1 Done
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>Topic 2</strong>
+
+                <span>
+                    Start Next
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>Topic 3</strong>
+
+                <span>
+                    Then Next
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- exhaustMap -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            4. exhaustMap()
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                <strong>exhaustMap()</strong> maps an outer value to an inner
+                Observable and ignores new outer values while the current
+                inner Observable is still active.
+            </p>
+
+            <p class="mb-0">
+                It is useful when only one operation should be processed at a
+                time and additional triggers should be ignored until the
+                current operation completes.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>submitButtonClicks$.pipe(
+
+    exhaustMap(() =&gt;
+
+        this.enquiryService
+            .submitEnquiry()
+
+    )
+
+).subscribe({
+
+    next: response =&gt; {
+
+        console.log(response);
+
+    }
+
+});</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- exhaustMap Flow -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            exhaustMap() Flow
+        </h2>
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+
+                <strong>Click 1</strong>
+
+                <span>
+                    Start Request
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>Request Active</strong>
+
+                <span>
+                    Other Clicks Ignored
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>Complete</strong>
+
+                <span>
+                    Ready Again
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Operator Comparison -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Higher Order Mapping Operators Comparison
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table syntax-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Operator
+                        </th>
+
+                        <th>
+                            New Inner Observable
+                        </th>
+
+                        <th>
+                            Previous Inner
+                        </th>
+
+                        <th>
+                            Main Behavior
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            <code>switchMap()</code>
+                        </td>
+
+                        <td>
+                            Starts latest
+                        </td>
+
+                        <td>
+                            Previous is cancelled
+                        </td>
+
+                        <td>
+                            Switch to latest
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            <code>mergeMap()</code>
+                        </td>
+
+                        <td>
+                            Starts immediately
+                        </td>
+
+                        <td>
+                            Previous continues
+                        </td>
+
+                        <td>
+                            Run concurrently
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            <code>concatMap()</code>
+                        </td>
+
+                        <td>
+                            Waits for turn
+                        </td>
+
+                        <td>
+                            Previous continues
+                        </td>
+
+                        <td>
+                            Run sequentially
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            <code>exhaustMap()</code>
+                        </td>
+
+                        <td>
+                            Ignored while active
+                        </td>
+
+                        <td>
+                            Continues
+                        </td>
+
+                        <td>
+                            Ignore new triggers during active work
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- Decision Guide -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Which Operator Should You Choose?
+        </h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    S
+                </div>
+
+                <h5>
+                    switchMap()
+                </h5>
+
+                <p>
+                    Use when only the latest inner operation matters.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    M
+                </div>
+
+                <h5>
+                    mergeMap()
+                </h5>
+
+                <p>
+                    Use when multiple inner operations may run concurrently.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    Q
+                </div>
+
+                <h5>
+                    concatMap()
+                </h5>
+
+                <p>
+                    Use when inner operations must be processed in order.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    E
+                </div>
+
+                <h5>
+                    exhaustMap()
+                </h5>
+
+                <p>
+                    Use when new triggers should be ignored during active work.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CIIT Example -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            CIIT Training Institute Example
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                Suppose a CIIT Training Institute website has a course search
+                box. Every time the user enters a search term, the application
+                needs to request matching courses from an API.
+            </p>
+
+            <p class="mb-0">
+                Since only the latest search is important, a
+                <strong>switchMap()</strong> pipeline is suitable for this
+                type of workflow.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Search Pipeline
+            </div>
+
+            <pre><code>searchControl.valueChanges.pipe(
+
+    debounceTime(300),
+
+    filter(term =&gt;
+        term.length &gt; 2
+    ),
+
+    switchMap(term =&gt;
+        this.courseService
+            .searchCourses(term)
+    )
+
+).subscribe({
+
+    next: courses =&gt; {
+
+        this.courses = courses;
+
+    },
+
+    error: error =&gt; {
+
+        console.error(error);
+
+    }
+
+});</code></pre>
+
+        </div>
+
+
+        <div class="output-box mt-3">
+
+            <div class="student-preview">
+
+                <h4>
+                    CIIT Training Institute Course Search
+                </h4>
+
+                <p>
+                    Search:
+                    <strong>Angular</strong>
+                </p>
+
+                <p>
+                    Search:
+                    <strong>Angular Full Stack</strong>
+                </p>
+
+                <p class="mb-0">
+                    Latest search request is processed.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Save Sequence Example -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Sequential Save Example with concatMap()
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                Suppose several course-progress updates must be sent to
+                the server in the same order in which they are generated.
+            </p>
+
+            <p class="mb-0">
+                <strong>concatMap()</strong> can be used to queue the inner
+                operations and process them sequentially.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>const progress$ = of(
+    'Components',
+    'Services',
+    'Routing'
+);
+
+progress$.pipe(
+
+    concatMap(topic =&gt;
+        this.progressService
+            .save(topic)
+    )
+
+).subscribe({
+
+    next: response =&gt; {
+
+        console.log(response);
+
+    }
+
+});</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Concurrent Example -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Concurrent Operations with mergeMap()
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                When individual operations do not need to wait for each
+                other, <strong>mergeMap()</strong> can allow multiple
+                inner Observables to be active concurrently.
+            </p>
+
+            <p class="mb-0">
+                The order in which responses arrive should therefore not
+                be assumed to be the same as the source order.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>const ids$ = of(
+    101,
+    102,
+    103
+);
+
+ids$.pipe(
+
+    mergeMap(id =&gt;
+        this.courseService
+            .getCourse(id)
+    )
+
+).subscribe({
+
+    next: course =&gt; {
+
+        console.log(course);
+
+    }
+
+});</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Login Example -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Single Active Action with exhaustMap()
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                Consider a submit button that may be clicked several times
+                while the current request is still running.
+            </p>
+
+            <p class="mb-0">
+                <strong>exhaustMap()</strong> can keep the first active
+                request and ignore additional triggers until it completes.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>submitClicks$.pipe(
+
+    exhaustMap(() =&gt;
+        this.authService
+            .login()
+    )
+
+).subscribe({
+
+    next: response =&gt; {
+
+        console.log(
+            'Login successful'
+        );
+
+    },
+
+    error: error =&gt; {
+
+        console.error(error);
+
+    }
+
+});</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Common Scenarios -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Common Real-World Scenarios
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table syntax-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Scenario
+                        </th>
+
+                        <th>
+                            Suggested Operator
+                        </th>
+
+                        <th>
+                            Reason
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            Search as user types
+                        </td>
+
+                        <td>
+                            <code>switchMap()</code>
+                        </td>
+
+                        <td>
+                            Latest search is more relevant
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Independent requests
+                        </td>
+
+                        <td>
+                            <code>mergeMap()</code>
+                        </td>
+
+                        <td>
+                            Operations can run concurrently
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Ordered save operations
+                        </td>
+
+                        <td>
+                            <code>concatMap()</code>
+                        </td>
+
+                        <td>
+                            Operations should execute sequentially
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Submit button
+                        </td>
+
+                        <td>
+                            <code>exhaustMap()</code>
+                        </td>
+
+                        <td>
+                            Ignore new triggers while active
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- Important Points -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Important Points
+        </h2>
+
+        <div class="best-practice-list">
+
+            <div class="info-card mb-3">
+
+                <strong>
+                    1. Higher Order Mapping Creates Inner Streams
+                </strong>
+
+                <p class="mb-0">
+                    The mapping function can return an Observable for each
+                    outer value.
+                </p>
+
+            </div>
+
+
+            <div class="info-card mb-3">
+
+                <strong>
+                    2. Operators Control Inner Subscriptions
+                </strong>
+
+                <p class="mb-0">
+                    Different operators decide whether inner streams are
+                    cancelled, merged, queued or ignored.
+                </p>
+
+            </div>
+
+
+            <div class="info-card mb-3">
+
+                <strong>
+                    3. switchMap() Means Latest
+                </strong>
+
+                <p class="mb-0">
+                    New source values switch the active inner subscription.
+                </p>
+
+            </div>
+
+
+            <div class="info-card">
+
+                <strong>
+                    4. Operator Choice Depends on Business Requirement
+                </strong>
+
+                <p class="mb-0">
+                    Select the operator according to whether work should
+                    run concurrently, sequentially, or only for the latest
+                    trigger.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Best Practices -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Higher Order Mapping Best Practices
+        </h2>
+
+        <ul class="best-practice-list">
+
+            <li>
+                Choose switchMap(), mergeMap(), concatMap() or exhaustMap()
+                based on the required concurrency behavior.
+            </li>
+
+            <li>
+                Do not use switchMap() automatically; make sure cancelling
+                the previous inner operation is acceptable.
+            </li>
+
+            <li>
+                Use concatMap() when ordering between inner operations matters.
+            </li>
+
+            <li>
+                Use mergeMap() when concurrent inner operations are acceptable.
+            </li>
+
+            <li>
+                Use exhaustMap() when repeated triggers should be ignored
+                while one operation is active.
+            </li>
+
+            <li>
+                Handle errors appropriately inside or around the Observable
+                pipeline according to the required behavior.
+            </li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- Summary -->
+    <section class="mb-4">
+
+        <div class="summary-box">
+
+            <h4 class="fw-bold">
+                Summary
+            </h4>
+
+            <p>
+                Higher order mapping is used when an Observable value needs
+                to produce or select another Observable.
+            </p>
+
+            <p>
+                <strong>switchMap()</strong> switches to the latest inner
+                Observable, <strong>mergeMap()</strong> allows concurrent
+                inner operations, <strong>concatMap()</strong> processes
+                inner Observables sequentially, and
+                <strong>exhaustMap()</strong> ignores new triggers while
+                an inner Observable is active.
+            </p>
+
+            <p class="mb-0">
+                In the next topic, we will learn about
+                <strong>Subjects</strong>.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Navigation -->
+    <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+
+        <a class="btn btn-outline-secondary"
+           href="@Url.Action("CombiningObservables", "RxJS", new { area = "Angular" })">
+
+            ← Combining Observables
+
+        </a>
+
+
+        <a class="btn btn-primary"
+           href="@Url.Action("Subjects", "RxJS", new { area = "Angular" })">
+
+            Subjects →
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<style>
+
+    .info-card {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-left: 5px solid #4c1d95;
+        border-radius: 10px;
+        padding: 20px;
+        line-height: 1.7;
+        color: #334155;
+    }
+
+
+    .syntax-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        flex-wrap: wrap;
+        margin: 25px 0;
+    }
+
+
+    .syntax-box {
+        background: linear-gradient( 135deg, #2e1065, #4c1d95 );
+        color: white;
+        padding: 18px 25px;
+        border-radius: 12px;
+        text-align: center;
+        min-width: 180px;
+        box-shadow: 0 5px 15px rgba(76, 29, 149, 0.15);
+    }
+
+
+        .syntax-box strong {
+            display: block;
+            font-size: 16px;
+        }
+
+
+        .syntax-box span {
+            display: block;
+            margin-top: 5px;
+            color: #d8c9f5;
+            font-size: 14px;
+        }
+
+
+    .syntax-arrow {
+        font-size: 28px;
+        font-weight: bold;
+        color: #4c1d95;
+    }
+
+
+    .syntax-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+
+
+    .syntax-card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 22px;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+    }
+
+
+        .syntax-card h5 {
+            margin-top: 15px;
+            font-weight: 700;
+            color: #2e1065;
+        }
+
+
+        .syntax-card p {
+            color: #64748b;
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+
+
+    .syntax-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: #ede9fe;
+        color: #4c1d95;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 18px;
+        margin: 0 auto;
+    }
+
+
+    .code-card {
+        background: #0f172a;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(15, 23, 42, 0.10);
+    }
+
+
+    .code-title {
+        background: #1e293b;
+        color: #ffffff;
+        padding: 12px 18px;
+        font-weight: 700;
+        font-size: 14px;
+    }
+
+
+    .code-card pre {
+        margin: 0;
+        padding: 20px;
+        overflow-x: auto;
+    }
+
+
+    .code-card code {
+        color: #f8fafc;
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+
+    .output-box {
+        background: #f8fafc;
+        border: 1px solid #ddd6fe;
+        border-radius: 12px;
+        padding: 20px;
+    }
+
+
+    .student-preview {
+        background: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        padding: 20px;
+    }
+
+
+        .student-preview h4 {
+            color: #2e1065;
+            font-weight: 700;
+        }
+
+
+        .student-preview p {
+            color: #64748b;
+        }
+
+
+    .syntax-table {
+        width: 100%;
+        margin-bottom: 0;
+        border: 1px solid #e2e8f0;
+    }
+
+
+        .syntax-table thead th {
+            background: #2e1065;
+            color: white;
+            padding: 14px;
+            border-color: #4c1d95;
+        }
+
+
+        .syntax-table tbody td {
+            padding: 14px;
+            vertical-align: middle;
+            color: #334155;
+            border-color: #e2e8f0;
+        }
+
+
+        .syntax-table tbody tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+
+        .syntax-table code {
+            color: #4c1d95;
+            font-weight: 600;
+        }
+
+
+    .best-practice-list {
+        margin: 0;
+        padding-left: 20px;
+    }
+
+
+        .best-practice-list li {
+            margin-bottom: 10px;
+            color: #334155;
+            line-height: 1.6;
+        }
+
+
+    .summary-box {
+        background: #cfe2ff;
+        color: #084298;
+        border-radius: 10px;
+        padding: 22px;
+        border: 1px solid #b6d4fe;
+    }
+
+
+        .summary-box h4 {
+            margin-bottom: 12px;
+        }
+
+
+    @@media (max-width: 991px) {
+
+        .syntax-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .syntax-flow {
+            gap: 12px;
+        }
+
+        .syntax-box {
+            min-width: 160px;
+        }
+    }
+
+
+    @@media (max-width: 576px) {
+
+        .syntax-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .syntax-flow {
+            flex-direction: column;
+        }
+
+        .syntax-arrow {
+            transform: rotate(90deg);
+        }
+
+        .syntax-box {
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .code-card pre {
+            padding: 15px;
+        }
+
+        .code-card code {
+            font-size: 13px;
+        }
+    }
+
+</style>

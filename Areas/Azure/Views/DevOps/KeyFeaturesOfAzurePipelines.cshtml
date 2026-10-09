@@ -1,0 +1,47 @@
+@{
+    ViewData["Title"] = "Key Features of Azure Pipelines";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+                <div class="azure-notes-content">
+                    <pre class="azure-notes-text">Key Features of Azure Pipelines
+The key features of the Azure Pipeline are :
+
+    •   CI/CD Automation: Automates the entire build, test, and deployment process.
+
+    •   Multi-Platform Support: Works with multiple platforms like Windows, Linux, and macOS.
+
+    •   Cloud and On-Premise Integration: Deploys to cloud (Azure, AWS) and on-premise servers.
+
+    •   YAML Pipelines: Pipelines can be defined and version-controlled using YAML configuration
+        files.
+
+    •   Build and Release Management: Manages different versions and releases of software
+        efficiently.
+    •   Parallel Jobs: Supports parallel job execution to speed up builds and testing.
+
+    •   Customizable Tasks: Allows custom tasks or uses pre-built tasks from the marketplace.</pre>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_10_-_Azure_Pipelines_A_Complete_Guide_to_CICD_Automation/p02-000.jpg" class="img-fluid rounded shadow-sm" alt="Key Features of Azure Pipelines - source image" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+            @await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureLessonNavigation.cshtml")
+</section>
+</div>
+<style>
+.azure-notes-text{white-space:pre-wrap;word-break:normal;font-family:inherit;font-size:1rem;line-height:1.7;background:#fff;border:0;padding:0;margin:0;color:#212529;}
+.azure-notes-content img{max-height:720px;}
+</style>

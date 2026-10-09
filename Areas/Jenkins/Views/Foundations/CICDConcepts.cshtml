@@ -1,0 +1,160 @@
+@{
+    Layout = "~/Areas/Jenkins/Views/Shared/JenkinsLayout.cshtml";
+    ViewData["Title"] = "What is CI/CD?";
+}
+
+<style>
+    #what-is-ci-cd-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #what-is-ci-cd-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #what-is-ci-cd-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #what-is-ci-cd-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #what-is-ci-cd-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+    #what-is-ci-cd-page .example-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+    }
+</style>
+
+<main id="what-is-ci-cd-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/Jenkins/Views/Shared/JenkinsTopics.cshtml")
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+                <h1 class="fw-bold">What is CI/CD?</h1>
+                <p class="lead">
+                    CI/CD in Jenkins refers to the automation of software delivery phases using the Jenkins automation server. Continuous Integration (CI) focuses on automatically building and testing code changes, while Continuous Delivery/Deployment (CD) ensures those changes are reliably delivered to staging or production environments.
+                </p>
+            </div>
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">The Two Core Components</h2>
+                <ul class="mb-3">
+                    <li class="fw-bold">
+                        Continuous Integration (CI):
+                        <ul>
+                            <li>Automates code merging.</li>
+                            <li>Triggers automatic builds.</li>
+                            <li>Runs instant tests.</li>
+                            <li>Catches bugs early.</li>
+                        </ul>
+                    </li>
+                    <li class="fw-bold mt-2">
+                        Continuous Delivery / Deployment (CD):
+                        <ul>
+                            <li>Automates the release process.</li>
+                            <li>Delivers to staging environments (Delivery).</li>
+                            <li>Deploys directly to production (Deployment).</li>
+                            <li>Reduces manual human errors.</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="alert alert-info">
+                    <strong>Simple Definition:</strong> Continuous Integration and Continuous Delivery/Deployment automate the path from source-code change to a tested and releasable application.
+                </div>
+            </div>
+
+            <!-- KEY CONCEPTS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Key Concepts</h2>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Concept</h5>
+                            <p class="mb-0">Understand the purpose of What is CI/CD? and how it fits into a Jenkins workflow.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Real-World Use</h5>
+                            <p class="mb-0">Apply the concept when creating, running, testing, or deploying a Jenkins job or pipeline.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXAMPLE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Practical Jenkins Example</h2>
+                <pre><code>pipeline {
+    agent any
+    stages {
+        stage('Learn What is CI/CD?') {
+            steps {
+                echo 'Jenkins lesson: What is CI/CD?' 
+            }
+        }
+    }
+}</code></pre>
+            </div>
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Practice Exercise</h2>
+                <ol>
+                    <li class="mb-2">Open Jenkins and identify the relevant configuration area.</li>
+                    <li class="mb-2">Create or update a small test job or pipeline for this lesson.</li>
+                    <li class="mb-2">Run the job and inspect the Console Output.</li>
+                    <li>Record what changed and verify the result.</li>
+                </ol>
+            </div>
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+                <h2 class="h4 fw-bold">Summary</h2>
+                <p class="mb-0">You have completed the <strong>What is CI/CD?</strong> lesson. Continue through the syllabus to build the Jenkins skills required for real CI/CD automation.</p>
+            </div>
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+                <a class="btn btn-outline-primary" href="@Url.Action("Index", "Foundations", new { area = "Jenkins" })">← Previous: Introduction to Jenkins</a>
+                <a class="btn btn-primary" href="@Url.Action("WhyJenkins", "Foundations", new { area = "Jenkins" })">Next: Why Jenkins? →</a>
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

@@ -1,0 +1,591 @@
+﻿@{
+    ViewData["Title"] = "Non-Clustered Index";
+}
+
+<div class="container-fluid px-4 py-4">
+
+    <!-- =========================
+         PAGE HEADER
+    ========================== -->
+
+    <div class="mb-4">
+
+        <h1 class="fw-bold">
+            Non-Clustered Index
+        </h1>
+
+        <p class="text-muted">
+            A Non-Clustered Index is a separate structure that helps SQL Server
+            find data quickly without changing the physical order of the table.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         INTRODUCTION
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                What is a Non-Clustered Index?
+            </h2>
+
+            <p>
+                A <strong>Non-Clustered Index</strong> is an index structure
+                that is stored separately from the actual table data.
+            </p>
+
+            <p>
+                It contains the indexed column values along with a reference
+                that allows SQL Server to locate the actual rows in the table.
+            </p>
+
+            <p>
+                Unlike a clustered index, a non-clustered index does not
+                determine the physical order of the table data.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         CLUSTERED VS NON-CLUSTERED
+    ========================== -->
+
+    <div class="alert alert-info mb-4">
+
+        <h4 class="fw-bold">
+            Important Difference
+        </h4>
+
+        <p>
+            A clustered index determines the physical order of table data,
+            whereas a non-clustered index is a separate structure that
+            contains indexed values and row references.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         SYNTAX
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Syntax
+            </h2>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>CREATE NONCLUSTERED INDEX index_name
+ON table_name(column_name);</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         CREATE TABLE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Example Table
+            </h2>
+
+            <p>
+                Consider the following Students table:
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>CREATE TABLE Students
+(
+    StudentId INT,
+    StudentName VARCHAR(100),
+    Course VARCHAR(100),
+    City VARCHAR(50),
+    Age INT
+);</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         CREATING NON-CLUSTERED INDEX
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Creating a Non-Clustered Index
+            </h2>
+
+            <p>
+                Suppose we frequently search students based on the
+                <strong>City</strong> column.
+            </p>
+
+            <p>
+                We can create a non-clustered index on the City column:
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>CREATE NONCLUSTERED INDEX IX_Students_City
+ON Students(City);</code></pre>
+
+            <p class="mt-3">
+                Here:
+            </p>
+
+            <ul>
+
+                <li>
+                    <strong>IX_Students_City</strong> is the index name.
+                </li>
+
+                <li>
+                    <strong>Students</strong> is the table name.
+                </li>
+
+                <li>
+                    <strong>City</strong> is the indexed column.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         SAMPLE DATA
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Sample Data
+            </h2>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>INSERT INTO Students
+VALUES
+(101, 'Rahul', 'Dot Net', 'Pune', 22),
+(102, 'Priya', 'Java', 'Mumbai', 21),
+(103, 'Amit', 'Python', 'Pune', 23),
+(104, 'Neha', 'Testing', 'Delhi', 22),
+(105, 'Rohit', 'Dot Net', 'Pune', 24);</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         SELECT QUERY
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Using the Non-Clustered Index
+            </h2>
+
+            <p>
+                Now suppose we want to find all students from Pune:
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>SELECT *
+FROM Students
+WHERE City = 'Pune';</code></pre>
+
+            <p class="mt-3">
+                If SQL Server determines that the non-clustered index is
+                useful for the query, it can use the index to locate the
+                required rows efficiently.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         MULTIPLE NON-CLUSTERED INDEXES
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Multiple Non-Clustered Indexes
+            </h2>
+
+            <p>
+                Unlike a clustered index, a table can have multiple
+                non-clustered indexes.
+            </p>
+
+            <p>
+                For example, we can create indexes on both
+                <strong>City</strong> and <strong>Course</strong>.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>CREATE NONCLUSTERED INDEX IX_Students_City
+ON Students(City);
+
+CREATE NONCLUSTERED INDEX IX_Students_Course
+ON Students(Course);</code></pre>
+
+            <p class="mt-3">
+                Both indexes can exist on the same table.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         MULTIPLE COLUMN INDEX
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Non-Clustered Index on Multiple Columns
+            </h2>
+
+            <p>
+                A non-clustered index can also contain more than one column.
+                Such an index is called a composite or multi-column index.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>CREATE NONCLUSTERED INDEX IX_Students_City_Course
+ON Students(City, Course);</code></pre>
+
+            <p class="mt-3">
+                This index contains both <strong>City</strong> and
+                <strong>Course</strong> columns.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         INCLUDE COLUMNS
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Including Additional Columns
+            </h2>
+
+            <p>
+                SQL Server also allows additional non-key columns to be
+                included in a non-clustered index.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>CREATE NONCLUSTERED INDEX IX_Students_City
+ON Students(City)
+INCLUDE(StudentName, Course);</code></pre>
+
+            <p class="mt-3">
+                Here, <strong>City</strong> is the index key and
+                <strong>StudentName</strong> and <strong>Course</strong>
+                are included columns.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         ADVANTAGES
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Advantages of Non-Clustered Index
+            </h2>
+
+            <ul>
+
+                <li class="mb-2">
+                    A table can have multiple non-clustered indexes.
+                </li>
+
+                <li class="mb-2">
+                    They can improve search performance.
+                </li>
+
+                <li class="mb-2">
+                    They are useful for frequently searched columns.
+                </li>
+
+                <li class="mb-2">
+                    They can improve queries using WHERE conditions.
+                </li>
+
+                <li class="mb-2">
+                    They can be useful for JOIN and ORDER BY operations.
+                </li>
+
+                <li class="mb-2">
+                    Included columns can help cover frequently executed queries.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         DISADVANTAGES
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Disadvantages of Non-Clustered Index
+            </h2>
+
+            <ul>
+
+                <li class="mb-2">
+                    Non-clustered indexes require additional storage.
+                </li>
+
+                <li class="mb-2">
+                    Too many indexes can slow down INSERT operations.
+                </li>
+
+                <li class="mb-2">
+                    UPDATE and DELETE operations may require index maintenance.
+                </li>
+
+                <li class="mb-2">
+                    Indexes need to be maintained as table data changes.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         CLUSTERED VS NON-CLUSTERED
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-4">
+                Clustered Index vs Non-Clustered Index
+            </h2>
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-striped">
+
+                    <thead class="table-dark">
+
+                        <tr>
+                            <th>Clustered Index</th>
+                            <th>Non-Clustered Index</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>
+                                Determines the physical order of table data.
+                            </td>
+
+                            <td>
+                                Does not determine the physical order of table data.
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                Only one clustered index can exist on a table.
+                            </td>
+
+                            <td>
+                                Multiple non-clustered indexes can exist on a table.
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                Data rows are associated directly with the
+                                clustered index order.
+                            </td>
+
+                            <td>
+                                The index contains keys and references to
+                                the actual rows.
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                Useful for range-based retrieval.
+                            </td>
+
+                            <td>
+                                Useful for targeted searches and filtering.
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         IMPORTANT POINTS
+    ========================== -->
+
+    <div class="alert alert-warning mb-4">
+
+        <h4 class="fw-bold">
+            Important Points
+        </h4>
+
+        <ul class="mb-0">
+
+            <li>
+                A table can have multiple non-clustered indexes.
+            </li>
+
+            <li>
+                A non-clustered index is stored separately from the
+                actual table data.
+            </li>
+
+            <li>
+                Non-clustered indexes can improve SELECT query performance.
+            </li>
+
+            <li>
+                Indexes require additional storage space.
+            </li>
+
+            <li>
+                Too many indexes can negatively affect INSERT, UPDATE
+                and DELETE operations.
+            </li>
+
+        </ul>
+
+    </div>
+
+
+    <!-- =========================
+         SUMMARY
+    ========================== -->
+
+    <div class="p-4 rounded shadow-sm mb-4"
+         style="background-color:#cfe2ff;">
+
+        <h2 class="fw-bold mb-3">
+            Summary
+        </h2>
+
+        <p>
+            A <strong>Non-Clustered Index</strong> is a separate index
+            structure that helps SQL Server locate rows efficiently.
+            It does not change the physical order of data in the table.
+        </p>
+
+        <p>
+            Unlike a clustered index, a table can contain multiple
+            non-clustered indexes.
+        </p>
+
+        <p class="mb-0">
+            Non-clustered indexes are useful for frequently searched,
+            filtered, joined and sorted columns, but they should be
+            created carefully because they require additional storage
+            and maintenance.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         PREVIOUS / NEXT
+    ========================== -->
+
+    <div class="d-flex justify-content-between align-items-center
+        mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/Indexes/ClusteredIndex"
+           class="btn btn-outline-primary">
+
+            ← Previous: Clustered Index
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/Indexes/CreateDropIndexes"
+           class="btn btn-primary">
+
+            Next: Creating &amp; Dropping Indexes →
+
+        </a>
+
+    </div>
+
+</div>

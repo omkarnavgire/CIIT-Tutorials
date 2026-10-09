@@ -1,0 +1,492 @@
+﻿@{
+    ViewData["Title"] = "ORDER BY Clause";
+}
+
+<section>
+
+    <!-- PAGE INTRODUCTION -->
+
+    <div class="mb-5">
+
+        <h1 class="fw-bold mb-3">
+            ORDER BY Clause
+        </h1>
+
+        <p class="lead text-muted">
+            The ORDER BY clause is used to sort the result of a SQL
+            query in ascending or descending order.
+        </p>
+
+        <p>
+            By default, ORDER BY sorts data in ascending order.
+            We can also use the <strong>DESC</strong> keyword to sort
+            the data in descending order.
+        </p>
+
+    </div>
+
+
+    <!-- WHAT IS ORDER BY -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            What is ORDER BY Clause?
+        </h2>
+
+        <p>
+            The <strong>ORDER BY</strong> clause is used to arrange
+            records returned by a SELECT query according to one or
+            more columns.
+        </p>
+
+        <p>
+            It is useful when we want to display data in a specific
+            sequence such as lowest to highest, highest to lowest,
+            A to Z or Z to A.
+        </p>
+
+    </section>
+
+
+    <!-- BASIC SYNTAX -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Syntax
+        </h2>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT column1, column2
+FROM table_name
+ORDER BY column_name;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- SAMPLE TABLE -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Example Table
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>StudentId</th>
+                        <th>StudentName</th>
+                        <th>Age</th>
+                        <th>City</th>
+                        <th>Fees</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>101</td>
+                        <td>Rahul</td>
+                        <td>22</td>
+                        <td>Pune</td>
+                        <td>35000</td>
+                    </tr>
+
+                    <tr>
+                        <td>102</td>
+                        <td>Priya</td>
+                        <td>23</td>
+                        <td>Mumbai</td>
+                        <td>40000</td>
+                    </tr>
+
+                    <tr>
+                        <td>103</td>
+                        <td>Amit</td>
+                        <td>21</td>
+                        <td>Nashik</td>
+                        <td>30000</td>
+                    </tr>
+
+                    <tr>
+                        <td>104</td>
+                        <td>Neha</td>
+                        <td>24</td>
+                        <td>Pune</td>
+                        <td>45000</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- ASCENDING ORDER -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            ORDER BY ASC
+        </h2>
+
+        <p>
+            The <strong>ASC</strong> keyword sorts the records in
+            ascending order.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT *
+FROM Students
+ORDER BY Age ASC;</code></pre>
+
+        </div>
+
+        <p class="mt-3">
+            The youngest student will appear first and the oldest
+            student will appear last.
+        </p>
+
+    </section>
+
+
+    <!-- DESCENDING ORDER -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            ORDER BY DESC
+        </h2>
+
+        <p>
+            The <strong>DESC</strong> keyword sorts the records in
+            descending order.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT *
+FROM Students
+ORDER BY Age DESC;</code></pre>
+
+        </div>
+
+        <p class="mt-3">
+            The oldest student will appear first and the youngest
+            student will appear last.
+        </p>
+
+    </section>
+
+
+    <!-- DEFAULT ASCENDING -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Default Sorting
+        </h2>
+
+        <p>
+            If we do not specify ASC or DESC, SQL Server uses
+            ascending order by default.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT *
+FROM Students
+ORDER BY Age;</code></pre>
+
+        </div>
+
+        <p class="mt-3">
+            The above query is equivalent to using
+            <strong>ORDER BY Age ASC</strong>.
+        </p>
+
+    </section>
+
+
+    <!-- ORDER BY STRING -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            ORDER BY with Character Data
+        </h2>
+
+        <p>
+            ORDER BY can also be used with character or string
+            columns.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT *
+FROM Students
+ORDER BY StudentName ASC;</code></pre>
+
+        </div>
+
+        <p class="mt-3">
+            This sorts the student names alphabetically.
+        </p>
+
+    </section>
+
+
+    <!-- ORDER BY FEES -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            ORDER BY with Fees
+        </h2>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT *
+FROM Students
+ORDER BY Fees DESC;</code></pre>
+
+        </div>
+
+        <p class="mt-3">
+            This displays the student having the highest fees first.
+        </p>
+
+    </section>
+
+
+    <!-- MULTIPLE COLUMNS -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            ORDER BY Multiple Columns
+        </h2>
+
+        <p>
+            We can sort records using more than one column.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT *
+FROM Students
+ORDER BY City ASC, Age DESC;</code></pre>
+
+        </div>
+
+        <p class="mt-3">
+            First, records are sorted by City in ascending order.
+            Within the same city, records are sorted by Age in
+            descending order.
+        </p>
+
+    </section>
+
+
+    <!-- ORDER BY WITH WHERE -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            ORDER BY with WHERE
+        </h2>
+
+        <p>
+            ORDER BY can be combined with WHERE to filter records
+            and then sort the filtered result.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT *
+FROM Students
+WHERE City = 'Pune'
+ORDER BY Age DESC;</code></pre>
+
+        </div>
+
+        <p class="mt-3">
+            This query first selects students from Pune and then
+            sorts them by age from highest to lowest.
+        </p>
+
+    </section>
+
+
+    <!-- ORDER BY COLUMN POSITION -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            ORDER BY using Column Position
+        </h2>
+
+        <p>
+            SQL Server also allows sorting using the position of a
+            column in the SELECT list.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT StudentName, Age, City
+FROM Students
+ORDER BY 2 DESC;</code></pre>
+
+        </div>
+
+        <p class="mt-3">
+            Here, <strong>2</strong> represents the second column
+            selected, which is Age.
+        </p>
+
+    </section>
+
+
+    <!-- IMPORTANT -->
+
+    <section class="mb-5">
+
+        <div class="alert alert-warning border-0">
+
+            <h4 class="fw-bold mb-3">
+                Important
+            </h4>
+
+            <ul class="mb-0">
+
+                <li class="mb-2">
+                    ORDER BY is used to sort query results.
+                </li>
+
+                <li class="mb-2">
+                    ASC sorts data in ascending order.
+                </li>
+
+                <li class="mb-2">
+                    DESC sorts data in descending order.
+                </li>
+
+                <li class="mb-2">
+                    ASC is the default sorting order.
+                </li>
+
+                <li class="mb-2">
+                    Multiple columns can be used with ORDER BY.
+                </li>
+
+                <li>
+                    ORDER BY can be combined with WHERE.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </section>
+
+
+    <!-- SUMMARY -->
+
+    <section class="mb-4">
+
+        <div class="alert alert-primary border-0">
+
+            <h2 class="fw-bold mb-3">
+                Summary
+            </h2>
+
+            <p class="mb-0">
+                In this section, we learned how the ORDER BY clause
+                is used to sort SQL Server query results. We covered
+                ascending and descending order, sorting by multiple
+                columns, combining ORDER BY with WHERE, and sorting
+                using column position.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- PREVIOUS / NEXT -->
+
+    <div class="d-flex justify-content-between align-items-center
+                mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/Queries/WhereClause"
+           class="btn btn-outline-primary">
+
+            ← Previous: WHERE Clause
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/Queries/Distinct"
+           class="btn btn-primary">
+
+            Next: DISTINCT →
+
+        </a>
+
+    </div>
+
+</section>

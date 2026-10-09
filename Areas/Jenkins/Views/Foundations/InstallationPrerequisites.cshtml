@@ -1,0 +1,175 @@
+@{
+    Layout = "~/Areas/Jenkins/Views/Shared/JenkinsLayout.cshtml";
+    ViewData["Title"] = "Installation Prerequisites";
+}
+
+<style>
+    #installation-prerequisites-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #installation-prerequisites-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #installation-prerequisites-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #installation-prerequisites-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #installation-prerequisites-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+    #installation-prerequisites-page .example-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+    }
+</style>
+
+<main id="installation-prerequisites-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/Jenkins/Views/Shared/JenkinsTopics.cshtml")
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+                <h1 class="fw-bold">Installation Prerequisites</h1>
+                <p class="lead">
+                    Understand the foundational system requirements, network dependencies, and runtime environments needed to deploy a stable Jenkins controller.
+                </p>
+            </div>
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">What are Installation Prerequisites?</h2>
+                <p>
+                    Before installing Jenkins, you must ensure your host environment (whether bare metal, virtual machine, or container) meets specific hardware and software thresholds. Missing these baselines can cause execution failure, memory outages, or broken plugin dependencies during your CI/CD workflows.
+                </p>
+
+                <div class="alert alert-info">
+                    <strong>Core Baseline:</strong> Jenkins runs as a Java application. Therefore, having a compatible Java Development Kit (JDK) or Java Runtime Environment (JRE) configured on your system is the most critical requirement.
+                </div>
+            </div>
+
+            <!-- KEY CONCEPTS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Key System Specifications</h2>
+                <div class="row g-3">
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>1. Hardware Requirements</h5>
+                            <ul>
+                                <li><strong>Minimum:</strong> 512 MB RAM, 10 GB storage space (For small/personal usage).</li>
+                                <li><strong>Recommended:</strong> 4+ GB RAM, 50+ GB storage configured with fast SSD I/O for production pipeline history.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>2. Java Runtime Baseline</h5>
+                            <ul>
+                                <li><strong>Supported Releases:</strong> Java 11 or Java 17 (OpenJDK or Oracle distributions).</li>
+                                <li><strong>Crucial:</strong> Both the Jenkins controller and its execution agents must run compatible versions of Java.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>3. Networking & Firewall Ports</h5>
+                            <ul>
+                                <li><strong>Port 8080:</strong> Default port used to serve the primary HTTP web dashboard.</li>
+                                <li><strong>Port 50000:</strong> Default inbound port configuration used for JNLP-based build agents.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>4. Client Web Browser</h5>
+                            <ul>
+                                <li>Fully compatible with modern, standards-compliant browsers like Google Chrome, Mozilla Firefox, Microsoft Edge, or Apple Safari.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- EXAMPLE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Environment Validation Script</h2>
+                <p>You can execute these foundational commands on your terminal to confirm your operating system environment meets standard software readiness before starting your installation wrapper:</p>
+                <pre><code># Check if an official OpenJDK distribution is installed globally
+java -version
+
+
+
+
+
+
+# Ensure your target system environment variable paths point directly to the SDK home context
+echo \$JAVA_HOME
+
+# Verify network port 8080 is open and not actively claimed by another host system service
+netstat -tuln | grep 8080</code></pre>
+                </div>
+
+                    <!-- PRACTICE -->
+                    <div class="mb-4">
+                    <h2 class="h3 fw-bold">Practice Exercise</h2>
+                <ol>
+            <li class="mb-2">Open your target terminal instance (Linux shell, macOS Terminal, or Windows PowerShell).</li>
+                    <li class="mb-2">Execute `java -version` to verify that your system is actively hosting either **Java 11** or **Java 17**.</li>
+            <li class="mb-2">Confirm that your system path has at least **10 GB of free storage capacity** before beginning download scripts.</li>
+            <li>Verify that no web servers or target databases are already occupying the standard local port map network address (`8080`).</li>
+                </ol>
+                </div>
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+            <h2 class="h4 fw-bold">Summary</h2>
+                <p class="mb-0">You have verified your environment against the <strong>Installation Prerequisites</strong> checklists. With Java runtime infrastructure and networking bounds aligned, you can confidently proceed with deploying Jenkins.</p>
+                </div>
+
+            <!-- NAVIGATION -->
+        <div class="d-flex justify-content-between mt-4">
+                <a class="btn btn-outline-primary" href="@Url.Action("JenkinsEcosystem", "Foundations", new { area = "Jenkins" })">← Previous: Jenkins Ecosystem</a>
+    <a class="btn btn-primary" href="@Url.Action("DockerInstallation", "Foundations", new { area = "Jenkins" })">Next: Jenkins with Docker →</a>
+            </div>
+
+        </section>
+
+</div>
+
+</main>

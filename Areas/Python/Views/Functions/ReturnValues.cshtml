@@ -1,0 +1,771 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Return Values";
+}
+
+<style>
+    #python-return-values-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 0.5rem;
+        padding: 1rem !important;
+        overflow-x: auto;
+    }
+
+        #python-return-values-page pre code {
+            background-color: transparent !important;
+            color: #ffffff !important;
+        }
+</style>
+
+<main id="python-return-values-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+
+        </aside>
+
+
+        <!-- RIGHT CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- =========================
+                 PAGE INTRO
+            ========================== -->
+
+            <h1 class="display-6 fw-bold mb-3">
+                Return Values in Python
+            </h1>
+
+            <p class="lead">
+                After a calculation or processing inside a Python function, the
+                <strong>return</strong> statement is used to send the result outside the function.
+            </p>
+
+            <div class="alert alert-light border">
+
+                <strong>CIIT Tip:</strong>
+
+                The simple meaning of <code>return</code> is —
+                the result prepared by the function
+                return that result to the caller.
+
+            </div>
+
+
+            <!-- =========================
+                 1. WHAT IS RETURN?
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                1. What is return?
+            </h2>
+
+            <p>
+                <strong>return</strong> is a Python keyword that sends a value out of a function.
+            </p>
+
+            <pre><code>def add(a, b):
+    return a + b</code></pre>
+
+            <p>
+                Here, the function returns the result of the addition.
+            </p>
+
+
+            <!-- =========================
+                 2. CALLING RETURN FUNCTION
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                2. Calling a Function with return
+            </h2>
+
+            <pre><code>def add(a, b):
+    return a + b
+
+result = add(10, 20)
+
+print(result)</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>30</code></pre>
+
+            <p>
+                We can store the returned value in the <strong>result</strong> variable.
+            </p>
+
+
+            <!-- =========================
+                 3. RETURN VS PRINT
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                3. return vs print()
+            </h2>
+
+            <table class="table table-bordered">
+
+                <thead class="table-light">
+
+                    <tr>
+                        <th>return</th>
+                        <th>print()</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>Sends a value outside the function</td>
+                        <td>Displays a value on the screen</td>
+                    </tr>
+
+                    <tr>
+                        <td>The returned value can be stored in a variable</td>
+                        <td>Mainly used for display</td>
+                    </tr>
+
+                    <tr>
+                        <td>Can be used for further calculations</td>
+                        <td>Does not provide a result directly for calculations</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+
+            <!-- =========================
+                 4. PRINT EXAMPLE
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                4. Example using print()
+            </h2>
+
+            <pre><code>def add(a, b):
+    print(a + b)
+
+add(10, 20)</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>30</code></pre>
+
+            <p>
+                Here, the result was only displayed on the screen.
+            </p>
+
+
+            <!-- =========================
+                 5. RETURN EXAMPLE
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                5. Example using return
+            </h2>
+
+            <pre><code>def add(a, b):
+    return a + b
+
+result = add(10, 20)
+
+print(result)</code></pre>
+
+<h5 class="fw-bold">
+    Output
+</h5>
+
+<pre><code>30</code></pre>
+            <p>
+                Here, the result was returned and stored in a variable.
+            </p>
+
+
+            <!-- =========================
+                 6. RETURN VALUE IN CALCULATION
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                6. Using Returned Value in Another Calculation
+            </h2>
+
+            <pre><code>def add(a, b):
+    return a + b
+
+result = add(10, 20)
+
+final_result = result * 2
+
+print(final_result)</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>60</code></pre>
+
+
+            <!-- =========================
+                 7. RETURN STRING
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                7. Returning a String
+            </h2>
+
+            <pre><code>def welcome(name):
+    return "Welcome " + name
+
+message = welcome("Amit")
+
+print(message)</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>Welcome Amit</code></pre>
+
+
+            <!-- =========================
+                 8. RETURN BOOLEAN
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                8. Returning Boolean Value
+            </h2>
+
+            <p>
+                A function can also return <strong>True</strong> or <strong>False</strong>.
+            </p>
+
+            <pre><code>def is_even(number):
+    return number % 2 == 0
+
+print(is_even(10))
+print(is_even(7))</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>True
+False</code></pre>
+
+
+            <!-- =========================
+                 9. RETURN MULTIPLE VALUES
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                9. Returning Multiple Values
+            </h2>
+
+            <p>
+                A Python function can also return more than one value.
+            </p>
+
+            <pre><code>def calculate(a, b):
+
+    addition = a + b
+    subtraction = a - b
+
+    return addition, subtraction
+
+
+add_result, sub_result = calculate(20, 10)
+
+print("Addition:", add_result)
+print("Subtraction:", sub_result)</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>Addition: 30
+Subtraction: 10</code></pre>
+
+
+            <!-- =========================
+                 10. RETURN LIST
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                10. Returning a List
+            </h2>
+
+            <pre><code>def get_courses():
+
+    courses = [
+        "Python",
+        ".NET",
+        "Java",
+        "Data Science"
+    ]
+
+    return courses
+
+
+courses = get_courses()
+
+print(courses)</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>['Python', '.NET', 'Java', 'Data Science']</code></pre>
+
+
+            <!-- =========================
+                 11. RETURN DICTIONARY
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                11. Returning a Dictionary
+            </h2>
+
+            <pre><code>def get_student():
+
+    student = {
+        "name": "Amit",
+        "course": "Python",
+        "city": "Pune"
+    }
+
+    return student
+
+
+student = get_student()
+
+print(student)</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>{'name': 'Amit', 'course': 'Python', 'city': 'Pune'}</code></pre>
+
+
+            <!-- =========================
+                 12. RETURN STOPS FUNCTION
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                12. return Stops Function Execution
+            </h2>
+
+            <p>
+                When Python encounters a <strong>return</strong> statement, function execution stops at that point.
+            </p>
+
+            <pre><code>def test():
+
+    print("Start")
+
+    return 100
+
+    print("End")
+
+
+result = test()
+
+print(result)</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>Start
+100</code></pre>
+
+            <p>
+                <strong>"End"</strong> was not printed because function execution stopped after the return statement.
+            </p>
+
+
+            <!-- =========================
+                 13. RETURN WITHOUT VALUE
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                13. return Without a Value
+            </h2>
+
+            <p>
+                If you write only <strong>return</strong> in a function, Python returns <strong>None</strong>.
+            </p>
+
+            <pre><code>def test():
+    return
+
+result = test()
+
+print(result)</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>None</code></pre>
+
+
+            <!-- =========================
+                 14. PRACTICAL FEE EXAMPLE
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                14. CIIT Fee Example 📩🖥️
+            </h2>
+
+            <p>
+                A return value is useful for calculating the final fee based on the course fee and discount.
+            </p>
+
+            <pre><code>def calculate_fee(fee, discount):
+
+    discount_amount = fee * discount / 100
+
+    final_fee = fee - discount_amount
+
+    return final_fee
+
+
+final_fee = calculate_fee(35000, 10)
+
+print("Final Fee:", final_fee)</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>Final Fee: 31500.0</code></pre>
+
+
+            <!-- =========================
+                 15. STUDENT RESULT EXAMPLE
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                15. Student Result Example 📩🖥️
+            </h2>
+
+            <pre><code>def calculate_percentage(marks, total):
+
+    percentage = (marks / total) * 100
+
+    return percentage
+
+
+percentage = calculate_percentage(450, 500)
+
+print("Percentage:", percentage)</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>Percentage: 90.0</code></pre>
+
+
+            <!-- =========================
+                 16. RETURN WITH IF
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                16. return with if Statement
+            </h2>
+
+            <pre><code>def check_result(marks):
+
+    if marks >= 40:
+        return "Pass"
+
+    return "Fail"
+
+
+print(check_result(75))
+print(check_result(30))</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>Pass
+Fail</code></pre>
+
+
+            <!-- =========================
+                 17. FUNCTION CHAINING
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                17. Using One Function's Return in Another Function
+            </h2>
+
+            <pre><code>def add(a, b):
+    return a + b
+
+
+def double(number):
+    return number * 2
+
+
+result = add(10, 20)
+
+final_result = double(result)
+
+print(final_result)</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>60</code></pre>
+
+
+            <!-- =========================
+                 18. COMMON MISTAKES
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                18. Common Mistakes
+            </h2>
+
+            <pre><code># Wrong approach
+
+def add(a, b):
+    print(a + b)
+
+result = add(10, 20)
+
+print(result)</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>30
+None</code></pre>
+
+            <p>
+                Here, the function did not return a value. It only printed the result, so <strong>None</strong> was stored in <strong>result</strong>.
+            </p>
+
+            <pre><code># Correct approach
+
+def add(a, b):
+    return a + b
+
+result = add(10, 20)
+
+print(result)</code></pre>
+
+<h5 class="fw-bold">
+    Output
+</h5>
+
+<pre><code>30</code></pre>
+
+            <!-- =========================
+                 19. INTERVIEW POINTS
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                19. Interview Points
+            </h2>
+
+            <ul>
+
+                <li>
+                    What does the <strong>return</strong> statement do in Python?
+                </li>
+
+                <li>
+                    What is the difference between <strong>return</strong> and <strong>print()</strong>?
+                </li>
+
+                <li>
+                    Can a Python function return multiple values?
+                </li>
+
+                <li>
+                    Does code execute after a return statement?
+                </li>
+
+                <li>
+                    What is returned if a function does not have a return statement?
+                </li>
+
+                <li>
+                    Can a function return a list or dictionary?
+                </li>
+
+            </ul>
+
+
+            <!-- =========================
+                 CIIT LEARNING POINT
+            ========================== -->
+
+            <div class="alert alert-success mt-4">
+
+                <h2 class="h4 fw-bold">
+                    CIIT Learning Point
+                </h2>
+
+                <p class="mb-0">
+
+                    The <strong>return</strong> statement makes functions powerful and reusable.
+                    Returned values can be stored in variables and used for
+                    further calculations, conditions, and other functions.
+
+                </p>
+
+            </div>
+
+
+            <!-- =========================
+                 CIIT PRACTICE TASKS
+            ========================== -->
+
+            <div class="alert alert-warning mt-4">
+
+                <h2 class="h4 fw-bold">
+                    CIIT Practice Tasks
+                </h2>
+
+                <ol class="mb-0">
+
+                    <li class="mb-2">
+
+                        <strong>Addition:</strong>
+
+                        <br>
+
+                        Create an <code>add(a, b)</code> function that returns the addition.
+
+                    </li>
+
+                    <li class="mb-2">
+
+                        <strong>Maximum Number:</strong>
+
+                        <br>
+
+                        Create a <code>find_max(a, b)</code> function that returns the maximum of the two numbers.
+
+                    </li>
+
+                    <li class="mb-2">
+
+                        <strong>Even/Odd:</strong>
+
+                        <br>
+
+                        Create a <code>check_number(number)</code> function that returns <strong>"Even"</strong> or <strong>"Odd"</strong>.
+
+                    </li>
+
+                    <li class="mb-2">
+
+                        <strong>Student Result:</strong>
+
+                        <br>
+
+                        Create a <code>calculate_percentage(marks, total)</code> function that returns the percentage.
+
+                    </li>
+
+                    <li class="mb-2">
+
+                        <strong>Course Fee:</strong>
+
+                        <br>
+
+                        Create a <code>calculate_fee(fee, discount)</code> function that returns the final fee after applying the discount.
+
+                    </li>
+
+                    <li>
+
+                        <strong>Multiple Values:</strong>
+
+                        <br>
+
+                        Create a function that returns the student's <strong>name, course, and city</strong> as multiple values.
+
+                    </li>
+
+                </ol>
+
+            </div>
+
+
+            <!-- =========================
+                 SUMMARY
+            ========================== -->
+
+            <div class="alert alert-info mt-4 mb-0"
+                 style="background-color:#cfe2ff; border:0; color:#123c73;">
+
+                <h2 class="h3 fw-bold mt-0 mb-3"
+                    style="color:#123c73;">
+
+                    Summary :
+
+                </h2>
+
+                <p class="mb-0"
+                   style="color:#123c73;">
+
+                    In Python, the <strong>return</strong> statement sends the result from a function back to the caller.
+                    The returned value can be stored in a variable and used for further calculations, conditions, and other functions.
+                    Python functions can return a single value as well as multiple values, lists, and dictionaries.
+
+                </p>
+
+            </div>
+
+
+            <!-- =========================
+                 PREVIOUS / NEXT
+            ========================== -->
+
+            <div class="d-flex justify-content-between mt-5">
+
+                <a class="btn btn-outline-secondary"
+                   href="@Url.Action("ParametersArguments", "Functions", new { area = "Python" })">
+
+                    ← Previous : Topic
+
+                </a>
+
+                <a class="btn btn-primary"
+                   href="@Url.Action("Scope", "Functions", new { area = "Python" })">
+
+                    Next : Topic →
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

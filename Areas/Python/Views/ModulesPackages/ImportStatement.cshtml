@@ -1,0 +1,938 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Python Import Statement";
+}
+
+<style>
+
+    #python-import-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #python-import-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #python-import-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #python-import-page .diagram-box {
+        background: #ffffff;
+        border: 2px solid #6f42c1;
+        border-radius: 10px;
+        padding: 18px;
+        text-align: center;
+        height: 100%;
+    }
+
+        #python-import-page .diagram-box h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        #python-import-page .diagram-box p {
+            margin-bottom: 0;
+            font-size: 14px;
+            color: #495057;
+        }
+
+    #python-import-page .diagram-arrow {
+        text-align: center;
+        font-size: 28px;
+        font-weight: 700;
+        color: #6f42c1;
+        padding: 8px 0;
+    }
+
+    #python-import-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #python-import-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+        }
+
+</style>
+
+
+<main id="python-import-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- Left Sidebar -->
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+
+        </aside>
+
+
+        <!-- Main Content -->
+        <section class="col-lg-9">
+
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+
+                <h1 class="fw-bold">
+                    Import Statement in Python
+                </h1>
+
+                <p class="lead">
+                    Learn how to import modules, functions, classes and
+                    variables into a Python program.
+                </p>
+
+            </div>
+
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    What is an Import Statement?
+                </h2>
+
+                <p>
+                    Python provides the <code>import</code> statement
+                    to use code from another module.
+                </p>
+
+                <p>
+                    Instead of writing the same code again, we can
+                    create reusable code in a module and import it
+                    whenever we need it.
+                </p>
+
+                <div class="alert alert-info">
+
+                    <strong>Simple Definition:</strong>
+
+                    The <code>import</code> statement is used to bring
+                    a module or its functionality into our Python program.
+
+                </div>
+
+            </div>
+
+
+            <!-- WHY IMPORT -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Why Do We Use Import?
+                </h2>
+
+                <ul>
+
+                    <li>
+                        Reuse existing code.
+                    </li>
+
+                    <li>
+                        Avoid duplicate code.
+                    </li>
+
+                    <li>
+                        Use Python's built-in modules.
+                    </li>
+
+                    <li>
+                        Use our own user-defined modules.
+                    </li>
+
+                    <li>
+                        Use functions and classes created in other files.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- DIAGRAM -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Import Statement Diagram
+                </h2>
+
+                <p>
+                    The basic idea of importing a module can be understood
+                    like this:
+                </p>
+
+                <div class="concept-box">
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            Python Program
+                        </h5>
+
+                        <p>
+                            main.py
+                        </p>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            import
+                        </h5>
+
+                        <p>
+                            Requests reusable code from another module.
+                        </p>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="row g-3">
+
+                        <div class="col-md-4">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    Module
+                                </h5>
+
+                                <p>
+                                    math
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-4">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    Function
+                                </h5>
+
+                                <p>
+                                    sqrt(), add()
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-4">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    Class
+                                </h5>
+
+                                <p>
+                                    User-defined class
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            Reuse the Code
+                        </h5>
+
+                        <p>
+                            The imported functionality can now be used
+                            in the current program.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- IMPORT MODULE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    1. Importing a Complete Module
+                </h2>
+
+                <p>
+                    The simplest way to import a module is:
+                </p>
+
+                <pre><code>import math
+
+print(math.sqrt(25))
+print(math.pi)</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>5.0
+3.141592653589793</code></pre>
+
+                <p>
+                    Here, <code>math</code> is imported and its
+                    functions or variables are accessed using:
+                </p>
+
+                <pre><code>module_name.item_name</code></pre>
+
+                <p>
+                    Example:
+                    <code>math.sqrt()</code>
+                </p>
+
+            </div>
+
+
+            <!-- USER DEFINED MODULE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    2. Importing a User-Defined Module
+                </h2>
+
+                <p>
+                    Suppose we create a file named
+                    <code>calculator.py</code>.
+                </p>
+
+                <pre><code>def add(a, b):
+
+    return a + b
+
+
+def subtract(a, b):
+
+    return a - b</code></pre>
+
+                <p class="mt-3">
+                    Now create another file:
+                    <code>main.py</code>
+                </p>
+
+                <pre><code>import calculator
+
+print(calculator.add(10, 20))
+print(calculator.subtract(20, 5))</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>30
+15</code></pre>
+
+                <p>
+                    We can reuse the functions from
+                    <code>calculator.py</code> without writing them again.
+                </p>
+
+            </div>
+
+
+            <!-- FROM IMPORT -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    3. Using <code>from ... import</code>
+                </h2>
+
+                <p>
+                    We can import only a specific function, class or
+                    variable instead of importing the complete module.
+                </p>
+
+                <pre><code>from math import sqrt
+
+print(sqrt(36))</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>6.0</code></pre>
+
+                <p>
+                    Now we can use <code>sqrt()</code> directly without
+                    writing <code>math.sqrt()</code>.
+                </p>
+
+            </div>
+
+
+            <!-- MULTIPLE ITEMS -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Importing Multiple Items
+                </h2>
+
+                <p>
+                    We can import more than one item from a module.
+                </p>
+
+                <pre><code>from math import sqrt, pi
+
+print(sqrt(49))
+print(pi)</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>7.0
+3.141592653589793</code></pre>
+
+                <p>
+                    Both <code>sqrt</code> and <code>pi</code> are imported
+                    from the <code>math</code> module.
+                </p>
+
+            </div>
+
+
+            <!-- IMPORT AS -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    4. Using an Alias with <code>as</code>
+                </h2>
+
+                <p>
+                    We can give a shorter name, called an alias, to a module.
+                </p>
+
+                <pre><code>import math as m
+
+print(m.sqrt(64))
+print(m.pi)</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>8.0
+3.141592653589793</code></pre>
+
+                <p>
+                    Here, <code>m</code> is an alias for the
+                    <code>math</code> module.
+                </p>
+
+            </div>
+
+
+            <!-- FROM IMPORT AS -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Importing an Item with an Alias
+                </h2>
+
+                <p>
+                    We can also give an alias to a specific imported item.
+                </p>
+
+                <pre><code>from math import sqrt as square_root
+
+print(square_root(81))</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>9.0</code></pre>
+
+                <p>
+                    Here, <code>sqrt</code> is imported with the name
+                    <code>square_root</code>.
+                </p>
+
+            </div>
+
+
+            <!-- IMPORT EVERYTHING -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    5. Importing Everything
+                </h2>
+
+                <p>
+                    Python also supports importing all public names
+                    from a module using the <code>*</code> symbol.
+                </p>
+
+                <pre><code>from math import *
+
+print(sqrt(25))
+print(pi)</code></pre>
+
+                <p>
+                    This allows us to use imported names directly.
+                </p>
+
+                <div class="alert alert-warning">
+
+                    <strong>Important:</strong>
+
+                    Using <code>from module import *</code> is generally
+                    avoided in larger applications because it can make
+                    it difficult to understand where names came from
+                    and can cause naming conflicts.
+
+                </div>
+
+            </div>
+
+
+            <!-- IMPORT CLASS -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    6. Importing a Class
+                </h2>
+
+                <p>
+                    We can import a class from another module.
+                </p>
+
+                <p>
+                    Suppose <code>student.py</code> contains:
+                </p>
+
+                <pre><code>class Student:
+
+    def __init__(self, name):
+        self.name = name
+
+    def display(self):
+        print("Name:", self.name)</code></pre>
+
+                <p class="mt-3">
+                    Now in <code>main.py</code>:
+                </p>
+
+                <pre><code>from student import Student
+
+student1 = Student("Rahul")
+
+student1.display()</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Name: Rahul</code></pre>
+
+            </div>
+
+
+            <!-- IMPORT VARIABLE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    7. Importing a Variable
+                </h2>
+
+                <p>
+                    Variables can also be imported from another module.
+                </p>
+
+                <p>
+                    Suppose <code>config.py</code> contains:
+                </p>
+
+                <pre><code>company_name = "CIIT Training Institute 🔓🌍...!"
+
+city = "Pune"</code></pre>
+
+                <p class="mt-3">
+                    Now:
+                </p>
+
+                <pre><code>from config import company_name, city
+
+print(company_name)
+print(city)</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>CIIT Training Institute 🔓🌍...!
+Pune</code></pre>
+
+            </div>
+
+
+            <!-- DIFFERENCE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    <code>import</code> vs <code>from ... import</code>
+                </h2>
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered align-middle">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    import
+                                </th>
+
+                                <th>
+                                    from ... import
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+
+                                <td>
+                                    Imports the module.
+                                </td>
+
+                                <td>
+                                    Imports selected items.
+                                </td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>
+                                    Example:
+                                    <code>import math</code>
+                                </td>
+
+                                <td>
+                                    Example:
+                                    <code>from math import sqrt</code>
+                                </td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>
+                                    Use:
+                                    <code>math.sqrt()</code>
+                                </td>
+
+                                <td>
+                                    Use:
+                                    <code>sqrt()</code>
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <!-- BUILT IN EXAMPLES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Common Modules We Can Import
+                </h2>
+
+                <div class="row g-3">
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                math
+                            </h5>
+
+                            <p class="mb-0">
+                                Mathematical functions and constants.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                random
+                            </h5>
+
+                            <p class="mb-0">
+                                Generate random values and selections.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                datetime
+                            </h5>
+
+                            <p class="mb-0">
+                                Work with dates and times.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                os
+                            </h5>
+
+                            <p class="mb-0">
+                                Work with operating-system related
+                                functionality.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                json
+                            </h5>
+
+                            <p class="mb-0">
+                                Work with JSON data.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                re
+                            </h5>
+
+                            <p class="mb-0">
+                                Work with regular expressions.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- COMMON MISTAKES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Common Mistakes
+                </h2>
+
+                <ul>
+
+                    <li>
+                        Writing the wrong module name.
+                    </li>
+
+                    <li>
+                        Forgetting the correct import syntax.
+                    </li>
+
+                    <li>
+                        Importing a function but using the module prefix.
+                    </li>
+
+                    <li>
+                        Creating naming conflicts by importing many names.
+                    </li>
+
+                    <li>
+                        Using <code>import *</code> unnecessarily.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- PRACTICAL EXAMPLE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Example 🤓👀
+                </h2>
+
+                <p>
+                    Suppose we create a module named
+                    <code>calculator.py</code>:
+                </p>
+
+                <pre><code>def add(a, b):
+
+    return a + b
+
+
+def multiply(a, b):
+
+    return a * b</code></pre>
+
+                <p class="mt-3">
+                    Then in <code>main.py</code>:
+                </p>
+
+                <pre><code>from calculator import add, multiply
+
+result1 = add(10, 20)
+
+result2 = multiply(5, 4)
+
+print("Addition:", result1)
+print("Multiplication:", result2)</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Addition: 30
+Multiplication: 20</code></pre>
+
+            </div>
+
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+
+                <h2 class="h4 fw-bold">
+                    Summary :
+                </h2>
+
+                <p class="mb-0">
+
+                    The import statement is used to reuse code from
+                    another Python module. We can import a complete module
+                    using <code>import</code>, import selected items using
+                    <code>from ... import</code>, create shorter names using
+                    <code>as</code>, and import user-defined modules,
+                    functions, classes and variables. Using imports helps
+                    us organize code and avoid duplication.
+
+                </p>
+
+            </div>
+
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+
+                <a class="btn btn-outline-secondary"
+                   href="@Url.Action("Index", "ModulesPackages", new { area = "Python" })">
+
+                    ← Previous: Topic
+
+                </a>
+
+
+                <a class="btn btn-primary"
+                   href="@Url.Action("BuiltInModules", "ModulesPackages", new { area = "Python" })">
+
+                    Next: Topic →
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

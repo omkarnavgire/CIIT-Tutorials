@@ -1,0 +1,179 @@
+@{
+    Layout = "~/Areas/Jenkins/Views/Shared/JenkinsLayout.cshtml";
+    ViewData["Title"] = "Introduction to Jenkins";
+}
+
+<style>
+    #introduction-to-jenkins-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+    #introduction-to-jenkins-page pre code {
+        background: transparent !important;
+        color: #ffffff !important;
+    }
+
+    #introduction-to-jenkins-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #introduction-to-jenkins-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+    #introduction-to-jenkins-page .info-card h5 {
+        color: #5b21b6;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+
+    #introduction-to-jenkins-page .example-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+    }
+</style>
+
+<main id="introduction-to-jenkins-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Jenkins/Views/Shared/JenkinsTopics.cshtml"
+            )
+
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+
+                <h1 class="fw-bold">
+                    Introduction to Jenkins
+                </h1>
+
+                <p class="lead">
+                    Start with the Jenkins interface, jobs, agents, plugins, and the basic CI/CD workflow.
+                </p>
+
+            </div>
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    What is Jenkins?
+                </h2>
+
+                <p>
+                    Jenkins is an automation server used to automate building, testing, packaging, and deploying software.
+                </p>
+
+                <p>
+                    This lesson explains the concept step by step and connects it to a practical Jenkins workflow.
+                </p>
+
+                <div class="alert alert-info">
+                    <strong>Simple Definition:</strong> Jenkins is an automation server used to automate building, testing, packaging, and deploying software.
+                </div>
+
+            </div>
+
+            <!-- KEY CONCEPTS -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Key Concepts
+                </h2>
+
+                <div class="row g-3">
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Concept</h5>
+                            <p class="mb-0">Understand the purpose of Introduction to Jenkins and how it fits into a Jenkins workflow.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Real-World Use</h5>
+                            <p class="mb-0">Apply the concept when creating, running, testing, or deploying a Jenkins job or pipeline.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- EXAMPLE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Practical Jenkins Example
+                </h2>
+
+                <pre><code>pipeline {
+    agent any
+    stages {
+        stage(&#x27;Learn Introduction to Jenkins&#x27;) {
+            steps {
+                echo &#x27;Jenkins lesson: Introduction to Jenkins &#x27; 
+            }
+        }
+    }
+}</code></pre>
+
+            </div>
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Practice Exercise
+                </h2>
+
+                <ol>
+                    <li class="mb-2">Open Jenkins and identify the relevant configuration area.</li>
+                    <li class="mb-2">Create or update a small test job or pipeline for this lesson.</li>
+                    <li class="mb-2">Run the job and inspect the Console Output.</li>
+                    <li>Record what changed and verify the result.</li>
+                </ol>
+
+            </div>
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+                <h2 class="h4 fw-bold">Summary</h2>
+                <p class="mb-0">You have completed the <strong>Introduction to Jenkins</strong> lesson. Continue through the syllabus to build the Jenkins skills required for real CI/CD automation.</p>
+            </div>
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+                <span class="text-muted">← Previous</span>
+                <a class="btn btn-primary" href="@Url.Action("CICDConcepts", "Foundations", new { area = "Jenkins" })">Next: What is CI/CD? →</a>
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

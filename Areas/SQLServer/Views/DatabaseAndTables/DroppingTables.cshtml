@@ -1,0 +1,491 @@
+﻿@{
+    ViewData["Title"] = "Dropping Tables";
+}
+
+<section>
+
+    <!-- PAGE INTRODUCTION -->
+    <div class="mb-5">
+
+        <h1 class="fw-bold mb-3">
+            Dropping Tables
+        </h1>
+
+        <p class="lead text-muted">
+            In SQL Server, the DROP TABLE statement is used to permanently
+            remove an existing table from a database. In this section,
+            we will learn how to safely drop tables and understand what
+            happens when a table is deleted.
+        </p>
+
+    </div>
+
+
+    <!-- WHAT IS DROP TABLE -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            What is DROP TABLE?
+        </h2>
+
+        <p>
+            The <strong>DROP TABLE</strong> statement completely removes
+            a table from the database.
+        </p>
+
+        <p>
+            When a table is dropped, its structure and stored records
+            are removed.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>DROP TABLE Students;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- DROP TABLE FLOW -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            DROP TABLE Flow
+        </h2>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL Server
+            </div>
+
+            <pre class="mb-0"><code>Students Table
+       ↓
+DROP TABLE
+       ↓
+Table Removed
+       ↓
+Data + Table Structure Deleted</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- SIMPLE EXAMPLE -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Drop a Table
+        </h2>
+
+        <p>
+            Suppose we have a table named <strong>Students</strong>.
+            The following statement removes it:
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>DROP TABLE Students;</code></pre>
+
+        </div>
+
+        <p>
+            After executing this statement, the Students table will no
+            longer exist in the database.
+        </p>
+
+    </section>
+
+
+    <!-- BEFORE DROP -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Table Before DROP
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>StudentId</th>
+                        <th>StudentName</th>
+                        <th>Age</th>
+                        <th>Course</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>1</td>
+                        <td>Rahul</td>
+                        <td>22</td>
+                        <td>Java</td>
+                    </tr>
+
+                    <tr>
+                        <td>2</td>
+                        <td>Priya</td>
+                        <td>21</td>
+                        <td>.NET</td>
+                    </tr>
+
+                    <tr>
+                        <td>3</td>
+                        <td>Amit</td>
+                        <td>23</td>
+                        <td>Python</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- DROP COMMAND -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Execute DROP TABLE
+        </h2>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>DROP TABLE Students;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- VERIFY TABLE -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Verify Whether the Table Exists
+        </h2>
+
+        <p>
+            Before performing operations, we can check whether a table
+            exists in the current database.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT *
+FROM INFORMATION_SCHEMA.TABLES
+WHERE TABLE_NAME = 'Students';</code></pre>
+
+        </div>
+
+        <p>
+            If the table has been dropped successfully, the query will
+            not return the Students table.
+        </p>
+
+    </section>
+
+
+    <!-- DROP IF EXISTS -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            DROP TABLE IF EXISTS
+        </h2>
+
+        <p>
+            SQL Server also supports <strong>DROP TABLE IF EXISTS</strong>.
+            It is useful when we want to drop a table only if it exists.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>DROP TABLE IF EXISTS Students;</code></pre>
+
+        </div>
+
+        <p>
+            This avoids an error when the specified table does not exist.
+        </p>
+
+    </section>
+
+
+    <!-- DROP MULTIPLE TABLES -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Dropping Multiple Tables
+        </h2>
+
+        <p>
+            Multiple tables can be dropped by using separate DROP TABLE
+            statements.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>DROP TABLE IF EXISTS Students;
+
+DROP TABLE IF EXISTS Courses;
+
+DROP TABLE IF EXISTS Departments;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- DROP VS DELETE -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            DROP vs DELETE
+        </h2>
+
+        <p>
+            DROP and DELETE are different SQL operations.
+        </p>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>DROP TABLE</th>
+                        <th>DELETE</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>Removes the complete table.</td>
+                        <td>Removes rows from a table.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Table structure is removed.</td>
+                        <td>Table structure remains.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Table no longer exists.</td>
+                        <td>Table still exists.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Used to remove a database table.</td>
+                        <td>Used to remove records.</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- DROP VS TRUNCATE -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            DROP vs TRUNCATE
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>Operation</th>
+                        <th>Table Structure</th>
+                        <th>Data</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td><strong>DROP</strong></td>
+                        <td>Removed</td>
+                        <td>Removed</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>TRUNCATE</strong></td>
+                        <td>Remains</td>
+                        <td>Removed</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- IMPORTANT WARNING -->
+    <section class="mb-5">
+
+        <div class="alert alert-danger border-0">
+
+            <h5 class="fw-bold">
+                ⚠ Important Warning
+            </h5>
+
+            <p class="mb-0">
+                DROP TABLE permanently removes the table structure and
+                its data. Always verify the table name before executing
+                a DROP TABLE statement, especially when working with
+                important or production databases.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- PRACTICAL EXAMPLE -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Practical Example
+        </h2>
+
+        <p>
+            The following example creates a temporary table and then
+            removes it.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>CREATE TABLE DemoStudents
+(
+    StudentId INT,
+    StudentName VARCHAR(100)
+);
+
+DROP TABLE DemoStudents;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- RESULT -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Result
+        </h2>
+
+        <div class="alert alert-secondary border-0">
+
+            <p class="mb-0">
+                After executing DROP TABLE, the DemoStudents table is
+                removed from the database along with its table structure
+                and stored records.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- SUMMARY -->
+    <section class="mb-4">
+
+        <div class="alert alert-primary border-0">
+
+            <h2 class="fw-bold mb-3">
+                Summary
+            </h2>
+
+            <p class="mb-0">
+                In this section, we learned how to remove a table using
+                DROP TABLE, how to check whether a table exists, and the
+                difference between DROP, DELETE and TRUNCATE operations.
+            </p>
+
+        </div>
+
+    </section>
+
+
+   <!-- PREVIOUS / NEXT -->
+
+<div class="d-flex justify-content-between align-items-center
+            mt-5 pt-4 border-top">
+
+    <!-- PREVIOUS -->
+
+    <a href="/SQLServer/DatabaseAndTables/AlteringTables"
+       class="btn btn-outline-primary">
+
+        ← Previous: Altering Tables
+
+    </a>
+
+
+    <!-- NEXT -->
+
+    <a href="/SQLServer/Constraints/Index"
+       class="btn btn-primary">
+
+        Next: Constraints Introduction →
+
+    </a>
+
+</div>
+
+</section>

@@ -1,0 +1,80 @@
+@{
+    ViewData["Title"] = "Step-by-Step Guide to Creating a Project Using Basic Process";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+                <div class="azure-notes-content">
+                    <pre class="azure-notes-text">Step-by-Step Guide to Creating a Project Using Basic Process
+
+The following steps will guide you to create a project using basic process:
+
+Step 1: Sign-in or Sign up to Azure DevOps
+
+    •   Go to Azure DevOps Portal (Azure DevOps Services | Microsoft Azure)
+   •   Add your email address, phone number or Skype ID to your Microsoft account.
+
+
+
+
+   •   If you don’t have Microsoft Account create one.
+
+Step 2: Create Project with Basic Process in Azure DevOps
+
+   •   Click on the New Project button on the top right corner.
+•   Enter information into the Panel that opens:
+
+        o   Enter the name of your project.
+
+        o   Project name can’t contain special characters such as / : \ ~ &amp; % ; @@ &#x27; &quot; ? &lt; &gt; | # $ * }
+            { , + = [ ], can&#x27;t begin with an underscore and must be 64 or fewer characters.
+
+        o   Enter the description this field is optional.
+
+        o   Choose the visibility of either public or private.
+
+                o   Public: With public visibility, anyone on the internet has the right to view
+                    your project.
+
+                o   Private: With private visibility, only people to whom you give access can view
+                    your project.
+
+        o   Choose the right version control for detail refer Git and TFVC version control - Azure
+            Repos | Microsoft Docs.
+
+        o   Choose the Work Item Process.
+Step 3: Click &#x27;Create&#x27; to Finalize
+
+    •   Click Create button. Navigated to Welcome page.</pre>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_9_-_Microsoft_Azure_-_Create_Project_in_Azure_Devops_using_Basic_Process/p02-000.jpg" class="img-fluid rounded shadow-sm" alt="Step-by-Step Guide to Creating a Project Using Basic Process - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_9_-_Microsoft_Azure_-_Create_Project_in_Azure_Devops_using_Basic_Process/p02-001.jpg" class="img-fluid rounded shadow-sm" alt="Step-by-Step Guide to Creating a Project Using Basic Process - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_9_-_Microsoft_Azure_-_Create_Project_in_Azure_Devops_using_Basic_Process/p03-000.jpg" class="img-fluid rounded shadow-sm" alt="Step-by-Step Guide to Creating a Project Using Basic Process - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_9_-_Microsoft_Azure_-_Create_Project_in_Azure_Devops_using_Basic_Process/p04-000.jpg" class="img-fluid rounded shadow-sm" alt="Step-by-Step Guide to Creating a Project Using Basic Process - source image" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+            @await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureLessonNavigation.cshtml")
+</section>
+</div>
+<style>
+.azure-notes-text{white-space:pre-wrap;word-break:normal;font-family:inherit;font-size:1rem;line-height:1.7;background:#fff;border:0;padding:0;margin:0;color:#212529;}
+.azure-notes-content img{max-height:720px;}
+</style>

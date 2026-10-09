@@ -1,0 +1,224 @@
+@{
+    Layout = "~/Areas/Jenkins/Views/Shared/JenkinsLayout.cshtml";
+    ViewData["Title"] = "Conditional Execution with when";
+}
+
+<style>
+    #conditional-execution-with-when-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #conditional-execution-with-when-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #conditional-execution-with-when-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #conditional-execution-with-when-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #conditional-execution-with-when-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+    #conditional-execution-with-when-page .example-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+    }
+</style>
+
+<main id="conditional-execution-with-when-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/Jenkins/Views/Shared/JenkinsTopics.cshtml")
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+                <h1 class="fw-bold">Conditional Execution with when</h1>
+                <p class="lead">
+                    Learn the concepts, syntax criteria, evaluation rules, and logical conditions required to dynamically skip or execute pipeline stages at runtime.
+                </p>
+            </div>
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">What is Conditional Execution with when?</h2>
+                <p>
+                    In an automated workflow, not every stage needs to run during every execution pass. For example, you might want to run comprehensive integration tests only on code changes from the <code>main</code> branch, or deploy software packages exclusively when deploying to a <code>Production</code> environment. The <code>when</code> directive serves as a strict structural guard to enforce this conditional control logic cleanly.
+                </p>
+
+                <div class="alert alert-info my-3">
+                    <strong>Simple Definition:</strong> The when directive is a syntax guard block placed inside a specific stage that evaluates conditions (like branch names, parameters, or environment flags) to decide whether to skip or execute that stage's steps.
+                </div>
+
+                <h3 class="h4 fw-bold mt-4">Built-in Condition Assertions</h3>
+                <p class="mb-2">Jenkins provides several built-in conditional logic functions that can be used inside the directive block:</p>
+                <ul class="mb-3">
+                    <li class="mb-1"><strong>The `branch` Matcher:</strong> Restricts stage execution to code changes matching a specific branch name pattern (e.g., <code>branch 'main'</code> or wildcard matches like <code>branch 'feature/*'</code>).</li>
+                    <li class="mb-1"><strong>The `environment` Matcher:</strong> Evaluates active environment variables to execute stages only when variables match precise text targets (e.g., <code>environment name: 'DEPLOY_STAGE', value: 'Production'</code>).</li>
+                    <li class="mb-1"><strong>The `expression` Block:</strong> A loose programmatic container that allows developers to write custom Groovy logical evaluation scripts returning a standard true or false flag.</li>
+                    <li><strong>Logical Operators (`allOf`, `anyOf`, `not`):</strong> Combines multiple complex check gates together (e.g., using <code>allOf</code> to ensure both a branch matches AND a runtime checkbox toggle parameter evaluates to true).</li>
+                </ul>
+            </div>
+
+            <!-- KEY CONCEPTS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Key Concepts</h2>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Agent Allocation Evaluation Timing</h5>
+                            <p class="mb-0">Understanding that, by default, Jenkins allocations an execution agent *before* checking the `when` condition. This behavior can be optimized by setting `beforeAgent true` to skip resource-heavy agent provisioning if the stage is skipped.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Clean Dashboard Stage Views</h5>
+                            <p class="mb-0">Recognizing that when a condition evaluates to false, Jenkins completely skips the step sequence and marks the stage column layout with a clean 'Skipped' milestone tag in the UI grid.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXAMPLE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Practical Jenkins Example</h2>
+                <p>The following full declarative pipeline configuration showcases how to implement string-based selection matching and expression-based toggles to restrict optional execution steps:</p>
+                <pre><code>pipeline {
+    agent any
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    parameters {
+        choice(name: 'DEPLOY_ENV', choices: ['Development', 'Staging', 'Production'], description: 'Target deployment infrastructure node.')
+        booleanParam(name: 'RUN_SMOKE_TESTS', defaultValue: true, description: 'Toggle check box to fire core validation tests.')
+    }
+
+    stages {
+        stage('Compile Code Base') {
+            steps {
+                echo 'INFO: Executing mandatory project assembly code steps...'
+                sh 'echo "Artifact output ready inside workspace root."'
+            }
+        }
+
+        stage('Optional Smoke Testing') {
+            // 1. Evaluate a simple boolean param condition logic gate
+            when {
+                expression { return params.RUN_SMOKE_TESTS }
+            }
+            steps {
+                echo 'INFO: Initializing dynamic smoke test execution check passes...'
+                sh 'echo "Smoke verification step passed cleanly."'
+            }
+        }
+
+        stage('Production Deployment Gate') {
+            // 2. Combining environment verification logic along with timing safety controls
+            when {
+                beforeAgent true
+                environment name: 'params.DEPLOY_ENV', value: 'Production'
+            }
+            steps {
+                echo 'WARNING: Pushing production deployment payload assets out to server clusters...'
+                sh 'echo "Deployment routines fully finalized."'
+            }
+        }
+    }
+}</code></pre>
+</div>
+
+<!-- PRACTICE -->
+<div class="mb-4">
+<h2 class="h3 fw-bold">Practice Exercise: Instantiate and Test a Conditional Guard</h2>
+<div class="concept-box">
+<h5 class="fw-bold">Step-by-Step Task Sequence:</h5>
+<ol class="ps-3 mb-0">
+<li class="mb-2">Open the script block workspace of an active test pipeline or spin up a new Pipeline item from your dashboard interface portal.</li>
+<li class="mb-2">Copy-paste the complete practical declarative multi-stage conditional script provided in the example above into your editor and click <strong>Save</strong>.</li>
+<li class="mb-2">Click **Build Now** to register the initial configuration profile on the server. *Note: As with all parameters, the initial pass uses structural default configurations.*</li>
+                        <li class="mb-2">Click the newly updated **Build with Parameters** option link, select `Development` from the dropdown selector, uncheck the smoke tests box, and click **Build**.</li>
+                        <li>Open the current run's **Console Output** to verify the log lines, observing how Jenkins evaluates the condition guards and outputs statements that stages were skipped.</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+                <h2 class="h4 fw-bold">Summary</h2>
+                <p class="mb-0">You have completed the <strong>Conditional Execution with when</strong> lesson. Continue through the syllabus to learn how to split and execute separate pipeline workloads simultaneously by exploring the Parallel Execution lesson.</p>
+            </div>
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+                <a class="btn btn-outline-primary" href="@Url.Action("Parameters", "Pipeline", new { area = "Jenkins" })">← Previous: Pipeline Parameters</a>
+                <a class="btn btn-primary" href="@Url.Action("ParallelExecution", "Pipeline", new { area = "Jenkins" })">Next: Parallel Execution →</a>
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

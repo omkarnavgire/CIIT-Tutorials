@@ -1,0 +1,816 @@
+﻿@{
+    ViewData["Title"] = "Angular Lifecycle Hooks";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- Header -->
+    <section class="mb-4">
+        <h1 class="fw-bold text-dark">Angular Lifecycle Hooks</h1>
+        <p class="lead text-muted">
+            Learn how Angular lifecycle hooks allow you to execute code at specific stages
+            of a component's lifecycle.
+        </p>
+    </section>
+
+    <!-- Introduction -->
+    <section class="mb-4">
+        <h2 class="fw-bold">What are Lifecycle Hooks?</h2>
+
+        <div class="info-card">
+            <p>
+                Angular components go through different stages from creation to destruction.
+                These stages are called the <strong>component lifecycle</strong>.
+            </p>
+
+            <p>
+                Angular provides lifecycle hook methods that allow developers to execute
+                custom code when a particular lifecycle stage occurs.
+            </p>
+
+            <p class="mb-0">
+                Lifecycle hooks are useful for initialization, responding to changes,
+                working with the view, and performing cleanup operations.
+            </p>
+        </div>
+    </section>
+
+    <!-- Lifecycle Flow -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Angular Component Lifecycle</h2>
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+                <strong>Component Created</strong>
+                <span>Creation</span>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+                <strong>@@OnChanges</strong>
+                <span>Input Changes</span>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+                <strong>@@OnInit</strong>
+                <span>Initialization</span>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+                <strong>@@AfterViewInit</strong>
+                <span>View Ready</span>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+                <strong>@@OnDestroy</strong>
+                <span>Cleanup</span>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Lifecycle Hooks -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Common Lifecycle Hooks</h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+                <div class="syntax-icon">1</div>
+                <h5>@@OnChanges</h5>
+                <p>
+                    Runs when an Input property receives a new value.
+                </p>
+            </div>
+
+            <div class="syntax-card">
+                <div class="syntax-icon">2</div>
+                <h5>@@OnInit</h5>
+                <p>
+                    Runs once after Angular initializes the component.
+                </p>
+            </div>
+
+            <div class="syntax-card">
+                <div class="syntax-icon">3</div>
+                <h5>@@AfterViewInit</h5>
+                <p>
+                    Runs after Angular initializes the component view.
+                </p>
+            </div>
+
+            <div class="syntax-card">
+                <div class="syntax-icon">4</div>
+                <h5>@@OnDestroy</h5>
+                <p>
+                    Runs just before Angular destroys the component.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- OnInit -->
+    <section class="mb-4">
+        <h2 class="fw-bold">@@OnInit</h2>
+
+        <div class="info-card">
+            <p>
+                The <strong>@@OnInit</strong> lifecycle hook runs once after Angular has
+                initialized the component's data-bound properties.
+            </p>
+
+            <p class="mb-0">
+                It is commonly used for initialization tasks such as loading course data,
+                calling services, or preparing component properties.
+            </p>
+        </div>
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>import {
+    Component,
+    OnInit
+} from '@@angular/core';
+
+@@Component({
+    selector: 'app-courses',
+    templateUrl: './courses.component.html'
+})
+export class CoursesComponent
+    implements OnInit {
+
+    courses: string[] = [];
+
+    ngOnInit() {
+
+        this.courses = [
+            'Java Full Stack',
+            'Python Full Stack',
+            'Full Stack .NET'
+        ];
+
+    }
+
+}</code></pre>
+
+        </div>
+    </section>
+
+    <!-- OnChanges -->
+    <section class="mb-4">
+        <h2 class="fw-bold">@@OnChanges</h2>
+
+        <div class="info-card">
+            <p>
+                The <strong>@@OnChanges</strong> hook runs when one or more
+                <strong>@@Input</strong> properties change.
+            </p>
+
+            <p class="mb-0">
+                It is useful when a child component needs to respond to new data
+                received from its parent.
+            </p>
+        </div>
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>import {
+    Component,
+    Input,
+    OnChanges,
+    SimpleChanges
+} from '@@angular/core';
+
+@@Component({
+    selector: 'app-course-details',
+    templateUrl: './course-details.component.html'
+})
+export class CourseDetailsComponent
+    implements OnChanges {
+
+    @@Input() courseName = '';
+
+    ngOnChanges(changes: SimpleChanges) {
+
+        console.log(
+            'Course changed:',
+            changes['courseName']
+        );
+
+    }
+
+}</code></pre>
+
+        </div>
+    </section>
+
+    <!-- AfterViewInit -->
+    <section class="mb-4">
+        <h2 class="fw-bold">@@AfterViewInit</h2>
+
+        <div class="info-card">
+            <p>
+                The <strong>@@AfterViewInit</strong> hook runs after Angular has
+                completely initialized the component's view.
+            </p>
+
+            <p class="mb-0">
+                It can be useful when code needs to work with elements that are
+                available after the view has been initialized.
+            </p>
+        </div>
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>import {
+    Component,
+    AfterViewInit
+} from '@@angular/core';
+
+@@Component({
+    selector: 'app-course',
+    templateUrl: './course.component.html'
+})
+export class CourseComponent
+    implements AfterViewInit {
+
+    ngAfterViewInit() {
+
+        console.log(
+            'Course view initialized'
+        );
+
+    }
+
+}</code></pre>
+
+        </div>
+    </section>
+
+    <!-- OnDestroy -->
+    <section class="mb-4">
+        <h2 class="fw-bold">@@OnDestroy</h2>
+
+        <div class="info-card">
+            <p>
+                The <strong>@@OnDestroy</strong> hook runs immediately before Angular
+                destroys a component.
+            </p>
+
+            <p class="mb-0">
+                It is commonly used for cleanup tasks such as unsubscribing from
+                Observables, removing event listeners, or stopping timers.
+            </p>
+        </div>
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>import {
+    Component,
+    OnDestroy
+} from '@@angular/core';
+
+@@Component({
+    selector: 'app-course',
+    templateUrl: './course.component.html'
+})
+export class CourseComponent
+    implements OnDestroy {
+
+    ngOnDestroy() {
+
+        console.log(
+            'Course component destroyed'
+        );
+
+    }
+
+}</code></pre>
+
+        </div>
+    </section>
+
+    <!-- Lifecycle Table -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Lifecycle Hooks Comparison</h2>
+
+        <div class="table-responsive">
+
+            <table class="syntax-table">
+
+                <thead>
+                    <tr>
+                        <th>Hook</th>
+                        <th>When It Runs</th>
+                        <th>Common Use</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>@@OnChanges</td>
+                        <td>When Input values change</td>
+                        <td>React to new Input data</td>
+                    </tr>
+
+                    <tr>
+                        <td>@@OnInit</td>
+                        <td>After component initialization</td>
+                        <td>Initialize data</td>
+                    </tr>
+
+                    <tr>
+                        <td>@@AfterViewInit</td>
+                        <td>After view initialization</td>
+                        <td>Work with initialized view</td>
+                    </tr>
+
+                    <tr>
+                        <td>@@OnDestroy</td>
+                        <td>Before component destruction</td>
+                        <td>Cleanup operations</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+    </section>
+
+    <!-- CIIT Example -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Complete CIIT Training Institute Example</h2>
+
+        <div class="info-card">
+
+            <p>
+                Suppose CIIT Training Institute has a course details component.
+                When the selected course changes, the component receives the new value
+                through @@Input.
+            </p>
+
+            <p class="mb-0">
+                The component can use lifecycle hooks to initialize course information,
+                respond to changes, work with its view, and perform cleanup.
+            </p>
+
+        </div>
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Course Details Component
+            </div>
+
+            <pre><code>import {
+    Component,
+    Input,
+    OnChanges,
+    OnInit,
+    AfterViewInit,
+    OnDestroy,
+    SimpleChanges
+} from '@@angular/core';
+
+@@Component({
+    selector: 'app-course-details',
+    templateUrl: './course-details.component.html'
+})
+export class CourseDetailsComponent
+    implements
+        OnChanges,
+        OnInit,
+        AfterViewInit,
+        OnDestroy {
+
+    @@Input() courseName = '';
+
+    ngOnChanges(changes: SimpleChanges) {
+
+        console.log('Course changed');
+
+    }
+
+    ngOnInit() {
+
+        console.log('Component initialized');
+
+    }
+
+    ngAfterViewInit() {
+
+        console.log('View initialized');
+
+    }
+
+    ngOnDestroy() {
+
+        console.log('Component destroyed');
+
+    }
+
+}</code></pre>
+
+        </div>
+    </section>
+
+    <!-- Lifecycle Flow -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Lifecycle Execution Flow</h2>
+
+        <div class="binding-flow">
+
+            <div class="binding-item">
+                <strong>@@OnChanges</strong>
+                <span>Input Changes</span>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="binding-item">
+                <strong>@@OnInit</strong>
+                <span>Initialize</span>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="binding-item">
+                <strong>@@AfterViewInit</strong>
+                <span>View Ready</span>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="binding-item">
+                <strong>@@OnDestroy</strong>
+                <span>Cleanup</span>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Important Points -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Important Points</h2>
+
+        <div class="best-practice-list">
+
+            <div class="info-card mb-3">
+                <strong>1. Initialization</strong>
+                <p class="mb-0">
+                    Use @@OnInit for component initialization tasks.
+                </p>
+            </div>
+
+            <div class="info-card mb-3">
+                <strong>2. Input Changes</strong>
+                <p class="mb-0">
+                    Use @@OnChanges when an @@Input property changes.
+                </p>
+            </div>
+
+            <div class="info-card mb-3">
+                <strong>3. View Initialization</strong>
+                <p class="mb-0">
+                    Use @@AfterViewInit when the component view has been initialized.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <strong>4. Cleanup</strong>
+                <p class="mb-0">
+                    Use @@OnDestroy for cleanup operations before the component is removed.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Best Practices -->
+    <section class="mb-4">
+        <h2 class="fw-bold">Lifecycle Hooks Best Practices</h2>
+
+        <ul class="best-practice-list">
+            <li>Use the appropriate lifecycle hook for each task.</li>
+            <li>Keep initialization logic inside @@OnInit.</li>
+            <li>Use @@OnChanges when responding to Input changes.</li>
+            <li>Use @@AfterViewInit only when the initialized view is required.</li>
+            <li>Perform cleanup operations inside @@OnDestroy.</li>
+            <li>Keep lifecycle methods short and focused.</li>
+        </ul>
+    </section>
+
+    <!-- Summary -->
+    <section class="mb-4">
+        <div class="summary-box">
+
+            <h4 class="fw-bold">Summary</h4>
+
+            <p class="mb-0">
+                Angular lifecycle hooks allow developers to execute code at important
+                stages of a component's lifecycle. <strong>@@OnChanges</strong> handles
+                Input changes, <strong>@@OnInit</strong> handles initialization,
+                <strong>@@AfterViewInit</strong> handles view initialization, and
+                <strong>@@OnDestroy</strong> is used for cleanup before a component
+                is destroyed.
+            </p>
+
+        </div>
+    </section>
+
+    <!-- Navigation -->
+    <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+
+        <a class="btn btn-outline-secondary"
+           href="@Url.Action("InputOutputCommunication", "InputOutput", new { area = "Angular" })">
+            ← Input & Output
+        </a>
+
+        <a class="btn btn-primary"
+           href="@Url.Action("OnInit", "LifecycleHooks", new { area = "Angular" })">
+            OnInit →
+        </a>
+
+    </div>
+
+</div>
+
+<style>
+
+    .info-card {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-left: 5px solid #4c1d95;
+        border-radius: 10px;
+        padding: 20px;
+        line-height: 1.7;
+    }
+
+    .syntax-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        flex-wrap: wrap;
+        margin: 25px 0;
+    }
+
+    .syntax-box {
+        background: linear-gradient(135deg, #2e1065, #4c1d95);
+        color: white;
+        padding: 18px 25px;
+        border-radius: 12px;
+        text-align: center;
+        min-width: 180px;
+        box-shadow: 0 5px 15px rgba(76, 29, 149, 0.15);
+    }
+
+        .syntax-box strong {
+            display: block;
+            font-size: 16px;
+        }
+
+        .syntax-box span {
+            display: block;
+            margin-top: 5px;
+            color: #d8c9f5;
+            font-size: 14px;
+        }
+
+    .syntax-arrow {
+        font-size: 28px;
+        font-weight: bold;
+        color: #4c1d95;
+    }
+
+    .syntax-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+
+    .syntax-card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 22px;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+    }
+
+        .syntax-card h5 {
+            margin-top: 15px;
+            font-weight: 700;
+        }
+
+        .syntax-card p {
+            color: #64748b;
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+
+    .syntax-icon {
+        width: 48px;
+        height: 48px;
+        margin: auto;
+        border-radius: 50%;
+        background: #ede9fe;
+        color: #4c1d95;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 18px;
+    }
+
+    .code-card {
+        background: #0f172a;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-top: 15px;
+    }
+
+    .code-title {
+        background: #1e293b;
+        color: #ddd6fe;
+        padding: 10px 16px;
+        font-weight: 600;
+        border-bottom: 1px solid #334155;
+    }
+
+    .code-card pre {
+        margin: 0;
+        padding: 20px;
+        overflow-x: auto;
+    }
+
+    .code-card code {
+        color: #f8fafc;
+        font-family: Consolas, Monaco, monospace;
+        line-height: 1.7;
+    }
+
+    .output-box {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 25px;
+    }
+
+    .student-preview {
+        background: white;
+        border: 1px solid #ddd6fe;
+        border-radius: 10px;
+        padding: 22px;
+        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+    }
+
+        .student-preview h4 {
+            color: #4c1d95;
+            font-weight: 700;
+        }
+
+    .binding-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .binding-item {
+        background: #ede9fe;
+        border: 1px solid #ddd6fe;
+        border-radius: 10px;
+        padding: 15px 22px;
+        text-align: center;
+        min-width: 170px;
+    }
+
+        .binding-item strong {
+            display: block;
+            color: #2e1065;
+        }
+
+        .binding-item span {
+            display: block;
+            color: #64748b;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+
+    .syntax-table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        border: 1px solid #e2e8f0;
+    }
+
+        .syntax-table th {
+            background: #4c1d95;
+            color: white;
+            padding: 14px;
+            text-align: left;
+        }
+
+        .syntax-table td {
+            padding: 14px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .syntax-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .syntax-table td:first-child {
+            font-weight: 600;
+            color: #2e1065;
+        }
+
+    .best-practice-list {
+        padding-left: 20px;
+        line-height: 1.9;
+    }
+
+        .best-practice-list li {
+            margin-bottom: 7px;
+        }
+
+    .summary-box {
+        background: #cfe2ff;
+        color: #084298;
+        border-radius: 10px;
+        padding: 22px;
+        border: 1px solid #b6d4fe;
+    }
+
+    @@media (max-width: 991px) {
+
+        .syntax-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .syntax-flow {
+            flex-direction: column;
+        }
+
+        .syntax-arrow {
+            transform: rotate(90deg);
+        }
+
+        .binding-flow {
+            flex-direction: column;
+        }
+    }
+
+    @@media (max-width: 576px) {
+
+        .syntax-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .syntax-box {
+            width: 100%;
+        }
+
+        .binding-item {
+            width: 100%;
+        }
+
+        .code-card pre {
+            font-size: 13px;
+        }
+
+        .syntax-table {
+            font-size: 13px;
+        }
+    }
+
+</style>

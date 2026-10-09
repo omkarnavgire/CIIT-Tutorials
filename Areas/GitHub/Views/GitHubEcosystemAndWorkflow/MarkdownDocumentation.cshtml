@@ -1,0 +1,351 @@
+@{
+    Layout = "~/Areas/GitHub/Views/Shared/GithubLayout.cshtml";
+    ViewData["Title"] = "Markdown Documentation";
+}
+
+<main id="tutorials" class="container py-1">
+    <div class="row g-4">
+
+        <!-- Sidebar Navigation -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/GitHub/Views/Shared/GithubTopics.cshtml")
+        </aside>
+
+        <!-- Reading Content Area -->
+        <section class="col-lg-9">
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-body p-4 p-lg-5">
+
+                    <h2 class="mb-3">Markdown Documentation</h2>
+
+                    <p class="lead">
+                        <strong>Markdown</strong> is a lightweight markup
+                        language that formats plain text using simple,
+                        readable symbols. GitHub automatically renders
+                        Markdown files with headings, lists, links, tables,
+                        and code blocks.
+                    </p>
+
+                    <p>
+                        Markdown files commonly use the <code>.md</code>
+                        extension. The most important example in many
+                        repositories is <code>README.md</code>, which
+                        introduces the project and explains how to use it.
+                    </p>
+
+                    <div class="alert alert-info">
+                        <strong>Remember:</strong> Markdown is plain text.
+                        You can edit it using Visual Studio Code, Notepad,
+                        or GitHub's built-in file editor.
+                    </div>
+
+                    <hr />
+
+                    <h4>1. Headings</h4>
+
+                    <p>
+                        Use the hash symbol (<code>#</code>) followed by a
+                        space to create headings. The number of hashes
+                        determines the heading level.
+                    </p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code># Document Title
+## Major Section
+### Subsection
+#### Smaller Heading
+##### Level Five Heading
+###### Level Six Heading</code></pre>
+
+                    <h5>Rendered Example</h5>
+
+                    <div class="border rounded p-3 mb-3">
+                        <h2>Document Title</h2>
+                        <h4>Major Section</h4>
+                        <h5>Subsection</h5>
+                    </div>
+
+                    <hr />
+
+                    <h4>2. Text Formatting</h4>
+
+                    <p>Use Markdown symbols to emphasize important text.</p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>*Italic text*
+**Bold text**
+***Bold and italic text***
+~~Strikethrough text~~</code></pre>
+
+                    <h5>Rendered Example</h5>
+
+                    <div class="border rounded p-3 mb-3">
+                        <p><em>Italic text</em></p>
+                        <p><strong>Bold text</strong></p>
+                        <p><strong><em>Bold and italic text</em></strong></p>
+                        <p><del>Strikethrough text</del></p>
+                    </div>
+
+                    <hr />
+
+                    <h4>3. Lists</h4>
+
+                    <p>Use hyphens or asterisks for bullet lists and numbers for ordered lists.</p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>- First item
+- Second item
+  - Nested item
+
+
+
+
+
+1. First step
+2. Second step
+3. Third step</code></pre>
+
+                            <h5>Rendered Example</h5>
+
+                                <div class="border rounded p-3 mb-3">
+                                <ul>
+                                    <li>First item</li>
+                                <li>
+                            Second item
+                        <ul>
+                                    <li>Nested item</li>
+                        </ul>
+                            </li>
+                            </ul>
+
+                        <ol>
+                    <li>First step</li>
+                            <li>Second step</li>
+                    <li>Third step</li>
+                        </ol>
+                    </div>
+
+                    <hr />
+
+                        <h4>4. Links and Images</h4>
+
+                    <p>
+                        Links use square brackets for the display text and
+                    parentheses for the destination URL. Images use the
+                        same syntax with an exclamation mark at the beginning.
+                    </p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>[GitHub](https://github.com)
+
+![Project Architecture](./images/architecture.png)</code></pre>
+
+                            <h5>Rendered Example</h5>
+
+                            <div class="border rounded p-3 mb-3">
+                        <p>
+                        <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+                            GitHub
+                            </a>
+                        </p>
+                    <p class="text-muted mb-0">
+                            An image will appear when the specified image path
+                    exists in the repository.
+                        </p>
+                        </div>
+
+                        <div class="alert alert-warning">
+                    <strong>Tip:</strong> Use descriptive alternative text
+                        for images. Relative paths such as
+                    <code>./images/architecture.png</code> are useful when
+                        the image is stored inside your repository.
+                    </div>
+
+                    <hr />
+
+                        <h4>5. Inline Code and Code Blocks</h4>
+
+                        <p>
+                    Use single backticks for commands inside a sentence.
+                        Use triple backticks for multi-line code examples.
+                    Adding a language identifier enables syntax highlighting
+                        on supported Markdown platforms.
+                    </p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>Use `git status` to check repository changes.</code></pre>
+
+
+
+
+
+                    <p>Example of a fenced Bash code block:</p>
+
+                        <pre class="bg-dark text-light p-3 rounded"><code>```bash
+git checkout -b feature/login
+git add .
+git commit -m "Add login feature"
+```</code></pre>
+
+                    <p>
+                    On GitHub, the fenced example is rendered as a formatted
+                        code block rather than ordinary paragraph text.
+                    </p>
+
+
+
+
+
+                    <hr />
+
+                    <h4>6. Tables</h4>
+
+                            <p>Tables help present commands, descriptions, and other structured information.</p>
+
+                                    <pre class="bg-dark text-light p-3 rounded"><code>| Command | Purpose |
+| --- | --- |
+| `git pull` | Fetches and integrates remote changes |
+| `git push` | Uploads local commits to a remote repository |
+| `git status` | Shows the working tree status |</code></pre>
+
+                                    <h5>Rendered Example</h5>
+
+                                <div class="table-responsive">
+                                <table class="table table-bordered table-striped align-middle">
+                                    <thead class="table-dark">
+                                    <tr>
+                                <th>Command</th>
+                                <th>Purpose</th>
+                                    </tr>
+                                    </thead>
+                                <tbody>
+                            <tr>
+                        <td><code>git pull</code></td>
+                    <td>Fetches and integrates remote changes</td>
+                                </tr>
+                    <tr>
+                                    <td><code>git push</code></td>
+                    <td>Uploads local commits to a remote repository</td>
+                                </tr>
+                    <tr>
+                        <td><code>git status</code></td>
+                        <td>Shows the working tree status</td>
+                    </tr>
+                            </tbody>
+                    </table>
+                    </div>
+
+
+                    <hr />
+
+                    <h4>7. Task Lists</h4>
+
+                        <p>
+                        GitHub supports task lists that are useful for tracking
+                    project setup steps and documentation work.
+                    </p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>- [x] Create project repository
+- [ ] Configure GitHub Actions
+- [ ] Deploy production files</code></pre>
+
+                        <h5>Rendered Example</h5>
+
+                    <div class="border rounded p-3 mb-3">
+                        <p><input type="checkbox" checked disabled /> Create project repository</p>
+                    <p><input type="checkbox" disabled /> Configure GitHub Actions</p>
+                        <p class="mb-0"><input type="checkbox" disabled /> Deploy production files</p>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <hr />
+
+                    <h4>8. Writing a Good README.md</h4>
+
+                        <p>
+                        A useful README helps developers understand your project
+                        before they start using or contributing to it.
+                        </p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code># Project Name
+
+## Overview
+Describe what your project does.
+
+## Features
+- Feature one
+- Feature two
+
+## Requirements
+List the required software and dependencies.
+
+## Installation
+Explain how to clone and configure the project.
+
+## Usage
+Show how to run and use the application.
+
+## Contributing
+Explain how others can contribute.</code></pre>
+
+                    <p>A README commonly includes:</p>
+
+                    <ul>
+                        <li>Project name and purpose</li>
+                            <li>Features and screenshots</li>
+                            <li>Prerequisites and installation steps</li>
+                        <li>Usage instructions and examples</li>
+                        <li>Contribution guidelines and license information</li>
+                        </ul>
+
+                            <hr />
+
+                    <h4>9. Markdown Best Practices</h4>
+
+                <ul>
+            <li>Use headings to divide long documents into clear sections.</li>
+        <li>Keep paragraphs short and easy to scan.</li>
+    <li>Format terminal commands using inline code or fenced code blocks.</li>
+<li>Use meaningful link text and image alternative text.</li>
+                        <li>Include installation and usage instructions in your README.</li>
+                        <li>Preview the rendered Markdown before publishing changes.</li>
+</ul>
+
+<div class="alert alert-success mt-4">
+<h5 class="alert-heading">Key Takeaway</h5>
+Markdown makes project documentation readable,
+maintainable, and easy to publish. Learn these basic
+elements to create better README files, contribution
+guides, and technical documentation.
+</div>
+
+<!-- Previous / Next Navigation -->
+<div class="d-flex justify-content-between align-items-center gap-3 mt-4 pt-3 border-top">
+                        <a class="btn btn-outline-secondary"
+                           href="@Url.Action("GitHubPages", "GitHubEcosystemAndWorkflow", new { area = "GitHub" })">
+                            &larr; Previous  GitHub Pages
+                        </a>
+
+                       
+<button type="button" class="btn btn-success" disabled>
+    🎓 Course Completed ✓
+</button>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+</main>

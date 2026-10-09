@@ -1,0 +1,172 @@
+@{
+    Layout = "~/Areas/Jenkins/Views/Shared/JenkinsLayout.cshtml";
+    ViewData["Title"] = "Build Steps";
+}
+
+<style>
+    #build-steps-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #build-steps-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #build-steps-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #build-steps-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #build-steps-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+    #build-steps-page .example-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+    }
+</style>
+
+<main id="build-steps-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/Jenkins/Views/Shared/JenkinsTopics.cshtml")
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+                <h1 class="fw-bold">Build Steps</h1>
+                <p class="lead">
+                    Learn the concepts, syntax types, script execution hooks, and workflow blocks required to compile, test, and package applications inside Jenkins pipelines.
+                </p>
+            </div>
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">What are Build Steps?</h2>
+                <p>
+                    <strong>Build Steps</strong> represent the core functional actions executed within a pipeline stage. After code has been retrieved from source control, build steps instruct the agent node exactly how to interact with compilers, run testing frameworks, or package deployable binaries.
+                </p>
+
+                <div class="alert alert-info my-3">
+                    <strong>Simple Definition:</strong> Build Steps are individual, sequential commands or plugin actions executed within a pipeline stage to carry out physical tasks like compiling source files, running unit tests, or executing shell scripts.
+                </div>
+
+                <h3 class="h4 fw-bold mt-4">Common Build Step Families</h3>
+                <p class="mb-2">Jenkins categorizes execution steps based on the target runtime environment and configuration type:</p>
+                <ul class="mb-3">
+                    <li class="mb-1"><strong>Shell Executions (`sh`):</strong> Native terminal command lines executed inside POSIX-compliant environments such as Linux or macOS agent nodes.</li>
+                    <li class="mb-1"><strong>Windows Batch Commands (`bat`):</strong> Command-line execution loops run specifically on Windows-based worker nodes using traditional command prompt syntax.</li>
+                    <li><strong>Managed Tool Wrappers:</strong> Native steps backed by installed plugins that abstract command-line paths for engines like Maven (`mvn`), Gradle, or npm.</li>
+                </ul>
+            </div>
+
+            <!-- KEY CONCEPTS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Key Concepts</h2>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Sequential Execution &amp; Failures</h5>
+                            <p class="mb-0">Understanding that step steps execute top-to-bottom. If any individual shell command returns a non-zero exit code, Jenkins marks that step as failed and halts the pipeline immediately.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Workspace Environment Isolation</h5>
+                            <p class="mb-0">Recognizing that all script steps run relative to the current build's isolated workspace directory, giving commands native access to cloned files and dependencies.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXAMPLE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Practical Jenkins Example</h2>
+                <p>The following multi-stage declarative pipeline demonstrates how to implement specialized compilation, test, and packaging steps sequentially:</p>
+                <pre><code>pipeline {
+    agent any
+    stages {
+        stage('Compile Application') {
+            steps {
+                echo 'Starting application compilation stage...'
+                // Simulating a project dependency setup and compilation
+                sh 'mkdir -p build/'
+                sh 'echo "Compiling source files..."'
+            }
+        }
+        stage('Run Code Verification') {
+            steps {
+                echo 'Initiating automated code quality and linting validation...'
+                sh 'echo "Executing unit tests... Success!"'
+            }
+        }
+        stage('Package Artifacts') {
+            steps {
+                echo 'Bundling successfully verified source files into distribution format...'
+                sh 'tar -czf build/application-package.tar.gz build/'
+                echo 'Application distribution ready for deployment storage.'
+            }
+        }
+    }
+}</code></pre>
+            </div>
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Practice Exercise: Build and Package a Mock Application</h2>
+                <div class="concept-box">
+                    <h5 class="fw-bold">Step-by-Step Task Sequence:</h5>
+                    <ol class="ps-3 mb-0">
+                        <li class="mb-2">Open an existing test pipeline configuration script or create a new Pipeline item from your dashboard.</li>
+                        <li class="mb-2">Replace your pipeline script block text with the complete practical code layout provided in the example above.</li>
+                        <li class="mb-2">Click the green <strong>Save</strong> button to commit the code configurations to the controller storage layer.</li>
+                        <li class="mb-2">Trigger a manual run iteration path by clicking the <strong>Build Now</strong> menu link on the left side menu sidebar.</li>
+                        <li>Click the current build iteration counter box, navigate to <strong>Console Output</strong>, and trace how each individual `sh` step prints its output back to the log history screen.</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+                <h2 class="h4 fw-bold">Summary</h2>
+                <p class="mb-0">You have completed the <strong>Build Steps</strong> lesson. Continue through the syllabus to learn how to automatically execute these compilation steps using dynamic automated build triggers.</p>
+            </div>
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+                <a class="btn btn-outline-primary" href="@Url.Action("SourceControl", "CoreCICD", new { area = "Jenkins" })">← Previous: Source Control Management</a>
+                <a class="btn btn-primary" href="@Url.Action("BuildTriggers", "CoreCICD", new { area = "Jenkins" })">Next: Build Triggers →</a>
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

@@ -1,0 +1,566 @@
+﻿@{
+    ViewData["Title"] = "CTE with Aggregate Functions";
+}
+
+<div class="container-fluid px-4 py-4">
+
+    <!-- =========================
+         PAGE HEADER
+    ========================== -->
+
+    <div class="mb-4">
+
+        <h1 class="fw-bold">
+            CTE with Aggregate Functions
+        </h1>
+
+        <p class="text-muted">
+            Learn how to use aggregate functions such as COUNT, SUM,
+            AVG, MIN and MAX with Common Table Expressions in SQL Server.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         INTRODUCTION
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                What are Aggregate Functions?
+            </h2>
+
+            <p>
+                Aggregate functions perform calculations on a set of rows
+                and return a single result or a result for each group.
+            </p>
+
+            <p>
+                Common aggregate functions in SQL Server include:
+            </p>
+
+            <ul>
+
+                <li class="mb-2">
+                    <strong>COUNT()</strong> - Counts the number of rows.
+                </li>
+
+                <li class="mb-2">
+                    <strong>SUM()</strong> - Calculates the total value.
+                </li>
+
+                <li class="mb-2">
+                    <strong>AVG()</strong> - Calculates the average value.
+                </li>
+
+                <li class="mb-2">
+                    <strong>MIN()</strong> - Returns the minimum value.
+                </li>
+
+                <li>
+                    <strong>MAX()</strong> - Returns the maximum value.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         SAMPLE TABLE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Example Employees Table
+            </h2>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>EmployeeId | EmployeeName | Department | Salary
+--------------------------------------------------
+101        | Amit          | IT         | 60000
+102        | Rahul         | HR         | 45000
+103        | Priya         | IT         | 70000
+104        | Sneha         | Finance    | 55000
+105        | Raj           | IT         | 65000</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         AVG EXAMPLE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                CTE with AVG()
+            </h2>
+
+            <p>
+                The following CTE calculates the average salary of employees
+                in each department.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>WITH DepartmentSalary AS
+(
+    SELECT
+        Department,
+        AVG(Salary) AS AverageSalary
+    FROM Employees
+    GROUP BY Department
+)
+SELECT *
+FROM DepartmentSalary;</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         AVG RESULT
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Result
+            </h2>
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-striped">
+
+                    <thead class="table-dark">
+
+                        <tr>
+                            <th>Department</th>
+                            <th>Average Salary</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>IT</td>
+                            <td>65000</td>
+                        </tr>
+
+                        <tr>
+                            <td>HR</td>
+                            <td>45000</td>
+                        </tr>
+
+                        <tr>
+                            <td>Finance</td>
+                            <td>55000</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         COUNT EXAMPLE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                CTE with COUNT()
+            </h2>
+
+            <p>
+                We can use COUNT() to find the number of employees
+                in each department.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>WITH DepartmentEmployeeCount AS
+(
+    SELECT
+        Department,
+        COUNT(*) AS EmployeeCount
+    FROM Employees
+    GROUP BY Department
+)
+SELECT *
+FROM DepartmentEmployeeCount;</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         SUM EXAMPLE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                CTE with SUM()
+            </h2>
+
+            <p>
+                SUM() can be used to calculate the total salary
+                for each department.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>WITH DepartmentTotalSalary AS
+(
+    SELECT
+        Department,
+        SUM(Salary) AS TotalSalary
+    FROM Employees
+    GROUP BY Department
+)
+SELECT *
+FROM DepartmentTotalSalary;</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         MIN AND MAX
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                CTE with MIN() and MAX()
+            </h2>
+
+            <p>
+                MIN() and MAX() can be used to find the lowest and
+                highest salary in each department.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>WITH DepartmentSalaryRange AS
+(
+    SELECT
+        Department,
+        MIN(Salary) AS MinimumSalary,
+        MAX(Salary) AS MaximumSalary
+    FROM Employees
+    GROUP BY Department
+)
+SELECT *
+FROM DepartmentSalaryRange;</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         MULTIPLE AGGREGATE FUNCTIONS
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Multiple Aggregate Functions
+            </h2>
+
+            <p>
+                Multiple aggregate functions can be used inside the
+                same CTE.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>WITH DepartmentStatistics AS
+(
+    SELECT
+        Department,
+        COUNT(*) AS EmployeeCount,
+        SUM(Salary) AS TotalSalary,
+        AVG(Salary) AS AverageSalary,
+        MIN(Salary) AS MinimumSalary,
+        MAX(Salary) AS MaximumSalary
+    FROM Employees
+    GROUP BY Department
+)
+SELECT *
+FROM DepartmentStatistics;</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         FILTER AGGREGATE RESULT
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Filtering Aggregate Results
+            </h2>
+
+            <p>
+                Once the aggregate result is generated by the CTE,
+                the main query can filter that result.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>WITH DepartmentStatistics AS
+(
+    SELECT
+        Department,
+        COUNT(*) AS EmployeeCount,
+        AVG(Salary) AS AverageSalary
+    FROM Employees
+    GROUP BY Department
+)
+SELECT *
+FROM DepartmentStatistics
+WHERE AverageSalary &gt; 50000;</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         HAVING EXAMPLE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                CTE with HAVING
+            </h2>
+
+            <p>
+                The HAVING clause can be used inside the CTE when we
+                want to filter grouped results.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>WITH DepartmentStatistics AS
+(
+    SELECT
+        Department,
+        AVG(Salary) AS AverageSalary
+    FROM Employees
+    GROUP BY Department
+    HAVING AVG(Salary) &gt; 50000
+)
+SELECT *
+FROM DepartmentStatistics;</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         HOW IT WORKS
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                How CTE with Aggregate Functions Works
+            </h2>
+
+            <ol>
+
+                <li class="mb-3">
+                    The CTE starts with the <strong>WITH</strong> keyword.
+                </li>
+
+                <li class="mb-3">
+                    The required rows are selected from the table.
+                </li>
+
+                <li class="mb-3">
+                    GROUP BY groups the records when required.
+                </li>
+
+                <li class="mb-3">
+                    Aggregate functions perform calculations on the groups.
+                </li>
+
+                <li>
+                    The main query reads the result produced by the CTE.
+                </li>
+
+            </ol>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         ADVANTAGES
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Advantages
+            </h2>
+
+            <ul>
+
+                <li class="mb-2">
+                    Makes aggregate queries easier to understand.
+                </li>
+
+                <li class="mb-2">
+                    Separates aggregation logic from the final query.
+                </li>
+
+                <li class="mb-2">
+                    Makes complex grouped queries more readable.
+                </li>
+
+                <li class="mb-2">
+                    Allows the aggregate result to be filtered in the main query.
+                </li>
+
+                <li>
+                    Helps organize reporting queries.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         IMPORTANT POINTS
+    ========================== -->
+
+    <div class="alert alert-warning shadow-sm mb-4">
+
+        <h4 class="fw-bold">
+            Important Points
+        </h4>
+
+        <ul class="mb-0">
+
+            <li class="mb-2">
+                Aggregate functions can be used inside a CTE.
+            </li>
+
+            <li class="mb-2">
+                GROUP BY is commonly used with aggregate functions.
+            </li>
+
+            <li class="mb-2">
+                HAVING can filter grouped results.
+            </li>
+
+            <li class="mb-2">
+                The main query can further filter or sort the CTE result.
+            </li>
+
+            <li>
+                Multiple aggregate functions can be used in the same CTE.
+            </li>
+
+        </ul>
+
+    </div>
+
+
+    <!-- =========================
+         SUMMARY
+    ========================== -->
+
+    <div class="card shadow-sm mb-5">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Summary
+            </h2>
+
+            <p>
+                CTEs can be combined with aggregate functions to perform
+                calculations such as COUNT, SUM, AVG, MIN and MAX.
+            </p>
+
+            <p class="mb-0">
+                Using a CTE keeps the aggregation logic organized and
+                makes complex reporting queries easier to read and maintain.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         PREVIOUS / NEXT
+    ========================== -->
+
+    <div class="d-flex justify-content-between align-items-center
+        mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/CTE/CTEWithJoin"
+           class="btn btn-outline-primary">
+
+            ← Previous: CTE with JOIN
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/CTE/RecursiveCTE"
+           class="btn btn-primary">
+
+            Next: Recursive CTE →
+
+        </a>
+
+    </div>
+
+</div>

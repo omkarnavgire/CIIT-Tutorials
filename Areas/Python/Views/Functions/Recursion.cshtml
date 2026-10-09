@@ -1,0 +1,912 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Recursion";
+}
+
+<style>
+    #python-recursion-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 0.5rem;
+        padding: 1rem !important;
+        overflow-x: auto;
+    }
+
+        #python-recursion-page pre code {
+            background-color: transparent !important;
+            color: #ffffff !important;
+        }
+</style>
+
+<main id="python-recursion-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- =========================
+             LEFT SIDEBAR
+        ========================== -->
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+
+        </aside>
+
+
+        <!-- =========================
+             RIGHT CONTENT
+        ========================== -->
+        <section class="col-lg-9">
+
+            <!-- =========================
+                 PAGE INTRO
+            ========================== -->
+
+            <h1 class="display-6 fw-bold mb-3">
+                Recursion in Python
+            </h1>
+
+            <p class="lead">
+                Recursion is a programming technique in which a function
+                <strong>calls itself</strong>.
+                A recursive function solves a problem by dividing it into smaller problems
+                and solving them.
+            </p>
+
+            <div class="alert alert-light border">
+
+                <strong>CIIT Tip:</strong>
+
+                Think of recursion in a simple way:
+                the function calls itself, but a
+                <strong>stopping condition</strong> zaroor honi chahiye.
+
+            </div>
+
+
+            <!-- =========================
+                 1. WHAT IS RECURSION
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                1. What is Recursion?
+            </h2>
+
+            <p>
+                When a function calls itself from within its own definition,
+                this technique is called <strong>recursion</strong>.
+            </p>
+
+            <pre><code>def hello():
+    print("Hello")
+    hello()</code></pre>
+
+            <div class="alert alert-warning">
+
+                <strong>Important:</strong>
+
+                The above example does not have a stopping condition,
+                so the function will continue calling itself indefinitely.
+                In practical recursion, a <strong>base case</strong> must be present.
+
+            </div>
+
+
+            <!-- =========================
+                 2. BASIC RECURSION
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                2. Basic Recursive Function
+            </h2>
+
+            <pre><code>def count_down(number):
+
+    if number == 0:
+        return
+
+    print(number)
+
+    count_down(number - 1)
+
+
+count_down(5)</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>5
+4
+3
+2
+1</code></pre>
+
+
+            <!-- =========================
+                 3. BASE CASE
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                3. What is a Base Case?
+            </h2>
+
+            <p>
+                A <strong>base case</strong> is the condition where recursion
+                stops.
+            </p>
+
+            <pre><code>def count_down(number):
+
+    if number == 0:
+        return
+
+    print(number)
+
+    count_down(number - 1)</code></pre>
+
+            <p>
+                Here:
+            </p>
+
+            <pre><code>if number == 0:
+    return</code></pre>
+
+            <p>
+                is the base case.
+                When <strong>number == 0</strong>,
+                the function does not make any further call.
+            </p>
+
+
+            <!-- =========================
+                 4. RECURSIVE CASE
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                4. Recursive Case
+            </h2>
+
+            <p>
+                The recursive case is the part where the function
+                calls itself again.
+            </p>
+
+            <pre><code>def count_down(number):
+
+    if number == 0:
+        return
+
+    print(number)
+
+    count_down(number - 1)</code></pre>
+
+            <p>
+                Here:
+            </p>
+
+            <pre><code>count_down(number - 1)</code></pre>
+
+            <p>
+                is the recursive call.
+            </p>
+
+
+            <!-- =========================
+                 5. RECURSION FLOW
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                5. Recursion Execution Flow
+            </h2>
+
+            <div class="alert alert-secondary">
+
+                <strong>count_down(5)</strong>
+                <br>
+                ↓
+                <br>
+                count_down(4)
+                <br>
+                ↓
+                <br>
+                count_down(3)
+                <br>
+                ↓
+                <br>
+                count_down(2)
+                <br>
+                ↓
+                <br>
+                count_down(1)
+                <br>
+                ↓
+                <br>
+                count_down(0)
+                <br>
+                ↓
+                <br>
+                <strong>Base Case → Stop</strong>
+
+            </div>
+
+
+            <!-- =========================
+                 6. FACTORIAL
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                6. Factorial Using Recursion
+            </h2>
+
+            <p>
+                Factorial is a very common example of recursion.
+            </p>
+
+            <p>
+                Example:
+            </p>
+
+            <pre><code>5! = 5 × 4 × 3 × 2 × 1
+   = 120</code></pre>
+
+            <p>
+                Recursive solution:
+            </p>
+
+            <pre><code>def factorial(number):
+
+    if number == 0:
+        return 1
+
+    return number * factorial(number - 1)
+
+
+result = factorial(5)
+
+print(result)</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>120</code></pre>
+
+
+            <!-- =========================
+                 7. FACTORIAL FLOW
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                7. Factorial Execution
+            </h2>
+
+            <pre><code>factorial(5)
+= 5 * factorial(4)
+= 5 * 4 * factorial(3)
+= 5 * 4 * 3 * factorial(2)
+= 5 * 4 * 3 * 2 * factorial(1)
+= 5 * 4 * 3 * 2 * 1
+= 120</code></pre>
+
+
+            <!-- =========================
+                 8. SUM OF NUMBERS
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                8. Sum of Numbers Using Recursion
+            </h2>
+
+            <pre><code>def sum_numbers(number):
+
+    if number == 0:
+        return 0
+
+    return number + sum_numbers(number - 1)
+
+
+result = sum_numbers(5)
+
+print(result)</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>15</code></pre>
+
+            <p>
+                Calculation:
+            </p>
+
+            <pre><code>5 + 4 + 3 + 2 + 1 = 15</code></pre>
+
+
+            <!-- =========================
+                 9. POWER
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                9. Power Using Recursion
+            </h2>
+
+            <pre><code>def power(base, exponent):
+
+    if exponent == 0:
+        return 1
+
+    return base * power(base, exponent - 1)
+
+
+result = power(2, 4)
+
+print(result)</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>16</code></pre>
+
+
+            <!-- =========================
+                 10. FIBONACCI
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                10. Fibonacci Using Recursion
+            </h2>
+
+            <p>
+                In the Fibonacci sequence, the next number is the sum of the
+                the previous two numbers.
+            </p>
+
+            <pre><code>0, 1, 1, 2, 3, 5, 8, 13...</code></pre>
+
+            <pre><code>def fibonacci(number):
+
+    if number <= 1:
+        return number
+
+    return fibonacci(number - 1) + fibonacci(number - 2)
+
+
+for i in range(8):
+    print(fibonacci(i))</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>0
+1
+1
+2
+3
+5
+8
+13</code></pre>
+
+
+            <!-- =========================
+                 11. RECURSION WITH STRING
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                11. Recursion with String
+            </h2>
+
+            <p>
+                Recursion can also be used to reverse a string.
+            </p>
+
+            <pre><code>def reverse_string(text):
+
+    if text == "":
+        return ""
+
+    return reverse_string(text[1:]) + text[0]
+
+
+result = reverse_string("CIIT")
+
+print(result)</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>TIIC</code></pre>
+
+
+            <!-- =========================
+                 12. COUNT CHARACTERS
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                12. Count Characters Using Recursion
+            </h2>
+
+            <pre><code>def count_characters(text):
+
+    if text == "":
+        return 0
+
+    return 1 + count_characters(text[1:])
+
+
+result = count_characters("Python")
+
+print(result)</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>6</code></pre>
+
+
+            <!-- =========================
+                 13. RECURSION WITH LIST
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                13. Recursion with List
+            </h2>
+
+            <pre><code>def print_items(items, index=0):
+
+    if index == len(items):
+        return
+
+    print(items[index])
+
+    print_items(items, index + 1)
+
+
+courses = [
+    "Python",
+    ".NET",
+    "Java"
+]
+
+print_items(courses)</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>Python
+.NET
+Java</code></pre>
+
+
+            <!-- =========================
+                 14. PRACTICAL CIIT EXAMPLE
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                14. CIIT Example 🤓👀
+            </h2>
+
+            <p>
+                Suppose CIIT has multiple course levels and
+                we need to display them recursively.
+            </p>
+
+            <pre><code>def show_courses(courses, index=0):
+
+    if index == len(courses):
+        return
+
+    print("Course:", courses[index])
+
+    show_courses(courses, index + 1)
+
+
+courses = [
+    "Python Full Stack",
+    ".NET Full Stack",
+    "Java Full Stack",
+    "Data Science"
+]
+
+show_courses(courses)</code></pre>
+
+            <h5 class="fw-bold mt-3">
+                Output:
+            </h5>
+
+            <pre><code>Course: Python Full Stack
+Course: .NET Full Stack
+Course: Java Full Stack
+Course: Data Science</code></pre>
+
+
+            <!-- =========================
+                 15. RECURSION VS LOOP
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                15. Recursion vs Loop
+            </h2>
+
+            <table class="table table-bordered">
+
+                <thead class="table-light">
+
+                    <tr>
+                        <th>Recursion</th>
+                        <th>Loop</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>The function calls itself</td>
+                        <td>for or while is used</td>
+                    </tr>
+
+                    <tr>
+                        <td>A base case is required</td>
+                        <td>A loop condition is required</td>
+                    </tr>
+
+                    <tr>
+                        <td>Can be useful for complex problems</td>
+                        <td>Generally simpler for repeated tasks</td>
+                    </tr>
+
+                    <tr>
+                        <td>There is function call overhead</td>
+                        <td>Usually simpler execution</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+
+            <!-- =========================
+                 16. RECURSION STACK
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                16. Recursion and Call Stack
+            </h2>
+
+            <p>
+                Each recursive function call creates a new function call
+                frame in memory. This process is managed through the call stack.
+                
+            </p>
+
+            <pre><code>factorial(3)
+
+factorial(3)
+    ↓
+factorial(2)
+    ↓
+factorial(1)
+    ↓
+factorial(0)
+
+Base Case
+
+Then results return back:
+1
+2
+6</code></pre>
+
+            <div class="alert alert-warning">
+
+                <strong>Important:</strong>
+
+                Agar recursion bahut deep ho jaye ya base case missing ho,
+                Python may raise a <strong>RecursionError</strong>.
+
+            </div>
+
+
+            <!-- =========================
+                 17. COMMON MISTAKES
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                17. Common Mistakes
+            </h2>
+
+            <h5 class="fw-bold">
+                Mistake 1: Base Case Missing
+            </h5>
+
+            <pre><code>def test(number):
+
+    print(number)
+
+    test(number - 1)</code></pre>
+
+            <p>
+                This function does not have a stopping condition.
+            </p>
+
+            <h5 class="fw-bold mt-4">
+                Mistake 2: Wrong Base Case
+            </h5>
+
+            <pre><code>def count_down(number):
+
+    if number == 10:
+        return
+
+    count_down(number - 1)</code></pre>
+
+            <p>
+                If the starting value is 5, the function can never
+                reach <strong>10</strong>.
+            </p>
+
+            <div class="alert alert-warning">
+
+                <strong>Remember:</strong>
+
+                In a recursive function, both the base case and the recursive step
+                must be designed correctly.
+
+            </div>
+
+
+            <!-- =========================
+                 18. WHEN TO USE RECURSION
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                18. When to Use Recursion?
+            </h2>
+
+            <ul>
+
+                <li>
+                    When working with tree structures.
+                </li>
+
+                <li>
+                    In problems such as graph traversal.
+                </li>
+
+                <li>
+                    In divide-and-conquer algorithms.
+                </li>
+
+                <li>
+                    In mathematical problems such as factorial and Fibonacci.
+                </li>
+
+                <li>
+                    When processing nested structures.
+                </li>
+
+            </ul>
+
+
+            <!-- =========================
+                 19. INTERVIEW POINTS
+            ========================== -->
+
+            <h2 class="h3 fw-bold mt-5">
+                19. Interview Points
+            </h2>
+
+            <ul>
+
+                <li>
+                    What is recursion?
+                </li>
+
+                <li>
+                    What is a recursive function?
+                </li>
+
+                <li>
+                    What is a base case?
+                </li>
+
+                <li>
+                    What is a recursive case?
+                </li>
+
+                <li>
+                    What is the difference between recursion and a loop?
+                </li>
+
+                <li>
+                    When can a RecursionError occur in recursion?
+                </li>
+
+                <li>
+                    How can factorial be calculated using recursion?
+                </li>
+
+                <li>
+                    How can the Fibonacci sequence be generated using recursion?
+                </li>
+
+            </ul>
+
+
+            <!-- =========================
+                 CIIT LEARNING POINT
+            ========================== -->
+
+            <div class="alert alert-success mt-4">
+
+                <h2 class="h4 fw-bold">
+                    CIIT Learning Point
+                </h2>
+
+                <p class="mb-0">
+
+                    In recursion, a function calls itself.
+                    Every recursive function must have a proper
+                    <strong>base case</strong>.
+                    Recursion is useful for factorial, Fibonacci, tree structures, and
+                    complex problem-solving techniques.
+
+                </p>
+
+            </div>
+
+
+            <!-- =========================
+                 CIIT PRACTICE TASKS
+            ========================== -->
+
+            <div class="alert alert-warning mt-4">
+
+                <h2 class="h4 fw-bold">
+                    CIIT Practice Tasks
+                </h2>
+
+                <ol class="mb-0">
+
+                    <li class="mb-2">
+
+                        <strong>Countdown:</strong>
+
+                        <br>
+
+                        Create a recursive function that
+                        prints a countdown from the given number to <strong>1</strong>.
+
+                    </li>
+
+                    <li class="mb-2">
+
+                        <strong>Factorial:</strong>
+
+                        <br>
+
+                        Create a <code>factorial(number)</code> function
+                        that calculates factorial using recursion.
+
+                    </li>
+
+                    <li class="mb-2">
+
+                        <strong>Sum of Numbers:</strong>
+
+                        <br>
+
+                        Create a <code>sum_numbers(number)</code> function
+                        that returns the sum from <strong>1 to number</strong>.
+
+                    </li>
+
+                    <li class="mb-2">
+
+                        <strong>Power:</strong>
+
+                        <br>
+
+                        Create a <code>power(base, exponent)</code> function
+                        that calculates the power using recursion.
+
+                    </li>
+
+                    <li class="mb-2">
+
+                        <strong>Reverse String:</strong>
+
+                        <br>
+
+                        Create a recursive function that reverses the given string.
+
+                    </li>
+
+                    <li class="mb-2">
+
+                        <strong>Count List Items:</strong>
+
+                        <br>
+
+                        Use recursion to count the total number of items in a list.
+
+                    </li>
+
+                    <li>
+
+                        <strong>Fibonacci:</strong>
+
+                        <br>
+
+                        Create a recursive function that returns the Fibonacci sequence's
+                        number at the given position.
+
+                    </li>
+
+                </ol>
+
+            </div>
+
+
+            <!-- =========================
+                 SUMMARY
+            ========================== -->
+
+            <div class="alert alert-info mt-4 mb-0"
+                 style="background-color:#cfe2ff; border:0; color:#123c73;">
+
+                <h2 class="h3 fw-bold mt-0 mb-3"
+                    style="color:#123c73;">
+
+                    Summary :
+
+                </h2>
+
+                <p class="mb-0"
+                   style="color:#123c73;">
+
+                    Recursion is a technique in which a function calls itself.
+                    In a recursive function, the <strong>base case</strong> stops the recursion,
+                    while the recursive case calls the function again with the next smaller problem.
+                    Factorial, Fibonacci, sum, power,
+                    string and list processing are examples of problems where recursion can be used.
+                    
+
+                </p>
+
+            </div>
+
+
+            <!-- =========================
+                 PREVIOUS / NEXT
+            ========================== -->
+
+            <div class="d-flex justify-content-between mt-5">
+
+                <a class="btn btn-outline-secondary"
+                   href="@Url.Action("Scope", "Functions", new { area = "Python" })">
+
+                    ← Previous : Topic
+
+                </a>
+
+                <a class="btn btn-primary"
+                   href="@Url.Action("LambdaFunctions", "Functions", new { area = "Python" })">
+
+                    Next : Topic →
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

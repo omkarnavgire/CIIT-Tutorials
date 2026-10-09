@@ -1,0 +1,823 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Python OOPs - Object Oriented Programming";
+}
+
+<style>
+    /* Page-scoped code block styling */
+    #python-oops-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 0.5rem;
+        padding: 1rem !important;
+        overflow-x: auto;
+    }
+
+        #python-oops-page pre code {
+            background-color: transparent !important;
+            color: #ffffff !important;
+        }
+
+    /* OOPs diagram */
+    #python-oops-page .oops-diagram {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 25px;
+    }
+
+    #python-oops-page .oops-box {
+        background: #ffffff;
+        border: 2px solid #6f42c1;
+        border-radius: 10px;
+        padding: 15px;
+        text-align: center;
+        height: 100%;
+    }
+
+        #python-oops-page .oops-box h5 {
+            color: #4c1d95;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        #python-oops-page .oops-box p {
+            margin-bottom: 0;
+            color: #495057;
+            font-size: 0.92rem;
+        }
+
+    #python-oops-page .oops-center {
+        background: #2e1065;
+        color: #ffffff;
+        border-radius: 12px;
+        padding: 18px;
+        text-align: center;
+        font-weight: 700;
+        font-size: 1.15rem;
+    }
+
+    #python-oops-page .arrow {
+        text-align: center;
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: #6f42c1;
+        padding: 8px 0;
+    }
+
+    #python-oops-page .concept-table th {
+        background-color: #212529;
+        color: #ffffff;
+    }
+</style>
+
+<main id="python-oops-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- Left Sidebar -->
+        <aside class="col-lg-3">
+
+            @Html.Partial("~/Areas/Python/Views/Shared/PythonTopics.cshtml")
+
+        </aside>
+
+        <!-- Main Content -->
+        <section class="col-lg-9">
+
+            <!-- Page Heading -->
+            <div class="mb-4">
+
+                <h1 class="fw-bold">
+                    Object-Oriented Programming (OOPs)
+                </h1>
+
+                <p class="lead">
+                    Learn how Python uses classes and objects to organize
+                    programs into reusable, structured and maintainable code.
+                </p>
+
+            </div>
+
+
+            <!-- Introduction -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    What is OOPs?
+                </h2>
+
+                <p>
+                    <strong>OOPs (Object-Oriented Programming)</strong> is a
+                    programming approach where a program is designed using
+                    <strong>objects</strong> and <strong>classes</strong>.
+                </p>
+
+                <p>
+                    An object represents a real-world entity such as a
+                    student, employee, course or bank account. A class acts
+                    as a blueprint from which objects are created.
+                </p>
+
+                <p>
+                    Python supports Object-Oriented Programming and provides
+                    important concepts such as:
+                </p>
+
+                <ul>
+                    <li>Classes and Objects</li>
+                    <li>Constructors</li>
+                    <li>Encapsulation</li>
+                    <li>Inheritance</li>
+                    <li>Polymorphism</li>
+                    <li>Abstraction</li>
+                </ul>
+
+            </div>
+
+
+            <!-- Why OOPs -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Why Do We Use OOPs?
+                </h2>
+
+                <p>
+                    OOPs helps developers build large applications in a
+                    structured and reusable way.
+                </p>
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered align-middle">
+
+                        <thead>
+                            <tr>
+                                <th>Benefit</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td><strong>Reusability</strong></td>
+                                <td>
+                                    Existing classes and methods can be reused.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td><strong>Maintainability</strong></td>
+                                <td>
+                                    Code can be organized into smaller components.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td><strong>Security</strong></td>
+                                <td>
+                                    Data can be controlled using encapsulation.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td><strong>Scalability</strong></td>
+                                <td>
+                                    Applications can be expanded more easily.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td><strong>Code Organization</strong></td>
+                                <td>
+                                    Related data and behavior can be grouped together.
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <!-- OOPs Diagram -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    OOPs Concept Diagram
+                </h2>
+
+                <p>
+                    The following diagram shows the major concepts of
+                    Object-Oriented Programming in Python.
+                </p>
+
+                <div class="oops-diagram">
+
+                    <div class="oops-center">
+                        Object-Oriented Programming (OOPs)
+                    </div>
+
+                    <div class="arrow">
+                        ↓
+                    </div>
+
+                    <div class="row g-3">
+
+                        <div class="col-md-6">
+
+                            <div class="oops-box">
+
+                                <h5>Classes & Objects</h5>
+
+                                <p>
+                                    Class is a blueprint and object is an
+                                    instance created from that blueprint.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <div class="oops-box">
+
+                                <h5>Encapsulation</h5>
+
+                                <p>
+                                    Combines data and methods together and
+                                    controls access to data.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <div class="oops-box">
+
+                                <h5>Inheritance</h5>
+
+                                <p>
+                                    Allows a child class to reuse properties
+                                    and methods of a parent class.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <div class="oops-box">
+
+                                <h5>Polymorphism</h5>
+
+                                <p>
+                                    Allows the same method or interface to
+                                    behave differently in different objects.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <div class="oops-box">
+
+                                <h5>Abstraction</h5>
+
+                                <p>
+                                    Hides unnecessary implementation details
+                                    and exposes essential functionality.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <div class="oops-box">
+
+                                <h5>Constructors</h5>
+
+                                <p>
+                                    Used to initialize an object when it is
+                                    created.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Real World Example -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Example 🤓👀
+                </h2>
+
+                <p>
+                    Consider a training institute such as
+                    <strong>CIIT Training Institute</strong>.
+                </p>
+
+                <p>
+                    We can represent a student using an object.
+                    The student can have data such as name, course and fees,
+                    along with behaviors such as displaying details.
+                </p>
+
+                <pre><code>class Student:
+
+    def __init__(self, name, course, fees):
+        self.name = name
+        self.course = course
+        self.fees = fees
+
+    def display_details(self):
+        print("Name:", self.name)
+        print("Course:", self.course)
+        print("Fees:", self.fees)
+
+
+student1 = Student("Sam", "Java Full Stack", 35000)
+
+student1.display_details()</code></pre>
+
+                <p class="mt-3">
+                    Here, <strong>Student</strong> is the class and
+                    <strong>student1</strong> is an object of that class.
+                </p>
+
+            </div>
+
+
+            <!-- Output -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Output
+                </h2>
+
+                <pre><code>Name: Sam
+Course: Java Full Stack
+Fees: 35000</code></pre>
+
+            </div>
+
+
+            <!-- Class and Object -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Class and Object
+                </h2>
+
+                <p>
+                    A <strong>class</strong> defines the structure and
+                    behavior of an entity, while an
+                    <strong>object</strong> is an actual instance of that class.
+                </p>
+
+                <pre><code>class Student:
+    pass
+
+student1 = Student()
+student2 = Student()</code></pre>
+
+                <p>
+                    In this example, <strong>Student</strong> is the class and
+                    <strong>student1</strong> and <strong>student2</strong>
+                    are objects.
+                </p>
+
+            </div>
+
+
+            <!-- Object Properties -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Attributes and Methods
+                </h2>
+
+                <p>
+                    Objects generally contain two important types of members:
+                </p>
+
+                <ul>
+                    <li>
+                        <strong>Attributes:</strong>
+                        Store object data.
+                    </li>
+
+                    <li>
+                        <strong>Methods:</strong>
+                        Define actions or behavior.
+                    </li>
+                </ul>
+
+                <pre><code>class Student:
+
+    def display(self):
+        print("Student details")
+
+
+student = Student()
+
+student.display()</code></pre>
+
+            </div>
+
+
+            <!-- self -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    What is <code>self</code>?
+                </h2>
+
+                <p>
+                    In Python, <code>self</code> refers to the current object.
+                    It is used to access the attributes and methods of that
+                    particular object.
+                </p>
+
+                <pre><code>class Student:
+
+    def __init__(self, name):
+        self.name = name
+
+    def show(self):
+        print(self.name)
+
+
+student = Student("Amit")
+
+student.show()</code></pre>
+
+                <p>
+                    Here, <code>self.name</code> stores the name inside the
+                    current student object.
+                </p>
+
+            </div>
+
+
+            <!-- Four Pillars -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Four Important OOPs Concepts
+                </h2>
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered concept-table">
+
+                        <thead>
+                            <tr>
+                                <th>Concept</th>
+                                <th>Meaning</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>Encapsulation</td>
+                                <td>
+                                    Bundling data and methods together and
+                                    controlling access.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Inheritance</td>
+                                <td>
+                                    Reusing features of an existing class.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Polymorphism</td>
+                                <td>
+                                    Same interface or method with different behavior.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Abstraction</td>
+                                <td>
+                                    Showing essential functionality while
+                                    hiding implementation details.
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <!-- OOPs Flow -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    OOPs Program Flow
+                </h2>
+
+                <pre><code>
+                                     Class
+                                      ↓
+                            Define Attributes & Methods
+                                      ↓
+                                 Create Object
+                                      ↓
+                                 Object Stores Data
+                                      ↓
+                                 Object Calls Methods
+                                      ↓
+                           Program Performs Required Operation</code></pre>
+
+            </div>
+
+
+            <!-- Practical Example -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold"> 
+                    CIIT Example 📩🖥️
+                </h2>
+
+                <p>
+                    Suppose we want to manage students enrolled in different
+                    courses.
+                </p>
+
+                <pre><code>class Student:
+
+    def __init__(self, name, course):
+        self.name = name
+        self.course = course
+
+    def show_course(self):
+        print(self.name, "is learning", self.course)
+
+
+student1 = Student("Priya", "Python Full Stack")
+student2 = Student("Amit", ".NET Full Stack")
+
+student1.show_course()
+student2.show_course()</code></pre>
+
+                <p class="mt-3">
+                    This approach keeps student data and student-related
+                    behavior together inside the <strong>Student</strong>
+                    class.
+                </p>
+                <div class="px-2">
+    <h5 class="fw-bold mb-2">
+        Output
+    </h5>
+
+    <pre class="mb-4"><code>Priya is learning Python Full Stack
+Amit is learning .NET Full Stack</code></pre>
+</div>
+            </div>
+
+
+            <!-- Important Points -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Important Points to Remember
+                </h2>
+
+                <ul>
+
+                    <li>
+                        Python supports Object-Oriented Programming.
+                    </li>
+
+                    <li>
+                        A class is a blueprint for creating objects.
+                    </li>
+
+                    <li>
+                        An object is an instance of a class.
+                    </li>
+
+                    <li>
+                        Attributes store data.
+                    </li>
+
+                    <li>
+                        Methods define behavior.
+                    </li>
+
+                    <li>
+                        <code>self</code> refers to the current object.
+                    </li>
+
+                    <li>
+                        The <code>__init__()</code> method is commonly used
+                        for object initialization.
+                    </li>
+
+                    <li>
+                        OOP concepts help create reusable and maintainable code.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- Common Mistakes -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Common Beginner Mistakes
+                </h2>
+
+                <ul>
+
+                    <li>
+                        Forgetting the colon <code>:</code> after class definition.
+                    </li>
+
+                    <li>
+                        Incorrect indentation inside the class.
+                    </li>
+
+                    <li>
+                        Forgetting <code>self</code> in instance methods.
+                    </li>
+
+                    <li>
+                        Confusing a class with an object.
+                    </li>
+
+                    <li>
+                        Accessing an attribute before assigning it.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- Interview Points -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Interview Points
+                </h2>
+
+                <ol>
+
+                    <li>What is OOPs?</li>
+
+                    <li>What is a class?</li>
+
+                    <li>What is an object?</li>
+
+                    <li>What is the difference between class and object?</li>
+
+                    <li>What is the purpose of self in Python?</li>
+
+                    <li>What is a constructor?</li>
+
+                    <li>Explain encapsulation, inheritance, polymorphism and abstraction.</li>
+
+                </ol>
+
+            </div>
+
+
+            <!-- Learning Point -->
+            <div class="alert alert-success">
+
+                <h2 class="h4 fw-bold">
+                    CIIT Learning Point
+                </h2>
+
+                <p class="mb-0">
+                    OOPs is one of the most important concepts for Python
+                    developers. Understanding classes, objects and the four
+                    major OOP concepts will help you build structured
+                    real-world applications.
+                </p>
+
+            </div>
+
+
+            <!-- Practice -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    CIIT Practice Tasks
+                </h2>
+
+                <ol>
+
+                    <li>
+                        Create a <code>Student</code> class with name and age.
+                    </li>
+
+                    <li>
+                        Create an <code>Employee</code> class with name,
+                        department and salary.
+                    </li>
+
+                    <li>
+                        Create a <code>Course</code> class with course name
+                        and fees.
+                    </li>
+
+                    <li>
+                        Create multiple objects from the same class.
+                    </li>
+
+                    <li>
+                        Create a method that displays object information.
+                    </li>
+
+                </ol>
+
+            </div>
+
+
+            <!-- Summary -->
+            <div class="alert alert-info mt-4 mb-0"
+                 style="background-color:#cfe2ff; border:0; color:#123c73;">
+
+                <h2 class="h3 fw-bold mt-0 mb-3"
+                    style="color:#123c73;">
+
+                    Summary :
+
+                </h2>
+
+                <p class="mb-0"
+                   style="color:#123c73;">
+
+                    OOPs (Object-Oriented Programming) is a programming
+                    approach based on classes and objects. A class acts as
+                    a blueprint and an object is an instance of that class.
+                    Python OOPs includes important concepts such as
+                    constructors, encapsulation, inheritance, polymorphism
+                    and abstraction. Understanding these concepts helps
+                    developers create reusable, organized and maintainable
+                    applications.
+
+                </p>
+
+            </div>
+
+
+            <!-- Navigation -->
+            <div class="d-flex justify-content-between mt-4">
+
+                <a class="btn btn-outline-secondary"
+                   href="@Url.Action("Comprehensions", "DataStructures", new { area = "Python" })">
+
+                    ← Previous: Topic
+
+                </a>
+
+                <a class="btn btn-primary"
+                   href="@Url.Action("ClassesObjects", "OOPs", new { area = "Python" })">
+
+                    Next: Topic →
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

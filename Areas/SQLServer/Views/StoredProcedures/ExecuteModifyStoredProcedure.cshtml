@@ -1,0 +1,755 @@
+﻿@{
+    ViewData["Title"] = "Executing & Modifying Stored Procedures - SQL Server";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- =========================
+         PAGE HEADER
+    ========================== -->
+
+    <div class="mb-4">
+
+        <h1 class="fw-bold text-primary">
+            Executing &amp; Modifying Stored Procedures
+        </h1>
+
+        <p class="lead">
+            SQL Server Stored Procedures can be executed using the
+            <code>EXEC</code> statement and can be modified using
+            <code>ALTER PROCEDURE</code>.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         1. INTRODUCTION
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                1. Introduction
+            </h2>
+
+            <p>
+                A Stored Procedure is a precompiled collection of SQL
+                statements that is stored inside the SQL Server database.
+            </p>
+
+            <p>
+                After creating a Stored Procedure, we can execute it whenever
+                we need its functionality.
+            </p>
+
+            <p>
+                SQL Server provides the <code>EXEC</code> or
+                <code>EXECUTE</code> statement to run a Stored Procedure.
+                We can also modify an existing Stored Procedure using
+                <code>ALTER PROCEDURE</code>.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         2. EXECUTING A STORED PROCEDURE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-header bg-dark text-white">
+
+            <h3 class="mb-0">
+                2. Executing a Stored Procedure
+            </h3>
+
+        </div>
+
+        <div class="card-body">
+
+            <p>
+                The <code>EXEC</code> statement is used to execute a
+                Stored Procedure.
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>EXEC ProcedureName;</code></pre>
+
+            <p class="mt-3">
+                The <code>EXECUTE</code> keyword can also be used.
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>EXECUTE ProcedureName;</code></pre>
+
+            <div class="alert alert-info mt-3">
+
+                <strong>Note:</strong>
+
+                <p class="mb-0 mt-2">
+                    <code>EXEC</code> is the commonly used short form of
+                    <code>EXECUTE</code>.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         3. SIMPLE EXAMPLE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                3. Simple Example
+            </h2>
+
+            <p>
+                Consider a Stored Procedure that returns all students
+                from the <strong>Students</strong> table.
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>CREATE PROCEDURE GetAllStudents
+AS
+BEGIN
+    SELECT *
+    FROM Students;
+END;</code></pre>
+
+            <h5 class="fw-bold mt-4">
+                Execute the Procedure
+            </h5>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>EXEC GetAllStudents;</code></pre>
+
+            <div class="alert alert-success mt-3">
+
+                <strong>Result:</strong>
+
+                <p class="mb-0 mt-2">
+                    The Stored Procedure executes the SELECT statement
+                    and returns all records from the Students table.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         4. EXECUTING WITH INPUT PARAMETERS
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-header bg-primary text-white">
+
+            <h3 class="mb-0">
+                4. Executing with Input Parameters
+            </h3>
+
+        </div>
+
+        <div class="card-body">
+
+            <p>
+                A Stored Procedure can accept input parameters while
+                executing.
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>CREATE PROCEDURE GetStudentById
+    @@StudentId INT
+AS
+BEGIN
+    SELECT
+        StudentId,
+        Name,
+        City,
+        Age
+    FROM Students
+    WHERE StudentId = @@StudentId;
+END;</code></pre>
+
+            <h5 class="fw-bold mt-4">
+                Execute the Procedure
+            </h5>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>EXEC GetStudentById
+    @@StudentId = 101;</code></pre>
+
+            <div class="alert alert-info mt-3">
+
+                <strong>Explanation:</strong>
+
+                <p class="mb-0 mt-2">
+                    Here, <code>101</code> is passed to the
+                    <code>StudentId</code> parameter. The procedure
+                    returns the student whose StudentId is 101.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         5. EXECUTING WITH MULTIPLE PARAMETERS
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                5. Executing with Multiple Parameters
+            </h2>
+
+            <p>
+                A Stored Procedure can accept multiple input parameters.
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>CREATE PROCEDURE GetStudentsByCityAndAge
+    @@City VARCHAR(50),
+    @@Age INT
+AS
+BEGIN
+
+    SELECT
+        StudentId,
+        Name,
+        City,
+        Age
+    FROM Students
+    WHERE City = @@City
+      AND Age = @@Age;
+
+END;</code></pre>
+
+            <h5 class="fw-bold mt-4">
+                Execute
+            </h5>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>EXEC GetStudentsByCityAndAge
+    @@City = 'Pune',
+    @@Age = 22;</code></pre>
+
+            <div class="alert alert-success mt-3">
+
+                <strong>Result:</strong>
+
+                <p class="mb-0 mt-2">
+                    The procedure returns students whose City is
+                    <strong>Pune</strong> and Age is
+                    <strong>22</strong>.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         6. EXEC VS EXECUTE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-header bg-info text-dark">
+
+            <h3 class="mb-0">
+                6. EXEC vs EXECUTE
+            </h3>
+
+        </div>
+
+        <div class="card-body">
+
+            <p>
+                SQL Server supports both <code>EXEC</code> and
+                <code>EXECUTE</code> for running Stored Procedures.
+            </p>
+
+            <div class="row">
+
+                <div class="col-md-6 mb-3">
+
+                    <div class="card border-primary h-100">
+
+                        <div class="card-body">
+
+                            <h5 class="fw-bold text-primary">
+                                EXEC
+                            </h5>
+
+                            <pre class="bg-dark text-light p-3 rounded"><code>EXEC GetAllStudents;</code></pre>
+
+                            <p class="mb-0">
+                                Short and commonly used form.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+
+                    <div class="card border-success h-100">
+
+                        <div class="card-body">
+
+                            <h5 class="fw-bold text-success">
+                                EXECUTE
+                            </h5>
+
+                            <pre class="bg-dark text-light p-3 rounded"><code>EXECUTE GetAllStudents;</code></pre>
+
+                            <p class="mb-0">
+                                Full form of the EXEC statement.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         7. MODIFYING A STORED PROCEDURE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-header bg-warning">
+
+            <h3 class="mb-0">
+                7. Modifying a Stored Procedure
+            </h3>
+
+        </div>
+
+        <div class="card-body">
+
+            <p>
+                Once a Stored Procedure has been created, its definition
+                can be changed using the <code>ALTER PROCEDURE</code>
+                statement.
+            </p>
+
+            <p>
+                We do not need to drop the existing procedure before
+                modifying it.
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>ALTER PROCEDURE ProcedureName
+AS
+BEGIN
+    -- Modified SQL statements
+END;</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         8. ALTER PROCEDURE EXAMPLE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                8. ALTER PROCEDURE Example
+            </h2>
+
+            <p>
+                Suppose the following Stored Procedure already exists:
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>CREATE PROCEDURE GetAllStudents
+AS
+BEGIN
+    SELECT *
+    FROM Students;
+END;</code></pre>
+
+            <p class="mt-4">
+                We can modify the procedure to return only selected
+                columns.
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>ALTER PROCEDURE GetAllStudents
+AS
+BEGIN
+
+    SELECT
+        StudentId,
+        Name,
+        City
+    FROM Students;
+
+END;</code></pre>
+
+            <div class="alert alert-info mt-3">
+
+                <strong>Explanation:</strong>
+
+                <p class="mb-0 mt-2">
+                    The existing Stored Procedure is modified using
+                    <code>ALTER PROCEDURE</code>. The procedure name
+                    remains the same, but its SQL logic is changed.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         9. MODIFYING PARAMETERS
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                9. Modifying Procedure Parameters
+            </h2>
+
+            <p>
+                An existing Stored Procedure can also be modified to
+                work with parameters.
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>ALTER PROCEDURE GetStudentsByCity
+    @@City VARCHAR(50)
+AS
+BEGIN
+
+    SELECT
+        StudentId,
+        Name,
+        City,
+        Age
+    FROM Students
+    WHERE City = @@City;
+
+END;</code></pre>
+
+            <h5 class="fw-bold mt-4">
+                Execute
+            </h5>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>EXEC GetStudentsByCity
+    @@City = 'Pune';</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         10. MODIFYING PROCEDURE LOGIC
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                10. Modifying Procedure Logic
+            </h2>
+
+            <p>
+                We can change the SQL statements inside a Stored Procedure
+                without changing its name.
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>ALTER PROCEDURE GetStudentsByCity
+    @@City VARCHAR(50)
+AS
+BEGIN
+
+    SELECT
+        StudentId,
+        Name,
+        City,
+        Age
+    FROM Students
+    WHERE City = @@City
+      AND Age &gt; 18;
+
+END;</code></pre>
+
+            <p class="mt-3">
+                After modification, the procedure returns only students
+                whose age is greater than 18.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         11. EXECUTE AFTER MODIFYING
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-header bg-success text-white">
+
+            <h3 class="mb-0">
+                11. Execute the Modified Procedure
+            </h3>
+
+        </div>
+
+        <div class="card-body">
+
+            <p>
+                After modifying the Stored Procedure, we can execute it
+                normally using <code>EXEC</code>.
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>EXEC GetStudentsByCity
+    @@City = 'Pune';</code></pre>
+
+            <div class="alert alert-success mt-3">
+
+                <strong>Result:</strong>
+
+                <p class="mb-0 mt-2">
+                    SQL Server executes the latest modified definition
+                    of the Stored Procedure.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         12. IMPORTANT POINTS
+    ========================== -->
+
+    <div class="alert alert-warning mb-4">
+
+        <h4 class="fw-bold">
+            12. Important Points
+        </h4>
+
+        <ul class="mb-0">
+
+            <li class="mb-2">
+                <code>EXEC</code> is used to execute a Stored Procedure.
+            </li>
+
+            <li class="mb-2">
+                <code>EXECUTE</code> can also be used to run a procedure.
+            </li>
+
+            <li class="mb-2">
+                Input parameters can be supplied while executing a
+                Stored Procedure.
+            </li>
+
+            <li class="mb-2">
+                Multiple parameters can be passed to a procedure.
+            </li>
+
+            <li class="mb-2">
+                <code>ALTER PROCEDURE</code> is used to modify an
+                existing Stored Procedure.
+            </li>
+
+            <li class="mb-2">
+                Altering a procedure does not require dropping the
+                procedure first.
+            </li>
+
+            <li>
+                Always test a modified Stored Procedure before using it
+                in a production application.
+            </li>
+
+        </ul>
+
+    </div>
+
+
+    <!-- =========================
+         13. REAL-WORLD EXAMPLE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-header bg-dark text-white">
+
+            <h3 class="mb-0">
+                13. Real-World Example
+            </h3>
+
+        </div>
+
+        <div class="card-body">
+
+            <p>
+                Consider an application that needs to display students
+                from a particular city.
+            </p>
+
+            <p>
+                First, create the Stored Procedure:
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>CREATE PROCEDURE GetStudentsByCity
+    @@City VARCHAR(50)
+AS
+BEGIN
+
+    SELECT
+        StudentId,
+        Name,
+        City,
+        Age
+    FROM Students
+    WHERE City = @@City;
+
+END;</code></pre>
+
+            <p class="mt-4">
+                Execute it:
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>EXEC GetStudentsByCity
+    @@City = 'Pune';</code></pre>
+
+            <p class="mt-4">
+                Later, if the application requirement changes and we
+                want to return only students above 18 years, modify it:
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>ALTER PROCEDURE GetStudentsByCity
+    @@City VARCHAR(50)
+AS
+BEGIN
+
+    SELECT
+        StudentId,
+        Name,
+        City,
+        Age
+    FROM Students
+    WHERE City = @@City
+      AND Age &gt; 18;
+
+END;</code></pre>
+
+            <p class="mt-4">
+                Execute the modified procedure again:
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>EXEC GetStudentsByCity
+    @@City = 'Pune';</code></pre>
+
+            <div class="alert alert-secondary mt-3">
+
+                <strong>Use Case:</strong>
+
+                <p class="mb-0 mt-2">
+                    This approach allows developers to update the business
+                    logic of a Stored Procedure without creating a new
+                    procedure every time.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         14. SUMMARY
+    ========================== -->
+
+    <div class="alert alert-primary shadow-sm mb-4">
+
+        <h2 class="fw-bold">
+            Summary
+        </h2>
+
+        <p class="mb-0">
+            Stored Procedures are executed using <code>EXEC</code> or
+            <code>EXECUTE</code>. Parameters can be supplied during
+            execution. Existing Stored Procedures can be modified using
+            <code>ALTER PROCEDURE</code> without dropping them first.
+            After modification, the procedure can be executed normally
+            using <code>EXEC</code>.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+     PREVIOUS / NEXT
+========================== -->
+
+    <div class="d-flex justify-content-between align-items-center
+        mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/StoredProcedures/OutputParameters"
+           class="btn btn-outline-primary">
+
+            ← Previous: Output Parameters
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/Triggers/Index"
+           class="btn btn-primary">
+
+            Next: Triggers Introduction →
+
+        </a>
+
+    </div>
+
+</div>

@@ -1,0 +1,153 @@
+@{
+    Layout = "~/Areas/GitHub/Views/Shared/GithubLayout.cshtml";
+}
+
+
+<main id="tutorials" class="container py-1">
+    <div class="row g-4">
+
+        <!-- Sidebar Navigation -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/GitHub/Views/Shared/GithubTopics.cshtml")
+        </aside>
+
+        <!-- Reading Content Area -->
+        <section class="col-lg-9">
+﻿@{
+    Layout = "~/Areas/GitHub/Views/Shared/GithubLayout.cshtml";
+    ViewData["Title"] = "Checking Status";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-12">
+
+            <!-- Page Heading -->
+            <div class="d-flex align-items-center mb-4">
+                <i class="bi bi-git text-danger fs-2 me-2"></i>
+                <h2 class="mb-0">@ViewData["Title"]</h2>
+            </div>
+
+            <h2>what is the purpos of git status?</h2>
+
+            <p>The primary purpose of <code>git status</code> is to give you a clear, real-time snapshot of the current state of your working directory and staging area. It acts as a safety checkpoint before you save or share your code changes.</p>
+
+            <p>Specifically, it answers<strong>four critical questions</strong>while you are developing:</p>
+
+            <h2>1. What branch am I currently on?</h2>
+            <p>It prevents you from accidentally committing code to the wrong branch (e.g., making changes directly on main or master instead of a feature branch).</p>
+
+            <h2>2. Is my local branch synchronized with the remote server?</h2>
+            <p>It checks your local repository against your remote repository (like GitHub or GitLab) and tells you if you are up-to-date, ahead (unpushed commits), or behind (missing remote updates).</p>
+
+            <h2>3. Which files have been modified but not staged yet?</h2>
+
+            <p>It highlights files you have edited, created, or deleted since your last commit.</p>
+            <p>
+                <strong>Red text / Unstaged:</strong>Changes exist on your computer, but Git is not prepared to save them yet.
+            </p>
+
+            <h2>4. Which files are ready to be committed?</h2>
+            <p>It shows you exactly what will be included in your next version snapshot.</p>
+            <p>
+                <strong>Green text / Staged:</strong>Changes have been added using git add and are locked in, waiting for a git commit command.
+            </p>
+
+            <!-- Git Status Terminal Simulation Box -->
+            <div class="card bg-dark text-white font-monospace mb-4 shadow">
+                <div class="card-header bg-secondary text-light d-flex justify-content-between align-items-center py-2">
+                    <div class="d-flex align-items-center">
+                        <span class="bg-danger rounded-circle me-1" style="width: 12px; height: 12px; display: inline-block;"></span>
+                        <span class="bg-warning rounded-circle me-1" style="width: 12px; height: 12px; display: inline-block;"></span>
+                        <span class="bg-success rounded-circle me-3" style="width: 12px; height: 12px; display: inline-block;"></span>
+                        <span>Terminal — git status</span>
+                    </div>
+                    <span class="badge bg-outline-light border text-uppercase fs-7">Bash</span>
+                </div>
+                <div class="card-body p-4 fs-6" style="line-height: 1.6;">
+                    <p class="text-success mb-1">$ git status</p>
+                    <p class="text-white mb-1">On branch main</p>
+                    <p class="text-info mb-3">Your branch is up to date with 'origin/main'.</p>
+
+                    <p class="text-warning mb-1">Changes not staged for commit:</p>
+                    <p class="text-muted ms-3 mb-1">(use "git add &lt;file&gt;..." to update what will be committed)</p>
+                    <p class="text-muted ms-3 mb-1">(use "git restore &lt;file&gt;..." to discard changes in working directory)</p>
+                    <p class="text-danger ms-4 mb-3">modified:   Index.cshtml</p>
+
+                    <p class="text-warning mb-1">Untracked files:</p>
+                    <p class="text-muted ms-3 mb-1">(use "git add &lt;file&gt;..." to include in what will be committed)</p>
+                    <p class="text-danger ms-4 mb-3">About.cshtml</p>
+
+                    <p class="text-muted mb-0">no changes added to commit (use "git add" and/or "git commit -a")</p>
+                </div>
+            </div>
+
+            <!-- Command Documentation & Reference Guide -->
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0 text-secondary">Git Status Command Reference</h5>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover table-striped mb-0 align-middle">
+                        <thead class="table-dark">
+                            <tr>
+                                <th style="width: 25%;">Command</th>
+                                <th style="width: 75%;">Description & Use Case</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code class="text-danger font-monospace fw-bold">git status</code></td>
+                                <td>Displays paths that have differences between the index file and the current HEAD commit, paths that have differences between the working tree and the index file, and paths in the working tree that are not tracked.</td>
+                            </tr>
+                            <tr>
+                                <td><code class="text-danger font-monospace fw-bold">git status -s</code></td>
+                                <td>Gives a short-format, highly compact output summary of file states (e.g., <code>M</code> for modified, <code>??</code> for untracked). Ideal for large file modifications.</td>
+                            </tr>
+                            <tr>
+                                <td><code class="text-danger font-monospace fw-bold">git status -b</code></td>
+                                <td>Shows the current branch and tracking information even when using the short-format output summary.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+                    <!-- PREVIOUS / NEXT NAVIGATION -->
+                    <div class="d-flex justify-content-between align-items-center border-top pt-4 mt-4">
+
+                        <!-- PREVIOUS TOPIC -->
+                        <a href="@Url.Action(
+                                    "ThreeStates",
+                                    "LocalGitWorkflow",
+                                    new { area = "GitHub" }
+                                 )"
+                           class="btn btn-outline-secondary px-4">
+
+                            <span class="me-2">←</span>
+                            Previous: Git Three States
+
+                        </a>
+
+
+                        <!-- NEXT TOPIC -->
+                        <a href="@Url.Action(
+                                    "InspectingHistory",
+                                    "LocalGitWorkflow",
+                                    new { area = "GitHub" }
+                                 )"
+                           class="btn btn-primary px-4">
+
+                            Next: Inspecting History
+                            <span class="ms-2">→</span>
+
+                        </a>
+
+                    </div>
+    </div>
+</div>
+        </section>
+    </div>
+</main>

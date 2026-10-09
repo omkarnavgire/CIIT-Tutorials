@@ -1,0 +1,44 @@
+@{
+    ViewData["Title"] = "Deployment Modes in Azure";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+                <div class="azure-notes-content">
+                    <pre class="azure-notes-text">Deployment Modes in Azure
+
+Azure Database for MySQL is a PaaS (Platform as a service). This means that Azure provides you with
+an instance (or multiple instances) of the MYSQL server. Everything from patching to upgrades is
+handled by Azure. For this mode, there are 2 available deployment options-
+
+    1. Single Server Deployment: This option is only recommended if you currently have an
+       application/workload that is using a single server, and you wish to migrate it to the Azure
+       cloud. A single server requires minimal user customization. It provided an SLA of 99.99%
+       availability within a single region.
+
+    2. Flexible Server Deployment: This option is highly recommended for production workloads.
+       It&#x27;s flexible, allowing you to choose availability zones, pricing tiers, cost optimizations, and
+       more.
+
+So now that you have a basic understanding of the deployment nodes, let&#x27;s deep dive into availability
+and consistency for these 2 modes.</pre>
+                </div>
+            </div>
+        </div>
+    
+
+            @await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureLessonNavigation.cshtml")
+</section>
+</div>
+<style>
+.azure-notes-text{white-space:pre-wrap;word-break:normal;font-family:inherit;font-size:1rem;line-height:1.7;background:#fff;border:0;padding:0;margin:0;color:#212529;}
+.azure-notes-content img{max-height:720px;}
+</style>

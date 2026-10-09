@@ -1,0 +1,1325 @@
+﻿@{
+    ViewData["Title"] = "Component-Based Angular";
+}
+
+<div class="container-fluid">
+
+    <!-- ===================================================== -->
+    <!-- PAGE HEADER -->
+    <!-- ===================================================== -->
+
+    <div class="mb-4">
+
+        <h1 class="fw-bold">
+            Component-Based Angular
+        </h1>
+
+        <p class="text-muted">
+            Understand how Angular applications are built using
+            reusable and independent components.
+        </p>
+
+    </div>
+
+
+    <!-- ===================================================== -->
+    <!-- INTRODUCTION -->
+    <!-- ===================================================== -->
+
+    <section class="mb-5">
+
+        <h2>
+            What is Component-Based Angular?
+        </h2>
+
+        <p>
+            Angular applications are built using components.
+            A component represents a specific part of the application's
+            user interface and contains the logic required to manage it.
+        </p>
+
+        <p>
+            Instead of building the complete application in one large
+            page, Angular divides the application into smaller,
+            reusable components.
+        </p>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- COMPONENT ARCHITECTURE DIAGRAM -->
+    <!-- ===================================================== -->
+
+    <section class="mb-5">
+
+        <h2>
+            Component-Based Architecture
+        </h2>
+
+        <p>
+            A large Angular application can be divided into a hierarchy
+            of components.
+        </p>
+
+
+        <div class="component-diagram">
+
+            <div class="component-box main-component">
+
+                <div class="component-label">
+                    Root Component
+                </div>
+
+                <strong>
+                    AppComponent
+                </strong>
+
+            </div>
+
+
+            <div class="component-connector">
+                ↓
+            </div>
+
+
+            <div class="component-row">
+
+                <div class="component-box">
+
+                    <div class="component-label">
+                        Component
+                    </div>
+
+                    <strong>
+                        HeaderComponent
+                    </strong>
+
+                </div>
+
+
+                <div class="component-box">
+
+                    <div class="component-label">
+                        Component
+                    </div>
+
+                    <strong>
+                        StudentComponent
+                    </strong>
+
+                </div>
+
+
+                <div class="component-box">
+
+                    <div class="component-label">
+                        Component
+                    </div>
+
+                    <strong>
+                        FooterComponent
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- COMPONENT STRUCTURE -->
+    <!-- ===================================================== -->
+
+    <section class="mb-5">
+
+        <h2>
+            Structure of an Angular Component
+        </h2>
+
+        <p>
+            A component generally contains three important parts:
+            the TypeScript class, template, and styles.
+        </p>
+
+
+        <div class="structure-flow">
+
+            <div class="structure-box">
+
+                <strong>
+                    TypeScript Class
+                </strong>
+
+                <span>
+                    Application logic and data
+                </span>
+
+            </div>
+
+
+            <div class="structure-arrow">
+                +
+            </div>
+
+
+            <div class="structure-box">
+
+                <strong>
+                    HTML Template
+                </strong>
+
+                <span>
+                    User interface
+                </span>
+
+            </div>
+
+
+            <div class="structure-arrow">
+                +
+            </div>
+
+
+            <div class="structure-box">
+
+                <strong>
+                    CSS Styles
+                </strong>
+
+                <span>
+                    Component appearance
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- CREATING A COMPONENT -->
+    <!-- ===================================================== -->
+
+    <section class="mb-5">
+
+        <h2>
+            Creating a Component
+        </h2>
+
+        <p>
+            Angular CLI can be used to create a new component quickly.
+        </p>
+
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                Angular CLI
+            </div>
+
+<pre><code>ng generate component student</code></pre>
+
+        </div>
+
+
+        <p class="mt-3">
+            Short form:
+        </p>
+
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                Angular CLI
+            </div>
+
+<pre><code>ng g c student</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- COMPONENT EXAMPLE -->
+    <!-- ===================================================== -->
+
+    <section class="mb-5">
+
+        <h2>
+            Component Example
+        </h2>
+
+        <p>
+            The following component contains a student name and
+            displays it through its template.
+        </p>
+
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                TypeScript
+            </div>
+
+<pre><code>import { Component } from '@@angular/core';
+
+@@Component({
+    selector: 'app-student',
+    templateUrl: './student.component.html'
+})
+export class StudentComponent {
+
+    studentName = 'Sam';
+
+}</code></pre>
+
+        </div>
+
+
+        <p class="mt-4">
+            The template can display the component property using
+            interpolation.
+        </p>
+
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                HTML
+            </div>
+
+<pre><code>&lt;h2&gt;Student Details&lt;/h2&gt;
+
+&lt;p&gt;
+    Student Name: {{ studentName }}
+&lt;/p&gt;</code></pre>
+
+        </div>
+
+
+        <!-- OUTPUT -->
+
+        <div class="output-box mt-4">
+
+            <div class="output-title">
+                Expected Output
+            </div>
+
+            <div class="output-content">
+
+                <h4>
+                    Student Details
+                </h4>
+
+                <p class="mb-0">
+                    Student Name: Sam
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- PARENT CHILD COMPONENTS -->
+    <!-- ===================================================== -->
+
+    <section class="mb-5">
+
+        <h2>
+            Parent and Child Components
+        </h2>
+
+        <p>
+            Components can have relationships with other components.
+            A parent component can contain one or more child components.
+        </p>
+
+
+        <div class="parent-child-diagram">
+
+            <div class="parent-box">
+
+                <strong>
+                    Parent Component
+                </strong>
+
+                <span>
+                    StudentComponent
+                </span>
+
+            </div>
+
+
+            <div class="parent-arrow">
+                ↓
+            </div>
+
+
+            <div class="child-row">
+
+                <div class="child-box">
+                    StudentProfile
+                </div>
+
+                <div class="child-box">
+                    StudentCourses
+                </div>
+
+                <div class="child-box">
+                    StudentResult
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- COMPONENT COMMUNICATION -->
+    <!-- ===================================================== -->
+
+    <section class="mb-5">
+
+        <h2>
+            Component Communication
+        </h2>
+
+        <p>
+            Components often need to communicate with each other.
+            Angular provides mechanisms such as Input and Output
+            for parent-child communication.
+        </p>
+
+
+        <div class="communication-flow">
+
+            <div class="communication-box">
+                Parent
+            </div>
+
+            <div class="communication-arrow">
+                ↓
+            </div>
+
+            <div class="communication-box">
+                @@Input
+            </div>
+
+            <div class="communication-arrow">
+                ↓
+            </div>
+
+            <div class="communication-box">
+                Child
+            </div>
+
+            <div class="communication-arrow">
+                ↑
+            </div>
+
+            <div class="communication-box">
+                @Output
+            </div>
+
+            <div class="communication-arrow">
+                ↑
+            </div>
+
+            <div class="communication-box">
+                Parent
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- REUSABLE COMPONENTS -->
+    <!-- ===================================================== -->
+
+    <section class="mb-5">
+
+        <h2>
+            Reusable Components
+        </h2>
+
+        <p>
+            One of the biggest advantages of component-based development
+            is reusability.
+        </p>
+
+        <p>
+            A component can be designed once and reused in different
+            parts of an application.
+        </p>
+
+
+        <div class="reusable-grid">
+
+            <div class="reusable-card">
+
+                <h5>
+                    Header
+                </h5>
+
+                <p>
+                    Reusable navigation and branding component.
+                </p>
+
+            </div>
+
+
+            <div class="reusable-card">
+
+                <h5>
+                    Button
+                </h5>
+
+                <p>
+                    Reusable button with common styling and behavior.
+                </p>
+
+            </div>
+
+
+            <div class="reusable-card">
+
+                <h5>
+                    Student Card
+                </h5>
+
+                <p>
+                    Reusable component for displaying student details.
+                </p>
+
+            </div>
+
+
+            <div class="reusable-card">
+
+                <h5>
+                    Login Form
+                </h5>
+
+                <p>
+                    Reusable authentication form component.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- BENEFITS -->
+    <!-- ===================================================== -->
+
+    <section class="mb-5">
+
+        <h2>
+            Benefits of Component-Based Angular
+        </h2>
+
+        <ul>
+
+            <li>
+                Components are reusable.
+            </li>
+
+            <li>
+                Applications are easier to organize.
+            </li>
+
+            <li>
+                Individual components are easier to maintain.
+            </li>
+
+            <li>
+                Components can be tested independently.
+            </li>
+
+            <li>
+                Large applications can be divided into smaller parts.
+            </li>
+
+            <li>
+                Teams can work on different components independently.
+            </li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- COMPLETE FLOW -->
+    <!-- ===================================================== -->
+
+    <section class="mb-5">
+
+        <h2>
+            Complete Component-Based Flow
+        </h2>
+
+
+        <div class="complete-component-flow">
+
+            <div class="complete-component-box">
+                AppComponent
+            </div>
+
+            <div class="complete-component-arrow">
+                ↓
+            </div>
+
+            <div class="complete-component-box">
+                StudentComponent
+            </div>
+
+            <div class="complete-component-arrow">
+                ↓
+            </div>
+
+            <div class="complete-component-box">
+                Student Profile
+            </div>
+
+            <div class="complete-component-arrow">
+                ↓
+            </div>
+
+            <div class="complete-component-box">
+                Student Data
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- SUMMARY -->
+    <!-- ===================================================== -->
+
+    <section class="mb-5">
+
+        <div class="summary-box">
+
+            <h3>
+                Summary
+            </h3>
+
+            <p>
+                Angular applications are built using reusable and
+                independent components. Components contain application
+                logic, templates, and styles and can communicate with
+                other components.
+            </p>
+
+            <p class="mb-0">
+                Component-based development makes Angular applications
+                easier to organize, reuse, maintain, and test.
+                In the next module, we will learn about
+                <strong>Angular Setup</strong>.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- PREVIOUS / NEXT -->
+    <!-- ===================================================== -->
+
+    <div class="d-flex justify-content-between align-items-center
+                border-top pt-4 mt-5">
+
+        <!-- PREVIOUS -->
+
+        <a href="@Url.Action("Architecture", "Introduction", new { area = "Angular" })"
+           class="btn btn-outline-secondary px-4">
+
+            ← Previous: Architecture
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="@Url.Action("Index", "Setup", new { area = "Angular" })"
+           class="btn btn-primary px-4">
+
+            Next: Angular Setup →
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- ========================================================= -->
+<!-- PAGE SPECIFIC CSS -->
+<!-- ========================================================= -->
+
+<style>
+
+    /* ===================================================== */
+    /* COMPONENT DIAGRAM */
+    /* ===================================================== */
+
+    .component-diagram {
+
+        padding: 30px 20px;
+
+        margin-top: 25px;
+
+        background: #f8f9fa;
+
+        border: 1px solid #e9ecef;
+
+        border-radius: 12px;
+
+        text-align: center;
+
+    }
+
+
+    .component-box {
+
+        padding: 18px;
+
+        background: #ffffff;
+
+        border: 1px solid #dee2e6;
+
+        border-radius: 10px;
+
+        box-shadow:
+            0 3px 12px rgba(0, 0, 0, 0.05);
+
+        min-width: 180px;
+
+    }
+
+
+    .main-component {
+
+        display: inline-block;
+
+        min-width: 230px;
+
+    }
+
+
+    .component-label {
+
+        font-size: 12px;
+
+        color: #6c757d;
+
+        margin-bottom: 7px;
+
+    }
+
+
+    .component-box strong {
+
+        font-weight: 700;
+
+    }
+
+
+    .component-connector {
+
+        font-size: 28px;
+
+        font-weight: 600;
+
+        margin: 10px;
+
+    }
+
+
+    .component-row {
+
+        display: flex;
+
+        justify-content: center;
+
+        gap: 15px;
+
+        flex-wrap: wrap;
+
+    }
+
+
+    /* ===================================================== */
+    /* STRUCTURE */
+    /* ===================================================== */
+
+    .structure-flow {
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        flex-wrap: wrap;
+
+        gap: 15px;
+
+        padding: 25px;
+
+        margin-top: 20px;
+
+        background: #f8f9fa;
+
+        border: 1px solid #e9ecef;
+
+        border-radius: 10px;
+
+    }
+
+
+    .structure-box {
+
+        width: 220px;
+
+        padding: 18px;
+
+        text-align: center;
+
+        background: #ffffff;
+
+        border: 1px solid #dee2e6;
+
+        border-radius: 8px;
+
+    }
+
+
+    .structure-box strong {
+
+        display: block;
+
+        margin-bottom: 8px;
+
+    }
+
+
+    .structure-box span {
+
+        font-size: 14px;
+
+        color: #6c757d;
+
+    }
+
+
+    .structure-arrow {
+
+        font-size: 26px;
+
+        font-weight: 600;
+
+    }
+
+
+    /* ===================================================== */
+    /* OUTPUT */
+    /* ===================================================== */
+
+    .output-box {
+
+        border: 1px solid #dee2e6;
+
+        border-radius: 8px;
+
+        overflow: hidden;
+
+    }
+
+
+    .output-title {
+
+        padding: 10px 15px;
+
+        background: #f1f3f5;
+
+        font-weight: 700;
+
+        border-bottom: 1px solid #dee2e6;
+
+    }
+
+
+    .output-content {
+
+        padding: 20px;
+
+        background: #ffffff;
+
+    }
+
+
+    .output-content h4 {
+
+        font-weight: 700;
+
+        margin-bottom: 10px;
+
+    }
+
+
+    /* ===================================================== */
+    /* PARENT CHILD */
+    /* ===================================================== */
+
+    .parent-child-diagram {
+
+        padding: 30px 20px;
+
+        margin-top: 20px;
+
+        background: #f8f9fa;
+
+        border: 1px solid #e9ecef;
+
+        border-radius: 10px;
+
+        text-align: center;
+
+    }
+
+
+    .parent-box {
+
+        display: inline-flex;
+
+        flex-direction: column;
+
+        padding: 18px 30px;
+
+        background: #ffffff;
+
+        border: 1px solid #dee2e6;
+
+        border-radius: 9px;
+
+    }
+
+
+    .parent-box strong {
+
+        margin-bottom: 5px;
+
+    }
+
+
+    .parent-box span {
+
+        font-size: 14px;
+
+        color: #6c757d;
+
+    }
+
+
+    .parent-arrow {
+
+        margin: 10px;
+
+        font-size: 28px;
+
+        font-weight: 600;
+
+    }
+
+
+    .child-row {
+
+        display: flex;
+
+        justify-content: center;
+
+        flex-wrap: wrap;
+
+        gap: 15px;
+
+    }
+
+
+    .child-box {
+
+        padding: 15px 22px;
+
+        background: #ffffff;
+
+        border: 1px solid #dee2e6;
+
+        border-radius: 8px;
+
+        font-weight: 600;
+
+    }
+
+
+    /* ===================================================== */
+    /* COMMUNICATION */
+    /* ===================================================== */
+
+    .communication-flow {
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        flex-wrap: wrap;
+
+        gap: 10px;
+
+        padding: 25px;
+
+        margin-top: 20px;
+
+        background: #f8f9fa;
+
+        border: 1px solid #e9ecef;
+
+        border-radius: 10px;
+
+    }
+
+
+    .communication-box {
+
+        padding: 12px 18px;
+
+        background: #ffffff;
+
+        border: 1px solid #dee2e6;
+
+        border-radius: 8px;
+
+        font-weight: 600;
+
+    }
+
+
+    .communication-arrow {
+
+        font-size: 22px;
+
+        font-weight: 600;
+
+    }
+
+
+    /* ===================================================== */
+    /* REUSABLE COMPONENTS */
+    /* ===================================================== */
+
+    .reusable-grid {
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(4, minmax(0, 1fr));
+
+        gap: 15px;
+
+        margin-top: 20px;
+
+    }
+
+
+    .reusable-card {
+
+        padding: 20px;
+
+        background: #ffffff;
+
+        border: 1px solid #e9ecef;
+
+        border-radius: 10px;
+
+        transition: 0.2s ease;
+
+    }
+
+
+    .reusable-card:hover {
+
+        box-shadow:
+            0 4px 15px rgba(0, 0, 0, 0.08);
+
+        transform: translateY(-2px);
+
+    }
+
+
+    .reusable-card h5 {
+
+        font-weight: 700;
+
+        margin-bottom: 10px;
+
+    }
+
+
+    .reusable-card p {
+
+        font-size: 14px !important;
+
+        line-height: 1.6 !important;
+
+        margin-bottom: 0;
+
+    }
+
+
+    /* ===================================================== */
+    /* COMPLETE FLOW */
+    /* ===================================================== */
+
+    .complete-component-flow {
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        flex-wrap: wrap;
+
+        gap: 12px;
+
+        padding: 25px;
+
+        margin-top: 20px;
+
+        background: #f8f9fa;
+
+        border: 1px solid #e9ecef;
+
+        border-radius: 10px;
+
+    }
+
+
+    .complete-component-box {
+
+        padding: 14px 20px;
+
+        background: #ffffff;
+
+        border: 1px solid #dee2e6;
+
+        border-radius: 8px;
+
+        font-weight: 600;
+
+    }
+
+
+    .complete-component-arrow {
+
+        font-size: 23px;
+
+        font-weight: 600;
+
+    }
+
+
+    /* ===================================================== */
+    /* CODE BLOCK */
+    /* ===================================================== */
+
+    .code-block {
+
+        margin-top: 18px;
+
+        background: #0f172a;
+
+        color: #f1f5f9;
+
+        padding: 22px;
+
+        border-radius: 8px;
+
+        position: relative;
+
+        overflow-x: auto;
+
+    }
+
+
+    .code-block pre {
+
+        margin: 0;
+
+    }
+
+
+    .code-block code {
+
+        color: #f1f5f9;
+
+        font-family:
+            SFMono-Regular,
+            Menlo,
+            Monaco,
+            Consolas,
+            monospace;
+
+        font-size: 14px;
+
+        line-height: 1.7;
+
+    }
+
+
+    .code-lang-tag {
+
+        position: absolute;
+
+        top: 8px;
+
+        right: 15px;
+
+        font-size: 12px;
+
+        color: #94a3b8;
+
+    }
+
+
+    /* ===================================================== */
+    /* SUMMARY */
+    /* ===================================================== */
+
+    .summary-box {
+
+        background: #cfe2ff;
+
+        border-radius: 6px;
+
+        padding: 18px 22px;
+
+        margin-top: 20px;
+
+    }
+
+
+    .summary-box h3 {
+
+        font-size: 20px;
+
+        font-weight: 700;
+
+        color: #084298;
+
+        margin-bottom: 10px;
+
+    }
+
+
+    .summary-box p {
+
+        font-size: 16px !important;
+
+        line-height: 1.6 !important;
+
+        color: #084298 !important;
+
+        margin-bottom: 8px;
+
+    }
+
+
+    /* ===================================================== */
+    /* MOBILE */
+    /* ===================================================== */
+
+    @@media (max-width: 768px) {
+
+        .component-row {
+
+            flex-direction: column;
+
+            align-items: center;
+
+        }
+
+
+        .component-box {
+
+            width: 100%;
+
+            max-width: 320px;
+
+        }
+
+
+        .structure-flow,
+        .communication-flow,
+        .complete-component-flow {
+
+            flex-direction: column;
+
+        }
+
+
+        .structure-arrow,
+        .communication-arrow,
+        .complete-component-arrow {
+
+            transform: rotate(90deg);
+
+        }
+
+
+        .reusable-grid {
+
+            grid-template-columns: 1fr;
+
+        }
+
+    }
+
+
+    @@media (max-width: 576px) {
+
+        .structure-box,
+        .child-box,
+        .communication-box,
+        .complete-component-box {
+
+            width: 100%;
+
+            text-align: center;
+
+        }
+
+    }
+
+</style>

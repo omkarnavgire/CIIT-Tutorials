@@ -1,0 +1,478 @@
+﻿@{
+    ViewData["Title"] = "ROLLBACK";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- =========================
+         PAGE HEADER
+    ========================== -->
+
+    <div class="mb-4">
+
+        <h1 class="fw-bold text-primary">
+            ROLLBACK
+        </h1>
+
+        <p class="text-muted fs-5">
+            Learn how the ROLLBACK statement is used to undo
+            uncommitted changes made during a SQL Server transaction.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         WHAT IS ROLLBACK?
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                What is ROLLBACK?
+            </h2>
+
+            <p>
+                <strong>ROLLBACK</strong> is a SQL Server transaction
+                command used to undo changes made during the current
+                transaction.
+            </p>
+
+            <p>
+                ROLLBACK is useful when an error occurs or when we
+                decide that the changes made during the transaction
+                should not be saved.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         WHY USE ROLLBACK?
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Why Do We Use ROLLBACK?
+            </h2>
+
+            <ul>
+
+                <li class="mb-2">
+                    To undo unwanted changes.
+                </li>
+
+                <li class="mb-2">
+                    To handle errors during a transaction.
+                </li>
+
+                <li class="mb-2">
+                    To prevent incorrect data from being saved.
+                </li>
+
+                <li class="mb-2">
+                    To restore the database to the state before
+                    the current transaction.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         BASIC SYNTAX
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                ROLLBACK Syntax
+            </h2>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>BEGIN TRANSACTION;
+
+-- SQL statements
+
+ROLLBACK;</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         SIMPLE EXAMPLE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Simple ROLLBACK Example
+            </h2>
+
+            <p>
+                Suppose we insert a student record but later decide
+                that the operation should not be saved.
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>BEGIN TRANSACTION;
+
+INSERT INTO Students
+(
+    StudentId,
+    StudentName,
+    City,
+    Age
+)
+VALUES
+(
+    301,
+    'Rahul',
+    'Pune',
+    22
+);
+
+ROLLBACK;</code></pre>
+
+            <p class="mt-3">
+                The INSERT operation is undone because the transaction
+                is rolled back.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         UPDATE WITH ROLLBACK
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                UPDATE with ROLLBACK
+            </h2>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>BEGIN TRANSACTION;
+
+UPDATE Students
+SET City = 'Mumbai'
+WHERE StudentId = 301;
+
+ROLLBACK;</code></pre>
+
+            <p class="mt-3">
+                The UPDATE is performed inside the transaction.
+                ROLLBACK then undoes the uncommitted change.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         DELETE WITH ROLLBACK
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                DELETE with ROLLBACK
+            </h2>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>BEGIN TRANSACTION;
+
+DELETE FROM Students
+WHERE StudentId = 301;
+
+ROLLBACK;</code></pre>
+
+            <p class="mt-3">
+                The DELETE operation is undone because ROLLBACK
+                cancels the uncommitted transaction changes.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         COMMIT VS ROLLBACK
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                COMMIT vs ROLLBACK
+            </h2>
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-striped">
+
+                    <thead class="table-primary">
+
+                        <tr>
+
+                            <th>COMMIT</th>
+
+                            <th>ROLLBACK</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+
+                            <td>
+                                Permanently saves changes.
+                            </td>
+
+                            <td>
+                                Undoes uncommitted changes.
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>
+                                Used when the transaction is successful.
+                            </td>
+
+                            <td>
+                                Used when the transaction should be
+                                cancelled or an error occurs.
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>
+                                Completes the transaction.
+                            </td>
+
+                            <td>
+                                Rolls back the transaction changes.
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         ROLLBACK AFTER ERROR
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                ROLLBACK After an Error
+            </h2>
+
+            <p>
+                ROLLBACK is commonly used when an error occurs
+                during a transaction.
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>BEGIN TRANSACTION;
+
+UPDATE Students
+SET Age = Age + 1
+WHERE StudentId = 301;
+
+-- If an error occurs
+
+ROLLBACK;</code></pre>
+
+            <p class="mt-3">
+                The transaction changes can be undone instead of
+                leaving the database with unwanted changes.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         MULTIPLE OPERATIONS
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                ROLLBACK with Multiple Operations
+            </h2>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>BEGIN TRANSACTION;
+
+INSERT INTO Students
+(
+    StudentId,
+    StudentName,
+    City,
+    Age
+)
+VALUES
+(
+    302,
+    'Priya',
+    'Pune',
+    21
+);
+
+UPDATE Students
+SET Age = 22
+WHERE StudentId = 302;
+
+DELETE FROM Students
+WHERE StudentId = 302;
+
+ROLLBACK;</code></pre>
+
+            <p class="mt-3">
+                All uncommitted changes made during the transaction
+                are rolled back.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         IMPORTANT POINTS
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Important Points
+            </h2>
+
+            <ul>
+
+                <li class="mb-2">
+                    ROLLBACK undoes uncommitted transaction changes.
+                </li>
+
+                <li class="mb-2">
+                    ROLLBACK is commonly used when an error occurs.
+                </li>
+
+                <li class="mb-2">
+                    ROLLBACK can undo INSERT, UPDATE and DELETE
+                    operations performed in the transaction.
+                </li>
+
+                <li class="mb-2">
+                    Once changes are committed, a normal ROLLBACK
+                    cannot undo those committed changes.
+                </li>
+
+                <li class="mb-2">
+                    ROLLBACK helps prevent unwanted data changes
+                    from being permanently saved.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         SUMMARY
+    ========================== -->
+
+    <div class="alert alert-primary shadow-sm mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Summary
+        </h2>
+
+        <p>
+            <strong>ROLLBACK</strong> is used to undo changes made
+            during a transaction that have not been committed.
+        </p>
+
+        <p class="mb-0">
+            It is especially useful when an error occurs or when
+            the transaction should not be saved.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         PREVIOUS / NEXT
+    ========================== -->
+
+    <div class="d-flex justify-content-between align-items-center
+        mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/Transactions/Commit"
+           class="btn btn-outline-primary">
+
+            ← Previous: COMMIT
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/Transactions/Savepoint"
+           class="btn btn-primary">
+
+            Next: SAVEPOINT →
+
+        </a>
+
+    </div>
+
+</div>

@@ -1,0 +1,707 @@
+﻿@{
+    ViewData["Title"] = "SQL Server Installation";
+}
+
+<section>
+
+    <!-- =========================================================
+         PAGE INTRODUCTION
+         ========================================================= -->
+
+    <div class="mb-5">
+
+        <h1 class="fw-bold mb-3">
+            SQL Server Installation
+        </h1>
+
+        <p class="lead text-muted">
+            SQL Server can be installed on Windows by following a few
+            simple steps. In this section, we will learn how to download,
+            install and configure SQL Server for development.
+        </p>
+
+    </div>
+
+
+    <!-- =========================================================
+         WHAT IS SQL SERVER INSTALLATION?
+         ========================================================= -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            What is SQL Server Installation?
+        </h2>
+
+        <p>
+            SQL Server installation is the process of setting up Microsoft
+            SQL Server on a computer so that applications and users can
+            store, manage and retrieve data using SQL queries.
+        </p>
+
+        <p>
+            During installation, SQL Server components, database services
+            and required features are configured on the system.
+        </p>
+
+    </section>
+
+
+    <!-- =========================================================
+         SYSTEM REQUIREMENTS
+         ========================================================= -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            System Requirements
+        </h2>
+
+        <p>
+            Before installing SQL Server, make sure your system meets
+            the basic requirements required for installation.
+        </p>
+
+        <ul>
+
+            <li class="mb-2">
+                Windows operating system
+            </li>
+
+            <li class="mb-2">
+                Sufficient RAM and disk space
+            </li>
+
+            <li class="mb-2">
+                Administrator access
+            </li>
+
+            <li class="mb-2">
+                Stable internet connection for downloading the installer
+            </li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- =========================================================
+         DOWNLOAD SQL SERVER
+         ========================================================= -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Download SQL Server
+        </h2>
+
+        <p>
+            SQL Server is available in different editions. For learning
+            and development purposes, the Developer edition is commonly
+            used because it provides the features required for development
+            and testing.
+        </p>
+
+        <div class="alert alert-primary border-0">
+
+            <h5 class="fw-bold">
+                Recommended for Learning
+            </h5>
+
+            <p class="mb-0">
+                SQL Server Developer Edition can be used for learning,
+                development and testing purposes.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         SQL SERVER INSTALLATION STEPS
+         ========================================================= -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            SQL Server Installation Steps
+        </h2>
+
+        <p>
+            Follow these steps to install SQL Server on a Windows system.
+        </p>
+
+        <ol>
+
+            <li class="mb-3">
+                Download the SQL Server installer.
+            </li>
+
+            <li class="mb-3">
+                Run the installer with administrator permissions.
+            </li>
+
+            <li class="mb-3">
+                Select the appropriate SQL Server edition.
+            </li>
+
+            <li class="mb-3">
+                Accept the license terms.
+            </li>
+
+            <li class="mb-3">
+                Select the required SQL Server features.
+            </li>
+
+            <li class="mb-3">
+                Configure the SQL Server instance.
+            </li>
+
+            <li class="mb-3">
+                Configure authentication mode.
+            </li>
+
+            <li class="mb-3">
+                Complete the installation.
+            </li>
+
+        </ol>
+
+    </section>
+
+
+    <!-- =========================================================
+         INSTALLATION FLOW DIAGRAM
+         ========================================================= -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            SQL Server Installation Flow
+        </h2>
+
+        <p>
+            The complete installation process can be understood using
+            the following flow:
+        </p>
+
+        <div class="sql-installation-diagram">
+
+            <div class="sql-flow-box">
+                Download SQL Server
+            </div>
+
+            <div class="sql-flow-arrow">
+                ↓
+            </div>
+
+            <div class="sql-flow-box">
+                Run Installer
+            </div>
+
+            <div class="sql-flow-arrow">
+                ↓
+            </div>
+
+            <div class="sql-flow-box">
+                Select Edition
+            </div>
+
+            <div class="sql-flow-arrow">
+                ↓
+            </div>
+
+            <div class="sql-flow-box">
+                Accept License Terms
+            </div>
+
+            <div class="sql-flow-arrow">
+                ↓
+            </div>
+
+            <div class="sql-flow-box">
+                Select Features
+            </div>
+
+            <div class="sql-flow-arrow">
+                ↓
+            </div>
+
+            <div class="sql-flow-box">
+                Configure SQL Server Instance
+            </div>
+
+            <div class="sql-flow-arrow">
+                ↓
+            </div>
+
+            <div class="sql-flow-box">
+                Configure Authentication
+            </div>
+
+            <div class="sql-flow-arrow">
+                ↓
+            </div>
+
+            <div class="sql-flow-box">
+                Complete Installation
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         EXPLANATION OF INSTALLATION FLOW
+         ========================================================= -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Installation Flow Explained
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>Step</th>
+                        <th>Explanation</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>
+                            <strong>Download SQL Server</strong>
+                        </td>
+
+                        <td>
+                            Download the SQL Server installer required
+                            for your development environment.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <strong>Run Installer</strong>
+                        </td>
+
+                        <td>
+                            Start the installer with administrator
+                            permissions.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <strong>Select Edition</strong>
+                        </td>
+
+                        <td>
+                            Select the SQL Server edition required for
+                            your development or learning environment.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <strong>Accept License Terms</strong>
+                        </td>
+
+                        <td>
+                            Review and accept the SQL Server license
+                            agreement.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <strong>Select Features</strong>
+                        </td>
+
+                        <td>
+                            Select the SQL Server components and features
+                            required for the installation.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <strong>Configure Instance</strong>
+                        </td>
+
+                        <td>
+                            Configure the SQL Server instance that will
+                            run on the computer.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <strong>Configure Authentication</strong>
+                        </td>
+
+                        <td>
+                            Select the authentication method that will
+                            be used to connect to SQL Server.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <strong>Complete Installation</strong>
+                        </td>
+
+                        <td>
+                            Finish the setup and verify that SQL Server
+                            is ready to accept connections.
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         SQL SERVER INSTANCE
+         ========================================================= -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            SQL Server Instance
+        </h2>
+
+        <p>
+            A SQL Server instance represents an installation of the
+            SQL Server database engine running on a computer.
+        </p>
+
+        <p>
+            During installation, the SQL Server instance is configured
+            so that applications and database tools can connect to it.
+        </p>
+
+        <div class="alert alert-info border-0">
+
+            <h5 class="fw-bold">
+                Important
+            </h5>
+
+            <p class="mb-0">
+                The instance configuration is an important part of
+                SQL Server installation because applications use the
+                configured instance to connect to the database engine.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         SSMS
+         ========================================================= -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Install SQL Server Management Studio (SSMS)
+        </h2>
+
+        <p>
+            SQL Server Management Studio, commonly called SSMS, is a
+            graphical tool used to connect to SQL Server and work with
+            databases, tables, queries and other database objects.
+        </p>
+
+        <div class="alert alert-secondary border-0">
+
+            <h5 class="fw-bold">
+                Why do we need SSMS?
+            </h5>
+
+            <ul class="mb-0">
+
+                <li class="mb-2">
+                    Create and manage databases
+                </li>
+
+                <li class="mb-2">
+                    Write and execute SQL queries
+                </li>
+
+                <li class="mb-2">
+                    Create tables and database objects
+                </li>
+
+                <li class="mb-2">
+                    Manage SQL Server connections
+                </li>
+
+            </ul>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         AUTHENTICATION MODES
+         ========================================================= -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Authentication Modes
+        </h2>
+
+        <p>
+            During SQL Server configuration, authentication determines
+            how users connect to the SQL Server instance.
+        </p>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>
+                            Authentication Mode
+                        </th>
+
+                        <th>
+                            Description
+                        </th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            <strong>Windows Authentication</strong>
+                        </td>
+
+                        <td>
+                            Uses the Windows user account to authenticate
+                            with SQL Server.
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            <strong>SQL Server Authentication</strong>
+                        </td>
+
+                        <td>
+                            Uses a SQL Server login and password for
+                            authentication.
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         VERIFY INSTALLATION
+         ========================================================= -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Verify SQL Server Installation
+        </h2>
+
+        <p>
+            After installation, open SQL Server Management Studio and
+            connect to the SQL Server instance.
+        </p>
+
+        <p>
+            If the connection is successful, SQL Server is ready to
+            create databases and execute SQL queries.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT @@VERSION;</code></pre>
+
+        </div>
+
+        <p class="mt-3">
+            The above query can be used to display information about
+            the SQL Server version currently connected to.
+        </p>
+
+    </section>
+
+
+    <!-- =========================================================
+         SUMMARY
+         ========================================================= -->
+
+    <section class="mb-5">
+
+        <div class="alert alert-primary border-0">
+
+            <h2 class="fw-bold">
+                Summary
+            </h2>
+
+            <p class="mb-0">
+                In this section, we learned the basic SQL Server
+                installation process, system requirements, SQL Server
+                editions, installation steps, SQL Server instances,
+                authentication modes and the role of SQL Server
+                Management Studio.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         PREVIOUS / NEXT NAVIGATION
+         ========================================================= -->
+
+    <div class="d-flex justify-content-between align-items-center
+            mt-5 pt-4 border-top">
+
+    <!-- PREVIOUS -->
+
+    <a href="/SQLServer/Introduction/Index"
+       class="btn btn-outline-primary">
+
+        ← Previous: Introduction to SQL Server
+
+    </a>
+
+
+    <!-- NEXT -->
+
+    <a href="/SQLServer/Introduction/Fundamentals"
+       class="btn btn-primary">
+
+        Next: SQL Server Fundamentals →
+
+    </a>
+
+</div>
+
+<!-- =========================================================
+     PAGE-SPECIFIC STYLES
+     ========================================================= -->
+
+<style>
+
+    /* =========================================
+       SQL SERVER INSTALLATION DIAGRAM
+       ========================================= */
+
+    .sql-installation-diagram {
+
+        background: #111827;
+
+        border-radius: 14px;
+
+        padding: 35px 25px;
+
+        margin-top: 20px;
+
+        text-align: center;
+
+        box-shadow:
+            0 5px 20px rgba(0, 0, 0, 0.10);
+    }
+
+
+    .sql-flow-box {
+
+        display: inline-block;
+
+        min-width: 280px;
+
+        padding: 14px 20px;
+
+        background: #ffffff;
+
+        color: #111827;
+
+        border-radius: 8px;
+
+        font-weight: 600;
+
+        box-shadow:
+            0 3px 10px rgba(0, 0, 0, 0.15);
+    }
+
+
+    .sql-flow-arrow {
+
+        color: #ffffff;
+
+        font-size: 26px;
+
+        font-weight: 700;
+
+        line-height: 1.2;
+
+        margin: 5px 0;
+    }
+
+
+    /* =========================================
+       RESPONSIVE DIAGRAM
+       ========================================= */
+
+    @@media (max-width: 576px) {
+
+        .sql-installation-diagram {
+
+            padding: 25px 15px;
+
+        }
+
+        .sql-flow-box {
+
+            min-width: 100%;
+
+            font-size: 14px;
+
+        }
+
+    }
+
+</style>

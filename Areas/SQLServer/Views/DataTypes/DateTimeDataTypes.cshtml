@@ -1,0 +1,692 @@
+﻿@{
+    ViewData["Title"] = "Date & Time Data Types";
+}
+
+<section>
+
+    <!-- =====================================================
+         PAGE INTRODUCTION
+         ===================================================== -->
+
+    <div class="mb-5">
+
+        <h1 class="fw-bold mb-3">
+            Date & Time Data Types
+        </h1>
+
+        <p class="lead text-muted">
+            SQL Server provides different date and time data types to
+            store dates, times and date-time values. These data types
+            are commonly used for birth dates, joining dates, order
+            dates, transaction times and other time-related information.
+        </p>
+
+    </div>
+
+
+    <!-- =====================================================
+         WHAT ARE DATE & TIME DATA TYPES?
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h3 class="fw-bold mb-3">
+            What are Date & Time Data Types?
+        </h3>
+
+        <p>
+            Date and time data types are used to store calendar dates,
+            time values or both date and time information in SQL Server.
+        </p>
+
+        <p>
+            SQL Server provides different options depending on whether
+            an application needs only a date, only a time, or both date
+            and time with different levels of precision.
+        </p>
+
+    </section>
+
+
+    <!-- =====================================================
+         COMMON DATE & TIME DATA TYPES
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h3 class="fw-bold mb-3">
+            Common Date & Time Data Types
+        </h3>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped align-middle">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>Data Type</th>
+                        <th>Description</th>
+                        <th>Example</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            <strong>DATE</strong>
+                        </td>
+
+                        <td>
+                            Stores only the date.
+                        </td>
+
+                        <td>
+                            2026-10-02
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            <strong>TIME</strong>
+                        </td>
+
+                        <td>
+                            Stores only the time.
+                        </td>
+
+                        <td>
+                            14:30:00
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            <strong>DATETIME</strong>
+                        </td>
+
+                        <td>
+                            Stores both date and time.
+                        </td>
+
+                        <td>
+                            2026-10-02 14:30:00
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            <strong>DATETIME2</strong>
+                        </td>
+
+                        <td>
+                            Stores date and time with greater precision
+                            than DATETIME.
+                        </td>
+
+                        <td>
+                            2026-10-02 14:30:00.1234567
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            <strong>SMALLDATETIME</strong>
+                        </td>
+
+                        <td>
+                            Stores date and time with minute-level precision.
+                        </td>
+
+                        <td>
+                            2026-10-02 14:30
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            <strong>DATETIMEOFFSET</strong>
+                        </td>
+
+                        <td>
+                            Stores date and time together with a time-zone
+                            offset.
+                        </td>
+
+                        <td>
+                            2026-10-02 14:30:00 +05:30
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         DATE
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h3 class="fw-bold mb-3">
+            DATE
+        </h3>
+
+        <p>
+            The <strong>DATE</strong> data type stores only the calendar
+            date. It does not store the time portion.
+        </p>
+
+        <p>
+            It is useful for values such as date of birth, joining date,
+            admission date and holiday date.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>CREATE TABLE Employees
+(
+    EmployeeId INT,
+    EmployeeName VARCHAR(100),
+    JoiningDate DATE
+);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         TIME
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h3 class="fw-bold mb-3">
+            TIME
+        </h3>
+
+        <p>
+            The <strong>TIME</strong> data type stores only the time
+            portion of a value.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>CREATE TABLE ClassSchedule
+(
+    ClassName VARCHAR(100),
+    StartTime TIME,
+    EndTime TIME
+);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         DATETIME
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h3 class="fw-bold mb-3">
+            DATETIME
+        </h3>
+
+        <p>
+            The <strong>DATETIME</strong> data type stores both date
+            and time information.
+        </p>
+
+        <p>
+            It is commonly used for order dates, login times and
+            transaction records.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>CREATE TABLE Orders
+(
+    OrderId INT,
+    OrderDate DATETIME
+);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         DATETIME2
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h3 class="fw-bold mb-3">
+            DATETIME2
+        </h3>
+
+        <p>
+            <strong>DATETIME2</strong> stores date and time values with
+            greater fractional-seconds precision than DATETIME.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>CREATE TABLE Transactions
+(
+    TransactionId INT,
+    TransactionDate DATETIME2
+);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         DATETIMEOFFSET
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h3 class="fw-bold mb-3">
+            DATETIMEOFFSET
+        </h3>
+
+        <p>
+            The <strong>DATETIMEOFFSET</strong> data type stores date and
+            time information together with a time-zone offset.
+        </p>
+
+        <p>
+            It is useful when applications work with users or systems
+            located in different time zones.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>CREATE TABLE GlobalTransactions
+(
+    TransactionId INT,
+    TransactionTime DATETIMEOFFSET
+);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         EXAMPLE
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h3 class="fw-bold mb-3">
+            Example: Using Date & Time Data Types
+        </h3>
+
+        <p>
+            The following example creates an Employees table using
+            different date and time data types.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>CREATE TABLE Employees
+(
+    EmployeeId INT,
+    EmployeeName VARCHAR(100),
+    BirthDate DATE,
+    JoiningTime TIME,
+    JoiningDateTime DATETIME
+);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         INSERT EXAMPLE
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h3 class="fw-bold mb-3">
+            Insert Date & Time Values
+        </h3>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>INSERT INTO Employees
+(
+    EmployeeId,
+    EmployeeName,
+    BirthDate,
+    JoiningTime,
+    JoiningDateTime
+)
+VALUES
+(
+    1,
+    'Rahul',
+    '1995-05-15',
+    '09:30:00',
+    '2026-10-02 09:30:00'
+);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         OUTPUT
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h3 class="fw-bold mb-3">
+            Output
+        </h3>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>EmployeeId</th>
+                        <th>EmployeeName</th>
+                        <th>BirthDate</th>
+                        <th>JoiningTime</th>
+                        <th>JoiningDateTime</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>1</td>
+                        <td>Rahul</td>
+                        <td>1995-05-15</td>
+                        <td>09:30:00</td>
+                        <td>2026-10-02 09:30:00</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <p class="mt-3">
+            The output demonstrates how SQL Server stores date-only,
+            time-only and combined date-time values.
+        </p>
+
+    </section>
+
+
+    <!-- =====================================================
+         CURRENT DATE & TIME
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h3 class="fw-bold mb-3">
+            Get Current Date and Time
+        </h3>
+
+        <p>
+            SQL Server provides built-in functions that can be used
+            to retrieve the current date and time.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT GETDATE();
+
+SELECT SYSDATETIME();
+
+SELECT CAST(GETDATE() AS DATE);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         OUTPUT OF DATE FUNCTIONS
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h3 class="fw-bold mb-3">
+            Output
+        </h3>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL Output
+            </div>
+
+            <pre class="mb-0"><code>GETDATE()
+-----------------------
+2026-10-02 15:07:25
+
+
+SYSDATETIME()
+-----------------------
+2026-10-02 15:07:25.1234567
+
+
+CAST(GETDATE() AS DATE)
+-----------------------
+2026-10-02</code></pre>
+
+        </div>
+
+        <p>
+            The exact output depends on the current date and time of
+            the SQL Server environment.
+        </p>
+
+    </section>
+
+
+    <!-- =====================================================
+         CHOOSING CORRECT DATA TYPE
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h3 class="fw-bold mb-3">
+            Choosing the Correct Date & Time Data Type
+        </h3>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>Requirement</th>
+                        <th>Recommended Data Type</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>Only date</td>
+                        <td><strong>DATE</strong></td>
+                    </tr>
+
+                    <tr>
+                        <td>Only time</td>
+                        <td><strong>TIME</strong></td>
+                    </tr>
+
+                    <tr>
+                        <td>Date and time</td>
+                        <td><strong>DATETIME2</strong></td>
+                    </tr>
+
+                    <tr>
+                        <td>Time zone offset required</td>
+                        <td><strong>DATETIMEOFFSET</strong></td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         IMPORTANT NOTE
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <div class="alert alert-warning border-0">
+
+            <h5 class="fw-bold">
+                Important
+            </h5>
+
+            <p class="mb-0">
+                Always select a date and time data type according to
+                the actual requirement of the application. If only a
+                date is required, there is no need to store a time value.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         SUMMARY
+         ===================================================== -->
+
+    <section class="mb-4">
+
+        <div class="alert alert-primary border-0">
+
+            <h5 class="fw-bold">
+                Summary
+            </h5>
+
+            <p class="mb-0">
+                In this section, we learned about SQL Server date and
+                time data types including DATE, TIME, DATETIME,
+                DATETIME2, SMALLDATETIME and DATETIMEOFFSET. We also
+                learned how to create tables, insert date and time
+                values and retrieve the current date and time.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         PREVIOUS / NEXT
+         ===================================================== -->
+
+    <div class="d-flex justify-content-between align-items-center
+                mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="@Url.Action(
+                    "CharacterStringDataTypes",
+                    "DataTypes",
+                    new { area = "SQLServer" })"
+           class="btn btn-outline-primary">
+
+            ← Previous: Character & String Data Types
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="@Url.Action(
+                    "OtherDataTypes",
+                    "DataTypes",
+                    new { area = "SQLServer" })"
+           class="btn btn-primary">
+
+            Next: Other SQL Server Data Types →
+
+        </a>
+
+    </div>
+
+</section>

@@ -1,0 +1,44 @@
+@{
+    ViewData["Title"] = "Microsoft Azure Architecture";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+                <h2 class="fw-bold mb-4">Microsoft Azure Architecture</h2>
+                <div class="azure-notes-content">
+                    <pre class="azure-notes-text">Microsoft Azure is a global cloud platform that enables users to build, deploy, and manage
+applications and services across scalable infrastructure. Azure relies on virtualization and
+software-defined networking (SDN) to optimize resource usage and performance. Its
+architecture evolves continuously to meet growing demands, emphasizing effective design,
+scalability, and resource management.
+   •   Provides tools for application development, hosting, data storage, IoT, and machine
+       learning.
+   •   Supports diverse languages such as JavaScript, Python, PHP, HTML5, and C#.
+   •   Uses global data centers, virtualization, and SDN for scalability and efficient
+       infrastructure.
+   •   Enables secure online storage for various data types with remote accessibility.
+   •   Encourages use of reference architectures, design principles, and cloud design
+       patterns for reliable, scalable systems.</pre>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_1_-_Introduction_to_Microsoft_Azure/p02-000.jpg" class="img-fluid rounded shadow-sm" alt="Microsoft Azure Architecture - source image" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+            @await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureLessonNavigation.cshtml")
+</section>
+</div>
+<style>
+.azure-notes-text{white-space:pre-wrap;word-break:normal;font-family:inherit;font-size:1rem;line-height:1.7;background:#fff;border:0;padding:0;margin:0;color:#212529;}
+.azure-notes-content img{max-height:720px;}
+</style>

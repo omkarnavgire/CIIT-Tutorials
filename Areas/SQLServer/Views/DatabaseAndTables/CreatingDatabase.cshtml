@@ -1,0 +1,579 @@
+﻿@{
+    ViewData["Title"] = "Creating a Database";
+}
+
+<section>
+
+    <!-- =====================================================
+         PAGE INTRODUCTION
+         ===================================================== -->
+
+    <div class="mb-5">
+
+        <h1 class="fw-bold mb-3">
+            Creating a Database
+        </h1>
+
+        <p class="lead text-muted">
+            In SQL Server, the CREATE DATABASE statement is used to
+            create a new database. A database provides a container
+            where tables and other database objects can be stored.
+        </p>
+
+    </div>
+
+
+    <!-- =====================================================
+         WHAT IS CREATE DATABASE?
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            What is CREATE DATABASE?
+        </h2>
+
+        <p>
+            The <strong>CREATE DATABASE</strong> statement creates a
+            new database in SQL Server.
+        </p>
+
+        <p>
+            Once a database is created, we can create tables and other
+            database objects inside it.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>CREATE DATABASE CollegeDB;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         DATABASE CREATION FLOW
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Database Creation Flow
+        </h2>
+
+        <p>
+            The basic process of creating a database can be understood
+            as follows:
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL Server
+            </div>
+
+            <pre class="mb-0"><code>
+                                                             SQL Server
+                                                                 ↓
+                                                             CREATE DATABASE
+                                                                 ↓
+                                                             CollegeDB
+                                                                 ↓
+                                                            Create Tables
+                                                                 ↓
+                                                             Insert Data</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         SIMPLE DATABASE
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Create a Simple Database
+        </h2>
+
+        <p>
+            The following statement creates a database named
+            <strong>StudentDB</strong>.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>CREATE DATABASE StudentDB;</code></pre>
+
+        </div>
+
+        <p>
+            After executing the statement, SQL Server creates the
+            <strong>StudentDB</strong> database.
+        </p>
+
+    </section>
+
+
+    <!-- =====================================================
+         VERIFY DATABASE
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Verify the Database
+        </h2>
+
+        <p>
+            We can check whether the database exists by using the
+            following query:
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT name
+FROM sys.databases;</code></pre>
+
+        </div>
+
+        <p>
+            This query displays the databases available on the SQL
+            Server instance.
+        </p>
+
+    </section>
+
+
+    <!-- =====================================================
+         OUTPUT
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Output
+        </h2>
+
+        <p>
+            After executing the query, the database name can be seen
+            in the result.
+        </p>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>Database Name</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>master</td>
+                    </tr>
+
+                    <tr>
+                        <td>model</td>
+                    </tr>
+
+                    <tr>
+                        <td>msdb</td>
+                    </tr>
+
+                    <tr>
+                        <td>tempdb</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>StudentDB</strong></td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <p class="text-muted mt-3">
+            The exact list of databases depends on the SQL Server
+            installation and databases available on the server.
+        </p>
+
+    </section>
+
+
+    <!-- =====================================================
+         USE DATABASE
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Select a Database Using USE
+        </h2>
+
+        <p>
+            After creating a database, the <strong>USE</strong>
+            statement can be used to select that database for
+            subsequent SQL operations.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>USE StudentDB;</code></pre>
+
+        </div>
+
+        <p>
+            After executing this statement, subsequent table creation
+            statements will be executed in the selected database.
+        </p>
+
+    </section>
+
+
+    <!-- =====================================================
+         CREATE DATABASE + TABLE
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Create Database and Table
+        </h2>
+
+        <p>
+            We can create a database first and then create a table
+            inside that database.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>CREATE DATABASE StudentDB;
+
+USE StudentDB;
+
+CREATE TABLE Students
+(
+    StudentId INT,
+    StudentName VARCHAR(100),
+    Age INT,
+    Course VARCHAR(50)
+);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         DATABASE OBJECTS
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            What Can a Database Contain?
+        </h2>
+
+        <p>
+            A SQL Server database can contain different types of
+            database objects.
+        </p>
+
+        <div class="row g-3">
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="border rounded-3 p-4 h-100 bg-light">
+
+                    <h5 class="fw-bold">
+                        Tables
+                    </h5>
+
+                    <p class="mb-0 text-muted">
+                        Store data in rows and columns.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="border rounded-3 p-4 h-100 bg-light">
+
+                    <h5 class="fw-bold">
+                        Views
+                    </h5>
+
+                    <p class="mb-0 text-muted">
+                        Provide a way to query data through a saved
+                        query definition.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="border rounded-3 p-4 h-100 bg-light">
+
+                    <h5 class="fw-bold">
+                        Stored Procedures
+                    </h5>
+
+                    <p class="mb-0 text-muted">
+                        Store reusable SQL statements and logic.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="border rounded-3 p-4 h-100 bg-light">
+
+                    <h5 class="fw-bold">
+                        Functions
+                    </h5>
+
+                    <p class="mb-0 text-muted">
+                        Perform reusable operations and return values.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="border rounded-3 p-4 h-100 bg-light">
+
+                    <h5 class="fw-bold">
+                        Indexes
+                    </h5>
+
+                    <p class="mb-0 text-muted">
+                        Help SQL Server locate data efficiently.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="border rounded-3 p-4 h-100 bg-light">
+
+                    <h5 class="fw-bold">
+                        Constraints
+                    </h5>
+
+                    <p class="mb-0 text-muted">
+                        Help enforce rules on table data.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         IF NOT EXISTS
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Check Before Creating a Database
+        </h2>
+
+        <p>
+            Before creating a database, we can check whether a database
+            with the same name already exists.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>IF DB_ID('TrainingDB') IS NULL
+BEGIN
+    CREATE DATABASE TrainingDB;
+END;</code></pre>
+
+        </div>
+
+        <p>
+            This prevents the CREATE DATABASE statement from being
+            executed when the specified database already exists.
+        </p>
+
+    </section>
+
+
+    <!-- =====================================================
+         DATABASE NAMING
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Database Naming Guidelines
+        </h2>
+
+        <ul>
+
+            <li class="mb-2">
+                Choose a meaningful database name.
+            </li>
+
+            <li class="mb-2">
+                Keep naming consistent across the project.
+            </li>
+
+            <li class="mb-2">
+                Avoid unnecessarily complicated names.
+            </li>
+
+            <li class="mb-2">
+                Use names that clearly describe the application's data.
+            </li>
+
+        </ul>
+
+        <div class="alert alert-info border-0">
+
+            <strong>Example:</strong>
+
+            <span>
+                StudentManagementDB
+            </span>
+
+            is more descriptive than a name such as
+            <strong>DB1</strong>.
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         IMPORTANT NOTE
+         ===================================================== -->
+
+    <section class="mb-5">
+
+        <div class="alert alert-warning border-0">
+
+            <h5 class="fw-bold">
+                Important
+            </h5>
+
+            <p class="mb-0">
+                A database should be created with a meaningful name
+                and should be organized properly before creating the
+                application's tables and other database objects.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         SUMMARY
+         ===================================================== -->
+
+    <section class="mb-4">
+
+        <div class="alert alert-primary border-0">
+
+            <h2 class="fw-bold mb-3">
+                Summary
+            </h2>
+
+            <p class="mb-0">
+                In this section, we learned how to create a database
+                using CREATE DATABASE, verify databases using
+                sys.databases, select a database using USE and create
+                tables inside the selected database.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         PREVIOUS / NEXT
+         ===================================================== -->
+
+    <div class="d-flex justify-content-between align-items-center
+                mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/DatabaseAndTables/Index"
+           class="btn btn-outline-primary">
+
+            ← Previous: Database & Tables Introduction
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/DatabaseAndTables/CreatingTables"
+           class="btn btn-primary">
+
+            Next: Creating Tables →
+
+        </a>
+
+    </div>
+
+</section>

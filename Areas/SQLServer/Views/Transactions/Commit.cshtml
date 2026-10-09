@@ -1,0 +1,510 @@
+﻿@{
+    ViewData["Title"] = "COMMIT";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- =========================
+         PAGE HEADER
+    ========================== -->
+
+    <div class="mb-4">
+
+        <h1 class="fw-bold text-primary">
+            COMMIT
+        </h1>
+
+        <p class="text-muted fs-5">
+            Learn how the COMMIT statement permanently saves
+            changes made during a SQL Server transaction.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         WHAT IS COMMIT?
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                What is COMMIT?
+            </h2>
+
+            <p>
+                <strong>COMMIT</strong> is a SQL Server transaction
+                command used to permanently save all changes made
+                during the current transaction.
+            </p>
+
+            <p>
+                Once a transaction is committed, the changes become
+                permanent in the database and normally cannot be
+                undone using ROLLBACK.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         WHY USE COMMIT?
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Why Do We Use COMMIT?
+            </h2>
+
+            <ul>
+
+                <li class="mb-2">
+                    To permanently save transaction changes.
+                </li>
+
+                <li class="mb-2">
+                    To confirm that all required operations
+                    completed successfully.
+                </li>
+
+                <li class="mb-2">
+                    To make the transaction changes permanent.
+                </li>
+
+                <li class="mb-2">
+                    To complete a transaction successfully.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         BASIC SYNTAX
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                COMMIT Syntax
+            </h2>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>BEGIN TRANSACTION;
+
+-- SQL statements
+
+COMMIT;</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         SIMPLE EXAMPLE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Simple COMMIT Example
+            </h2>
+
+            <p>
+                Suppose we want to insert a new student into the
+                Students table.
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>BEGIN TRANSACTION;
+
+INSERT INTO Students
+(
+    StudentId,
+    StudentName,
+    City,
+    Age
+)
+VALUES
+(
+    201,
+    'Rahul',
+    'Pune',
+    22
+);
+
+COMMIT;</code></pre>
+
+            <p class="mt-3">
+                Here, the INSERT operation is performed inside the
+                transaction. When <strong>COMMIT</strong> executes,
+                the new student record is permanently saved.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         UPDATE WITH COMMIT
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                UPDATE with COMMIT
+            </h2>
+
+            <p>
+                COMMIT can also be used after an UPDATE operation.
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>BEGIN TRANSACTION;
+
+UPDATE Students
+SET City = 'Mumbai'
+WHERE StudentId = 201;
+
+COMMIT;</code></pre>
+
+            <p class="mt-3">
+                The student's city is updated and the change is
+                permanently saved after COMMIT.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         DELETE WITH COMMIT
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                DELETE with COMMIT
+            </h2>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>BEGIN TRANSACTION;
+
+DELETE FROM Students
+WHERE StudentId = 201;
+
+COMMIT;</code></pre>
+
+            <p class="mt-3">
+                The DELETE operation is performed inside the
+                transaction and becomes permanent after COMMIT.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         MULTIPLE OPERATIONS
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                COMMIT with Multiple Operations
+            </h2>
+
+            <p>
+                A transaction can contain multiple SQL statements.
+                COMMIT saves all of them together.
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>BEGIN TRANSACTION;
+
+INSERT INTO Students
+(
+    StudentId,
+    StudentName,
+    City,
+    Age
+)
+VALUES
+(
+    202,
+    'Priya',
+    'Pune',
+    21
+);
+
+UPDATE Students
+SET Age = 22
+WHERE StudentId = 202;
+
+COMMIT;</code></pre>
+
+            <p class="mt-3">
+                Both operations are part of the same transaction.
+                When COMMIT executes, the changes are saved.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         COMMIT AND ROLLBACK
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                COMMIT vs ROLLBACK
+            </h2>
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-striped">
+
+                    <thead class="table-primary">
+
+                        <tr>
+
+                            <th>COMMIT</th>
+
+                            <th>ROLLBACK</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+
+                            <td>
+                                Permanently saves changes.
+                            </td>
+
+                            <td>
+                                Undoes uncommitted changes.
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>
+                                Completes the transaction successfully.
+                            </td>
+
+                            <td>
+                                Cancels/undoes the transaction changes.
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>
+                                Used when the operation is successful.
+                            </td>
+
+                            <td>
+                                Used when an error or unwanted result occurs.
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         REAL WORLD EXAMPLE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Real-World Example
+            </h2>
+
+            <p>
+                Consider an online shopping application.
+            </p>
+
+            <p>
+                When a customer places an order, several operations
+                may need to happen:
+            </p>
+
+            <ol>
+
+                <li class="mb-2">
+                    Create the order.
+                </li>
+
+                <li class="mb-2">
+                    Add order items.
+                </li>
+
+                <li class="mb-2">
+                    Reduce product stock.
+                </li>
+
+                <li class="mb-2">
+                    Save payment information.
+                </li>
+
+            </ol>
+
+            <p>
+                If all operations are successful, the application
+                can COMMIT the transaction.
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>BEGIN TRANSACTION;
+
+-- Create Order
+
+-- Add Order Items
+
+-- Update Stock
+
+-- Save Payment
+
+COMMIT;</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         IMPORTANT POINTS
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Important Points
+            </h2>
+
+            <ul>
+
+                <li class="mb-2">
+                    COMMIT permanently saves transaction changes.
+                </li>
+
+                <li class="mb-2">
+                    COMMIT is normally used after successful
+                    transaction operations.
+                </li>
+
+                <li class="mb-2">
+                    COMMIT completes the current transaction.
+                </li>
+
+                <li class="mb-2">
+                    After COMMIT, the transaction changes are no
+                    longer available for normal ROLLBACK.
+                </li>
+
+                <li class="mb-2">
+                    Multiple SQL statements can be committed together
+                    as one transaction.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         SUMMARY
+    ========================== -->
+
+    <div class="alert alert-primary shadow-sm mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Summary
+        </h2>
+
+        <p>
+            <strong>COMMIT</strong> is used to permanently save
+            changes made during a SQL Server transaction.
+        </p>
+
+        <p class="mb-0">
+            A transaction should generally be committed when all
+            required operations have completed successfully.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         PREVIOUS / NEXT
+    ========================== -->
+
+    <div class="d-flex justify-content-between align-items-center
+        mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/Transactions/Index"
+           class="btn btn-outline-primary">
+
+            ← Previous: Transactions Introduction
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/Transactions/Rollback"
+           class="btn btn-primary">
+
+            Next: ROLLBACK →
+
+        </a>
+
+    </div>
+
+</div>

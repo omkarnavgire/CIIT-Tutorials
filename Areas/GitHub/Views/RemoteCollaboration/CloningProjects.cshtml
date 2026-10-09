@@ -1,0 +1,246 @@
+@{
+    Layout = "~/Areas/GitHub/Views/Shared/GithubLayout.cshtml";
+    ViewData["Title"] = "Cloning a Repository";
+}
+
+<main id="tutorials" class="container py-1">
+    <div class="row g-4">
+
+        <!-- Sidebar Navigation -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/GitHub/Views/Shared/GithubTopics.cshtml")
+        </aside>
+
+        <!-- Reading Content Area -->
+        <section class="col-lg-9">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4 p-lg-5">
+
+                    <h1 class="fw-bold mb-3">Cloning a Repository / Project</h1>
+
+                    <p>
+                        It downloads a copy of an existing remote Git repository,
+                        such as a repository hosted on GitHub or GitLab, to your
+                        local computer. It is usually the first step when
+                        starting work on an existing project.
+                    </p>
+                    <p>The correct command is <code>git clone</code>.</p>
+
+                    <p class="text-muted">
+                        Learn how to get a repository URL, clone a project
+                        using Command Prompt or GitHub Desktop, and understand
+                        the difference between cloning and downloading a ZIP.
+                    </p>
+
+                    <hr class="my-4" />
+
+                    <!-- Section 1 -->
+                    <h3 class="fw-bold mb-3">1. Get the Repository URL from GitHub</h3>
+
+                    <ol>
+                        <li>Open the repository's main page on GitHub.</li>
+                        <li>Click the green <strong>Code</strong> button.</li>
+                        <li>Select the <strong>HTTPS</strong> tab.</li>
+                        <li>Copy the repository URL.</li>
+                    </ol>
+
+                    <p>Example URL:</p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>https://github.com/username/project.git</code></pre>
+
+                    <div class="alert alert-info">
+                        <strong>Tip:</strong>
+                        Replace the example URL with the URL copied from
+                        the repository you want to clone.
+                    </div>
+
+                    <hr class="my-4" />
+
+                    <!-- Section 2 -->
+                    <h3 class="fw-bold mb-3">2. Clone Using Command Prompt (CMD)</h3>
+
+                    <h5 class="fw-semibold mt-4">Step 1: Open the Destination Folder</h5>
+
+                    <p>
+                        Open Command Prompt and navigate to the directory
+                        where you want to save the project.
+                    </p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>cd Documents\MyProjects</code></pre>
+
+                    <p>
+                        Make sure this directory exists before running the command.
+                    </p>
+
+                    <h5 class="fw-semibold mt-4">Step 2: Clone the Repository</h5>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git clone https://github.com/username/project.git</code></pre>
+
+                    <p>
+                        Git creates a new folder for the repository and
+                        downloads its files and Git history.
+                    </p>
+
+                    <h5 class="fw-semibold mt-4">Step 3: Open the Project Folder</h5>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>cd project</code></pre>
+
+                    <p>
+                        You can now inspect the project or open it in your
+                        preferred code editor.
+                    </p>
+
+                    <div class="alert alert-warning">
+                        <strong>Note:</strong>
+                        Git must be installed on your computer and available
+                        from Command Prompt. Check this using
+                        <code>git --version</code>.
+                    </div>
+
+                    <hr class="my-4" />
+
+                    <!-- Section 3 -->
+                    <h3 class="fw-bold mb-3">3. Clone Using GitHub Desktop</h3>
+
+                    <p>
+                        GitHub Desktop provides a graphical interface for
+                        cloning repositories without typing Git commands.
+                    </p>
+
+                    <ol>
+                        <li>Open the GitHub Desktop application.</li>
+                        <li>Click <strong>File → Clone repository</strong>.</li>
+                        <li>
+                            Select the <strong>GitHub.com</strong> tab to
+                            choose a listed repository, or select the
+                            <strong>URL</strong> tab to paste a repository URL.
+                        </li>
+                        <li>
+                            Choose the local path where you want to store
+                            the project.
+                        </li>
+                        <li>Click <strong>Clone</strong>.</li>
+                    </ol>
+
+                    <p>
+                        GitHub Desktop downloads the repository into your
+                        selected local folder.
+                    </p>
+
+                    <hr class="my-4" />
+
+                    <!-- Section 4 -->
+                    <h3 class="fw-bold mb-3">4. What Happens When You Run <code>git clone</code>?</h3>
+
+                    <p>Git automatically performs these main tasks:</p>
+
+                    <ol>
+                        <li>
+                            Downloads the project's files and available
+                            repository history.
+                        </li>
+                        <li>
+                            Creates a local Git repository with the
+                            available branch and commit history.
+                        </li>
+                        <li>
+                            Configures a remote named <code>origin</code>
+                            pointing to the source repository.
+                        </li>
+                    </ol>
+
+                    <p>Basic syntax:</p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git clone &lt;repository-url&gt;</code></pre>
+
+                    <p>Example:</p>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git clone https://github.com/username/nodeJSApplication.git</code></pre>
+
+                    <p>
+                        This creates a local folder named
+                        <code>nodeJSApplication</code> containing the
+                        repository's files and Git history.
+                    </p>
+
+                    <hr class="my-4" />
+
+                    <!-- Section 5 -->
+                    <h3 class="fw-bold mb-3">5. Git Clone vs Download ZIP</h3>
+
+                    <p>
+                        Downloading a ZIP is useful when you only need a
+                        snapshot of the source code. Cloning is better when
+                        you plan to develop the project, track changes,
+                        or collaborate with others.
+                    </p>
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped align-middle">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Feature</th>
+                                    <th>Download ZIP</th>
+                                    <th>Git Clone</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Best For</strong></td>
+                                    <td>One-time viewing or inspection</td>
+                                    <td>Development and collaboration</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Git Connection</strong></td>
+                                    <td>No Git remote configuration</td>
+                                    <td>Configured with the source remote</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Getting Updates</strong></td>
+                                    <td>Download another ZIP</td>
+                                    <td>Use commands such as <code>git pull</code></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Sending Updates</strong></td>
+                                    <td>No Git history to push from the ZIP alone</td>
+                                    <td>Can push commits if you have permission</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Commit History</strong></td>
+                                    <td>Not included in the ZIP snapshot</td>
+                                    <td>Repository history is available</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="alert alert-success mt-4">
+                        <strong>Key Takeaway:</strong>
+                        Use <code>git clone</code> when you want a local
+                        repository with its Git history and remote connection.
+                        Download a ZIP when you only need the source files
+                        for quick inspection.
+                    </div>
+
+                    
+                    <!-- Previous / Next Navigation -->
+                    <div class="d-flex justify-content-between align-items-center gap-3 flex-wrap mt-5 pt-4 border-top">
+
+                        <a class="btn btn-outline-primary"
+                           href="@Url.Action("ConnectingRemotes", "RemoteCollaboration", new { area = "GitHub" })">
+                            &larr; Previous: Connecting Remotes
+                        </a>
+
+                        <a class="btn btn-primary"
+                           href="@Url.Action("PushingCode", "RemoteCollaboration", new { area = "GitHub" })">
+                            Next: Pushing Code &rarr;
+                        </a>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </section>
+    </div>
+</main>

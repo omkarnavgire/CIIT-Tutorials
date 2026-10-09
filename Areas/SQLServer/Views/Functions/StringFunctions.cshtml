@@ -1,0 +1,874 @@
+﻿@{
+    ViewData["Title"] = "String Functions";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- =========================
+         PAGE HEADER
+    ========================== -->
+
+    <div class="mb-5">
+
+        <h1 class="fw-bold">
+            SQL Server String Functions
+        </h1>
+
+        <p class="lead text-muted">
+            String Functions in SQL Server are used to work with,
+            manipulate, search, format and transform text or
+            character data.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         INTRODUCTION
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            What are String Functions?
+        </h2>
+
+        <p>
+            String functions are built-in SQL Server functions that
+            perform operations on character and text values.
+        </p>
+
+        <p>
+            They are commonly used when we need to change the case of
+            text, find the length of a string, extract a part of a
+            string, replace text, combine strings or search for a
+            particular character or word.
+        </p>
+
+        <div class="alert alert-info mt-4">
+
+            <strong>Example:</strong>
+
+            <p class="mb-0 mt-2">
+                If a database contains a student's name such as
+                <strong>"Rahul Sharma"</strong>, String Functions can
+                be used to find its length, extract "Rahul", convert
+                it to uppercase, or replace part of the name.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         COMMON STRING FUNCTIONS
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Common String Functions
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped align-middle">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>Function</th>
+                        <th>Purpose</th>
+                        <th>Example</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td><strong>LEN()</strong></td>
+
+                        <td>
+                            Returns the number of characters in a string.
+                        </td>
+
+                        <td>
+                            <code>LEN('Hello')</code>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td><strong>UPPER()</strong></td>
+
+                        <td>
+                            Converts text into uppercase.
+                        </td>
+
+                        <td>
+                            <code>UPPER('hello')</code>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td><strong>LOWER()</strong></td>
+
+                        <td>
+                            Converts text into lowercase.
+                        </td>
+
+                        <td>
+                            <code>LOWER('HELLO')</code>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td><strong>LTRIM()</strong></td>
+
+                        <td>
+                            Removes leading spaces from a string.
+                        </td>
+
+                        <td>
+                            <code>LTRIM(' Hello')</code>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td><strong>RTRIM()</strong></td>
+
+                        <td>
+                            Removes trailing spaces from a string.
+                        </td>
+
+                        <td>
+                            <code>RTRIM('Hello ')</code>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td><strong>LEFT()</strong></td>
+
+                        <td>
+                            Returns a specified number of characters
+                            from the left side.
+                        </td>
+
+                        <td>
+                            <code>LEFT('Hello', 2)</code>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td><strong>RIGHT()</strong></td>
+
+                        <td>
+                            Returns a specified number of characters
+                            from the right side.
+                        </td>
+
+                        <td>
+                            <code>RIGHT('Hello', 2)</code>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td><strong>SUBSTRING()</strong></td>
+
+                        <td>
+                            Extracts a part of a string.
+                        </td>
+
+                        <td>
+                            <code>SUBSTRING('Hello World', 1, 5)</code>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td><strong>REPLACE()</strong></td>
+
+                        <td>
+                            Replaces one part of a string with another.
+                        </td>
+
+                        <td>
+                            <code>REPLACE('Hello SQL', 'SQL', 'World')</code>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td><strong>CHARINDEX()</strong></td>
+
+                        <td>
+                            Finds the starting position of a substring.
+                        </td>
+
+                        <td>
+                            <code>CHARINDEX('SQL', 'Learn SQL')</code>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td><strong>CONCAT()</strong></td>
+
+                        <td>
+                            Combines two or more strings.
+                        </td>
+
+                        <td>
+                            <code>CONCAT('Hello', ' ', 'World')</code>
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         1. LEN()
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            1. LEN() Function
+        </h2>
+
+        <p>
+            The <strong>LEN()</strong> function returns the number of
+            characters in a string.
+        </p>
+
+        <h5 class="fw-bold mt-4">
+            Syntax
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>LEN(string)</code></pre>
+
+        <h5 class="fw-bold mt-4">
+            Example
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT LEN('CIIT');</code></pre>
+
+        <h5 class="fw-bold mt-4">
+            Output
+        </h5>
+
+        <div class="alert alert-success">
+            <strong>Output:</strong> 4
+        </div>
+
+        <p>
+            The word <strong>CIIT</strong> contains four characters,
+            so LEN() returns 4.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         2. UPPER()
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            2. UPPER() Function
+        </h2>
+
+        <p>
+            The <strong>UPPER()</strong> function converts all
+            alphabetic characters in a string to uppercase.
+        </p>
+
+        <h5 class="fw-bold mt-4">
+            Syntax
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>UPPER(string)</code></pre>
+
+        <h5 class="fw-bold mt-4">
+            Example
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT UPPER('ciit training institute');</code></pre>
+
+        <h5 class="fw-bold mt-4">
+            Output
+        </h5>
+
+        <div class="alert alert-success">
+            <strong>Output:</strong> CIIT TRAINING INSTITUTE
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         3. LOWER()
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            3. LOWER() Function
+        </h2>
+
+        <p>
+            The <strong>LOWER()</strong> function converts alphabetic
+            characters in a string to lowercase.
+        </p>
+
+        <h5 class="fw-bold mt-4">
+            Syntax
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>LOWER(string)</code></pre>
+
+        <h5 class="fw-bold mt-4">
+            Example
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT LOWER('CIIT TRAINING INSTITUTE');</code></pre>
+
+        <h5 class="fw-bold mt-4">
+            Output
+        </h5>
+
+        <div class="alert alert-success">
+            <strong>Output:</strong> ciit training institute
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         4. LTRIM()
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            4. LTRIM() Function
+        </h2>
+
+        <p>
+            The <strong>LTRIM()</strong> function removes spaces from
+            the beginning of a string.
+        </p>
+
+        <h5 class="fw-bold mt-4">
+            Syntax
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>LTRIM(string)</code></pre>
+
+        <h5 class="fw-bold mt-4">
+            Example
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT LTRIM('   SQL Server');</code></pre>
+
+        <h5 class="fw-bold mt-4">
+            Result
+        </h5>
+
+        <div class="alert alert-success">
+            <strong>Output:</strong> SQL Server
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         5. RTRIM()
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            5. RTRIM() Function
+        </h2>
+
+        <p>
+            The <strong>RTRIM()</strong> function removes spaces from
+            the end of a string.
+        </p>
+
+        <h5 class="fw-bold mt-4">
+            Syntax
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>RTRIM(string)</code></pre>
+
+        <h5 class="fw-bold mt-4">
+            Example
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT RTRIM('SQL Server   ');</code></pre>
+
+        <div class="alert alert-success mt-3">
+            <strong>Output:</strong> SQL Server
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         6. LEFT()
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            6. LEFT() Function
+        </h2>
+
+        <p>
+            The <strong>LEFT()</strong> function returns a specified
+            number of characters from the left side of a string.
+        </p>
+
+        <h5 class="fw-bold mt-4">
+            Syntax
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>LEFT(string, number_of_characters)</code></pre>
+
+        <h5 class="fw-bold mt-4">
+            Example
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT LEFT('SQL Server', 3);</code></pre>
+
+        <div class="alert alert-success mt-3">
+            <strong>Output:</strong> SQL
+        </div>
+
+        <p>
+            Here, 3 characters are returned from the left side.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         7. RIGHT()
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            7. RIGHT() Function
+        </h2>
+
+        <p>
+            The <strong>RIGHT()</strong> function returns a specified
+            number of characters from the right side of a string.
+        </p>
+
+        <h5 class="fw-bold mt-4">
+            Syntax
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>RIGHT(string, number_of_characters)</code></pre>
+
+        <h5 class="fw-bold mt-4">
+            Example
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT RIGHT('SQL Server', 6);</code></pre>
+
+        <div class="alert alert-success mt-3">
+            <strong>Output:</strong> Server
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         8. SUBSTRING()
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            8. SUBSTRING() Function
+        </h2>
+
+        <p>
+            The <strong>SUBSTRING()</strong> function extracts a
+            specified number of characters from a string.
+        </p>
+
+        <h5 class="fw-bold mt-4">
+            Syntax
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SUBSTRING(string, start_position, length)</code></pre>
+
+        <h5 class="fw-bold mt-4">
+            Example
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT SUBSTRING('SQL Server', 1, 3);</code></pre>
+
+        <div class="alert alert-success mt-3">
+            <strong>Output:</strong> SQL
+        </div>
+
+        <p>
+            The starting position is 1 and three characters are
+            returned.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         9. REPLACE()
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            9. REPLACE() Function
+        </h2>
+
+        <p>
+            The <strong>REPLACE()</strong> function replaces all
+            occurrences of a specified string with another string.
+        </p>
+
+        <h5 class="fw-bold mt-4">
+            Syntax
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>REPLACE(string, old_string, new_string)</code></pre>
+
+        <h5 class="fw-bold mt-4">
+            Example
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT REPLACE('Welcome to Java', 'Java', 'SQL Server');</code></pre>
+
+        <div class="alert alert-success mt-3">
+            <strong>Output:</strong> Welcome to SQL Server
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         10. CHARINDEX()
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            10. CHARINDEX() Function
+        </h2>
+
+        <p>
+            The <strong>CHARINDEX()</strong> function searches for
+            a substring inside another string and returns its
+            starting position.
+        </p>
+
+        <h5 class="fw-bold mt-4">
+            Syntax
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>CHARINDEX(search_string, expression)</code></pre>
+
+        <h5 class="fw-bold mt-4">
+            Example
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT CHARINDEX('SQL', 'Learn SQL Server');</code></pre>
+
+        <div class="alert alert-success mt-3">
+            <strong>Output:</strong> 7
+        </div>
+
+        <p>
+            The word SQL starts at position 7 in
+            <strong>Learn SQL Server</strong>.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         11. CONCAT()
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            11. CONCAT() Function
+        </h2>
+
+        <p>
+            The <strong>CONCAT()</strong> function combines two or
+            more values into a single string.
+        </p>
+
+        <h5 class="fw-bold mt-4">
+            Syntax
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>CONCAT(value1, value2, value3, ...)</code></pre>
+
+        <h5 class="fw-bold mt-4">
+            Example
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT CONCAT('CIIT', ' ', 'Training Institute');</code></pre>
+
+        <div class="alert alert-success mt-3">
+            <strong>Output:</strong> CIIT Training Institute
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         PRACTICAL TABLE EXAMPLE
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Practical Example with a Table
+        </h2>
+
+        <p>
+            Suppose we have a Students table:
+        </p>
+
+        <pre class="bg-light p-3 rounded"><code>CREATE TABLE Students
+(
+    StudentId INT,
+    StudentName VARCHAR(100)
+);</code></pre>
+
+
+        <p class="mt-4">
+            Insert some sample records:
+        </p>
+
+        <pre class="bg-light p-3 rounded"><code>INSERT INTO Students
+VALUES
+(101, 'Rahul Sharma'),
+(102, 'Priya Patil'),
+(103, 'Amit Kumar');</code></pre>
+
+
+        <h5 class="fw-bold mt-4">
+            Convert Student Names to Uppercase
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT
+    StudentId,
+    UPPER(StudentName) AS StudentName
+FROM Students;</code></pre>
+
+
+        <h5 class="fw-bold mt-4">
+            Find Name Length
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT
+    StudentName,
+    LEN(StudentName) AS NameLength
+FROM Students;</code></pre>
+
+
+        <h5 class="fw-bold mt-4">
+            Extract First Five Characters
+        </h5>
+
+        <pre class="bg-light p-3 rounded"><code>SELECT
+    StudentName,
+    LEFT(StudentName, 5) AS FirstFiveCharacters
+FROM Students;</code></pre>
+
+    </section>
+
+
+    <!-- =========================
+         WHEN TO USE STRING FUNCTIONS
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            When Do We Use String Functions?
+        </h2>
+
+        <ul>
+
+            <li class="mb-2">
+                When we need to change text into uppercase or lowercase.
+            </li>
+
+            <li class="mb-2">
+                When we need to find the length of text.
+            </li>
+
+            <li class="mb-2">
+                When we need to extract a part of a string.
+            </li>
+
+            <li class="mb-2">
+                When we need to replace specific text.
+            </li>
+
+            <li class="mb-2">
+                When we need to search for a word or character.
+            </li>
+
+            <li class="mb-2">
+                When we need to combine multiple text values.
+            </li>
+
+            <li>
+                When we need to clean or format text data.
+            </li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- =========================
+         IMPORTANT POINTS
+    ========================== -->
+
+    <section class="mb-5">
+
+        <div class="alert alert-warning">
+
+            <h4 class="fw-bold">
+                Important Points
+            </h4>
+
+            <ul class="mb-0">
+
+                <li class="mb-2">
+                    String functions are mainly used with character
+                    and text data.
+                </li>
+
+                <li class="mb-2">
+                    LEN() is used to find string length.
+                </li>
+
+                <li class="mb-2">
+                    UPPER() and LOWER() change the case of text.
+                </li>
+
+                <li class="mb-2">
+                    LEFT() and RIGHT() extract characters from
+                    either side of a string.
+                </li>
+
+                <li class="mb-2">
+                    SUBSTRING() extracts characters from a specified
+                    position.
+                </li>
+
+                <li class="mb-2">
+                    REPLACE() replaces specified text.
+                </li>
+
+                <li class="mb-2">
+                    CHARINDEX() searches for a substring.
+                </li>
+
+                <li>
+                    CONCAT() combines multiple values into one string.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         SUMMARY
+    ========================== -->
+
+    <section class="mb-5">
+
+        <div class="alert alert-primary">
+
+            <h2 class="fw-bold">
+                Summary
+            </h2>
+
+            <p class="mb-0">
+                SQL Server String Functions are used to manipulate
+                and process text data. In this topic, we learned
+                commonly used functions such as LEN(), UPPER(),
+                LOWER(), LTRIM(), RTRIM(), LEFT(), RIGHT(),
+                SUBSTRING(), REPLACE(), CHARINDEX() and CONCAT().
+                These functions are very useful when working with
+                names, addresses, descriptions, codes and other
+                character-based data.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         PREVIOUS / NEXT
+    ========================== -->
+
+    <div class="d-flex justify-content-between align-items-center
+        mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/Functions/Index"
+           class="btn btn-outline-primary">
+
+            ← Previous: SQL Functions Introduction
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/Functions/NumericFunctions"
+           class="btn btn-primary">
+
+            Next: Numeric Functions →
+
+        </a>
+
+    </div>
+
+</div>

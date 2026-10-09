@@ -1,0 +1,205 @@
+@{
+    Layout = "~/Areas/GitHub/Views/Shared/GithubLayout.cshtml";
+}
+
+
+<main id="tutorials" class="container py-1">
+    <div class="row g-4">
+
+        <!-- Sidebar Navigation -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/GitHub/Views/Shared/GithubTopics.cshtml")
+        </aside>
+
+        <!-- Reading Content Area -->
+        <section class="col-lg-9">
+﻿@{
+    Layout = "~/Areas/GitHub/Views/Shared/GithubLayout.cshtml";
+    ViewData["Title"] = "Three States";
+}
+
+<style>
+    ul.no-bullets {
+        list-style-type: none; /* Removes the bullet points */
+    }
+</style>
+
+<div class="card border-0 shadow-sm">
+    <div class="card-body p-4 p-lg-5">
+
+        <!-- HEADER -->
+        <div class="mb-4">
+                        <h2 class="fw-bold mb-3">Understanding the Three States</h2>
+            <p class="mb-2">
+                            In Git, your local workflow revolves around <strong>three distinct states</strong> that control how your files are tracked and saved: <strong>the Working Directory, the Staging Area (Index), and the Local Repository.</strong>
+            </p>
+            <p> Here is how the three states look and how files move between them: </p>
+        </div>
+
+        <!-- INTRODUCTION -->
+        <section class="mb-5">
+
+            
+            <div class="mb-3">
+                            <h4>1. The Working Directory (Modified State)</h4>
+                <div class="mb-3">
+                    <ul>
+                        <li>
+                            <p>
+                              This is the<b>actual folder on your computer</b> where you create, delete, and edit your project files.
+                            </p>
+                        </li>
+                        <li>
+                            <div>
+                                <p>
+                                 <b>What happens here:</b> When you modify a file, Git notices the change, but the file is considered <b>modified</b>.
+                                </p>
+                               
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- SECTION 2: Staging Area -->
+            <div class="mb-3">
+                <h4>2. The Staging Area / Index (Staged State)</h4>
+                <div class="mb-3">
+                    <p>
+                                    The Staging Area is a hidden file or prep zone where Git prepares the changes for your next commit. Think of it as a loading dock where you gather packages before putting them on a delivery truck.
+                    </p>
+                    <ul>
+                        <li>
+                                        <p><b>What happens here: </b> ou choose exactly which modified files you want to include in your next save point. This allows you to group related changes together.</p>
+                        </li>
+                        <li>
+                                        <p class="mb-5"><b>How to get here:</b> You use the <code>git add <filename></code> command to move files from the Working Directory to the Staging Area. The files are now <b>staged</b>.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- SECTION 3: Git Directory -->
+            <div class="mb-3">
+                <h4>3. The Git Directory / Repository (Committed State)</h4>
+                <div class="mb-3">
+                    <p>
+                        This is where Git permanently stores your project's metadata and object database (the hidden .git folder). When you use git commit, everything in your staging area is safely locked into the project's history.
+                    </p>
+                    <ul>
+                        <li>
+                            <p><b>State: Committed:</b> The data is securely stored in your local database.</p>
+                        </li>
+                        <li>
+                            <p class="mb-5"><b>Analogy:</b> The shipping box is taped, labeled, and securely stored in the warehouse.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- SECTION 4: Workflow Table -->
+            <div class="mb-3">
+                <h4 class="mb-3">The Workflow in Action</h4>
+                <div class="mb-3">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Step</th>
+                                <th>Command</th>
+                                <th>What it does</th>
+                                <th>State Change</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Edit</td>
+                                <td>Modify code in your editor</td>
+                                <td>Changes files on your computer.</td>
+                                <td>Working Directory → <b>Modified</b></td>
+                            </tr>
+                            <tr>
+                                <td>Stage</td>
+                                <td><code>git add {filename}</code></td>
+                                <td>Prepares specific changes for a snapshot.</td>
+                                <td>Working Directory → <b>Staging Area</b></td>
+                            </tr>
+                            <tr>
+                                <td>Commit</td>
+                                <td><code>git commit -m "Message"</code></td>
+                                <td>Permanently saves the staged snapshot.</td>
+                                <td>Staging Area → <b>Git Directory</b></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+                        <div class="mb-3">
+                            <h4 class="fw-bold mb-3">The Workflow Lifecycle at a Glance</h4>
+                            <ul>
+                                <li>You <b>modify</b> a file in your Working Directory.</li>
+                                <li>You <b>stage </b> the file (git add), which snapshots it in its current state.</li>
+                                <li>
+                                    You <b>commit</b> 1. the staged files (git commit), which permanently stores that snapshot into your Git directory.
+                                </li>
+                            </ul>
+
+                            <p>
+                                <img src="~/Images/github/ThreeState.jpg" style="height:auto;width:90%;" />
+                            </p>
+
+                        </div>
+
+
+
+            <!-- SECTION 5: Status Check -->
+            <div class="mb-3">
+                <h4 class="mb-3">Checking Your Current States</h4>
+                <p>You can see which files are in which state at any time by running:</p>
+                <div class="code-block mb-4 shadow-sm p-3 bg-light font-monospace">
+                    git status
+                </div>
+                <ul>
+                    <li><b>Red text</b> means files are in your Working Directory (Modified/Untracked).</li>
+                    <li><b>Green text</b> means files are in your Staging Area (Staged and ready to commit).</li>
+                </ul>
+            </div>
+
+        </section>
+
+                    <!-- PREVIOUS / NEXT NAVIGATION -->
+                    <div class="d-flex justify-content-between align-items-center border-top pt-4 mt-4">
+
+                        <!-- PREVIOUS TOPIC -->
+                        <a href="@Url.Action(
+                                    "InitializingRepositories",
+                                    "LocalGitWorkflow",
+                                    new { area = "GitHub" }
+                                 )"
+                           class="btn btn-outline-secondary px-4">
+
+                            <span class="me-2">←</span>
+                            Previous: Initializing a Repository
+
+                        </a>
+
+
+                        <!-- NEXT TOPIC -->
+                        <a href="@Url.Action(
+                                    "TrackingChanges",
+                                    "LocalGitWorkflow",
+                                    new { area = "GitHub" }
+                                 )"
+                           class="btn btn-primary px-4">
+
+                            Next: Tracking Changes
+                            <span class="ms-2">→</span>
+
+                        </a>
+
+                    </div>
+    </div>
+</div>
+        </section>
+    </div>
+</main>

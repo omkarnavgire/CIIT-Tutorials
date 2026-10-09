@@ -1,0 +1,52 @@
+@{
+    ViewData["Title"] = "Azure Pipelines for Continuous Delivery (CD)";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+                <div class="azure-notes-content">
+                    <pre class="azure-notes-text">Azure Pipelines for Continuous Delivery (CD)
+Azure Pipelines for Continuous Delivery (CD) automates the process of deploying applications to
+various environments, ensuring smooth and reliable releases. This allows new features, updates, or
+fixes to be delivered quickly without manual intervention.
+
+    •   Automated Deployment: Code is automatically deployed to environments after successful
+        builds and tests.
+    •     Multi-Environment Support: Applications can be deployed to development, staging, or
+          production environments.
+
+    •     Rollback Capabilities: Easily revert to previous versions if issues are detected in the new
+          deployment.
+
+    •     Approval Gates: Optional manual approvals before deploying to production.
+
+    •     Scalability: Can handle deployments for small projects or large-scale applications.
+
+    •     Cloud and On-Premise Support: Deploy to both cloud services (Azure, AWS) and on-premise
+          servers.</pre>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_10_-_Azure_Pipelines_A_Complete_Guide_to_CICD_Automation/p09-000.jpg" class="img-fluid rounded shadow-sm" alt="Azure Pipelines for Continuous Delivery (CD) - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_10_-_Azure_Pipelines_A_Complete_Guide_to_CICD_Automation/p09-001.jpg" class="img-fluid rounded shadow-sm" alt="Azure Pipelines for Continuous Delivery (CD) - source image" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+            @await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureLessonNavigation.cshtml")
+</section>
+</div>
+<style>
+.azure-notes-text{white-space:pre-wrap;word-break:normal;font-family:inherit;font-size:1rem;line-height:1.7;background:#fff;border:0;padding:0;margin:0;color:#212529;}
+.azure-notes-content img{max-height:720px;}
+</style>

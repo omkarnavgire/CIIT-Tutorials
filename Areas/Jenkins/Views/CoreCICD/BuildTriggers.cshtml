@@ -1,0 +1,174 @@
+@{
+    Layout = "~/Areas/Jenkins/Views/Shared/JenkinsLayout.cshtml";
+    ViewData["Title"] = "Build Triggers";
+}
+
+<style>
+    #build-triggers-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #build-triggers-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #build-triggers-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #build-triggers-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #build-triggers-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+    #build-triggers-page .example-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+    }
+</style>
+
+<main id="build-triggers-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/Jenkins/Views/Shared/JenkinsTopics.cshtml")
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+                <h1 class="fw-bold">Build Triggers</h1>
+                <p class="lead">
+                    Learn the concepts, configuration syntaxes, event hooks, and automation workflows required to wake up and execute pipelines without manual intervention.
+                </p>
+            </div>
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">What are Build Triggers?</h2>
+                <p>
+                    <strong>Build Triggers</strong> are the automated initiation conditions that signal Jenkins to place a job into the execution queue. Instead of forcing operations teams to manually click run buttons, build triggers allow Jenkins to continuously listen for environment events or follow rigid calendars to start builds automatically.
+                </p>
+
+                <div class="alert alert-info my-3">
+                    <strong>Simple Definition:</strong> Build Triggers are configuration rules that automatically launch a Jenkins pipeline run when specific events occur, such as code pushes, scheduled clock times, or the completion of upstream projects.
+                </div>
+
+                <h3 class="h4 fw-bold mt-4">Core Build Trigger Approaches</h3>
+                <p class="mb-2">Jenkins evaluates pipeline starts using three main mechanism methodologies:</p>
+                <ul class="mb-3">
+                    <li class="mb-1"><strong>Webhooks (Push-Driven):</strong> Instant signals sent directly from code repositories (like GitHub) that kick off a build immediately after a developer pushes a new code commit.</li>
+                    <li class="mb-1"><strong>Periodic / Cron Schedules (Time-Driven):</strong> Automations configured with standard cron syntax expressions to evaluate runs at specific recurring intervals (e.g., executing comprehensive tests every night at midnight).</li>
+                    <li><strong>Downstream Dependencies (Event-Driven):</strong> Relational configurations where a pipeline monitors an entirely separate "upstream" task, firing itself automatically once that parent job completes successfully.</li>
+                </ul>
+            </div>
+
+            <!-- KEY CONCEPTS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Key Concepts</h2>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>SCM Polling vs. Webhook Efficiency</h5>
+                            <p class="mb-0">Understanding that SCM Polling repeatedly wastes system resources querying git endpoints looking for updates, whereas modern Webhooks post data to Jenkins instantly and only when actual changes happen.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>The Quiet Period Buffer</h5>
+                            <p class="mb-0">Learning to configure brief delay thresholds (Quiet Periods) that instruct Jenkins to wait a set number of seconds before starting a job, letting rapid consecutive developer pushes merge into a single run pass.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXAMPLE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Practical Jenkins Example</h2>
+                <p>The following declarative pipeline block demonstrates how to declare native automated cron timing and upstream project dependencies using the `properties` block syntax:</p>
+                <pre><code>pipeline {
+    agent any
+    
+
+
+
+
+
+
+    // Defining automated trigger blocks natively in code
+    triggers {
+        // Runs automatically every weekday at 11:30 PM (Time-Driven)
+        cron('30 23 * * 1-5')
+        
+        // Runs automatically whenever the 'Core-Framework-Build' job completes successfully (Event-Driven)
+        upstream(upstreamProjects: 'Core-Framework-Build', threshold: hudson.model.Result.SUCCESS)
+    }
+
+    stages {
+        stage('Automated Execution') {
+            steps {
+                echo 'Pipeline woke up successfully due to active configuration trigger constraints.'
+                echo "Current execution timestamp baseline registered."
+            }
+        }
+    }
+}</code></pre>
+            </div>
+
+                <!-- PRACTICE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Practice Exercise: Build a Time-Scheduled Pipeline</h2>
+            <div class="concept-box">
+            <h5 class="fw-bold">Step-by-Step Task Sequence:</h5>
+                <ol class="ps-3 mb-0">
+                <li class="mb-2">Open the script block workspace of an active test pipeline or spin up a new Pipeline item layout.</li>
+            <li class="mb-2">Copy-paste the sample declarative `triggers` code block provided above right inside the main root pipeline braces.</li>
+                        <li class="mb-2">Modify the cron instruction line to run every fifteen minutes by setting it to: `cron('*/15 * * * *')`.</li>
+        <li class="mb-2">Click <strong>Save</strong> to write the configuration properties metadata into your master node storage disk layer.</li>
+                        <li>Return to the main dashboard screen and wait for the time boundary pass to verify that your build pipeline launches itself automatically without clicking any options.</li>
+    </ol>
+                </div>
+</div>
+
+
+<!-- SUMMARY -->
+<div class="alert alert-info mt-4">
+<h2 class="h4 fw-bold">Summary</h2>
+<p class="mb-0">You have completed the <strong>Build Triggers</strong> lesson. Continue through the syllabus to learn how to inject dynamic runtime inputs into these automated runs using Parameterized Builds.</p>
+</div>
+
+<!-- NAVIGATION -->
+<div class="d-flex justify-content-between mt-4">
+<a class="btn btn-outline-primary" href="@Url.Action("BuildSteps", "CoreCICD", new { area = "Jenkins" })">← Previous: Build Steps</a>
+<a class="btn btn-primary" href="@Url.Action("ParameterizedBuilds", "CoreCICD", new { area = "Jenkins" })">Next: Parameterized Builds →</a>
+</div>
+
+        </section>
+
+    </div>
+
+</main>

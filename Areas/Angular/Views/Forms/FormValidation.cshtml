@@ -1,0 +1,1554 @@
+﻿@{
+    ViewData["Title"] = "Angular Form Validation";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- Header -->
+    <section class="mb-4">
+
+        <h1 class="fw-bold text-dark">
+            Angular Form Validation
+        </h1>
+
+        <p class="lead text-muted">
+            Learn how Angular validates user input using built-in validators,
+            control states and validation messages in reactive and template-driven forms.
+        </p>
+
+    </section>
+
+
+    <!-- Introduction -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            What is Form Validation?
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                Form validation checks whether the data entered by a user
+                satisfies the rules required by the application.
+            </p>
+
+            <p>
+                For example, a course enquiry form may require a name,
+                valid email address, mobile number and selected course.
+            </p>
+
+            <p class="mb-0">
+                Angular provides built-in validators and form states that
+                make it easier to identify invalid input and show useful
+                validation messages.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Validation Flow -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Form Validation Flow
+        </h2>
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+
+                <strong>User Input</strong>
+
+                <span>
+                    Enter Data
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>Validator</strong>
+
+                <span>
+                    Check Rules
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>Form State</strong>
+
+                <span>
+                    Valid / Invalid
+                </span>
+
+            </div>
+
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+
+            <div class="syntax-box">
+
+                <strong>Message</strong>
+
+                <span>
+                    Inform User
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Main Concepts -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Main Validation Concepts
+        </h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    R
+                </div>
+
+                <h5>
+                    Required
+                </h5>
+
+                <p>
+                    Ensures that a required field is not empty.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    E
+                </div>
+
+                <h5>
+                    Email
+                </h5>
+
+                <p>
+                    Checks whether an email value satisfies the validator.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    M
+                </div>
+
+                <h5>
+                    Min / Max Length
+                </h5>
+
+                <p>
+                    Controls the allowed length of a field value.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    S
+                </div>
+
+                <h5>
+                    Form State
+                </h5>
+
+                <p>
+                    Tracks valid, invalid, touched, dirty and related states.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Validators -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Angular Validators
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                Angular provides built-in validators through the
+                <strong>Validators</strong> class for reactive forms.
+            </p>
+
+            <p class="mb-0">
+                These validators can be combined to create validation rules
+                for individual form controls.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Import Validators
+            </div>
+
+            <pre><code>import { FormControl, Validators }
+    from '@@angular/forms';</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Required -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Validators.required
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                <strong>Validators.required</strong> checks that a control
+                contains a value.
+            </p>
+
+            <p class="mb-0">
+                It is commonly used for fields such as name, course and
+                mobile number.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>name = new FormControl(
+    '',
+    Validators.required
+);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Email -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Validators.email
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                <strong>Validators.email</strong> applies Angular's email
+                validation rule to a form control.
+            </p>
+
+            <p class="mb-0">
+                It can be combined with <strong>Validators.required</strong>
+                when an email field must be provided and valid.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>email = new FormControl(
+    '',
+    [
+        Validators.required,
+        Validators.email
+    ]
+);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Min Length -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Validators.minLength
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                <strong>Validators.minLength</strong> checks that a control
+                value has at least the specified number of characters.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>mobile = new FormControl(
+    '',
+    Validators.minLength(10)
+);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Max Length -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Validators.maxLength
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                <strong>Validators.maxLength</strong> limits the maximum
+                number of characters allowed in a control value.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>mobile = new FormControl(
+    '',
+    Validators.maxLength(10)
+);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Multiple Validators -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Using Multiple Validators
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                Multiple validators can be applied to the same form control
+                by placing them inside an array.
+            </p>
+
+            <p class="mb-0">
+                This allows one field to satisfy more than one validation rule.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>email = new FormControl(
+    '',
+    [
+        Validators.required,
+        Validators.email,
+        Validators.minLength(5)
+    ]
+);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Control States -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Form Control States
+        </h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    V
+                </div>
+
+                <h5>
+                    Valid
+                </h5>
+
+                <p>
+                    The control satisfies its validation rules.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    I
+                </div>
+
+                <h5>
+                    Invalid
+                </h5>
+
+                <p>
+                    One or more validation rules are not satisfied.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    T
+                </div>
+
+                <h5>
+                    Touched
+                </h5>
+
+                <p>
+                    The user has interacted with the control.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    D
+                </div>
+
+                <h5>
+                    Dirty
+                </h5>
+
+                <p>
+                    The user has changed the control value.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Validation Errors -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Validation Errors
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                Angular provides error information through the control's
+                <strong>errors</strong> property.
+            </p>
+
+            <p class="mb-0">
+                This can be used to determine which validation rule
+                has failed.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>const emailControl =
+    this.registrationForm.get('email');
+
+console.log(
+    emailControl?.errors
+);</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Required Error -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Checking Required Error
+        </h2>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Template
+            </div>
+
+            <pre><code>&lt;div
+    *ngIf="
+        registrationForm.get('name')?.hasError('required')
+        &amp;&amp;
+        registrationForm.get('name')?.touched
+    "&gt;
+
+    Name is required.
+
+&lt;/div&gt;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Email Error -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Checking Email Error
+        </h2>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Template
+            </div>
+
+            <pre><code>&lt;div
+    *ngIf="
+        registrationForm.get('email')?.hasError('email')
+        &amp;&amp;
+        registrationForm.get('email')?.touched
+    "&gt;
+
+    Please enter a valid email address.
+
+&lt;/div&gt;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Min Length Error -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Checking Min Length Error
+        </h2>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Template
+            </div>
+
+            <pre><code>&lt;div
+    *ngIf="
+        registrationForm.get('mobile')?.hasError('minlength')
+        &amp;&amp;
+        registrationForm.get('mobile')?.touched
+    "&gt;
+
+    Mobile number is too short.
+
+&lt;/div&gt;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- CIIT Example -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            CIIT Training Institute Validation Example
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                Suppose CIIT Training Institute has a course enquiry form
+                with fields for name, email and mobile number.
+            </p>
+
+            <p class="mb-0">
+                Each field can have its own validation rules before the
+                enquiry is submitted.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Component
+            </div>
+
+            <pre><code>import { Component } from '@@angular/core';
+
+import {
+    FormBuilder,
+    Validators
+} from '@@angular/forms';
+
+@@Component({
+    selector: 'app-enquiry',
+    templateUrl: './enquiry.component.html'
+})
+export class EnquiryComponent {
+
+    enquiryForm = this.fb.group({
+
+        name: [
+            '',
+            Validators.required
+        ],
+
+        email: [
+            '',
+            [
+                Validators.required,
+                Validators.email
+            ]
+        ],
+
+        mobile: [
+            '',
+            [
+                Validators.required,
+                Validators.minLength(10),
+                Validators.maxLength(10)
+            ]
+        ],
+
+        course: [
+            '',
+            Validators.required
+        ]
+
+    });
+
+
+    constructor(
+        private fb: FormBuilder
+    ) {
+    }
+
+}</code></pre>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Template
+            </div>
+
+            <pre><code>&lt;form [formGroup]="enquiryForm"&gt;
+
+
+    &lt;label&gt;
+        Name
+    &lt;/label&gt;
+
+    &lt;input
+        type="text"
+        formControlName="name"&gt;
+
+    &lt;div
+        *ngIf="
+            enquiryForm.get('name')?.invalid
+            &amp;&amp;
+            enquiryForm.get('name')?.touched
+        "&gt;
+
+        Name is required.
+
+    &lt;/div&gt;
+
+
+    &lt;label&gt;
+        Email
+    &lt;/label&gt;
+
+    &lt;input
+        type="email"
+        formControlName="email"&gt;
+
+    &lt;div
+        *ngIf="
+            enquiryForm.get('email')?.hasError('required')
+            &amp;&amp;
+            enquiryForm.get('email')?.touched
+        "&gt;
+
+        Email is required.
+
+    &lt;/div&gt;
+
+    &lt;div
+        *ngIf="
+            enquiryForm.get('email')?.hasError('email')
+            &amp;&amp;
+            enquiryForm.get('email')?.touched
+        "&gt;
+
+        Enter a valid email address.
+
+    &lt;/div&gt;
+
+
+    &lt;label&gt;
+        Mobile
+    &lt;/label&gt;
+
+    &lt;input
+        type="text"
+        formControlName="mobile"&gt;
+
+    &lt;div
+        *ngIf="
+            enquiryForm.get('mobile')?.invalid
+            &amp;&amp;
+            enquiryForm.get('mobile')?.touched
+        "&gt;
+
+        Enter a valid mobile number.
+
+    &lt;/div&gt;
+
+
+    &lt;button
+        type="submit"
+        [disabled]="enquiryForm.invalid"&gt;
+
+        Submit Enquiry
+
+    &lt;/button&gt;
+
+&lt;/form&gt;</code></pre>
+
+        </div>
+
+
+        <div class="output-box mt-3">
+
+            <div class="student-preview">
+
+                <h4>
+                    Validation Result
+                </h4>
+
+                <p>
+                    Name:
+                    <strong>Required</strong>
+                </p>
+
+                <p>
+                    Email:
+                    <strong>Valid Email Required</strong>
+                </p>
+
+                <p>
+                    Mobile:
+                    <strong>10 Characters Required</strong>
+                </p>
+
+                <p class="mb-0">
+                    Submit button:
+                    <strong>Disabled until form is valid</strong>
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Template-driven Validation -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Validation in Template-driven Forms
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                Template-driven forms can use HTML validation attributes
+                such as <strong>required</strong>, <strong>email</strong>,
+                <strong>minlength</strong> and <strong>maxlength</strong>.
+            </p>
+
+            <p class="mb-0">
+                The control state can then be inspected through a template
+                reference variable.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>&lt;input
+    type="email"
+    name="email"
+    ngModel
+    required
+    email
+    #emailControl="ngModel"&gt;
+
+
+&lt;div
+    *ngIf="
+        emailControl.invalid
+        &amp;&amp;
+        emailControl.touched
+    "&gt;
+
+    Please enter a valid email.
+
+&lt;/div&gt;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Form Level Validation -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Checking Complete Form Validation
+        </h2>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Reactive Form
+            </div>
+
+            <pre><code>if (this.enquiryForm.valid) {
+
+    console.log(
+        'Form is valid'
+    );
+
+}
+else {
+
+    console.log(
+        'Form is invalid'
+    );
+
+}</code></pre>
+
+        </div>
+
+
+        <div class="output-box mt-3">
+
+            <div class="student-preview">
+
+                <h4>
+                    Form Status
+                </h4>
+
+                <p class="mb-0">
+                    Angular evaluates the validation rules of the
+                    registered controls and exposes the overall form
+                    status through <strong>valid</strong> or
+                    <strong>invalid</strong>.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Mark All Touched -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Marking Controls as Touched
+        </h2>
+
+        <div class="info-card">
+
+            <p>
+                When a user submits an incomplete form, it can be useful
+                to mark controls as touched so that their validation
+                messages become visible.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>submitForm() {
+
+    if (this.enquiryForm.invalid) {
+
+        this.enquiryForm.markAllAsTouched();
+
+        return;
+
+    }
+
+    console.log(
+        this.enquiryForm.value
+    );
+
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Validation Comparison -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Common Validation Rules
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table syntax-table">
+
+                <thead>
+
+                    <tr>
+                        <th>
+                            Validator
+                        </th>
+
+                        <th>
+                            Purpose
+                        </th>
+
+                        <th>
+                            Example
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            <code>required</code>
+                        </td>
+
+                        <td>
+                            Ensures a value is provided.
+                        </td>
+
+                        <td>
+                            <code>Validators.required</code>
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            <code>email</code>
+                        </td>
+
+                        <td>
+                            Applies email validation.
+                        </td>
+
+                        <td>
+                            <code>Validators.email</code>
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            <code>minLength</code>
+                        </td>
+
+                        <td>
+                            Requires a minimum number of characters.
+                        </td>
+
+                        <td>
+                            <code>Validators.minLength(10)</code>
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            <code>maxLength</code>
+                        </td>
+
+                        <td>
+                            Limits the maximum number of characters.
+                        </td>
+
+                        <td>
+                            <code>Validators.maxLength(10)</code>
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            <code>invalid</code>
+                        </td>
+
+                        <td>
+                            Indicates that one or more rules are failing.
+                        </td>
+
+                        <td>
+                            <code>form.invalid</code>
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- Important Points -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Important Points
+        </h2>
+
+        <div class="best-practice-list">
+
+            <div class="info-card mb-3">
+
+                <strong>
+                    1. Validate Important Fields
+                </strong>
+
+                <p class="mb-0">
+                    Required information should be validated before
+                    the application processes the form.
+                </p>
+
+            </div>
+
+
+            <div class="info-card mb-3">
+
+                <strong>
+                    2. Use Appropriate Validators
+                </strong>
+
+                <p class="mb-0">
+                    Select validators based on the actual requirements
+                    of each form field.
+                </p>
+
+            </div>
+
+
+            <div class="info-card mb-3">
+
+                <strong>
+                    3. Show Useful Messages
+                </strong>
+
+                <p class="mb-0">
+                    Validation messages should clearly explain what the
+                    user needs to correct.
+                </p>
+
+            </div>
+
+
+            <div class="info-card">
+
+                <strong>
+                    4. Validate Before Submission
+                </strong>
+
+                <p class="mb-0">
+                    Do not process form data until the form satisfies
+                    the required validation rules.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Best Practices -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Form Validation Best Practices
+        </h2>
+
+        <ul class="best-practice-list">
+
+            <li>
+                Use appropriate validators for each field.
+            </li>
+
+            <li>
+                Display validation messages only when useful to the user.
+            </li>
+
+            <li>
+                Validate required fields before processing submitted data.
+            </li>
+
+            <li>
+                Use meaningful validation messages rather than generic errors.
+            </li>
+
+            <li>
+                Keep validation logic organized and easy to maintain.
+            </li>
+
+            <li>
+                Perform corresponding validation on the backend as well;
+                client-side validation should not be treated as the only
+                security or data-integrity check.
+            </li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- Summary -->
+    <section class="mb-4">
+
+        <div class="summary-box">
+
+            <h4 class="fw-bold">
+                Summary
+            </h4>
+
+            <p>
+                Angular Form Validation helps ensure that user-entered
+                information satisfies the application's requirements.
+            </p>
+
+            <p>
+                Common reactive-form validators include
+                <strong>Validators.required</strong>,
+                <strong>Validators.email</strong>,
+                <strong>Validators.minLength</strong> and
+                <strong>Validators.maxLength</strong>.
+            </p>
+
+            <p class="mb-0">
+                Angular also tracks states such as
+                <strong>valid</strong>, <strong>invalid</strong>,
+                <strong>touched</strong> and <strong>dirty</strong>.
+                In the next topic, we will learn about
+                <strong>Form Submission</strong>.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Navigation -->
+    <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+
+        <a class="btn btn-outline-secondary"
+           href="@Url.Action("ReactiveForms", "Forms", new { area = "Angular" })">
+
+            ← Reactive Forms
+
+        </a>
+
+
+        <a class="btn btn-primary"
+           href="@Url.Action("FormSubmission", "Forms", new { area = "Angular" })">
+
+            Form Submission →
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<style>
+
+    .info-card {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-left: 5px solid #4c1d95;
+        border-radius: 10px;
+        padding: 20px;
+        line-height: 1.7;
+        color: #334155;
+    }
+
+
+    .syntax-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        flex-wrap: wrap;
+        margin: 25px 0;
+    }
+
+
+    .syntax-box {
+        background: linear-gradient( 135deg, #2e1065, #4c1d95 );
+        color: white;
+        padding: 18px 25px;
+        border-radius: 12px;
+        text-align: center;
+        min-width: 180px;
+        box-shadow: 0 5px 15px rgba(76, 29, 149, 0.15);
+    }
+
+
+        .syntax-box strong {
+            display: block;
+            font-size: 16px;
+        }
+
+
+        .syntax-box span {
+            display: block;
+            margin-top: 5px;
+            color: #d8c9f5;
+            font-size: 14px;
+        }
+
+
+    .syntax-arrow {
+        font-size: 28px;
+        font-weight: bold;
+        color: #4c1d95;
+    }
+
+
+    .syntax-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+
+
+    .syntax-card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 22px;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+    }
+
+
+        .syntax-card h5 {
+            margin-top: 15px;
+            font-weight: 700;
+            color: #2e1065;
+        }
+
+
+        .syntax-card p {
+            color: #64748b;
+            margin-bottom: 0;
+        }
+
+
+    .syntax-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: #ede9fe;
+        color: #4c1d95;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 18px;
+        margin: 0 auto;
+    }
+
+
+    .code-card {
+        background: #0f172a;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(15, 23, 42, 0.10);
+    }
+
+
+    .code-title {
+        background: #1e293b;
+        color: #ffffff;
+        padding: 12px 18px;
+        font-weight: 700;
+        font-size: 14px;
+    }
+
+
+    .code-card pre {
+        margin: 0;
+        padding: 20px;
+        overflow-x: auto;
+    }
+
+
+    .code-card code {
+        color: #f8fafc;
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+
+    .output-box {
+        background: #f8fafc;
+        border: 1px solid #ddd6fe;
+        border-radius: 12px;
+        padding: 20px;
+    }
+
+
+    .student-preview {
+        background: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        padding: 20px;
+    }
+
+
+        .student-preview h4 {
+            color: #2e1065;
+            font-weight: 700;
+        }
+
+
+        .student-preview p {
+            color: #64748b;
+        }
+
+
+    .syntax-table {
+        width: 100%;
+        margin-bottom: 0;
+        border: 1px solid #e2e8f0;
+    }
+
+
+        .syntax-table thead th {
+            background: #2e1065;
+            color: white;
+            padding: 14px;
+            border-color: #4c1d95;
+        }
+
+
+        .syntax-table tbody td {
+            padding: 14px;
+            vertical-align: middle;
+            color: #334155;
+            border-color: #e2e8f0;
+        }
+
+
+        .syntax-table tbody tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+
+        .syntax-table code {
+            color: #4c1d95;
+            font-weight: 600;
+        }
+
+
+    .best-practice-list {
+        margin: 0;
+        padding-left: 20px;
+    }
+
+
+        .best-practice-list li {
+            margin-bottom: 10px;
+            color: #334155;
+            line-height: 1.6;
+        }
+
+
+    .summary-box {
+        background: #cfe2ff;
+        color: #084298;
+        border-radius: 10px;
+        padding: 22px;
+        border: 1px solid #b6d4fe;
+    }
+
+
+        .summary-box h4 {
+            margin-bottom: 12px;
+        }
+
+
+    @@media (max-width: 991px) {
+
+        .syntax-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .syntax-flow {
+            gap: 12px;
+        }
+
+        .syntax-box {
+            min-width: 160px;
+        }
+    }
+
+
+    @@media (max-width: 576px) {
+
+        .syntax-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .syntax-flow {
+            flex-direction: column;
+        }
+
+        .syntax-arrow {
+            transform: rotate(90deg);
+        }
+
+        .syntax-box {
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .code-card pre {
+            padding: 15px;
+        }
+
+        .code-card code {
+            font-size: 13px;
+        }
+    }
+
+</style>

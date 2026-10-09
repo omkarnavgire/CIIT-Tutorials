@@ -1,0 +1,99 @@
+@{
+    ViewData["Title"] = "Microsoft Azure - Using Github Action in Azure App Service";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+                <div class="azure-notes-content">
+                    <pre class="azure-notes-text">Microsoft Azure - Using Github Action in Azure App Service
+e will learn how to use GitHub Actions from Azure App Service. GitHub Actions enables us to
+automate builds and deployments which results in better quality software.
+
+For the purpose of demonstration, let&#x27;s use it from this Azure App Service Web App that we&#x27;ve
+already created. This is a new web app, and we haven&#x27;t deployed an app into it yet.
+
+
+
+
+Now let&#x27;s go to the Deployment Center and there we&#x27;ll select &quot;GitHub&quot; as we currently have an
+ASP.NET core app in a GitHub repository.
+
+
+
+
+For this, we first need to authorize Azure to access our GitHub account.
+Now we&#x27;ll select &quot;GitHub Actions&quot; as the build provider, and continue.
+Now we need to configure it. Our code is in a GitHub repository. The runtime stack is already good.
+So let&#x27;s continue.
+
+
+
+
+This is the workflow configuration that describes the GitHub Action workflow.
+At this point, the deployment will work. It will have the GitHub repo that we used. There is also the
+workflow file of the GitHub Action, which the Deployment Center created for us.
+Now let&#x27;s go to the Actions menu.
+
+
+
+
+Here on the left are all the GitHub Action workflows, which we have only one of, and on the right are
+the workflow runs that happen so far.
+
+
+
+
+We can also drill down into it to see all the steps that it took. We can see the details of each step.
+Automating your build and deployment process improves the quality of your software. GitHub
+Actions allow you to easily automate your builds and deployments and integrate with Azure App
+Service.</pre>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_6_-_Microsoft_Azure_-_Creating_an_App_Service_Plan/p11-000.jpg" class="img-fluid rounded shadow-sm" alt="Microsoft Azure - Using Github Action in Azure App Service - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_6_-_Microsoft_Azure_-_Creating_an_App_Service_Plan/p11-001.jpg" class="img-fluid rounded shadow-sm" alt="Microsoft Azure - Using Github Action in Azure App Service - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_6_-_Microsoft_Azure_-_Creating_an_App_Service_Plan/p12-000.jpg" class="img-fluid rounded shadow-sm" alt="Microsoft Azure - Using Github Action in Azure App Service - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_6_-_Microsoft_Azure_-_Creating_an_App_Service_Plan/p13-000.jpg" class="img-fluid rounded shadow-sm" alt="Microsoft Azure - Using Github Action in Azure App Service - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_6_-_Microsoft_Azure_-_Creating_an_App_Service_Plan/p13-001.jpg" class="img-fluid rounded shadow-sm" alt="Microsoft Azure - Using Github Action in Azure App Service - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_6_-_Microsoft_Azure_-_Creating_an_App_Service_Plan/p14-000.jpg" class="img-fluid rounded shadow-sm" alt="Microsoft Azure - Using Github Action in Azure App Service - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_6_-_Microsoft_Azure_-_Creating_an_App_Service_Plan/p15-000.jpg" class="img-fluid rounded shadow-sm" alt="Microsoft Azure - Using Github Action in Azure App Service - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_6_-_Microsoft_Azure_-_Creating_an_App_Service_Plan/p15-001.jpg" class="img-fluid rounded shadow-sm" alt="Microsoft Azure - Using Github Action in Azure App Service - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_6_-_Microsoft_Azure_-_Creating_an_App_Service_Plan/p15-002.jpg" class="img-fluid rounded shadow-sm" alt="Microsoft Azure - Using Github Action in Azure App Service - source image" />
+                    </div>
+                    <div class="text-center my-4">
+                        <img src="/Images/AzureNotes/Chapter_6_-_Microsoft_Azure_-_Creating_an_App_Service_Plan/p16-000.jpg" class="img-fluid rounded shadow-sm" alt="Microsoft Azure - Using Github Action in Azure App Service - source image" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+            @await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureLessonNavigation.cshtml")
+</section>
+</div>
+<style>
+.azure-notes-text{white-space:pre-wrap;word-break:normal;font-family:inherit;font-size:1rem;line-height:1.7;background:#fff;border:0;padding:0;margin:0;color:#212529;}
+.azure-notes-content img{max-height:720px;}
+</style>

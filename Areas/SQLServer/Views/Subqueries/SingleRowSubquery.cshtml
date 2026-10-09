@@ -1,0 +1,450 @@
+﻿@{
+    ViewData["Title"] = "Single-Row Subquery";
+}
+
+<div class="container-fluid">
+
+    <!-- =========================
+         PAGE HEADER
+    ========================== -->
+
+    <div class="mb-4">
+
+        <h1 class="fw-bold">
+            Single-Row Subquery
+        </h1>
+
+        <p class="text-muted">
+            Learn how to use a subquery that returns only one row
+            or one value.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         WHAT IS SINGLE-ROW SUBQUERY?
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                What is a Single-Row Subquery?
+            </h2>
+
+            <p>
+                A <strong>Single-Row Subquery</strong> is a subquery
+                that returns only one row or one value as its result.
+            </p>
+
+            <p>
+                Because the subquery returns a single value, we can
+                commonly use comparison operators such as
+                <strong>=</strong>, <strong>&gt;</strong>,
+                <strong>&lt;</strong>, <strong>&gt;=</strong> and
+                <strong>&lt;=</strong>.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         BASIC SYNTAX
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Basic Syntax
+            </h2>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>
+SELECT column_name
+FROM table_name
+WHERE column_name = (
+    SELECT column_name
+    FROM table_name
+    WHERE condition
+);
+            </code></pre>
+
+            <p class="mt-3 mb-0">
+                The inner query should return only one value when
+                using a single-value comparison operator.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         EXAMPLE TABLE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Example Table
+            </h2>
+
+            <p>
+                Consider the following <strong>Employees</strong> table:
+            </p>
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-striped">
+
+                    <thead class="table-primary">
+
+                        <tr>
+                            <th>EmployeeId</th>
+                            <th>EmployeeName</th>
+                            <th>Department</th>
+                            <th>Salary</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>1</td>
+                            <td>Rahul</td>
+                            <td>IT</td>
+                            <td>30000</td>
+                        </tr>
+
+                        <tr>
+                            <td>2</td>
+                            <td>Priya</td>
+                            <td>HR</td>
+                            <td>45000</td>
+                        </tr>
+
+                        <tr>
+                            <td>3</td>
+                            <td>Amit</td>
+                            <td>IT</td>
+                            <td>50000</td>
+                        </tr>
+
+                        <tr>
+                            <td>4</td>
+                            <td>Sneha</td>
+                            <td>Finance</td>
+                            <td>40000</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         EXAMPLE 1
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Example 1: Using = Operator
+            </h2>
+
+            <p>
+                Suppose we want to find employees who have the same
+                salary as Priya.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>
+SELECT EmployeeName, Salary
+FROM Employees
+WHERE Salary = (
+    SELECT Salary
+    FROM Employees
+    WHERE EmployeeName = 'Priya'
+);
+            </code></pre>
+
+            <h5 class="fw-bold mt-4">
+                How it works
+            </h5>
+
+            <ol>
+
+                <li>
+                    The inner query finds Priya's salary.
+                </li>
+
+                <li>
+                    The inner query returns one value.
+                </li>
+
+                <li>
+                    The outer query finds employees whose salary
+                    matches that value.
+                </li>
+
+            </ol>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         EXAMPLE 2
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Example 2: Using &gt; Operator
+            </h2>
+
+            <p>
+                Find employees whose salary is greater than Rahul's
+                salary.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>
+SELECT EmployeeName, Salary
+FROM Employees
+WHERE Salary &gt; (
+    SELECT Salary
+    FROM Employees
+    WHERE EmployeeName = 'Rahul'
+);
+            </code></pre>
+
+            <p class="mt-3">
+                The inner query returns Rahul's salary. The outer query
+                then returns employees whose salary is greater than
+                Rahul's salary.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         EXAMPLE 3
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Example 3: Using Aggregate Function
+            </h2>
+
+            <p>
+                Aggregate functions such as <strong>MAX()</strong>,
+                <strong>MIN()</strong> and <strong>AVG()</strong>
+                normally return a single value, making them useful
+                with single-row subqueries.
+            </p>
+
+            <p>
+                Find employees whose salary is equal to the highest
+                salary in the table:
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>
+SELECT EmployeeName, Salary
+FROM Employees
+WHERE Salary = (
+    SELECT MAX(Salary)
+    FROM Employees
+);
+            </code></pre>
+
+            <p class="mt-3">
+                The inner query returns the highest salary.
+                The outer query finds the employee having that salary.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         COMPARISON OPERATORS
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Comparison Operators
+            </h2>
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-striped">
+
+                    <thead class="table-primary">
+
+                        <tr>
+                            <th>Operator</th>
+                            <th>Meaning</th>
+                            <th>Example</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>=</td>
+                            <td>Equal to</td>
+                            <td>Salary = (Subquery)</td>
+                        </tr>
+
+                        <tr>
+                            <td>&gt;</td>
+                            <td>Greater than</td>
+                            <td>Salary &gt; (Subquery)</td>
+                        </tr>
+
+                        <tr>
+                            <td>&lt;</td>
+                            <td>Less than</td>
+                            <td>Salary &lt; (Subquery)</td>
+                        </tr>
+
+                        <tr>
+                            <td>&gt;=</td>
+                            <td>Greater than or equal to</td>
+                            <td>Salary &gt;= (Subquery)</td>
+                        </tr>
+
+                        <tr>
+                            <td>&lt;=</td>
+                            <td>Less than or equal to</td>
+                            <td>Salary &lt;= (Subquery)</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         IMPORTANT POINTS
+    ========================== -->
+
+    <div class="alert alert-warning mb-4">
+
+        <h4 class="fw-bold">
+            Important Points
+        </h4>
+
+        <ul class="mb-0">
+
+            <li>
+                A single-row subquery returns one row or one value.
+            </li>
+
+            <li>
+                It can commonly be used with comparison operators.
+            </li>
+
+            <li>
+                The inner query is normally enclosed in parentheses.
+            </li>
+
+            <li>
+                Aggregate functions such as MAX(), MIN() and AVG()
+                can return a single value.
+            </li>
+
+            <li>
+                If a subquery returns multiple rows while using a
+                single-value operator such as =, SQL Server can
+                generate an error.
+            </li>
+
+        </ul>
+
+    </div>
+
+
+    <!-- =========================
+         SUMMARY
+    ========================== -->
+
+    <div class="alert alert-info p-4 mb-4">
+
+        <h2 class="fw-bold">
+            Summary
+        </h2>
+
+        <p class="mb-0">
+            A Single-Row Subquery returns one row or one value and is
+            commonly used with comparison operators such as =, &gt;,
+            &lt;, &gt;= and &lt;=. It is useful when the result of one
+            query is required for comparison in another query.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         PREVIOUS / NEXT
+    ========================== -->
+
+    <div class="d-flex justify-content-between align-items-center
+        mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/Subqueries/Index"
+           class="btn btn-outline-primary">
+
+            ← Previous: Subqueries Introduction
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/Subqueries/MultipleRowSubquery"
+           class="btn btn-primary">
+
+            Next: Multiple-Row Subquery →
+
+        </a>
+
+    </div>
+
+</div>

@@ -1,0 +1,391 @@
+@{
+    ViewData["Title"] = "Azure Portal Introduction";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+
+                <h1>What is the Azure portal?</h1>
+
+                <p>
+                    The Azure portal is a web-based, unified console that you can use
+                    to create and manage all your Azure resources. By using the Azure
+                    portal, you can manage your Azure subscription through a graphical
+                    user interface.
+                </p>
+
+                <p>
+                    You can build, manage, and monitor everything from simple web apps
+                    to complex cloud deployments in the portal. For example, you can
+                    set up a new database, increase the compute power of your virtual
+                    machines, and monitor your monthly costs.
+                </p>
+
+                <p>
+                    You can review all available resources and use guided wizards
+                    to create new ones.
+                </p>
+
+                <p>
+                    The Azure portal is designed for resiliency and continuous
+                    availability. It has a presence in every Azure datacenter.
+                    This configuration makes the Azure portal resilient to individual
+                    datacenter failures and helps avoid network slowdowns by being
+                    close to users.
+                </p>
+
+                <p>
+                    The Azure portal updates continuously and requires no downtime
+                    for maintenance activities. You can access the Azure portal
+                    by using any supported browser.
+                </p>
+
+
+                <h2 class="mt-5">Home</h2>
+
+                <p>
+                    By default, the first thing you see after you sign in to the
+                    portal is <b>Home</b>. This page compiles resources that help
+                    you get the most from your Azure subscription.
+                </p>
+
+                <p>
+                    Select <b>Create a resource</b> to quickly create a new resource
+                    in the current subscription, or choose a service to start working in.
+                </p>
+
+                <p>
+                    For quick and easy access to work in progress, the portal shows
+                    a list of your most recently visited resources. It also includes
+                    links to free online courses, documentation, and other useful resources.
+                </p>
+
+
+                <h2 class="mt-5">Portal elements and controls</h2>
+
+                <p>
+                    The portal menu and page header are global elements that always
+                    appear in the Azure portal. These persistent features form the
+                    "shell" for the user interface associated with each individual
+                    service or feature.
+                </p>
+
+                <p>
+                    The header provides access to global controls.
+                </p>
+
+                <p>
+                    The working pane for a resource or service might also have a
+                    service menu with commands specific to that area.
+                </p>
+
+                <p>
+                    The following illustration labels the basic elements of the
+                    Azure portal. Each element is described in the following table.
+                    In this example, the current focus is a virtual machine (VM),
+                    but the same elements generally apply, no matter what type of
+                    resource or service you're working with.
+                </p>
+
+                <div class="text-center my-4">
+                    <img src="https://learn.microsoft.com/en-us/azure/azure-portal/media/azure-portal-overview/portal-callouts.png"
+                         alt="Azure Portal Elements and Controls"
+                         class="img-fluid rounded shadow-sm"
+                         style="max-width:100%;height:auto;" />
+                </div>
+
+                <div class="table-responsive my-4">
+                    <table class="table table-bordered align-middle">
+                        <thead class="table-light">
+                            <tr>
+                                <th style="width:80px;">Key</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>1</td>
+                                <td>
+                                    <b>Portal menu.</b> Use this global element to
+                                    navigate between services. Here, the portal menu
+                                    is in flyout mode, so it's hidden until you select
+                                    the menu icon.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>2</td>
+                                <td>
+                                    <b>Breadcrumb.</b> Use the breadcrumb links to
+                                    move back a level in your workflow.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>3</td>
+                                <td>
+                                    <b>Page header.</b> Appears at the top of every
+                                    portal page and holds global elements.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>4</td>
+                                <td>
+                                    <b>Global search.</b> Use the search bar in the
+                                    page header to quickly find a specific resource,
+                                    a service, or documentation.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>5</td>
+                                <td>
+                                    <b>Copilot.</b> Provides quick access to Azure Copilot.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>6</td>
+                                <td>
+                                    <b>Global controls.</b> These controls for common
+                                    tasks persist in the page header: Cloud Shell,
+                                    Notifications, Settings, Support + Troubleshooting,
+                                    and Feedback.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>7</td>
+                                <td>
+                                    <b>Your account.</b> View information about your
+                                    account, switch directories, sign out, or sign in
+                                    with a different account.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>8</td>
+                                <td>
+                                    <b>Command bar.</b> A group of controls that are
+                                    contextual to your current focus.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>9</td>
+                                <td>
+                                    <b>Service menu.</b> A menu with commands that are
+                                    contextual to the service or resource that you're
+                                    working with. Sometimes referred to as the resource menu.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>10</td>
+                                <td>
+                                    <b>Working pane.</b> Displays details about the
+                                    resource or service that's currently in focus.
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <h2 class="mt-5">Portal menu</h2>
+
+                <p>
+                    The Azure portal menu lets you quickly get to key functionality
+                    and resource types. It's available from anywhere in the Azure portal.
+                </p>
+
+                <div class="text-center my-4">
+                    <img src="https://learn.microsoft.com/en-us/azure/azure-portal/media/azure-portal-overview/azure-portal-menu.png"
+                         alt="Azure Portal Menu"
+                         class="img-fluid rounded shadow-sm"
+                         style="max-width:100%;height:auto;" />
+                </div>
+
+                <p>Useful commands in the portal menu include:</p>
+
+                <ul>
+                    <li>
+                        <b>Create a resource.</b> An easy way to get started creating
+                        a new resource in the current subscription.
+                    </li>
+
+                    <li>
+                        <b>Favorites.</b> Your list of favorite Azure services.
+                        To learn how to customize this list, see Add, remove,
+                        and sort favorites.
+                    </li>
+                </ul>
+
+                <p>
+                    In your portal settings, you can choose a default mode for the
+                    portal menu: <b>flyout</b> or <b>docked</b>.
+                </p>
+
+                <p>
+                    When the portal menu is in flyout mode, it's hidden until you
+                    need it. Select the menu icon to open or close the menu.
+                </p>
+
+                <div class="text-center my-4">
+                    <img src="https://learn.microsoft.com/en-us/azure/azure-portal/media/azure-portal-overview/azure-portal-overview-portal-menu-flyout.png"
+                         alt="Azure Portal Flyout Menu"
+                         class="img-fluid rounded shadow-sm"
+                         style="max-width:100%;height:auto;" />
+                </div>
+
+
+                <h2 class="mt-5">Service menu</h2>
+
+                <p>
+                    The service menu appears when you work with an Azure service or
+                    resource. The commands in this menu are contextual to the service
+                    or resource that you're working with. Use the search box at the top
+                    of the service menu to quickly find commands.
+                </p>
+
+                <p>
+                    By default, the portal displays menu items as collapsed within
+                    menu groups. If you prefer to have all menu items expanded by default,
+                    set <b>Service menu behavior</b> to <b>Expanded</b> in your
+                    portal settings.
+                </p>
+
+                <p>
+                    When you work within a service, select any top-level menu item to
+                    expand it and see the available commands within that menu group.
+                    Select that top-level item again to collapse that menu group.
+                </p>
+
+                <p>
+                    To toggle all folders in a service menu between collapsed and expanded,
+                    select the expand/collapse icon near the service icon search box.
+                </p>
+
+                <div class="text-center my-4">
+                    <img src="https://learn.microsoft.com/en-us/azure/azure-portal/media/azure-portal-overview/service-menu-toggle.png"
+                         alt="Azure Service Menu Toggle"
+                         class="img-fluid rounded shadow-sm"
+                         style="max-width:100%;height:auto;" />
+                </div>
+
+                <p>
+                    If you frequently use certain service menu commands, save them as
+                    favorites for that service. To add a command to your favorites,
+                    hover over the command and then select the star icon.
+                </p>
+
+                <div class="text-center my-4">
+                    <img src="https://learn.microsoft.com/en-us/azure/azure-portal/media/azure-portal-overview/portal-callouts.png"
+                         alt="Add Service Menu Favorite"
+                         class="img-fluid rounded shadow-sm"
+                         style="max-width:100%;height:auto;" />
+                </div>
+
+                <p>
+                    When you save a command as a favorite, it appears in a
+                    <b>Favorites</b> folder near the top of the service menu.
+                </p>
+
+                <div class="text-center my-4">
+                    <img src="https://learn.microsoft.com/en-us/azure/azure-portal/media/azure-portal-overview/service-menu-favorites.png"
+                         alt="Service Menu Favorites"
+                         class="img-fluid rounded shadow-sm"
+                         style="max-width:100%;height:auto;" />
+                </div>
+
+                <p>
+                    The portal preserves your menu group selections throughout sessions
+                    by resource type. For example, if you add a favorite command while
+                    working with a VM, that command appears in your Favorites when you
+                    later work with a different VM.
+                </p>
+
+                <p>
+                    Specific menu groups also appear collapsed or expanded based on
+                    your previous selections.
+                </p>
+
+
+                <h2 class="mt-5">Dashboard</h2>
+
+                <p>
+                    Dashboards provide a focused view of the resources in your subscription
+                    that matter most to you. The portal provides a default dashboard to
+                    get you started.
+                </p>
+
+                <p>
+                    You can customize this dashboard to bring resources you frequently
+                    use into a single view, or to display other information.
+                </p>
+
+                <p>
+                    You can create other dashboards for your own use, or publish customized
+                    dashboards and share them with other users in your organization.
+                </p>
+
+                <p>
+                    As noted earlier, you can set your startup page to Dashboard if you
+                    want to see your most recently used dashboard when you sign in to
+                    the Azure portal.
+                </p>
+
+
+                <h2 class="mt-5">Get started</h2>
+
+                <p>
+                    If you're a new subscriber, you need to create a resource before
+                    there's anything to manage.
+                </p>
+
+                <p>
+                    Select <b>+ Create a resource</b> from the portal menu or Home to
+                    view the services available in the Marketplace.
+                </p>
+
+                <p>
+                    You can find hundreds of applications and services from many providers,
+                    all certified to run on Azure.
+                </p>
+
+
+                <div style="min-height:80px;"></div>
+
+                <div class="mt-4 d-flex justify-content-between align-items-center">
+
+                    <a class="btn btn-outline-primary fw-semibold"
+                       href="@Url.Action("AzureGlobalInfrastructure", "Introduction", new { area = "Azure" })">
+                        ← Previous
+                    </a>
+
+                    <a class="btn btn-primary fw-semibold"
+                       href="@Url.Action("FirstAzureResource", "Introduction", new { area = "Azure" })">
+                        Next →
+                    </a>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</div>

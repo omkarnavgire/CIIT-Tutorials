@@ -1,0 +1,1289 @@
+﻿@{
+    ViewData["Title"] = "Angular Project Structure";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- ================= HEADER ================= -->
+    <section class="mb-4">
+
+        <h1 class="fw-bold text-dark">
+            Angular Project Structure
+        </h1>
+
+        <p class="text-muted fs-5">
+            After creating an Angular application, Angular CLI generates
+            a standard project structure containing source files,
+            configuration files, dependencies and other resources.
+        </p>
+
+    </section>
+
+
+    <!-- ================= WHAT IS PROJECT STRUCTURE ================= -->
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            What is Angular Project Structure?
+        </h2>
+
+        <p>
+            Angular project structure defines how the files and folders
+            of an Angular application are organized.
+        </p>
+
+        <p>
+            Understanding the project structure is important because
+            different files have different responsibilities in an
+            Angular application.
+        </p>
+
+        <div class="info-highlight">
+
+            <strong>Example Project:</strong>
+
+            <span>
+                CIITStudentApp
+            </span>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= PROJECT STRUCTURE ================= -->
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Angular Project Structure
+        </h2>
+
+        <div class="project-structure">
+
+<pre><code>CIITStudentApp
+│
+├── node_modules
+│
+├── public
+│
+├── src
+│   ├── app
+│   ├── assets
+│   ├── index.html
+│   ├── main.ts
+│   └── styles.css
+│
+├── angular.json
+├── package.json
+├── package-lock.json
+├── tsconfig.json
+└── README.md</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= ROOT FOLDER ================= -->
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            1. Project Root Folder
+        </h2>
+
+        <p>
+            The project root folder is the main folder of the Angular
+            application.
+        </p>
+
+        <div class="code-box">
+
+            <div class="code-header">
+                <span>Project Folder</span>
+            </div>
+
+<pre><code>CIITStudentApp</code></pre>
+
+        </div>
+
+        <p class="mt-3">
+            All Angular source files, configuration files and installed
+            dependencies are organized inside this project folder.
+        </p>
+
+    </section>
+
+
+    <!-- ================= NODE MODULES ================= -->
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            2. node_modules
+        </h2>
+
+        <p>
+            The <strong>node_modules</strong> folder contains the packages
+            and dependencies required by the Angular application.
+        </p>
+
+        <div class="code-box">
+
+            <div class="code-header">
+                <span>Folder</span>
+            </div>
+
+<pre><code>node_modules/</code></pre>
+
+        </div>
+
+        <div class="info-card mt-3">
+
+            <h5>Important</h5>
+
+            <p class="mb-0">
+                Developers normally do not modify files inside the
+                node_modules folder manually.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= PUBLIC ================= -->
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            3. public Folder
+        </h2>
+
+        <p>
+            The <strong>public</strong> folder can contain static resources
+            that need to be served as part of the application.
+        </p>
+
+        <div class="code-box">
+
+            <div class="code-header">
+                <span>Folder</span>
+            </div>
+
+<pre><code>public/
+    ├── images
+    ├── icons
+    └── other-static-files</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= SRC ================= -->
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            4. src Folder
+        </h2>
+
+        <p>
+            The <strong>src</strong> folder contains the main source code
+            of the Angular application.
+        </p>
+
+        <div class="code-box">
+
+            <div class="code-header">
+                <span>src</span>
+            </div>
+
+<pre><code>src/
+├── app/
+├── assets/
+├── index.html
+├── main.ts
+└── styles.css</code></pre>
+
+        </div>
+
+        <div class="info-highlight mt-3">
+
+            <strong>Remember:</strong>
+
+            <span>
+                Most application development work is performed inside
+                the src folder.
+            </span>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= APP ================= -->
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            5. app Folder
+        </h2>
+
+        <p>
+            The <strong>app</strong> folder contains the main Angular
+            application code.
+        </p>
+
+        <div class="code-box">
+
+            <div class="code-header">
+                <span>src/app</span>
+            </div>
+
+<pre><code>src/
+└── app/
+    ├── app.component.ts
+    ├── app.component.html
+    ├── app.component.css
+    └── app.config.ts</code></pre>
+
+        </div>
+
+        <p class="mt-3">
+            Components, services, routing and other application-related
+            code are commonly organized under this area.
+        </p>
+
+    </section>
+
+
+    <!-- ================= COMPONENT FILES ================= -->
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            6. Component Files
+        </h2>
+
+        <p>
+            An Angular component contains the logic and user interface
+            required for a particular part of the application.
+        </p>
+
+        <div class="component-flow">
+
+            <div class="component-item">
+
+                <div class="component-icon">
+                    TS
+                </div>
+
+                <h5>TypeScript</h5>
+
+                <p>
+                    Contains component logic and data.
+                </p>
+
+                <code>student.component.ts</code>
+
+            </div>
+
+
+            <div class="component-item">
+
+                <div class="component-icon">
+                    HTML
+                </div>
+
+                <h5>HTML Template</h5>
+
+                <p>
+                    Defines the component user interface.
+                </p>
+
+                <code>student.component.html</code>
+
+            </div>
+
+
+            <div class="component-item">
+
+                <div class="component-icon">
+                    CSS
+                </div>
+
+                <h5>Styles</h5>
+
+                <p>
+                    Defines component styling.
+                </p>
+
+                <code>student.component.css</code>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= ASSETS ================= -->
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            7. assets Folder
+        </h2>
+
+        <p>
+            The assets folder is used for application resources such as
+            images, icons and other static files, depending on the
+            project configuration.
+        </p>
+
+        <div class="code-box">
+
+            <div class="code-header">
+                <span>Folder</span>
+            </div>
+
+<pre><code>src/assets/
+├── images/
+├── icons/
+└── logos/</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= INDEX HTML ================= -->
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            8. index.html
+        </h2>
+
+        <p>
+            The <strong>index.html</strong> file is the main HTML document
+            loaded by the browser.
+        </p>
+
+        <div class="code-box">
+
+            <div class="code-header">
+                <span>index.html</span>
+            </div>
+
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+
+&lt;head&gt;
+    &lt;title&gt;CIIT Student App&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;app-root&gt;&lt;/app-root&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre>
+
+        </div>
+
+        <div class="output-box mt-3">
+
+            <h5>Purpose</h5>
+
+            <p class="mb-0">
+                It provides the main HTML page in which the Angular
+                application is loaded.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= MAIN TS ================= -->
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            9. main.ts
+        </h2>
+
+        <p>
+            The <strong>main.ts</strong> file acts as an entry point
+            for starting the Angular application.
+        </p>
+
+        <div class="code-box">
+
+            <div class="code-header">
+                <span>main.ts</span>
+            </div>
+
+<pre><code>import { bootstrapApplication } from '@@angular/platform-browser';
+import { AppComponent } from './app/app.component';
+
+bootstrapApplication(AppComponent)
+    .catch((err) =&gt; console.error(err));</code></pre>
+
+        </div>
+
+        <div class="info-card mt-3">
+
+            <h5>In Simple Words</h5>
+
+            <p class="mb-0">
+                main.ts helps Angular bootstrap and start the application.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= STYLES ================= -->
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            10. styles.css
+        </h2>
+
+        <p>
+            The <strong>styles.css</strong> file contains global styles
+            that can be applied across the Angular application.
+        </p>
+
+        <div class="code-box">
+
+            <div class="code-header">
+                <span>styles.css</span>
+            </div>
+
+<pre><code>body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+
+h1 {
+    color: #4c1d95;
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= ANGULAR JSON ================= -->
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            11. angular.json
+        </h2>
+
+        <p>
+            The <strong>angular.json</strong> file contains Angular CLI
+            workspace and project configuration.
+        </p>
+
+        <div class="file-grid">
+
+            <div class="file-item">
+                <strong>Build</strong>
+                <span>Application build configuration</span>
+            </div>
+
+            <div class="file-item">
+                <strong>Serve</strong>
+                <span>Development server configuration</span>
+            </div>
+
+            <div class="file-item">
+                <strong>Assets</strong>
+                <span>Static resource configuration</span>
+            </div>
+
+            <div class="file-item">
+                <strong>Styles</strong>
+                <span>Global style configuration</span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= PACKAGE JSON ================= -->
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            12. package.json
+        </h2>
+
+        <p>
+            The <strong>package.json</strong> file contains information
+            about the project, npm scripts and dependencies.
+        </p>
+
+        <div class="code-box">
+
+            <div class="code-header">
+                <span>package.json</span>
+            </div>
+
+<pre><code>{
+    "name": "ciit-student-app",
+    "scripts": {
+        "start": "ng serve"
+    }
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= PACKAGE LOCK ================= -->
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            13. package-lock.json
+        </h2>
+
+        <p>
+            The <strong>package-lock.json</strong> file records detailed
+            information about the installed npm dependencies.
+        </p>
+
+        <div class="info-card">
+
+            <h5>Purpose</h5>
+
+            <p class="mb-0">
+                It helps npm maintain consistent dependency versions
+                during installation.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= TSCONFIG ================= -->
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            14. tsconfig.json
+        </h2>
+
+        <p>
+            Angular applications use TypeScript. The
+            <strong>tsconfig.json</strong> file contains TypeScript
+            compiler configuration.
+        </p>
+
+        <div class="code-box">
+
+            <div class="code-header">
+                <span>Configuration File</span>
+            </div>
+
+<pre><code>tsconfig.json</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= README ================= -->
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            15. README.md
+        </h2>
+
+        <p>
+            The <strong>README.md</strong> file is used to provide
+            documentation and information about the project.
+        </p>
+
+    </section>
+
+
+    <!-- ================= IMPORTANT FILES TABLE ================= -->
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Important Files and Folders
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered structure-table">
+
+                <thead>
+
+                    <tr>
+                        <th>File / Folder</th>
+                        <th>Purpose</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td><code>node_modules</code></td>
+                        <td>Contains installed npm dependencies.</td>
+                    </tr>
+
+                    <tr>
+                        <td><code>public</code></td>
+                        <td>Contains public static resources.</td>
+                    </tr>
+
+                    <tr>
+                        <td><code>src</code></td>
+                        <td>Contains Angular source code.</td>
+                    </tr>
+
+                    <tr>
+                        <td><code>src/app</code></td>
+                        <td>Contains application-related Angular code.</td>
+                    </tr>
+
+                    <tr>
+                        <td><code>index.html</code></td>
+                        <td>Main HTML document.</td>
+                    </tr>
+
+                    <tr>
+                        <td><code>main.ts</code></td>
+                        <td>Application bootstrap entry point.</td>
+                    </tr>
+
+                    <tr>
+                        <td><code>angular.json</code></td>
+                        <td>Angular CLI configuration.</td>
+                    </tr>
+
+                    <tr>
+                        <td><code>package.json</code></td>
+                        <td>Project dependencies and npm scripts.</td>
+                    </tr>
+
+                    <tr>
+                        <td><code>package-lock.json</code></td>
+                        <td>Records dependency installation details.</td>
+                    </tr>
+
+                    <tr>
+                        <td><code>tsconfig.json</code></td>
+                        <td>TypeScript configuration.</td>
+                    </tr>
+
+                    <tr>
+                        <td><code>README.md</code></td>
+                        <td>Project documentation.</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= PROJECT FLOW ================= -->
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Angular Project Structure Flow
+        </h2>
+
+        <div class="structure-flow">
+
+            <div class="structure-step">
+
+                <div class="structure-number">
+                    1
+                </div>
+
+                <h4>Project Root</h4>
+
+                <p>
+                    CIITStudentApp
+                </p>
+
+            </div>
+
+            <div class="flow-arrow">
+                →
+            </div>
+
+            <div class="structure-step">
+
+                <div class="structure-number">
+                    2
+                </div>
+
+                <h4>src</h4>
+
+                <p>
+                    Application source code
+                </p>
+
+            </div>
+
+            <div class="flow-arrow">
+                →
+            </div>
+
+            <div class="structure-step">
+
+                <div class="structure-number">
+                    3
+                </div>
+
+                <h4>app</h4>
+
+                <p>
+                    Components and application logic
+                </p>
+
+            </div>
+
+            <div class="flow-arrow">
+                →
+            </div>
+
+            <div class="structure-step">
+
+                <div class="structure-number">
+                    4
+                </div>
+
+                <h4>Browser</h4>
+
+                <p>
+                    Angular Application
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= COMMON MISTAKES ================= -->
+    <section class="mb-5">
+
+        <h2 class="section-title">
+            Common Mistakes
+        </h2>
+
+        <div class="issue-card">
+
+            <h5>1. Editing node_modules manually</h5>
+
+            <p>
+                Avoid manually changing files inside the node_modules
+                folder.
+            </p>
+
+        </div>
+
+
+        <div class="issue-card">
+
+            <h5>2. Working from the wrong folder</h5>
+
+            <p>
+                Make sure you are inside the Angular project folder
+                before running Angular CLI commands.
+            </p>
+
+        </div>
+
+
+        <div class="issue-card">
+
+            <h5>3. Confusing project root and src</h5>
+
+            <p>
+                The project root contains configuration files, while
+                src mainly contains application source code.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= SUMMARY ================= -->
+    <section class="mb-5">
+
+        <div class="summary-box">
+
+            <h3>
+                Summary
+            </h3>
+
+            <p>
+                An Angular application contains different folders and
+                configuration files, each having a specific purpose.
+            </p>
+
+            <p>
+                The most important development area is
+                <strong>src</strong>, which contains the Angular
+                application source code.
+            </p>
+
+            <p class="mb-0">
+                Important files such as
+                <strong>main.ts</strong>,
+                <strong>angular.json</strong>,
+                <strong>package.json</strong> and
+                <strong>tsconfig.json</strong>
+                help configure and run the Angular application.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= NAVIGATION ================= -->
+    <div class="topic-navigation">
+
+        <a class="btn btn-outline-secondary"
+           href="@Url.Action("CreatingApplication", "Setup", new { area = "Angular" })">
+            ← Creating an Angular Application
+        </a>
+
+        <a class="btn btn-primary"
+           href="@Url.Action("Index", "Components", new { area = "Angular" })">
+            Components →
+        </a>
+
+    </div>
+
+</div>
+
+
+<style>
+
+    /* ================= SECTION TITLE ================= */
+
+    .section-title {
+        font-size: 25px;
+        font-weight: 700;
+        color: #2e1065;
+        margin-bottom: 18px;
+        border-left: 5px solid #4c1d95;
+        padding-left: 12px;
+    }
+
+
+    /* ================= INFO HIGHLIGHT ================= */
+
+    .info-highlight {
+        background: #f3eefe;
+        border-left: 5px solid #4c1d95;
+        padding: 15px 18px;
+        border-radius: 7px;
+        margin-top: 20px;
+    }
+
+    .info-highlight strong {
+        color: #2e1065;
+        margin-right: 8px;
+    }
+
+    .info-highlight span {
+        color: #4c1d95;
+        font-weight: 600;
+    }
+
+
+    /* ================= PROJECT STRUCTURE ================= */
+
+    .project-structure {
+        background: #0f172a;
+        border-radius: 10px;
+        padding: 25px;
+        overflow-x: auto;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.10);
+    }
+
+    .project-structure pre {
+        margin: 0;
+    }
+
+    .project-structure code {
+        color: #e2e8f0;
+        font-family: Consolas, "Courier New", monospace;
+        font-size: 15px;
+        line-height: 1.8;
+    }
+
+
+    /* ================= CODE BOX ================= */
+
+    .code-box {
+        background: #0f172a;
+        border-radius: 8px;
+        margin-top: 15px;
+        overflow: hidden;
+    }
+
+    .code-header {
+        background: #1e293b;
+        color: #cbd5e1;
+        padding: 8px 15px;
+        font-size: 13px;
+        font-weight: 600;
+        border-bottom: 1px solid #334155;
+    }
+
+    .code-box pre {
+        margin: 0;
+        padding: 18px 20px;
+        overflow-x: auto;
+    }
+
+    .code-box code {
+        color: #e2e8f0;
+        font-family: Consolas, "Courier New", monospace;
+        font-size: 15px;
+        line-height: 1.7;
+    }
+
+
+    /* ================= INFO CARD ================= */
+
+    .info-card {
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        border-left: 5px solid #4c1d95;
+        border-radius: 7px;
+        padding: 18px 20px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.04);
+    }
+
+    .info-card h5 {
+        color: #4c1d95;
+        font-weight: 700;
+        margin-bottom: 8px;
+    }
+
+
+    /* ================= OUTPUT ================= */
+
+    .output-box {
+        background: #f1f5f9;
+        border-left: 5px solid #4c1d95;
+        border-radius: 7px;
+        padding: 17px 20px;
+    }
+
+    .output-box h5 {
+        color: #4c1d95;
+        font-weight: 700;
+    }
+
+
+    /* ================= COMPONENT FLOW ================= */
+
+    .component-flow {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+        margin-top: 20px;
+    }
+
+    .component-item {
+        background: #f8f7fc;
+        border: 1px solid #ddd6fe;
+        border-radius: 10px;
+        padding: 22px;
+        text-align: center;
+    }
+
+    .component-icon {
+        width: 48px;
+        height: 48px;
+        margin: 0 auto 12px;
+        background: #4c1d95;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 13px;
+    }
+
+    .component-item h5 {
+        color: #2e1065;
+        font-weight: 700;
+    }
+
+    .component-item p {
+        color: #64748b;
+        font-size: 14px;
+    }
+
+    .component-item code {
+        background: #ede9fe;
+        color: #4c1d95;
+        padding: 6px 8px;
+        border-radius: 5px;
+        font-size: 12px;
+    }
+
+
+    /* ================= FILE GRID ================= */
+
+    .file-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .file-item {
+        background: #f8f7fc;
+        border: 1px solid #ddd6fe;
+        border-radius: 8px;
+        padding: 18px;
+    }
+
+    .file-item strong {
+        display: block;
+        color: #4c1d95;
+        font-size: 17px;
+        margin-bottom: 5px;
+    }
+
+    .file-item span {
+        color: #64748b;
+        font-size: 14px;
+    }
+
+
+    /* ================= TABLE ================= */
+
+    .structure-table {
+        margin-top: 15px;
+    }
+
+    .structure-table thead {
+        background: #4c1d95;
+        color: white;
+    }
+
+    .structure-table th,
+    .structure-table td {
+        padding: 13px;
+        vertical-align: middle;
+    }
+
+    .structure-table tbody tr:hover {
+        background: #f5f3ff;
+    }
+
+    .structure-table code {
+        color: #4c1d95;
+        font-weight: 600;
+    }
+
+
+    /* ================= STRUCTURE FLOW ================= */
+
+    .structure-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        padding: 25px;
+        background: #f8f7fc;
+        border-radius: 10px;
+        border: 1px solid #e5e7eb;
+    }
+
+    .structure-step {
+        width: 190px;
+        min-height: 135px;
+        text-align: center;
+        padding: 18px;
+        background: white;
+        border-radius: 10px;
+        border: 1px solid #ddd6fe;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+    }
+
+    .structure-number {
+        width: 42px;
+        height: 42px;
+        margin: 0 auto 10px;
+        border-radius: 50%;
+        background: #4c1d95;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+    }
+
+    .structure-step h4 {
+        font-size: 17px;
+        font-weight: 700;
+        color: #2e1065;
+    }
+
+    .structure-step p {
+        font-size: 14px;
+        color: #64748b;
+        margin-bottom: 0;
+    }
+
+    .flow-arrow {
+        font-size: 28px;
+        color: #4c1d95;
+        font-weight: 700;
+    }
+
+
+    /* ================= ISSUES ================= */
+
+    .issue-card {
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        border-left: 5px solid #4c1d95;
+        border-radius: 7px;
+        padding: 17px 20px;
+        margin-bottom: 15px;
+    }
+
+    .issue-card h5 {
+        color: #4c1d95;
+        font-weight: 700;
+        margin-bottom: 8px;
+    }
+
+    .issue-card p {
+        margin-bottom: 0;
+    }
+
+
+    /* ================= SUMMARY ================= */
+
+    .summary-box {
+        background: #cfe2ff;
+        border-radius: 6px;
+        padding: 18px 22px;
+        margin-top: 20px;
+    }
+
+    .summary-box h3 {
+        font-size: 20px;
+        font-weight: 700;
+        color: #084298;
+        margin-bottom: 10px;
+    }
+
+    .summary-box p {
+        font-size: 16px !important;
+        line-height: 1.6 !important;
+        color: #084298 !important;
+        margin-bottom: 8px;
+    }
+
+
+    /* ================= NAVIGATION ================= */
+
+    .topic-navigation {
+        display: flex;
+        justify-content: space-between;
+        gap: 15px;
+        margin-top: 35px;
+        padding-top: 20px;
+        border-top: 1px solid #e5e7eb;
+    }
+
+    .topic-navigation .btn {
+        padding: 10px 18px;
+        font-weight: 600;
+    }
+
+    .topic-navigation .btn-primary {
+        background: #4c1d95;
+        border-color: #4c1d95;
+    }
+
+    .topic-navigation .btn-primary:hover {
+        background: #2e1065;
+        border-color: #2e1065;
+    }
+
+
+    /* ================= RESPONSIVE ================= */
+
+    @@media (max-width: 991px) {
+
+        .component-flow {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .file-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .flow-arrow {
+            display: none;
+        }
+
+    }
+
+
+    @@media (max-width: 576px) {
+
+        .section-title {
+            font-size: 22px;
+        }
+
+        .component-flow {
+            grid-template-columns: 1fr;
+        }
+
+        .structure-flow {
+            flex-direction: column;
+        }
+
+        .structure-step {
+            width: 100%;
+        }
+
+        .topic-navigation {
+            flex-direction: column;
+        }
+
+        .topic-navigation .btn {
+            width: 100%;
+            text-align: center;
+        }
+
+        .project-structure {
+            padding: 15px;
+        }
+
+        .project-structure code,
+        .code-box code {
+            font-size: 13px;
+        }
+
+    }
+
+</style>

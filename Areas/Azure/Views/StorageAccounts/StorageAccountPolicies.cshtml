@@ -1,0 +1,49 @@
+@{
+    ViewData["Title"] = "The policies that we can define are as follows:";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+                <div class="azure-notes-content">
+                    <pre class="azure-notes-text">The policies that we can define are as follows:
+
+    •   Subscription: We can choose the Azure subscription that will be billed for all the services.
+
+    •   Location: We can choose the data center which will store the services.
+
+    •   Performance: We can choose the data services and the type of hardware disks to store the
+        data. Standard helps us have the Azure Blob, Azure File, Azure Table, and Azure Queue
+        services with the magnetic disk drives to store the data. Premium provides us with more
+        services and is faster as it uses solid-state disks(SSD) for the storage of data.
+
+    •   Replication: It helps us choose the number of copies of the data we wish to create in order
+        to protect the data from natural disasters or hardware failures. Azure automatically
+        maintains three copies of our data within the data center. We can choose to upgrade to
+        other better and more effective options like geo-redundant storage(GRS).
+
+    •   Access tier: It helps us choose between the Hot access tier and the Cool access tier. The hot
+        tier gives us more quick access to the blobs in a storage account than the cool tier but is
+        costlier. For any new blob, the default value is in the hot tier.
+
+    •   Virtual networks: It helps in providing security by allowing only some virtual network(s) that
+        we specify to have inbound access.</pre>
+                </div>
+            </div>
+        </div>
+    
+
+            @await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureLessonNavigation.cshtml")
+</section>
+</div>
+<style>
+.azure-notes-text{white-space:pre-wrap;word-break:normal;font-family:inherit;font-size:1rem;line-height:1.7;background:#fff;border:0;padding:0;margin:0;color:#212529;}
+.azure-notes-content img{max-height:720px;}
+</style>

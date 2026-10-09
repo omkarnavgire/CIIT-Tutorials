@@ -1,0 +1,220 @@
+@{
+    Layout = "~/Areas/Jenkins/Views/Shared/JenkinsLayout.cshtml";
+    ViewData["Title"] = "Declarative vs Scripted Pipeline";
+}
+
+<style>
+    #declarative-vs-scripted-pipeline-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #declarative-vs-scripted-pipeline-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #declarative-vs-scripted-pipeline-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #declarative-vs-scripted-pipeline-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #declarative-vs-scripted-pipeline-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+    #declarative-vs-scripted-pipeline-page .example-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+    }
+</style>
+
+<main id="declarative-vs-scripted-pipeline-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/Jenkins/Views/Shared/JenkinsTopics.cshtml")
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+                <h1 class="fw-bold">Declarative vs Scripted Pipeline</h1>
+                <p class="lead">
+                    Learn the concepts, syntax differences, architectural trade-offs, and practical layout structures used to program advanced Jenkinsfile automation code.
+                </p>
+            </div>
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">What is Declarative vs Scripted Pipeline?</h2>
+                <p>
+                    Jenkins provides two distinct syntax sub-frameworks for authoring your Pipeline-as-Code files. While both variations compile down to the same background execution model on worker agents, they target completely distinct programming rules—offering a choice between a structured, opinionated configuration block or a loose, programmatic script asset.
+                </p>
+
+                <div class="alert alert-info my-3">
+                    <strong>Simple Definition:</strong> Declarative Pipelines provide a structured, simple layout template that is easy to read and maintain, whereas Scripted Pipelines offer a heavy, code-centric Groovy language environment designed for complex, customized logical conditions.
+                </div>
+
+                <h3 class="h4 fw-bold mt-4">Core Syntax Families</h3>
+                <p class="mb-2">Jenkins isolates automated workflow authoring behaviors into two specific framework shapes:</p>
+                <ul class="mb-3">
+                    <li class="mb-1"><strong>Declarative Framework (`pipeline`):</strong> A modern, strictly formatted layout pattern using predefined configuration blocks. It enforces validation syntax checks on boot to protect pipelines from runtime parsing failures.</li>
+                    <li class="mb-1"><strong>Scripted Framework (`node`):</strong> The legacy programmatic model backed directly by a raw Apache Groovy engine. It has very few structural rules, allowing engineers to write loops, try/catch blocks, and objects directly.</li>
+                    <li><strong>The `script` Hybrid Bridge:</strong> A specialized block wrapper (`script { }`) that allows developers to safely insert custom Groovy logic patches directly inside structured Declarative stages.</li>
+                </ul>
+            </div>
+
+            <!-- COMPARISON SECTION -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Direct Structural Comparison</h2>
+                <p>The following overview breaks down how the two core pipeline paradigms match up across essential automation axes:</p>
+
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped align-middle">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Feature Axis</th>
+                                <th>Declarative Pipeline (`pipeline`)</th>
+                                <th>Scripted Pipeline (`node`)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <strong>
+                                    <td>Root Keyword</td></strong>
+                                    <td>Starts with a strict <code>pipeline { }</code> block framework.</td>
+                                    <td>Starts with a loose, functional <code>node { }</code> wrapper slot.</td>
+                                </tr>
+                                <tr>
+                                    <strong>
+                                        <td>Learning Curve</td></strong>
+                                        <td>Low; uses readable, opinionated configuration parameters.</td>
+                                        <td>High; requires understanding of Groovy scripting structures.</td>
+                                    </tr>
+                                    <tr>
+                                        <strong>
+                                            <td>Syntax Validation</td></strong>
+                                            <td>Enforced at start; catches bad structure before agent provisioning.</td>
+                                            <td>Evaluated at runtime; crashes right at the bad line step.</td>
+                                        </tr>
+                                        <tr>
+                                            <strong>
+                                                <td>Error Handling</td></strong>
+                                                <td>Managed via standardized <code>post { }</code> notification hooks.</td>
+                                                <td>Requires traditional programming <code>try/catch/finally</code> blocks.</td>
+                                            </tr>
+                                            <tr>
+                                                <strong>
+                                                    <td>Industry Standing</td></strong>
+                                                    <td>Recommended modern standard for most CI/CD architectures.</td>
+                                                    <td>Legacy mechanism; reserved for hyper-customized scripting needs.</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <!-- KEY CONCEPTS -->
+                                <div class="mb-4">
+                                    <h2 class="h3 fw-bold">Key Concepts</h2>
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <div class="info-card">
+                                                <h5>Opinionated Structure Limits</h5>
+                                                <p class="mb-0">Understanding that Declarative scripts trade away loose custom code freedom in exchange for rigid readability baselines, guaranteeing that pipelines remain scannable to different team members.</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="info-card">
+                                                <h5>Groovy Runtime Flexibility</h5>
+                                                <p class="mb-0">Leveraging Scripted syntax logic when automation requires complex looping, dynamic variable generations, or customized object integrations that go beyond standard block boundaries.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- EXAMPLE -->
+                                <div class="mb-4">
+                                    <h2 class="h3 fw-bold">Practical Jenkins Example</h2>
+                                    <p>The following example displays the same task workflow coded side-by-side in both formatting paradigms to highlight the syntax variance:</p>
+
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <h6 class="fw-bold text-primary">Modern Declarative Syntax Pattern</h6>
+                                            <pre><code>pipeline {
+    agent any
+    stages {
+        stage('Compile Code') {
+            steps {
+                echo 'Building app...'
+                sh 'echo "Done!"'
+            }
+        }
+    }
+}</code></pre>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h6 class="fw-bold text-danger">Legacy Scripted Groovy Pattern</h6>
+                                            <pre><code>node {
+    stage('Compile Code') {
+        echo 'Building app...'
+        sh 'echo "Done!"'
+    }
+}</code></pre>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- PRACTICE -->
+                                <div class="mb-4">
+                                    <h2 class="h3 fw-bold">Practice Exercise: Convert and Run Alternate Formats</h2>
+                                    <div class="concept-box">
+                                        <h5 class="fw-bold">Step-by-Step Task Sequence:</h5>
+                                        <ol class="ps-3 mb-0">
+                                            <li class="mb-2">Open an existing test project pipeline configuration panel or instantiate a new Pipeline item wrapper.</li>
+                                            <li class="mb-2">Copy-paste the **Modern Declarative Syntax Pattern** code block provided above into the text block script window and click <strong>Save</strong>.</li>
+                                            <li class="mb-2">Execute a manual validation run by selecting **Build Now**, verifying the successful log generation inside the console viewer screen.</li>
+                                            <li class="mb-2">Return to the script editing zone, wipe the field clean, paste the **Legacy Scripted Groovy Pattern** code block string, and click <strong>Save</strong>.</li>
+                                            <li>Trigger another run and trace how both paradigms produce identical functional log traces on the master dashboard history timeline.</li>
+
+
+                                            <!-- SUMMARY -->
+                                            <div class="alert alert-info mt-4">
+                                                <h2 class="h4 fw-bold">Summary</h2>
+                                                <p class="mb-0">You have completed the <strong>Declarative vs Scripted Pipeline</strong> lesson. Continue through the syllabus to build the Jenkins skills required for real CI/CD automation.</p>
+                                            </div>
+
+                                            <!-- NAVIGATION -->
+                                            <div class="d-flex justify-content-between mt-4">
+                                                <a class="btn btn-outline-primary" href="@Url.Action("Index", "Pipeline", new { area = "Jenkins" })">← Previous: Jenkinsfile Foundations</a>
+                                                <a class="btn btn-primary" href="@Url.Action("PipelineAnatomy", "Pipeline", new { area = "Jenkins" })">Next: Pipeline Anatomy →</a>
+                                            </div>
+
+                                        </section>
+
+                                </div>
+
+</main>

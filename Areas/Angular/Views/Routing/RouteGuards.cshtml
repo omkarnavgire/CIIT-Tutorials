@@ -1,0 +1,1260 @@
+﻿@{
+    ViewData["Title"] = "Angular Route Guards";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- Header -->
+    <section class="mb-4">
+        <h1 class="fw-bold text-dark">Angular Route Guards</h1>
+
+        <p class="lead text-muted">
+            Learn how Angular Route Guards control navigation and protect
+            application routes based on conditions such as authentication,
+            permissions and unsaved changes.
+        </p>
+    </section>
+
+
+    <!-- Introduction -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">What are Route Guards?</h2>
+
+        <div class="info-card">
+
+            <p>
+                Route Guards are used to control whether a user can enter,
+                leave or access a particular Angular route.
+            </p>
+
+            <p>
+                A guard can check a condition before navigation is completed.
+                For example, an application can allow only logged-in users
+                to open an admin dashboard.
+            </p>
+
+            <p class="mb-0">
+                Guards are commonly used for
+                <strong>authentication</strong>,
+                <strong>authorization</strong> and
+                <strong>navigation control</strong>.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Guard Flow -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Route Guard Flow</h2>
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+                <strong>User Navigation</strong>
+                <span>Open Route</span>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+                <strong>Route Guard</strong>
+                <span>Checks Condition</span>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+                <strong>Allowed?</strong>
+                <span>Yes / No</span>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+                <strong>Route</strong>
+                <span>Open / Block</span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Guard Types -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Common Route Guard Types</h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">1</div>
+
+                <h5>CanActivate</h5>
+
+                <p>
+                    Controls whether a user can activate a route.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">2</div>
+
+                <h5>CanActivateChild</h5>
+
+                <p>
+                    Controls access to child routes.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">3</div>
+
+                <h5>CanDeactivate</h5>
+
+                <p>
+                    Controls whether a user can leave a route.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">4</div>
+
+                <h5>CanMatch</h5>
+
+                <p>
+                    Controls whether a route can be matched.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CanActivate -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">CanActivate Guard</h2>
+
+        <div class="info-card">
+
+            <p>
+                <strong>CanActivate</strong> is used when we want to control
+                whether a route can be activated.
+            </p>
+
+            <p class="mb-0">
+                A common example is protecting a dashboard so that only
+                authenticated users can access it.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Authentication Guard
+            </div>
+
+            <pre><code>import { Injectable } from '@@angular/core';
+import { CanActivate, Router } from '@@angular/router';
+
+@@Injectable({
+    providedIn: 'root'
+})
+export class AuthGuard implements CanActivate {
+
+    constructor(
+        private router: Router
+    ) {
+    }
+
+    canActivate(): boolean {
+
+        const isLoggedIn = true;
+
+        if (isLoggedIn) {
+            return true;
+        }
+
+        this.router.navigate(['/login']);
+
+        return false;
+    }
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Route Configuration -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Applying CanActivate</h2>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Route Configuration
+            </div>
+
+            <pre><code>const routes: Routes = [
+
+    {
+        path: 'dashboard',
+        component: DashboardComponent,
+        canActivate: [AuthGuard]
+    }
+
+];</code></pre>
+
+        </div>
+
+
+        <div class="output-box mt-3">
+
+            <div class="student-preview">
+
+                <h4>Navigation Decision</h4>
+
+                <p>
+                    User logged in:
+                    <strong>Yes</strong>
+                </p>
+
+                <p>
+                    Guard result:
+                    <strong>Allowed</strong>
+                </p>
+
+                <p class="mb-0">
+                    Dashboard route can be opened.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Authentication Example -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Authentication Example</h2>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Protected Routes
+            </div>
+
+            <pre><code>const routes: Routes = [
+
+    {
+        path: 'login',
+        component: LoginComponent
+    },
+
+    {
+        path: 'dashboard',
+        component: DashboardComponent,
+        canActivate: [AuthGuard]
+    },
+
+    {
+        path: 'admin',
+        component: AdminComponent,
+        canActivate: [AuthGuard]
+    }
+
+];</code></pre>
+
+        </div>
+
+
+        <div class="info-card mt-3">
+
+            <p>
+                In this example, the <strong>login</strong> route is public,
+                while the <strong>dashboard</strong> and
+                <strong>admin</strong> routes are protected.
+            </p>
+
+            <p class="mb-0">
+                The guard decides whether navigation should continue.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- CanActivateChild -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">CanActivateChild Guard</h2>
+
+        <div class="info-card">
+
+            <p>
+                <strong>CanActivateChild</strong> is useful when a parent route
+                contains multiple child routes that should all follow the same
+                access rule.
+            </p>
+
+            <p class="mb-0">
+                This avoids repeating the same guard configuration for every
+                child route.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Guard Example
+            </div>
+
+            <pre><code>import { Injectable } from '@@angular/core';
+import { CanActivateChild } from '@@angular/router';
+
+@@Injectable({
+    providedIn: 'root'
+})
+export class CourseGuard implements CanActivateChild {
+
+    canActivateChild(): boolean {
+
+        return true;
+
+    }
+}</code></pre>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Route Configuration
+            </div>
+
+            <pre><code>const routes: Routes = [
+
+    {
+        path: 'courses',
+        component: CoursesComponent,
+
+        canActivateChild: [CourseGuard],
+
+        children: [
+
+            {
+                path: 'overview',
+                component: OverviewComponent
+            },
+
+            {
+                path: 'topics',
+                component: TopicsComponent
+            }
+
+        ]
+    }
+
+];</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- CanDeactivate -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">CanDeactivate Guard</h2>
+
+        <div class="info-card">
+
+            <p>
+                <strong>CanDeactivate</strong> is used when the application
+                needs to decide whether the user can leave the current route.
+            </p>
+
+            <p class="mb-0">
+                A common example is preventing a user from leaving a form
+                page when unsaved changes are present.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Component Interface
+            </div>
+
+            <pre><code>export interface CanExitPage {
+
+    canExit(): boolean;
+
+}</code></pre>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                CanDeactivate Guard
+            </div>
+
+            <pre><code>import { Injectable } from '@@angular/core';
+import { CanDeactivate } from '@@angular/router';
+
+@@Injectable({
+    providedIn: 'root'
+})
+export class UnsavedChangesGuard
+    implements CanDeactivate&lt;CanExitPage&gt; {
+
+    canDeactivate(
+        component: CanExitPage
+    ): boolean {
+
+        return component.canExit();
+
+    }
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Form Example -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">CanDeactivate Form Example</h2>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Form Component
+            </div>
+
+            <pre><code>export class EnquiryComponent
+    implements CanExitPage {
+
+    hasUnsavedChanges = true;
+
+    canExit(): boolean {
+
+        if (this.hasUnsavedChanges) {
+
+            return confirm(
+                'You have unsaved changes. Leave this page?'
+            );
+
+        }
+
+        return true;
+    }
+}</code></pre>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Route Configuration
+            </div>
+
+            <pre><code>const routes: Routes = [
+
+    {
+        path: 'enquiry',
+        component: EnquiryComponent,
+        canDeactivate: [UnsavedChangesGuard]
+    }
+
+];</code></pre>
+
+        </div>
+
+
+        <div class="output-box mt-3">
+
+            <div class="student-preview">
+
+                <h4>CIIT Training Institute Enquiry</h4>
+
+                <p>
+                    The user starts filling an enquiry form.
+                </p>
+
+                <p>
+                    User tries to leave:
+                    <strong>Guard checks unsaved changes</strong>
+                </p>
+
+                <p class="mb-0">
+                    The application can ask the user for confirmation
+                    before leaving the page.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CanMatch -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">CanMatch Guard</h2>
+
+        <div class="info-card">
+
+            <p>
+                <strong>CanMatch</strong> can control whether Angular should
+                match a route during route matching.
+            </p>
+
+            <p class="mb-0">
+                It can be useful when different users should see different
+                route configurations or when a route should not be selected
+                under a particular condition.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Example Guard
+            </div>
+
+            <pre><code>import { Injectable } from '@@angular/core';
+import { CanMatch, Route, UrlSegment } from '@@angular/router';
+
+@@Injectable({
+    providedIn: 'root'
+})
+export class RoleGuard implements CanMatch {
+
+    canMatch(
+        route: Route,
+        segments: UrlSegment[]
+    ): boolean {
+
+        const isAdmin = true;
+
+        return isAdmin;
+    }
+}</code></pre>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Route Configuration
+            </div>
+
+            <pre><code>const routes: Routes = [
+
+    {
+        path: 'admin',
+        component: AdminComponent,
+        canMatch: [RoleGuard]
+    }
+
+];</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Guard Decision -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Guard Decision</h2>
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+                <strong>Navigation</strong>
+                <span>/admin</span>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+                <strong>Guard</strong>
+                <span>Check User</span>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+                <strong>True</strong>
+                <span>Allow</span>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+                <strong>False</strong>
+                <span>Block / Redirect</span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CIIT Example -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">CIIT Training Institute Example</h2>
+
+        <div class="info-card">
+
+            <p>
+                Imagine a CIIT Training Institute admin area where
+                only authorized users can manage courses and enquiries.
+            </p>
+
+            <p class="mb-0">
+                The route guard checks the user's access before opening
+                the protected pages.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Admin Routes
+            </div>
+
+            <pre><code>const routes: Routes = [
+
+    {
+        path: 'admin',
+        component: AdminComponent,
+        canActivate: [AuthGuard],
+
+        children: [
+
+            {
+                path: 'courses',
+                component: CourseManagementComponent
+            },
+
+            {
+                path: 'enquiries',
+                component: EnquiryManagementComponent
+            },
+
+            {
+                path: 'reports',
+                component: ReportsComponent
+            }
+
+        ]
+    }
+
+];</code></pre>
+
+        </div>
+
+
+        <div class="output-box mt-3">
+
+            <div class="student-preview">
+
+                <h4>Protected Area</h4>
+
+                <p>
+                    <strong>/admin/courses</strong>
+                    → Course Management
+                </p>
+
+                <p>
+                    <strong>/admin/enquiries</strong>
+                    → Enquiry Management
+                </p>
+
+                <p class="mb-0">
+                    <strong>/admin/reports</strong>
+                    → Reports
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Redirect -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Redirecting Unauthorized Users</h2>
+
+        <div class="info-card">
+
+            <p>
+                A guard can redirect an unauthorized user to another route,
+                such as a login page or access-denied page.
+            </p>
+
+            <p class="mb-0">
+                This allows the application to provide a controlled
+                navigation experience.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Redirect Example
+            </div>
+
+            <pre><code>canActivate(): boolean {
+
+    const isLoggedIn = false;
+
+    if (isLoggedIn) {
+
+        return true;
+
+    }
+
+    this.router.navigate(['/login']);
+
+    return false;
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Guard Comparison -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Route Guard Comparison</h2>
+
+        <div class="table-responsive">
+
+            <table class="table syntax-table">
+
+                <thead>
+                    <tr>
+                        <th>Guard</th>
+                        <th>Purpose</th>
+                        <th>Typical Use</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>
+                            <code>CanActivate</code>
+                        </td>
+                        <td>
+                            Controls route activation
+                        </td>
+                        <td>
+                            Authentication / Authorization
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <code>CanActivateChild</code>
+                        </td>
+                        <td>
+                            Controls child route activation
+                        </td>
+                        <td>
+                            Protected child pages
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <code>CanDeactivate</code>
+                        </td>
+                        <td>
+                            Controls leaving a route
+                        </td>
+                        <td>
+                            Unsaved forms
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <code>CanMatch</code>
+                        </td>
+                        <td>
+                            Controls route matching
+                        </td>
+                        <td>
+                            Conditional route matching
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- Important Points -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Important Points</h2>
+
+        <div class="best-practice-list">
+
+            <div class="info-card mb-3">
+
+                <strong>1. Protect Important Routes</strong>
+
+                <p class="mb-0">
+                    Use route guards when access to a route should depend
+                    on authentication or another condition.
+                </p>
+
+            </div>
+
+
+            <div class="info-card mb-3">
+
+                <strong>2. CanActivate Controls Entry</strong>
+
+                <p class="mb-0">
+                    <strong>CanActivate</strong> checks whether a route
+                    can be activated.
+                </p>
+
+            </div>
+
+
+            <div class="info-card mb-3">
+
+                <strong>3. CanDeactivate Controls Exit</strong>
+
+                <p class="mb-0">
+                    <strong>CanDeactivate</strong> is useful when the user
+                    may need confirmation before leaving a page.
+                </p>
+
+            </div>
+
+
+            <div class="info-card">
+
+                <strong>4. Guards Are Navigation Rules</strong>
+
+                <p class="mb-0">
+                    Guards should focus on navigation decisions rather than
+                    containing unnecessary application logic.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Best Practices -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Route Guard Best Practices</h2>
+
+        <ul class="best-practice-list">
+
+            <li>
+                Use guards for authentication and authorization requirements.
+            </li>
+
+            <li>
+                Keep guard logic focused on making navigation decisions.
+            </li>
+
+            <li>
+                Use <code>CanDeactivate</code> when unsaved changes need protection.
+            </li>
+
+            <li>
+                Use <code>CanActivateChild</code> for groups of protected child routes.
+            </li>
+
+            <li>
+                Redirect users to an appropriate route when access is denied.
+            </li>
+
+            <li>
+                Do not depend on client-side guards alone as the security
+                boundary for backend resources.
+            </li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- Summary -->
+    <section class="mb-4">
+
+        <div class="summary-box">
+
+            <h4 class="fw-bold">
+                Summary
+            </h4>
+
+            <p>
+                Angular Route Guards control navigation based on conditions
+                such as authentication, authorization and unsaved changes.
+            </p>
+
+            <p>
+                Common guards include
+                <strong>CanActivate</strong>,
+                <strong>CanActivateChild</strong>,
+                <strong>CanDeactivate</strong> and
+                <strong>CanMatch</strong>.
+            </p>
+
+            <p class="mb-0">
+                Guards help create controlled navigation flows and protect
+                application routes from unauthorized access.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Navigation -->
+    <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+
+        <a class="btn btn-outline-secondary"
+           href="@Url.Action("ChildRoutes", "Routing", new { area = "Angular" })">
+            ← Child Routes
+        </a>
+
+        <a class="btn btn-primary"
+           href="@Url.Action("Index", "Forms", new { area = "Angular" })">
+            Forms →
+        </a>
+
+    </div>
+
+</div>
+
+
+<style>
+
+    .info-card {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-left: 5px solid #4c1d95;
+        border-radius: 10px;
+        padding: 20px;
+        line-height: 1.7;
+        color: #334155;
+    }
+
+
+    .syntax-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        flex-wrap: wrap;
+        margin: 25px 0;
+    }
+
+
+    .syntax-box {
+        background: linear-gradient(135deg, #2e1065, #4c1d95);
+        color: white;
+        padding: 18px 25px;
+        border-radius: 12px;
+        text-align: center;
+        min-width: 180px;
+        box-shadow: 0 5px 15px rgba(76, 29, 149, 0.15);
+    }
+
+
+        .syntax-box strong {
+            display: block;
+            font-size: 16px;
+        }
+
+
+        .syntax-box span {
+            display: block;
+            margin-top: 5px;
+            color: #d8c9f5;
+            font-size: 14px;
+        }
+
+
+    .syntax-arrow {
+        font-size: 28px;
+        font-weight: bold;
+        color: #4c1d95;
+    }
+
+
+    .syntax-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+
+
+    .syntax-card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 22px;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+    }
+
+
+        .syntax-card h5 {
+            margin-top: 15px;
+            font-weight: 700;
+            color: #2e1065;
+        }
+
+
+        .syntax-card p {
+            color: #64748b;
+            margin-bottom: 0;
+        }
+
+
+    .syntax-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: #ede9fe;
+        color: #4c1d95;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 18px;
+        margin: 0 auto;
+    }
+
+
+    .code-card {
+        background: #0f172a;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(15, 23, 42, 0.10);
+    }
+
+
+    .code-title {
+        background: #1e293b;
+        color: #ffffff;
+        padding: 12px 18px;
+        font-weight: 700;
+        font-size: 14px;
+    }
+
+
+    .code-card pre {
+        margin: 0;
+        padding: 20px;
+        overflow-x: auto;
+    }
+
+
+    .code-card code {
+        color: #f8fafc;
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+
+    .output-box {
+        background: #f8fafc;
+        border: 1px solid #ddd6fe;
+        border-radius: 12px;
+        padding: 20px;
+    }
+
+
+    .student-preview {
+        background: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        padding: 20px;
+    }
+
+
+        .student-preview h4 {
+            color: #2e1065;
+            font-weight: 700;
+        }
+
+
+        .student-preview p {
+            color: #64748b;
+        }
+
+
+    .syntax-table {
+        width: 100%;
+        margin-bottom: 0;
+        border: 1px solid #e2e8f0;
+    }
+
+
+        .syntax-table thead th {
+            background: #2e1065;
+            color: white;
+            padding: 14px;
+            border-color: #4c1d95;
+        }
+
+
+        .syntax-table tbody td {
+            padding: 14px;
+            vertical-align: middle;
+            color: #334155;
+            border-color: #e2e8f0;
+        }
+
+
+        .syntax-table tbody tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+
+        .syntax-table code {
+            color: #4c1d95;
+            font-weight: 600;
+        }
+
+
+    .best-practice-list {
+        margin: 0;
+        padding-left: 20px;
+    }
+
+
+        .best-practice-list li {
+            margin-bottom: 10px;
+            color: #334155;
+            line-height: 1.6;
+        }
+
+
+    .summary-box {
+        background: #cfe2ff;
+        color: #084298;
+        border-radius: 10px;
+        padding: 22px;
+        border: 1px solid #b6d4fe;
+    }
+
+
+        .summary-box h4 {
+            margin-bottom: 12px;
+        }
+
+
+    @@media (max-width: 991px) {
+
+        .syntax-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .syntax-flow {
+            gap: 12px;
+        }
+
+        .syntax-box {
+            min-width: 160px;
+        }
+    }
+
+
+    @@media (max-width: 576px) {
+
+        .syntax-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .syntax-flow {
+            flex-direction: column;
+        }
+
+        .syntax-arrow {
+            transform: rotate(90deg);
+        }
+
+        .syntax-box {
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .code-card pre {
+            padding: 15px;
+        }
+
+        .code-card code {
+            font-size: 13px;
+        }
+    }
+
+</style>

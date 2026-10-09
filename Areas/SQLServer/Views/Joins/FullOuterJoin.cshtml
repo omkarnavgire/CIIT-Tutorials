@@ -1,0 +1,642 @@
+﻿@{
+    ViewData["Title"] = "FULL OUTER JOIN";
+}
+
+<section>
+
+    <!-- PAGE INTRODUCTION -->
+
+    <div class="mb-5">
+
+        <h1 class="fw-bold mb-3">
+            FULL OUTER JOIN
+        </h1>
+
+        <p class="lead text-muted">
+            FULL OUTER JOIN returns all records from both tables,
+            including matching and non-matching records.
+        </p>
+
+        <p>
+            When a matching record exists, data from both tables is
+            displayed. When there is no matching record, NULL values
+            are returned for the missing side.
+        </p>
+
+    </div>
+
+
+    <!-- WHAT IS FULL OUTER JOIN -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            What is FULL OUTER JOIN?
+        </h2>
+
+        <p>
+            A <strong>FULL OUTER JOIN</strong> combines the behavior
+            of LEFT JOIN and RIGHT JOIN.
+        </p>
+
+        <p>
+            It returns:
+        </p>
+
+        <ul>
+
+            <li class="mb-2">
+                All matching records from both tables.
+            </li>
+
+            <li class="mb-2">
+                All non-matching records from the left table.
+            </li>
+
+            <li>
+                All non-matching records from the right table.
+            </li>
+
+        </ul>
+
+        <p>
+            For a missing match, the columns belonging to the table
+            without a matching row contain <strong>NULL</strong>.
+        </p>
+
+    </section>
+
+
+    <!-- BASIC SYNTAX -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            FULL OUTER JOIN Syntax
+        </h2>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT columns
+FROM Table1
+FULL OUTER JOIN Table2
+    ON Table1.CommonColumn = Table2.CommonColumn;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- SAMPLE TABLES -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Example Tables
+        </h2>
+
+        <h4 class="fw-bold mt-4 mb-3">
+            Students Table
+        </h4>
+
+        <div class="table-responsive mb-4">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>StudentId</th>
+                        <th>StudentName</th>
+                        <th>CourseId</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>101</td>
+                        <td>Rahul</td>
+                        <td>1</td>
+                    </tr>
+
+                    <tr>
+                        <td>102</td>
+                        <td>Priya</td>
+                        <td>2</td>
+                    </tr>
+
+                    <tr>
+                        <td>103</td>
+                        <td>Amit</td>
+                        <td>1</td>
+                    </tr>
+
+                    <tr>
+                        <td>104</td>
+                        <td>Neha</td>
+                        <td>3</td>
+                    </tr>
+
+                    <tr>
+                        <td>105</td>
+                        <td>Rohan</td>
+                        <td>5</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <h4 class="fw-bold mt-4 mb-3">
+            Courses Table
+        </h4>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>CourseId</th>
+                        <th>CourseName</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>1</td>
+                        <td>.NET Full Stack</td>
+                    </tr>
+
+                    <tr>
+                        <td>2</td>
+                        <td>Java Full Stack</td>
+                    </tr>
+
+                    <tr>
+                        <td>3</td>
+                        <td>Python Full Stack</td>
+                    </tr>
+
+                    <tr>
+                        <td>4</td>
+                        <td>Software Testing</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- BASIC EXAMPLE -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Basic FULL OUTER JOIN Example
+        </h2>
+
+        <p>
+            We can combine Students and Courses using CourseId.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT
+    Students.StudentName,
+    Courses.CourseName
+FROM Students
+FULL OUTER JOIN Courses
+    ON Students.CourseId = Courses.CourseId;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- RESULT -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Result
+        </h2>
+
+        <p>
+            FULL OUTER JOIN returns matching records as well as
+            unmatched records from both tables.
+        </p>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>StudentName</th>
+                        <th>CourseName</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>Rahul</td>
+                        <td>.NET Full Stack</td>
+                    </tr>
+
+                    <tr>
+                        <td>Amit</td>
+                        <td>.NET Full Stack</td>
+                    </tr>
+
+                    <tr>
+                        <td>Priya</td>
+                        <td>Java Full Stack</td>
+                    </tr>
+
+                    <tr>
+                        <td>Neha</td>
+                        <td>Python Full Stack</td>
+                    </tr>
+
+                    <tr>
+                        <td>Rohan</td>
+                        <td>NULL</td>
+                    </tr>
+
+                    <tr>
+                        <td>NULL</td>
+                        <td>Software Testing</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <div class="alert alert-info border-0 mt-4">
+
+            <strong>Notice:</strong>
+            Rohan has no matching CourseId, so CourseName is NULL.
+            Software Testing has no matching student, so
+            StudentName is NULL.
+
+        </div>
+
+    </section>
+
+
+    <!-- MATCHING RECORDS -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Matching Records
+        </h2>
+
+        <p>
+            When CourseId exists in both tables, the values from both
+            tables are combined into one result row.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>Students.CourseId = Courses.CourseId</code></pre>
+
+        </div>
+
+        <p class="mt-3">
+            For example, CourseId 1 exists in both tables, so Rahul
+            and Amit can be matched with .NET Full Stack.
+        </p>
+
+    </section>
+
+
+    <!-- NON MATCHING LEFT -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Non-Matching Records from Left Table
+        </h2>
+
+        <p>
+            FULL OUTER JOIN also keeps records from the left table
+            that do not have a matching record in the right table.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT
+    S.StudentName,
+    C.CourseName
+FROM Students AS S
+FULL OUTER JOIN Courses AS C
+    ON S.CourseId = C.CourseId
+WHERE C.CourseId IS NULL;</code></pre>
+
+        </div>
+
+        <p class="mt-3">
+            This can be used to identify students whose CourseId
+            does not exist in the Courses table.
+        </p>
+
+    </section>
+
+
+    <!-- NON MATCHING RIGHT -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Non-Matching Records from Right Table
+        </h2>
+
+        <p>
+            FULL OUTER JOIN can also be used to identify records from
+            the right table that have no matching record in the left
+            table.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT
+    S.StudentName,
+    C.CourseName
+FROM Students AS S
+FULL OUTER JOIN Courses AS C
+    ON S.CourseId = C.CourseId
+WHERE S.StudentId IS NULL;</code></pre>
+
+        </div>
+
+        <p class="mt-3">
+            This returns courses that do not have a matching student.
+        </p>
+
+    </section>
+
+
+    <!-- ALIAS -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            FULL OUTER JOIN using Aliases
+        </h2>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT
+    S.StudentName,
+    C.CourseName
+FROM Students AS S
+FULL OUTER JOIN Courses AS C
+    ON S.CourseId = C.CourseId;</code></pre>
+
+        </div>
+
+        <p class="mt-3">
+            Aliases make the query shorter and easier to read.
+        </p>
+
+    </section>
+
+
+    <!-- FULL 0OUTER JOIN WITH WHERE -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            FULL OUTER JOIN with WHERE
+        </h2>
+
+        <p>
+            We can use WHERE conditions to filter the result of a
+            FULL OUTER JOIN.
+        </p>
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>SELECT
+    S.StudentName,
+    C.CourseName
+FROM Students AS S
+FULL OUTER JOIN Courses AS C
+    ON S.CourseId = C.CourseId
+WHERE S.StudentName IS NOT NULL
+   OR C.CourseName IS NOT NULL;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- COMPARISON -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            JOIN Comparison
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>JOIN</th>
+                        <th>Records Returned</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>
+                            <strong>INNER JOIN</strong>
+                        </td>
+
+                        <td>
+                            Matching records only.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <strong>LEFT JOIN</strong>
+                        </td>
+
+                        <td>
+                            All left records + matching right records.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <strong>RIGHT JOIN</strong>
+                        </td>
+
+                        <td>
+                            All right records + matching left records.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <strong>FULL OUTER JOIN</strong>
+                        </td>
+
+                        <td>
+                            All records from both tables.
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- IMPORTANT POINTS -->
+
+    <section class="mb-5">
+
+        <div class="alert alert-warning border-0">
+
+            <h4 class="fw-bold mb-3">
+                Important Points
+            </h4>
+
+            <ul class="mb-0">
+
+                <li class="mb-2">
+                    FULL OUTER JOIN returns all records from both
+                    tables.
+                </li>
+
+                <li class="mb-2">
+                    Matching records are combined.
+                </li>
+
+                <li class="mb-2">
+                    Non-matching records are also included.
+                </li>
+
+                <li class="mb-2">
+                    NULL values appear for the side where no matching
+                    record exists.
+                </li>
+
+                <li>
+                    The ON clause defines how the tables are related.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </section>
+
+
+    <!-- SUMMARY -->
+
+    <section class="mb-4">
+
+        <div class="alert alert-primary border-0">
+
+            <h2 class="fw-bold mb-3">
+                Summary
+            </h2>
+
+            <p class="mb-0">
+                FULL OUTER JOIN returns all matching and non-matching
+                records from both tables. It is useful when we need
+                complete information from both sides of a relationship,
+                including records that do not have a match.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- PREVIOUS / NEXT -->
+
+    <div class="d-flex justify-content-between align-items-center
+        mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/Joins/RightJoin"
+           class="btn btn-outline-primary">
+
+            ← Previous: RIGHT JOIN
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/Joins/CrossJoin"
+           class="btn btn-primary">
+
+            Next: CROSS JOIN →
+
+        </a>
+
+    </div>
+
+</section>

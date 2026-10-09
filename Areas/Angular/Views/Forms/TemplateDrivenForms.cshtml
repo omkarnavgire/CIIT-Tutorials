@@ -1,0 +1,1452 @@
+﻿@{
+    ViewData["Title"] = "Angular Template-driven Forms";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- Header -->
+    <section class="mb-4">
+        <h1 class="fw-bold text-dark">Angular Template-driven Forms</h1>
+
+        <p class="lead text-muted">
+            Learn how to create Angular forms using template-driven approach,
+            <strong>ngModel</strong>, <strong>ngForm</strong> and template
+            reference variables.
+        </p>
+    </section>
+
+
+    <!-- Introduction -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">What are Template-driven Forms?</h2>
+
+        <div class="info-card">
+
+            <p>
+                Template-driven forms are an Angular form approach where most
+                of the form structure and behavior is defined directly in the
+                HTML template.
+            </p>
+
+            <p>
+                Angular uses directives such as
+                <strong>ngModel</strong> and <strong>ngForm</strong> to create
+                and manage the form.
+            </p>
+
+            <p class="mb-0">
+                This approach is generally convenient for simple forms such as
+                basic login, contact and enquiry forms.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Flow -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Template-driven Form Flow</h2>
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+                <strong>HTML Template</strong>
+                <span>Define Form</span>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+                <strong>ngModel</strong>
+                <span>Track Controls</span>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+                <strong>ngForm</strong>
+                <span>Track Form</span>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+                <strong>Submit</strong>
+                <span>Process Data</span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Main Concepts -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Main Concepts</h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">F</div>
+
+                <h5>ngForm</h5>
+
+                <p>
+                    Represents and tracks the overall template-driven form.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">M</div>
+
+                <h5>ngModel</h5>
+
+                <p>
+                    Connects a form control with Angular's form model.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">R</div>
+
+                <h5>Reference Variable</h5>
+
+                <p>
+                    Provides access to form or control state inside the template.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">V</div>
+
+                <h5>Validation</h5>
+
+                <p>
+                    Built-in validation attributes can be applied to controls.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FormsModule -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Import FormsModule</h2>
+
+        <div class="info-card">
+
+            <p>
+                Template-driven forms use Angular's
+                <strong>FormsModule</strong>.
+            </p>
+
+            <p class="mb-0">
+                The module must be imported into the Angular application
+                before using template-driven form features such as
+                <strong>ngModel</strong>.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Standalone Component Example
+            </div>
+
+            <pre><code>import { Component } from '@@angular/core';
+import { FormsModule } from '@@angular/forms';
+
+@@Component({
+    selector: 'app-enquiry',
+    imports: [FormsModule],
+    templateUrl: './enquiry.component.html'
+})
+export class EnquiryComponent {
+
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Basic Form -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Basic Template-driven Form</h2>
+
+        <div class="info-card">
+
+            <p>
+                A template-driven form can be created by adding
+                <strong>ngForm</strong> to the form element and
+                <strong>ngModel</strong> to the controls.
+            </p>
+
+            <p class="mb-0">
+                Each control should have a unique <strong>name</strong>
+                attribute so Angular can register it with the form.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                HTML Template
+            </div>
+
+            <pre><code>&lt;form #enquiryForm="ngForm"&gt;
+
+    &lt;label&gt;
+        Name
+    &lt;/label&gt;
+
+    &lt;input
+        type="text"
+        name="name"
+        ngModel&gt;
+
+
+    &lt;label&gt;
+        Email
+    &lt;/label&gt;
+
+    &lt;input
+        type="email"
+        name="email"
+        ngModel&gt;
+
+
+    &lt;button type="submit"&gt;
+        Send Enquiry
+    &lt;/button&gt;
+
+&lt;/form&gt;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- ngModel -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Using ngModel</h2>
+
+        <div class="info-card">
+
+            <p>
+                <strong>ngModel</strong> connects a form control with Angular's
+                form state.
+            </p>
+
+            <p class="mb-0">
+                It can be used with the <strong>name</strong> attribute to
+                register the control inside a template-driven form.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>&lt;input
+    type="text"
+    name="fullName"
+    ngModel&gt;</code></pre>
+
+        </div>
+
+
+        <div class="output-box mt-3">
+
+            <div class="student-preview">
+
+                <h4>Form Control</h4>
+
+                <p class="mb-0">
+                    The <strong>fullName</strong> field is registered
+                    with the Angular form.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ngForm -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Using ngForm</h2>
+
+        <div class="info-card">
+
+            <p>
+                Angular automatically creates a form directive when
+                <strong>ngForm</strong> is applied to a form.
+            </p>
+
+            <p class="mb-0">
+                A template reference variable can be used to access the
+                form's state.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>&lt;form
+    #courseForm="ngForm"&gt;
+
+    ...
+
+&lt;/form&gt;</code></pre>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Checking Form State
+            </div>
+
+            <pre><code>&lt;p&gt;
+    Form Valid:
+    &#123;&#123; courseForm.valid &#125;&#125;
+&lt;/p&gt;
+
+&lt;p&gt;
+    Form Submitted:
+    &#123;&#123; courseForm.submitted &#125;&#125;
+&lt;/p&gt;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Two Way Binding -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Two-way Binding with ngModel</h2>
+
+        <div class="info-card">
+
+            <p>
+                Template-driven forms commonly use
+                <strong>two-way binding</strong> with the
+                <strong>[(ngModel)]</strong> syntax.
+            </p>
+
+            <p class="mb-0">
+                This allows the template control and component property
+                to stay synchronized.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Component
+            </div>
+
+            <pre><code>course = 'Angular';</code></pre>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Template
+            </div>
+
+            <pre><code>&lt;input
+    type="text"
+    name="course"
+    [(ngModel)]="course"&gt;
+
+&lt;p&gt;
+    Selected Course:
+    &#123;&#123; course &#125;&#125;
+&lt;/p&gt;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- CIIT Example -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">CIIT Training Institute Example</h2>
+
+        <div class="info-card">
+
+            <p>
+                Suppose CIIT Training Institute has a course enquiry form.
+                A visitor can enter their name, email, mobile number and
+                preferred course.
+            </p>
+
+            <p class="mb-0">
+                This is a good example of a simple form that can be created
+                using the template-driven approach.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Component
+            </div>
+
+            <pre><code>export class EnquiryComponent {
+
+    name = '';
+
+    email = '';
+
+    mobile = '';
+
+    course = '';
+
+}</code></pre>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Template
+            </div>
+
+            <pre><code>&lt;form
+    #enquiryForm="ngForm"
+    (ngSubmit)="submitForm(enquiryForm)"&gt;
+
+
+    &lt;label&gt;
+        Full Name
+    &lt;/label&gt;
+
+    &lt;input
+        type="text"
+        name="name"
+        [(ngModel)]="name"
+        required&gt;
+
+
+    &lt;label&gt;
+        Email
+    &lt;/label&gt;
+
+    &lt;input
+        type="email"
+        name="email"
+        [(ngModel)]="email"
+        required&gt;
+
+
+    &lt;label&gt;
+        Mobile
+    &lt;/label&gt;
+
+    &lt;input
+        type="text"
+        name="mobile"
+        [(ngModel)]="mobile"
+        required&gt;
+
+
+    &lt;label&gt;
+        Preferred Course
+    &lt;/label&gt;
+
+    &lt;select
+        name="course"
+        [(ngModel)]="course"
+        required&gt;
+
+        &lt;option value=""&gt;
+            Select Course
+        &lt;/option&gt;
+
+        &lt;option value="Java Full Stack"&gt;
+            Java Full Stack
+        &lt;/option&gt;
+
+        &lt;option value=".NET Full Stack"&gt;
+            .NET Full Stack
+        &lt;/option&gt;
+
+        &lt;option value="Python Full Stack"&gt;
+            Python Full Stack
+        &lt;/option&gt;
+
+    &lt;/select&gt;
+
+
+    &lt;button
+        type="submit"
+        [disabled]="enquiryForm.invalid"&gt;
+
+        Send Enquiry
+
+    &lt;/button&gt;
+
+&lt;/form&gt;</code></pre>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Submit Method
+            </div>
+
+            <pre><code>submitForm(form: NgForm) {
+
+    if (form.valid) {
+
+        console.log(
+            form.value
+        );
+
+    }
+
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Validation -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Validation in Template-driven Forms</h2>
+
+        <div class="info-card">
+
+            <p>
+                HTML validation attributes can be used with Angular
+                template-driven forms.
+            </p>
+
+            <p class="mb-0">
+                Common validation attributes include
+                <strong>required</strong>, <strong>email</strong>,
+                <strong>minlength</strong> and <strong>maxlength</strong>.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Required Validation
+            </div>
+
+            <pre><code>&lt;input
+    type="text"
+    name="name"
+    ngModel
+    required&gt;</code></pre>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Email Validation
+            </div>
+
+            <pre><code>&lt;input
+    type="email"
+    name="email"
+    ngModel
+    required
+    email&gt;</code></pre>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Length Validation
+            </div>
+
+            <pre><code>&lt;input
+    type="text"
+    name="mobile"
+    ngModel
+    minlength="10"
+    maxlength="10"
+    required&gt;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Validation Message -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Displaying Validation Messages</h2>
+
+        <div class="info-card">
+
+            <p>
+                A template reference variable can be created for a control
+                to check its validation state.
+            </p>
+
+            <p class="mb-0">
+                For example, a required field can display an error after the
+                user has interacted with it.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>&lt;input
+    type="text"
+    name="name"
+    ngModel
+    required
+    #nameControl="ngModel"&gt;
+
+
+&lt;div
+    *ngIf="nameControl.invalid &amp;&amp;
+           nameControl.touched"&gt;
+
+    Name is required.
+
+&lt;/div&gt;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Form States -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Template-driven Form States</h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">V</div>
+
+                <h5>Valid</h5>
+
+                <p>
+                    All active validation rules are satisfied.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">I</div>
+
+                <h5>Invalid</h5>
+
+                <p>
+                    One or more controls fail validation.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">T</div>
+
+                <h5>Touched</h5>
+
+                <p>
+                    The user has interacted with the control.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">D</div>
+
+                <h5>Dirty</h5>
+
+                <p>
+                    The control value has been changed.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Submit -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Submitting a Template-driven Form</h2>
+
+        <div class="info-card">
+
+            <p>
+                The <strong>ngSubmit</strong> event can be used to handle
+                form submission.
+            </p>
+
+            <p class="mb-0">
+                The form should normally be checked for validity before
+                its data is processed.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Submit Example
+            </div>
+
+            <pre><code>&lt;form
+    #courseForm="ngForm"
+    (ngSubmit)="submitForm(courseForm)"&gt;
+
+    ...
+
+    &lt;button
+        type="submit"
+        [disabled]="courseForm.invalid"&gt;
+
+        Submit
+
+    &lt;/button&gt;
+
+&lt;/form&gt;</code></pre>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                TypeScript
+            </div>
+
+            <pre><code>submitForm(form: NgForm) {
+
+    if (form.valid) {
+
+        console.log(
+            'Form submitted',
+            form.value
+        );
+
+    }
+
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Form Value -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Reading Form Values</h2>
+
+        <div class="info-card">
+
+            <p>
+                The <strong>value</strong> property of the template form
+                contains the current values of its registered controls.
+            </p>
+
+            <p class="mb-0">
+                This allows the submitted information to be processed
+                by the component.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>submitForm(form: NgForm) {
+
+    console.log(
+        form.value
+    );
+
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Reset Form -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Resetting a Template-driven Form</h2>
+
+        <div class="info-card">
+
+            <p>
+                Angular provides the <strong>resetForm()</strong> method
+                to reset the form and its state.
+            </p>
+
+            <p class="mb-0">
+                This can be useful after successful submission or when
+                the user wants to clear all entered information.
+            </p>
+
+        </div>
+
+
+        <div class="code-card mt-3">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>resetForm(form: NgForm) {
+
+    form.resetForm();
+
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Important Rules -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Important Rules</h2>
+
+        <div class="best-practice-list">
+
+            <div class="info-card mb-3">
+
+                <strong>1. Use FormsModule</strong>
+
+                <p class="mb-0">
+                    Import <strong>FormsModule</strong> before using
+                    template-driven form features.
+                </p>
+
+            </div>
+
+
+            <div class="info-card mb-3">
+
+                <strong>2. Give Controls a Name</strong>
+
+                <p class="mb-0">
+                    Registered controls should have a
+                    <strong>name</strong> attribute inside the form.
+                </p>
+
+            </div>
+
+
+            <div class="info-card mb-3">
+
+                <strong>3. Use ngModel</strong>
+
+                <p class="mb-0">
+                    Use <strong>ngModel</strong> to connect input controls
+                    with Angular's form state.
+                </p>
+
+            </div>
+
+
+            <div class="info-card">
+
+                <strong>4. Validate Before Processing</strong>
+
+                <p class="mb-0">
+                    Check the form's validity before processing or sending
+                    its values.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Advantages -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Advantages of Template-driven Forms</h2>
+
+        <ul class="best-practice-list">
+
+            <li>
+                Simple to understand for basic forms.
+            </li>
+
+            <li>
+                Much of the form structure can be defined directly in HTML.
+            </li>
+
+            <li>
+                Requires less explicit form-model code for simple scenarios.
+            </li>
+
+            <li>
+                Convenient for common input fields and basic validation.
+            </li>
+
+            <li>
+                Works well for straightforward forms with limited dynamic behavior.
+            </li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- Limitations -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Limitations of Template-driven Forms</h2>
+
+        <ul class="best-practice-list">
+
+            <li>
+                Complex forms can become difficult to manage in large templates.
+            </li>
+
+            <li>
+                Dynamic form structures are generally easier to handle with
+                reactive forms.
+            </li>
+
+            <li>
+                Large validation requirements can make templates harder to maintain.
+            </li>
+
+            <li>
+                Complex form logic can become closely tied to the template.
+            </li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- Comparison -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Template-driven Form Key Features</h2>
+
+        <div class="table-responsive">
+
+            <table class="table syntax-table">
+
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Purpose</th>
+                        <th>Example</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>
+                            <code>ngForm</code>
+                        </td>
+                        <td>
+                            Tracks the overall form
+                        </td>
+                        <td>
+                            <code>#form="ngForm"</code>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <code>ngModel</code>
+                        </td>
+                        <td>
+                            Registers and binds controls
+                        </td>
+                        <td>
+                            <code>ngModel</code>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <code>[(ngModel)]</code>
+                        </td>
+                        <td>
+                            Two-way data binding
+                        </td>
+                        <td>
+                            <code>[(ngModel)]="name"</code>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <code>ngSubmit</code>
+                        </td>
+                        <td>
+                            Handles form submission
+                        </td>
+                        <td>
+                            <code>(ngSubmit)="submitForm()"</code>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <code>required</code>
+                        </td>
+                        <td>
+                            Makes a field mandatory
+                        </td>
+                        <td>
+                            <code>required</code>
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- Best Practices -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Template-driven Forms Best Practices</h2>
+
+        <ul class="best-practice-list">
+
+            <li>
+                Use template-driven forms for relatively simple form scenarios.
+            </li>
+
+            <li>
+                Give every registered control a meaningful
+                <code>name</code>.
+            </li>
+
+            <li>
+                Use <code>[(ngModel)]</code> when component and form values
+                need two-way synchronization.
+            </li>
+
+            <li>
+                Show validation messages only when they are useful to the user.
+            </li>
+
+            <li>
+                Disable submission when the form is invalid where appropriate.
+            </li>
+
+            <li>
+                Move complex business logic out of the template.
+            </li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- Summary -->
+    <section class="mb-4">
+
+        <div class="summary-box">
+
+            <h4 class="fw-bold">
+                Summary
+            </h4>
+
+            <p>
+                Template-driven forms provide a simple way to create and
+                manage Angular forms directly through the HTML template.
+            </p>
+
+            <p>
+                Important features include
+                <strong>FormsModule</strong>,
+                <strong>ngForm</strong>,
+                <strong>ngModel</strong>,
+                <strong>ngSubmit</strong> and template-based validation.
+            </p>
+
+            <p class="mb-0">
+                Template-driven forms are especially useful for straightforward
+                forms such as basic enquiries, login and contact forms.
+                In the next topic, we will learn about
+                <strong>Reactive Forms</strong>.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Navigation -->
+    <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+
+        <a class="btn btn-outline-secondary"
+           href="@Url.Action("Index", "Forms", new { area = "Angular" })">
+            ← Angular Forms
+        </a>
+
+        <a class="btn btn-primary"
+           href="@Url.Action("ReactiveForms", "Forms", new { area = "Angular" })">
+            Reactive Forms →
+        </a>
+
+    </div>
+
+</div>
+
+
+<style>
+
+    .info-card {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-left: 5px solid #4c1d95;
+        border-radius: 10px;
+        padding: 20px;
+        line-height: 1.7;
+        color: #334155;
+    }
+
+
+    .syntax-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        flex-wrap: wrap;
+        margin: 25px 0;
+    }
+
+
+    .syntax-box {
+        background: linear-gradient(135deg, #2e1065, #4c1d95);
+        color: white;
+        padding: 18px 25px;
+        border-radius: 12px;
+        text-align: center;
+        min-width: 180px;
+        box-shadow: 0 5px 15px rgba(76, 29, 149, 0.15);
+    }
+
+
+        .syntax-box strong {
+            display: block;
+            font-size: 16px;
+        }
+
+
+        .syntax-box span {
+            display: block;
+            margin-top: 5px;
+            color: #d8c9f5;
+            font-size: 14px;
+        }
+
+
+    .syntax-arrow {
+        font-size: 28px;
+        font-weight: bold;
+        color: #4c1d95;
+    }
+
+
+    .syntax-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+
+
+    .syntax-card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 22px;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+    }
+
+
+        .syntax-card h5 {
+            margin-top: 15px;
+            font-weight: 700;
+            color: #2e1065;
+        }
+
+
+        .syntax-card p {
+            color: #64748b;
+            margin-bottom: 0;
+        }
+
+
+    .syntax-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: #ede9fe;
+        color: #4c1d95;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 18px;
+        margin: 0 auto;
+    }
+
+
+    .code-card {
+        background: #0f172a;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(15, 23, 42, 0.10);
+    }
+
+
+    .code-title {
+        background: #1e293b;
+        color: #ffffff;
+        padding: 12px 18px;
+        font-weight: 700;
+        font-size: 14px;
+    }
+
+
+    .code-card pre {
+        margin: 0;
+        padding: 20px;
+        overflow-x: auto;
+    }
+
+
+    .code-card code {
+        color: #f8fafc;
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+
+    .output-box {
+        background: #f8fafc;
+        border: 1px solid #ddd6fe;
+        border-radius: 12px;
+        padding: 20px;
+    }
+
+
+    .student-preview {
+        background: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        padding: 20px;
+    }
+
+
+        .student-preview h4 {
+            color: #2e1065;
+            font-weight: 700;
+        }
+
+
+        .student-preview p {
+            color: #64748b;
+        }
+
+
+    .syntax-table {
+        width: 100%;
+        margin-bottom: 0;
+        border: 1px solid #e2e8f0;
+    }
+
+
+        .syntax-table thead th {
+            background: #2e1065;
+            color: white;
+            padding: 14px;
+            border-color: #4c1d95;
+        }
+
+
+        .syntax-table tbody td {
+            padding: 14px;
+            vertical-align: middle;
+            color: #334155;
+            border-color: #e2e8f0;
+        }
+
+
+        .syntax-table tbody tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+
+        .syntax-table code {
+            color: #4c1d95;
+            font-weight: 600;
+        }
+
+
+    .best-practice-list {
+        margin: 0;
+        padding-left: 20px;
+    }
+
+
+        .best-practice-list li {
+            margin-bottom: 10px;
+            color: #334155;
+            line-height: 1.6;
+        }
+
+
+    .summary-box {
+        background: #cfe2ff;
+        color: #084298;
+        border-radius: 10px;
+        padding: 22px;
+        border: 1px solid #b6d4fe;
+    }
+
+
+        .summary-box h4 {
+            margin-bottom: 12px;
+        }
+
+
+    @@media (max-width: 991px) {
+
+        .syntax-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .syntax-flow {
+            gap: 12px;
+        }
+
+        .syntax-box {
+            min-width: 160px;
+        }
+    }
+
+
+    @@media (max-width: 576px) {
+
+        .syntax-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .syntax-flow {
+            flex-direction: column;
+        }
+
+        .syntax-arrow {
+            transform: rotate(90deg);
+        }
+
+        .syntax-box {
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .code-card pre {
+            padding: 15px;
+        }
+
+        .code-card code {
+            font-size: 13px;
+        }
+    }
+
+</style>

@@ -1,0 +1,261 @@
+@{
+    Layout = "~/Areas/Jenkins/Views/Shared/JenkinsLayout.cshtml";
+    ViewData["Title"] = "Jenkins and GitHub";
+}
+
+<style>
+    #jenkins-and-github-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+    #jenkins-and-github-page pre code {
+        background: transparent !important;
+        color: #ffffff !important;
+    }
+
+    #jenkins-and-github-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #jenkins-and-github-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+    #jenkins-and-github-page .info-card h5 {
+        color: #5b21b6;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+
+    #jenkins-and-github-page .example-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+    }
+</style>
+
+<main id="jenkins-and-github-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Jenkins/Views/Shared/JenkinsTopics.cshtml"
+            )
+
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+
+                <h1 class="fw-bold">
+                    Jenkins and GitHub
+                </h1>
+
+                <p class="lead">
+                    Learn the concepts, integration strategies, authentication configuration, and webhook setups required to bind GitHub source repositories securely with Jenkins automation.
+                </p>
+
+            </div>
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    What is Jenkins and GitHub?
+                </h2>
+
+                <p>
+                    In an agile team workflow, manual code handoffs cause bottlenecks. **Jenkins and GitHub Integration** establishes a real-time communications layer between your code hosting ecosystem and your automation controller.
+                </p>
+                <p>
+                    Connecting these two tools enables developers to achieve secure **Continuous Integration**. Every time code modifications are committed or pull requests are generated, GitHub broadcasts an instantaneous event payload to Jenkins. Jenkins immediately wakes up, pulls down the fresh changes, validates quality constraints, and reports stability metrics right back onto the GitHub pull request dashboard.
+                </p>
+
+                <!-- DOCKER INTEGRATION IMAGE ATTACHMENT -->
+                <div class="my-4 text-center bg-light rounded shadow-sm border p-3">
+                    <img src="~/Images/Jenkins/Dockerjenkinsintigration.jpg"
+                         asp-append-version="true"
+                         alt="Jenkins and Docker Integration Lifecycle Flow Diagram"
+                         class="img-fluid rounded"
+                         style="max-width: 100%; height: auto;" />
+                    <div class="form-text mt-2 text-muted small">
+                        Visualizing the automated pipeline containerization cycle from application packaging down to registry publication.
+                    </div>
+                </div>
+
+
+                <div class="alert alert-info">
+                    <strong>Simple Definition:</strong> A security and communications linkage that connects GitHub repositories to Jenkins, enabling automatic pipeline executions whenever your code branch changes.
+                </div>
+
+
+            </div>
+            <!-- KEY CONCEPTS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Key Concepts</h2>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Personal Access Tokens (PAT)</h5>
+                            <p class="mb-0">Secure API access tokens generated within GitHub that allow your Jenkins controller to read code metadata and post commit statuses back to repository branches.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Automated Webhook Triggers</h5>
+                            <p class="mb-0">Instant push notifications sent from GitHub over HTTP POST endpoints to alert Jenkins when specific events like code pushes occur.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Commit Status API</h5>
+                            <p class="mb-0">The mechanism used by Jenkins pipelines to stamp checkmarks or red crosses directly onto GitHub commits, protecting your main branch from unstable code merges.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>SSH Keypair Authentication</h5>
+                            <p class="mb-0">Deploying asymmetric cryptographic private keys inside Jenkins and matching public keys on GitHub to allow secure, passwordless source control checkout actions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+           
+
+
+
+            <!-- HOW TO INTEGRATE SECTION -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">How to Integrate Jenkins and GitHub</h2>
+                <p>Follow these standard configuration phases to connect a GitHub repository securely with your local or cloud Jenkins system:</p>
+
+                <div class="concept-box shadow-sm">
+                    <div class="d-flex flex-column gap-3">
+                        <div class="step-item">
+                            <h5><span class="step-badge">1</span> Provision Access Tokens on GitHub</h5>
+                            <p class="text-muted mb-0 small">
+                                Navigate to your GitHub profile: <strong>Settings &rarr; Developer Settings &rarr; Personal Access Tokens (Classic)</strong>. Generate a new token with explicit permissions: <code>repo</code> (all checkboxes) and <code>admin:repo_hook</code>. Copy this secret string immediately.
+                            </p>
+                        </div>
+                        <div class="step-item">
+                            <h5><span class="step-badge">2</span> Save Credentials in Jenkins</h5>
+                            <p class="text-muted mb-0 small">
+                                Open your Jenkins portal dashboard, choose <strong>Manage Jenkins &rarr; Credentials &rarr; System &rarr; Global Credentials</strong>. Click <strong>Add Credentials</strong>. Set the kind to <em>Secret text</em>, paste your GitHub PAT into the <em>Secret</em> box, and name its ID string as <code>github-token-id</code>.
+                            </p>
+                        </div>
+                        <div class="step-item">
+                            <h5><span class="step-badge">3</span> Install and Link the GitHub Plugin</h5>
+                            <p class="text-muted mb-0 small">
+                                Ensure the <strong>GitHub Plugin</strong> is active via your plugin control manager. Then go to <strong>Manage Jenkins &rarr; System</strong>, scroll down to the <strong>GitHub Servers</strong> container, choose your access credential ID, and select <em>Test Connection</em> to confirm your configuration is working properly.
+                            </p>
+                        </div>
+                        <div class="step-item">
+                            <h5><span class="step-badge">4</span> Configure the Repository Webhook Switch</h5>
+                            <p class="text-muted mb-0 small">
+                                Open your targeted repository settings pane inside GitHub, select <strong>Webhooks &rarr; Add Webhook</strong>. Set your Payload URL format explicitly to: <code>http://&lt;your-jenkins-ip-or-domain&gt;/github-webhook/</code>. Change the Content type dropdown menu option to <code>application/json</code> and click the save button.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- EXAMPLE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Practical Jenkins Example</h2>
+                <p>The following declarative script defines an explicit SCM polling trigger alongside an automated code checkout configuration, reading structural repository layouts based on incoming payload signatures:</p>
+                <pre><code>pipeline {
+    agent any
+
+
+
+
+
+
+
+
+    triggers {
+        // Activates internal listeners to accept push alerts from your GitHub webhooks endpoint
+        githubPush()
+    }
+
+    stages {
+        stage('Fetch Source From GitHub') {
+            steps {
+                echo 'Checking out branch components via authenticated credentials...'
+                // Synchronizes structural directories using persistent credential blocks
+                checkout scmGit(
+                    branches: [[name: '*/main']], 
+                    extensions: [], 
+                    userRemoteConfigs: [[
+                        credentialsId: 'github-token-id', 
+                        url: 'https://github.com'
+                    ]]
+                )
+            }
+        }
+
+        stage('Build & Confirm Health') {
+            steps {
+                echo 'Executing project verification suites...'
+                sh 'echo "Simulating code build execution..."'
+            }
+        }
+    }
+}</code></pre>
+            </div>
+
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Practice Exercise
+                </h2>
+
+                <ol>
+                    <li class="mb-2">Open Jenkins and identify the relevant configuration area.</li>
+                    <li class="mb-2">Create or update a small test job or pipeline for this lesson.</li>
+                    <li class="mb-2">Run the job and inspect the Console Output.</li>
+                    <li>Record what changed and verify the result.</li>
+                </ol>
+
+            </div>
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+                <h2 class="h4 fw-bold">Summary</h2>
+                <p class="mb-0">You have completed the <strong>Jenkins and GitHub</strong> lesson. Continue through the syllabus to build the Jenkins skills required for real CI/CD automation.</p>
+            </div>
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+                <a class="btn btn-outline-primary" href="@Url.Action("Index", "CloudDevOps", new { area = "Jenkins" })">← Previous: Cloud-Native Jenkins</a>
+                <a class="btn btn-primary" href="@Url.Action("DockerBuild", "CloudDevOps", new { area = "Jenkins" })">Next: Docker Image Build →</a>
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

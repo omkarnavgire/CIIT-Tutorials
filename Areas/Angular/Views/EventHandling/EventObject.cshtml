@@ -1,0 +1,1011 @@
+﻿@{
+    ViewData["Title"] = "Angular Event Object";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- Header -->
+    <section class="mb-4">
+
+        <h1 class="fw-bold text-dark">
+            Event Object in Angular
+        </h1>
+
+        <p class="lead text-muted">
+            Learn how Angular provides the event object and how to access
+            information about the event that occurred.
+        </p>
+
+        <div class="info-card">
+
+            <h5>CIIT Training Institute</h5>
+
+            <p>
+                The event object helps Angular applications understand what
+                happened during a user interaction, such as which key was
+                pressed or what value was entered.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- What is Event Object -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            What is an Event Object?
+        </h2>
+
+        <p>
+            When a DOM event occurs, the browser creates an object containing
+            information about that event.
+        </p>
+
+        <p>
+            Angular provides this object through the
+            <strong>$event</strong> variable.
+        </p>
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+                <i>👤</i>
+                <strong>User Action</strong>
+                <span>User interacts</span>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+                <i>⚡</i>
+                <strong>DOM Event</strong>
+                <span>Event occurs</span>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+                <i>$</i>
+                <strong>$event</strong>
+                <span>Event information</span>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+                <i>🔧</i>
+                <strong>Method</strong>
+                <span>Process event</span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- $event -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            The $event Variable
+        </h2>
+
+        <p>
+            Angular provides the special <strong>$event</strong> variable
+            inside an event binding expression.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Basic Example
+            </div>
+
+            <pre><code>&lt;button (click)="handleClick($event)"&gt;
+    Click Here
+&lt;/button&gt;</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                TypeScript
+            </div>
+
+            <pre><code>handleClick(event: MouseEvent) {
+
+    console.log(event);
+
+}</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- MouseEvent -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Mouse Event Object
+        </h2>
+
+        <p>
+            Mouse events provide information such as the clicked element,
+            mouse position and button information.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                HTML
+            </div>
+
+            <pre><code>&lt;button
+    (click)="showMouseEvent($event)"&gt;
+
+    Click for Event Details
+
+&lt;/button&gt;</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                TypeScript
+            </div>
+
+            <pre><code>showMouseEvent(event: MouseEvent) {
+
+    console.log('Event Type:', event.type);
+    console.log('Mouse X:', event.clientX);
+    console.log('Mouse Y:', event.clientY);
+
+}</code></pre>
+
+        </div>
+
+        <div class="output-box">
+
+            <strong>Event Information:</strong>
+
+            <div class="student-preview">
+
+                <button class="btn btn-primary">
+                    Click for Event Details
+                </button>
+
+                <div class="alert alert-light border mt-3 mb-0">
+
+                    <strong>Example Data:</strong>
+
+                    <div class="mt-2">
+                        Event Type: click
+                    </div>
+
+                    <div>
+                        Mouse X: 450
+                    </div>
+
+                    <div>
+                        Mouse Y: 280
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Input Event -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Input Event Object
+        </h2>
+
+        <p>
+            The input event object can be used to access the value entered
+            by the user.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                CIIT Course Enquiry
+            </div>
+
+            <pre><code>&lt;input
+    type="text"
+    (input)="courseSearch($event)"
+    placeholder="Search Angular course"&gt;</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                TypeScript
+            </div>
+
+            <pre><code>courseSearch(event: Event) {
+
+    const value =
+        (event.target as HTMLInputElement).value;
+
+    console.log(value);
+
+}</code></pre>
+
+        </div>
+
+
+        <div class="output-box">
+
+            <strong>Live Example:</strong>
+
+            <div class="student-preview">
+
+                <label class="form-label fw-semibold">
+                    Search CIIT Course
+                </label>
+
+                <input type="text"
+                       class="form-control"
+                       placeholder="Angular, Java, .NET, Python...">
+
+                <p class="text-muted mt-3 mb-0">
+                    The entered value can be accessed through
+                    <strong>$event</strong>.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Keyboard Event -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Keyboard Event Object
+        </h2>
+
+        <p>
+            Keyboard events provide information about the key pressed by
+            the user.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                HTML
+            </div>
+
+            <pre><code>&lt;input
+    (keydown)="checkKey($event)"
+    placeholder="Press any key"&gt;</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                TypeScript
+            </div>
+
+            <pre><code>checkKey(event: KeyboardEvent) {
+
+    console.log(
+        'Pressed Key:',
+        event.key
+    );
+
+}</code></pre>
+
+        </div>
+
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+
+                <div class="event-icon">
+                    ⌨️
+                </div>
+
+                <h5>event.key</h5>
+
+                <p>
+                    Returns the key that was pressed.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="event-icon">
+                    🔢
+                </div>
+
+                <h5>event.keyCode</h5>
+
+                <p>
+                    Represents keyboard information available from the event.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="event-icon">
+                    ⚡
+                </div>
+
+                <h5>event.type</h5>
+
+                <p>
+                    Returns the type of the event.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="event-icon">
+                    🎯
+                </div>
+
+                <h5>event.target</h5>
+
+                <p>
+                    Identifies the element that generated the event.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Target Property -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Accessing the Event Target
+        </h2>
+
+        <p>
+            The <strong>target</strong> property identifies the HTML element
+            that generated the event.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>handleInput(event: Event) {
+
+    const input =
+        event.target as HTMLInputElement;
+
+    console.log(input.value);
+
+}</code></pre>
+
+        </div>
+
+        <div class="info-card">
+
+            <p>
+                In this example, the event target is converted into an
+                <strong>HTMLInputElement</strong> so that its
+                <strong>value</strong> property can be accessed safely.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Event Object Properties -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Common Event Object Properties
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered syntax-table">
+
+                <thead>
+
+                    <tr>
+                        <th>Property</th>
+                        <th>Purpose</th>
+                        <th>Example</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td><code>type</code></td>
+                        <td>Returns event type</td>
+                        <td>click</td>
+                    </tr>
+
+                    <tr>
+                        <td><code>target</code></td>
+                        <td>Returns event source element</td>
+                        <td>input</td>
+                    </tr>
+
+                    <tr>
+                        <td><code>key</code></td>
+                        <td>Returns pressed keyboard key</td>
+                        <td>Enter</td>
+                    </tr>
+
+                    <tr>
+                        <td><code>clientX</code></td>
+                        <td>Mouse X coordinate</td>
+                        <td>450</td>
+                    </tr>
+
+                    <tr>
+                        <td><code>clientY</code></td>
+                        <td>Mouse Y coordinate</td>
+                        <td>280</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- CIIT Example -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Complete Example – CIIT Course Enquiry
+        </h2>
+
+        <p>
+            Let's create a course enquiry example for
+            <strong>CIIT Training Institute</strong>.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                enquiry.component.html
+            </div>
+
+            <pre><code>&lt;h2&gt;
+    CIIT Training Institute
+&lt;/h2&gt;
+
+&lt;input
+    type="text"
+    (input)="onCourseSearch($event)"
+    placeholder="Enter course name"&gt;
+
+&lt;p&gt;
+    Searching:
+    &#123;&#123; searchText &#125;&#125;
+&lt;/p&gt;
+
+&lt;button
+    (click)="submitEnquiry($event)"&gt;
+    Submit Enquiry
+&lt;/button&gt;</code></pre>
+
+        </div>
+
+
+        <div class="code-card">
+
+            <div class="code-title">
+                enquiry.component.ts
+            </div>
+
+            <pre><code>searchText = '';
+
+onCourseSearch(event: Event) {
+
+    const input =
+        event.target as HTMLInputElement;
+
+    this.searchText = input.value;
+
+}
+
+submitEnquiry(event: MouseEvent) {
+
+    console.log(
+        'Enquiry submitted'
+    );
+
+    console.log(
+        'Event:',
+        event.type
+    );
+
+}</code></pre>
+
+        </div>
+
+
+        <div class="output-box">
+
+            <strong>Expected Output:</strong>
+
+            <div class="student-preview">
+
+                <h3>
+                    CIIT Training Institute
+                </h3>
+
+                <label class="form-label">
+                    Search Course
+                </label>
+
+                <input type="text"
+                       class="form-control"
+                       placeholder="Enter course name">
+
+                <p class="mt-3">
+                    <strong>
+                        Searching:
+                    </strong>
+
+                    Angular Full Stack
+                </p>
+
+                <button class="btn btn-success">
+                    Submit Enquiry
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Event Flow -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Event Object Flow
+        </h2>
+
+        <div class="binding-flow">
+
+            <div class="binding-item">
+                <strong>User</strong>
+                <span>Performs action</span>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="binding-item">
+                <strong>Browser</strong>
+                <span>Creates event</span>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="binding-item">
+                <strong>$event</strong>
+                <span>Receives object</span>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="binding-item">
+                <strong>Component</strong>
+                <span>Processes data</span>
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="binding-item">
+                <strong>Application</strong>
+                <span>Responds</span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Best Practices -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Event Object Best Practices
+        </h2>
+
+        <ul class="best-practice-list">
+
+            <li>
+                Use <strong>$event</strong> only when event information is required.
+            </li>
+
+            <li>
+                Use appropriate TypeScript event types such as
+                <strong>MouseEvent</strong> and <strong>KeyboardEvent</strong>.
+            </li>
+
+            <li>
+                Convert <strong>event.target</strong> to the required HTML element type.
+            </li>
+
+            <li>
+                Keep event-processing logic inside component methods.
+            </li>
+
+            <li>
+                Avoid unnecessary access to the complete event object.
+            </li>
+
+            <li>
+                Use meaningful method names for event handlers.
+            </li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- Summary -->
+    <section class="summary-box">
+
+        <h3>
+            Summary
+        </h3>
+
+        <p>
+            Angular provides the <strong>$event</strong> object to access
+            information about a DOM event.
+        </p>
+
+        <p>
+            Important event properties include
+            <strong>type</strong>,
+            <strong>target</strong>,
+            <strong>key</strong>,
+            <strong>clientX</strong>
+            and <strong>clientY</strong>.
+        </p>
+
+        <p class="mb-0">
+            Understanding the event object helps developers build interactive
+            applications such as course enquiry forms, registration forms and
+            dashboards at <strong>CIIT Training Institute</strong>.
+        </p>
+
+    </section>
+
+
+    <!-- Navigation -->
+    <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+
+        <a class="btn btn-outline-secondary"
+           href="@Url.Action("EventBinding", "EventHandling", new { area = "Angular" })">
+            ← Event Binding
+        </a>
+
+        <a class="btn btn-primary"
+           href="@Url.Action("PassingData", "EventHandling", new { area = "Angular" })">
+            Passing Data →
+        </a>
+
+    </div>
+
+</div>
+
+
+<style>
+
+    .info-card {
+        background: #f8fafc;
+        border-left: 5px solid #4c1d95;
+        padding: 18px 20px;
+        border-radius: 7px;
+        margin-top: 15px;
+    }
+
+        .info-card h5 {
+            color: #4c1d95;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .info-card p {
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+
+    .syntax-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        padding: 25px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+    }
+
+    .syntax-box {
+        width: 175px;
+        min-height: 125px;
+        padding: 18px;
+        text-align: center;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 9px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+        .syntax-box i {
+            display: block;
+            font-size: 28px;
+            color: #4c1d95;
+            margin-bottom: 8px;
+            font-style: normal;
+        }
+
+        .syntax-box strong {
+            display: block;
+            color: #2e1065;
+            font-weight: 700;
+        }
+
+        .syntax-box span {
+            display: block;
+            color: #64748b;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+    .syntax-arrow {
+        color: #4c1d95;
+        font-size: 25px;
+        font-weight: 700;
+    }
+
+    .syntax-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+    }
+
+    .syntax-card {
+        padding: 20px;
+        text-align: center;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 9px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    }
+
+        .syntax-card h5 {
+            color: #2e1065;
+            font-weight: 700;
+            margin-top: 12px;
+        }
+
+        .syntax-card p {
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+    .event-icon {
+        width: 55px;
+        height: 55px;
+        margin: auto;
+        border-radius: 50%;
+        background: #ede9fe;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 25px;
+    }
+
+    .code-card {
+        background: #0f172a;
+        border-radius: 8px;
+        overflow: hidden;
+        margin-top: 18px;
+    }
+
+    .code-title {
+        background: #1e293b;
+        color: #d8c9f5;
+        padding: 10px 16px;
+        font-weight: 600;
+    }
+
+    .code-card pre {
+        margin: 0;
+        padding: 20px;
+        overflow-x: auto;
+    }
+
+    .code-card code {
+        color: #f8fafc;
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    .output-box {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        padding: 20px;
+        margin-top: 20px;
+    }
+
+    .student-preview {
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 9px;
+        padding: 20px;
+        margin-top: 12px;
+    }
+
+    .syntax-table {
+        background: #ffffff;
+    }
+
+        .syntax-table th {
+            background: #4c1d95;
+            color: #ffffff;
+        }
+
+        .syntax-table td,
+        .syntax-table th {
+            padding: 12px;
+            vertical-align: middle;
+        }
+
+    .binding-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        padding: 20px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+    }
+
+    .binding-item {
+        min-width: 150px;
+        padding: 15px;
+        text-align: center;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 9px;
+    }
+
+        .binding-item strong {
+            display: block;
+            color: #2e1065;
+            font-weight: 700;
+        }
+
+        .binding-item span {
+            display: block;
+            color: #64748b;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+    .best-practice-list {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        padding: 20px 25px 20px 45px;
+    }
+
+        .best-practice-list li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+            color: #334155;
+        }
+
+            .best-practice-list li:last-child {
+                margin-bottom: 0;
+            }
+
+    .summary-box {
+        background: #cfe2ff;
+        color: #084298;
+        padding: 22px;
+        border-radius: 10px;
+    }
+
+        .summary-box h3 {
+            color: #084298;
+            font-weight: 700;
+        }
+
+    @@media (max-width: 991px) {
+
+        .syntax-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .syntax-flow {
+            gap: 8px;
+        }
+
+        .syntax-box {
+            width: 160px;
+        }
+    }
+
+    @@media (max-width: 576px) {
+
+        .syntax-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .syntax-box {
+            width: 100%;
+        }
+
+        .syntax-arrow {
+            transform: rotate(90deg);
+        }
+
+        .binding-flow {
+            flex-direction: column;
+        }
+
+        .binding-item {
+            width: 100%;
+        }
+
+        .binding-flow .syntax-arrow {
+            transform: rotate(90deg);
+        }
+
+        .code-card code {
+            font-size: 13px;
+        }
+
+        .student-preview {
+            padding: 16px;
+        }
+    }
+
+</style>

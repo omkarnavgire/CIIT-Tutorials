@@ -1,0 +1,203 @@
+@{
+    Layout = "~/Areas/Jenkins/Views/Shared/JenkinsLayout.cshtml";
+    ViewData["Title"] = "Stages and Steps";
+}
+
+<style>
+    #stages-and-steps-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #stages-and-steps-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #stages-and-steps-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #stages-and-steps-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #stages-and-steps-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+    #stages-and-steps-page .example-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+    }
+</style>
+
+<main id="stages-and-steps-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/Jenkins/Views/Shared/JenkinsTopics.cshtml")
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+                <h1 class="fw-bold">Stages and Steps</h1>
+                <p class="lead">
+                    Learn the concepts, syntax containment blocks, visual milestones, and linear execution boundaries required to group and organize pipeline workflows.
+                </p>
+            </div>
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">What are Stages and Steps?</h2>
+                <p>
+                    Inside a Declarative Jenkinsfile, execution flow is broken down into structured hierarchies to ensure scannability and clear logs. The work of a continuous automation pipeline is divided into major structural phases called <strong>Stages</strong>, which contain the individual core actions called <strong>Steps</strong>.
+                </p>
+
+                <div class="alert alert-info my-3">
+                    <strong>Simple Definition:</strong> Stages act as visual milestones that group related processes (like compiling or deployment), while Steps are the individual shell commands, plugin tasks, or scripts executed inside those groups.
+                </div>
+
+                <h3 class="h4 fw-bold mt-4">Containment Structure Blocks</h3>
+                <p class="mb-2">Jenkins maps out the pipeline lifecycle using explicit nested code definitions:</p>
+                <ul class="mb-3">
+                    <li class="mb-1"><strong>The `stages` Collection Block:</strong> A primary mandatory container wrapper that holds the chronological array list of every single processing phase in the pipeline.</li>
+                    <li class="mb-1"><strong>The Individual `stage` Milestones:</strong> Explicitly named logical buckets (e.g., `stage('Run Linters')`) that isolate specific business tasks and generate dedicated tracking blocks in the Blue Ocean or Stage View UI.</li>
+                    <li class="mb-1"><strong>The Nested `steps` Directive Block:</strong> An inner block container that seals and validates the granular script lines, preventing commands from running floating outside an active stage.</li>
+                    <li><strong>The Core Task Steps:</strong> The atomic action commands—such as invoking shell environments via <code>sh</code>, logging strings via <code>echo</code>, or archiving files via <code>archiveArtifacts</code>.</li>
+                </ul>
+            </div>
+
+            <!-- KEY CONCEPTS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Key Concepts</h2>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Linear Stage Halting Gates</h5>
+                            <p class="mb-0">Understanding that stages execute sequentially from top to bottom. If an individual step within any stage throws an error, the remaining steps are dropped and subsequent stages are completely blocked.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Visual Stage View Auditing</h5>
+                            <p class="mb-0">Leveraging separate stage names to view localized metrics on the Jenkins dashboard, making it simple to trace execution times or pinpoint where a build broke.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXAMPLE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Practical Jenkins Example</h2>
+                <p>The following declarative pipeline showcases how multiple distinct stages organize a build, test, and release sequence with linear step scripts:</p>
+                <pre><code>pipeline {
+    agent any
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // Primary container block holding the linear workflow array
+    stages {
+        
+        stage('Fetch and Compile Source') {
+            steps {
+                echo 'Step Action: Fetching commit footprint layers...'
+                sh 'echo "Simulating project source compilation..."'
+            }
+        }
+
+        stage('Execute Quality Controls') {
+            steps {
+                echo 'Step Action: Initializing static analysis linter rules...'
+                echo 'Step Action: Spawning unit regression tests...'
+                sh 'echo "All test files verified successfully."'
+            }
+        }
+
+        stage('Publish Release Assets') {
+            steps {
+                echo 'Step Action: Pushing compiled binaries out to environment hubs...'
+                sh 'echo "Release lifecycle wrapped up clean."'
+            }
+        }
+    }
+}</code></pre>
+                </div>
+
+            <!-- PRACTICE -->
+        <div class="mb-4">
+                <h2 class="h3 fw-bold">Practice Exercise: Deploy and Inspect a Multi-Stage Sequence</h2>
+    <div class="concept-box">
+                    <h5 class="fw-bold">Step-by-Step Task Sequence:</h5>
+<ol class="ps-3 mb-0">
+                        <li class="mb-2">Open the script block workspace of an active test pipeline or configure a new Pipeline item from your dashboard interface.</li>
+                        <li class="mb-2">Copy-paste the complete practical multi-stage declarative code snippet provided in the example section above directly into your script text terminal window and click <strong>Save</strong>.</li>
+<li class="mb-2">Trigger a manual validation run path by selecting the <strong>Build Now</strong> sidebar action link.</li>
+<li class="mb-2">Return to the primary status panel view of your job to observe how the <strong>Stage View</strong> table renders three independent column milestones.</li>
+<li>Click the current build run's tracking number box, open <strong>Console Output</strong>, and trace how individual log steps are nested under their respective stage headers.</li>
+</ol>
+</div>
+</div>
+
+<!-- SUMMARY -->
+<div class="alert alert-info mt-4">
+<h2 class="h4 fw-bold">Summary</h2>
+<p class="mb-0">You have completed the <strong>Stages and Steps</strong> lesson. Continue through the syllabus to learn how to manage dynamic values and credentials inside your scripts by exploring the Environment Variables lesson.</p>
+</div>
+
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+                <a class="btn btn-outline-primary" href="@Url.Action("AgentDirective", "Pipeline", new { area = "Jenkins" })">← Previous: Agent Directive</a>
+                <a class="btn btn-primary" href="@Url.Action("EnvironmentVariables", "Pipeline", new { area = "Jenkins" })">Next: Environment Variables →</a>
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

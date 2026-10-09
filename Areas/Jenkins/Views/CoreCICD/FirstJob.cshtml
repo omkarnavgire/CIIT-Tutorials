@@ -1,0 +1,157 @@
+@{
+    Layout = "~/Areas/Jenkins/Views/Shared/JenkinsLayout.cshtml";
+    ViewData["Title"] = "Creating Your First Jenkins Job";
+}
+
+<style>
+    #creating-your-first-jenkins-job-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #creating-your-first-jenkins-job-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #creating-your-first-jenkins-job-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #creating-your-first-jenkins-job-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #creating-your-first-jenkins-job-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+    #creating-your-first-jenkins-job-page .example-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+    }
+</style>
+
+<main id="creating-your-first-jenkins-job-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/Jenkins/Views/Shared/JenkinsTopics.cshtml")
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+                <h1 class="fw-bold">Creating Your First Jenkins Job</h1>
+                <p class="lead">
+                    Learn the foundational concepts, item creation steps, console navigation, and operational checkpoints required to deploy your debut automated workflow.
+                </p>
+            </div>
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">What is a Jenkins Job?</h2>
+                <p>
+                    A <strong>Jenkins Job</strong> (or Item) is a user-defined automation task configured to carry out a repetitive task within your software development lifecycle. Creating your first job is the gateway to automated compilation, code analysis, testing, and continuous feedback.
+                </p>
+
+                <div class="alert alert-info my-3">
+                    <strong>Simple Definition:</strong> A Jenkins job is an explicit set of automated instructions scheduled or triggered to build code, execute scripts, and deliver real-time process logs.
+                </div>
+
+                <h3 class="h4 fw-bold mt-4">Essential Job Phases</h3>
+                <p class="mb-2">Every standard automated task moves through three discrete phases from start to finish:</p>
+                <ul class="mb-3">
+                    <li class="mb-1"><strong>The Trigger:</strong> The specific event that wakes up the job, such as a manual user click, a cron schedule, or an incoming code push webhook.</li>
+                    <li class="mb-1"><strong>The Workspace Execution:</strong> The actual processing phase where Jenkins checks out code dependencies, runs compiler targets, or executes shell strings on a clean agent.</li>
+                    <li><strong>The Post-Build Action:</strong> The final stage where build metrics are collected, code binaries are preserved, and notifications are broadcasted based on the run's success or failure status.</li>
+                </ul>
+            </div>
+
+            <!-- KEY CONCEPTS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Key Concepts</h2>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Console Output Transparency</h5>
+                            <p class="mb-0">Learning to read raw streaming stdout text logs from execution runners to quickly catch compile runtime anomalies or environment errors.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Build Number Isolation</h5>
+                            <p class="mb-0">Understanding how Jenkins tracks each pipeline run with a sequential, incremented integer id, ensuring historical records and diagnostic logs remain segregated.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXAMPLE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Practical Jenkins Example</h2>
+                <p>The following declarative blueprint introduces standard logging syntax blocks within a basic build stage framework:</p>
+                <pre><code>pipeline {
+    agent any
+    stages {
+        stage('Hello Automation World') {
+            steps {
+                echo 'Initializing pipeline sequence...'
+                echo 'Running system environment diagnostics...'
+            }
+        }
+    }
+}</code></pre>
+            </div>
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Practice Exercise: Deploy Your First Scripted Run</h2>
+                <div class="concept-box">
+                    <h5 class="fw-bold">Step-by-Step Task Sequence:</h5>
+                    <ol class="ps-3 mb-0">
+                        <li class="mb-2">Navigate to the main Jenkins portal dashboard and click <strong>New Item</strong> in the top-left sidebar menu link.</li>
+                        <li class="mb-2">Input the name string <code>My-First-Automation-Job</code> and pick the <strong>Pipeline</strong> item card layout selection before hitting <strong>OK</strong>.</li>
+                        <li class="mb-2">Scroll down to the dedicated script editor window, copy-paste the sample declarative code block provided above into the text field, and click <strong>Save</strong>.</li>
+                        <li class="mb-2">Click the <strong>Build Now</strong> menu link on the job summary view panel to queue your debut runtime execution pass.</li>
+                        <li>Monitor the build status ring under the build history block, click the incremented number element, and choose <strong>Console Output</strong> to verify the diagnostic message logs.</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+                <h2 class="h4 fw-bold">Summary</h2>
+                <p class="mb-0">You have completed the <strong>Creating Your First Jenkins Job</strong> lesson. Continue through the syllabus to master linking these custom scripts with source repositories for dynamic execution.</p>
+            </div>
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+                <a class="btn btn-outline-primary" href="@Url.Action("Index", "CoreCICD", new { area = "Jenkins" })">← Previous: Freestyle Projects</a>
+                <a class="btn btn-primary" href="@Url.Action("SourceControl", "CoreCICD", new { area = "Jenkins" })">Next: Source Control Management →</a>
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

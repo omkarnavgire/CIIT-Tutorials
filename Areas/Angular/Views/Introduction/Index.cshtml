@@ -1,0 +1,777 @@
+﻿@{
+    ViewData["Title"] = "Angular Introduction";
+}
+
+<div class="container-fluid">
+
+    <!-- ===================================================== -->
+    <!-- PAGE HEADER -->
+    <!-- ===================================================== -->
+
+    <div class="mb-4">
+
+        <h1 class="fw-bold">
+            Angular Introduction
+        </h1>
+
+        <p class="text-muted">
+            Learn what Angular is, why it is used, and how Angular
+            helps developers build modern web applications.
+        </p>
+
+    </div>
+
+
+    <!-- ===================================================== -->
+    <!-- WHAT IS ANGULAR -->
+    <!-- ===================================================== -->
+
+    <section class="mb-5">
+
+        <h2>
+            What is Angular?
+        </h2>
+
+        <p>
+            Angular is a TypeScript-based web application framework
+            used for building modern, scalable, and interactive
+            web applications.
+        </p>
+
+        <p>
+            Angular provides a complete development structure for
+            creating applications using components, templates,
+            data binding, services, routing, forms, HTTP communication,
+            and many other features.
+        </p>
+
+        <p>
+            Angular applications are mainly built using reusable
+            <strong>Components</strong>. Each component controls a
+            specific part of the application's user interface.
+        </p>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- ANGULAR WORKING DIAGRAM -->
+    <!-- ===================================================== -->
+
+    <section class="mb-5">
+
+        <h2>
+            How Angular Works
+        </h2>
+
+        <p>
+            A basic Angular application works by connecting the
+            component, template, data, and user interaction.
+        </p>
+
+
+        <div class="angular-diagram">
+
+            <!-- COMPONENT -->
+
+            <div class="diagram-box">
+
+                <div class="diagram-icon">
+                    C
+                </div>
+
+                <h5>
+                    Component
+                </h5>
+
+                <p>
+                    Handles application logic
+                </p>
+
+            </div>
+
+
+            <div class="diagram-arrow">
+                →
+            </div>
+
+
+            <!-- TEMPLATE -->
+
+            <div class="diagram-box">
+
+                <div class="diagram-icon">
+                    T
+                </div>
+
+                <h5>
+                    Template
+                </h5>
+
+                <p>
+                    Displays the user interface
+                </p>
+
+            </div>
+
+
+            <div class="diagram-arrow">
+                →
+            </div>
+
+
+            <!-- USER -->
+
+            <div class="diagram-box">
+
+                <div class="diagram-icon">
+                    U
+                </div>
+
+                <h5>
+                    User
+                </h5>
+
+                <p>
+                    Interacts with the application
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="text-center mt-3">
+
+            <span class="badge bg-light text-dark border">
+                User → Template → Component → Data → Template
+            </span>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- KEY FEATURES -->
+    <!-- ===================================================== -->
+
+    <section class="mb-5">
+
+        <h2>
+            Key Features of Angular
+        </h2>
+
+
+        <div class="row g-4 mt-2">
+
+            <!-- COMPONENTS -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="feature-card h-100">
+
+                    <h5>
+                        Components
+                    </h5>
+
+                    <p>
+                        Angular applications are organized into
+                        reusable components that manage specific
+                        parts of the user interface.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- DATA BINDING -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="feature-card h-100">
+
+                    <h5>
+                        Data Binding
+                    </h5>
+
+                    <p>
+                        Data binding connects component data with
+                        the user interface and keeps them synchronized.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- DIRECTIVES -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="feature-card h-100">
+
+                    <h5>
+                        Directives
+                    </h5>
+
+                    <p>
+                        Directives extend HTML and allow developers
+                        to control the behavior and appearance of
+                        elements.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- SERVICES -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="feature-card h-100">
+
+                    <h5>
+                        Services
+                    </h5>
+
+                    <p>
+                        Services are used to organize reusable
+                        application logic and share data between
+                        components.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- ROUTING -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="feature-card h-100">
+
+                    <h5>
+                        Routing
+                    </h5>
+
+                    <p>
+                        Angular Router allows applications to navigate
+                        between different views and components.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- HTTP -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="feature-card h-100">
+
+                    <h5>
+                        HTTP Communication
+                    </h5>
+
+                    <p>
+                        Angular provides HttpClient for communicating
+                        with REST APIs and backend applications.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- SIMPLE ANGULAR EXAMPLE -->
+    <!-- ===================================================== -->
+
+    <section class="mb-5">
+
+        <h2>
+            Simple Angular Example
+        </h2>
+
+        <p>
+            A component can contain a property and the template can
+            display that property using Angular interpolation.
+        </p>
+
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                TypeScript
+            </div>
+
+<pre><code>export class AppComponent {
+
+    title = 'Welcome to Angular';
+
+}</code></pre>
+
+        </div>
+
+
+        <p class="mt-4">
+            The component property can then be displayed inside
+            the Angular template:
+        </p>
+
+
+        <div class="code-block">
+
+            <div class="code-lang-tag">
+                HTML
+            </div>
+
+<pre><code>&lt;h1&gt;{{ title }}&lt;/h1&gt;</code></pre>
+
+        </div>
+
+
+        <div class="alert alert-light border mt-4">
+
+            <strong>Output:</strong>
+
+            <div class="mt-2 fs-5">
+                Welcome to Angular
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- WHY LEARN ANGULAR -->
+    <!-- ===================================================== -->
+
+    <section class="mb-5">
+
+        <h2>
+            Why Learn Angular?
+        </h2>
+
+        <ul>
+
+            <li>
+                Build modern web applications.
+            </li>
+
+            <li>
+                Create reusable UI components.
+            </li>
+
+            <li>
+                Work with REST APIs and backend services.
+            </li>
+
+            <li>
+                Build single-page applications.
+            </li>
+
+            <li>
+                Organize large applications using a structured
+                development approach.
+            </li>
+
+        </ul>
+
+    </section>
+
+
+   <!-- ===================================================== -->
+<!-- SUMMARY -->
+<!-- ===================================================== -->
+
+<section class="mb-5">
+
+    <div class="summary-box">
+
+        <h3>
+            Summary
+        </h3>
+
+        <p>
+            Angular is a TypeScript-based framework for building
+            modern web applications. Angular applications are
+            mainly built using components, templates, data binding,
+            services, routing, and other supporting features.
+        </p>
+
+        <p class="mb-0">
+            In the next topic, we will learn about
+            <strong>History of Angular</strong>.
+        </p>
+
+    </div>
+
+</section>
+
+
+    <!-- ===================================================== -->
+    <!-- PREVIOUS / NEXT NAVIGATION -->
+    <!-- ===================================================== -->
+
+    <div class="d-flex justify-content-between align-items-center
+                border-top pt-4 mt-5">
+
+        <!-- PREVIOUS -->
+
+        <span class="btn btn-outline-secondary disabled">
+            ← Previous
+        </span>
+
+
+        <!-- NEXT -->
+
+        <a href="@Url.Action("History", "Introduction", new { area = "Angular" })"
+           class="btn btn-primary px-4">
+
+            Next: Angular History →
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- ========================================================= -->
+<!-- PAGE SPECIFIC CSS -->
+<!-- ========================================================= -->
+
+<style>
+
+    /* ===================================================== */
+    /* DIAGRAM */
+    /* ===================================================== */
+
+    .angular-diagram {
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 20px;
+
+        padding: 35px 20px;
+
+        margin-top: 25px;
+
+        background: #f8f9fa;
+
+        border: 1px solid #e9ecef;
+
+        border-radius: 12px;
+
+    }
+
+
+    .diagram-box {
+
+        width: 220px;
+
+        min-height: 150px;
+
+        padding: 20px;
+
+        text-align: center;
+
+        background: #ffffff;
+
+        border: 1px solid #dee2e6;
+
+        border-radius: 10px;
+
+        box-shadow:
+            0 3px 12px rgba(0, 0, 0, 0.05);
+
+    }
+
+
+    .diagram-icon {
+
+        width: 45px;
+
+        height: 45px;
+
+        margin: 0 auto 12px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        border-radius: 50%;
+
+        background: #f1f3f5;
+
+        font-size: 20px;
+
+        font-weight: 700;
+
+    }
+
+
+    .diagram-box h5 {
+
+        font-weight: 700;
+
+        margin-bottom: 8px;
+
+    }
+
+
+    .diagram-box p {
+
+        font-size: 14px !important;
+
+        margin-bottom: 0;
+
+        line-height: 1.5 !important;
+
+    }
+
+
+    .diagram-arrow {
+
+        font-size: 32px;
+
+        font-weight: 600;
+
+        color: #495057;
+
+    }
+
+
+    /* ===================================================== */
+    /* FEATURE CARDS */
+    /* ===================================================== */
+
+    .feature-card {
+
+        padding: 22px;
+
+        background: #ffffff;
+
+        border: 1px solid #e9ecef;
+
+        border-radius: 10px;
+
+        transition: 0.2s ease;
+
+    }
+
+
+    .feature-card:hover {
+
+        box-shadow:
+            0 4px 15px rgba(0, 0, 0, 0.08);
+
+        transform: translateY(-2px);
+
+    }
+
+
+    .feature-card h5 {
+
+        font-weight: 700;
+
+        margin-bottom: 10px;
+
+    }
+
+
+    .feature-card p {
+
+        margin-bottom: 0;
+
+        font-size: 15px !important;
+
+        line-height: 1.7 !important;
+
+    }
+
+
+    /* ===================================================== */
+    /* CODE */
+    /* ===================================================== */
+
+    .code-block {
+
+        margin-top: 18px;
+
+        background: #0f172a;
+
+        color: #f1f5f9;
+
+        padding: 22px;
+
+        border-radius: 8px;
+
+        position: relative;
+
+        overflow-x: auto;
+
+    }
+
+
+    .code-block pre {
+
+        margin: 0;
+
+    }
+
+
+    .code-block code {
+
+        color: #f1f5f9;
+
+        font-family:
+            SFMono-Regular,
+            Menlo,
+            Monaco,
+            Consolas,
+            monospace;
+
+        font-size: 14px;
+
+        line-height: 1.7;
+
+    }
+
+
+    .code-lang-tag {
+
+        position: absolute;
+
+        top: 8px;
+
+        right: 15px;
+
+        font-size: 12px;
+
+        color: #94a3b8;
+
+    }
+
+
+
+
+    /* ===================================================== */
+/* SUMMARY BOX */
+/* ===================================================== */
+
+.summary-box {
+
+    background: #cfe2ff;
+
+    border-radius: 6px;
+
+    padding: 18px 22px;
+
+    margin-top: 20px;
+
+}
+
+
+.summary-box h3 {
+
+    font-size: 20px;
+
+    font-weight: 700;
+
+    color: #084298;
+
+    margin-bottom: 10px;
+
+}
+
+
+.summary-box p {
+
+    font-size: 16px !important;
+
+    line-height: 1.6 !important;
+
+    color: #084298 !important;
+
+    margin-bottom: 8px;
+
+}
+
+    /* ===================================================== */
+    /* MOBILE */
+    /* ===================================================== */
+
+    @@media (max-width: 768px) {
+
+        .angular-diagram {
+
+            flex-direction: column;
+
+            gap: 10px;
+
+        }
+
+
+        .diagram-box {
+
+            width: 100%;
+
+            max-width: 320px;
+
+        }
+
+
+        .diagram-arrow {
+
+            transform: rotate(90deg);
+
+            font-size: 28px;
+
+        }
+
+
+        .angular-content-card {
+
+            padding: 25px !important;
+
+        }
+
+    }
+
+
+    @@media (max-width: 576px) {
+
+        .angular-content-card {
+
+            padding: 20px 15px !important;
+
+        }
+
+
+        .feature-card {
+
+            padding: 18px;
+
+        }
+
+    }
+
+</style>

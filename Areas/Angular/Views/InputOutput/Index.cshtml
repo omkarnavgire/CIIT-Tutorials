@@ -1,0 +1,1031 @@
+﻿@{
+    ViewData["Title"] = "Angular Input and Output Introduction";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- Header -->
+    <section class="mb-4">
+
+        <h1 class="fw-bold text-dark">
+            Input &amp; Output Introduction
+        </h1>
+
+        <p class="lead text-muted">
+            Learn how Angular components communicate with each other using
+            Input and Output.
+        </p>
+
+        <div class="info-card">
+
+            <h5>CIIT Training Institute</h5>
+
+            <p>
+                Angular Input and Output are mainly used for communication
+                between parent and child components.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- What is Component Communication -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            What is Component Communication?
+        </h2>
+
+        <p>
+            Angular applications are built using multiple components.
+            Sometimes one component needs to send information to another
+            component.
+        </p>
+
+        <p>
+            Angular provides <strong>Input</strong> and
+            <strong>Output</strong> to make this communication simple
+            and organized.
+        </p>
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+
+                <i>👨‍💼</i>
+
+                <strong>Parent Component</strong>
+
+                <span>
+                    Contains data
+                </span>
+
+            </div>
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+            <div class="syntax-box">
+
+                <i>📥</i>
+
+                <strong>Input</strong>
+
+                <span>
+                    Sends data
+                </span>
+
+            </div>
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+            <div class="syntax-box">
+
+                <i>👩‍💻</i>
+
+                <strong>Child Component</strong>
+
+                <span>
+                    Receives data
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Input and Output -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Input vs Output
+        </h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+
+                <div class="event-icon">
+                    📥
+                </div>
+
+                <h5>Input</h5>
+
+                <p>
+                    Used to pass data from a parent component to a child
+                    component.
+                </p>
+
+                <code>
+                    @@Input()
+                </code>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="event-icon">
+                    📤
+                </div>
+
+                <h5>Output</h5>
+
+                <p>
+                    Used by a child component to communicate an event or
+                    value back to its parent.
+                </p>
+
+                <code>
+                    @@Output()
+                </code>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="event-icon">
+                    🔄
+                </div>
+
+                <h5>Communication</h5>
+
+                <p>
+                    Components can exchange information in a structured way.
+                </p>
+
+                <code>
+                    Parent ↔ Child
+                </code>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="event-icon">
+                    🧩
+                </div>
+
+                <h5>Reusable Design</h5>
+
+                <p>
+                    Input and Output help create reusable Angular components.
+                </p>
+
+                <code>
+                    Components
+                </code>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Parent to Child -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Parent to Child Communication
+        </h2>
+
+        <p>
+            A parent component can send data to a child component using
+            <strong>Input</strong>.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Parent Template
+            </div>
+
+            <pre><code>&lt;app-course
+    [courseName]="selectedCourse"&gt;
+&lt;/app-course&gt;</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Child Component
+            </div>
+
+            <pre><code>@@Input()
+courseName = '';</code></pre>
+
+        </div>
+
+        <div class="info-card">
+
+            <p>
+                Here the parent sends <strong>selectedCourse</strong> to the
+                child component through the <strong>courseName</strong>
+                Input property.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Child to Parent -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Child to Parent Communication
+        </h2>
+
+        <p>
+            A child component can notify its parent about an event using
+            <strong>Output</strong>.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Child Component
+            </div>
+
+            <pre><code>@@Output()
+courseSelected = new EventEmitter&lt;string&gt;();
+
+selectCourse() {
+
+    this.courseSelected.emit(
+        'Angular Full Stack'
+    );
+
+}</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Parent Template
+            </div>
+
+            <pre><code>&lt;app-course
+    (courseSelected)="onCourseSelected($event)"&gt;
+&lt;/app-course&gt;</code></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- Communication Flow -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Input &amp; Output Communication Flow
+        </h2>
+
+        <div class="binding-flow">
+
+            <div class="binding-item">
+
+                <strong>
+                    Parent
+                </strong>
+
+                <span>
+                    Has data
+                </span>
+
+            </div>
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+            <div class="binding-item">
+
+                <strong>
+                    Input
+                </strong>
+
+                <span>
+                    Passes data
+                </span>
+
+            </div>
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+            <div class="binding-item">
+
+                <strong>
+                    Child
+                </strong>
+
+                <span>
+                    Uses data
+                </span>
+
+            </div>
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+            <div class="binding-item">
+
+                <strong>
+                    Output
+                </strong>
+
+                <span>
+                    Sends event
+                </span>
+
+            </div>
+
+            <div class="syntax-arrow">
+                →
+            </div>
+
+            <div class="binding-item">
+
+                <strong>
+                    Parent
+                </strong>
+
+                <span>
+                    Handles event
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CIIT Example -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Complete Example – CIIT Course Selection
+        </h2>
+
+        <p>
+            Suppose the CIIT Training Institute has a parent component that
+            displays available courses and a child component that displays
+            the selected course.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                parent.component.ts
+            </div>
+
+            <pre><code>selectedCourse = 'Angular Full Stack';
+
+courseSelected(course: string) {
+
+    this.selectedCourse = course;
+
+}</code></pre>
+
+        </div>
+
+
+        <div class="code-card">
+
+            <div class="code-title">
+                parent.component.html
+            </div>
+
+            <pre><code>&lt;app-course-card
+    [courseName]="selectedCourse"
+    (courseChange)="courseSelected($event)"&gt;
+&lt;/app-course-card&gt;</code></pre>
+
+        </div>
+
+
+        <div class="code-card">
+
+            <div class="code-title">
+                child component
+            </div>
+
+            <pre><code>@@Input()
+courseName = '';
+
+@@Output()
+courseChange =
+    new EventEmitter&lt;string&gt;();
+
+selectCourse(course: string) {
+
+    this.courseChange.emit(course);
+
+}</code></pre>
+
+        </div>
+
+
+        <div class="output-box">
+
+            <strong>Expected Output:</strong>
+
+            <div class="student-preview">
+
+                <h3>
+                    CIIT Training Institute
+                </h3>
+
+                <p>
+                    Available Courses:
+                </p>
+
+                <div class="mb-3">
+
+                    <button class="btn btn-primary me-2 mb-2">
+                        Angular Full Stack
+                    </button>
+
+                    <button class="btn btn-primary me-2 mb-2">
+                        Java Full Stack
+                    </button>
+
+                    <button class="btn btn-primary mb-2">
+                        .NET Full Stack
+                    </button>
+
+                </div>
+
+                <div class="alert alert-light border mb-0">
+
+                    <strong>
+                        Selected Course:
+                    </strong>
+
+                    Angular Full Stack
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Direction Table -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Communication Direction
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered syntax-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Feature</th>
+
+                        <th>Direction</th>
+
+                        <th>Purpose</th>
+
+                        <th>Common Syntax</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            Input
+                        </td>
+
+                        <td>
+                            Parent → Child
+                        </td>
+
+                        <td>
+                            Pass data
+                        </td>
+
+                        <td>
+                            <code>@@Input()</code>
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            Output
+                        </td>
+
+                        <td>
+                            Child → Parent
+                        </td>
+
+                        <td>
+                            Send event/data
+                        </td>
+
+                        <td>
+                            <code>@@Output()</code>
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            EventEmitter
+                        </td>
+
+                        <td>
+                            Child → Parent
+                        </td>
+
+                        <td>
+                            Emit custom event
+                        </td>
+
+                        <td>
+                            <code>EventEmitter</code>
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- Why Input Output -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Why Use Input and Output?
+        </h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+
+                <div class="event-icon">
+                    🧩
+                </div>
+
+                <h5>Reusable Components</h5>
+
+                <p>
+                    Components can receive different data and work in
+                    different situations.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="event-icon">
+                    🔗
+                </div>
+
+                <h5>Communication</h5>
+
+                <p>
+                    Parent and child components can communicate clearly.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="event-icon">
+                    📦
+                </div>
+
+                <h5>Data Flow</h5>
+
+                <p>
+                    Application data flow becomes easier to understand.
+                </p>
+
+            </div>
+
+
+            <div class="syntax-card">
+
+                <div class="event-icon">
+                    🛠️
+                </div>
+
+                <h5>Maintainability</h5>
+
+                <p>
+                    Components remain focused on their individual
+                    responsibilities.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Best Practices -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">
+            Input &amp; Output Best Practices
+        </h2>
+
+        <ul class="best-practice-list">
+
+            <li>
+                Use Input for parent-to-child data communication.
+            </li>
+
+            <li>
+                Use Output for child-to-parent event communication.
+            </li>
+
+            <li>
+                Give Input and Output properties meaningful names.
+            </li>
+
+            <li>
+                Keep component communication simple and predictable.
+            </li>
+
+            <li>
+                Avoid tightly coupling unrelated components.
+            </li>
+
+            <li>
+                Use reusable child components whenever possible.
+            </li>
+
+            <li>
+                Keep business logic in the appropriate component or service.
+            </li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- Summary -->
+    <section class="summary-box">
+
+        <h3>
+            Summary
+        </h3>
+
+        <p>
+            Angular Input and Output provide a standard way for components
+            to communicate with each other.
+        </p>
+
+        <p>
+            <strong>Input</strong> is generally used for
+            <strong>Parent → Child</strong> communication, while
+            <strong>Output</strong> is used for
+            <strong>Child → Parent</strong> communication.
+        </p>
+
+        <p class="mb-0">
+            These features are important for building modular and reusable
+            applications such as the course, enquiry and registration
+            modules of <strong>CIIT Training Institute</strong>.
+        </p>
+
+    </section>
+
+
+    <!-- Navigation -->
+    <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+
+        <a class="btn btn-outline-secondary"
+           href="@Url.Action("PassingData", "EventHandling", new { area = "Angular" })">
+            ← Passing Data
+        </a>
+
+        <a class="btn btn-primary"
+           href="@Url.Action("Input", "InputOutput", new { area = "Angular" })">
+            Input →
+        </a>
+
+    </div>
+
+</div>
+
+
+<style>
+
+    .info-card {
+        background: #f8fafc;
+        border-left: 5px solid #4c1d95;
+        padding: 18px 20px;
+        border-radius: 7px;
+        margin-top: 15px;
+    }
+
+        .info-card h5 {
+            color: #4c1d95;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .info-card p {
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+
+    .syntax-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        padding: 25px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+    }
+
+    .syntax-box {
+        width: 175px;
+        min-height: 125px;
+        padding: 18px;
+        text-align: center;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 9px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+        .syntax-box i {
+            display: block;
+            font-size: 28px;
+            color: #4c1d95;
+            margin-bottom: 8px;
+            font-style: normal;
+        }
+
+        .syntax-box strong {
+            display: block;
+            color: #2e1065;
+            font-weight: 700;
+        }
+
+        .syntax-box span {
+            display: block;
+            color: #64748b;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+    .syntax-arrow {
+        color: #4c1d95;
+        font-size: 25px;
+        font-weight: 700;
+    }
+
+    .syntax-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+    }
+
+    .syntax-card {
+        padding: 20px;
+        text-align: center;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 9px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    }
+
+        .syntax-card h5 {
+            color: #2e1065;
+            font-weight: 700;
+            margin-top: 12px;
+        }
+
+        .syntax-card p {
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+    .event-icon {
+        width: 55px;
+        height: 55px;
+        margin: auto;
+        border-radius: 50%;
+        background: #ede9fe;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 25px;
+    }
+
+    .code-card {
+        background: #0f172a;
+        border-radius: 8px;
+        overflow: hidden;
+        margin-top: 18px;
+    }
+
+    .code-title {
+        background: #1e293b;
+        color: #d8c9f5;
+        padding: 10px 16px;
+        font-weight: 600;
+    }
+
+    .code-card pre {
+        margin: 0;
+        padding: 20px;
+        overflow-x: auto;
+    }
+
+    .code-card code {
+        color: #f8fafc;
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    .output-box {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        padding: 20px;
+        margin-top: 20px;
+    }
+
+    .student-preview {
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 9px;
+        padding: 20px;
+        margin-top: 12px;
+    }
+
+    .syntax-table {
+        background: #ffffff;
+    }
+
+        .syntax-table th {
+            background: #4c1d95;
+            color: #ffffff;
+        }
+
+        .syntax-table td,
+        .syntax-table th {
+            padding: 12px;
+            vertical-align: middle;
+        }
+
+    .binding-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        padding: 20px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+    }
+
+    .binding-item {
+        min-width: 150px;
+        padding: 15px;
+        text-align: center;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 9px;
+    }
+
+        .binding-item strong {
+            display: block;
+            color: #2e1065;
+            font-weight: 700;
+        }
+
+        .binding-item span {
+            display: block;
+            color: #64748b;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+    .best-practice-list {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        padding: 20px 25px 20px 45px;
+    }
+
+        .best-practice-list li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+            color: #334155;
+        }
+
+            .best-practice-list li:last-child {
+                margin-bottom: 0;
+            }
+
+    .summary-box {
+        background: #cfe2ff;
+        color: #084298;
+        padding: 22px;
+        border-radius: 10px;
+    }
+
+        .summary-box h3 {
+            color: #084298;
+            font-weight: 700;
+        }
+
+    @@media (max-width: 991px) {
+
+        .syntax-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .syntax-flow {
+            gap: 8px;
+        }
+
+        .syntax-box {
+            width: 160px;
+        }
+    }
+
+    @@media (max-width: 576px) {
+
+        .syntax-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .syntax-box {
+            width: 100%;
+        }
+
+        .syntax-arrow {
+            transform: rotate(90deg);
+        }
+
+        .binding-flow {
+            flex-direction: column;
+        }
+
+        .binding-item {
+            width: 100%;
+        }
+
+        .binding-flow .syntax-arrow {
+            transform: rotate(90deg);
+        }
+
+        .code-card code {
+            font-size: 13px;
+        }
+
+        .student-preview {
+            padding: 16px;
+        }
+    }
+
+</style>

@@ -1,0 +1,183 @@
+@{
+    Layout = "~/Areas/Jenkins/Views/Shared/JenkinsLayout.cshtml";
+    ViewData["Title"] = "Agent and Controller Security";
+}
+
+<style>
+    #agent-and-controller-security-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #agent-and-controller-security-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #agent-and-controller-security-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #agent-and-controller-security-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #agent-and-controller-security-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+    #agent-and-controller-security-page .example-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+    }
+</style>
+
+<main id="agent-and-controller-security-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/Jenkins/Views/Shared/JenkinsTopics.cshtml")
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+                <h1 class="fw-bold">Agent and Controller Security</h1>
+                <p class="lead">
+                    Establish rigid boundary protections by hardening agent connections, enforcing inbound control parameters, and isolating the orchestration plane from untrusted pipeline runtimes.
+                </p>
+            </div>
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">What is Agent and Controller Security?</h2>
+                <p>
+                    In a distributed Jenkins architecture, the controller coordinates the entire system, while agents execute the code. If an agent node is compromised via a malicious or insecure script, the attacker could try to break out of the workspace sandbox and execute unauthorized commands directly on the controller filesystem.
+                </p>
+                <p>
+                    <strong>Agent and Controller Security</strong> establishes strict boundaries using protocols like inbound agent network filtering, SSH transport validation, and the standard <strong>Agent-to-Controller Access Control</strong> system. Hardening this boundary prevents agents from requesting restricted configuration data, credentials, or global keys stored within the controller's core memory space.
+                </p>
+                <div class="alert alert-info">
+                    <strong>Simple Definition:</strong> Agent and Controller Security is the technical isolation policy that restricts agent node capabilities, enforces encrypted communication channels, and blocks agents from accessing or modifying system-critical data hosted on the master controller.
+                </div>
+            </div>
+
+            <!-- KEY CONCEPTS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Key Isolation Concepts</h2>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Agent-to-Controller Access Control</h5>
+                            <p class="mb-0">A built-in subsystem that restricts what agents can request from the controller. It ensures that an execution runner can only pull files and execute commands explicitly scoped to its assigned pipeline workspace.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Inbound vs. Outbound Agents</h5>
+                            <p class="mb-0">Secure transport selection matters. Outbound connections over SSH give the controller explicit structural management, whereas Inbound (JNLP) agents require secure TCP/JNLP4 endpoints combined with restricted secret authentication tokens.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Node File Path Isolation</h5>
+                            <p class="mb-0">Enforce path restrictions to ensure that a compromise on one agent node cannot look up, write to, or corrupt the workspaces or operational files belonging to separate pipelines running on adjacent nodes.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Agent Restrictions Plugin</h5>
+                            <p class="mb-0">Allows enterprise administrators to control exactly which jobs run on which agents based on regular expression patterns or user credentials, preventing unauthorized code execution on high-security runner nodes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXAMPLE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Practical Node Isolation Blueprint</h2>
+                <p>
+                    Below is a declarative pipeline that forces the execution engine to drop down to a low-privilege container node with strict resource constraints and workspace isolation rules:
+                </p>
+                <pre><code>pipeline {
+    agent {
+        node {
+            label 'isolated-linux-agent'
+            customWorkspace '/var/jenkins/isolated-runs/build-' + UUID.randomUUID().toString()
+        }
+    }
+    options {
+        // Stop execution if an agent becomes unresponsive or hangs intentionally
+        timeout(time: 30, unit: 'MINUTES')
+    }
+    stages {
+        stage('Validate System Boundary') {
+            steps {
+                echo 'Checking local node profile and preventing host execution escalation...'
+                // Ensure the executing context is running as a restricted build user
+                sh 'whoami'
+                sh 'pwd'
+            }
+        }
+        stage('Workspace Cleanup') {
+            steps {
+                echo 'Wiping isolated ephemeral directories...'
+            }
+        }
+    }
+    post {
+        always {
+            // Delete the unique workspace instantly to prevent persistence vectors
+            deleteDir()
+        }
+    }
+}</code></pre>
+            </div>
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Security Hardening Exercise</h2>
+                <ol>
+                    <li class="mb-2"><strong>Verify Inbound Port Status:</strong> Navigate to <em>Manage Jenkins &rarr; Security</em>, scroll down to <strong>Agents</strong>, and check if the inbound TCP port is disabled, set to random, or configured via a static structural port.</li>
+                    <li class="mb-2"><strong>Audit Agent File Paths:</strong> Inspect the structural settings of a specific node under <em>Manage Jenkins &rarr; Nodes</em> and locate the <strong>Remote root directory</strong> parameter to trace where build code is placed.</li>
+                    <li class="mb-2"><strong>Examine Access Control Logs:</strong> View your system logs for `jenkins.security.ChannelConfigurator` or look for rejected command anomalies to verify that agent-to-controller access filters are working correctly.</li>
+                    <li><strong>Implement Workspace Deletion:</strong> Update an existing pipeline to leverage the `deleteDir()` or `cleanWs()` methods within a `post { always { ... } }` execution block to prevent leftover artifacts from persisting on the agent.</li>
+                </ol>
+            </div>
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+                <h2 class="h4 fw-bold">Summary</h2>
+                <p class="mb-0">You have completed the <strong>Agent and Controller Security</strong> lesson. You are now prepared to build network boundaries, validate transport layers, and configure deep isolation rules to safely run code across your worker clusters. Proceed to the next module to learn about global Shared Libraries.</p>
+            </div>
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+                <a class="btn btn-outline-primary" href="@Url.Action("LdapOidc", "Master", new { area = "Jenkins" })">← Previous: LDAP and OIDC</a>
+                <a class="btn btn-primary" href="@Url.Action("SharedLibraries", "Master", new { area = "Jenkins" })">Next: Shared Libraries →</a>
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

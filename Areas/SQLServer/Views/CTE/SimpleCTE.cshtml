@@ -1,0 +1,540 @@
+﻿@{
+    ViewData["Title"] = "Simple CTE";
+}
+
+<div class="container-fluid px-4 py-4">
+
+    <!-- =========================
+         PAGE HEADER
+    ========================== -->
+
+    <div class="mb-4">
+
+        <h1 class="fw-bold">
+            Simple CTE
+        </h1>
+
+        <p class="text-muted">
+            Learn how to create and use a simple Common Table Expression
+            in SQL Server.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         WHAT IS SIMPLE CTE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                What is a Simple CTE?
+            </h2>
+
+            <p>
+                A simple CTE is a Common Table Expression that defines a
+                temporary result set and uses that result in the query
+                immediately following the CTE.
+            </p>
+
+            <p class="mb-0">
+                A simple CTE normally contains a single SELECT statement
+                inside the CTE definition.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         BASIC SYNTAX
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Basic Syntax
+            </h2>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>WITH CTE_Name AS
+(
+    SELECT column1,
+           column2
+    FROM TableName
+)
+SELECT *
+FROM CTE_Name;</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         STEP BY STEP
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Understanding the Syntax
+            </h2>
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-striped">
+
+                    <thead class="table-dark">
+
+                        <tr>
+                            <th>Part</th>
+                            <th>Meaning</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>
+                                <strong>WITH</strong>
+                            </td>
+                            <td>
+                                Starts the CTE definition.
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <strong>CTE_Name</strong>
+                            </td>
+                            <td>
+                                Name assigned to the CTE.
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <strong>AS</strong>
+                            </td>
+                            <td>
+                                Introduces the query that defines the CTE.
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <strong>SELECT</strong>
+                            </td>
+                            <td>
+                                Retrieves the required columns.
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <strong>FROM</strong>
+                            </td>
+                            <td>
+                                Specifies the source table.
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         TABLE EXAMPLE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Example Table
+            </h2>
+
+            <p>
+                Let's consider an <strong>Employees</strong> table:
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>EmployeeId | EmployeeName | Department | Salary
+----------------------------------------------------
+101        | Amit          | IT         | 60000
+102        | Rahul         | HR         | 45000
+103        | Priya         | IT         | 70000
+104        | Sneha         | Finance    | 55000</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         SIMPLE CTE EXAMPLE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Simple CTE Example
+            </h2>
+
+            <p>
+                Suppose we want to retrieve all employees from the
+                <strong>IT</strong> department.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>WITH ITEmployees AS
+(
+    SELECT EmployeeId,
+           EmployeeName,
+           Department,
+           Salary
+    FROM Employees
+    WHERE Department = 'IT'
+)
+SELECT *
+FROM ITEmployees;</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         RESULT
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Result
+            </h2>
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-striped">
+
+                    <thead class="table-dark">
+
+                        <tr>
+                            <th>EmployeeId</th>
+                            <th>EmployeeName</th>
+                            <th>Department</th>
+                            <th>Salary</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>101</td>
+                            <td>Amit</td>
+                            <td>IT</td>
+                            <td>60000</td>
+                        </tr>
+
+                        <tr>
+                            <td>103</td>
+                            <td>Priya</td>
+                            <td>IT</td>
+                            <td>70000</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         CTE WITH WHERE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                CTE with WHERE Clause
+            </h2>
+
+            <p>
+                A WHERE condition can be used inside the CTE to filter
+                the data before the main query executes.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>WITH HighSalaryEmployees AS
+(
+    SELECT EmployeeId,
+           EmployeeName,
+           Salary
+    FROM Employees
+    WHERE Salary &gt; 50000
+)
+SELECT *
+FROM HighSalaryEmployees;</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         CTE WITH SELECTED COLUMNS
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Selecting Specific Columns
+            </h2>
+
+            <p>
+                We do not always need to select every column. We can
+                select only the columns required by the application.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>WITH EmployeeDetails AS
+(
+    SELECT EmployeeName,
+           Department
+    FROM Employees
+)
+SELECT *
+FROM EmployeeDetails;</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         CTE WITH ORDER BY
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Using CTE Result with ORDER BY
+            </h2>
+
+            <p>
+                The main query can sort the data returned by the CTE.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>WITH EmployeeDetails AS
+(
+    SELECT EmployeeId,
+           EmployeeName,
+           Salary
+    FROM Employees
+)
+SELECT *
+FROM EmployeeDetails
+ORDER BY Salary DESC;</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         CTE WITH AGGREGATE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Simple CTE with Aggregate Function
+            </h2>
+
+            <p>
+                A CTE can also contain aggregate functions such as
+                COUNT, SUM and AVG.
+            </p>
+
+            <pre class="bg-dark text-white p-3 rounded"><code>WITH DepartmentSalary AS
+(
+    SELECT Department,
+           AVG(Salary) AS AverageSalary
+    FROM Employees
+    GROUP BY Department
+)
+SELECT *
+FROM DepartmentSalary;</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         ADVANTAGES
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Advantages of Simple CTE
+            </h2>
+
+            <ul>
+
+                <li class="mb-2">
+                    Makes complex queries easier to read.
+                </li>
+
+                <li class="mb-2">
+                    Provides a meaningful name to an intermediate result.
+                </li>
+
+                <li class="mb-2">
+                    Helps organize query logic.
+                </li>
+
+                <li class="mb-2">
+                    Makes query maintenance easier.
+                </li>
+
+                <li>
+                    Can be combined with filtering, joins and aggregation.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         IMPORTANT POINTS
+    ========================== -->
+
+    <div class="alert alert-warning shadow-sm mb-4">
+
+        <h4 class="fw-bold">
+            Important Points
+        </h4>
+
+        <ul class="mb-0">
+
+            <li class="mb-2">
+                A CTE starts with the <strong>WITH</strong> keyword.
+            </li>
+
+            <li class="mb-2">
+                The CTE definition is enclosed inside parentheses.
+            </li>
+
+            <li class="mb-2">
+                The query immediately following the CTE uses its result.
+            </li>
+
+            <li class="mb-2">
+                A CTE is not a permanent database object.
+            </li>
+
+            <li>
+                A simple CTE is useful for improving query readability.
+            </li>
+
+        </ul>
+
+    </div>
+
+
+    <!-- =========================
+         SUMMARY
+    ========================== -->
+
+    <div class="card shadow-sm mb-5">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Summary
+            </h2>
+
+            <p>
+                A simple CTE is a temporary named result set created using
+                the <strong>WITH</strong> keyword. It allows us to separate
+                query logic and makes SQL statements easier to understand.
+            </p>
+
+            <p class="mb-0">
+                In the next topic, we will learn how to use a
+                <strong>CTE with JOIN</strong>.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         PREVIOUS / NEXT
+    ========================== -->
+
+    <div class="d-flex justify-content-between align-items-center
+        mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/CTE/Index"
+           class="btn btn-outline-primary">
+
+            ← Previous: CTE Introduction
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/CTE/CTEWithJoin"
+           class="btn btn-primary">
+
+            Next: CTE with JOIN →
+
+        </a>
+
+    </div>
+
+</div>

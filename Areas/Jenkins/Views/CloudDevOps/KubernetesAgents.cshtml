@@ -1,0 +1,218 @@
+@{
+    Layout = "~/Areas/Jenkins/Views/Shared/JenkinsLayout.cshtml";
+    ViewData["Title"] = "Kubernetes Pod Agents";
+}
+
+<style>
+    #kubernetes-pod-agents-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #kubernetes-pod-agents-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #kubernetes-pod-agents-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #kubernetes-pod-agents-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #kubernetes-pod-agents-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+    #kubernetes-pod-agents-page .example-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+    }
+</style>
+
+<main id="kubernetes-pod-agents-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/Jenkins/Views/Shared/JenkinsTopics.cshtml")
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+                <h1 class="fw-bold">Kubernetes Pod Agents</h1>
+                <p class="lead">
+                    Learn how to deeply configure, launch, and manage dynamic, distributed pipeline worker environments using Kubernetes Pods as temporary Jenkins execution agents.
+                </p>
+            </div>
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">What are Kubernetes Pod Agents?</h2>
+                <p>
+                    In legacy CI/CD topologies, build nodes are static, long-lived Virtual Machines. These persistent agents present ongoing maintenance challenges—such as configuration drift, disk capacity exhaustion, and security compliance vulnerabilities. <strong>Kubernetes Pod Agents</strong> modernize this layer by implementing a highly elastic, containerized execution engine.
+                </p>
+                <p>
+                    Whenever a pipeline execution is triggered, the Jenkins controller communicates directly with the target Kubernetes API server to spawn a specialized, isolated <strong>worker pod</strong> in real time. This pod contains your specified tool runtimes, executes the build jobs inside isolated boundaries, and is completely terminated by the orchestrator the moment the stage processing wraps up.
+                </p>
+                <div class="alert alert-info">
+                    <strong>Simple Definition:</strong> On-demand, dynamic worker nodes launched as native Kubernetes Pods that build, test, and package application stacks before gracefully self-destructing.
+                </div>
+            </div>
+
+            <!-- KEY CONCEPTS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Key Concepts</h2>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>JNLP Inbound Wrapper</h5>
+                            <p class="mb-0">The mandatory core container within the agent pod that establishes a two-way network socket stream back to the master Jenkins controller node.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Dynamic Pod Templates</h5>
+                            <p class="mb-0">Declaring fine-grained container runtime variables directly within your pipeline file, avoiding the need for static UI-based cloud configurations.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Shared Workspace Volumes</h5>
+                            <p class="mb-0">An automatic internal volume mapping pattern that transparently passes compiled source elements between separate containers running inside the same agent pod.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Resource Requests & Limits</h5>
+                            <p class="mb-0">Setting precise CPU and Memory boundaries for execution slots to prevent intensive application builds from destabilizing adjacent computing clusters.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXAMPLE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Practical Jenkins Example</h2>
+                <p>The following declarative pipeline script provisions a custom Kubernetes pod dynamically, injecting a Docker-in-Docker container layer to run secure build operations without contaminating the host node environment:</p>
+                <pre><code>pipeline {
+    agent {
+        kubernetes {
+            // Evaluates a native Kubernetes YAML pod layout configuration dynamically
+            yaml '''
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    component: jenkins-agent
+spec:
+  containers:
+  - name: golang
+    image: golang:1.21-alpine
+    command: ['sleep']
+    args: ['99d']
+  - name: docker-cli
+    image: docker:24.0-cli
+    command: ['sleep']
+    args: ['99d']
+'''
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    stages {
+        stage('Compile Application Source') {
+            steps {
+                // Routes commands explicitly into the isolated Go container layer
+                container('golang') {
+                    echo 'Compiling package source modules...'
+                    sh 'go version'
+                    sh 'echo "Building high-performance binaries..."'
+                }
+            }
+        }
+
+        stage('Verify Docker Layer') {
+            steps {
+                // Swaps execution paths over to the adjacent CLI tool container context
+                container('docker-cli') {
+                    echo 'Checking docker client engine status...'
+                    sh 'docker --version'
+                }
+            }
+        }
+    }
+}</code></pre>
+            </div>
+
+        <!-- PRACTICE -->
+            <div class="mb-4">
+    <h2 class="h3 fw-bold">Practice Exercise</h2>
+                <ol>
+<li class="mb-2">Verify that the target Jenkins controller has a valid Kubernetes Cloud Provider target configured via <strong>Manage Jenkins &rarr; Clouds</strong>.</li>
+                    <li class="mb-2">Create a new <strong>Pipeline</strong> job definition workspace in your directory labeled <code>k8s-pod-agent-pipeline</code>.</li>
+                    <li class="mb-2">Paste the complete multi-container configuration template shared in the script block example above.</li>
+<li class="mb-2">Trigger a new manual build sequence run and monitor the <strong>Console Output</strong> logs to trace the step-by-step process of container scheduling, volume mapping, and automatic pod removal.</li>
+</ol>
+</div>
+
+<!-- SUMMARY -->
+<div class="alert alert-info mt-4">
+<h2 class="h4 fw-bold">Summary</h2>
+<p class="mb-0">You have completed the <strong>Kubernetes Pod Agents</strong> lesson. Automating isolated execution runtimes inside transient container sets provides a secure environment to run progressive continuous delivery targets, such as a <strong>Kubernetes Deployment</strong>.</p>
+</div>
+
+<!-- NAVIGATION -->
+<div class="d-flex justify-content-between mt-4">
+                <a class="btn btn-outline-primary" href="@Url.Action("S3Artifacts", "CloudDevOps", new { area = "Jenkins" })">&larr; Previous: S3 Artifact Storage</a>
+                <a class="btn btn-primary" href="@Url.Action("KubernetesDeployment", "CloudDevOps", new { area = "Jenkins" })">Next: Kubernetes Deployment &rarr;</a>
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

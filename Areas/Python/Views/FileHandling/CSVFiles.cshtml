@@ -1,0 +1,1238 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Python CSV Files";
+}
+
+<style>
+
+    #python-csv-files-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #python-csv-files-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #python-csv-files-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #python-csv-files-page .diagram-box {
+        background: #ffffff;
+        border: 2px solid #6f42c1;
+        border-radius: 10px;
+        padding: 18px;
+        text-align: center;
+        height: 100%;
+    }
+
+        #python-csv-files-page .diagram-box h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        #python-csv-files-page .diagram-box p {
+            margin-bottom: 0;
+            font-size: 14px;
+            color: #495057;
+        }
+
+    #python-csv-files-page .diagram-arrow {
+        text-align: center;
+        font-size: 28px;
+        font-weight: 700;
+        color: #6f42c1;
+        padding: 8px 0;
+    }
+
+    #python-csv-files-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #python-csv-files-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+        }
+
+</style>
+
+
+<main id="python-csv-files-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+
+                <h1 class="fw-bold">
+                    CSV Files in Python
+                </h1>
+
+                <p class="lead">
+                    Learn how to read, write, create and process CSV files
+                    using Python.
+                </p>
+
+            </div>
+
+
+            <!-- WHAT IS CSV -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    What is a CSV File?
+                </h2>
+
+                <p>
+                    CSV stands for <strong>Comma-Separated Values</strong>.
+                </p>
+
+                <p>
+                    A CSV file stores tabular data in a simple text format.
+                    Each row represents a record and values in a row are
+                    separated by a delimiter, commonly a comma.
+                </p>
+
+                <div class="alert alert-info">
+
+                    <strong>Simple Definition:</strong>
+
+                    A CSV file stores data in rows and columns using
+                    a text-based format.
+
+                </div>
+
+            </div>
+
+
+            <!-- SIMPLE CSV -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Simple CSV Example
+                </h2>
+
+                <p>
+                    A simple CSV file named
+                    <code>students.csv</code> can look like this:
+                </p>
+
+                <pre><code>Name,Course,Fees
+Rahul,Python,45000
+Priya,Java,40000
+Amit,.NET,50000</code></pre>
+
+                <p>
+                    The first row contains column headings and the
+                    following rows contain data records.
+                </p>
+
+            </div>
+
+
+            <!-- DIAGRAM -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    CSV File Diagram
+                </h2>
+
+                <p>
+                    CSV data can be understood as rows and columns.
+                </p>
+
+                <div class="concept-box">
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            Python Program
+                        </h5>
+
+                        <p>
+                            Reads or writes CSV data.
+                        </p>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            CSV File
+                        </h5>
+
+                        <p>
+                            Rows and columns stored as text.
+                        </p>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="row g-3">
+
+                        <div class="col-md-4">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    Header
+                                </h5>
+
+                                <p>
+                                    Name, Course, Fees
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-4">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    Row
+                                </h5>
+
+                                <p>
+                                    Student record
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-4">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    Row
+                                </h5>
+
+                                <p>
+                                    Another student record
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            Processed Data
+                        </h5>
+
+                        <p>
+                            Python can read, modify and create CSV data.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CSV MODULE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    The <code>csv</code> Module
+                </h2>
+
+                <p>
+                    Python provides the built-in <code>csv</code> module
+                    for working with CSV files.
+                </p>
+
+                <pre><code>import csv</code></pre>
+
+                <p>
+                    The module provides classes and functions for reading
+                    and writing CSV data.
+                </p>
+
+            </div>
+
+
+            <!-- READ CSV -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Reading a CSV File
+                </h2>
+
+                <p>
+                    We can use <code>csv.reader()</code> to read rows
+                    from a CSV file.
+                </p>
+
+                <pre><code>import csv
+
+with open(
+    "students.csv",
+    "r",
+    newline="",
+    encoding="utf-8"
+) as file:
+
+    reader = csv.reader(file)
+
+    for row in reader:
+
+        print(row)</code></pre>
+
+                <p class="mt-3">
+                    For the sample CSV file, the output will be similar to:
+                </p>
+
+                <pre><code>['Name', 'Course', 'Fees']
+['Rahul', 'Python', '45000']
+['Priya', 'Java', '40000']
+['Amit', '.NET', '50000']</code></pre>
+
+            </div>
+
+
+            <!-- ACCESS COLUMNS -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Accessing CSV Values
+                </h2>
+
+                <p>
+                    Each row returned by <code>csv.reader()</code>
+                    is represented as a list.
+                </p>
+
+                <pre><code>import csv
+
+with open(
+    "students.csv",
+    "r",
+    newline="",
+    encoding="utf-8"
+) as file:
+
+    reader = csv.reader(file)
+
+    for row in reader:
+
+        print("Name:", row[0])
+        print("Course:", row[1])
+        print("Fees:", row[2])</code></pre>
+
+            </div>
+            <div class="px-2">
+    <h5 class="fw-bold mb-2">
+        Output
+    </h5>
+
+    <pre class="mb-4"><code>Name: Rahul
+Course: Python
+Fees: 35000
+Name: Sneha
+Course: .NET
+Fees: 35000
+Name: Amit
+Course: Java
+Fees: 30000</code></pre>
+</div>
+
+            <!-- SKIP HEADER -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Skipping the Header Row
+                </h2>
+
+                <p>
+                    When the first row contains column names, we can
+                    read it separately.
+                </p>
+
+                <pre><code>import csv
+
+with open(
+    "students.csv",
+    "r",
+    newline="",
+    encoding="utf-8"
+) as file:
+
+    reader = csv.reader(file)
+
+    header = next(reader)
+
+    print("Header:", header)
+
+    for row in reader:
+
+        print(row)</code></pre>
+
+                <p>
+                    The <code>next()</code> function moves the reader
+                    to the next available row.
+                </p>
+
+            </div>
+            <div class="px-2">
+    <h5 class="fw-bold mb-2">
+        Output
+    </h5>
+
+    <pre class="mb-4"><code>Header: ['Name', 'Course', 'Fees']
+['Rahul', 'Python', '35000']
+['Sneha', '.NET', '35000']
+['Amit', 'Java', '30000']</code></pre>
+</div>
+
+            <!-- DICT READER -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Reading CSV Using <code>DictReader</code>
+                </h2>
+
+                <p>
+                    <code>csv.DictReader</code> reads each row as a
+                    dictionary-like object using the header names
+                    as keys.
+                </p>
+
+                <pre><code>import csv
+
+with open(
+    "students.csv",
+    "r",
+    newline="",
+    encoding="utf-8"
+) as file:
+
+    reader = csv.DictReader(file)
+
+    for row in reader:
+
+        print(row["Name"])
+        print(row["Course"])
+        print(row["Fees"])</code></pre>
+
+                <p>
+                    This approach makes column-based access easier to read.
+                </p>
+
+            </div>
+            <div class="px-2">
+    <h5 class="fw-bold mb-2">
+        Output
+    </h5>
+
+    <pre class="mb-4"><code>Rahul
+Python
+35000
+Sneha
+.NET
+35000
+Amit
+Java
+30000</code></pre>
+</div>
+
+            <!-- WRITE CSV -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Writing a CSV File
+                </h2>
+
+                <p>
+                    We can use <code>csv.writer()</code> to write rows
+                    into a CSV file.
+                </p>
+
+                <pre><code>import csv
+
+with open(
+    "courses.csv",
+    "w",
+    newline="",
+    encoding="utf-8"
+) as file:
+
+    writer = csv.writer(file)
+
+    writer.writerow(
+        ["Course", "Duration", "Fees"]
+    )
+
+    writer.writerow(
+        ["Python", "6 Months", 45000]
+    )
+
+    writer.writerow(
+        ["Java", "6 Months", 40000]
+    )</code></pre>
+
+                <p class="mt-3">
+                    The resulting CSV file will contain data similar to:
+                </p>
+
+                <pre><code>Course,Duration,Fees
+Python,6 Months,45000
+Java,6 Months,40000</code></pre>
+
+            </div>
+
+
+            <!-- WRITEROW -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Writing Multiple Rows
+                </h2>
+
+                <p>
+                    The <code>writerows()</code> method can write
+                    multiple rows at once.
+                </p>
+
+                <pre><code>import csv
+
+rows = [
+    ["Python", "6 Months", 45000],
+    ["Java", "6 Months", 40000],
+    [".NET", "5 Months", 50000]
+]
+
+with open(
+    "courses.csv",
+    "w",
+    newline="",
+    encoding="utf-8"
+) as file:
+
+    writer = csv.writer(file)
+
+    writer.writerow(
+        ["Course", "Duration", "Fees"]
+    )
+
+    writer.writerows(rows)</code></pre>
+
+            </div>
+
+
+            <!-- DICT WRITER -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Writing CSV Using <code>DictWriter</code>
+                </h2>
+
+                <p>
+                    <code>csv.DictWriter</code> lets us write rows
+                    using dictionary values.
+                </p>
+
+                <pre><code>import csv
+
+rows = [
+    {
+        "name": "Rahul",
+        "course": "Python",
+        "fees": 45000
+    },
+    {
+        "name": "Priya",
+        "course": "Java",
+        "fees": 40000
+    }
+]
+
+with open(
+    "students.csv",
+    "w",
+    newline="",
+    encoding="utf-8"
+) as file:
+
+    fieldnames = [
+        "name",
+        "course",
+        "fees"
+    ]
+
+    writer = csv.DictWriter(
+        file,
+        fieldnames=fieldnames
+    )
+
+    writer.writeheader()
+
+    writer.writerows(rows)</code></pre>
+
+                <p>
+                    The dictionary keys become the column names.
+                </p>
+
+            </div>
+
+
+            <!-- APPEND CSV -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Appending Data to a CSV File
+                </h2>
+
+                <p>
+                    We can use append mode <code>"a"</code> to add
+                    records without replacing existing rows.
+                </p>
+
+                <pre><code>import csv
+
+with open(
+    "students.csv",
+    "a",
+    newline="",
+    encoding="utf-8"
+) as file:
+
+    writer = csv.writer(file)
+
+    writer.writerow(
+        ["Sneha", "MERN", 50000]
+    )</code></pre>
+
+                <p>
+                    The new record is added to the end of the file.
+                </p>
+
+            </div>
+
+
+            <!-- DELIMITER -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Using a Different Delimiter
+                </h2>
+
+                <p>
+                    CSV data does not always have to use commas.
+                    The <code>delimiter</code> parameter can specify
+                    another separator.
+                </p>
+
+                <pre><code>import csv
+
+with open(
+    "students.csv",
+    "r",
+    newline="",
+    encoding="utf-8"
+) as file:
+
+    reader = csv.reader(
+        file,
+        delimiter=","
+    )
+
+    for row in reader:
+
+        print(row)</code></pre>
+
+                <p>
+                    Other delimiters can be used when the file format
+                    requires them.
+                </p>
+
+            </div>
+            <div class="px-2">
+    <h5 class="fw-bold mb-2">
+        Output
+    </h5>
+
+    <pre class="mb-4"><code>['Name', 'Course', 'Fees']
+['Rahul', 'Python', '35000']
+['Sneha', '.NET', '35000']
+['Amit', 'Java', '30000']</code></pre>
+</div>
+
+            <!-- QUOTING -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Quoted CSV Values
+                </h2>
+
+                <p>
+                    CSV files may contain values that include commas
+                    or other special characters.
+                </p>
+
+                <p>
+                    The CSV module handles standard quoting rules
+                    for reading and writing CSV data.
+                </p>
+
+                <pre><code>import csv
+
+data = [
+    ["Name", "City"],
+    ["Rahul", "Pune, Maharashtra"],
+    ["Priya", "Mumbai, Maharashtra"]
+]
+
+with open(
+    "people.csv",
+    "w",
+    newline="",
+    encoding="utf-8"
+) as file:
+
+    writer = csv.writer(file)
+
+    writer.writerows(data)</code></pre>
+
+                <p>
+                    The CSV module handles the required quoting
+                    when writing values containing delimiters.
+                </p>
+
+            </div>
+
+
+            <!-- SEARCH CSV -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Searching Data in a CSV File
+                </h2>
+
+                <p>
+                    We can read rows and search for a specific value.
+                </p>
+
+                <pre><code>import csv
+
+search_name = "Rahul"
+
+with open(
+    "students.csv",
+    "r",
+    newline="",
+    encoding="utf-8"
+) as file:
+
+    reader = csv.DictReader(file)
+
+    for row in reader:
+
+        if row["Name"] == search_name:
+
+            print("Student found")
+            print(row)</code></pre>
+
+            </div>
+            <div class="px-2">
+    <h5 class="fw-bold mb-2">
+        Output
+    </h5>
+
+    <pre class="mb-4"><code>Student found
+{'Name': 'Rahul', 'Course': 'Python', 'Fees': '35000'}</code></pre>
+</div>
+
+            <!-- UPDATE CONCEPT -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Updating CSV Data
+                </h2>
+
+                <p>
+                    A common way to update CSV data is to read the
+                    existing rows, modify the required values and
+                    then write the rows back to the file.
+                </p>
+
+                <pre><code>import csv
+
+rows = []
+
+with open(
+    "students.csv",
+    "r",
+    newline="",
+    encoding="utf-8"
+) as file:
+
+    reader = csv.DictReader(file)
+
+    fieldnames = reader.fieldnames
+
+    for row in reader:
+
+        if row["Name"] == "Rahul":
+
+            row["Course"] = "Python Full Stack"
+
+        rows.append(row)
+
+
+with open(
+    "students.csv",
+    "w",
+    newline="",
+    encoding="utf-8"
+) as file:
+
+    writer = csv.DictWriter(
+        file,
+        fieldnames=fieldnames
+    )
+
+    writer.writeheader()
+    writer.writerows(rows)</code></pre>
+
+                <p>
+                    The selected record is updated and the complete
+                    CSV file is written again.
+                </p>
+
+            </div>
+
+
+            <!-- CSV VS NORMAL TEXT -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    CSV File vs Normal Text File
+                </h2>
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered align-middle">
+
+                        <thead>
+
+                            <tr>
+                                <th>CSV File</th>
+                                <th>Normal Text File</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>
+                                    Designed for tabular data.
+                                </td>
+
+                                <td>
+                                    General-purpose text storage.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    Values are separated using delimiters.
+                                </td>
+
+                                <td>
+                                    Does not require a tabular structure.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    Easy to exchange between spreadsheet
+                                    and data-processing applications.
+                                </td>
+
+                                <td>
+                                    Commonly used for plain text.
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <!-- COMMON CSV METHODS -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Common CSV Tools
+                </h2>
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered align-middle">
+
+                        <thead>
+
+                            <tr>
+                                <th>Tool</th>
+                                <th>Purpose</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>
+                                    <code>csv.reader()</code>
+                                </td>
+
+                                <td>
+                                    Read rows from a CSV file.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <code>csv.writer()</code>
+                                </td>
+
+                                <td>
+                                    Write rows to a CSV file.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <code>csv.DictReader()</code>
+                                </td>
+
+                                <td>
+                                    Read rows as dictionaries.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <code>csv.DictWriter()</code>
+                                </td>
+
+                                <td>
+                                    Write dictionaries as CSV rows.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <code>writerow()</code>
+                                </td>
+
+                                <td>
+                                    Write one row.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <code>writerows()</code>
+                                </td>
+
+                                <td>
+                                    Write multiple rows.
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <!-- BEST PRACTICES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Best Practices
+                </h2>
+
+                <ul>
+
+                    <li>
+                        Use the <code>csv</code> module rather than manually
+                        splitting and joining CSV text for normal CSV work.
+                    </li>
+
+                    <li>
+                        Use <code>newline=""</code> when opening CSV files
+                        with the <code>csv</code> module.
+                    </li>
+
+                    <li>
+                        Specify <code>encoding="utf-8"</code> when appropriate.
+                    </li>
+
+                    <li>
+                        Use <code>DictReader</code> and <code>DictWriter</code>
+                        when named columns make the code easier to understand.
+                    </li>
+
+                    <li>
+                        Validate file paths and input data when required.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- COMMON MISTAKES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Common Mistakes
+                </h2>
+
+                <ul>
+
+                    <li>
+                        Using the wrong column index.
+                    </li>
+
+                    <li>
+                        Forgetting the header row when using
+                        <code>DictReader</code>.
+                    </li>
+
+                    <li>
+                        Using an incorrect delimiter.
+                    </li>
+
+                    <li>
+                        Forgetting <code>newline=""</code> while working
+                        with the CSV module.
+                    </li>
+
+                    <li>
+                        Replacing the complete CSV file accidentally
+                        when append mode was required.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- PRACTICAL PROJECT -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Example: Student CSV 📩👀
+                </h2>
+
+                <pre><code>import csv
+
+students = [
+    {
+        "Name": "Rahul",
+        "Course": "Python",
+        "Fees": 45000
+    },
+    {
+        "Name": "Priya",
+        "Course": "Java",
+        "Fees": 40000
+    },
+    {
+        "Name": "Amit",
+        "Course": ".NET",
+        "Fees": 50000
+    }
+]
+
+with open(
+    "students.csv",
+    "w",
+    newline="",
+    encoding="utf-8"
+) as file:
+
+    fieldnames = [
+        "Name",
+        "Course",
+        "Fees"
+    ]
+
+    writer = csv.DictWriter(
+        file,
+        fieldnames=fieldnames
+    )
+
+    writer.writeheader()
+    writer.writerows(students)
+
+print("CSV file created successfully")</code></pre>
+
+                <p>
+                    This program creates a structured CSV file containing
+                    student information.
+                </p>
+
+            </div>
+
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Practice Programs
+                </h2>
+
+                <ol>
+
+                    <li>
+                        Create a CSV file containing student names and courses.
+                    </li>
+
+                    <li>
+                        Read the CSV file using <code>csv.reader()</code>.
+                    </li>
+
+                    <li>
+                        Read the same file using <code>DictReader</code>.
+                    </li>
+
+                    <li>
+                        Create a CSV file using <code>csv.writer()</code>.
+                    </li>
+
+                    <li>
+                        Create a CSV file using <code>DictWriter</code>.
+                    </li>
+
+                    <li>
+                        Append a new student record.
+                    </li>
+
+                    <li>
+                        Search for a student by name.
+                    </li>
+
+                    <li>
+                        Update a student's course and rewrite the CSV file.
+                    </li>
+
+                </ol>
+
+            </div>
+
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+
+                <h2 class="h4 fw-bold">
+                    Summary
+                </h2>
+
+                <p class="mb-0">
+
+                    CSV stands for Comma-Separated Values and is commonly
+                    used for storing tabular data. Python provides the
+                    built-in <code>csv</code> module to read and write
+                    CSV files. We can use <code>reader()</code> and
+                    <code>DictReader()</code> for reading data, and
+                    <code>writer()</code> and <code>DictWriter()</code>
+                    for writing data. CSV files are useful for storing
+                    and exchanging structured row-and-column data.
+
+                </p>
+
+            </div>
+
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+
+                <a class="btn btn-outline-secondary"
+                   href="@Url.Action("FileDirectories", "FileHandling", new { area = "Python" })">
+
+                    ← Previous: Topic
+
+                </a>
+
+
+                <a class="btn btn-primary"
+                   href="@Url.Action("JSONFiles", "FileHandling", new { area = "Python" })">
+
+                    Next: Topic →
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

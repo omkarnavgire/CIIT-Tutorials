@@ -1,0 +1,527 @@
+﻿@{
+    ViewData["Title"] = "COUNT() Function - SQL Server";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- =========================
+         PAGE HEADER
+    ========================== -->
+
+    <div class="mb-5">
+
+        <h1 class="fw-bold">
+            COUNT() Function
+        </h1>
+
+        <p class="lead text-muted">
+            Learn how to count rows and values in SQL Server
+            using the COUNT() aggregate function.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         1. INTRODUCTION
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            What is COUNT()?
+        </h2>
+
+        <p>
+            The <strong>COUNT()</strong> function is an aggregate
+            function in SQL Server used to count rows or values
+            from a table.
+        </p>
+
+        <p>
+            It is commonly used when we want to know how many
+            records are present in a table or how many records
+            satisfy a particular condition.
+        </p>
+
+        <div class="alert alert-info">
+
+            <strong>In simple words:</strong>
+
+            <p class="mb-0 mt-2">
+                COUNT() tells us <strong>how many records</strong>
+                are available.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         2. SYNTAX
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            COUNT() Syntax
+        </h2>
+
+        <pre class="bg-light p-4 rounded border"><code>SELECT COUNT(column_name)
+FROM table_name;</code></pre>
+
+        <p class="mt-3">
+            To count all rows, we commonly use:
+        </p>
+
+        <pre class="bg-light p-4 rounded border"><code>SELECT COUNT(*)
+FROM table_name;</code></pre>
+
+    </section>
+
+
+    <!-- =========================
+         3. SAMPLE TABLE
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Example Table
+        </h2>
+
+        <p>
+            Consider the following <strong>Employees</strong> table:
+        </p>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>EmployeeId</th>
+                        <th>EmployeeName</th>
+                        <th>Department</th>
+                        <th>Salary</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>1</td>
+                        <td>Rahul</td>
+                        <td>IT</td>
+                        <td>50000</td>
+                    </tr>
+
+                    <tr>
+                        <td>2</td>
+                        <td>Priya</td>
+                        <td>HR</td>
+                        <td>40000</td>
+                    </tr>
+
+                    <tr>
+                        <td>3</td>
+                        <td>Amit</td>
+                        <td>IT</td>
+                        <td>60000</td>
+                    </tr>
+
+                    <tr>
+                        <td>4</td>
+                        <td>Neha</td>
+                        <td>HR</td>
+                        <td>45000</td>
+                    </tr>
+
+                    <tr>
+                        <td>5</td>
+                        <td>Rohit</td>
+                        <td>Sales</td>
+                        <td>35000</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         4. COUNT(*)
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            COUNT(*)
+        </h2>
+
+        <p>
+            <strong>COUNT(*)</strong> counts all rows in the table.
+        </p>
+
+        <pre class="bg-light p-4 rounded border"><code>SELECT COUNT(*) AS TotalEmployees
+FROM Employees;</code></pre>
+
+        <h4 class="fw-bold mt-4">
+            Output
+        </h4>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered">
+
+                <thead class="table-primary">
+
+                    <tr>
+                        <th>TotalEmployees</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>5</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <p class="mt-3">
+            The result is <strong>5</strong> because the Employees
+            table contains five rows.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         5. COUNT(COLUMN)
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            COUNT(ColumnName)
+        </h2>
+
+        <p>
+            We can also specify a particular column inside COUNT().
+            In this case, SQL Server counts the
+            <strong>non-NULL values</strong> in that column.
+        </p>
+
+        <pre class="bg-light p-4 rounded border"><code>SELECT COUNT(Salary) AS SalaryCount
+FROM Employees;</code></pre>
+
+        <p class="mt-3">
+            If all Salary values are available, the result will be:
+        </p>
+
+        <pre class="bg-light p-4 rounded border"><code>SalaryCount
+-----------
+5</code></pre>
+
+    </section>
+
+
+    <!-- =========================
+         6. COUNT WITH WHERE
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            COUNT() with WHERE
+        </h2>
+
+        <p>
+            COUNT() can be combined with WHERE to count only the
+            records that satisfy a condition.
+        </p>
+
+        <p>
+            For example, count employees whose salary is greater
+            than 40000:
+        </p>
+
+        <pre class="bg-light p-4 rounded border"><code>SELECT COUNT(*) AS EmployeeCount
+FROM Employees
+WHERE Salary &gt; 40000;</code></pre>
+
+        <h4 class="fw-bold mt-4">
+            Output
+        </h4>
+
+        <pre class="bg-light p-4 rounded border"><code>EmployeeCount
+-------------
+3</code></pre>
+
+    </section>
+
+
+    <!-- =========================
+         7. COUNT WITH GROUP BY
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            COUNT() with GROUP BY
+        </h2>
+
+        <p>
+            COUNT() can be used with GROUP BY to count records
+            separately for each group.
+        </p>
+
+        <pre class="bg-light p-4 rounded border"><code>SELECT Department,
+       COUNT(*) AS EmployeeCount
+FROM Employees
+GROUP BY Department;</code></pre>
+
+        <h4 class="fw-bold mt-4">
+            Output
+        </h4>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered">
+
+                <thead class="table-success">
+
+                    <tr>
+                        <th>Department</th>
+                        <th>EmployeeCount</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>HR</td>
+                        <td>2</td>
+                    </tr>
+
+                    <tr>
+                        <td>IT</td>
+                        <td>2</td>
+                    </tr>
+
+                    <tr>
+                        <td>Sales</td>
+                        <td>1</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         8. COUNT DISTINCT
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            COUNT(DISTINCT)
+        </h2>
+
+        <p>
+            <strong>COUNT(DISTINCT column)</strong> is used to count
+            unique non-NULL values.
+        </p>
+
+        <p>
+            For example, to count the number of different departments:
+        </p>
+
+        <pre class="bg-light p-4 rounded border"><code>SELECT COUNT(DISTINCT Department)
+       AS TotalDepartments
+FROM Employees;</code></pre>
+
+        <h4 class="fw-bold mt-4">
+            Output
+        </h4>
+
+        <pre class="bg-light p-4 rounded border"><code>TotalDepartments
+----------------
+3</code></pre>
+
+        <p>
+            The three unique departments are
+            <strong>IT, HR and Sales</strong>.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         9. COUNT(*) vs COUNT(COLUMN)
+    ========================== -->
+
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            COUNT(*) vs COUNT(Column)
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>COUNT(*)</th>
+                        <th>COUNT(Column)</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>Counts all rows.</td>
+                        <td>Counts non-NULL values.</td>
+                    </tr>
+
+                    <tr>
+                        <td>NULL values do not affect row count.</td>
+                        <td>NULL values are not counted.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Useful for total records.</td>
+                        <td>Useful for counting available values.</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         10. IMPORTANT POINTS
+    ========================== -->
+
+    <section class="mb-5">
+
+        <div class="alert alert-warning">
+
+            <h3 class="fw-bold">
+                Important Points
+            </h3>
+
+            <ul class="mb-0">
+
+                <li class="mb-2">
+                    COUNT() is an aggregate function.
+                </li>
+
+                <li class="mb-2">
+                    COUNT(*) counts all rows.
+                </li>
+
+                <li class="mb-2">
+                    COUNT(column) counts non-NULL values.
+                </li>
+
+                <li class="mb-2">
+                    COUNT() can be used with WHERE.
+                </li>
+
+                <li class="mb-2">
+                    COUNT() can be used with GROUP BY.
+                </li>
+
+                <li>
+                    COUNT(DISTINCT column) counts unique values.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         11. SUMMARY
+    ========================== -->
+
+    <section class="mb-5">
+
+        <div class="alert alert-success">
+
+            <h3 class="fw-bold">
+                Summary
+            </h3>
+
+            <p class="mb-0">
+                COUNT() is used to count rows or non-NULL values
+                in SQL Server. COUNT(*) counts all rows, while
+                COUNT(column) counts only non-NULL values.
+                COUNT() can also be combined with WHERE,
+                GROUP BY and DISTINCT to perform different types
+                of counting operations.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         PREVIOUS / NEXT
+    ========================== -->
+
+    <div class="d-flex justify-content-between align-items-center
+        mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/GroupingAndAggregate/AggregateFunctions"
+           class="btn btn-outline-primary">
+
+            ← Previous: Aggregate Functions
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/GroupingAndAggregate/SumFunction"
+           class="btn btn-primary">
+
+            Next: SUM() →
+
+        </a>
+
+    </div>
+
+</div>

@@ -1,0 +1,521 @@
+﻿@{
+    ViewData["Title"] = "SAVEPOINT";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- =========================
+         PAGE HEADER
+    ========================== -->
+
+    <div class="mb-4">
+
+        <h1 class="fw-bold text-primary">
+            SAVEPOINT
+        </h1>
+
+        <p class="text-muted fs-5">
+            Learn how SAVEPOINT is used to create a specific point
+            inside a SQL Server transaction and roll back to that point.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         WHAT IS SAVEPOINT?
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                What is a SAVEPOINT?
+            </h2>
+
+            <p>
+                A <strong>SAVEPOINT</strong> is a named point created
+                inside a transaction.
+            </p>
+
+            <p>
+                It allows us to roll back only part of a transaction
+                instead of rolling back the entire transaction.
+            </p>
+
+            <p>
+                In SQL Server, the command
+                <strong>SAVE TRANSACTION</strong> is used to create
+                a savepoint.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         WHY USE SAVEPOINT?
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Why Do We Use SAVEPOINT?
+            </h2>
+
+            <ul>
+
+                <li class="mb-2">
+                    To create a specific point inside a transaction.
+                </li>
+
+                <li class="mb-2">
+                    To roll back only part of a transaction.
+                </li>
+
+                <li class="mb-2">
+                    To avoid rolling back the complete transaction.
+                </li>
+
+                <li class="mb-2">
+                    To provide more control over transaction operations.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         BASIC SYNTAX
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                SAVEPOINT Syntax
+            </h2>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>BEGIN TRANSACTION;
+
+SAVE TRANSACTION SavePointName;
+
+-- SQL statements
+
+ROLLBACK TRANSACTION SavePointName;
+
+COMMIT;</code></pre>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         CREATE SAVEPOINT
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Creating a SAVEPOINT
+            </h2>
+
+            <p>
+                We can create a savepoint using the
+                <strong>SAVE TRANSACTION</strong> statement.
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>BEGIN TRANSACTION;
+
+SAVE TRANSACTION StudentSavePoint;</code></pre>
+
+            <p class="mt-3">
+                Here, <strong>StudentSavePoint</strong> is the name
+                of the savepoint.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         SIMPLE EXAMPLE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Simple SAVEPOINT Example
+            </h2>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>BEGIN TRANSACTION;
+
+INSERT INTO Students
+(
+    StudentId,
+    StudentName,
+    City,
+    Age
+)
+VALUES
+(
+    401,
+    'Rahul',
+    'Pune',
+    22
+);
+
+SAVE TRANSACTION StudentSavePoint;
+
+UPDATE Students
+SET City = 'Mumbai'
+WHERE StudentId = 401;
+
+ROLLBACK TRANSACTION StudentSavePoint;
+
+COMMIT;</code></pre>
+
+            <p class="mt-3">
+                In this example, the INSERT operation remains part of
+                the transaction, while the UPDATE performed after the
+                savepoint is rolled back.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         ROLLBACK TO SAVEPOINT
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                ROLLBACK to a SAVEPOINT
+            </h2>
+
+            <p>
+                To roll back to a specific savepoint, use
+                <strong>ROLLBACK TRANSACTION</strong> followed by
+                the savepoint name.
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>ROLLBACK TRANSACTION StudentSavePoint;</code></pre>
+
+            <p class="mt-3">
+                This rolls back the transaction to the specified
+                savepoint rather than rolling back the entire transaction.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         MULTIPLE SAVEPOINTS
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Multiple SAVEPOINTS
+            </h2>
+
+            <p>
+                Multiple savepoints can be created during a transaction.
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>BEGIN TRANSACTION;
+
+INSERT INTO Students
+(
+    StudentId,
+    StudentName,
+    City,
+    Age
+)
+VALUES
+(
+    402,
+    'Priya',
+    'Pune',
+    21
+);
+
+SAVE TRANSACTION Point1;
+
+UPDATE Students
+SET Age = 22
+WHERE StudentId = 402;
+
+SAVE TRANSACTION Point2;
+
+UPDATE Students
+SET City = 'Mumbai'
+WHERE StudentId = 402;
+
+ROLLBACK TRANSACTION Point2;
+
+COMMIT;</code></pre>
+
+            <p class="mt-3">
+                Here, the transaction contains more than one savepoint,
+                allowing more precise control over the transaction.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         SAVEPOINT VS ROLLBACK
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                SAVEPOINT vs ROLLBACK
+            </h2>
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-striped">
+
+                    <thead class="table-primary">
+
+                        <tr>
+
+                            <th>SAVEPOINT</th>
+
+                            <th>ROLLBACK</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+
+                            <td>
+                                Creates a point inside a transaction.
+                            </td>
+
+                            <td>
+                                Undoes transaction changes.
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>
+                                Allows partial rollback.
+                            </td>
+
+                            <td>
+                                Can roll back the entire transaction
+                                or to a specified savepoint.
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>
+                                Created using SAVE TRANSACTION.
+                            </td>
+
+                            <td>
+                                Performed using ROLLBACK TRANSACTION.
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         REAL WORLD EXAMPLE
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Real-World Example
+            </h2>
+
+            <p>
+                Consider an online order where several operations
+                are performed in sequence:
+            </p>
+
+            <ol>
+
+                <li class="mb-2">
+                    Create an order.
+                </li>
+
+                <li class="mb-2">
+                    Add order items.
+                </li>
+
+                <li class="mb-2">
+                    Update product stock.
+                </li>
+
+                <li class="mb-2">
+                    Process additional operations.
+                </li>
+
+            </ol>
+
+            <p>
+                A savepoint can be created after an important stage.
+                If a later operation fails, the transaction can be
+                rolled back to that savepoint instead of starting
+                everything again.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         IMPORTANT POINTS
+    ========================== -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-3">
+                Important Points
+            </h2>
+
+            <ul>
+
+                <li class="mb-2">
+                    SQL Server uses <strong>SAVE TRANSACTION</strong>
+                    to create a savepoint.
+                </li>
+
+                <li class="mb-2">
+                    A savepoint must be created inside a transaction.
+                </li>
+
+                <li class="mb-2">
+                    A transaction can contain multiple savepoints.
+                </li>
+
+                <li class="mb-2">
+                    ROLLBACK TRANSACTION followed by a savepoint name
+                    rolls back to that point.
+                </li>
+
+                <li class="mb-2">
+                    A savepoint provides more control than rolling back
+                    the complete transaction.
+                </li>
+
+                <li class="mb-2">
+                    COMMIT is used when the final transaction changes
+                    should be permanently saved.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         SUMMARY
+    ========================== -->
+
+    <div class="alert alert-primary shadow-sm mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Summary
+        </h2>
+
+        <p>
+            A <strong>SAVEPOINT</strong> is a named point inside a
+            transaction. It allows us to roll back a portion of the
+            transaction without rolling back everything.
+        </p>
+
+        <p class="mb-0">
+            SQL Server creates savepoints using
+            <strong>SAVE TRANSACTION</strong> and rolls back to them
+            using <strong>ROLLBACK TRANSACTION</strong>.
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         PREVIOUS / NEXT
+    ========================== -->
+
+    <div class="d-flex justify-content-between align-items-center
+        mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/Transactions/Rollback"
+           class="btn btn-outline-primary">
+
+            ← Previous: ROLLBACK
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/Transactions/TransactionTryCatch"
+           class="btn btn-primary">
+
+            Next: Transaction with TRY...CATCH →
+
+        </a>
+
+    </div>
+
+</div>

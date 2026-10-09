@@ -1,0 +1,201 @@
+@{
+    Layout = "~/Areas/Jenkins/Views/Shared/JenkinsLayout.cshtml";
+    ViewData["Title"] = "Agent Directive";
+}
+
+<style>
+    #agent-directive-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #agent-directive-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #agent-directive-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #agent-directive-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #agent-directive-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+    #agent-directive-page .example-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+    }
+</style>
+
+<main id="agent-directive-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/Jenkins/Views/Shared/JenkinsTopics.cshtml")
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+                <h1 class="fw-bold">Agent Directive</h1>
+                <p class="lead">
+                    Learn the concepts, parameters, execution environments, and scoping rules required to allocate infrastructure nodes and containers within a declarative pipeline.
+                </p>
+            </div>
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">What is the Agent Directive?</h2>
+                <p>
+                    The <strong>agent</strong> directive is a mandatory structural element in a Declarative Jenkinsfile that dictates exactly where a pipeline, or a specific stage within it, will execute. It controls workspace allocation and instructs the central Jenkins controller on which worker node resources to provision for processing the pipeline steps.
+                </p>
+
+                <div class="alert alert-info my-3">
+                    <strong>Simple Definition:</strong> The agent directive is a code statement that tells Jenkins which computer machine node, cluster group label, or isolated container type to use to run your build scripts.
+                </div>
+
+                <h3 class="h4 fw-bold mt-4">Supported Agent Allocation Options</h3>
+                <p class="mb-2">Jenkins evaluates the agent parameter utilizing distinct structural modes to target execution nodes:</p>
+                <ul class="mb-3">
+                    <li class="mb-1"><strong>`agent any`:</strong> Instructs Jenkins to execute the pipeline or stage on any available and configured node across the cluster grid, regardless of its operating system type.</li>
+                    <li class="mb-1"><strong>`agent none`:</strong> Disables global asset allocations at the root pipeline container level. Enforces the rule that every single nested <code>stage</code> must explicitly declare its own local execution agent parameter.</li>
+                    <li class="mb-1"><strong>`agent { label 'mac-os-build' }`:</strong> Targets specific machines by forcing an exact match against configured label tags (e.g., restricting iOS app builds strictly to macOS agent systems).</li>
+                    <li><strong>`agent { docker { image 'maven:3-alpine' } }`:</strong> Dynamically provisions an isolated Docker container context directly on a Docker-capable worker node, running all stage commands safely inside the container environment.</li>
+                </ul>
+            </div>
+
+            <!-- KEY CONCEPTS -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Key Concepts</h2>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Global vs. Stage-Level Scope</h5>
+                            <p class="mb-0">Understanding that placing the agent at the root level applies it globally to all stages, while defining a custom agent block inside a single stage overrides the global configuration for that specific task.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-card">
+                            <h5>Workspace Environment Isolation</h5>
+                            <p class="mb-0">Recognizing that switching agents between different pipeline stages forces Jenkins to generate entirely separate local workspaces, requiring file distributions to be managed via artifacts or stashing steps.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXAMPLE -->
+            <div class="mb-4">
+                <h2 class="h3 fw-bold">Practical Jenkins Example</h2>
+                <p>The following advanced blueprint demonstrates a multi-agent structure using `agent none` globally to distribute frontend and backend tasks to matching targeted environments:</p>
+                <pre><code>pipeline {
+    // 1. Disable global node binding to allow stage-level distribution
+    agent none 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    stages {
+        stage('Compile Backend Assets') {
+            // 2. Allocate an explicit Linux machine node matching a label
+            agent { label 'ubuntu-worker-node' }
+            steps {
+                echo 'Executing Java compilation targets on an Ubuntu worker environment...'
+                sh 'java -version'
+            }
+        }
+        
+        stage('Containerized Frontend Check') {
+            // 3. Dynamically provision an isolated container for specific tools
+            agent {
+                docker {
+                    image 'node:20-alpine'
+                }
+            }
+            steps {
+                echo 'Executing React testing suites inside an isolated Node container environment...'
+                sh 'node --version'
+                sh 'npm --version'
+            }
+        }
+    }
+}</code></pre>
+                </div>
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+        <h2 class="h3 fw-bold">Practice Exercise: Build a Distributed Agent Pipeline</h2>
+                <div class="concept-box">
+    <h5 class="fw-bold">Step-by-Step Task Sequence:</h5>
+                    <ol class="ps-3 mb-0">
+<li class="mb-2">Open the script block workspace of an active test pipeline configuration or launch a new Pipeline item from your dashboard interface.</li>
+                        <li class="mb-2">Copy-paste the complete multi-agent code layout provided in the practical example section above into your configuration text terminal window.</li>
+                        <li class="mb-2">If your environment does not have custom runner labels set up, adjust the first stage configuration line to read simply: `agent any`. Then click <strong>Save</strong>.</li>
+<li class="mb-2">Trigger a manual validation run by selecting the **Build Now** menu action link on the left-side navigation portal.</li>
+<li>Open the current build's **Console Output** screen to trace the log text lines, noting how Jenkins dynamically allocates resources and spins up container hooks for each stage.</li>
+</ol>
+</div>
+</div>
+
+<!-- SUMMARY -->
+<div class="alert alert-info mt-4">
+<h2 class="h4 fw-bold">Summary</h2>
+<p class="mb-0">You have completed the <strong>Agent Directive</strong> lesson. Continue through the syllabus to learn how to organize execution flow steps cleanly by exploring the Stages and Steps lesson.</p>
+</div>
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+                <a class="btn btn-outline-primary" href="@Url.Action("PipelineAnatomy", "Pipeline", new { area = "Jenkins" })">← Previous: Pipeline Anatomy</a>
+                <a class="btn btn-primary" href="@Url.Action("StagesAndSteps", "Pipeline", new { area = "Jenkins" })">Next: Stages and Steps →</a>
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

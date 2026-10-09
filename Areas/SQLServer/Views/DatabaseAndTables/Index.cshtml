@@ -1,0 +1,420 @@
+﻿@{
+    ViewData["Title"] = "Database & Tables Introduction";
+}
+
+<section>
+
+    <!-- PAGE INTRODUCTION -->
+    <div class="mb-5">
+
+        <h1 class="fw-bold mb-3">
+            Database & Tables Introduction
+        </h1>
+
+        <p class="lead text-muted">
+            A database is used to store and organize data, while tables
+            are used to store data in rows and columns. In SQL Server,
+            databases and tables form the foundation for storing and
+            managing structured information.
+        </p>
+
+    </div>
+
+
+    <!-- WHAT IS A DATABASE -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            What is a Database?
+        </h2>
+
+        <p>
+            A database is a structured collection of information that
+            allows data to be stored, managed and retrieved efficiently.
+        </p>
+
+        <p>
+            In SQL Server, a database can contain tables, views,
+            stored procedures, functions and other database objects.
+        </p>
+
+        <div class="alert alert-primary border-0">
+
+            <h5 class="fw-bold">
+                Example
+            </h5>
+
+            <p class="mb-0">
+                A college application may have a database named
+                <strong>CollegeDB</strong> that stores student,
+                course and teacher information.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- DATABASE STRUCTURE -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Database Structure
+        </h2>
+
+        <p>
+            A SQL Server database can contain multiple database objects.
+            A simple structure can be represented as follows:
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL Server
+            </div>
+
+            <pre class="mb-0"><code>
+                                                        Database
+                                                           ↓
+                                                        Tables
+                                                           ↓
+                                                        Rows & Columns
+                                                           ↓
+                                                         Data</code></pre>
+
+        </div>
+
+        <p>
+            Tables are one of the most important objects inside a
+            database because they store the actual data.
+        </p>
+
+    </section>
+
+
+    <!-- WHAT IS A TABLE -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            What is a Table?
+        </h2>
+
+        <p>
+            A table is a database object used to store related information
+            in the form of rows and columns.
+        </p>
+
+        <p>
+            Each column represents a specific type of information, while
+            each row represents one complete record.
+        </p>
+
+    </section>
+
+
+    <!-- ROWS AND COLUMNS -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Rows and Columns
+        </h2>
+
+        <p>
+            Consider a <strong>Students</strong> table:
+        </p>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>StudentId</th>
+                        <th>StudentName</th>
+                        <th>Age</th>
+                        <th>Course</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>1</td>
+                        <td>Rahul</td>
+                        <td>22</td>
+                        <td>Java</td>
+                    </tr>
+
+                    <tr>
+                        <td>2</td>
+                        <td>Priya</td>
+                        <td>21</td>
+                        <td>.NET</td>
+                    </tr>
+
+                    <tr>
+                        <td>3</td>
+                        <td>Amit</td>
+                        <td>23</td>
+                        <td>Python</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <ul>
+
+            <li class="mb-2">
+                <strong>Column:</strong> Defines the type of information
+                stored.
+            </li>
+
+            <li class="mb-2">
+                <strong>Row:</strong> Represents one complete record.
+            </li>
+
+            <li class="mb-2">
+                <strong>Table:</strong> Collection of related records.
+            </li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- DATABASE AND TABLE RELATIONSHIP -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Database and Table Relationship
+        </h2>
+
+        <p>
+            A database can contain multiple tables. Each table can store
+            data related to a particular entity.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL Server
+            </div>
+
+                <pre class="mb-0"><code>
+                                                        CollegeDB
+                                                           │
+                                                           ├── Students
+                                                           │
+                                                           ├── Courses
+                                                           │
+                                                           ├── Teachers
+                                                           │
+                                                           └── Departments</code></pre>
+
+        </div>
+
+        <p>
+            For example, the <strong>Students</strong> table stores
+            student information, while the <strong>Courses</strong>
+            table stores course information.
+        </p>
+
+    </section>
+
+
+    <!-- CREATING A DATABASE -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Creating a Database
+        </h2>
+
+        <p>
+            The <strong>CREATE DATABASE</strong> statement is used to
+            create a new database in SQL Server.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>CREATE DATABASE CollegeDB;</code></pre>
+
+        </div>
+
+        <p>
+            After executing this statement, SQL Server creates a new
+            database named <strong>CollegeDB</strong>.
+        </p>
+
+    </section>
+
+
+    <!-- CREATING A TABLE -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Creating a Table
+        </h2>
+
+        <p>
+            The <strong>CREATE TABLE</strong> statement is used to create
+            a table inside a database.
+        </p>
+
+        <div class="code-block mb-3">
+
+            <div class="code-lang-tag">
+                SQL
+            </div>
+
+            <pre class="mb-0"><code>CREATE TABLE Students
+(
+    StudentId INT,
+    StudentName VARCHAR(100),
+    Age INT,
+    Course VARCHAR(50)
+);</code></pre>
+
+        </div>
+
+        <p>
+            This statement creates a table named
+            <strong>Students</strong> with four columns.
+        </p>
+
+    </section>
+
+
+    <!-- COMMON DATABASE OPERATIONS -->
+    <section class="mb-5">
+
+        <h2 class="fw-bold mb-3">
+            Common Database & Table Operations
+        </h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>Operation</th>
+                        <th>SQL Statement</th>
+                        <th>Purpose</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>Create Database</td>
+                        <td>CREATE DATABASE</td>
+                        <td>Create a new database.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Create Table</td>
+                        <td>CREATE TABLE</td>
+                        <td>Create a new table.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Alter Table</td>
+                        <td>ALTER TABLE</td>
+                        <td>Modify table structure.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Drop Table</td>
+                        <td>DROP TABLE</td>
+                        <td>Remove a table.</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- IMPORTANT -->
+    <section class="mb-5">
+
+        <div class="alert alert-warning border-0">
+
+            <h5 class="fw-bold">
+                Important
+            </h5>
+
+            <p class="mb-0">
+                A database contains database objects, and tables are
+                primarily used to store structured data in rows and
+                columns. Choosing a proper table structure is important
+                for managing data efficiently.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- SUMMARY -->
+    <section class="mb-4">
+
+        <div class="alert alert-primary border-0">
+
+            <h2 class="fw-bold mb-3">
+                Summary
+            </h2>
+
+            <p class="mb-0">
+                In this section, we learned what a database and table are,
+                how databases and tables are organized, the difference
+                between rows and columns, and the basic SQL statements
+                used to create databases and tables.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- PREVIOUS / NEXT -->
+
+    <div class="d-flex justify-content-between align-items-center
+                mt-5 pt-4 border-top">
+
+        <!-- PREVIOUS -->
+
+        <a href="/SQLServer/DataTypes/OtherDataTypes"
+           class="btn btn-outline-primary">
+
+            ← Previous: Other SQL Server Data Types
+
+        </a>
+
+
+        <!-- NEXT -->
+
+        <a href="/SQLServer/DatabaseAndTables/CreatingDatabase"
+           class="btn btn-primary">
+
+            Next: Creating a Database →
+
+        </a>
+
+    </div>
+
+</section>

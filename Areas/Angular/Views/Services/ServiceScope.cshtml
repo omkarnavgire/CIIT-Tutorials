@@ -1,0 +1,1546 @@
+﻿@{
+    ViewData["Title"] = "Angular Service Scope";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- Header -->
+    <section class="mb-4">
+
+        <h1 class="fw-bold text-dark">Angular Service Scope</h1>
+
+        <p class="lead text-muted">
+            Angular Service Scope determines where a service instance is
+            available and how widely that service can be shared across an
+            Angular application.
+        </p>
+
+    </section>
+
+    <!-- What is Service Scope -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">What is Service Scope?</h2>
+
+        <p>
+            Service scope defines the injector level at which a service is
+            provided and therefore determines which components or parts of
+            the application can access that service.
+        </p>
+
+        <p>
+            Choosing an appropriate scope helps control service lifetime,
+            sharing behavior, and application structure.
+        </p>
+
+        <div class="info-card">
+
+            <h5>Simple Definition</h5>
+
+            <p>
+                Service scope answers the question:
+                <strong>Where should this service be available?</strong>
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- Scope Flow -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold mb-3">Angular Service Scope Flow</h2>
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+
+                <i class="bi bi-gear-fill"></i>
+
+                <strong>Service</strong>
+
+                <span>Reusable class</span>
+
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+
+                <i class="bi bi-diagram-3"></i>
+
+                <strong>Provider</strong>
+
+                <span>Defines scope</span>
+
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+
+                <i class="bi bi-layers"></i>
+
+                <strong>Injector</strong>
+
+                <span>Creates instance</span>
+
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+
+                <i class="bi bi-display"></i>
+
+                <strong>Components</strong>
+
+                <span>Use service</span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Common Scopes -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Common Service Scopes</h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-globe2"></i>
+                </div>
+
+                <h5>Root Scope</h5>
+
+                <p>
+                    Service is provided at the application root level.
+                </p>
+
+                <code>providedIn: 'root'</code>
+
+            </div>
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-box"></i>
+                </div>
+
+                <h5>Component Scope</h5>
+
+                <p>
+                    Service is provided specifically for a component subtree.
+                </p>
+
+                <code>providers: []</code>
+
+            </div>
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-diagram-2"></i>
+                </div>
+
+                <h5>Child Scope</h5>
+
+                <p>
+                    Child components can receive a service instance from a
+                    parent injector.
+                </p>
+
+                <code>Hierarchical</code>
+
+            </div>
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-layers"></i>
+                </div>
+
+                <h5>Injector Scope</h5>
+
+                <p>
+                    Angular's hierarchical injectors control service instances.
+                </p>
+
+                <code>Injector</code>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Root Scope -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">1. Root-Level Service</h2>
+
+        <p>
+            A service configured with
+            <strong>providedIn: 'root'</strong> is registered with the
+            application's root injector.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                training.service.ts
+            </div>
+
+            <pre><code>import &#123; Injectable &#125; from '@@angular/core';
+
+@@Injectable(&#123;
+    providedIn: 'root'
+&#125;)
+export class TrainingService &#123;
+
+    getInstituteName(): string &#123;
+
+        return 'CIIT Training Institute';
+
+    &#125;
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="info-card">
+
+            <h5>What This Means</h5>
+
+            <p>
+                The service is available through the root injector and can be
+                injected into components throughout the application.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- Root Scope Flow -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">2. Root Service Sharing</h2>
+
+        <div class="binding-flow">
+
+            <div class="binding-item">
+
+                <strong>TrainingService</strong>
+
+                <span>
+                    Root Provider
+                </span>
+
+            </div>
+
+            <div class="binding-arrow">→</div>
+
+            <div class="binding-item">
+
+                <strong>Course List</strong>
+
+                <span>
+                    Injects Service
+                </span>
+
+            </div>
+
+            <div class="binding-arrow">→</div>
+
+            <div class="binding-item">
+
+                <strong>Dashboard</strong>
+
+                <span>
+                    Injects Service
+                </span>
+
+            </div>
+
+            <div class="binding-arrow">→</div>
+
+            <div class="binding-item">
+
+                <strong>Reports</strong>
+
+                <span>
+                    Injects Service
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Component Scope -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">3. Component-Level Service</h2>
+
+        <p>
+            A service can also be provided at the component level. In that
+            case, Angular can create an instance associated with that
+            component's injector hierarchy.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                dashboard.component.ts
+            </div>
+
+            <pre><code>import &#123; Component &#125; from '@@angular/core';
+import &#123; CourseStateService &#125;
+from './course-state.service';
+
+@@Component(&#123;
+    selector: 'app-dashboard',
+
+    providers: [
+        CourseStateService
+    ],
+
+    templateUrl: './dashboard.component.html'
+&#125;)
+export class DashboardComponent &#123;
+
+    constructor(
+        private courseStateService: CourseStateService
+    ) &#123;
+
+    &#125;
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="info-card">
+
+            <h5>Important</h5>
+
+            <p>
+                Providing a service at component level changes the injector
+                context in which that service is resolved.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- Component Scope Flow -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">4. Component-Level Scope Flow</h2>
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+
+                <i class="bi bi-window"></i>
+
+                <strong>Parent Component</strong>
+
+                <span>Provides service</span>
+
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+
+                <i class="bi bi-gear"></i>
+
+                <strong>Service Instance</strong>
+
+                <span>Created for scope</span>
+
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+
+                <i class="bi bi-diagram-3"></i>
+
+                <strong>Child Components</strong>
+
+                <span>Can resolve service</span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Root vs Component -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold mb-3">5. Root Scope vs Component Scope</h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered syntax-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Root Scope</th>
+                        <th>Component Scope</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            Registered with the root injector.
+                        </td>
+
+                        <td>
+                            Registered in a component's provider configuration.
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            Commonly used for application-wide services.
+                        </td>
+
+                        <td>
+                            Useful when service state should belong to a
+                            component subtree.
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            Components across the application can resolve it.
+                        </td>
+
+                        <td>
+                            The service is resolved within the component's
+                            injector hierarchy.
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            Common for shared application services.
+                        </td>
+
+                        <td>
+                            Useful for isolated component-specific state.
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+    <!-- Hierarchical Injection -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">6. Angular Hierarchical Injection</h2>
+
+        <p>
+            Angular uses a hierarchical dependency injection system. A service
+            can be resolved through the injector hierarchy that applies to
+            the requesting component.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Example Structure
+            </div>
+
+            <pre><code>Application Root
+      |
+      ├── Dashboard Component
+      |       |
+      |       ├── Course List
+      |       |
+      |       └── Course Details
+      |
+      └── Reports Component</code></pre>
+
+        </div>
+
+        <div class="info-card">
+
+            <h5>Simple Idea</h5>
+
+            <p>
+                Angular searches the applicable injector hierarchy to resolve
+                a requested service.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- Multiple Instances -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">7. Isolated Service Instances</h2>
+
+        <p>
+            Component-level providers can be useful when separate component
+            trees should have their own service state.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                course-state.service.ts
+            </div>
+
+            <pre><code>import &#123; Injectable &#125; from '@@angular/core';
+
+@@Injectable()
+export class CourseStateService &#123;
+
+    selectedCourse = '';
+
+    setCourse(course: string): void &#123;
+
+        this.selectedCourse = course;
+
+    &#125;
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                dashboard.component.ts
+            </div>
+
+            <pre><code>@@Component(&#123;
+
+    selector: 'app-dashboard',
+
+    providers: [
+        CourseStateService
+    ],
+
+    templateUrl: './dashboard.component.html'
+
+&#125;)
+export class DashboardComponent &#123;
+
+    constructor(
+        private courseStateService: CourseStateService
+    ) &#123;
+
+    &#125;
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="info-card">
+
+            <h5>Use Case</h5>
+
+            <p>
+                This approach is useful when each component instance or
+                component subtree needs its own service-managed state.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- Choosing Scope -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">8. Choosing the Right Service Scope</h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-globe"></i>
+                </div>
+
+                <h5>Application Settings</h5>
+
+                <p>
+                    Shared configuration can use application-wide scope.
+                </p>
+
+                <code>Root</code>
+
+            </div>
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-person-gear"></i>
+                </div>
+
+                <h5>User Session</h5>
+
+                <p>
+                    Shared session-related state may be maintained by a shared
+                    application service.
+                </p>
+
+                <code>Shared Service</code>
+
+            </div>
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-window"></i>
+                </div>
+
+                <h5>Local Component State</h5>
+
+                <p>
+                    Component-specific state may use component-level providers.
+                </p>
+
+                <code>Component</code>
+
+            </div>
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-diagram-3"></i>
+                </div>
+
+                <h5>Feature State</h5>
+
+                <p>
+                    Services can be scoped to the part of the application
+                    that needs them.
+                </p>
+
+                <code>Feature</code>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Service Scope Example -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">9. Service Scope Example</h2>
+
+        <p>
+            Consider a CIIT Training Institute dashboard where the course
+            catalog is shared application-wide, while a temporary course
+            selection belongs only to one dashboard area.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Application-Wide Service
+            </div>
+
+            <pre><code>@@Injectable(&#123;
+    providedIn: 'root'
+&#125;)
+export class CourseCatalogService &#123;
+
+    getCourses(): string[] &#123;
+
+        return [
+            'Java Full Stack',
+            'Python Full Stack',
+            'Full Stack .NET',
+            'Data Analytics'
+        ];
+
+    &#125;
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Component-Scoped Service
+            </div>
+
+            <pre><code>@@Injectable()
+export class DashboardSelectionService &#123;
+
+    selectedCourse = '';
+
+&#125;
+
+@@Component(&#123;
+
+    selector: 'app-dashboard',
+
+    providers: [
+        DashboardSelectionService
+    ],
+
+    templateUrl: './dashboard.component.html'
+
+&#125;)
+export class DashboardComponent &#123;
+
+    constructor(
+        private selectionService:
+            DashboardSelectionService
+    ) &#123;
+
+    &#125;
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="output-box">
+
+            <strong>Scope Example:</strong>
+
+            <div class="student-preview">
+
+                <p>
+                    <strong>CourseCatalogService:</strong>
+                    Application-wide shared service
+                </p>
+
+                <p>
+                    <strong>DashboardSelectionService:</strong>
+                    Dashboard-specific service state
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Complete CIIT Example -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Complete CIIT Training Institute Example</h2>
+
+        <p>
+            Suppose CIIT Training Institute has a common course catalog that
+            should be available throughout the application. At the same time,
+            a dashboard can maintain its own temporary selected-course state.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                course-catalog.service.ts
+            </div>
+
+            <pre><code>import &#123; Injectable &#125; from '@@angular/core';
+
+@@Injectable(&#123;
+    providedIn: 'root'
+&#125;)
+export class CourseCatalogService &#123;
+
+    getCourses(): string[] &#123;
+
+        return [
+
+            'Java Full Stack',
+            'Python Full Stack',
+            'Full Stack .NET',
+            'Data Analytics'
+
+        ];
+
+    &#125;
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                dashboard-selection.service.ts
+            </div>
+
+            <pre><code>import &#123; Injectable &#125; from '@@angular/core';
+
+@@Injectable()
+export class DashboardSelectionService &#123;
+
+    selectedCourse = '';
+
+    setCourse(course: string): void &#123;
+
+        this.selectedCourse = course;
+
+    &#125;
+
+    getCourse(): string &#123;
+
+        return this.selectedCourse;
+
+    &#125;
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                dashboard.component.ts
+            </div>
+
+            <pre><code>import &#123; Component, OnInit &#125; from '@@angular/core';
+import &#123; CourseCatalogService &#125;
+from './course-catalog.service';
+import &#123; DashboardSelectionService &#125;
+from './dashboard-selection.service';
+
+@@Component(&#123;
+
+    selector: 'app-dashboard',
+
+    providers: [
+        DashboardSelectionService
+    ],
+
+    templateUrl: './dashboard.component.html'
+
+&#125;)
+export class DashboardComponent implements OnInit &#123;
+
+    courses: string[] = [];
+
+    selectedCourse = '';
+
+    constructor(
+
+        private courseCatalogService:
+            CourseCatalogService,
+
+        private dashboardSelectionService:
+            DashboardSelectionService
+
+    ) &#123;
+
+    &#125;
+
+    ngOnInit(): void &#123;
+
+        this.courses =
+            this.courseCatalogService.getCourses();
+
+    &#125;
+
+    selectCourse(course: string): void &#123;
+
+        this.dashboardSelectionService
+            .setCourse(course);
+
+        this.selectedCourse =
+            this.dashboardSelectionService
+                .getCourse();
+
+    &#125;
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                dashboard.component.html
+            </div>
+
+            <pre><code>&lt;h2&gt;
+    CIIT Training Institute
+&lt;/h2&gt;
+
+&lt;h4&gt;
+    Available Courses
+&lt;/h4&gt;
+
+&lt;ul&gt;
+
+    &lt;li *ngFor="let course of courses"&gt;
+
+        &lt;button
+            class="btn btn-primary btn-sm mb-2"
+            (click)="selectCourse(course)"&gt;
+
+            &#123;&#123; course &#125;&#125;
+
+        &lt;/button&gt;
+
+    &lt;/li&gt;
+
+&lt;/ul&gt;
+
+&lt;p&gt;
+
+    Selected Course:
+    &#123;&#123; selectedCourse &#125;&#125;
+
+&lt;/p&gt;</code></pre>
+
+        </div>
+
+        <div class="output-box">
+
+            <strong>Expected Output:</strong>
+
+            <div class="student-preview">
+
+                <h3>
+                    CIIT Training Institute
+                </h3>
+
+                <p>
+                    <strong>Available Courses</strong>
+                </p>
+
+                <ul>
+
+                    <li>Java Full Stack</li>
+                    <li>Python Full Stack</li>
+                    <li>Full Stack .NET</li>
+                    <li>Data Analytics</li>
+
+                </ul>
+
+                <p>
+                    <strong>Selected Course:</strong>
+                    Java Full Stack
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Scope Comparison -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold mb-3">Service Scope Quick Reference</h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered syntax-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Scope</th>
+                        <th>Configuration</th>
+                        <th>Typical Use</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            Root
+                        </td>
+
+                        <td>
+                            <code>providedIn: 'root'</code>
+                        </td>
+
+                        <td>
+                            Application-wide services
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            Component
+                        </td>
+
+                        <td>
+                            <code>providers: []</code>
+                        </td>
+
+                        <td>
+                            Component or subtree-specific state
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            Child Injector
+                        </td>
+
+                        <td>
+                            Hierarchical provider configuration
+                        </td>
+
+                        <td>
+                            More localized service availability
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+    <!-- Important Points -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Important Points About Service Scope</h2>
+
+        <ul class="best-practice-list">
+
+            <li>
+                Service scope determines where a service can be resolved.
+            </li>
+
+            <li>
+                <strong>providedIn: 'root'</strong> is commonly used for
+                application-wide services.
+            </li>
+
+            <li>
+                Component providers can create a service scope associated
+                with a component hierarchy.
+            </li>
+
+            <li>
+                Angular uses hierarchical dependency injection.
+            </li>
+
+            <li>
+                The scope should match the responsibility and sharing
+                requirements of the service.
+            </li>
+
+            <li>
+                Service scope can affect how service state is shared between
+                components.
+            </li>
+
+        </ul>
+
+    </section>
+
+    <!-- Best Practices -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Service Scope Best Practices</h2>
+
+        <ul class="best-practice-list">
+
+            <li>
+                Use root scope for genuinely application-wide services.
+            </li>
+
+            <li>
+                Use component-level providers when state should remain
+                associated with a component subtree.
+            </li>
+
+            <li>
+                Avoid using a broad scope when a service only needs a narrow
+                responsibility.
+            </li>
+
+            <li>
+                Choose scope based on how the data and functionality need
+                to be shared.
+            </li>
+
+            <li>
+                Keep service responsibilities clear and focused.
+            </li>
+
+            <li>
+                Understand the injector hierarchy before choosing a custom
+                service scope.
+            </li>
+
+        </ul>
+
+    </section>
+
+    <!-- Summary -->
+    <section class="summary-box">
+
+        <h3>Summary</h3>
+
+        <p>
+            Angular Service Scope determines where a service is provided and
+            how its instance can be resolved through the dependency injection
+            hierarchy.
+        </p>
+
+        <p>
+            Root-level services are commonly used for shared application
+            functionality, while component-level providers are useful for
+            localized or component-specific service state.
+        </p>
+
+    </section>
+
+    <!-- Navigation -->
+    <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+
+        <a class="btn btn-outline-secondary"
+           href="@Url.Action("SharingData", "Services", new { area = "Angular" })">
+            ← Sharing Data
+        </a>
+
+        <a class="btn btn-primary"
+           href="@Url.Action("Index", "DependencyInjection", new { area = "Angular" })">
+            Dependency Injection →
+        </a>
+
+    </div>
+
+</div>
+
+<style>
+
+    .info-card {
+        background: #f8fafc;
+        border-left: 5px solid #4c1d95;
+        padding: 18px 20px;
+        border-radius: 7px;
+        margin-top: 15px;
+    }
+
+        .info-card h5 {
+            color: #4c1d95;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .info-card p {
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+
+    .syntax-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        padding: 25px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+    }
+
+    .syntax-box {
+        width: 175px;
+        min-height: 125px;
+        padding: 18px;
+        text-align: center;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 9px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+        .syntax-box i {
+            display: block;
+            font-size: 28px;
+            color: #4c1d95;
+            margin-bottom: 8px;
+        }
+
+        .syntax-box strong {
+            display: block;
+            color: #2e1065;
+            font-weight: 700;
+        }
+
+        .syntax-box span {
+            display: block;
+            color: #64748b;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+    .syntax-arrow {
+        color: #4c1d95;
+        font-size: 25px;
+        font-weight: 700;
+    }
+
+    .syntax-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+    }
+
+    .syntax-card {
+        padding: 20px;
+        text-align: center;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 9px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    }
+
+    .syntax-icon {
+        width: 55px;
+        height: 55px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 12px;
+        background: #ede9fe;
+        color: #4c1d95;
+        border-radius: 50%;
+        font-size: 24px;
+    }
+
+    .syntax-card h5 {
+        color: #2e1065;
+        font-weight: 700;
+    }
+
+    .syntax-card p {
+        color: #64748b;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .syntax-card code {
+        color: #4c1d95;
+        font-weight: 600;
+    }
+
+    .code-card {
+        margin-top: 15px;
+        margin-bottom: 18px;
+        border-radius: 8px;
+        overflow: hidden;
+        background: #0f172a;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .code-title {
+        background: #1e293b;
+        color: #d8c9f5;
+        padding: 10px 15px;
+        font-weight: 600;
+        border-bottom: 1px solid #334155;
+    }
+
+    .code-card pre {
+        margin: 0;
+        padding: 18px;
+        overflow-x: auto;
+    }
+
+    .code-card code {
+        color: #e2e8f0;
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    .output-box {
+        margin-top: 15px;
+        padding: 18px;
+        background: #f1f5f9;
+        border-left: 5px solid #4c1d95;
+        border-radius: 6px;
+    }
+
+    .output-preview {
+        margin-top: 12px;
+        padding: 18px;
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 7px;
+    }
+
+        .output-preview h3 {
+            color: #2e1065;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .output-preview p {
+            margin-bottom: 7px;
+        }
+
+    .binding-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 20px;
+        padding: 20px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+    }
+
+    .binding-item {
+        min-width: 170px;
+        padding: 15px;
+        text-align: center;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 8px;
+    }
+
+        .binding-item strong {
+            display: block;
+            color: #4c1d95;
+            font-weight: 700;
+        }
+
+        .binding-item span {
+            display: block;
+            color: #64748b;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+    .binding-arrow {
+        color: #4c1d95;
+        font-size: 25px;
+        font-weight: 700;
+    }
+
+    .active-preview {
+        margin-top: 12px;
+        display: inline-block;
+        padding: 12px 20px;
+        background: #ede9fe;
+        border: 2px solid #4c1d95;
+        border-radius: 7px;
+        color: #2e1065;
+        font-weight: 700;
+    }
+
+    .style-preview {
+        margin-top: 12px;
+        font-size: 20px;
+        font-weight: 600;
+        color: #4c1d95;
+    }
+
+    .control-flow-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .control-card {
+        padding: 20px;
+        background: #f8fafc;
+        border: 1px solid #ddd6fe;
+        border-radius: 8px;
+    }
+
+        .control-card h5 {
+            color: #4c1d95;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+    .code-small {
+        background: #0f172a;
+        border-radius: 7px;
+        overflow: hidden;
+    }
+
+        .code-small pre {
+            margin: 0;
+            padding: 15px;
+            overflow-x: auto;
+        }
+
+        .code-small code {
+            color: #e2e8f0;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+    .syntax-table {
+        background: #ffffff;
+    }
+
+        .syntax-table thead th {
+            background: #4c1d95;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .syntax-table td {
+            vertical-align: middle;
+        }
+
+        .syntax-table code {
+            color: #4c1d95;
+            font-weight: 600;
+        }
+
+    .student-preview {
+        margin-top: 12px;
+        padding: 20px;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 8px;
+    }
+
+        .student-preview h3 {
+            color: #2e1065;
+            font-weight: 700;
+        }
+
+    .best-practice-list {
+        padding: 20px 20px 20px 40px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+    }
+
+        .best-practice-list li {
+            margin-bottom: 11px;
+            line-height: 1.6;
+        }
+
+            .best-practice-list li:last-child {
+                margin-bottom: 0;
+            }
+
+    .summary-box {
+        background: #cfe2ff;
+        border-radius: 6px;
+        padding: 18px 22px;
+        margin-top: 20px;
+    }
+
+        .summary-box h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #084298;
+            margin-bottom: 10px;
+        }
+
+        .summary-box p {
+            font-size: 16px !important;
+            line-height: 1.6 !important;
+            color: #084298 !important;
+            margin-bottom: 8px;
+        }
+
+            .summary-box p:last-child {
+                margin-bottom: 0;
+            }
+
+    @@media (max-width: 991px) {
+
+        .syntax-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .control-flow-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @@media (max-width: 576px) {
+
+        .syntax-grid,
+        .control-flow-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .syntax-flow,
+        .binding-flow {
+            flex-direction: column;
+        }
+
+        .syntax-arrow,
+        .binding-arrow {
+            transform: rotate(90deg);
+        }
+
+        .syntax-box {
+            width: 100%;
+            max-width: 280px;
+        }
+
+        .binding-item {
+            width: 100%;
+            max-width: 250px;
+        }
+
+        .code-card code,
+        .code-small code {
+            font-size: 13px;
+        }
+
+        .d-flex.justify-content-between {
+            gap: 10px;
+        }
+
+            .d-flex.justify-content-between .btn {
+                font-size: 13px;
+                padding: 8px 12px;
+            }
+    }
+
+</style>

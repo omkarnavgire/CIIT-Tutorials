@@ -1,0 +1,819 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Python Context Managers";
+}
+
+<style>
+
+    #python-context-managers-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #python-context-managers-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #python-context-managers-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #python-context-managers-page .diagram-box {
+        background: #ffffff;
+        border: 2px solid #6f42c1;
+        border-radius: 10px;
+        padding: 18px;
+        text-align: center;
+        height: 100%;
+    }
+
+        #python-context-managers-page .diagram-box h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        #python-context-managers-page .diagram-box p {
+            margin-bottom: 0;
+            font-size: 14px;
+            color: #495057;
+        }
+
+    #python-context-managers-page .diagram-arrow {
+        text-align: center;
+        font-size: 28px;
+        font-weight: 700;
+        color: #6f42c1;
+        padding: 8px 0;
+    }
+
+    #python-context-managers-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #python-context-managers-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+        }
+
+</style>
+
+
+<main id="python-context-managers-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+
+                <h1 class="fw-bold">
+                    Context Managers in Python
+                </h1>
+
+                <p class="lead">
+                    Learn how context managers help Python programs manage
+                    resources safely and automatically.
+                </p>
+
+            </div>
+
+
+            <!-- WHAT IS CONTEXT MANAGER -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    What is a Context Manager?
+                </h2>
+
+                <p>
+                    A context manager is used to manage resources such as
+                    files, database connections and other operations that
+                    need proper setup and cleanup.
+                </p>
+
+                <p>
+                    Python commonly uses the <code>with</code> statement
+                    to work with context managers.
+                </p>
+
+                <div class="alert alert-info">
+
+                    <strong>Simple Definition:</strong>
+
+                    A context manager automatically manages the beginning
+                    and ending of a resource operation.
+
+                </div>
+
+            </div>
+
+
+            <!-- BASIC DIAGRAM -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Context Manager Flow
+                </h2>
+
+                <div class="concept-box">
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            Start Operation
+                        </h5>
+
+                        <p>
+                            Resource is opened or prepared.
+                        </p>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            with Block
+                        </h5>
+
+                        <p>
+                            The required operation is performed.
+                        </p>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            Cleanup
+                        </h5>
+
+                        <p>
+                            The resource is properly released.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- WITH STATEMENT -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    The with Statement
+                </h2>
+
+                <p>
+                    The <code>with</code> statement is the most common
+                    way to use a context manager in Python.
+                </p>
+
+                <pre><code>with open("students.txt", "r") as file:
+
+    data = file.read()
+
+    print(data)</code></pre>
+
+                <p>
+                    After the <code>with</code> block finishes, Python
+                    automatically handles the file resource.
+                </p>
+
+            </div>
+
+
+            <!-- FILE EXAMPLE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Simple File Example
+                </h2>
+
+                <pre><code>with open("students.txt", "w") as file:
+
+    file.write("Rahul")
+
+print("File operation completed")</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>File operation completed</code></pre>
+
+                <p>
+                    The file is automatically closed after the
+                    <code>with</code> block.
+                </p>
+
+            </div>
+
+
+            <!-- WITHOUT WITH -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Without a Context Manager
+                </h2>
+
+                <p>
+                    Without using <code>with</code>, we have to manually
+                    close the file.
+                </p>
+
+                <pre><code>file = open("students.txt", "r")
+
+data = file.read()
+
+print(data)
+
+file.close()</code></pre>
+
+                <p>
+                    Forgetting to close a resource can cause problems,
+                    especially when working with many resources.
+                </p>
+
+            </div>
+
+
+            <!-- WITH VS WITHOUT -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    with vs Manual Resource Handling
+                </h2>
+
+                <div class="row g-3">
+
+                    <div class="col-md-6">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Manual Handling
+                            </h5>
+
+                            <p>
+                                The programmer must explicitly release
+                                the resource.
+                            </p>
+
+                            <pre><code>file = open("data.txt", "r")
+
+data = file.read()
+
+file.close()</code></pre>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-6">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Context Manager
+                            </h5>
+
+                            <p>
+                                Python automatically handles the resource.
+                            </p>
+
+                            <pre><code>with open("data.txt", "r") as file:
+
+    data = file.read()</code></pre>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CUSTOM CONTEXT MANAGER -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Creating a Custom Context Manager
+                </h2>
+
+                <p>
+                    A custom context manager can be created using the
+                    <code>__enter__()</code> and <code>__exit__()</code>
+                    methods.
+                </p>
+
+                <pre><code>class Demo:
+
+    def __enter__(self):
+
+        print("Entering context")
+
+        return self
+
+    def __exit__(self, exc_type, exc_value, traceback):
+
+        print("Exiting context")
+
+
+with Demo():
+
+    print("Inside context")</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Entering context
+Inside context
+Exiting context</code></pre>
+
+            </div>
+
+
+            <!-- ENTER -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    __enter__ Method
+                </h2>
+
+                <p>
+                    The <code>__enter__()</code> method runs when Python
+                    enters the <code>with</code> block.
+                </p>
+
+                <pre><code>class Demo:
+
+    def __enter__(self):
+
+        print("Context started")
+
+        return self
+
+    def __exit__(self, exc_type, exc_value, traceback):
+
+        print("Context ended")
+
+
+with Demo():
+
+    print("Working")</code></pre>
+
+                <p>
+                    The <code>__enter__()</code> method is used for
+                    setup operations.
+                </p>
+
+            </div>
+            <div class="px-2">
+                <h5 class="fw-bold mb-2">
+                    Output
+                </h5>
+
+                <pre class="mb-4"><code>Context started
+Working
+Context ended</code></pre>
+            </div>
+
+            <!-- EXIT -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    __exit__ Method
+                </h2>
+
+                <p>
+                    The <code>__exit__()</code> method runs when Python
+                    leaves the <code>with</code> block.
+                </p>
+
+                <p>
+                    It is commonly used for cleanup operations.
+                </p>
+
+            </div>
+
+
+            <!-- EXCEPTION -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Context Manager with Exception
+                </h2>
+
+                <pre><code>class Demo:
+
+    def __enter__(self):
+
+        print("Context started")
+
+        return self
+
+    def __exit__(self, exc_type, exc_value, traceback):
+
+        print("Context ended")
+
+
+with Demo():
+
+    print("Inside context")
+
+    raise ValueError("Something went wrong")</code></pre>
+
+                <p>
+                    The <code>__exit__()</code> method still gets a chance
+                    to run when an exception occurs inside the
+                    <code>with</code> block.
+                </p>
+
+            </div>
+            <div class="px-2">
+    <h5 class="fw-bold mb-2">
+        Output
+    </h5>
+
+    <pre class="mb-4"><code>Context started
+Inside context
+Context ended
+ValueError: Something went wrong</code></pre>
+</div>
+
+            <!-- PRACTICAL EXAMPLE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Example 👀👨‍🏫
+                </h2>
+
+                <p>
+                    File handling is one of the most common practical uses
+                    of context managers.
+                </p>
+
+                <pre><code>with open("students.txt", "r") as file:
+
+    for line in file:
+
+        print(line.strip())</code></pre>
+
+                <p>
+                    Python automatically handles the file resource when
+                    the <code>with</code> block finishes.
+                </p>
+
+            </div>
+
+
+            <!-- COMMON USES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Common Uses of Context Managers
+                </h2>
+
+                <div class="row g-3">
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Files
+                            </h5>
+
+                            <p class="mb-0">
+                                Open and safely close files automatically.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Database
+                            </h5>
+
+                            <p class="mb-0">
+                                Manage database connections and transactions.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Resources
+                            </h5>
+
+                            <p class="mb-0">
+                                Manage resources that require proper cleanup.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ADVANTAGES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Advantages of Context Managers
+                </h2>
+
+                <div class="row g-3">
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Automatic Cleanup
+                            </h5>
+
+                            <p class="mb-0">
+                                Resources are properly handled after use.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Safer Code
+                            </h5>
+
+                            <p class="mb-0">
+                                Reduces the chance of forgetting cleanup operations.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Cleaner Code
+                            </h5>
+
+                            <p class="mb-0">
+                                Resource management becomes simpler and clearer.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- BEST PRACTICES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Best Practices
+                </h2>
+
+                <div class="row g-3">
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Use with
+                            </h5>
+
+                            <p class="mb-0">
+                                Prefer the with statement for supported resources.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Cleanup Resources
+                            </h5>
+
+                            <p class="mb-0">
+                                Make sure resources are properly released.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Keep It Simple
+                            </h5>
+
+                            <p class="mb-0">
+                                Use custom context managers only when needed.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- COMMON MISTAKES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Common Mistakes
+                </h2>
+
+                <ul>
+
+                    <li>
+                        Forgetting to close resources when not using a context manager.
+                    </li>
+
+                    <li>
+                        Using a custom context manager when a built-in
+                        context manager is enough.
+                    </li>
+
+                    <li>
+                        Putting unrelated operations inside the with block.
+                    </li>
+
+                    <li>
+                        Not understanding the purpose of __enter__ and __exit__.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Practice Programs
+                </h2>
+
+                <ol>
+
+                    <li>
+                        Read a text file using the <code>with</code> statement.
+                    </li>
+
+                    <li>
+                        Write data to a file using a context manager.
+                    </li>
+
+                    <li>
+                        Create a custom context manager using
+                        <code>__enter__()</code> and <code>__exit__()</code>.
+                    </li>
+
+                    <li>
+                        Create a context manager that prints messages
+                        when entering and leaving a block.
+                    </li>
+
+                    <li>
+                        Create a context manager that handles a resource
+                        safely when an exception occurs.
+                    </li>
+
+                </ol>
+
+            </div>
+
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+
+                <h2 class="h4 fw-bold">
+                    Summary
+                </h2>
+
+                <p class="mb-0">
+
+                    Context managers are used to manage resources safely
+                    in Python. The <code>with</code> statement is the
+                    most common way to use a context manager. Custom
+                    context managers can be created using
+                    <code>__enter__()</code> and <code>__exit__()</code>.
+                    They help make programs safer, cleaner and easier
+                    to maintain.
+
+                </p>
+
+            </div>
+
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+
+                <a class="btn btn-outline-secondary"
+                   href="@Url.Action("Decorators", "AdvancedPython", new { area = "Python" })">
+
+                    ← Previous: Topic
+
+                </a>
+
+
+                <a class="btn btn-primary"
+                   href="@Url.Action("RegularExpressions", "AdvancedPython", new { area = "Python" })">
+
+                    Next: Topic →
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

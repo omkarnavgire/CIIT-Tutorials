@@ -1,0 +1,741 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Python Custom Exceptions";
+}
+
+<style>
+
+    #python-custom-exceptions-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #python-custom-exceptions-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #python-custom-exceptions-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #python-custom-exceptions-page .diagram-box {
+        background: #ffffff;
+        border: 2px solid #6f42c1;
+        border-radius: 10px;
+        padding: 18px;
+        text-align: center;
+        height: 100%;
+    }
+
+        #python-custom-exceptions-page .diagram-box h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        #python-custom-exceptions-page .diagram-box p {
+            margin-bottom: 0;
+            font-size: 14px;
+            color: #495057;
+        }
+
+    #python-custom-exceptions-page .diagram-arrow {
+        text-align: center;
+        font-size: 28px;
+        font-weight: 700;
+        color: #6f42c1;
+        padding: 8px 0;
+    }
+
+    #python-custom-exceptions-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #python-custom-exceptions-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+        }
+
+</style>
+
+
+<main id="python-custom-exceptions-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+
+                <h1 class="fw-bold">
+                    Custom Exceptions in Python
+                </h1>
+
+                <p class="lead">
+                    Learn how to create your own exception classes in Python
+                    for application-specific errors.
+                </p>
+
+            </div>
+
+
+            <!-- WHAT ARE CUSTOM EXCEPTIONS -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    What are Custom Exceptions?
+                </h2>
+
+                <p>
+                    Python provides many built-in exceptions such as
+                    <code>ValueError</code>, <code>TypeError</code> and
+                    <code>ZeroDivisionError</code>.
+                </p>
+
+                <p>
+                    Sometimes an application needs an error type that is
+                    specific to its own business rules or requirements.
+                    In that situation, we can create a custom exception.
+                </p>
+
+                <div class="alert alert-info">
+
+                    <strong>Simple Definition:</strong>
+
+                    A custom exception is a user-defined exception class
+                    created for a specific application requirement.
+
+                </div>
+
+            </div>
+
+
+            <!-- BASIC DIAGRAM -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Custom Exception Flow
+                </h2>
+
+                <div class="concept-box">
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            Create Exception Class
+                        </h5>
+
+                        <p>
+                            Create a new class derived from
+                            the Exception class.
+                        </p>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            Raise Exception
+                        </h5>
+
+                        <p>
+                            Use raise when the required condition occurs.
+                        </p>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            Handle Exception
+                        </h5>
+
+                        <p>
+                            Handle the custom exception using except.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- BASIC SYNTAX -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Basic Syntax
+                </h2>
+
+                <pre><code>class MyException(Exception):
+
+    pass</code></pre>
+
+                <p class="mt-3">
+                    A custom exception class normally inherits from
+                    the built-in <code>Exception</code> class.
+                </p>
+
+            </div>
+
+
+            <!-- SIMPLE EXAMPLE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Simple Example
+                </h2>
+
+                <pre><code>class AgeError(Exception):
+
+    pass
+
+
+try:
+
+    age = 15
+
+    if age &lt; 18:
+
+        raise AgeError("Age must be 18 or above")
+
+except AgeError as error:
+
+    print(error)</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Age must be 18 or above</code></pre>
+
+                <p>
+                    Here, <code>AgeError</code> is a custom exception
+                    created by the programmer.
+                </p>
+
+            </div>
+
+
+            <!-- CUSTOM EXCEPTION WITH USER INPUT -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Custom Exception with User Input
+                </h2>
+
+                <pre><code>class AgeError(Exception):
+
+    pass
+
+
+try:
+
+    age = int(
+        input("Enter your age: ")
+    )
+
+    if age &lt; 18:
+
+        raise AgeError("You must be 18 or above")
+
+    print("Valid age")
+
+except AgeError as error:
+
+    print("Error:", error)</code></pre>
+
+                <p class="mt-3">
+                    Example Output:
+                </p>
+
+                <pre><code>Enter your age: 16
+Error: You must be 18 or above</code></pre>
+
+            </div>
+
+
+            <!-- CUSTOM MARKS EXCEPTION -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Example: Marks Validation
+                </h2>
+
+                <pre><code>class InvalidMarksError(Exception):
+
+    pass
+
+
+try:
+
+    marks = int(
+        input("Enter marks: ")
+    )
+
+    if marks &lt; 0 or marks &gt; 100:
+
+        raise InvalidMarksError(
+            "Marks must be between 0 and 100"
+        )
+
+    print("Valid marks:", marks)
+
+except InvalidMarksError as error:
+
+    print("Error:", error)</code></pre>
+
+                <p class="mt-3">
+                    Example Output:
+                </p>
+
+                <pre><code>Enter marks: 120
+Error: Marks must be between 0 and 100</code></pre>
+
+            </div>
+
+
+            <!-- CUSTOM EXCEPTION WITH VALUE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Custom Exception with a Value
+                </h2>
+
+                <p>
+                    A custom exception can also store information about
+                    the error.
+                </p>
+
+                <pre><code>class SalaryError(Exception):
+
+    def __init__(self, salary):
+
+        self.salary = salary
+
+
+try:
+
+    salary = 5000
+
+    if salary &lt; 10000:
+
+        raise SalaryError(salary)
+
+except SalaryError as error:
+
+    print("Invalid salary:", error.salary)</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Invalid salary: 5000</code></pre>
+
+            </div>
+
+
+            <!-- MULTIPLE CUSTOM EXCEPTIONS -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Multiple Custom Exceptions
+                </h2>
+
+                <p>
+                    A program can contain more than one custom exception
+                    class for different business rules.
+                </p>
+
+                <pre><code>class AgeError(Exception):
+
+    pass
+
+
+class MarksError(Exception):
+
+    pass
+
+
+try:
+
+    age = 16
+
+    marks = 120
+
+    if age &lt; 18:
+
+        raise AgeError("Age must be 18 or above")
+
+    if marks &lt; 0 or marks &gt; 100:
+
+        raise MarksError("Invalid marks")
+
+except AgeError as error:
+
+    print(error)
+
+except MarksError as error:
+
+    print(error)</code></pre>
+
+                <p>
+                    Each custom exception can have its own handler.
+                </p>
+
+            </div>
+
+
+            <!-- CUSTOM EXCEPTION WITH FUNCTION -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Custom Exception with Function
+                </h2>
+
+                <pre><code>class InsufficientBalanceError(Exception):
+
+    pass
+
+
+def withdraw(balance, amount):
+
+    if amount &gt; balance:
+
+        raise InsufficientBalanceError(
+            "Insufficient balance"
+        )
+
+    return balance - amount
+
+
+try:
+
+    balance = 5000
+
+    amount = 7000
+
+    remaining = withdraw(balance, amount)
+
+    print("Remaining balance:", remaining)
+
+except InsufficientBalanceError as error:
+
+    print("Error:", error)</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Error: Insufficient balance</code></pre>
+
+            </div>
+
+
+            <!-- PRACTICAL USE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Practical Uses of Custom Exceptions
+                </h2>
+
+                <div class="row g-3">
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Validation
+                            </h5>
+
+                            <p class="mb-0">
+                                Used for application-specific validation errors.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Business Rules
+                            </h5>
+
+                            <p class="mb-0">
+                                Used when a business rule is not satisfied.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Application Errors
+                            </h5>
+
+                            <p class="mb-0">
+                                Used to describe specific application problems.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- BUILT IN VS CUSTOM -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Built-in vs Custom Exceptions
+                </h2>
+
+                <div class="concept-box">
+
+                    <p>
+                        <strong>Built-in Exception:</strong>
+                        Already provided by Python, such as
+                        <code>ValueError</code> and <code>TypeError</code>.
+                    </p>
+
+                    <p class="mb-0">
+                        <strong>Custom Exception:</strong>
+                        Created by the programmer for a specific
+                        application requirement.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- BEST PRACTICES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Best Practices
+                </h2>
+
+                <div class="row g-3">
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Meaningful Names
+                            </h5>
+
+                            <p class="mb-0">
+                                Give the custom exception a clear and meaningful name.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Useful Messages
+                            </h5>
+
+                            <p class="mb-0">
+                                Provide a clear message that explains the problem.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>
+                                Specific Purpose
+                            </h5>
+
+                            <p class="mb-0">
+                                Create custom exceptions only when a specific
+                                application requirement needs them.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- COMMON MISTAKES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Common Mistakes
+                </h2>
+
+                <ul>
+
+                    <li>
+                        Creating unnecessary custom exceptions.
+                    </li>
+
+                    <li>
+                        Using unclear exception names.
+                    </li>
+
+                    <li>
+                        Not providing a meaningful error message.
+                    </li>
+
+                    <li>
+                        Forgetting to inherit from the
+                        <code>Exception</code> class.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Practice Programs
+                </h2>
+
+                <ol>
+
+                    <li>
+                        Create a custom exception for invalid age.
+                    </li>
+
+                    <li>
+                        Create a custom exception for invalid marks.
+                    </li>
+
+                    <li>
+                        Create a custom exception for insufficient balance.
+                    </li>
+
+                    <li>
+                        Create two custom exceptions for two different
+                        application rules.
+                    </li>
+
+                    <li>
+                        Use a custom exception inside a function.
+                    </li>
+
+                </ol>
+
+            </div>
+
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+
+                <h2 class="h4 fw-bold">
+                    Summary
+                </h2>
+
+                <p class="mb-0">
+
+                    Custom exceptions are user-defined exceptions created
+                    for application-specific requirements. They normally
+                    inherit from the built-in <code>Exception</code> class.
+                    Custom exceptions can be raised using
+                    <code>raise</code> and handled using
+                    <code>try</code> and <code>except</code>. They are useful
+                    for validation, business rules and application-specific
+                    errors.
+
+                </p>
+
+            </div>
+
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+
+                <a class="btn btn-outline-secondary"
+                   href="@Url.Action("RaiseException", "ExceptionHandling", new { area = "Python" })">
+
+                    ← Previous: Topic
+
+                </a>
+
+
+                <a class="btn btn-primary"
+                   href="@Url.Action("Index", "AdvancedPython", new { area = "Python" })">
+
+                    Next: Topic →
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

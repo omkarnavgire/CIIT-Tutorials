@@ -1,0 +1,287 @@
+<style>
+    .ciit-course-hero {
+        background: linear-gradient(135deg, #0b2e6f 0%, #1456b8 55%, #2f6fd6 100%);
+        color: #fff;
+        padding: 4rem 0 3.2rem;
+        margin: 0;
+        position: relative;
+        overflow: hidden;
+    }
+
+        .ciit-course-hero:after {
+            content: "AZURE";
+            position: absolute;
+            right: 4%;
+            bottom: -42px;
+            font-size: 150px;
+            font-weight: 900;
+            color: #fff;
+            opacity: .06;
+            pointer-events: none;
+        }
+
+    .azure-content {
+        color: #212529;
+        margin-top: 0;
+        margin-bottom: 0;
+        align-items: flex-start;
+    }
+
+        .azure-content > .col-lg-3,
+        .azure-content > .col-lg-9 {
+            min-width: 0;
+            align-self: flex-start;
+        }
+
+    .azure-main-column {
+        min-width: 0;
+    }
+
+    .azure-content .card {
+        border: 0;
+    }
+
+    .azure-content h2,
+    .azure-content h3,
+    .azure-content h4 {
+        color: #212529;
+    }
+
+    .azure-content p {
+        line-height: 1.65;
+    }
+
+    .azure-content > .col-lg-3 {
+        position: sticky;
+        top: 90px;
+        align-self: flex-start;
+        height: calc(100vh - 110px);
+        min-height: 0;
+    }
+
+        .azure-content > .col-lg-3 .ciit-syllabus-card {
+            position: relative;
+            top: auto;
+            height: 100%;
+            max-height: 100%;
+            overflow-y: auto;
+            overflow-x: hidden;
+            overscroll-behavior: contain;
+            scrollbar-width: thin;
+            scrollbar-color: #adb5bd #f1f1f1;
+        }
+
+            .azure-content > .col-lg-3 .ciit-syllabus-card::-webkit-scrollbar {
+                width: 6px;
+            }
+
+            .azure-content > .col-lg-3 .ciit-syllabus-card::-webkit-scrollbar-track {
+                background: #f1f1f1;
+            }
+
+            .azure-content > .col-lg-3 .ciit-syllabus-card::-webkit-scrollbar-thumb {
+                background: #adb5bd;
+                border-radius: 10px;
+            }
+
+                .azure-content > .col-lg-3 .ciit-syllabus-card::-webkit-scrollbar-thumb:hover {
+                    background: #6c757d;
+                }
+
+    .azure-card {
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        background: #fff;
+    }
+
+    .azure-callout {
+        border-left: 5px solid #0d6efd;
+        background: #eff6ff;
+        border-radius: 8px;
+        padding: 16px 18px;
+    }
+
+    .azure-example {
+        background: #f8f9fa;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        padding: 18px;
+    }
+
+    .azure-code {
+        background: #212529;
+        color: #f8f9fa;
+        border-radius: 8px;
+        padding: 15px;
+        font-family: Consolas, "Courier New", monospace;
+        overflow-x: auto;
+        overflow-y: hidden;
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+    }
+
+    .azure-diagram {
+        display: block;
+        width: 100%;
+        height: auto;
+        background: #f8f9fa;
+        border: 1px solid #e5e7eb;
+        border-radius: 10px;
+        padding: 10px;
+    }
+
+    .azure-step {
+        border-left: 3px solid #0d6efd;
+        padding-left: 16px;
+        margin-bottom: 18px;
+    }
+
+    .azure-console-shot {
+        display: block;
+        width: 100%;
+        height: auto;
+        border: 1px solid #d9dee5;
+        border-radius: 8px;
+        box-shadow: 0 4px 16px rgba(0,0,0,.08);
+        background: #fff;
+    }
+
+
+    .azure-lesson-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        margin-top: 28px;
+        padding-top: 18px;
+        border-top: 1px solid #e5e7eb;
+    }
+
+        .azure-lesson-nav .btn {
+            min-width: 170px;
+        }
+
+    .azure-back {
+        background: #fff;
+        border: 1px solid #6c757d;
+        color: #212529;
+    }
+
+    .azure-next {
+        background: #0d6efd;
+        border-color: #0d6efd;
+        color: #fff;
+        font-weight: 700;
+    }
+
+        .azure-next:hover {
+            background: #0b5ed7;
+            border-color: #0b5ed7;
+            color: #fff;
+        }
+
+    .azure-test {
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        background: #fff;
+        padding: 20px;
+        margin-top: 28px;
+    }
+
+    .azure-option {
+        display: block;
+        width: 100%;
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+        padding: 11px 13px;
+        margin: 8px 0;
+        cursor: pointer;
+    }
+
+        .azure-option:hover {
+            background: #f8f9fa;
+        }
+
+    .azure-feedback {
+        display: none;
+        border-radius: 8px;
+        padding: 13px;
+        margin-top: 12px;
+    }
+
+    .azure-correct {
+        background: #ecfdf5;
+        border: 1px solid #10b981;
+        color: #065f46;
+    }
+
+    .azure-wrong {
+        background: #fef2f2;
+        border: 1px solid #ef4444;
+        color: #991b1b;
+    }
+
+    .azure-deep {
+        border-left: 4px solid #0d6efd;
+        background: #eff6ff;
+        padding: 18px;
+        border-radius: 8px;
+        margin-bottom: 24px;
+    }
+
+    .azure-history {
+        border-left: 4px solid #6f42c1;
+        background: #f7f0ff;
+        padding: 18px;
+        border-radius: 8px;
+        margin-bottom: 24px;
+    }
+
+    .azure-key-list li {
+        margin-bottom: 8px;
+    }
+
+    .azure-content .card-body {
+        overflow-wrap: break-word;
+    }
+
+    @@media (max-width: 991.98px) {
+        .azure-content > .col-lg-3 {
+            position: static;
+            top: auto;
+            height: auto;
+        }
+
+            .azure-content > .col-lg-3 .ciit-syllabus-card {
+                height: auto;
+                max-height: none;
+                overflow: visible;
+            }
+    }
+
+
+        .ciit-course-hero {
+            padding: 3rem 1rem;
+        }
+
+            .ciit-course-hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .ciit-course-hero:after {
+                font-size: 100px;
+                bottom: -25px;
+            }
+
+
+    .azure-lesson-nav {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+            .azure-lesson-nav .btn {
+                width: 100%;
+                min-width: 0;
+            }
+    }
+</style>

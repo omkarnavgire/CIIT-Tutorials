@@ -1,0 +1,891 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Python Encapsulation";
+}
+
+<style>
+    #python-encapsulation-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+
+        #python-encapsulation-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #python-encapsulation-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #python-encapsulation-page .diagram-box {
+        background: #ffffff;
+        border: 2px solid #6f42c1;
+        border-radius: 10px;
+        padding: 18px;
+        text-align: center;
+        height: 100%;
+    }
+
+        #python-encapsulation-page .diagram-box h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        #python-encapsulation-page .diagram-box p {
+            margin-bottom: 0;
+            font-size: 14px;
+            color: #495057;
+        }
+
+    #python-encapsulation-page .diagram-arrow {
+        text-align: center;
+        font-size: 28px;
+        font-weight: 700;
+        color: #6f42c1;
+        padding: 8px 0;
+    }
+
+    #python-encapsulation-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #python-encapsulation-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+        }
+</style>
+
+
+<main id="python-encapsulation-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- Left Sidebar -->
+        <aside class="col-lg-3">
+
+            @Html.Partial("~/Areas/Python/Views/Shared/PythonTopics.cshtml")
+
+        </aside>
+
+
+        <!-- Main Content -->
+        <section class="col-lg-9">
+
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+
+                <h1 class="fw-bold">
+                    Encapsulation in Python
+                </h1>
+
+                <p class="lead">
+                    Learn how to protect data inside a class and control
+                    how that data is accessed.
+                </p>
+
+            </div>
+
+
+            <!-- INTRODUCTION -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    What is Encapsulation?
+                </h2>
+
+                <p>
+                    Encapsulation is one of the important concepts of
+                    Object-Oriented Programming.
+                </p>
+
+                <p>
+                    Encapsulation means keeping data and the methods that
+                    work with that data together inside a class.
+                </p>
+
+                <p>
+                    It also helps us control how the data is accessed
+                    or changed.
+                </p>
+
+                <p>
+                    In simple words:
+                </p>
+
+                <div class="alert alert-info">
+                    <strong>
+                        Encapsulation = Data + Methods + Controlled Access
+                    </strong>
+                </div>
+
+            </div>
+
+
+            <!-- WHY ENCAPSULATION -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Why Do We Need Encapsulation?
+                </h2>
+
+                <p>
+                    Suppose a bank account has a balance of ₹50,000.
+                    We should not allow anyone to change the balance
+                    to an invalid value directly.
+                </p>
+
+                <p>
+                    Instead, we can provide methods such as
+                    <code>deposit()</code> and <code>withdraw()</code>
+                    that control how the balance changes.
+                </p>
+
+                <div class="row g-3 mt-2">
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>Protect Data</h5>
+
+                            <p class="mb-0">
+                                Keep important data protected inside
+                                the class.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>Control Access</h5>
+
+                            <p class="mb-0">
+                                Decide how data can be read or changed.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <div class="info-card">
+
+                            <h5>Validation</h5>
+
+                            <p class="mb-0">
+                                Check values before storing them.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- DIAGRAM -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Encapsulation Diagram
+                </h2>
+
+                <p>
+                    The basic idea of encapsulation can be understood
+                    with the following flow:
+                </p>
+
+
+                <div class="concept-box">
+
+                    <div class="diagram-box">
+
+                        <h5>Class</h5>
+
+                        <p>
+                            Contains data and methods
+                        </p>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="row g-3">
+
+                        <div class="col-md-4">
+
+                            <div class="diagram-box">
+
+                                <h5>Private Data</h5>
+
+                                <p>
+                                    Important information
+                                    is kept inside the class.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-4">
+
+                            <div class="diagram-box">
+
+                                <h5>Getter / Setter</h5>
+
+                                <p>
+                                    Methods provide controlled
+                                    access to the data.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-4">
+
+                            <div class="diagram-box">
+
+                                <h5>User</h5>
+
+                                <p>
+                                    Gets or changes data
+                                    through allowed methods.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="diagram-box">
+
+                        <h5>Controlled Data Access</h5>
+
+                        <p>
+                            Data can be validated before
+                            it is changed.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- SIMPLE EXAMPLE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Simple Example
+                </h2>
+
+                <p>
+                    Let's first understand a simple class.
+                </p>
+
+                <pre><code>class Student:
+
+    def __init__(self, name, marks):
+        self.name = name
+        self.marks = marks
+
+
+student1 = Student("Rahul", 85)
+
+print(student1.name)
+print(student1.marks)</code></pre>
+
+                <p>
+                    Here the student data and the related class
+                    are kept together.
+                </p>
+
+                <p>
+                    This is the basic idea of keeping data and
+                    behavior inside a class.
+                </p>
+
+            </div>
+
+
+            <!-- PUBLIC -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Public Members
+                </h2>
+
+                <p>
+                    A public variable can normally be accessed directly
+                    from outside the class.
+                </p>
+
+                <pre><code>class Student:
+
+    def __init__(self, name):
+        self.name = name
+
+
+student1 = Student("Rahul")
+
+print(student1.name)</code></pre>
+
+                <p>
+                    Output:
+                </p>
+
+                <pre><code>Rahul</code></pre>
+
+                <p>
+                    <code>name</code> is a public attribute.
+                </p>
+
+            </div>
+
+
+            <!-- PROTECTED -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Protected Members
+                </h2>
+
+                <p>
+                    A protected attribute is written with a single
+                    underscore before the variable name.
+                </p>
+
+                <pre><code>class Student:
+
+    def __init__(self, name):
+        self._name = name
+
+
+student1 = Student("Rahul")
+
+print(student1._name)</code></pre>
+
+                <p>
+                    The single underscore is mainly a signal to other
+                    developers that the variable is intended for
+                    internal or subclass use.
+                </p>
+
+            </div>
+
+
+            <!-- PRIVATE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Private Members
+                </h2>
+
+                <p>
+                    A private attribute is written with two underscores
+                    before the variable name.
+                </p>
+
+                <pre><code>class Student:
+
+    def __init__(self, marks):
+        self.__marks = marks
+
+
+student1 = Student(85)</code></pre>
+
+                <p>
+                    Here <code>__marks</code> is intended to be
+                    private to the class.
+                </p>
+
+                <p>
+                    We normally access it through methods defined
+                    inside the class.
+                </p>
+
+            </div>
+
+
+            <!-- GETTER -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Getter Method
+                </h2>
+
+                <p>
+                    A getter method is used to read the value of
+                    private data.
+                </p>
+
+                <pre><code>class Student:
+
+    def __init__(self, marks):
+        self.__marks = marks
+
+    def get_marks(self):
+        return self.__marks
+
+
+student1 = Student(85)
+
+print(student1.get_marks())</code></pre>
+
+                <p>
+                    Output:
+                </p>
+
+                <pre><code>85</code></pre>
+
+                <p>
+                    The <code>get_marks()</code> method gives us
+                    controlled access to the private variable.
+                </p>
+
+            </div>
+
+
+            <!-- SETTER -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Setter Method
+                </h2>
+
+                <p>
+                    A setter method is used to change the value of
+                    private data.
+                </p>
+
+                <pre><code>class Student:
+
+    def __init__(self, marks):
+        self.__marks = marks
+
+    def get_marks(self):
+        return self.__marks
+
+    def set_marks(self, marks):
+        self.__marks = marks
+
+
+student1 = Student(70)
+
+print(student1.get_marks())
+
+student1.set_marks(90)
+
+print(student1.get_marks())</code></pre>
+
+                <p>
+                    Output:
+                </p>
+
+                <pre><code>70
+90</code></pre>
+
+            </div>
+
+
+            <!-- VALIDATION -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Encapsulation with Validation
+                </h2>
+
+                <p>
+                    One major advantage of using a setter is that
+                    we can validate the value before storing it.
+                </p>
+
+                <pre><code>class Student:
+
+    def __init__(self):
+        self.__marks = 0
+
+    def get_marks(self):
+        return self.__marks
+
+    def set_marks(self, marks):
+
+        if 0 &lt;= marks &lt;= 100:
+            self.__marks = marks
+        else:
+            print("Invalid marks")
+
+
+student1 = Student()
+
+student1.set_marks(85)
+
+print(student1.get_marks())
+
+student1.set_marks(150)</code></pre>
+
+                <p>
+                    Output:
+                </p>
+
+                <pre><code>85
+Invalid marks</code></pre>
+
+                <p>
+                    Here the setter does not allow marks greater than
+                    100 or less than 0.
+                </p>
+
+            </div>
+
+
+            <!-- REAL WORLD EXAMPLE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Example: Bank Account 📩🌍
+                </h2>
+
+                <p>
+                    Let's create a bank account where balance is private.
+                </p>
+
+                <pre><code>class BankAccount:
+
+    def __init__(self, name, balance):
+        self.name = name
+        self.__balance = balance
+
+    def deposit(self, amount):
+
+        if amount > 0:
+            self.__balance += amount
+            print("Amount deposited")
+        else:
+            print("Invalid amount")
+
+    def get_balance(self):
+        return self.__balance
+
+
+account = BankAccount("Rahul", 10000)
+
+print(account.get_balance())
+
+account.deposit(5000)
+
+print(account.get_balance())</code></pre>
+
+                <p>
+                    Output:
+                </p>
+
+                <pre><code>10000
+Amount deposited
+15000</code></pre>
+
+                <p>
+                    In this example, the balance is private.
+                    The user changes it through the
+                    <code>deposit()</code> method.
+                </p>
+
+            </div>
+
+
+            <!-- ENCAPSULATION STEP BY STEP -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Encapsulation Step-by-Step
+                </h2>
+
+                <ol>
+
+                    <li>
+                        Create a class.
+                    </li>
+
+                    <li>
+                        Create important data inside the class.
+                    </li>
+
+                    <li>
+                        Keep sensitive data private when required.
+                    </li>
+
+                    <li>
+                        Create methods to read or update the data.
+                    </li>
+
+                    <li>
+                        Add validation before changing the data.
+                    </li>
+
+                </ol>
+
+            </div>
+
+
+            <!-- COMPARISON -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Public vs Protected vs Private
+                </h2>
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered align-middle">
+
+                        <thead>
+
+                            <tr>
+                                <th>Type</th>
+                                <th>Syntax</th>
+                                <th>Meaning</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+
+                                <td>Public</td>
+
+                                <td>
+                                    <code>name</code>
+                                </td>
+
+                                <td>
+                                    Normal public attribute.
+                                </td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>Protected</td>
+
+                                <td>
+                                    <code>_name</code>
+                                </td>
+
+                                <td>
+                                    Intended for internal or subclass use.
+                                </td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>Private</td>
+
+                                <td>
+                                    <code>__name</code>
+                                </td>
+
+                                <td>
+                                    Intended to restrict direct access.
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <!-- BENEFITS -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Benefits of Encapsulation
+                </h2>
+
+                <ul>
+
+                    <li>
+                        Protects important data.
+                    </li>
+
+                    <li>
+                        Controls how data is changed.
+                    </li>
+
+                    <li>
+                        Allows validation.
+                    </li>
+
+                    <li>
+                        Keeps code organized.
+                    </li>
+
+                    <li>
+                        Makes classes easier to maintain.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- COMMON MISTAKES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Common Mistakes
+                </h2>
+
+                <ul>
+
+                    <li>
+                        Forgetting <code>self</code>.
+                    </li>
+
+                    <li>
+                        Using one underscore and thinking it provides
+                        complete privacy.
+                    </li>
+
+                    <li>
+                        Trying to directly modify private data.
+                    </li>
+
+                    <li>
+                        Not validating values before updating them.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Practice Programs
+                </h2>
+
+                <ol>
+
+                    <li>
+                        Create a <code>Student</code> class with
+                        private marks.
+                    </li>
+
+                    <li>
+                        Create <code>get_marks()</code> and
+                        <code>set_marks()</code> methods.
+                    </li>
+
+                    <li>
+                        Allow marks only between 0 and 100.
+                    </li>
+
+                    <li>
+                        Create an <code>Employee</code> class with
+                        private salary.
+                    </li>
+
+                    <li>
+                        Create a <code>BankAccount</code> class with
+                        private balance and deposit methods.
+                    </li>
+
+                </ol>
+
+            </div>
+
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+
+                <h2 class="h4 fw-bold">
+                    Summary
+                </h2>
+
+                <p class="mb-0">
+
+                    Encapsulation means keeping data and related methods
+                    together inside a class and controlling access to
+                    that data. Python commonly uses public, protected
+                    and private naming styles. Private data can be
+                    accessed through methods such as getters and setters.
+                    Encapsulation helps protect data, validate values
+                    and keep programs organized.
+
+                </p>
+
+            </div>
+
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+
+                <a class="btn btn-outline-secondary"
+                   href="@Url.Action("Constructors", "OOPs", new { area = "Python" })">
+
+                    ← Previous: Topic
+
+                </a>
+
+
+                <a class="btn btn-primary"
+                   href="@Url.Action("Inheritance", "OOPs", new { area = "Python" })">
+
+                    Next: Topic →
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

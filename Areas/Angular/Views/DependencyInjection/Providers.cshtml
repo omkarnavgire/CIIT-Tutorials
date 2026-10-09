@@ -1,0 +1,1718 @@
+﻿@{
+    ViewData["Title"] = "Angular Providers";
+}
+
+<div class="container-fluid py-4">
+
+    <!-- Header -->
+    <section class="mb-4">
+
+        <h1 class="fw-bold text-dark">Angular Providers</h1>
+
+        <p class="lead text-muted">
+            Angular Providers tell the Dependency Injection system how a
+            dependency should be created and supplied when a component or
+            service requests it.
+        </p>
+
+    </section>
+
+    <!-- What is Provider -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">What is a Provider?</h2>
+
+        <p>
+            A provider is a configuration that tells Angular how to obtain
+            a dependency when it is requested through Dependency Injection.
+        </p>
+
+        <p>
+            Providers can supply class instances, values, existing services,
+            or values created through factory functions.
+        </p>
+
+        <div class="info-card">
+
+            <h5>Simple Definition</h5>
+
+            <p>
+                A Provider tells Angular
+                <strong>what should be provided when a dependency is requested.</strong>
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- Provider Flow -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold mb-3">Angular Provider Flow</h2>
+
+        <div class="syntax-flow">
+
+            <div class="syntax-box">
+
+                <i class="bi bi-display"></i>
+
+                <strong>Component</strong>
+
+                <span>Requests dependency</span>
+
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+
+                <i class="bi bi-gear-fill"></i>
+
+                <strong>Provider</strong>
+
+                <span>Defines how to provide</span>
+
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+
+                <i class="bi bi-diagram-3"></i>
+
+                <strong>Injector</strong>
+
+                <span>Resolves dependency</span>
+
+            </div>
+
+            <div class="syntax-arrow">→</div>
+
+            <div class="syntax-box">
+
+                <i class="bi bi-box"></i>
+
+                <strong>Dependency</strong>
+
+                <span>Provided to component</span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Provider Types -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Common Provider Types</h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-file-earmark-code"></i>
+                </div>
+
+                <h5>Class Provider</h5>
+
+                <p>
+                    Provides an instance of a class.
+                </p>
+
+                <code>useClass</code>
+
+            </div>
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-braces"></i>
+                </div>
+
+                <h5>Value Provider</h5>
+
+                <p>
+                    Provides a fixed value or configuration object.
+                </p>
+
+                <code>useValue</code>
+
+            </div>
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-code-square"></i>
+                </div>
+
+                <h5>Factory Provider</h5>
+
+                <p>
+                    Creates a dependency using a factory function.
+                </p>
+
+                <code>useFactory</code>
+
+            </div>
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-arrow-repeat"></i>
+                </div>
+
+                <h5>Existing Provider</h5>
+
+                <p>
+                    Reuses an already registered dependency.
+                </p>
+
+                <code>useExisting</code>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Basic Provider -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">1. Basic Provider Configuration</h2>
+
+        <p>
+            A provider can associate a dependency token with the class,
+            value, or factory Angular should use.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>providers: [
+    CourseService
+]</code></pre>
+
+        </div>
+
+        <div class="info-card">
+
+            <h5>How it works</h5>
+
+            <p>
+                Angular can use the listed service as a dependency provider
+                for the injector associated with that configuration.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- useClass -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">2. useClass Provider</h2>
+
+        <p>
+            The <strong>useClass</strong> provider tells Angular to use a
+            particular class when a dependency token is requested.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Service
+            </div>
+
+            <pre><code>export class CourseService {
+
+    getCourse(): string {
+
+        return 'Java Full Stack';
+
+    }
+
+}</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Provider
+            </div>
+
+            <pre><code>providers: [
+
+    {
+        provide: CourseService,
+        useClass: CourseService
+    }
+
+]</code></pre>
+
+        </div>
+
+        <div class="info-card">
+
+            <h5>Simple Idea</h5>
+
+            <p>
+                <strong>useClass</strong> allows Angular to associate a
+                token with the class that should be instantiated.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- Alias Class -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">3. Providing an Alternative Class</h2>
+
+        <p>
+            One token can be configured to use a different implementation
+            class.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Services
+            </div>
+
+            <pre><code>export class CourseService {
+
+    getCourse(): string {
+
+        return 'Java Full Stack';
+
+    }
+
+}
+
+export class AdvancedCourseService {
+
+    getCourse(): string {
+
+        return 'Advanced Angular Full Stack';
+
+    }
+
+}</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Provider
+            </div>
+
+            <pre><code>providers: [
+
+    {
+        provide: CourseService,
+        useClass: AdvancedCourseService
+    }
+
+]</code></pre>
+
+        </div>
+
+        <div class="output-box">
+
+            <strong>Provided Implementation:</strong>
+
+            <div class="output-preview">
+
+                <p>
+                    Course:
+                    <strong>Advanced Angular Full Stack</strong>
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- useValue -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">4. useValue Provider</h2>
+
+        <p>
+            The <strong>useValue</strong> provider supplies a fixed value
+            directly through Dependency Injection.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Provider
+            </div>
+
+            <pre><code>providers: [
+
+    {
+        provide: 'API_URL',
+        useValue: 'https://api.example.com'
+    }
+
+]</code></pre>
+
+        </div>
+
+        <div class="info-card">
+
+            <h5>Use Case</h5>
+
+            <p>
+                <strong>useValue</strong> is useful for strings, numbers,
+                configuration objects, feature flags, and other fixed values.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- Value Provider Example -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">5. useValue with Configuration</h2>
+
+        <p>
+            A configuration object can be provided using
+            <strong>useValue</strong>.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Configuration
+            </div>
+
+            <pre><code>const appConfig = {
+
+    instituteName:
+        'CIIT Training Institute',
+
+    environment:
+        'production',
+
+    enableLogging:
+        true
+
+};</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Provider
+            </div>
+
+            <pre><code>providers: [
+
+    {
+        provide: APP_CONFIG,
+        useValue: appConfig
+    }
+
+]</code></pre>
+
+        </div>
+
+        <div class="output-box">
+
+            <strong>Configuration:</strong>
+
+            <div class="student-preview">
+
+                <p>
+                    <strong>Institute:</strong>
+                    CIIT Training Institute
+                </p>
+
+                <p>
+                    <strong>Environment:</strong>
+                    production
+                </p>
+
+                <p>
+                    <strong>Logging:</strong>
+                    Enabled
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- useFactory -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">6. useFactory Provider</h2>
+
+        <p>
+            A <strong>useFactory</strong> provider uses a function to create
+            or calculate the dependency value.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Factory Function
+            </div>
+
+            <pre><code>function createApiUrl(): string {
+
+    return 'https://api.example.com';
+
+}</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Provider
+            </div>
+
+            <pre><code>providers: [
+
+    {
+        provide: API_URL,
+        useFactory: createApiUrl
+    }
+
+]</code></pre>
+
+        </div>
+
+        <div class="info-card">
+
+            <h5>How it works</h5>
+
+            <p>
+                Angular calls the factory function to obtain the dependency
+                value when the provider needs to create it.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- Factory with Dependencies -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">7. Factory Provider with Dependencies</h2>
+
+        <p>
+            A factory provider can itself depend on other registered services
+            or values.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Factory
+            </div>
+
+            <pre><code>function createMessage(
+    trainingService: TrainingService
+): string {
+
+    return trainingService
+        .getInstituteName();
+
+}</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Provider
+            </div>
+
+            <pre><code>providers: [
+
+    {
+        provide: APP_MESSAGE,
+        useFactory: createMessage,
+        deps: [TrainingService]
+    }
+
+]</code></pre>
+
+        </div>
+
+        <div class="info-card">
+
+            <h5>Important</h5>
+
+            <p>
+                The <strong>deps</strong> array tells Angular which
+                dependencies should be provided to the factory function.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- useExisting -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">8. useExisting Provider</h2>
+
+        <p>
+            The <strong>useExisting</strong> provider creates an alias for
+            an already registered dependency instead of creating another
+            instance.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Provider
+            </div>
+
+            <pre><code>providers: [
+
+    CourseService,
+
+    {
+        provide: TrainingService,
+        useExisting: CourseService
+    }
+
+]</code></pre>
+
+        </div>
+
+        <div class="info-card">
+
+            <h5>Simple Idea</h5>
+
+            <p>
+                <strong>useExisting</strong> tells Angular to use an existing
+                instance associated with another provider.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- Provider Flow Comparison -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">9. Provider Types at a Glance</h2>
+
+        <div class="binding-flow">
+
+            <div class="binding-item">
+
+                <strong>useClass</strong>
+
+                <span>
+                    Provide a class
+                </span>
+
+            </div>
+
+            <div class="binding-item">
+
+                <strong>useValue</strong>
+
+                <span>
+                    Provide a value
+                </span>
+
+            </div>
+
+            <div class="binding-item">
+
+                <strong>useFactory</strong>
+
+                <span>
+                    Create using function
+                </span>
+
+            </div>
+
+            <div class="binding-item">
+
+                <strong>useExisting</strong>
+
+                <span>
+                    Reuse existing instance
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- InjectionToken Provider -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">10. Provider with InjectionToken</h2>
+
+        <p>
+            InjectionToken can be used together with providers to inject
+            values or configuration objects that do not have a suitable
+            class token.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Token
+            </div>
+
+            <pre><code>import &#123; InjectionToken &#125;
+from '@@angular/core';
+
+export const API_URL =
+    new InjectionToken&lt;string&gt;('API_URL');</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Provider
+            </div>
+
+            <pre><code>providers: [
+
+    {
+        provide: API_URL,
+        useValue:
+            'https://api.example.com'
+    }
+
+]</code></pre>
+
+        </div>
+
+        <div class="info-card">
+
+            <h5>Connection</h5>
+
+            <p>
+                The <strong>InjectionToken</strong> identifies the dependency,
+                while the <strong>Provider</strong> tells Angular what value
+                should be associated with that token.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- Component Provider -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">11. Component-Level Providers</h2>
+
+        <p>
+            Providers can be declared in a component when the dependency
+            should be resolved within that component's injector hierarchy.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                dashboard.component.ts
+            </div>
+
+            <pre><code>@@Component(&#123;
+
+    selector: 'app-dashboard',
+
+    providers: [
+        CourseStateService
+    ],
+
+    templateUrl:
+        './dashboard.component.html'
+
+&#125;)
+export class DashboardComponent &#123;
+
+    constructor(
+        private courseStateService:
+            CourseStateService
+    ) &#123;
+
+    &#125;
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="output-box">
+
+            <strong>Scope:</strong>
+
+            <div class="output-preview">
+
+                The provider is associated with the
+                <strong>DashboardComponent</strong>
+                injector hierarchy.
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Application Provider -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">12. Application-Level Providers</h2>
+
+        <p>
+            Providers can also be configured at application startup so that
+            they are available through the application's injector hierarchy.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                app.config.ts
+            </div>
+
+            <pre><code>import &#123;
+    ApplicationConfig
+&#125; from '@@angular/core';
+
+export const appConfig:
+    ApplicationConfig = &#123;
+
+    providers: [
+
+        CourseService,
+
+        TrainingService
+
+    ]
+
+&#125;;</code></pre>
+
+        </div>
+
+        <div class="info-card">
+
+            <h5>Use Case</h5>
+
+            <p>
+                Application-level providers are useful for dependencies that
+                need to be registered during application configuration.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- Provider Token -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">13. provide and Token</h2>
+
+        <p>
+            The <strong>provide</strong> property identifies the dependency
+            token that Angular should register.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                Example
+            </div>
+
+            <pre><code>providers: [
+
+    {
+        provide: API_URL,
+        useValue:
+            'https://api.example.com'
+    }
+
+]</code></pre>
+
+        </div>
+
+        <div class="binding-flow">
+
+            <div class="binding-item">
+
+                <strong>provide</strong>
+
+                <span>
+                    API_URL
+                </span>
+
+            </div>
+
+            <div class="binding-arrow">→</div>
+
+            <div class="binding-item">
+
+                <strong>Provider</strong>
+
+                <span>
+                    Defines strategy
+                </span>
+
+            </div>
+
+            <div class="binding-arrow">→</div>
+
+            <div class="binding-item">
+
+                <strong>Injector</strong>
+
+                <span>
+                    Registers dependency
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Provider Comparison -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold mb-3">14. Provider Comparison</h2>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered syntax-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Provider</th>
+                        <th>Purpose</th>
+                        <th>Example</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            <strong>useClass</strong>
+                        </td>
+
+                        <td>
+                            Provides a class implementation
+                        </td>
+
+                        <td>
+                            <code>useClass: MyService</code>
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            <strong>useValue</strong>
+                        </td>
+
+                        <td>
+                            Provides a fixed value
+                        </td>
+
+                        <td>
+                            <code>useValue: 'CIIT'</code>
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            <strong>useFactory</strong>
+                        </td>
+
+                        <td>
+                            Creates dependency using a function
+                        </td>
+
+                        <td>
+                            <code>useFactory: createValue</code>
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            <strong>useExisting</strong>
+                        </td>
+
+                        <td>
+                            Reuses an existing dependency
+                        </td>
+
+                        <td>
+                            <code>useExisting: ExistingService</code>
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+    <!-- Complete CIIT Example -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Complete CIIT Training Institute Example</h2>
+
+        <p>
+            Suppose the CIIT Training Institute Angular application needs
+            a course service and an application configuration value.
+            Providers can define how both dependencies should be supplied.
+        </p>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                training.service.ts
+            </div>
+
+            <pre><code>import &#123; Injectable &#125;
+from '@@angular/core';
+
+@@Injectable()
+export class TrainingService &#123;
+
+    getInstituteName(): string &#123;
+
+        return 'CIIT Training Institute';
+
+    &#125;
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                tokens.ts
+            </div>
+
+            <pre><code>import &#123; InjectionToken &#125;
+from '@@angular/core';
+
+export const TRAINING_MODE =
+    new InjectionToken&lt;string&gt;(
+        'TRAINING_MODE'
+    );</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                app.config.ts
+            </div>
+
+            <pre><code>export const appConfig:
+    ApplicationConfig = &#123;
+
+    providers: [
+
+        TrainingService,
+
+        &#123;
+            provide: TRAINING_MODE,
+            useValue:
+                'Online + Offline'
+        &#125;
+
+    ]
+
+&#125;;</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                dashboard.component.ts
+            </div>
+
+            <pre><code>import &#123;
+    Component,
+    inject
+&#125; from '@@angular/core';
+
+import &#123; TrainingService &#125;
+from './training.service';
+
+import &#123; TRAINING_MODE &#125;
+from './tokens';
+
+@@Component(&#123;
+    selector: 'app-dashboard',
+    templateUrl:
+        './dashboard.component.html'
+&#125;)
+export class DashboardComponent &#123;
+
+    private trainingService =
+        inject(TrainingService);
+
+    trainingMode =
+        inject(TRAINING_MODE);
+
+    instituteName =
+        this.trainingService
+            .getInstituteName();
+
+&#125;</code></pre>
+
+        </div>
+
+        <div class="code-card">
+
+            <div class="code-title">
+                dashboard.component.html
+            </div>
+
+            <pre><code>&lt;h2&gt;
+    &#123;&#123; instituteName &#125;&#125;
+&lt;/h2&gt;
+
+&lt;p&gt;
+    Training Mode:
+    &#123;&#123; trainingMode &#125;&#125;
+&lt;/p&gt;</code></pre>
+
+        </div>
+
+        <div class="output-box">
+
+            <strong>Expected Output:</strong>
+
+            <div class="student-preview">
+
+                <h3>
+                    CIIT Training Institute
+                </h3>
+
+                <p>
+                    <strong>Training Mode:</strong>
+                    Online + Offline
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Choosing Provider -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">15. Choosing the Right Provider</h2>
+
+        <div class="syntax-grid">
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-box"></i>
+                </div>
+
+                <h5>UseClass</h5>
+
+                <p>
+                    Use when Angular should provide a class implementation.
+                </p>
+
+                <code>useClass</code>
+
+            </div>
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-tag"></i>
+                </div>
+
+                <h5>UseValue</h5>
+
+                <p>
+                    Use for fixed values and application configuration.
+                </p>
+
+                <code>useValue</code>
+
+            </div>
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-lightning"></i>
+                </div>
+
+                <h5>UseFactory</h5>
+
+                <p>
+                    Use when the dependency needs to be created dynamically.
+                </p>
+
+                <code>useFactory</code>
+
+            </div>
+
+            <div class="syntax-card">
+
+                <div class="syntax-icon">
+                    <i class="bi bi-link-45deg"></i>
+                </div>
+
+                <h5>UseExisting</h5>
+
+                <p>
+                    Use when an existing service instance should be reused.
+                </p>
+
+                <code>useExisting</code>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Important Points -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Important Points About Providers</h2>
+
+        <ul class="best-practice-list">
+
+            <li>
+                Providers define how Angular should supply dependencies.
+            </li>
+
+            <li>
+                <strong>useClass</strong> provides a class implementation.
+            </li>
+
+            <li>
+                <strong>useValue</strong> provides a fixed value or object.
+            </li>
+
+            <li>
+                <strong>useFactory</strong> creates a dependency using a function.
+            </li>
+
+            <li>
+                <strong>useExisting</strong> reuses an already registered
+                dependency.
+            </li>
+
+            <li>
+                Providers can be configured at different levels of the
+                Angular injector hierarchy.
+            </li>
+
+        </ul>
+
+    </section>
+
+    <!-- Best Practices -->
+    <section class="mb-4">
+
+        <h2 class="fw-bold">Provider Best Practices</h2>
+
+        <ul class="best-practice-list">
+
+            <li>
+                Choose the provider type according to the dependency requirement.
+            </li>
+
+            <li>
+                Use meaningful InjectionToken names for value-based dependencies.
+            </li>
+
+            <li>
+                Keep provider configuration easy to read and maintain.
+            </li>
+
+            <li>
+                Use application-wide providers only when broad availability is
+                actually required.
+            </li>
+
+            <li>
+                Use component-level providers when localized service state is
+                appropriate.
+            </li>
+
+            <li>
+                Avoid unnecessary duplicate service instances.
+            </li>
+
+        </ul>
+
+    </section>
+
+    <!-- Summary -->
+    <section class="summary-box">
+
+        <h3>Summary</h3>
+
+        <p>
+            Angular Providers define how dependencies should be created,
+            supplied, or reused by the Dependency Injection system.
+        </p>
+
+        <p>
+            The important provider strategies are
+            <strong>useClass</strong>,
+            <strong>useValue</strong>,
+            <strong>useFactory</strong>, and
+            <strong>useExisting</strong>.
+        </p>
+
+    </section>
+
+    <!-- Navigation -->
+    <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+
+        <a class="btn btn-outline-secondary"
+           href="@Url.Action("InjectionToken", "DependencyInjection", new { area = "Angular" })">
+            ← Injection Token
+        </a>
+
+        <a class="btn btn-primary"
+           href="@Url.Action("Index", "Routing", new { area = "Angular" })">
+            Routing →
+        </a>
+
+    </div>
+
+</div>
+
+<style>
+
+    .info-card {
+        background: #f8fafc;
+        border-left: 5px solid #4c1d95;
+        padding: 18px 20px;
+        border-radius: 7px;
+        margin-top: 15px;
+    }
+
+        .info-card h5 {
+            color: #4c1d95;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .info-card p {
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+
+    .syntax-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        padding: 25px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+    }
+
+    .syntax-box {
+        width: 175px;
+        min-height: 125px;
+        padding: 18px;
+        text-align: center;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 9px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+        .syntax-box i {
+            display: block;
+            font-size: 28px;
+            color: #4c1d95;
+            margin-bottom: 8px;
+        }
+
+        .syntax-box strong {
+            display: block;
+            color: #2e1065;
+            font-weight: 700;
+        }
+
+        .syntax-box span {
+            display: block;
+            color: #64748b;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+    .syntax-arrow {
+        color: #4c1d95;
+        font-size: 25px;
+        font-weight: 700;
+    }
+
+    .syntax-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+    }
+
+    .syntax-card {
+        padding: 20px;
+        text-align: center;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 9px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    }
+
+    .syntax-icon {
+        width: 55px;
+        height: 55px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 12px;
+        background: #ede9fe;
+        color: #4c1d95;
+        border-radius: 50%;
+        font-size: 24px;
+    }
+
+    .syntax-card h5 {
+        color: #2e1065;
+        font-weight: 700;
+    }
+
+    .syntax-card p {
+        color: #64748b;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .syntax-card code {
+        color: #4c1d95;
+        font-weight: 600;
+    }
+
+    .code-card {
+        margin-top: 15px;
+        margin-bottom: 18px;
+        border-radius: 8px;
+        overflow: hidden;
+        background: #0f172a;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .code-title {
+        background: #1e293b;
+        color: #d8c9f5;
+        padding: 10px 15px;
+        font-weight: 600;
+        border-bottom: 1px solid #334155;
+    }
+
+    .code-card pre {
+        margin: 0;
+        padding: 18px;
+        overflow-x: auto;
+    }
+
+    .code-card code {
+        color: #e2e8f0;
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    .output-box {
+        margin-top: 15px;
+        padding: 18px;
+        background: #f1f5f9;
+        border-left: 5px solid #4c1d95;
+        border-radius: 6px;
+    }
+
+    .output-preview {
+        margin-top: 12px;
+        padding: 18px;
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 7px;
+    }
+
+        .output-preview h3 {
+            color: #2e1065;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .output-preview p {
+            margin-bottom: 7px;
+        }
+
+    .binding-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 20px;
+        padding: 20px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+    }
+
+    .binding-item {
+        min-width: 170px;
+        padding: 15px;
+        text-align: center;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 8px;
+    }
+
+        .binding-item strong {
+            display: block;
+            color: #4c1d95;
+            font-weight: 700;
+        }
+
+        .binding-item span {
+            display: block;
+            color: #64748b;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+    .binding-arrow {
+        color: #4c1d95;
+        font-size: 25px;
+        font-weight: 700;
+    }
+
+    .active-preview {
+        margin-top: 12px;
+        display: inline-block;
+        padding: 12px 20px;
+        background: #ede9fe;
+        border: 2px solid #4c1d95;
+        border-radius: 7px;
+        color: #2e1065;
+        font-weight: 700;
+    }
+
+    .style-preview {
+        margin-top: 12px;
+        font-size: 20px;
+        font-weight: 600;
+        color: #4c1d95;
+    }
+
+    .control-flow-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .control-card {
+        padding: 20px;
+        background: #f8fafc;
+        border: 1px solid #ddd6fe;
+        border-radius: 8px;
+    }
+
+        .control-card h5 {
+            color: #4c1d95;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+    .code-small {
+        background: #0f172a;
+        border-radius: 7px;
+        overflow: hidden;
+    }
+
+        .code-small pre {
+            margin: 0;
+            padding: 15px;
+            overflow-x: auto;
+        }
+
+        .code-small code {
+            color: #e2e8f0;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+    .syntax-table {
+        background: #ffffff;
+    }
+
+        .syntax-table thead th {
+            background: #4c1d95;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .syntax-table td {
+            vertical-align: middle;
+        }
+
+        .syntax-table code {
+            color: #4c1d95;
+            font-weight: 600;
+        }
+
+    .student-preview {
+        margin-top: 12px;
+        padding: 20px;
+        background: #ffffff;
+        border: 1px solid #ddd6fe;
+        border-radius: 8px;
+    }
+
+        .student-preview h3 {
+            color: #2e1065;
+            font-weight: 700;
+        }
+
+    .best-practice-list {
+        padding: 20px 20px 20px 40px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+    }
+
+        .best-practice-list li {
+            margin-bottom: 11px;
+            line-height: 1.6;
+        }
+
+            .best-practice-list li:last-child {
+                margin-bottom: 0;
+            }
+
+    .summary-box {
+        background: #cfe2ff;
+        border-radius: 6px;
+        padding: 18px 22px;
+        margin-top: 20px;
+    }
+
+        .summary-box h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #084298;
+            margin-bottom: 10px;
+        }
+
+        .summary-box p {
+            font-size: 16px !important;
+            line-height: 1.6 !important;
+            color: #084298 !important;
+            margin-bottom: 8px;
+        }
+
+            .summary-box p:last-child {
+                margin-bottom: 0;
+            }
+
+    @@media (max-width: 991px) {
+
+        .syntax-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .control-flow-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @@media (max-width: 576px) {
+
+        .syntax-grid,
+        .control-flow-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .syntax-flow,
+        .binding-flow {
+            flex-direction: column;
+        }
+
+        .syntax-arrow,
+        .binding-arrow {
+            transform: rotate(90deg);
+        }
+
+        .syntax-box {
+            width: 100%;
+            max-width: 280px;
+        }
+
+        .binding-item {
+            width: 100%;
+            max-width: 250px;
+        }
+
+        .code-card code,
+        .code-small code {
+            font-size: 13px;
+        }
+
+        .d-flex.justify-content-between {
+            gap: 10px;
+        }
+
+            .d-flex.justify-content-between .btn {
+                font-size: 13px;
+                padding: 8px 12px;
+            }
+    }
+
+</style>

@@ -1,0 +1,1397 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Python While Loop";
+}
+
+<!-- =====================================================
+     WHILE LOOP PAGE CODE / OUTPUT STYLE
+     All programs and outputs stay DARK
+====================================================== -->
+<style>
+
+    #python-while-loop-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 0.5rem;
+        padding: 1rem !important;
+        overflow-x: auto;
+    }
+
+        #python-while-loop-page pre code {
+            background-color: transparent !important;
+            color: #ffffff !important;
+        }
+
+</style>
+
+
+<main id="python-while-loop-page"
+      class="container py-5">
+
+    <div class="row g-4">
+
+
+        <!-- =====================================================
+             LEFT SIDEBAR
+        ====================================================== -->
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+
+        </aside>
+
+
+        <!-- =====================================================
+             MAIN CONTENT
+        ====================================================== -->
+        <section class="col-lg-9">
+
+
+            <!-- =====================================================
+                 PAGE HEADING
+            ====================================================== -->
+            <div class="mb-4">
+
+                <h1 class="fw-bold">
+                    While Loop
+                </h1>
+
+                <p class="lead">
+
+                    A <strong>while loop</strong> repeatedly executes a block
+                    of code as long as a specified condition remains
+                    <strong>True</strong>.
+
+                </p>
+
+            </div>
+
+
+            <!-- =====================================================
+                 CIIT INTRODUCTION
+            ====================================================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        Python While Loop
+                    </h2>
+
+                    <p>
+
+                        At <strong>CIIT Training Institute</strong>, loops are
+                        explained using practical examples so students can
+                        understand how repetition works in real applications.
+
+                    </p>
+
+                    <p class="mb-0">
+
+                        The <strong>while loop</strong> is especially useful
+                        when we do not know exactly how many times a block
+                        of code needs to execute. The loop continues until
+                        its condition becomes <strong>False</strong>.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 WHAT IS WHILE LOOP
+            ====================================================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        What is a While Loop?
+                    </h2>
+
+                    <p>
+
+                        A while loop checks a condition before every iteration.
+                        If the condition is <strong>True</strong>, the loop
+                        body executes.
+
+                    </p>
+
+                    <p>
+
+                        After executing the loop body, Python checks the
+                        condition again.
+
+                    </p>
+
+                    <p class="mb-0">
+
+                        This process continues until the condition becomes
+                        <strong>False</strong>.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 LOOP FLOW
+            ====================================================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        While Loop Flow
+                    </h2>
+
+
+                    <div class="border rounded p-4 text-center bg-light">
+
+                        <div class="fw-bold mb-3">
+                            Start
+                        </div>
+
+                        <div class="border rounded p-3 bg-white mb-2">
+                            Check Condition
+                        </div>
+
+                        <div class="mb-2">
+                            ↓
+                        </div>
+
+                        <div class="border rounded p-3 bg-white mb-2">
+                            Condition is True?
+                        </div>
+
+
+                        <div class="row justify-content-center g-3 mt-2">
+
+                            <div class="col-md-5">
+
+                                <div class="border rounded p-3 bg-white">
+
+                                    <strong>Yes</strong>
+
+                                    <br />
+
+                                    Execute Loop Body
+
+                                    <br />
+
+                                    ↓
+
+                                    <br />
+
+                                    Update Variable
+
+                                    <br />
+
+                                    ↓
+
+                                    <br />
+
+                                    Check Condition Again
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="col-md-5">
+
+                                <div class="border rounded p-3 bg-white">
+
+                                    <strong>No</strong>
+
+                                    <br />
+
+                                    Exit Loop
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <p class="mt-3 mb-0">
+
+                        The most important part of a while loop is making sure
+                        that the condition eventually becomes
+                        <strong>False</strong>.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 BASIC SYNTAX
+            ====================================================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        While Loop Syntax
+                    </h2>
+
+
+                    <pre><code>while condition:
+    # code to execute</code></pre>
+
+
+                    <p>
+                        Example:
+                    </p>
+
+
+                    <pre><code>count = 1
+
+while count &lt;= 5:
+    print(count)
+    count = count + 1</code></pre>
+
+
+                    <h5 class="fw-bold">
+                        Output
+                    </h5>
+
+
+                    <pre><code>1
+2
+3
+4
+5</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 STEP BY STEP
+            ====================================================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        How While Loop Works Step by Step
+                    </h2>
+
+                    <p>
+                        Consider the following code:
+                    </p>
+
+
+                    <pre><code>count = 1
+
+while count &lt;= 3:
+    print(count)
+    count = count + 1</code></pre>
+
+
+                    <div class="table-responsive">
+
+                        <table class="table table-bordered align-middle">
+
+                            <thead class="table-light">
+
+                                <tr>
+
+                                    <th>
+                                        Iteration
+                                    </th>
+
+                                    <th>
+                                        count
+                                    </th>
+
+                                    <th>
+                                        Condition
+                                    </th>
+
+                                    <th>
+                                        Action
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody>
+
+                                <tr>
+
+                                    <td>1</td>
+
+                                    <td>1</td>
+
+                                    <td>1 &lt;= 3 → True</td>
+
+                                    <td>Print 1</td>
+
+                                </tr>
+
+
+                                <tr>
+
+                                    <td>2</td>
+
+                                    <td>2</td>
+
+                                    <td>2 &lt;= 3 → True</td>
+
+                                    <td>Print 2</td>
+
+                                </tr>
+
+
+                                <tr>
+
+                                    <td>3</td>
+
+                                    <td>3</td>
+
+                                    <td>3 &lt;= 3 → True</td>
+
+                                    <td>Print 3</td>
+
+                                </tr>
+
+
+                                <tr>
+
+                                    <td>4</td>
+
+                                    <td>4</td>
+
+                                    <td>4 &lt;= 3 → False</td>
+
+                                    <td>Loop stops</td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 INCREMENT
+            ====================================================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        Increment in While Loop
+                    </h2>
+
+                    <p>
+
+                        Usually, we update the loop variable inside the loop.
+                        This is called an <strong>increment</strong>.
+
+                    </p>
+
+
+                    <pre><code>number = 1
+
+while number &lt;= 5:
+    print(number)
+    number += 1</code></pre>
+
+
+                    <p class="mb-0">
+
+                        The statement <code>number += 1</code> increases the
+                        value by one after every iteration.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 DECREMENT
+            ====================================================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        Decrement in While Loop
+                    </h2>
+
+                    <p>
+                        We can also decrease the value after every iteration.
+                    </p>
+
+
+                    <pre><code>number = 5
+
+while number &gt;= 1:
+    print(number)
+    number -= 1</code></pre>
+
+
+                    <h5 class="fw-bold">
+                        Output
+                    </h5>
+
+
+                    <pre><code>5
+4
+3
+2
+1</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 USER INPUT
+            ====================================================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        While Loop With User Input
+                    </h2>
+
+                    <p>
+
+                        A while loop is useful when we want to keep asking
+                        the user for input until a particular value is entered.
+
+                    </p>
+
+
+                    <pre><code>password = ""
+
+while password != "python123":
+
+    password = input("Enter password: ")
+
+print("Login successful!")</code></pre>
+
+
+                    <p class="mb-0">
+
+                        The loop continues until the user enters the correct
+                        password.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 MENU EXAMPLE
+            ====================================================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        Example: Menu Program 📩🫠
+                    </h2>
+
+                    <p>
+
+                        A while loop can be used to repeatedly display a menu
+                        until the user chooses to exit.
+
+                    </p>
+
+
+                    <pre><code>choice = 0
+
+while choice != 3:
+
+    print("1. Python Course")
+    print("2. .NET Course")
+    print("3. Exit")
+
+    choice = int(input("Enter your choice: "))
+
+print("Program ended.")</code></pre>
+<h5 class="fw-bold">
+    Output
+</h5>
+
+<pre><code>1. Python Course
+2. .NET Course
+3. Exit
+Enter your choice: 3
+Program ended.</code></pre>
+
+                    <p class="mb-0">
+
+                        This type of logic is commonly used in menu-driven
+                        programs.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 BREAK
+            ====================================================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        break With While Loop
+                    </h2>
+
+                    <p>
+
+                        The <code>break</code> statement immediately
+                        terminates the loop.
+
+                    </p>
+
+
+                    <pre><code>number = 1
+
+while number &lt;= 10:
+
+    if number == 5:
+        break
+
+    print(number)
+    number += 1</code></pre>
+
+
+                    <h5 class="fw-bold">
+                        Output
+                    </h5>
+
+
+                    <pre><code>1
+2
+3
+4</code></pre>
+
+
+                    <p class="mb-0">
+
+                        When <code>number</code> becomes 5, the
+                        <code>break</code> statement stops the loop.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 CONTINUE
+            ====================================================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        continue With While Loop
+                    </h2>
+
+                    <p>
+
+                        The <code>continue</code> statement skips the current
+                        iteration and moves to the next iteration.
+
+                    </p>
+
+
+                    <pre><code>number = 0
+
+while number &lt; 5:
+
+    number += 1
+
+    if number == 3:
+        continue
+
+    print(number)</code></pre>
+
+
+                    <h5 class="fw-bold">
+                        Output
+                    </h5>
+
+
+                    <pre><code>1
+2
+4
+5</code></pre>
+
+
+                    <p class="mb-0">
+
+                        Number 3 is skipped, while the remaining iterations
+                        continue normally.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 PASS
+            ====================================================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        pass With While Loop
+                    </h2>
+
+                    <p>
+
+                        The <code>pass</code> statement does nothing.
+                        It is used when Python requires a statement but
+                        we do not want to execute any action yet.
+
+                    </p>
+
+
+                    <pre><code>number = 1
+
+while number &lt;= 3:
+
+    if number == 2:
+        pass
+
+    print(number)
+    number += 1</code></pre>
+
+<h5 class="fw-bold">
+    Output
+</h5>
+
+<pre><code>1
+2
+3</code></pre>
+
+                    <p class="mb-0">
+
+                        Unlike <code>break</code>, <code>pass</code> does not
+                        stop the loop.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 INFINITE LOOP
+            ====================================================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        Infinite While Loop
+                    </h2>
+
+                    <p>
+
+                        If the condition of a while loop never becomes
+                        <strong>False</strong>, the loop can continue
+                        indefinitely.
+
+                    </p>
+
+
+                    <pre><code>number = 1
+
+while number &lt;= 5:
+    print(number)</code></pre>
+
+
+                    <div class="alert alert-danger">
+
+                        <strong>Problem:</strong>
+
+                        The value of <code>number</code> is never updated,
+                        so the condition remains True forever.
+
+                    </div>
+
+
+                    <p>
+                        Correct version:
+                    </p>
+
+
+                    <pre><code>number = 1
+
+while number &lt;= 5:
+    print(number)
+    number += 1</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 REAL WORLD EXAMPLE
+            ====================================================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        Example: Training Enrollment 📩🫠
+                    </h2>
+
+                    <p>
+
+                        Suppose we want to keep accepting student names until
+                        the user enters <code>exit</code>.
+
+                    </p>
+
+
+                    <pre><code>name = ""
+
+while name.lower() != "exit":
+
+    name = input("Enter student name: ")
+
+    if name.lower() != "exit":
+        print("Student registered:", name)</code></pre>
+        <h5 class="fw-bold">
+    Output
+</h5>
+
+<pre><code>Enter student name: Pradnya
+Student registered: Pradnya
+Enter student name: Samadhan
+Student registered: Samadhan
+Enter student name: exit</code></pre>
+
+                    <p class="mb-0">
+
+                        This pattern is useful when the number of inputs is
+                        unknown in advance.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 SUM EXAMPLE
+            ====================================================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        Example: Sum of Numbers 🤓📩
+                    </h2>
+
+
+                    <pre><code>number = 1
+total = 0
+
+while number &lt;= 5:
+
+    total += number
+    number += 1
+
+print("Total =", total)</code></pre>
+
+
+                    <h5 class="fw-bold">
+                        Output
+                    </h5>
+
+
+                    <pre><code>Total = 15</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 PASSWORD ATTEMPTS
+            ====================================================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        Example: Limited Login Attempts 🤓🔓
+                    </h2>
+
+
+                    <pre><code>attempts = 0
+
+while attempts &lt; 3:
+
+    password = input("Enter password: ")
+
+    if password == "python123":
+        print("Login successful!")
+        break
+
+    print("Incorrect password")
+
+    attempts += 1
+
+else:
+    print("Account temporarily locked.")</code></pre>
+
+<h5 class="fw-bold">
+    Output
+</h5>
+
+<pre><code>Enter password: hello
+Incorrect password
+Enter password: test
+Incorrect password
+Enter password: python123
+Login successful!</code></pre>
+
+
+                    <p class="mb-0">
+
+                        This example combines a while loop,
+                        <code>if</code>, <code>break</code> and
+                        <code>else</code>.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 WHILE ELSE
+            ====================================================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        else With While Loop
+                    </h2>
+
+                    <p>
+
+                        Python allows an <code>else</code> block with a
+                        while loop.
+
+                    </p>
+
+                    <p>
+
+                        The <code>else</code> block executes when the while
+                        condition becomes False normally.
+
+                    </p>
+
+
+                    <pre><code>number = 1
+
+while number &lt;= 3:
+
+    print(number)
+    number += 1
+
+else:
+
+    print("Loop completed")</code></pre>
+
+
+                    <h5 class="fw-bold">
+                        Output
+                    </h5>
+
+
+                    <pre><code>1
+2
+3
+Loop completed</code></pre>
+
+
+                    <p class="mb-0">
+
+                        If the loop is terminated using <code>break</code>,
+                        the else block does not execute.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 FOR VS WHILE
+            ====================================================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        For Loop vs While Loop
+                    </h2>
+
+
+                    <div class="table-responsive">
+
+                        <table class="table table-bordered align-middle">
+
+                            <thead class="table-light">
+
+                                <tr>
+
+                                    <th>
+                                        For Loop
+                                    </th>
+
+                                    <th>
+                                        While Loop
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody>
+
+                                <tr>
+
+                                    <td>
+                                        Commonly used for iterating over a
+                                        collection.
+                                    </td>
+
+                                    <td>
+                                        Commonly used when repetition depends
+                                        on a condition.
+                                    </td>
+
+                                </tr>
+
+
+                                <tr>
+
+                                    <td>
+                                        Often used when the number of
+                                        iterations is known.
+                                    </td>
+
+                                    <td>
+                                        Useful when the number of iterations
+                                        is unknown.
+                                    </td>
+
+                                </tr>
+
+
+                                <tr>
+
+                                    <td>
+                                        Example: Loop through students.
+                                    </td>
+
+                                    <td>
+                                        Example: Keep asking until valid input.
+                                    </td>
+
+                                </tr>
+
+
+                                <tr>
+
+                                    <td>
+                                        Automatically moves to the next item.
+                                    </td>
+
+                                    <td>
+                                        Programmer usually updates the
+                                        condition variable.
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 COMMON MISTAKES
+            ====================================================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        Common Mistakes in While Loop
+                    </h2>
+
+
+                    <div class="table-responsive">
+
+                        <table class="table table-bordered align-middle">
+
+                            <thead class="table-light">
+
+                                <tr>
+
+                                    <th>
+                                        Mistake
+                                    </th>
+
+                                    <th>
+                                        What Happens?
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody>
+
+                                <tr>
+
+                                    <td>
+                                        Forgetting the colon
+                                    </td>
+
+                                    <td>
+                                        Python gives a syntax error.
+                                    </td>
+
+                                </tr>
+
+
+                                <tr>
+
+                                    <td>
+                                        Incorrect indentation
+                                    </td>
+
+                                    <td>
+                                        Python cannot correctly identify
+                                        the loop body.
+                                    </td>
+
+                                </tr>
+
+
+                                <tr>
+
+                                    <td>
+                                        Not updating the variable
+                                    </td>
+
+                                    <td>
+                                        Can create an infinite loop.
+                                    </td>
+
+                                </tr>
+
+
+                                <tr>
+
+                                    <td>
+                                        Wrong condition
+                                    </td>
+
+                                    <td>
+                                        The loop may execute too many or
+                                        too few times.
+                                    </td>
+
+                                </tr>
+
+
+                                <tr>
+
+                                    <td>
+                                        Incorrect use of continue
+                                    </td>
+
+                                    <td>
+                                        Can accidentally skip important
+                                        logic or cause an infinite loop if
+                                        the update is skipped.
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 IMPORTANT INTERVIEW POINTS
+            ====================================================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        Important Interview Points
+                    </h2>
+
+
+                    <ul>
+
+                        <li class="mb-2">
+                            A while loop runs while its condition is True.
+                        </li>
+
+                        <li class="mb-2">
+                            The condition is checked before every iteration.
+                        </li>
+
+                        <li class="mb-2">
+                            The loop variable generally needs to be updated.
+                        </li>
+
+                        <li class="mb-2">
+                            <code>break</code> terminates the loop.
+                        </li>
+
+                        <li class="mb-2">
+                            <code>continue</code> skips the current iteration.
+                        </li>
+
+                        <li class="mb-2">
+                            <code>pass</code> performs no operation.
+                        </li>
+
+                        <li>
+                            A while loop can have an <code>else</code> block.
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 CIIT LEARNING POINT
+            ====================================================== -->
+            <div class="alert alert-success mt-4">
+
+                <h2 class="h4 fw-bold">
+                    CIIT Learning Point
+                </h2>
+
+                <p class="mb-0">
+
+                    <strong>Remember:</strong>
+
+                    Use a <code>while</code> loop when repetition depends
+                    mainly on a condition and the exact number of iterations
+                    may not be known beforehand. Always make sure the
+                    condition can eventually become <strong>False</strong>
+                    unless an intentional infinite loop is required.
+
+                </p>
+
+            </div>
+
+
+            <!-- =====================================================
+                 SAM PRACTICE TASKS
+            ====================================================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        CIIT Practice Tasks
+                    </h2>
+
+
+                    <ol>
+
+                        <li class="mb-3">
+
+                            Write a while loop to print numbers from
+                            <strong>1 to 10</strong>.
+
+                        </li>
+
+
+                        <li class="mb-3">
+
+                            Write a while loop to print numbers from
+                            <strong>10 to 1</strong>.
+
+                        </li>
+
+
+                        <li class="mb-3">
+
+                            Accept a number from the user and print its
+                            multiplication table using a while loop.
+
+                        </li>
+
+
+                        <li class="mb-3">
+
+                            Create a program that repeatedly asks for a
+                            password until the correct password is entered.
+
+                        </li>
+
+
+                        <li class="mb-3">
+
+                            Create a menu-driven program with options for
+                            Python, .NET, Java and Exit.
+
+                        </li>
+
+
+                        <li>
+
+                            Create a program that accepts numbers until the
+                            user enters <code>0</code>, then display the
+                            total of all entered numbers.
+
+                        </li>
+
+                    </ol>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 SUMMARY
+            ====================================================== -->
+            <div class="alert alert-info mt-4 mb-0"
+                 style="background-color:#cfe2ff; border:0; color:#123c73;">
+
+                <h2 class="h3 fw-bold mt-0 mb-3"
+                    style="color:#123c73;">
+
+                    Summary :
+
+                </h2>
+
+
+                <p class="mb-0"
+                   style="color:#123c73;">
+
+                    A Python <strong>while loop</strong> repeatedly executes
+                    a block of code while a condition remains True.
+                    The condition is checked before every iteration, and
+                    the loop variable should normally be updated so that
+                    the loop can eventually stop. <code>break</code> can be
+                    used to terminate the loop, <code>continue</code> can
+                    skip an iteration, and <code>pass</code> can act as a
+                    placeholder. Python also supports an <code>else</code>
+                    block with while loops. While loops are especially
+                    useful for user input, menu-driven programs, validation,
+                    counters and situations where the number of iterations
+                    is not known in advance.
+
+                </p>
+
+            </div>
+
+
+            <!-- =====================================================
+                 NAVIGATION
+            ====================================================== -->
+            <div class="d-flex justify-content-between mt-4">
+
+
+                <a class="btn btn-outline-secondary"
+                   href="@Url.Action("ForLoop", "ControlFlow", new { area = "Python" })">
+
+                    ← Previous : Topic
+
+                </a>
+
+
+                <a class="btn btn-primary"
+                   href="@Url.Action("BreakContinuePass", "ControlFlow", new { area = "Python" })">
+
+                    Next : Topic →
+
+                </a>
+
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

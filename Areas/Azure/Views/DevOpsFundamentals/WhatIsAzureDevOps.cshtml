@@ -1,0 +1,41 @@
+@{
+    ViewData["Title"] = "What is Azure DevOps?";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+                <div class="azure-notes-content">
+                    <pre class="azure-notes-text">What is Azure DevOps?
+Azure DevOps is a Software as a service (SaaS) provided by Microsoft Azure that will reduce
+human efforts and automate the deployment and testing of an application. You can use a
+number of services to deploy the application or complete the Software Development Life
+Cycle (SDLC) in a fast and efficient manner. Previously, Azure DevOps was also called
+Microsoft Visual Studio Team Services (VSTS).
+Azure DevOps is a Software as a service (SaaS) that uses certain services to complete the
+software development lifecycle efficiently with less amount of time following are some
+services which is used by Azure DevOps.
+   1. Azure Boards
+   2. Azure Pipeline
+   3. Azure Repos
+   4. Azure Artifacts
+   5. Azure Test Plans</pre>
+                </div>
+            </div>
+        </div>
+    
+
+            @await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureLessonNavigation.cshtml")
+</section>
+</div>
+<style>
+.azure-notes-text{white-space:pre-wrap;word-break:normal;font-family:inherit;font-size:1rem;line-height:1.7;background:#fff;border:0;padding:0;margin:0;color:#212529;}
+.azure-notes-content img{max-height:720px;}
+</style>

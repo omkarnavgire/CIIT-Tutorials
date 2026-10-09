@@ -1,0 +1,40 @@
+@{
+    ViewData["Title"] = "4. ADD";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+                <div class="azure-notes-content">
+                    <pre class="azure-notes-text">4. ADD
+
+If we define to add some files, ADD statement is used. It basically gives instructions to copy new files,
+directories, or remote file URLs and then adds them to the filesystem of the image.
+To sum up it can add local files, contents of tar archives as well as URLs.
+
+Example:
+
+Local Files: ADD run.sh /run.sh
+
+Tar Archives: ADD project.tar.gz /install/
+
+URLs: ADD https://project.demo-test.com/downloads/1.0/testingproject.rpm/test</pre>
+                </div>
+            </div>
+        </div>
+    
+
+            @await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureLessonNavigation.cshtml")
+</section>
+</div>
+<style>
+.azure-notes-text{white-space:pre-wrap;word-break:normal;font-family:inherit;font-size:1rem;line-height:1.7;background:#fff;border:0;padding:0;margin:0;color:#212529;}
+.azure-notes-content img{max-height:720px;}
+</style>

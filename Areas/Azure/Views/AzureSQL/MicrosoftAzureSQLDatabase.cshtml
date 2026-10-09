@@ -1,0 +1,43 @@
+@{
+    ViewData["Title"] = "Microsoft Azure SQL Database";
+    Layout = "~/Areas/Azure/Views/Shared/AzureLayout.cshtml";
+}
+
+@await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureContentStyles.cshtml")
+
+<div class="row g-4">
+    <aside class="col-lg-3">
+        @Html.Partial("~/Areas/Azure/Views/Shared/AzureTopics.cshtml")
+    </aside>
+    <section class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-lg-5">
+                <div class="azure-notes-content">
+                    <pre class="azure-notes-text">Microsoft Azure SQL Database
+Azure SQL Database is a relational database (RDBMS) service provided by Microsoft Azure that is
+widely used by developers when creating new applications in the cloud. It is managed completely by
+Microsoft and is a highly scalable platform-as-a-service (PaaS) designed especially for cloud
+applications. Here, we create a managed database server in the cloud and use the server to deploy
+our database. The server is a logical construct that acts as the central administration point for pooled
+databases or multiple logins, auditing rules, threat detection policy, and failover groups.
+
+
+
+Microsoft Azure SQL Database
+
+Azure SQL Database is a cloud-based service by Microsoft for storing and managing relational data. It
+offers a managed environment, handling tasks like backups and security. Users can create databases,
+organize data into tables, and run queries. It provides scalability and accessibility from anywhere
+with an internet connection.</pre>
+                </div>
+            </div>
+        </div>
+    
+
+            @await Html.PartialAsync("~/Areas/Azure/Views/Shared/AzureLessonNavigation.cshtml")
+</section>
+</div>
+<style>
+.azure-notes-text{white-space:pre-wrap;word-break:normal;font-family:inherit;font-size:1rem;line-height:1.7;background:#fff;border:0;padding:0;margin:0;color:#212529;}
+.azure-notes-content img{max-height:720px;}
+</style>

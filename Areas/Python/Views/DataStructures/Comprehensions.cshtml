@@ -1,0 +1,1177 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Python Comprehensions";
+}
+
+<style>
+
+    /* =========================================================
+           PAGE-SPECIFIC CODE / OUTPUT BLOCKS
+           ========================================================= */
+
+    #python-comprehensions-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 0.5rem;
+        padding: 1rem !important;
+        overflow-x: auto;
+    }
+
+        #python-comprehensions-page pre code {
+            background-color: transparent !important;
+            color: #ffffff !important;
+        }
+
+</style>
+
+
+<main id="python-comprehensions-page" class="container py-5">
+
+    <div class="row g-4">
+
+
+        <!-- =====================================================
+             LEFT SIDE - COURSE SYLLABUS
+             ===================================================== -->
+
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+
+        </aside>
+
+
+        <!-- =====================================================
+             RIGHT SIDE - TUTORIAL CONTENT
+             ===================================================== -->
+
+        <section class="col-lg-9">
+
+
+            <!-- =================================================
+                 PAGE TITLE
+                 ================================================= -->
+
+            <div class="mb-4">
+
+                <h1 class="display-6 fw-bold">
+                    Comprehensions
+                </h1>
+
+                <p class="lead text-muted mb-0">
+                    Learn how to create Lists, Sets and Dictionaries
+                    in a concise and readable way using Python
+                    Comprehensions.
+                </p>
+
+            </div>
+
+
+            <!-- =================================================
+                 INTRODUCTION
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        What are Comprehensions?
+                    </h2>
+
+                    <p>
+                        Comprehensions provide a short and expressive
+                        way to create new collections from existing
+                        iterables.
+                    </p>
+
+                    <p>
+                        Instead of writing multiple lines using a
+                        loop and <code>append()</code>, a comprehension
+                        can often perform the same task in a single
+                        readable expression.
+                    </p>
+
+                    <p>
+                        Python commonly provides:
+                    </p>
+
+                    <ul>
+
+                        <li>List Comprehension</li>
+
+                        <li>Set Comprehension</li>
+
+                        <li>Dictionary Comprehension</li>
+
+                    </ul>
+
+                    <p class="mb-0">
+                        Comprehensions are especially useful when
+                        transforming, filtering or creating collections
+                        of data.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 NORMAL LOOP VS COMPREHENSION
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Normal Loop vs Comprehension
+                    </h2>
+
+                    <h3 class="h5 fw-bold mt-3">
+                        Using a Normal Loop
+                    </h3>
+
+                    <pre><code>numbers = [1, 2, 3, 4, 5]
+
+squares = []
+
+for number in numbers:
+    squares.append(number * number)
+
+print(squares)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>[1, 4, 9, 16, 25]</code></pre>
+
+
+                    <h3 class="h5 fw-bold mt-4">
+                        Using List Comprehension
+                    </h3>
+
+                    <pre><code>numbers = [1, 2, 3, 4, 5]
+
+squares = [number * number for number in numbers]
+
+print(squares)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>[1, 4, 9, 16, 25]</code></pre>
+
+                    <p class="mb-0">
+                        Both approaches produce the same result,
+                        but the comprehension is more compact.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 LIST COMPREHENSION
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        1. List Comprehension
+                    </h2>
+
+                    <p>
+                        List Comprehension is used to create a new
+                        List from an existing iterable.
+                    </p>
+
+                    <h3 class="h5 fw-bold mt-3">
+                        Basic Syntax
+                    </h3>
+
+                    <pre><code>[expression for item in iterable]</code></pre>
+
+
+                    <h3 class="h5 fw-bold mt-4">
+                        Example
+                    </h3>
+
+                    <pre><code>numbers = [1, 2, 3, 4, 5]
+
+squares = [number * number for number in numbers]
+
+print(squares)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>[1, 4, 9, 16, 25]</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 RANGE WITH LIST COMPREHENSION
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Using range() with List Comprehension
+                    </h2>
+
+                    <pre><code>squares = [
+    number * number
+    for number in range(1, 6)
+]
+
+print(squares)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>[1, 4, 9, 16, 25]</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 STRING COMPREHENSION
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        List Comprehension with Strings
+                    </h2>
+
+                    <p>
+                        A string is iterable, so we can process
+                        its characters using List Comprehension.
+                    </p>
+
+                    <pre><code>name = "Python"
+
+letters = [character.upper() for character in name]
+
+print(letters)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>['P', 'Y', 'T', 'H', 'O', 'N']</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 CONDITION IN LIST COMPREHENSION
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        List Comprehension with Condition
+                    </h2>
+
+                    <p>
+                        A condition can be used to filter values.
+                    </p>
+
+                    <h3 class="h5 fw-bold mt-3">
+                        Syntax
+                    </h3>
+
+                    <pre><code>[expression for item in iterable if condition]</code></pre>
+
+
+                    <h3 class="h5 fw-bold mt-4">
+                        Example
+                    </h3>
+
+                    <pre><code>numbers = [1, 2, 3, 4, 5, 6]
+
+even_numbers = [
+    number
+    for number in numbers
+    if number % 2 == 0
+]
+
+print(even_numbers)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>[2, 4, 6]</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 ODD NUMBERS
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Filtering Odd Numbers
+                    </h2>
+
+                    <pre><code>numbers = [1, 2, 3, 4, 5, 6]
+
+odd_numbers = [
+    number
+    for number in numbers
+    if number % 2 != 0
+]
+
+print(odd_numbers)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>[1, 3, 5]</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 IF ELSE IN LIST COMPREHENSION
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        if-else in List Comprehension
+                    </h2>
+
+                    <p>
+                        An <code>if-else</code> expression can be
+                        used to transform each item based on a condition.
+                    </p>
+
+                    <pre><code>numbers = [1, 2, 3, 4, 5]
+
+result = [
+    "Even" if number % 2 == 0 else "Odd"
+    for number in numbers
+]
+
+print(result)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>['Odd', 'Even', 'Odd', 'Even', 'Odd']</code></pre>
+
+                    <p>
+                        Notice that the <code>if-else</code> expression
+                        appears before the <code>for</code> part.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 MULTIPLE CONDITIONS
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Multiple Conditions
+                    </h2>
+
+                    <p>
+                        Multiple filtering conditions can be combined
+                        using logical operators.
+                    </p>
+
+                    <pre><code>numbers = range(1, 11)
+
+result = [
+    number
+    for number in numbers
+    if number &gt; 3 and number &lt; 8
+]
+
+print(result)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>[4, 5, 6, 7]</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 NESTED LIST COMPREHENSION
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Nested List Comprehension
+                    </h2>
+
+                    <p>
+                        A List Comprehension can contain more than
+                        one <code>for</code> clause.
+                    </p>
+
+                    <pre><code>matrix = [
+    [1, 2],
+    [3, 4],
+    [5, 6]
+]
+
+result = [
+    number
+    for row in matrix
+    for number in row
+]
+
+print(result)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>[1, 2, 3, 4, 5, 6]</code></pre>
+
+                    <p class="mb-0">
+                        Nested comprehensions are powerful, but
+                        they should remain readable.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 SET COMPREHENSION
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        2. Set Comprehension
+                    </h2>
+
+                    <p>
+                        Set Comprehension creates a Set using a
+                        concise expression.
+                    </p>
+
+                    <h3 class="h5 fw-bold mt-3">
+                        Syntax
+                    </h3>
+
+                    <pre><code>{expression for item in iterable}</code></pre>
+
+
+                    <h3 class="h5 fw-bold mt-4">
+                        Example
+                    </h3>
+
+                    <pre><code>numbers = [1, 2, 2, 3, 3, 4, 5]
+
+squares = {
+    number * number
+    for number in numbers
+}
+
+print(squares)</code></pre>
+
+                    <p>
+                        Duplicate results are automatically removed
+                        because the result is a Set.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 SET COMPREHENSION WITH CONDITION
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Set Comprehension with Condition
+                    </h2>
+
+                    <pre><code>numbers = range(1, 11)
+
+even_squares = {
+    number * number
+    for number in numbers
+    if number % 2 == 0
+}
+
+print(even_squares)</code></pre>
+
+                    <p>
+                        This creates a Set containing squares of
+                        even numbers.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 DICTIONARY COMPREHENSION
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        3. Dictionary Comprehension
+                    </h2>
+
+                    <p>
+                        Dictionary Comprehension creates a new
+                        Dictionary using a concise expression.
+                    </p>
+
+                    <h3 class="h5 fw-bold mt-3">
+                        Syntax
+                    </h3>
+
+                    <pre><code>{key: value for item in iterable}</code></pre>
+
+
+                    <h3 class="h5 fw-bold mt-4">
+                        Example
+                    </h3>
+
+                    <pre><code>numbers = [1, 2, 3, 4, 5]
+
+squares = {
+    number: number * number
+    for number in numbers
+}
+
+print(squares)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>{1: 1, 2: 4, 3: 9, 4: 16, 5: 25}</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 DICTIONARY WITH CONDITION
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Dictionary Comprehension with Condition
+                    </h2>
+
+                    <pre><code>numbers = range(1, 11)
+
+even_squares = {
+    number: number * number
+    for number in numbers
+    if number % 2 == 0
+}
+
+print(even_squares)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>{2: 4, 4: 16, 6: 36, 8: 64, 10: 100}</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 TRANSFORM DICTIONARY
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Transforming Dictionary Values
+                    </h2>
+
+                    <pre><code>marks = {
+    "Rahul": 80,
+    "Sneha": 90,
+    "Amit": 75
+}
+
+updated_marks = {
+    name: mark + 5
+    for name, mark in marks.items()
+}
+
+print(updated_marks)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>{'Rahul': 85, 'Sneha': 95, 'Amit': 80}</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 FILTER DICTIONARY
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Filtering a Dictionary
+                    </h2>
+
+                    <pre><code>marks = {
+    "Rahul": 80,
+    "Sneha": 45,
+    "Amit": 75,
+    "Priya": 35
+}
+
+passed_students = {
+    name: mark
+    for name, mark in marks.items()
+    if mark &gt;= 50
+}
+
+print(passed_students)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>{'Rahul': 80, 'Amit': 75}</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 PRACTICAL CIIT EXAMPLE - COURSES
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        CIIT Example - Course Names 🤓📩
+                    </h2>
+
+                    <p>
+                        Suppose CIIT has a list of course names and
+                        wants to convert them into uppercase.
+                    </p>
+
+                    <pre><code>courses = [
+    "python",
+    "java",
+    ".net",
+    "mern"
+]
+
+updated_courses = [
+    course.upper()
+    for course in courses
+]
+
+print(updated_courses)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>['PYTHON', 'JAVA', '.NET', 'MERN']</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 PRACTICAL CIIT EXAMPLE - STUDENTS
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        CIIT Example - Students 🤓📩
+                    </h2>
+
+                    <p>
+                        Suppose CIIT wants to select students who
+                        scored at least 60 marks.
+                    </p>
+
+                    <pre><code>students = {
+    "Rahul": 85,
+    "Sneha": 55,
+    "Amit": 72,
+    "Priya": 48
+}
+
+qualified_students = {
+    name: marks
+    for name, marks in students.items()
+    if marks &gt;= 60
+}
+
+print(qualified_students)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>{'Rahul': 85, 'Amit': 72}</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 PRACTICAL CIIT EXAMPLE - COURSE FILTER
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        CIIT Example - Course Filter 🤓📩 
+                    </h2>
+
+                    <p>
+                        We can filter a List and create a new List
+                        containing only Python-related courses.
+                    </p>
+
+                    <pre><code>courses = [
+    "Python",
+    "Java",
+    "Python Full Stack",
+    ".NET",
+    "Data Science",
+    "Python"
+]
+
+python_courses = [
+    course
+    for course in courses
+    if "Python" in course
+]
+
+print(python_courses)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>['Python', 'Python Full Stack', 'Python']</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 COMPREHENSION TYPES
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Types of Comprehensions
+                    </h2>
+
+                    <div class="table-responsive">
+
+                        <table class="table table-bordered align-middle">
+
+                            <thead class="table-dark">
+
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Syntax</th>
+                                    <th>Result</th>
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                                <tr>
+                                    <td>List</td>
+                                    <td>
+                                        <code>[expression for item in iterable]</code>
+                                    </td>
+                                    <td>List</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Set</td>
+                                    <td>
+                                        <code>{expression for item in iterable}</code>
+                                    </td>
+                                    <td>Set</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Dictionary</td>
+                                    <td>
+                                        <code>{key: value for item in iterable}</code>
+                                    </td>
+                                    <td>Dictionary</td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 WHEN TO USE
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        When Should You Use Comprehensions?
+                    </h2>
+
+                    <ul>
+
+                        <li class="mb-2">
+                            When creating a collection from another
+                            iterable.
+                        </li>
+
+                        <li class="mb-2">
+                            When applying a simple transformation.
+                        </li>
+
+                        <li class="mb-2">
+                            When filtering values using a clear
+                            condition.
+                        </li>
+
+                        <li class="mb-2">
+                            When the resulting expression remains
+                            easy to understand.
+                        </li>
+
+                    </ul>
+
+                    <p class="mb-0">
+                        If a comprehension becomes too complicated,
+                        using a normal loop may make the code easier
+                        to read and maintain.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 COMMON MISTAKES
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Common Mistakes
+                    </h2>
+
+                    <ol>
+
+                        <li class="mb-2">
+                            Confusing List Comprehension syntax with
+                            Dictionary Comprehension syntax.
+                        </li>
+
+                        <li class="mb-2">
+                            Placing an <code>if-else</code> expression
+                            in the wrong position.
+                        </li>
+
+                        <li class="mb-2">
+                            Creating very complex nested comprehensions
+                            that are difficult to understand.
+                        </li>
+
+                        <li class="mb-2">
+                            Forgetting that Set Comprehension removes
+                            duplicate values.
+                        </li>
+
+                        <li>
+                            Using comprehensions when a normal loop
+                            would make the code clearer.
+                        </li>
+
+                    </ol>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 INTERVIEW POINTS
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Interview Points
+                    </h2>
+
+                    <ul>
+
+                        <li class="mb-2">
+                            What is List Comprehension?
+                        </li>
+
+                        <li class="mb-2">
+                            What is the basic syntax of List Comprehension?
+                        </li>
+
+                        <li class="mb-2">
+                            How do you add a condition to a comprehension?
+                        </li>
+
+                        <li class="mb-2">
+                            What is Set Comprehension?
+                        </li>
+
+                        <li class="mb-2">
+                            What is Dictionary Comprehension?
+                        </li>
+
+                        <li class="mb-2">
+                            What is the difference between a normal
+                            loop and a List Comprehension?
+                        </li>
+
+                        <li class="mb-2">
+                            Can you use multiple conditions in a
+                            comprehension?
+                        </li>
+
+                        <li>
+                            When should you avoid using comprehensions?
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 CIIT LEARNING POINT
+                 ================================================= -->
+
+            <div class="alert alert-success mt-4">
+
+                <h2 class="h4 fw-bold">
+                    CIIT Learning Point
+                </h2>
+
+                <p class="mb-0">
+                    Comprehensions provide a concise way to create
+                    and transform Python collections. List,
+                    Set and Dictionary Comprehensions are especially
+                    useful for filtering and transforming data.
+                    Always prefer readability over writing an
+                    unnecessarily complicated one-line expression.
+                </p>
+
+            </div>
+
+
+            <!-- =================================================
+                 PRACTICE TASKS
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        CIIT Practice Tasks
+                    </h2>
+
+                    <ol>
+
+                        <li class="mb-2">
+                            Create a List of squares from 1 to 10
+                            using List Comprehension.
+                        </li>
+
+                        <li class="mb-2">
+                            Create a List containing only even numbers
+                            from 1 to 50.
+                        </li>
+
+                        <li class="mb-2">
+                            Convert a List of names into uppercase
+                            using List Comprehension.
+                        </li>
+
+                        <li class="mb-2">
+                            Create a Set containing unique squares
+                            of numbers.
+                        </li>
+
+                        <li class="mb-2">
+                            Create a Dictionary where numbers from
+                            1 to 10 are keys and their squares are
+                            values.
+                        </li>
+
+                        <li class="mb-2">
+                            From a Dictionary of student marks,
+                            create a new Dictionary containing only
+                            students who passed.
+                        </li>
+
+                        <li>
+                            Create a List containing only CIIT courses
+                            whose name contains "Python".
+                        </li>
+
+                    </ol>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 SUMMARY
+                 ================================================= -->
+
+            <div class="alert alert-info mt-4 mb-0"
+                 style="background-color:#cfe2ff; border:0; color:#123c73;">
+
+                <h2 class="h3 fw-bold mt-0 mb-3"
+                    style="color:#123c73;">
+
+                    Summary :
+
+                </h2>
+
+                <p class="mb-0"
+                   style="color:#123c73;">
+
+                    Python Comprehensions provide a concise and
+                    readable way to create collections from existing
+                    iterables. List Comprehension creates Lists,
+                    Set Comprehension creates Sets, and Dictionary
+                    Comprehension creates key-value collections.
+                    Conditions can be used for filtering and
+                    expressions can be used for transforming values.
+                    Comprehensions are powerful, but they should
+                    always be written with readability in mind.
+
+                </p>
+
+            </div>
+
+
+            <!-- =================================================
+                 PREVIOUS / NEXT NAVIGATION
+                 ================================================= -->
+
+            <div class="d-flex justify-content-between align-items-center mt-5 pt-3 border-top">
+
+                <a href="@Url.Action("Dictionaries", "DataStructures", new { area = "Python" })"
+                   class="btn btn-outline-secondary">
+
+                    ← Previous: Topic
+
+                </a>
+
+
+                <a href="@Url.Action("Index", "OOPs", new { area = "Python" })"
+                   class="btn btn-primary">
+
+                    Next: Topic →
+
+                </a>
+
+            </div>
+
+
+        </section>
+
+    </div>
+
+</main>

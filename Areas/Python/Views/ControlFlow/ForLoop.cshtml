@@ -1,0 +1,1332 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Python For Loop";
+}
+
+<style>
+    /* =====================================================
+           FOR LOOP PAGE
+           Keep all programs and outputs dark
+        ====================================================== */
+
+    #python-for-loop-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 0.5rem;
+        padding: 1rem !important;
+        overflow-x: auto;
+    }
+
+        #python-for-loop-page pre code {
+            background-color: transparent !important;
+            color: #ffffff !important;
+        }
+</style>
+
+
+<main id="python-for-loop-page"
+      class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- =========================
+             LEFT SIDEBAR
+        ========================== -->
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+
+        </aside>
+
+
+        <!-- =========================
+             MAIN CONTENT
+        ========================== -->
+        <section class="col-lg-9">
+
+            <!-- =========================
+                 PAGE HEADING
+            ========================== -->
+            <div class="mb-4">
+
+                <h1 class="fw-bold">
+                    Python For Loop
+                </h1>
+
+                <p class="lead">
+                    A <strong>for loop</strong> is used in Python to repeat
+                    a block of code for every item in a sequence or collection.
+                </p>
+
+            </div>
+
+
+            <!-- =========================
+                 CIIT INTRODUCTION
+            ========================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        Python For Loop
+                    </h2>
+
+                    <p>
+                        At <strong>CIIT Training Institute</strong>, loops are taught
+                        using practical programming examples so that students can
+                        understand not only the syntax but also where loops are
+                        actually used in real applications.
+                    </p>
+
+                    <p class="mb-0">
+                        The <strong>for loop</strong> is one of the most commonly
+                        used looping statements in Python. It is useful when we
+                        want to process multiple values one by one.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 WHAT IS FOR LOOP
+            ========================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        What is a For Loop?
+                    </h2>
+
+                    <p>
+                        A <strong>for loop</strong> executes a block of code once
+                        for each item in an iterable object.
+                    </p>
+
+                    <p>
+                        An iterable can be:
+                    </p>
+
+                    <ul>
+                        <li>List</li>
+                        <li>Tuple</li>
+                        <li>String</li>
+                        <li>Set</li>
+                        <li>Dictionary</li>
+                        <li>Range</li>
+                    </ul>
+
+                    <p class="mb-0">
+                        Instead of writing the same code multiple times,
+                        we can use a loop.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 LOOP CONCEPT
+            ========================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        For Loop Concept
+                    </h2>
+
+                    <p>
+                        Suppose we have three students:
+                    </p>
+
+                    <pre><code>students = ["Sam", "Rahul", "Priya"]</code></pre>
+
+                    <p>
+                        Instead of writing three separate print statements,
+                        we can use a for loop.
+                    </p>
+
+
+                    <!-- Simple Flow Diagram -->
+                    <div class="border rounded p-4 text-center bg-light">
+
+                        <div class="fw-bold mb-3">
+                            Start
+                        </div>
+
+                        <div class="border rounded p-3 bg-white mb-2">
+                            Get next item
+                        </div>
+
+                        <div class="mb-2">
+                            ↓
+                        </div>
+
+                        <div class="border rounded p-3 bg-white mb-2">
+                            Execute loop body
+                        </div>
+
+                        <div class="mb-2">
+                            ↓
+                        </div>
+
+                        <div class="border rounded p-3 bg-white mb-2">
+                            More items?
+                        </div>
+
+                        <div class="mb-2">
+                            ↓ Yes
+                        </div>
+
+                        <div class="border rounded p-3 bg-white">
+                            Repeat
+                        </div>
+
+                    </div>
+
+                    <p class="mt-3 mb-0">
+                        The loop continues until all items in the collection
+                        have been processed.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 BASIC SYNTAX
+            ========================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        For Loop Syntax
+                    </h2>
+
+                    <pre><code>for variable in sequence:
+    # code to execute</code></pre>
+
+                    <h5 class="fw-bold mt-4">
+                        Example
+                    </h5>
+
+                    <pre><code>students = ["Sam", "Rahul", "Priya"]
+
+for student in students:
+    print(student)</code></pre>
+
+                    <h5 class="fw-bold">
+                        Output
+                    </h5>
+
+                    <pre><code>Sam
+Rahul
+Priya</code></pre>
+
+                    <p class="mb-0">
+                        The variable <code>student</code> receives one item at a
+                        time from the list.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 LIST
+            ========================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        Iterating Over a List
+                    </h2>
+
+                    <p>
+                        A for loop is commonly used to process every item
+                        inside a list.
+                    </p>
+
+                    <pre><code>courses = [
+    "Python",
+    ".NET",
+    "Java",
+    "Data Science"
+]
+
+for course in courses:
+    print(course)</code></pre>
+
+                    <h5 class="fw-bold">
+                        Output
+                    </h5>
+
+                    <pre><code>Python
+.NET
+Java
+Data Science</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 STRING
+            ========================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        Iterating Over a String
+                    </h2>
+
+                    <p>
+                        A string is also iterable. The loop processes one
+                        character at a time.
+                    </p>
+
+                    <pre><code>name = "SAM"
+
+for character in name:
+    print(character)</code></pre>
+
+                    <h5 class="fw-bold">
+                        Output
+                    </h5>
+
+                    <pre><code>S
+A
+M</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 TUPLE
+            ========================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        Iterating Over a Tuple
+                    </h2>
+
+                    <pre><code>technologies = ("Python", "Django", "Flask")
+
+for technology in technologies:
+    print(technology)</code></pre>
+
+                    <p class="mb-0">
+                        Each tuple element is accessed one by one.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 SET
+            ========================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        Iterating Over a Set
+                    </h2>
+
+                    <pre><code>skills = {"Python", "SQL", "Git"}
+
+for skill in skills:
+    print(skill)</code></pre>
+
+                    <p class="mb-0">
+                        A set can also be iterated using a for loop.
+                        Remember that sets do not guarantee a meaningful
+                        element order.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 DICTIONARY
+            ========================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        For Loop With Dictionary
+                    </h2>
+
+                    <p>
+                        Dictionaries contain key-value pairs. We can iterate
+                        through keys, values, or both.
+                    </p>
+
+
+                    <h5 class="fw-bold">
+                        1. Iterate Through Keys
+                    </h5>
+
+                    <pre><code>student = {
+    "name": "Sam",
+    "course": "Python",
+    "city": "Pune"
+}
+
+for key in student:
+    print(key)</code></pre>
+
+
+                    <h5 class="fw-bold">
+                        2. Iterate Through Values
+                    </h5>
+
+                    <pre><code>for value in student.values():
+    print(value)</code></pre>
+
+
+                    <h5 class="fw-bold">
+                        3. Iterate Through Key and Value
+                    </h5>
+
+                    <pre><code>for key, value in student.items():
+    print(key, ":", value)</code></pre>
+
+
+                    <h5 class="fw-bold">
+                        Output
+                    </h5>
+
+                    <pre><code>name : Sam
+course : Python
+city : Pune</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 RANGE
+            ========================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        range() With For Loop
+                    </h2>
+
+                    <p>
+                        The <code>range()</code> function is frequently used
+                        when we want to repeat something a specific number
+                        of times.
+                    </p>
+
+                    <pre><code>for number in range(5):
+    print(number)</code></pre>
+
+                    <h5 class="fw-bold">
+                        Output
+                    </h5>
+
+                    <pre><code>0
+1
+2
+3
+4</code></pre>
+
+                    <div class="alert alert-warning">
+
+                        <strong>Important:</strong>
+
+                        The ending value of <code>range()</code> is excluded.
+                        Therefore, <code>range(5)</code> generates values
+                        from 0 to 4.
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 RANGE START STOP
+            ========================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        range(start, stop)
+                    </h2>
+
+                    <pre><code>for number in range(1, 6):
+    print(number)</code></pre>
+
+                    <h5 class="fw-bold">
+                        Output
+                    </h5>
+
+                    <pre><code>1
+2
+3
+4
+5</code></pre>
+
+                    <p class="mb-0">
+                        Here, <code>1</code> is the starting value and
+                        <code>6</code> is the stopping value.
+                        Since the stop value is excluded, the loop ends at 5.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 RANGE STEP
+            ========================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        range(start, stop, step)
+                    </h2>
+
+                    <p>
+                        The third parameter specifies how much the value
+                        should change after every iteration.
+                    </p>
+
+                    <pre><code>for number in range(1, 11, 2):
+    print(number)</code></pre>
+
+                    <h5 class="fw-bold">
+                        Output
+                    </h5>
+
+                    <pre><code>1
+3
+5
+7
+9</code></pre>
+
+                    <p class="mb-0">
+                        Here the loop increases the value by <strong>2</strong>
+                        after every iteration.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 REVERSE ITERATION
+            ========================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        Reverse Iteration
+                    </h2>
+
+                    <p>
+                        A negative step can be used to iterate backwards.
+                    </p>
+
+                    <pre><code>for number in range(5, 0, -1):
+    print(number)</code></pre>
+
+                    <h5 class="fw-bold">
+                        Output
+                    </h5>
+
+                    <pre><code>5
+4
+3
+2
+1</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 ENUMERATE
+            ========================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        enumerate() Function
+                    </h2>
+
+                    <p>
+                        <code>enumerate()</code> allows us to access both
+                        the index and the value while looping.
+                    </p>
+
+                    <pre><code>courses = ["Python", ".NET", "Java"]
+
+for index, course in enumerate(courses):
+    print(index, course)</code></pre>
+
+                    <h5 class="fw-bold">
+                        Output
+                    </h5>
+
+                    <pre><code>0 Python
+1 .NET
+2 Java</code></pre>
+
+                    <p class="mb-0">
+                        We can also start the index from another number.
+                    </p>
+
+                    <pre class="mt-3"><code>for index, course in enumerate(courses, start=1):
+    print(index, course)</code></pre>
+
+                    <pre><code>1 Python
+2 .NET
+3 Java</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 NESTED FOR LOOP
+            ========================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        Nested For Loop
+                    </h2>
+
+                    <p>
+                        A loop inside another loop is called a
+                        <strong>nested loop</strong>.
+                    </p>
+
+                    <pre><code>for i in range(1, 4):
+
+    for j in range(1, 4):
+        print(i, j)</code></pre>
+
+                    <p>
+                        The inner loop runs completely for every iteration
+                        of the outer loop.
+                    </p>
+
+                    <h5 class="fw-bold">
+                        Example: Multiplication Table
+                    </h5>
+
+                    <pre><code>number = 5
+
+for i in range(1, 11):
+    print(number, "x", i, "=", number * i)</code></pre>
+
+                    <h5 class="fw-bold">
+                        Output
+                    </h5>
+
+                    <pre><code>5 x 1 = 5
+5 x 2 = 10
+5 x 3 = 15
+...
+5 x 10 = 50</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 BREAK
+            ========================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        break Inside For Loop
+                    </h2>
+
+                    <p>
+                        The <code>break</code> statement immediately stops
+                        the loop.
+                    </p>
+
+                    <pre><code>for number in range(1, 10):
+
+    if number == 5:
+        break
+
+    print(number)</code></pre>
+
+                    <h5 class="fw-bold">
+                        Output
+                    </h5>
+
+                    <pre><code>1
+2
+3
+4</code></pre>
+
+                    <p class="mb-0">
+                        As soon as <code>number == 5</code>, the loop stops.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 CONTINUE
+            ========================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        continue Inside For Loop
+                    </h2>
+
+                    <p>
+                        The <code>continue</code> statement skips the current
+                        iteration and moves to the next iteration.
+                    </p>
+
+                    <pre><code>for number in range(1, 6):
+
+    if number == 3:
+        continue
+
+    print(number)</code></pre>
+
+                    <h5 class="fw-bold">
+                        Output
+                    </h5>
+
+                    <pre><code>1
+2
+4
+5</code></pre>
+
+                    <p class="mb-0">
+                        Number 3 is skipped, but the loop continues.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 ELSE WITH FOR
+            ========================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        else With For Loop
+                    </h2>
+
+                    <p>
+                        Python also allows an <code>else</code> block with
+                        a for loop.
+                    </p>
+
+                    <p>
+                        The <code>else</code> block executes when the loop
+                        completes normally without encountering
+                        <code>break</code>.
+                    </p>
+
+                    <pre><code>for number in range(1, 4):
+    print(number)
+else:
+    print("Loop completed")</code></pre>
+
+                    <h5 class="fw-bold">
+                        Output
+                    </h5>
+
+                    <pre><code>1
+2
+3
+Loop completed</code></pre>
+
+
+                    <h5 class="fw-bold mt-4">
+                        Example With break
+                    </h5>
+
+                    <pre><code>for number in range(1, 6):
+
+    if number == 3:
+        break
+
+    print(number)
+
+else:
+    print("Loop completed")</code></pre>
+    <h3 class="h5 fw-bold text-dark mb-3">
+    Output:
+</h3>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="code-lang-tag">
+        Output
+    </div>
+
+    <pre class="mb-0"><code>1
+2</code></pre>
+</div>
+
+
+                    <p class="mb-0">
+                        Here the <code>else</code> block does not execute
+                        because the loop was terminated using
+                        <code>break</code>.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 PRACTICAL EXAMPLE
+            ========================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        Example: CIIT Student Courses 📩🤓
+                    </h2>
+
+                    <p>
+                        Suppose CIIT has a list of courses and we want to
+                        display each course.
+                    </p>
+
+                    <pre><code>courses = [
+    "Python Full Stack",
+    ".NET Full Stack",
+    "Java Full Stack",
+    "Data Science",
+    "Data Analytics"
+]
+
+for course in courses:
+    print("Available Course:", course)</code></pre>
+    <h5 class="fw-bold">
+    Output
+</h5>
+
+<pre><code>Available Course: Python Full Stack
+Available Course: .NET Full Stack
+Available Course: Java Full Stack
+Available Course: Data Science
+Available Course: Data Analytics</code></pre>
+
+                    <p class="mb-0">
+                        This is a simple example of how loops can be used
+                        to process multiple records.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 PRACTICAL SUM
+            ========================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        Example: Calculate Sum 📩
+                    </h2>
+
+                    <pre><code>numbers = [10, 20, 30, 40, 50]
+
+total = 0
+
+for number in numbers:
+    total = total + number
+
+print("Total =", total)</code></pre>
+
+                    <h5 class="fw-bold">
+                        Output
+                    </h5>
+
+                    <pre><code>Total = 150</code></pre>
+
+                    <p class="mb-0">
+                        The loop processes every number and adds it to
+                        <code>total</code>.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 EVEN NUMBERS
+            ========================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        Example: Filter Even Numbers 🫠📩
+                    </h2>
+
+                    <pre><code>numbers = [10, 15, 20, 25, 30, 35]
+
+for number in numbers:
+
+    if number % 2 == 0:
+        print(number)</code></pre>
+
+                    <h5 class="fw-bold">
+                        Output
+                    </h5>
+
+                    <pre><code>10
+20
+30</code></pre>
+
+                    <p class="mb-0">
+                        The modulo operator <code>%</code> is used to check
+                        whether a number is divisible by 2.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 COMMON MISTAKES
+            ========================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        Common Mistakes in For Loop
+                    </h2>
+
+                    <div class="table-responsive">
+
+                        <table class="table table-bordered align-middle">
+
+                            <thead class="table-light">
+
+                                <tr>
+                                    <th>Mistake</th>
+                                    <th>Explanation</th>
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                                <tr>
+
+                                    <td>
+                                        Incorrect indentation
+                                    </td>
+
+                                    <td>
+                                        Python uses indentation to identify
+                                        the loop body.
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+
+                                    <td>
+                                        Forgetting colon
+                                    </td>
+
+                                    <td>
+                                        The for statement must end with
+                                        <code>:</code>.
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+
+                                    <td>
+                                        range() end value confusion
+                                    </td>
+
+                                    <td>
+                                        The stop value is not included.
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+
+                                    <td>
+                                        Using wrong iterable
+                                    </td>
+
+                                    <td>
+                                        Make sure the object can be iterated.
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+
+                                    <td>
+                                        Unexpected set order
+                                    </td>
+
+                                    <td>
+                                        Sets do not provide a meaningful
+                                        guaranteed iteration order.
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 LOOP VARIABLE
+            ========================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        Important: Loop Variable
+                    </h2>
+
+                    <p>
+                        The loop variable automatically receives the next
+                        item from the iterable.
+                    </p>
+
+                    <pre><code>students = ["Sam", "Rahul", "Priya"]
+
+for student in students:
+    print(student)</code></pre>
+
+                    <p>
+                        Here <code>student</code> changes automatically:
+                    </p>
+
+                    <ol>
+
+                        <li>
+                            First iteration → Sam
+                        </li>
+
+                        <li>
+                            Second iteration → Rahul
+                        </li>
+
+                        <li>
+                            Third iteration → Priya
+                        </li>
+
+                    </ol>
+
+                    <p class="mb-0">
+                        We normally should not manually modify the loop
+                        variable to control the loop.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 FOR LOOP VS WHILE
+            ========================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        For Loop vs While Loop
+                    </h2>
+
+                    <div class="table-responsive">
+
+                        <table class="table table-bordered align-middle">
+
+                            <thead class="table-light">
+
+                                <tr>
+
+                                    <th>
+                                        For Loop
+                                    </th>
+
+                                    <th>
+                                        While Loop
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                                <tr>
+
+                                    <td>
+                                        Commonly used to iterate over a collection.
+                                    </td>
+
+                                    <td>
+                                        Commonly used when repetition depends
+                                        on a condition.
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+
+                                    <td>
+                                        Works naturally with lists, strings,
+                                        tuples, sets and dictionaries.
+                                    </td>
+
+                                    <td>
+                                        Continues while a condition remains true.
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+
+                                    <td>
+                                        Usually easier when the number or
+                                        collection of items is known.
+                                    </td>
+
+                                    <td>
+                                        Useful when the number of iterations
+                                        is not known in advance.
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 CIIT LEARNING POINT
+            ========================== -->
+            <div class="alert alert-success mt-4">
+
+                <h2 class="h4 fw-bold">
+                    CIIT Learning Point
+                </h2>
+
+                <p class="mb-0">
+
+                    <strong>Remember:</strong>
+
+                    Python's for loop is mainly used to process items from
+                    an iterable one by one. Learn <code>range()</code>,
+                    <code>enumerate()</code>, <code>break</code>,
+                    <code>continue</code> and nested loops properly because
+                    these concepts are frequently used in real-world
+                    Python applications and coding interviews.
+
+                </p>
+
+            </div>
+
+
+            <!-- =========================
+                 SAM PRACTICE TASKS
+            ========================== -->
+            <div class="card shadow-sm border-0 mb-4">
+
+                <div class="card-body">
+
+                    <h2 class="h3 fw-bold">
+                        CIIT Practice Tasks
+                    </h2>
+
+                    <ol>
+
+                        <li class="mb-3">
+
+                            Create a list of 5 student names and print every
+                            student using a for loop.
+
+                        </li>
+
+                        <li class="mb-3">
+
+                            Print numbers from 1 to 20 using
+                            <code>range()</code>.
+
+                        </li>
+
+                        <li class="mb-3">
+
+                            Print all even numbers between 1 and 50.
+
+                        </li>
+
+                        <li class="mb-3">
+
+                            Create a multiplication table program where the
+                            user enters a number.
+
+                        </li>
+
+                        <li class="mb-3">
+
+                            Create a list of course names and display their
+                            index and name using <code>enumerate()</code>.
+
+                        </li>
+
+                        <li>
+
+                            Create a list of numbers and calculate their total
+                            using a for loop.
+
+                        </li>
+
+                    </ol>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 SUMMARY
+            ========================== -->
+            <div class="alert alert-info mt-4 mb-0"
+                 style="background-color:#cfe2ff; border:0; color:#123c73;">
+
+                <h2 class="h3 fw-bold mt-0 mb-3"
+                    style="color:#123c73;">
+
+                    Summary :
+
+                </h2>
+
+                <p class="mb-0"
+                   style="color:#123c73;">
+
+                    A Python <strong>for loop</strong> is used to iterate
+                    through items in collections such as lists, tuples,
+                    strings, sets and dictionaries. The
+                    <code>range()</code> function is useful for controlled
+                    repetition, while <code>enumerate()</code> provides both
+                    index and value. We can use <code>break</code> to stop
+                    a loop, <code>continue</code> to skip an iteration and
+                    nested loops to handle multiple levels of repetition.
+                    Understanding for loops is essential for Python
+                    programming and real-world application development.
+
+                </p>
+
+            </div>
+
+
+            <!-- =========================
+                 NAVIGATION
+            ========================== -->
+            <div class="d-flex justify-content-between mt-4">
+
+                <a class="btn btn-outline-secondary"
+                   href="@Url.Action("ConditionalStatements", "ControlFlow", new { area = "Python" })">
+
+                    ← Previous : Topic
+
+                </a>
+
+
+                <a class="btn btn-primary"
+                   href="@Url.Action("WhileLoop", "ControlFlow", new { area = "Python" })">
+
+                    Next : Topic →
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>

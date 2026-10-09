@@ -1,0 +1,1164 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Python Lists";
+}
+
+<style>
+
+    /* =========================================================
+           PAGE-SPECIFIC CODE / OUTPUT BLOCKS
+           ========================================================= */
+
+    #python-lists-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 0.5rem;
+        padding: 1rem !important;
+        overflow-x: auto;
+    }
+
+        #python-lists-page pre code {
+            background-color: transparent !important;
+            color: #ffffff !important;
+        }
+
+</style>
+
+
+<main id="python-lists-page" class="container py-5">
+
+    <div class="row g-4">
+
+
+        <!-- =====================================================
+             LEFT SIDE - COURSE SYLLABUS
+             ===================================================== -->
+
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+
+        </aside>
+
+
+        <!-- =====================================================
+             RIGHT SIDE - TUTORIAL CONTENT
+             ===================================================== -->
+
+        <section class="col-lg-9">
+
+
+            <!-- =================================================
+                 PAGE TITLE
+                 ================================================= -->
+
+            <div class="mb-4">
+
+                <h1 class="display-6 fw-bold">
+                    Lists
+                </h1>
+
+                <p class="lead text-muted mb-0">
+                    Learn how to create, access, update, add, remove,
+                    search and process multiple values using Python Lists.
+                </p>
+
+            </div>
+
+
+            <!-- =================================================
+                 INTRODUCTION
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        What is a List?
+                    </h2>
+
+                    <p>
+                        A List is one of the most commonly used data
+                        structures in Python. It allows us to store
+                        multiple values inside a single variable.
+                    </p>
+
+                    <p>
+                        Lists are:
+                    </p>
+
+                    <ul>
+
+                        <li>Ordered</li>
+
+                        <li>Mutable</li>
+
+                        <li>Allow duplicate values</li>
+
+                        <li>Can contain different data types</li>
+
+                        <li>Indexed from zero</li>
+
+                    </ul>
+
+                    <p class="mb-0">
+                        Lists are widely used in real-world applications
+                        for storing collections such as students,
+                        courses, products and employee records.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 CREATING A LIST
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Creating a List
+                    </h2>
+
+                    <p>
+                        Lists are created using square brackets
+                        <code>[]</code>.
+                    </p>
+
+                    <pre><code>courses = ["Python", "Java", ".NET", "MERN"]
+
+print(courses)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>['Python', 'Java', '.NET', 'MERN']</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 LIST WITH DIFFERENT DATA TYPES
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        List with Different Data Types
+                    </h2>
+
+                    <p>
+                        A Python List can contain different types
+                        of values.
+                    </p>
+
+                    <pre><code>student = [
+    "Rahul",
+    22,
+    85.5,
+    True
+]
+
+print(student)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>['Rahul', 22, 85.5, True]</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 INDEXING
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        List Indexing
+                    </h2>
+
+                    <p>
+                        List elements are accessed using their index.
+                        The first element has index <code>0</code>.
+                    </p>
+
+                    <pre><code>courses = ["Python", "Java", ".NET", "MERN"]
+
+print(courses[0])
+print(courses[1])
+print(courses[2])
+print(courses[3])</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>Python
+Java
+.NET
+MERN</code></pre>
+
+
+                    <h3 class="h5 fw-bold mt-4">
+                        Negative Indexing
+                    </h3>
+
+                    <p>
+                        Negative indexing starts from the end of
+                        the list.
+                    </p>
+
+                    <pre><code>courses = ["Python", "Java", ".NET", "MERN"]
+
+print(courses[-1])
+print(courses[-2])</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>MERN
+.NET</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 LIST SLICING
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        List Slicing
+                    </h2>
+
+                    <p>
+                        Slicing is used to extract a portion of a list.
+                    </p>
+
+                    <pre><code>courses = [
+    "Python",
+    "Java",
+    ".NET",
+    "MERN",
+    "Data Science"
+]
+
+print(courses[1:4])</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>['Java', '.NET', 'MERN']</code></pre>
+
+                    <p>
+                        The ending index is not included in the result.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 CHANGE LIST ELEMENT
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Updating List Elements
+                    </h2>
+
+                    <p>
+                        Lists are mutable, which means their elements
+                        can be changed after creation.
+                    </p>
+
+                    <pre><code>courses = ["Python", "Java", ".NET"]
+
+courses[1] = "C#"
+
+print(courses)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>['Python', 'C#', '.NET']</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 ADD ELEMENT - APPEND
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Adding Elements using append()
+                    </h2>
+
+                    <p>
+                        The <code>append()</code> method adds an item
+                        at the end of the list.
+                    </p>
+
+                    <pre><code>courses = ["Python", "Java"]
+
+courses.append(".NET")
+
+print(courses)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>['Python', 'Java', '.NET']</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 INSERT
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Adding Elements using insert()
+                    </h2>
+
+                    <p>
+                        The <code>insert()</code> method adds an item
+                        at a specific index.
+                    </p>
+
+                    <pre><code>courses = ["Python", ".NET"]
+
+courses.insert(1, "Java")
+
+print(courses)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>['Python', 'Java', '.NET']</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 EXTEND
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Adding Multiple Elements using extend()
+                    </h2>
+
+                    <p>
+                        The <code>extend()</code> method adds multiple
+                        elements from another collection.
+                    </p>
+
+                    <pre><code>courses = ["Python", "Java"]
+
+more_courses = [".NET", "MERN"]
+
+courses.extend(more_courses)
+
+print(courses)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>['Python', 'Java', '.NET', 'MERN']</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 REMOVE
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Removing Elements
+                    </h2>
+
+
+                    <h3 class="h5 fw-bold mt-3">
+                        remove()
+                    </h3>
+
+                    <p>
+                        Removes the first matching value.
+                    </p>
+
+                    <pre><code>courses = ["Python", "Java", ".NET"]
+
+courses.remove("Java")
+
+print(courses)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>['Python', '.NET']</code></pre>
+
+
+                    <h3 class="h5 fw-bold mt-4">
+                        pop()
+                    </h3>
+
+                    <p>
+                        Removes an element using its index.
+                    </p>
+
+                    <pre><code>courses = ["Python", "Java", ".NET"]
+
+courses.pop(1)
+
+print(courses)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>['Python', '.NET']</code></pre>
+
+
+                    <h3 class="h5 fw-bold mt-4">
+                        clear()
+                    </h3>
+
+                    <p>
+                        Removes all elements from the list.
+                    </p>
+
+                    <pre><code>courses = ["Python", "Java", ".NET"]
+
+courses.clear()
+
+print(courses)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>[]</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 LIST LENGTH
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Finding List Length
+                    </h2>
+
+                    <p>
+                        The <code>len()</code> function returns the
+                        number of elements in a list.
+                    </p>
+
+                    <pre><code>courses = ["Python", "Java", ".NET", "MERN"]
+
+print(len(courses))</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>4</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 SEARCHING
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Searching in a List
+                    </h2>
+
+                    <p>
+                        The <code>in</code> operator checks whether
+                        an element exists in a list.
+                    </p>
+
+                    <pre><code>courses = ["Python", "Java", ".NET"]
+
+print("Python" in courses)
+print("PHP" in courses)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>True
+False</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 COUNT
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Counting Elements
+                    </h2>
+
+                    <p>
+                        The <code>count()</code> method returns how
+                        many times a value occurs.
+                    </p>
+
+                    <pre><code>courses = [
+    "Python",
+    "Java",
+    "Python",
+    ".NET",
+    "Python"
+]
+
+print(courses.count("Python"))</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>3</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 INDEX METHOD
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Finding the Index
+                    </h2>
+
+                    <p>
+                        The <code>index()</code> method returns the
+                        position of the first matching value.
+                    </p>
+
+                    <pre><code>courses = ["Python", "Java", ".NET"]
+
+print(courses.index("Java"))</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>1</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 SORT
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Sorting a List
+                    </h2>
+
+                    <p>
+                        The <code>sort()</code> method sorts the list
+                        in ascending order by default.
+                    </p>
+
+                    <pre><code>numbers = [50, 10, 40, 20, 30]
+
+numbers.sort()
+
+print(numbers)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>[10, 20, 30, 40, 50]</code></pre>
+
+
+                    <h3 class="h5 fw-bold mt-4">
+                        Descending Order
+                    </h3>
+
+                    <pre><code>numbers = [50, 10, 40, 20, 30]
+
+numbers.sort(reverse=True)
+
+print(numbers)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>[50, 40, 30, 20, 10]</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 REVERSE
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Reversing a List
+                    </h2>
+
+                    <p>
+                        The <code>reverse()</code> method reverses
+                        the existing list.
+                    </p>
+
+                    <pre><code>courses = ["Python", "Java", ".NET"]
+
+courses.reverse()
+
+print(courses)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>['.NET', 'Java', 'Python']</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 LOOP THROUGH LIST
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Looping Through a List
+                    </h2>
+
+                    <p>
+                        A <code>for</code> loop can be used to process
+                        every element of a list.
+                    </p>
+
+                    <pre><code>courses = ["Python", "Java", ".NET", "MERN"]
+
+for course in courses:
+    print(course)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>Python
+Java
+.NET
+MERN</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 LIST WITH CONDITIONS
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        List with Conditions
+                    </h2>
+
+                    <p>
+                        We can use conditions while processing list
+                        elements.
+                    </p>
+
+                    <pre><code>marks = [45, 78, 92, 35, 88]
+
+for mark in marks:
+
+    if mark >= 50:
+        print(mark)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>78
+92
+88</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 LIST COMPREHENSION PREVIEW
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        List Comprehension Preview
+                    </h2>
+
+                    <p>
+                        List comprehensions provide a short way to
+                        create lists.
+                    </p>
+
+                    <pre><code>numbers = [1, 2, 3, 4, 5]
+
+squares = [number * number for number in numbers]
+
+print(squares)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>[1, 4, 9, 16, 25]</code></pre>
+
+                    <p class="mb-0">
+                        List comprehensions will be covered in detail
+                        in the <strong>Comprehensions</strong> topic.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 PRACTICAL CIIT EXAMPLE
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        CIIT Example 📩🤓
+                    </h2>
+
+                    <p>
+                        Suppose CIIT wants to maintain a list of
+                        students enrolled in a Python course.
+                    </p>
+
+                    <pre><code>students = [
+    "Rahul",
+    "Sneha",
+    "Amit",
+    "Priya"
+]
+
+students.append("Neha")
+
+print("Total Students:", len(students))
+
+for student in students:
+    print(student)</code></pre>
+
+                    <p><strong>Output:</strong></p>
+
+                    <pre><code>Total Students: 5
+Rahul
+Sneha
+Amit
+Priya
+Neha</code></pre>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 LIST METHODS TABLE
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Important List Methods
+                    </h2>
+
+                    <div class="table-responsive">
+
+                        <table class="table table-bordered align-middle">
+
+                            <thead class="table-dark">
+
+                                <tr>
+                                    <th>Method</th>
+                                    <th>Purpose</th>
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                                <tr>
+                                    <td><code>append()</code></td>
+                                    <td>Add item at the end</td>
+                                </tr>
+
+                                <tr>
+                                    <td><code>insert()</code></td>
+                                    <td>Add item at a specific position</td>
+                                </tr>
+
+                                <tr>
+                                    <td><code>extend()</code></td>
+                                    <td>Add multiple items</td>
+                                </tr>
+
+                                <tr>
+                                    <td><code>remove()</code></td>
+                                    <td>Remove a specific value</td>
+                                </tr>
+
+                                <tr>
+                                    <td><code>pop()</code></td>
+                                    <td>Remove an item using index</td>
+                                </tr>
+
+                                <tr>
+                                    <td><code>clear()</code></td>
+                                    <td>Remove all items</td>
+                                </tr>
+
+                                <tr>
+                                    <td><code>count()</code></td>
+                                    <td>Count occurrences</td>
+                                </tr>
+
+                                <tr>
+                                    <td><code>index()</code></td>
+                                    <td>Find the index</td>
+                                </tr>
+
+                                <tr>
+                                    <td><code>sort()</code></td>
+                                    <td>Sort the list</td>
+                                </tr>
+
+                                <tr>
+                                    <td><code>reverse()</code></td>
+                                    <td>Reverse the list</td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 COMMON MISTAKES
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Common Mistakes
+                    </h2>
+
+                    <ol>
+
+                        <li class="mb-2">
+                            Remember that List indexing starts from
+                            <code>0</code>.
+                        </li>
+
+                        <li class="mb-2">
+                            Using an index that does not exist causes
+                            an <code>IndexError</code>.
+                        </li>
+
+                        <li class="mb-2">
+                            <code>remove()</code> removes a value,
+                            while <code>pop()</code> normally removes
+                            using an index.
+                        </li>
+
+                        <li class="mb-2">
+                            Forgetting that List is mutable.
+                        </li>
+
+                        <li>
+                            Confusing <code>append()</code> with
+                            <code>extend()</code>.
+                        </li>
+
+                    </ol>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 INTERVIEW POINTS
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        Interview Points
+                    </h2>
+
+                    <ul>
+
+                        <li class="mb-2">
+                            What is a List in Python?
+                        </li>
+
+                        <li class="mb-2">
+                            Why are Lists called mutable?
+                        </li>
+
+                        <li class="mb-2">
+                            What is the difference between
+                            <code>append()</code> and
+                            <code>extend()</code>?
+                        </li>
+
+                        <li class="mb-2">
+                            What is the difference between
+                            <code>remove()</code> and
+                            <code>pop()</code>?
+                        </li>
+
+                        <li class="mb-2">
+                            How do you find the length of a List?
+                        </li>
+
+                        <li class="mb-2">
+                            How do you remove duplicate values from
+                            a List?
+                        </li>
+
+                        <li>
+                            What is List slicing?
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 CIIT LEARNING POINT
+                 ================================================= -->
+
+            <div class="alert alert-success mt-4">
+
+                <h2 class="h4 fw-bold">
+                    CIIT Learning Point
+                </h2>
+
+                <p class="mb-0">
+                    Lists are one of the most important Python
+                    data structures. A strong understanding of
+                    indexing, slicing, updating, adding, removing
+                    and iterating over Lists is essential before
+                    moving to real-world Python applications.
+                </p>
+
+            </div>
+
+
+            <!-- =================================================
+                 PRACTICE TASKS
+                 ================================================= -->
+
+            <div class="card border-0 shadow-sm mb-4">
+
+                <div class="card-body p-4">
+
+                    <h2 class="h3 fw-bold">
+                        CIIT Practice Tasks
+                    </h2>
+
+                    <ol>
+
+                        <li class="mb-2">
+                            Create a List containing 10 student names
+                            and display all students.
+                        </li>
+
+                        <li class="mb-2">
+                            Add two new students using
+                            <code>append()</code>.
+                        </li>
+
+                        <li class="mb-2">
+                            Insert a student at index 2.
+                        </li>
+
+                        <li class="mb-2">
+                            Remove a student using
+                            <code>remove()</code>.
+                        </li>
+
+                        <li class="mb-2">
+                            Find the highest and lowest number from
+                            a List of marks.
+                        </li>
+
+                        <li class="mb-2">
+                            Count how many times "Python" appears
+                            in a List.
+                        </li>
+
+                        <li>
+                            Create a List of numbers and print only
+                            the even numbers.
+                        </li>
+
+                    </ol>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 SUMMARY
+                 ================================================= -->
+
+            <div class="alert alert-info mt-4 mb-0"
+                 style="background-color:#cfe2ff; border:0; color:#123c73;">
+
+                <h2 class="h3 fw-bold mt-0 mb-3"
+                    style="color:#123c73;">
+
+                    Summary :
+
+                </h2>
+
+                <p class="mb-0"
+                   style="color:#123c73;">
+
+                    Python Lists are ordered, mutable collections
+                    that can store multiple values. List elements
+                    are accessed using indexes and can be added,
+                    updated, removed, searched, sorted and processed
+                    using loops. Important methods include
+                    append(), insert(), extend(), remove(), pop(),
+                    clear(), count(), index(), sort() and reverse().
+                    Lists are widely used for managing collections
+                    of data in real-world Python applications.
+
+                </p>
+
+            </div>
+
+
+            <!-- =================================================
+                 PREVIOUS / NEXT NAVIGATION
+                 ================================================= -->
+
+            <div class="d-flex justify-content-between align-items-center mt-5 pt-3 border-top">
+
+                <a href="@Url.Action("Index", "DataStructures", new { area = "Python" })"
+                   class="btn btn-outline-secondary">
+
+                    ← Previous: Topic
+
+                </a>
+
+
+                <a href="@Url.Action("Tuples", "DataStructures", new { area = "Python" })"
+                   class="btn btn-primary">
+
+                    Next: Topic →
+
+                </a>
+
+            </div>
+
+
+        </section>
+
+    </div>
+
+</main>

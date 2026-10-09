@@ -1,0 +1,211 @@
+@{
+    Layout = "~/Areas/GitHub/Views/Shared/GithubLayout.cshtml";
+    ViewData["Title"] = "Forks vs. Clones";
+}
+
+<main id="tutorials" class="container py-1">
+    <div class="row g-4">
+
+        <!-- Sidebar Navigation -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/GitHub/Views/Shared/GithubTopics.cshtml")
+        </aside>
+
+        <!-- Reading Content Area -->
+        <section class="col-lg-9">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4 p-lg-5">
+
+                    <h1 class="fw-bold mb-3">Forks vs. Clones</h1>
+
+                    <p>
+                        The core difference is that <strong>
+                        a fork creates
+                        a copy of a repository on your remote hosting account
+                    </strong>,
+                    such as GitHub, while <strong>
+                    a clone creates a copy
+                    of a repository on your local computer
+                </strong>.
+            </p>
+
+            <p>
+                You use a <strong>fork</strong> when you want to
+                contribute to someone else's project or use it as
+                a starting point for your own project. You use a
+                <strong>clone</strong> to download a repository to
+                your computer so you can start writing code.
+            </p>
+
+            <hr class="my-4" />
+
+            <!-- Quick Comparison -->
+            <h3 class="fw-bold mb-3">📘 Quick Comparison</h3>
+
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped align-middle">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Feature</th>
+                            <th>Fork</th>
+                            <th>Clone</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>What is it?</strong></td>
+                            <td>A copy of a repository stored on a hosting platform.</td>
+                            <td>A local copy of a repository on your computer.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Where does it live?</strong></td>
+                            <td>Your remote hosting account, such as GitHub.</td>
+                            <td>Your local hard drive, such as <code>C:\projects\repo</code>.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Permissions</strong></td>
+                            <td>Permissions depend on the hosting platform and repository settings.</td>
+                            <td>Local editing is possible, but pushing depends on remote permissions.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Primary Use</strong></td>
+                            <td>Contributing to open-source or shared projects through Pull Requests.</td>
+                            <td>Editing files, compiling code, testing, and daily development.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>How to do it</strong></td>
+                            <td>Click the <strong>Fork</strong> button on the repository website.</td>
+                            <td>Run <code>git clone &lt;repository-url&gt;</code> in your terminal.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <hr class="my-4" />
+
+            <!-- How They Work Together -->
+            <h3 class="fw-bold mb-3">🔄 How Fork and Clone Work Together</h3>
+
+            <p>
+                In a typical open-source workflow, you can use both
+                a fork and a clone to contribute to an existing project.
+            </p>
+
+            <h5 class="fw-semibold mt-4">1. Fork the Repository</h5>
+
+            <p>
+                Open the original project on GitHub and click
+                <strong>Fork</strong> to create a copy under your
+                own GitHub account.
+            </p>
+
+            <h5 class="fw-semibold mt-4">2. Clone Your Fork</h5>
+
+            <p>
+                Download your fork to your computer so you can
+                work with the project files.
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>git clone https://github.com/your-username/project.git</code></pre>
+
+            <h5 class="fw-semibold mt-4">3. Make and Commit Changes</h5>
+
+            <p>
+                Open the project, create a feature branch, make your
+                changes, and commit them.
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>git switch -c feature/my-change
+git add .
+git commit -m "Add my change"</code></pre>
+
+            <h5 class="fw-semibold mt-4">4. Push Changes to Your Fork</h5>
+
+            <p>
+                Upload your feature branch to your remote fork.
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded"><code>git push -u origin feature/my-change</code></pre>
+
+            <h5 class="fw-semibold mt-4">5. Open a Pull Request</h5>
+
+            <p>
+                On GitHub, open a Pull Request from your fork's
+                feature branch to the original project's target branch.
+                The maintainers can review your changes and decide
+                whether to merge them.
+            </p>
+
+            <div class="alert alert-info mt-4">
+                <strong>Remember:</strong>
+                Forking creates a remote copy. Cloning downloads
+                a repository locally. Pushing uploads your commits,
+                and a Pull Request proposes changes to another branch
+                or repository.
+            </div>
+
+            <hr class="my-4" />
+
+            <!-- Command Reference -->
+            <h3 class="fw-bold mb-3">💻 Useful Commands</h3>
+
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped align-middle">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Command</th>
+                            <th>Purpose</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>git clone &lt;url&gt;</code></td>
+                            <td>Download a remote repository to your computer.</td>
+                        </tr>
+                        <tr>
+                            <td><code>git remote -v</code></td>
+                            <td>View configured remote repositories.</td>
+                        </tr>
+                        <tr>
+                            <td><code>git switch -c feature/name</code></td>
+                            <td>Create and switch to a feature branch.</td>
+                        </tr>
+                        <tr>
+                            <td><code>git push -u origin feature/name</code></td>
+                            <td>Push a feature branch and configure upstream tracking.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="alert alert-success mt-4">
+                <strong>Key Takeaway:</strong>
+                Fork a repository to create your own remote copy.
+                Clone a repository to work on it locally. For many
+                open-source contributions, you fork first, clone
+                your fork, push your changes, and then open a
+                Pull Request to the original project.
+            </div>
+
+            <!-- Previous / Next Navigation -->
+            <div class="d-flex justify-content-between align-items-center gap-3 flex-wrap mt-5 pt-4 border-top">
+
+                <a class="btn btn-outline-primary"
+                   href="@Url.Action("PullRequests", "RemoteCollaboration", new { area = "GitHub" })">
+                    &larr; Previous: Pull Requests (PRs)
+                </a>
+
+               
+                <a class="btn btn-primary"
+                   href="@Url.Action("Stashing", "AdvancedGitAndHistory", new { area = "GitHub" })">
+                    Next: Stashing Changes &rarr;
+                </a>
+
+
+            </div>
+
+        </div>
+    </div>
+</section>
+</div>
+</main>

@@ -1,0 +1,240 @@
+@{
+    Layout = "~/Areas/GitHub/Views/Shared/GithubLayout.cshtml";
+    ViewData["Title"] = "Stashing Changes";
+}
+
+<main id="tutorials" class="container py-1">
+    <div class="row g-4">
+
+        <!-- Sidebar Navigation -->
+        <aside class="col-lg-3">
+            @Html.Partial("~/Areas/GitHub/Views/Shared/GithubTopics.cshtml")
+        </aside>
+
+        <!-- Reading Content Area -->
+        <section class="col-lg-9">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4 p-lg-5">
+
+                    <h1 class="fw-bold mb-3">Stashing Changes</h1>
+
+                    <p>
+                        In Git, <strong>stashing changes</strong> allows you
+                        to temporarily save your uncommitted work so you can
+                        switch branches or work on another task without
+                        creating a commit. It provides a clean working
+                        directory while preserving your unfinished changes.
+                    </p>
+
+                    <div class="alert alert-info">
+                        <strong>Remember:</strong>
+                        By default, Git stash saves changes to tracked files.
+                        Use <code>git stash -u</code> to include untracked files.
+                    </div>
+
+                    <hr class="my-4" />
+
+                    <!-- Common Stash Commands -->
+                    <h3 class="fw-bold mb-3">1. Common Stash Commands</h3>
+
+                    <h5 class="fw-semibold mt-4">Save Your Changes</h5>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git stash</code></pre>
+
+                    <p>
+                        Saves changes to tracked files and restores your
+                        working directory to a clean state.
+                    </p>
+
+                    <h5 class="fw-semibold mt-4">Save Changes with a Message</h5>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git stash push -m "Working on login layout"</code></pre>
+
+                    <p>
+                        Adds a descriptive message to help identify the stash.
+                    </p>
+
+                    <h5 class="fw-semibold mt-4">List Saved Stashes</h5>
+
+                    <pre class="bg-dark text-light p-3 rounded"><code>git stash list</code></pre>
+
+                    
+                        <p>
+                            Displays your saved stashes, such as
+                            <code>stash@@{0}</code> and <code>stash@@{1}</code>.
+                        </p>
+
+
+        <h5 class="fw-semibold mt-4">Restore and Remove the Latest Stash</h5>
+
+        <pre class="bg-dark text-light p-3 rounded"><code>git stash pop</code></pre>
+
+        <p>
+            Applies the latest stash and removes it from the
+            stash list when the operation succeeds.
+        </p>
+
+        <h5 class="fw-semibold mt-4">Restore Without Removing</h5>
+
+        <pre class="bg-dark text-light p-3 rounded"><code>git stash apply</code></pre>
+
+        <p>
+            Applies the latest stash but keeps it in the stash
+            list so it can be used again.
+        </p>
+
+        <h5 class="fw-semibold mt-4">Include Untracked Files</h5>
+
+        <pre class="bg-dark text-light p-3 rounded"><code>git stash -u</code></pre>
+
+        <p>
+            Includes newly created, untracked files in the stash.
+        </p>
+
+        <hr class="my-4" />
+
+        <!-- Example Workflow -->
+        <h3 class="fw-bold mb-3">2. Example: Switching Branches Safely</h3>
+
+        <p>
+            Suppose you are working on a login feature, but you
+            need to switch to another branch to fix an urgent bug.
+        </p>
+
+        <h5 class="fw-semibold mt-4">Step 1: Save Your Work</h5>
+
+        <pre class="bg-dark text-light p-3 rounded"><code>git stash push -m "Login feature in progress"</code></pre>
+
+        <h5 class="fw-semibold mt-4">Step 2: Switch to the Bug-Fix Branch</h5>
+
+        <pre class="bg-dark text-light p-3 rounded"><code>git switch bugfix/login-error</code></pre>
+
+        <h5 class="fw-semibold mt-4">Step 3: Complete the Bug Fix</h5>
+
+        <pre class="bg-dark text-light p-3 rounded"><code>git add .
+git commit -m "Fix login error"</code></pre>
+
+        <h5 class="fw-semibold mt-4">Step 4: Return to Your Feature Branch</h5>
+
+        <pre class="bg-dark text-light p-3 rounded"><code>git switch feature/login</code></pre>
+
+        <h5 class="fw-semibold mt-4">Step 5: Restore Your Changes</h5>
+
+        <pre class="bg-dark text-light p-3 rounded"><code>git stash pop</code></pre>
+
+        <p>
+            Your saved changes are restored so you can continue
+            working on the login feature.
+        </p>
+
+        <div class="alert alert-warning">
+            <strong>Note:</strong>
+            Replace the example branch names with your actual
+            branch names. Restoring a stash can cause conflicts
+            if the destination branch has incompatible changes.
+        </div>
+
+        <hr class="my-4" />
+
+        <!-- When to Use Stash -->
+        <h3 class="fw-bold mb-3">3. When Should You Use Git Stash?</h3>
+
+        <h5 class="fw-semibold mt-4">Interrupted Work</h5>
+
+        <p>
+            Save unfinished changes when an urgent task requires
+            you to work on a different branch.
+        </p>
+
+        <h5 class="fw-semibold mt-4">Before Updating Your Branch</h5>
+
+        <p>
+            If local changes interfere with an update, stash them
+            temporarily, pull the remote changes, and restore
+            your work.
+        </p>
+
+        <pre class="bg-dark text-light p-3 rounded"><code>git stash
+git pull origin main
+git stash pop</code></pre>
+
+        <h5 class="fw-semibold mt-4">Testing Another Approach</h5>
+
+        <p>
+            Temporarily save your current work while experimenting
+            with a different implementation.
+        </p>
+
+        <hr class="my-4" />
+
+        <!-- Quick Reference -->
+        <h3 class="fw-bold mb-3">4. Quick Reference</h3>
+
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Command</th>
+                        <th>Purpose</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>git stash</code></td>
+                        <td>Temporarily save tracked-file changes.</td>
+                    </tr>
+                    <tr>
+                        <td><code>git stash push -m "message"</code></td>
+                        <td>Save changes with a descriptive message.</td>
+                    </tr>
+                    <tr>
+                        <td><code>git stash list</code></td>
+                        <td>View saved stashes.</td>
+                    </tr>
+                    <tr>
+                        <td><code>git stash pop</code></td>
+                        <td>Apply the latest stash and remove it when successful.</td>
+                    </tr>
+                    <tr>
+                        <td><code>git stash apply</code></td>
+                        <td>Apply the latest stash and keep it saved.</td>
+                    </tr>
+                    <tr>
+                        <td><code>git stash -u</code></td>
+                        <td>Include untracked files.</td>
+                    </tr>
+                    <tr>
+                        <td><code>git stash drop</code></td>
+                        <td>Remove the latest stash without applying it.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="alert alert-success mt-4">
+            <strong>Key Takeaway:</strong>
+            Use <code>git stash</code> to save unfinished changes,
+            <code>git stash list</code> to find saved work, and
+            <code>git stash pop</code> to restore it.
+        </div>
+
+        <!-- Previous / Next Navigation -->
+        <div class="d-flex justify-content-between align-items-center gap-3 flex-wrap mt-5 pt-4 border-top">
+
+            <a class="btn btn-outline-primary"
+               href="@Url.Action("ForksVsClones", "RemoteCollaboration", new { area = "GitHub" })">
+                &larr; Previous: Forks vs. Clones
+            </a>
+
+            <a class="btn btn-primary"
+               href="@Url.Action("Tagging", "AdvancedGitAndHistory", new { area = "GitHub" })">
+                Next: Tagging Releases &rarr;
+            </a>
+
+        </div>
+
+    </div>
+</div>
+</section>
+</div>
+</main>

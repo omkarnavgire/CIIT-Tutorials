@@ -1,0 +1,1280 @@
+﻿@{
+    Layout = "~/Areas/Python/Views/Shared/PythonLayout.cshtml";
+    ViewData["Title"] = "Python JSON Files";
+}
+
+<style>
+
+    #python-json-files-page pre {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-radius: 8px;
+        padding: 16px !important;
+        overflow-x: auto;
+        margin-top: 12px;
+        margin-top: 12px;
+    }
+
+        #python-json-files-page pre code {
+            background: transparent !important;
+            color: #ffffff !important;
+        }
+
+    #python-json-files-page .concept-box {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    #python-json-files-page .diagram-box {
+        background: #ffffff;
+        border: 2px solid #6f42c1;
+        border-radius: 10px;
+        padding: 18px;
+        text-align: center;
+        height: 100%;
+    }
+
+        #python-json-files-page .diagram-box h5 {
+            color: #5b21b6;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        #python-json-files-page .diagram-box p {
+            margin-bottom: 0;
+            font-size: 14px;
+            color: #495057;
+        }
+
+    #python-json-files-page .diagram-arrow {
+        text-align: center;
+        font-size: 28px;
+        font-weight: 700;
+        color: #6f42c1;
+        padding: 8px 0;
+    }
+
+    #python-json-files-page .info-card {
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 18px;
+        height: 100%;
+    }
+
+        #python-json-files-page .info-card h5 {
+            color: #5b21b6;
+            font-weight: 700;
+        }
+
+</style>
+
+
+<main id="python-json-files-page" class="container py-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="col-lg-3">
+
+            @Html.Partial(
+                "~/Areas/Python/Views/Shared/PythonTopics.cshtml"
+            )
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+        <section class="col-lg-9">
+
+
+            <!-- PAGE TITLE -->
+            <div class="mb-4">
+
+                <h1 class="fw-bold">
+                    JSON Files in Python
+                </h1>
+
+                <p class="lead">
+                    Learn how to read, write, create and work with JSON
+                    data using Python.
+                </p>
+
+            </div>
+
+
+            <!-- WHAT IS JSON -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    What is JSON?
+                </h2>
+
+                <p>
+                    JSON stands for
+                    <strong>JavaScript Object Notation</strong>.
+                </p>
+
+                <p>
+                    JSON is a text-based format commonly used for
+                    storing and exchanging structured data.
+                </p>
+
+                <p>
+                    JSON data is especially common when working with
+                    APIs, web applications and configuration files.
+                </p>
+
+                <div class="alert alert-info">
+
+                    <strong>Simple Definition:</strong>
+
+                    JSON is a simple text format used to store and
+                    exchange structured data.
+
+                </div>
+
+            </div>
+
+
+            <!-- SIMPLE JSON -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Simple JSON Example
+                </h2>
+
+                <pre><code>{
+    "name": "Rahul",
+    "age": 22,
+    "course": "Python"
+}</code></pre>
+
+                <p>
+                    Here:
+                </p>
+
+                <ul>
+
+                    <li>
+                        <code>name</code> is a key.
+                    </li>
+
+                    <li>
+                        <code>Rahul</code> is its value.
+                    </li>
+
+                    <li>
+                        <code>age</code> is another key.
+                    </li>
+
+                    <li>
+                        JSON stores data in key-value form.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- DIAGRAM -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    JSON File Diagram
+                </h2>
+
+                <p>
+                    Python can convert data between Python objects
+                    and JSON format.
+                </p>
+
+                <div class="concept-box">
+
+                    <div class="diagram-box">
+
+                        <h5>
+                            Python Object
+                        </h5>
+
+                        <p>
+                            Dictionary, List and other Python data
+                        </p>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="row g-3">
+
+                        <div class="col-md-6">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    json.dumps()
+                                </h5>
+
+                                <p>
+                                    Python Object
+                                    → JSON String
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-6">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    json.loads()
+                                </h5>
+
+                                <p>
+                                    JSON String
+                                    → Python Object
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="diagram-arrow">
+                        ↓
+                    </div>
+
+
+                    <div class="row g-3">
+
+                        <div class="col-md-6">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    json.dump()
+                                </h5>
+
+                                <p>
+                                    Python Object
+                                    → JSON File
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-6">
+
+                            <div class="diagram-box">
+
+                                <h5>
+                                    json.load()
+                                </h5>
+
+                                <p>
+                                    JSON File
+                                    → Python Object
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- JSON MODULE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    The <code>json</code> Module
+                </h2>
+
+                <p>
+                    Python provides the built-in <code>json</code>
+                    module for working with JSON data.
+                </p>
+
+                <pre><code>import json</code></pre>
+
+                <p>
+                    The module provides functions to convert data
+                    between Python objects and JSON format.
+                </p>
+
+            </div>
+
+
+            <!-- PYTHON DICTIONARY TO JSON STRING -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Python Dictionary to JSON String
+                </h2>
+
+                <p>
+                    The <code>json.dumps()</code> function converts
+                    a Python object into a JSON string.
+                </p>
+
+                <pre><code>import json
+
+student = {
+    "name": "Rahul",
+    "age": 22,
+    "course": "Python"
+}
+
+json_data = json.dumps(student)
+
+print(json_data)</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>{"name": "Rahul", "age": 22, "course": "Python"}</code></pre>
+
+            </div>
+
+
+            <!-- JSON STRING TO DICTIONARY -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    JSON String to Python Dictionary
+                </h2>
+
+                <p>
+                    The <code>json.loads()</code> function converts
+                    a JSON string into a Python object.
+                </p>
+
+                <pre><code>import json
+
+json_data = '{"name": "Rahul", "age": 22}'
+
+student = json.loads(json_data)
+
+print(student)
+print(student["name"])</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>{'name': 'Rahul', 'age': 22}
+Rahul</code></pre>
+
+            </div>
+
+
+            <!-- WRITE JSON FILE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Writing JSON Data to a File
+                </h2>
+
+                <p>
+                    The <code>json.dump()</code> function writes a Python
+                    object directly into a JSON file.
+                </p>
+
+                <pre><code>import json
+
+student = {
+    "name": "Rahul",
+    "age": 22,
+    "course": "Python"
+}
+
+with open(
+    "student.json",
+    "w",
+    encoding="utf-8"
+) as file:
+
+    json.dump(
+        student,
+        file
+    )</code></pre>
+
+                <p>
+                    A file named <code>student.json</code> is created.
+                </p>
+
+            </div>
+
+
+            <!-- PRETTY JSON -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Writing Pretty JSON
+                </h2>
+
+                <p>
+                    We can use <code>indent</code> to make JSON data
+                    easier to read.
+                </p>
+
+                <pre><code>import json
+
+student = {
+    "name": "Rahul",
+    "age": 22,
+    "course": "Python"
+}
+
+with open(
+    "student.json",
+    "w",
+    encoding="utf-8"
+) as file:
+
+    json.dump(
+        student,
+        file,
+        indent=4
+    )</code></pre>
+
+                <p>
+                    The JSON file will look similar to:
+                </p>
+
+                <pre><code>{
+    "name": "Rahul",
+    "age": 22,
+    "course": "Python"
+}</code></pre>
+
+            </div>
+
+
+            <!-- READ JSON FILE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Reading a JSON File
+                </h2>
+
+                <p>
+                    The <code>json.load()</code> function reads JSON data
+                    from a file and converts it into a Python object.
+                </p>
+
+                <pre><code>import json
+
+with open(
+    "student.json",
+    "r",
+    encoding="utf-8"
+) as file:
+
+    student = json.load(file)
+
+print(student)</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>{'name': 'Rahul', 'age': 22, 'course': 'Python'}</code></pre>
+
+            </div>
+
+
+            <!-- ACCESS JSON DATA -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Accessing JSON Data
+                </h2>
+
+                <pre><code>import json
+
+with open(
+    "student.json",
+    "r",
+    encoding="utf-8"
+) as file:
+
+    student = json.load(file)
+
+print("Name:", student["name"])
+print("Age:", student["age"])
+print("Course:", student["course"])</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Name: Rahul
+Age: 22
+Course: Python</code></pre>
+
+            </div>
+
+
+            <!-- JSON LIST -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Working with JSON Lists
+                </h2>
+
+                <p>
+                    JSON can also store arrays, which are represented by
+                    Python lists after loading.
+                </p>
+
+                <pre><code>import json
+
+students = [
+    {
+        "name": "Rahul",
+        "course": "Python"
+    },
+    {
+        "name": "Priya",
+        "course": "Java"
+    },
+    {
+        "name": "Amit",
+        "course": ".NET"
+    }
+]
+
+with open(
+    "students.json",
+    "w",
+    encoding="utf-8"
+) as file:
+
+    json.dump(
+        students,
+        file,
+        indent=4
+    )</code></pre>
+
+            </div>
+
+
+            <!-- READ JSON LIST -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Reading a JSON List
+                </h2>
+
+                <pre><code>import json
+
+with open(
+    "students.json",
+    "r",
+    encoding="utf-8"
+) as file:
+
+    students = json.load(file)
+
+for student in students:
+
+    print(
+        student["name"],
+        student["course"]
+    )</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Rahul Python
+Priya Java
+Amit .NET</code></pre>
+
+            </div>
+
+
+            <!-- JSON DATA TYPES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Python and JSON Data Types
+                </h2>
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered align-middle">
+
+                        <thead>
+
+                            <tr>
+                                <th>Python</th>
+                                <th>JSON</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td><code>dict</code></td>
+                                <td>object</td>
+                            </tr>
+
+                            <tr>
+                                <td><code>list</code></td>
+                                <td>array</td>
+                            </tr>
+
+                            <tr>
+                                <td><code>str</code></td>
+                                <td>string</td>
+                            </tr>
+
+                            <tr>
+                                <td><code>int</code> / <code>float</code></td>
+                                <td>number</td>
+                            </tr>
+
+                            <tr>
+                                <td><code>True</code></td>
+                                <td><code>true</code></td>
+                            </tr>
+
+                            <tr>
+                                <td><code>False</code></td>
+                                <td><code>false</code></td>
+                            </tr>
+
+                            <tr>
+                                <td><code>None</code></td>
+                                <td><code>null</code></td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <!-- JSON INDENT -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Formatting JSON Data
+                </h2>
+
+                <p>
+                    The <code>indent</code> parameter makes JSON output
+                    easier to read.
+                </p>
+
+                <pre><code>import json
+
+data = {
+    "name": "Rahul",
+    "age": 22,
+    "skills": [
+        "Python",
+        "SQL"
+    ]
+}
+
+print(
+    json.dumps(
+        data,
+        indent=4
+    )
+)</code></pre>
+
+            </div>
+
+
+            <!-- SORT KEYS -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Sorting JSON Keys
+                </h2>
+
+                <p>
+                    The <code>sort_keys=True</code> option sorts dictionary
+                    keys when producing JSON output.
+                </p>
+
+                <pre><code>import json
+
+data = {
+    "course": "Python",
+    "age": 22,
+    "name": "Rahul"
+}
+
+print(
+    json.dumps(
+        data,
+        indent=4,
+        sort_keys=True
+    )
+)</code></pre>
+
+            </div>
+            <div class="px-2">
+    <h5 class="fw-bold mb-2">
+        Output
+    </h5>
+
+    <pre class="mb-4"><code>{
+    "age": 22,
+    "course": "Python",
+    "name": "Rahul"
+}</code></pre>
+</div>
+
+            <!-- UPDATE JSON -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Updating JSON Data
+                </h2>
+
+                <p>
+                    We can read a JSON file, modify the Python object
+                    and write the updated object back to the file.
+                </p>
+
+                <pre><code>import json
+
+with open(
+    "student.json",
+    "r",
+    encoding="utf-8"
+) as file:
+
+    student = json.load(file)
+
+
+student["course"] = "Python Full Stack"
+
+
+with open(
+    "student.json",
+    "w",
+    encoding="utf-8"
+) as file:
+
+    json.dump(
+        student,
+        file,
+        indent=4
+    )</code></pre>
+
+                <p>
+                    The course value is updated and the new data is saved.
+                </p>
+
+            </div>
+
+
+            <!-- SEARCH JSON -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Searching JSON Data
+                </h2>
+
+                <p>
+                    We can read a list of objects and search for
+                    a specific value.
+                </p>
+
+                <pre><code>import json
+
+with open(
+    "students.json",
+    "r",
+    encoding="utf-8"
+) as file:
+
+    students = json.load(file)
+
+
+for student in students:
+
+    if student["name"] == "Rahul":
+
+        print("Student found")
+        print(student)</code></pre>
+
+            </div>
+            <div class="px-2">
+    <h5 class="fw-bold mb-2">
+        Output
+    </h5>
+
+    <pre class="mb-4"><code>Student found
+{'name': 'Rahul', 'course': 'Python', 'fees': 35000}</code></pre>
+</div>
+
+            <!-- JSON ERROR -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Handling JSON Errors
+                </h2>
+
+                <p>
+                    Invalid JSON text can cause a
+                    <code>JSONDecodeError</code>.
+                </p>
+
+                <pre><code>import json
+
+try:
+
+    data = json.loads(
+        '{"name": "Rahul"}'
+    )
+
+    print(data)
+
+except json.JSONDecodeError:
+
+    print("Invalid JSON data")</code></pre>
+
+                <p>
+                    Exception handling helps prevent the program from
+                    stopping unexpectedly when JSON data is invalid.
+                </p>
+
+            </div>
+            <div class="px-2">
+    <h5 class="fw-bold mb-2">
+        Output
+    </h5>
+
+    <pre class="mb-4"><code>{'name': 'Rahul'}</code></pre>
+</div>
+
+            <!-- JSON AND API -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    JSON and APIs
+                </h2>
+
+                <p>
+                    JSON is commonly used to exchange structured data
+                    between applications and APIs.
+                </p>
+
+                <pre><code>{
+    "id": 101,
+    "name": "Rahul",
+    "course": "Python",
+    "status": "active"
+}</code></pre>
+
+                <p>
+                    Python applications can load this JSON data,
+                    process it and use the values in the application.
+                </p>
+
+            </div>
+
+
+            <!-- CSV VS JSON -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    CSV vs JSON
+                </h2>
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered align-middle">
+
+                        <thead>
+
+                            <tr>
+                                <th>CSV</th>
+                                <th>JSON</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>
+                                    Good for tabular data.
+                                </td>
+
+                                <td>
+                                    Good for structured and nested data.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    Uses rows and columns.
+                                </td>
+
+                                <td>
+                                    Uses objects and arrays.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    Simple text format.
+                                </td>
+
+                                <td>
+                                    Supports nested structures.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    Common in spreadsheets and data exports.
+                                </td>
+
+                                <td>
+                                    Common in APIs and web applications.
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <!-- COMMON JSON FUNCTIONS -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Common JSON Functions
+                </h2>
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered align-middle">
+
+                        <thead>
+
+                            <tr>
+                                <th>Function</th>
+                                <th>Purpose</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>
+                                    <code>json.dumps()</code>
+                                </td>
+
+                                <td>
+                                    Convert Python object to JSON string.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <code>json.loads()</code>
+                                </td>
+
+                                <td>
+                                    Convert JSON string to Python object.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <code>json.dump()</code>
+                                </td>
+
+                                <td>
+                                    Write Python object to JSON file.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <code>json.load()</code>
+                                </td>
+
+                                <td>
+                                    Read JSON file into a Python object.
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRACTICAL EXAMPLE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Example: Student JSON 📩🌍
+                </h2>
+
+                <pre><code>import json
+
+students = [
+    {
+        "name": "Rahul",
+        "course": "Python",
+        "fees": 45000
+    },
+    {
+        "name": "Priya",
+        "course": "Java",
+        "fees": 40000
+    },
+    {
+        "name": "Amit",
+        "course": ".NET",
+        "fees": 50000
+    }
+]
+
+
+with open(
+    "students.json",
+    "w",
+    encoding="utf-8"
+) as file:
+
+    json.dump(
+        students,
+        file,
+        indent=4
+    )
+
+
+with open(
+    "students.json",
+    "r",
+    encoding="utf-8"
+) as file:
+
+    data = json.load(file)
+
+
+for student in data:
+
+    print(
+        student["name"],
+        student["course"],
+        student["fees"]
+    )</code></pre>
+
+                <p class="mt-3">
+                    Output:
+                </p>
+
+                <pre><code>Rahul Python 45000
+Priya Java 40000
+Amit .NET 50000</code></pre>
+
+            </div>
+
+
+            <!-- BEST PRACTICES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Best Practices
+                </h2>
+
+                <ul>
+
+                    <li>
+                        Use valid JSON syntax.
+                    </li>
+
+                    <li>
+                        Use <code>indent</code> when human-readable JSON
+                        is required.
+                    </li>
+
+                    <li>
+                        Use UTF-8 encoding for JSON text files when appropriate.
+                    </li>
+
+                    <li>
+                        Handle invalid JSON data using exception handling.
+                    </li>
+
+                    <li>
+                        Validate important input data before processing it.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- COMMON MISTAKES -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Common Mistakes
+                </h2>
+
+                <ul>
+
+                    <li>
+                        Using invalid JSON syntax.
+                    </li>
+
+                    <li>
+                        Forgetting that JSON uses double quotes for strings
+                        in standard JSON syntax.
+                    </li>
+
+                    <li>
+                        Confusing <code>loads()</code> with
+                        <code>load()</code>.
+                    </li>
+
+                    <li>
+                        Confusing <code>dumps()</code> with
+                        <code>dump()</code>.
+                    </li>
+
+                    <li>
+                        Forgetting to open the file with the correct mode.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- PRACTICE -->
+            <div class="mb-4">
+
+                <h2 class="h3 fw-bold">
+                    Practice Programs
+                </h2>
+
+                <ol>
+
+                    <li>
+                        Create a Python dictionary and convert it to JSON.
+                    </li>
+
+                    <li>
+                        Convert a JSON string back to a Python dictionary.
+                    </li>
+
+                    <li>
+                        Create a <code>students.json</code> file.
+                    </li>
+
+                    <li>
+                        Store multiple student objects in the JSON file.
+                    </li>
+
+                    <li>
+                        Read the JSON file and print each student.
+                    </li>
+
+                    <li>
+                        Search for a student by name.
+                    </li>
+
+                    <li>
+                        Update a student's course and save the JSON file again.
+                    </li>
+
+                </ol>
+
+            </div>
+
+
+            <!-- SUMMARY -->
+            <div class="alert alert-info mt-4">
+
+                <h2 class="h4 fw-bold">
+                    Summary
+                </h2>
+
+                <p class="mb-0">
+
+                    JSON is a text-based format used to store and exchange
+                    structured data. Python provides the built-in
+                    <code>json</code> module for working with JSON.
+                    The <code>dumps()</code> and <code>loads()</code>
+                    functions work with JSON strings, while
+                    <code>dump()</code> and <code>load()</code> work with
+                    JSON files. JSON is commonly used with APIs, web
+                    applications and configuration data.
+
+                </p>
+
+            </div>
+
+
+            <!-- NAVIGATION -->
+            <div class="d-flex justify-content-between mt-4">
+
+                <a class="btn btn-outline-secondary"
+                   href="@Url.Action("CSVFiles", "FileHandling", new { area = "Python" })">
+
+                    ← Previous: Topic
+
+                </a>
+
+
+                <a class="btn btn-primary"
+                   href="@Url.Action("Index", "ExceptionHandling", new { area = "Python" })">
+
+                    Next: Topic →
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>
